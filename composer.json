@@ -30,8 +30,8 @@
         "dotkernel/dot-errorhandler": "^4.2.1",
         "laminas/laminas-component-installer": "^3.5.0",
         "laminas/laminas-config-aggregator": "^1.17.0",
-        "mezzio/mezzio": "^3.20.1",
-        "mezzio/mezzio-fastroute": "^3.12.0",
+        "mezzio/mezzio": "^3.22.0",
+        "mezzio/mezzio-fastroute": "^3.13.0",
         "mezzio/mezzio-twigrenderer": "^2.17.0"
     },
     "require-dev": {
