@@ -4,7 +4,7 @@ on:
   pull_request:
   push:
     branches:
-      - 1.0
+      - '1.0'
       - 'releases/*'
 
 jobs:
@@ -16,9 +16,9 @@ jobs:
       checks: write
     strategy:
       matrix:
-        php-versions: [ '8.2', '8.3', '8.4', '8.5' ]
+        php-versions: [ '8.3', '8.4', '8.5' ]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           # to check out the actual pull request commit, not the merge commit
           ref: ${{ github.event.pull_request.head.sha }}
@@ -35,7 +35,7 @@ jobs:
         run: echo "COMPOSER_CACHE_DIR=$(composer config cache-dir)" >> $GITHUB_ENV
 
       - name: Cache dependencies installed with composer
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ${{ env.COMPOSER_CACHE_DIR }}
           key: php${{ matrix.php }}-composer-${{ hashFiles('**/composer.json') }}
