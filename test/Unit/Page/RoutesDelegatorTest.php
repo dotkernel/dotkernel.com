@@ -30,10 +30,10 @@ class RoutesDelegatorTest extends TestCase
         $routeUri     = sprintf('/%s/%s', $moduleName, $routeName);
         $templateName = sprintf('%s::%s', $moduleName, $routeName);
 
-        $container = $this->createMock(ContainerInterface::class);
+        $container = $this->createStub(ContainerInterface::class);
         $app       = $this->createMock(Application::class);
 
-        $app->method('get')->willReturn($this->createMock(Route::class));
+        $app->method('get')->willReturn($this->createStub(Route::class));
         $app
             ->expects($this->exactly(1))
             ->method('get')
@@ -43,7 +43,7 @@ class RoutesDelegatorTest extends TestCase
                 $this->assertSame($templateName, $args[2]);
             });
 
-        $container->method('get')->with('config')->willReturn([
+        $container->method('get')->willReturn([
             'routes' => [
                 $moduleName => [
                     $routeName => $routeName,

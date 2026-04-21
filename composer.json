@@ -26,7 +26,7 @@
         }
     },
     "require": {
-        "php": "~8.2.0 || ~8.3.0 || ~8.4.0 || ~8.5.0",
+        "php": "~8.3.0 || ~8.4.0 || ~8.5.0",
         "dotkernel/dot-errorhandler": "^4.4.0",
         "laminas/laminas-component-installer": "^3.5.0",
         "laminas/laminas-config-aggregator": "^1.17.0",
@@ -40,7 +40,7 @@
         "laminas/laminas-development-mode": "^3.13.0",
         "phpstan/phpstan": "^2.1.2",
         "phpstan/phpstan-phpunit": "^2.0.4",
-        "phpunit/phpunit": "^10.5.45",
+        "phpunit/phpunit": "^12.5.23",
         "roave/security-advisories": "dev-master",
         "symfony/var-dumper": "^7.2.3",
         "vincentlanglet/twig-cs-fixer": "^3.5.1"

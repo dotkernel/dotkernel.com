@@ -20,7 +20,7 @@ class PageHandlerTest extends TestCase
      */
     public function testWillInstantiate(): void
     {
-        $handler = $this->createMock(GetPageViewHandler::class);
+        $handler = $this->createStub(GetPageViewHandler::class);
 
         $this->assertContainsOnlyInstancesOf(RequestHandlerInterface::class, [$handler]);
     }
@@ -31,9 +31,9 @@ class PageHandlerTest extends TestCase
     public function testHandle(): void
     {
         $routeName   = 'test_route_name';
-        $request     = $this->createMock(ServerRequestInterface::class);
-        $template    = $this->createMock(TemplateRendererInterface::class);
-        $routeResult = $this->createMock(RouteResult::class);
+        $request     = $this->createStub(ServerRequestInterface::class);
+        $template    = $this->createStub(TemplateRendererInterface::class);
+        $routeResult = $this->createStub(RouteResult::class);
 
         $routeResult
             ->method('getMatchedRouteName')
@@ -41,12 +41,10 @@ class PageHandlerTest extends TestCase
 
         $request
             ->method('getAttribute')
-            ->with(RouteResult::class)
             ->willReturn($routeResult);
 
         $template
             ->method('render')
-            ->with($routeName)
             ->willReturn('<p>' . $routeName . '</p>');
 
         $handler = new GetPageViewHandler($template);
