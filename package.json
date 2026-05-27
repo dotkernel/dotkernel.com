@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/dotkernel/light#readme",
   "devDependencies": {
-    "@rollup/plugin-alias": "^5.1.1",
+    "@rollup/plugin-alias": "^6.0.0",
     "autoprefixer": "^10.4.20",
     "babel-core": "^7.0.0-bridge.0",
     "babel-loader": "^9.1.3",
