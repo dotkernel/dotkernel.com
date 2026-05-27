@@ -26,17 +26,20 @@ Documentation is available at: https://docs.dotkernel.org/light-documentation/
 [![PHPStan](https://github.com/dotkernel/light/actions/workflows/static-analysis.yml/badge.svg?branch=1.0)](https://github.com/dotkernel/light/actions/workflows/static-analysis.yml)
 ![PHPstan Level](https://img.shields.io/badge/PHPStan-level%208-brightgreen)
 
-## Installing Dotkernel `light`
+## Installing Dotkernel `Light`
 
-- [Installing Dotkernel `light`](#installing-dotkernel-light)
-    - [Composer](#composer)
-    - [Choose a destination path for Dotkernel `light` installation](#choosing-an-installation-path-for-dotkernel-light)
-    - [Installing Dotkernel light](#installing-dotkernel-light)
-    - [Testing (Running)](#running-the-application)
+- [Installing Dotkernel `Light`](#installing-dotkernel-light)
+  - [Composer](#composer)
+  - [Choose a destination path for Dotkernel `Light` installation](#choosing-an-installation-path-for-dotkernel-light)
+  - [Installing Dotkernel light](#installing-dotkernel-light)
+  - [Testing (Running)](#running-the-application)
 
 ## Tools
 
-Dotkernel light interface has been tested with npm v10.0.4 and Node.js v20.11.0.
+Dotkernel light interface has been tested with: 
+
+- npm versions: v10.0.4, v10.9.8, v11.13.0.
+- Node.js versions: v20.11.0, v22.22.3, v24.16.0.
 
 ### Composer
 
@@ -45,20 +48,20 @@ Installation instructions:
 - [Composer Installation -  Linux/Unix/OSX](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx)
 - [Composer Installation - Windows](https://getcomposer.org/doc/00-intro.md#installation-windows)
 
-> If you have never used composer before make sure you read the [`Composer Basic Usage`](https://getcomposer.org/doc/01-basic-usage.md) section in Composer's documentation
+> If you have never used composer before make sure you read the [`Composer Basic Usage`](https://getcomposer.org/doc/01-basic-usage.md) section in Composer's documentation.
 
-## Choosing an installation path for Dotkernel `light`
+## Choosing an Installation Path for Dotkernel `Light`
 
 Example:
 
 - absolute path `/var/www/dk`
 - or relative path `dk` (equivalent with `./dk`)
 
-## Installing Dotkernel `light`
+## Installing Dotkernel `Light`
 
 After you choose the path for Dotkernel light (`dk` will be used for the remainder of this example), let's move onto installation.
 
-### Installing Dotkernel `light` using git clone
+### Installing Dotkernel `Light` Using `git clone`
 
 This method ensures that the default branch is installed, even if it is not released. Run the following command:
 
@@ -66,7 +69,7 @@ This method ensures that the default branch is installed, even if it is not rele
 git clone https://github.com/dotkernel/light.git .
 ```
 
-The dependencies have to be installed separately, by running this command:
+The dependencies have to be installed separately by running this command:
 
 ```shell
 composer install
@@ -91,7 +94,7 @@ The next question is:
 
 You should enter `y` and press `Enter`.
 
-## Development mode
+## Development Mode
 
 Run this command to enable dev mode by turning debug flag to `true` and turning configuration caching to `off`. It will also make sure that any existing config cache is cleared.
 
@@ -124,17 +127,17 @@ The build command compiles the components from the `src/App/assets` folder into 
 npm run build
 ```  
 
-## Running the application
+## Running the Application
 
 We recommend running your applications in WSL:
 
-- make sure you have [WSL](https://github.com/dotkernel/development/blob/main/wsl/README.md) installed on your system
-- currently we provide a distro implementations for [AlmaLinux9](https://github.com/dotkernel/development/blob/main/wsl/os/almalinux9/README.md)
-- install the application in a virtualhost as recommended by the chosen distro
-- set `$baseUrl` in **config/autoload/local.php** to the address of the virtualhost
-- run the application by opening the virtualhost address in your browser
+- Make sure you have [WSL](https://github.com/dotkernel/development/blob/main/wsl/README.md) installed on your system.
+- Currently we provide a distro implementation for [AlmaLinux10](https://docs.dotkernel.org/development/v2/setup/installation/).
+- Install the application in a virtualhost as recommended by the chosen distro.
+- Set `$baseUrl` in **config/autoload/local.php** to the address of your virtualhost.
+- Run the application by opening the virtualhost address in your browser.
 
-You should see the `Dotkernel light` welcome page.
+You should see the `Dotkernel Light` welcome page.
 
 **NOTE:**
 
