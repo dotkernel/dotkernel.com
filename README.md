@@ -29,14 +29,14 @@ Documentation is available at: https://docs.dotkernel.org/light-documentation/
 ## Installing Dotkernel `Light`
 
 - [Installing Dotkernel `Light`](#installing-dotkernel-light)
-  - [Composer](#composer)
-  - [Choose a destination path for Dotkernel `Light` installation](#choosing-an-installation-path-for-dotkernel-light)
-  - [Installing Dotkernel light](#installing-dotkernel-light)
-  - [Testing (Running)](#running-the-application)
+    - [Composer](#composer)
+    - [Choose a destination path for Dotkernel `Light` installation](#choosing-an-installation-path-for-dotkernel-light)
+    - [Installing Dotkernel light](#installing-dotkernel-light)
+    - [Testing (Running)](#running-the-application)
 
 ## Tools
 
-Dotkernel light interface has been tested with: 
+Dotkernel light interface has been tested with:
 
 - npm versions: v10.0.4, v10.9.8, v11.13.0.
 - Node.js versions: v20.11.0, v22.22.3, v24.16.0.
