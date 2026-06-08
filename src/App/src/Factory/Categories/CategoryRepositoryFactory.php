@@ -10,6 +10,7 @@ use Light\Blog\Repository\CategoryRepository;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
+
 use function assert;
 
 class CategoryRepositoryFactory

@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Light\Blog\Handler;
 
+use Laminas\Diactoros\Response\HtmlResponse;
 use Light\Blog\Repository\ArticleRepository;
 use Mezzio\Template\TemplateRendererInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use Laminas\Diactoros\Response\HtmlResponse;
 
 class GetPostHandler implements RequestHandlerInterface
 {

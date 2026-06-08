@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Light\Blog\Handler;
 
 use Laminas\Diactoros\Response\HtmlResponse;
@@ -21,11 +23,11 @@ class GetArticlesHandler implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $articles = $this->articleRepository->getArticles();
+        $articles   = $this->articleRepository->getArticles();
         $categories = $this->categoryRepository->getCategories();
         return new HtmlResponse(
             $this->template->render('page::posts', [
-                'articles'  => $articles,
+                'articles'   => $articles,
                 'categories' => $categories,
             ])
         );

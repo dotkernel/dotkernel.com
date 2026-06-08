@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Light\Blog\Repository;
 
 use Light\App\Repository\AbstractRepository;
@@ -7,6 +9,9 @@ use Light\Blog\Entity\Article;
 
 class ArticleRepository extends AbstractRepository
 {
+    /**
+     * @return array<Article>
+     */
     public function getArticles(): array
     {
         $qb = $this->getQueryBuilder()

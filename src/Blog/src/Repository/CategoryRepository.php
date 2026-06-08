@@ -1,11 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Light\Blog\Repository;
 
 use Light\App\Repository\AbstractRepository;
 use Light\Blog\Entity\Category;
+
 class CategoryRepository extends AbstractRepository
 {
+    /**
+     * @return array<Category>
+     */
     public function getCategories(): array
     {
         $qb = $this->getQueryBuilder()
@@ -14,5 +20,4 @@ class CategoryRepository extends AbstractRepository
 
         return $qb->getQuery()->getResult();
     }
-
 }

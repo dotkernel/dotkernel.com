@@ -10,6 +10,7 @@ use Doctrine\Persistence\ObjectManager;
 use Light\Blog\Entity\Article;
 use Light\Blog\Entity\Author;
 use Light\Blog\Entity\Category;
+
 use function assert;
 
 class ArticlesLoader implements FixtureInterface, DependentFixtureInterface

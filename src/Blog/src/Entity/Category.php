@@ -39,8 +39,6 @@ class Category extends AbstractEntity
         $this->slug = $slug;
     }
 
-
-
     /**
      * @return array{
      *     id: non-empty-string,
@@ -51,8 +49,8 @@ class Category extends AbstractEntity
     public function getArrayCopy(): array
     {
         return [
-            'id'     => $this->id->toString(),
-            'name'  => $this->name,
+            'id'   => $this->id->toString(),
+            'name' => $this->name,
             'slug' => $this->slug,
         ];
     }

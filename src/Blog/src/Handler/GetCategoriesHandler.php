@@ -21,11 +21,11 @@ class GetCategoriesHandler implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $categories  = $this->categoryRepository->getCategories();
+        $categories = $this->categoryRepository->getCategories();
 
         return new HtmlResponse(
             $this->template->render('page::categories', [
-                'categories'  => $categories,
+                'categories' => $categories,
             ])
         );
     }

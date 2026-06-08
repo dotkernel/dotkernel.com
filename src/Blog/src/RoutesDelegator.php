@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Light\Blog;
 
-use Light\Blog\Handler\GetPostHandler;
 use Light\Blog\Handler\GetArticlesHandler;
 use Light\Blog\Handler\GetCategoriesHandler;
+use Light\Blog\Handler\GetPostHandler;
 use Mezzio\Application;
 use Psr\Container\ContainerInterface;
 
