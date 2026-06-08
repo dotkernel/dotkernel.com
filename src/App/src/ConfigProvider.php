@@ -60,7 +60,7 @@ use function getcwd;
  *          migrations_paths: array<non-empty-string, non-empty-string>,
  *          all_or_nothing: bool,
  *          check_database_platform: bool,
- *      }
+ *      },
  * }
  * @phpstan-type DependenciesType array{
  *       factories: array<class-string|non-empty-string, class-string|non-empty-string>,
@@ -178,7 +178,7 @@ class ConfigProvider
                 ],
                 'all_or_nothing'          => true,
                 'check_database_platform' => true,
-            ]
+            ],
         ];
     }
 }
