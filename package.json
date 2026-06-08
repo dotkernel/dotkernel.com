@@ -27,7 +27,7 @@
     "autoprefixer": "^10.4.20",
     "babel-core": "^7.0.0-bridge.0",
     "babel-loader": "^10.0.0",
-    "babel-preset-env": "^1.7.0",
+    "babel-preset-env": "^0.0.0",
     "bootstrap": "^5.3.3",
     "bootstrap-fileinput": "^5.5.4",
     "bootstrap-sass": "^3.4.3",
@@ -54,12 +54,12 @@
     "bootstrap-slider": "^11.0.2",
     "lightningcss": "^1.29.3",
     "npm": "^11.0.0",
-    "npm-check": "^6.0.1",
+    "npm-check": "^3.2.10",
     "popper.js": "^1.16.1",
     "vite-jsconfig-paths": "^2.0.1",
     "vite-plugin-bundle-css": "^0.1.1",
     "vite-plugin-commonjs": "^0.10.4",
     "vite-plugin-css-injected-by-js": "^5.0.0",
-    "vite-plugin-minify": "^2.1.0"
+    "vite-plugin-minify": "^3.0.0"
   }
 }

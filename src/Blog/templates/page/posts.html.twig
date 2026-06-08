@@ -1,0 +1,73 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}Posts{% endblock %}
+
+{% block content %}
+    <div class="page-intro">
+        <div class="container">
+            <p class="welcome">Blog</p>
+            <h1>Latest Articles</h1>
+        </div>
+    </div>
+
+    <div class="container py-5">
+        <div class="row g-4">
+
+            <div class="col-lg-3 col-md-4">
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-body">
+                        <h6 class="fw-bold text-uppercase text-muted small mb-3">Search</h6>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light border-end-0">
+                                <i class="bi bi-search text-muted"></i>
+                            </span>
+                            <input type="text" class="form-control border-start-0 bg-light" placeholder="Search articles…">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body">
+                        <h6 class="fw-bold text-uppercase text-muted small mb-3">Categories</h6>
+                        <ul class="list-unstyled mb-0">
+                            {% for category in categories %}
+                                <li>
+                                    <a href="{{ category.slug }}"
+                                       class="d-flex align-items-center justify-content-between py-2 px-2 rounded text-decoration-none text-dark hover-item">
+                                        <span class="small">{{ category.name }}</span>
+                                        <i class="bi bi-chevron-right text-muted" style="font-size: 11px;"></i>
+                                    </a>
+                                </li>
+                            {% endfor %}
+                            <a href="/posts/categories">See all categories</a>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-9 col-md-8">
+                {% for article in articles %}
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="card-body p-4">
+                            <h5 class="fw-bold mb-2">
+                                <a href="/posts/{{ article.slug }}" class="text-dark text-decoration-none">
+                                    {{ article.title }}
+                                </a>
+                            </h5>
+                            <a href="/posts/{{ article.slug }}" class="text-primary small fw-semibold">
+                                Read more &rarr;
+                            </a> <br>
+                            <a href="/{{ article.category.slug }}" class="text-primary small fw-semibold"> Related posts</a>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="text-center py-5 text-muted">
+                        <i class="bi bi-newspaper fs-1 d-block mb-3"></i>
+                        <p>No articles found.</p>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

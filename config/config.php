@@ -31,6 +31,7 @@ $aggregator = new ConfigAggregator([
     // Default App module config
     \Light\App\ConfigProvider::class,
     \Light\Page\ConfigProvider::class,
+    \Light\Blog\ConfigProvider::class,
 
     // Load application config in a pre-defined order in such a way that local settings
     // overwrite global settings. (Loaded as first to last):

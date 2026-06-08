@@ -1,0 +1,38 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
+use Doctrine\Common\DataFixtures\Loader;
+use Doctrine\Common\DataFixtures\Purger\ORMPurger;
+use Doctrine\ORM\EntityManager;
+
+require_once 'vendor/autoload.php';
+
+$container = require 'config/container.php';
+
+$entityManager = $container->get(EntityManager::class);
+$config        = $container->get('config');
+
+// Get fixtures directory from config
+$fixturesPath = $config['doctrine']['fixtures'];
+
+if (! is_dir($fixturesPath)) {
+    echo "Fixtures directory not found: {$fixturesPath}\n";
+    exit(1);
+}
+
+// Load fixtures
+$loader = new Loader();
+$loader->loadFromDirectory($fixturesPath);
+
+// Execute fixtures
+$purger   = new ORMPurger();
+$executor = new ORMExecutor($entityManager, $purger);
+
+echo "Loading fixtures from: {$fixturesPath}\n";
+
+$executor->execute($loader->getFixtures());
+
+echo "Fixtures loaded successfully!\n";
