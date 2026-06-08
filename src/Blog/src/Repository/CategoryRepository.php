@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Light\Blog\Repository;
 
-use Laminas\Diactoros\Response\EmptyResponse;
 use Light\App\Repository\AbstractRepository;
 use Light\Blog\Entity\Article;
 use Light\Blog\Entity\Category;

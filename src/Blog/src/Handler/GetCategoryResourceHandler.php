@@ -21,9 +21,9 @@ class GetCategoryResourceHandler implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $categorySlug     = $request->getAttribute('slug');
-        $category         = $this->categoryRepository->getCategoryResource($categorySlug);
-        if (!$category) {
+        $categorySlug = $request->getAttribute('slug');
+        $category     = $this->categoryRepository->getCategoryResource($categorySlug);
+        if (! $category) {
             return new HtmlResponse('Category not found', 404);
         }
         $categories       = $this->categoryRepository->getCategories();
