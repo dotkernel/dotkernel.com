@@ -1,0 +1,50 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}{{ category.name }}{% endblock %}
+
+{% block content %}
+    <div class="row g-4 py-4 z-0">
+        <aside class="col-lg-3 col-md-4">
+                <h5 class="text-uppercase text-muted small fw-bold tracking-wider mb-3">
+                    Categories
+                </h5>
+                <div class="list-group list-group-flush rounded-3 shadow-sm border">
+                    {% for cat in categories %}
+                        {% set is_active = cat.slug == category.slug %}
+                        <a href="{{ url('page::category-resource', {slug: cat.slug}) }}"
+                           class="list-group-item list-group-item-action py-2.5 px-3 border-0 {% if is_active %}active fw-semibold{% else %}text-secondary{% endif %}">
+                            {{ cat.name }}
+                        </a>
+                    {% endfor %}
+                </div>
+        </aside>
+
+        <main class="col-lg-9 col-md-8">
+            <header class="mb-4 pb-3 border-bottom">
+                <span class="text-uppercase text-muted small fw-bold d-block mb-1">Category</span>
+                <h1 class="display-6 fw-bold text-dark mb-0">{{ category.name }}</h1>
+            </header>
+
+            <div class="posts d-flex flex-column gap-3">
+                {% for article in categoryArticles %}
+                    <article class="card border-0 shadow-sm rounded-3 card-hover transition">
+                        <div class="card-body p-4">
+                            <h3 class="h5 mb-0">
+                                <a href="{{ url('page::blog-resource', {slug: article.slug}) }}"
+                                   class="text-decoration-none text-dark link-primary fw-semibold stretched-link">
+                                    {{ article.title }}
+                                </a>
+                            </h3>
+                        </div>
+                    </article>
+                {% else %}
+                    <div class="text-center py-5 bg-white rounded-3 border shadow-sm">
+                        <i class="far fa-folder-open fa-2x text-muted mb-3"></i>
+                        <p class="text-muted mb-0">No posts in this category yet.</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </main>
+
+    </div>
+{% endblock %}

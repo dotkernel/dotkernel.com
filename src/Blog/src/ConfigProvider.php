@@ -10,9 +10,11 @@ use Light\Blog\Factory\Articles\ArticleCollectionRepositoryFactory;
 use Light\Blog\Factory\Articles\ArticleResourceHandlerFactory;
 use Light\Blog\Factory\Categories\CategoryCollectionHandlerFactory;
 use Light\Blog\Factory\Categories\CategoryCollectionRepositoryFactory;
+use Light\Blog\Factory\Categories\CategoryResourceHandlerFactory;
 use Light\Blog\Handler\GetArticleCollectionHandler;
 use Light\Blog\Handler\GetArticleResourceHandler;
 use Light\Blog\Handler\GetCategoryCollectionHandler;
+use Light\Blog\Handler\GetCategoryResourceHandler;
 use Light\Blog\Repository\ArticleRepository;
 use Light\Blog\Repository\CategoryRepository;
 use Mezzio\Application;
@@ -54,6 +56,7 @@ class ConfigProvider
                 GetArticleCollectionHandler::class  => ArticleCollectionHandlerFactory::class,
                 ArticleRepository::class            => ArticleCollectionRepositoryFactory::class,
                 GetArticleResourceHandler::class    => ArticleResourceHandlerFactory::class,
+                GetCategoryResourceHandler::class   => CategoryResourceHandlerFactory::class,
             ],
         ];
     }

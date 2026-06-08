@@ -7,6 +7,7 @@ namespace Light\Blog;
 use Light\Blog\Handler\GetArticleCollectionHandler;
 use Light\Blog\Handler\GetArticleResourceHandler;
 use Light\Blog\Handler\GetCategoryCollectionHandler;
+use Light\Blog\Handler\GetCategoryResourceHandler;
 use Mezzio\Application;
 use Psr\Container\ContainerInterface;
 
@@ -22,6 +23,7 @@ class RoutesDelegator
         $app->get('/blog/categories', [GetCategoryCollectionHandler::class], 'page::categories');
         $app->get('/blog', [GetArticleCollectionHandler::class], 'page::blog');
         $app->get('/blog/{slug}', [GetArticleResourceHandler::class], 'page::blog-resource');
+        $app->get('/blog/categories/{slug}', [GetCategoryResourceHandler::class], 'page::category-resource');
 
         return $app;
     }
