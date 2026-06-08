@@ -22,7 +22,7 @@ class ArticleRepository extends AbstractRepository
         return $qb->getQuery()->getResult();
     }
 
-    public function getPostBySlug(string $slug): ?Article
+    public function getArticleResource(string $slug): ?Article
     {
         $qb = $this->getQueryBuilder()
             ->select('articles')

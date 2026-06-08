@@ -39,7 +39,7 @@
                                     </a>
                                 </li>
                             {% endfor %}
-                            <a href="/posts/categories">See all categories</a>
+                            <a href="{{ url('page::categories') }}">See all categories</a>
                         </ul>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                                     {{ article.title }}
                                 </a>
                             </h5>
-                            <a href="/posts/{{ article.slug }}" class="text-primary small fw-semibold">
+                            <a href="/blog/{{ article.slug }}" class="text-primary small fw-semibold">
                                 Read more &rarr;
                             </a> <br>
                             <a href="/{{ article.category.slug }}" class="text-primary small fw-semibold"> Related posts</a>

@@ -5,27 +5,27 @@ declare(strict_types=1);
 namespace Light\Blog\Handler;
 
 use Laminas\Diactoros\Response\HtmlResponse;
-use Light\Blog\Repository\ArticleRepository;
+use Light\Blog\Repository\CategoryRepository;
 use Mezzio\Template\TemplateRendererInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class GetPostHandler implements RequestHandlerInterface
+class GetCategoryCollectionHandler implements RequestHandlerInterface
 {
     public function __construct(
-        private readonly TemplateRendererInterface $template,
-        private readonly ArticleRepository $articleRepository,
+        protected TemplateRendererInterface $template,
+        protected CategoryRepository $categoryRepository,
     ) {
     }
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $slug    = $request->getAttribute('slug');
-        $article = $this->articleRepository->getPostBySlug($slug);
+        $categories = $this->categoryRepository->getCategories();
+
         return new HtmlResponse(
-            $this->template->render('page::posts/' . $slug, [
-                'article' => $article,
+            $this->template->render('page::categories', [
+                'categories' => $categories,
             ])
         );
     }

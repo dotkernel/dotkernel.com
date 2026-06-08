@@ -13,6 +13,7 @@ use Dot\Cache\Adapter\FilesystemAdapter;
 use Light\App\Factory\GetIndexViewHandlerFactory;
 use Light\App\Handler\GetIndexViewHandler;
 use Mezzio\Application;
+use Ramsey\Uuid\Doctrine\UuidType;
 use Roave\PsrContainerDoctrine\EntityManagerFactory;
 use Symfony\Component\Cache\Adapter\AdapterInterface;
 
@@ -178,6 +179,9 @@ class ConfigProvider
                 ],
                 'all_or_nothing'          => true,
                 'check_database_platform' => true,
+            ],
+            'types'         => [
+                UuidType::NAME => UuidType::class,
             ],
         ];
     }

@@ -2,29 +2,29 @@
 
 declare(strict_types=1);
 
-namespace Light\App\Factory\Categories;
+namespace Light\Blog\Factory\Articles;
 
 use Doctrine\ORM\EntityManager;
-use Light\Blog\Entity\Category;
-use Light\Blog\Repository\CategoryRepository;
+use Light\Blog\Entity\Article;
+use Light\Blog\Repository\ArticleRepository;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
 
 use function assert;
 
-class CategoryRepositoryFactory
+class ArticleCollectionRepositoryFactory
 {
     /**
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      */
-    public function __invoke(ContainerInterface $container): CategoryRepository
+    public function __invoke(ContainerInterface $container): ArticleRepository
     {
         $entityManager = $container->get(EntityManager::class);
 
-        $repository = $entityManager->getRepository(Category::class);
-        assert($repository instanceof CategoryRepository);
+        $repository = $entityManager->getRepository(Article::class);
+        assert($repository instanceof ArticleRepository);
 
         return $repository;
     }

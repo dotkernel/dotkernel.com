@@ -12,7 +12,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class GetArticlesHandler implements RequestHandlerInterface
+class GetArticleCollectionHandler implements RequestHandlerInterface
 {
     public function __construct(
         protected TemplateRendererInterface $template,
@@ -26,7 +26,7 @@ class GetArticlesHandler implements RequestHandlerInterface
         $articles   = $this->articleRepository->getArticles();
         $categories = $this->categoryRepository->getCategories();
         return new HtmlResponse(
-            $this->template->render('page::posts', [
+            $this->template->render('page::blog', [
                 'articles'   => $articles,
                 'categories' => $categories,
             ])

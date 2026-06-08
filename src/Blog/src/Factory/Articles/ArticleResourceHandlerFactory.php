@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Light\App\Factory\Posts;
+namespace Light\Blog\Factory\Articles;
 
-use Light\Blog\Handler\GetPostHandler;
+use Light\Blog\Handler\GetArticleResourceHandler;
 use Light\Blog\Repository\ArticleRepository;
 use Mezzio\Template\TemplateRendererInterface;
 use Psr\Container\ContainerExceptionInterface;
@@ -13,13 +13,13 @@ use Psr\Container\NotFoundExceptionInterface;
 
 use function assert;
 
-class PostHandlerFactory
+class ArticleResourceHandlerFactory
 {
     /**
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      */
-    public function __invoke(ContainerInterface $container, string $requestedName): GetPostHandler
+    public function __invoke(ContainerInterface $container, string $requestedName): GetArticleResourceHandler
     {
         $repository = $container->get(ArticleRepository::class);
         $template   = $container->get(TemplateRendererInterface::class);
@@ -27,6 +27,6 @@ class PostHandlerFactory
         assert($repository instanceof ArticleRepository);
         assert($template instanceof TemplateRendererInterface);
 
-        return new GetPostHandler($template, $repository);
+        return new GetArticleResourceHandler($template, $repository);
     }
 }

@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace Light\Blog;
 
 use Doctrine\ORM\Mapping\Driver\AttributeDriver;
-use Light\App\Factory\Articles\ArticleHandlerFactory;
-use Light\App\Factory\Articles\ArticleRepositoryFactory;
-use Light\App\Factory\Categories\CategoryHandlerFactory;
-use Light\App\Factory\Categories\CategoryRepositoryFactory;
-use Light\App\Factory\Posts\PostHandlerFactory;
-use Light\Blog\Handler\GetArticlesHandler;
-use Light\Blog\Handler\GetCategoriesHandler;
-use Light\Blog\Handler\GetPostHandler;
+use Light\Blog\Factory\Articles\ArticleCollectionHandlerFactory;
+use Light\Blog\Factory\Articles\ArticleCollectionRepositoryFactory;
+use Light\Blog\Factory\Articles\ArticleResourceHandlerFactory;
+use Light\Blog\Factory\Categories\CategoryCollectionHandlerFactory;
+use Light\Blog\Factory\Categories\CategoryCollectionRepositoryFactory;
+use Light\Blog\Handler\GetArticleCollectionHandler;
+use Light\Blog\Handler\GetArticleResourceHandler;
+use Light\Blog\Handler\GetCategoryCollectionHandler;
 use Light\Blog\Repository\ArticleRepository;
 use Light\Blog\Repository\CategoryRepository;
 use Mezzio\Application;
@@ -49,11 +49,11 @@ class ConfigProvider
                 ],
             ],
             'factories'  => [
-                GetCategoriesHandler::class => CategoryHandlerFactory::class,
-                CategoryRepository::class   => CategoryRepositoryFactory::class,
-                GetArticlesHandler::class   => ArticleHandlerFactory::class,
-                ArticleRepository::class    => ArticleRepositoryFactory::class,
-                GetPostHandler::class       => PostHandlerFactory::class,
+                GetCategoryCollectionHandler::class => CategoryCollectionHandlerFactory::class,
+                CategoryRepository::class           => CategoryCollectionRepositoryFactory::class,
+                GetArticleCollectionHandler::class  => ArticleCollectionHandlerFactory::class,
+                ArticleRepository::class            => ArticleCollectionRepositoryFactory::class,
+                GetArticleResourceHandler::class    => ArticleResourceHandlerFactory::class,
             ],
         ];
     }
