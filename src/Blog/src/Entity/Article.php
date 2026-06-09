@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace Light\Blog\Entity;
 
+use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use Light\App\Entity\AbstractEntity;
+use Light\Blog\Enum\ArticleStatusEnum;
 use Light\Blog\Repository\ArticleRepository;
 
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
@@ -18,6 +20,17 @@ class Article extends AbstractEntity
 
     #[ORM\Column(name: 'slug', type: 'string', length: 500, unique: true)]
     private string $slug;
+
+    #[ORM\Column(name: 'post_date', type: 'datetime_immutable', nullable: true)]
+    private string $postDate;
+
+    #[ORM\Column(
+        name: 'status',
+        type: 'article_status_enum',
+        enumType: ArticleStatusEnum::class,
+        options: ['default' => ArticleStatusEnum::Published]
+    )]
+    private ArticleStatusEnum $status;
 
     #[ORM\ManyToOne(targetEntity: Category::class)]
     #[ORM\JoinColumn(name: 'category_id', referencedColumnName: 'id', nullable: false)]
@@ -47,6 +60,26 @@ class Article extends AbstractEntity
         $this->slug = $slug;
     }
 
+    public function getPostDate(): string
+    {
+        return $this->postDate;
+    }
+
+    public function setPostDate(string $postDate): void
+    {
+        $this->postDate = $postDate;
+    }
+
+    public function getStatus(): ArticleStatusEnum
+    {
+        return $this->status;
+    }
+
+    public function setStatus(ArticleStatusEnum $status): void
+    {
+        $this->status = $status;
+    }
+
     public function getCategory(): Category
     {
         return $this->category;
@@ -72,6 +105,8 @@ class Article extends AbstractEntity
      *     id: non-empty-string,
      *     title: string,
      *     slug: string,
+     *     status: string,
+     *     postDate: string,
      *     category: array{id: non-empty-string, name: string, slug: string},
      *     author: array{id: non-empty-string, name: string, slug: string, bio: string|null}
      * }
@@ -82,6 +117,8 @@ class Article extends AbstractEntity
             'id'       => $this->id->toString(),
             'title'    => $this->title,
             'slug'     => $this->slug,
+            'status'   => $this->status->value,
+            'postDate' => $this->postDate,
             'category' => $this->category->getArrayCopy(),
             'author'   => $this->author->getArrayCopy(),
         ];

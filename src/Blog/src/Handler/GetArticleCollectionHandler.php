@@ -12,6 +12,8 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
+use function var_dump;
+
 class GetArticleCollectionHandler implements RequestHandlerInterface
 {
     public function __construct(
@@ -23,7 +25,7 @@ class GetArticleCollectionHandler implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $articles   = $this->articleRepository->getArticles();
+        $articles = $this->articleRepository->getArticles();
         $categories = $this->categoryRepository->getCategories();
         return new HtmlResponse(
             $this->template->render('page::blog', [

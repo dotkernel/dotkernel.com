@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Light\Blog;
 
 use Doctrine\ORM\Mapping\Driver\AttributeDriver;
+use Light\Blog\DBAL\Types\ArticleStatusEnumType;
 use Light\Blog\Factory\Articles\ArticleCollectionHandlerFactory;
 use Light\Blog\Factory\Articles\ArticleCollectionRepositoryFactory;
 use Light\Blog\Factory\Articles\ArticleResourceHandlerFactory;
@@ -64,6 +65,7 @@ class ConfigProvider
     /**
     @return array{
      *     driver: array<mixed>,
+     *     types: array<mixed>,
      * }
      */
     private function getDoctrineConfig(): array
@@ -80,6 +82,9 @@ class ConfigProvider
                     'cache' => 'array',
                     'paths' => [__DIR__ . '/Entity'],
                 ],
+            ],
+            'types'  => [
+                ArticleStatusEnumType::NAME => ArticleStatusEnumType::class,
             ],
         ];
     }
