@@ -9,8 +9,7 @@ use Light\Blog\Enum\ArticleStatusEnum;
 
 class ArticleStatusEnumType extends AbstractEnumType
 {
-    public const NAME = 'status';
-
+    public const NAME = 'article_status_enum';
     public function getEnumClass(): string
     {
         return ArticleStatusEnum::class;

@@ -16,7 +16,7 @@ class CategoryRepository extends AbstractRepository
     public function getCategories(): array
     {
         $qb = $this->getQueryBuilder()
-            ->select('categories.name, categories.slug')
+            ->select('categories.name, categories.slug, categories.created')
             ->from(Category::class, 'categories');
 
         return $qb->getQuery()->getResult();

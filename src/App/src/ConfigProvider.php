@@ -10,8 +10,10 @@ use Doctrine\Persistence\Mapping\Driver\MappingDriver;
 use Doctrine\Persistence\Mapping\Driver\MappingDriverChain;
 use Dot\Cache\Adapter\ArrayAdapter;
 use Dot\Cache\Adapter\FilesystemAdapter;
+use Light\App\Factory\EntityListenerResolverFactory;
 use Light\App\Factory\GetIndexViewHandlerFactory;
 use Light\App\Handler\GetIndexViewHandler;
+use Light\App\Resolver\EntityListenerResolver;
 use Mezzio\Application;
 use Ramsey\Uuid\Doctrine\UuidType;
 use Roave\PsrContainerDoctrine\EntityManagerFactory;
@@ -23,6 +25,7 @@ use function getcwd;
  * @phpstan-type ConfigType array{
  *      dependencies: DependenciesType,
  *      doctrine: DoctrineConfigType,
+ *      resultCacheLifetime: int,
  * }
  * @phpstan-type DoctrineConfigType array{
  *      cache: array{
@@ -79,6 +82,7 @@ class ConfigProvider
             'dependencies' => $this->getDependencies(),
             'doctrine'     => $this->getDoctrineConfig(),
             'templates'    => $this->getTemplates(),
+            'resultCacheLifetime' => 3600,
         ];
     }
 
@@ -95,6 +99,7 @@ class ConfigProvider
             ],
             'factories'  => [
                 'doctrine.entity_manager.orm_default' => EntityManagerFactory::class,
+                EntityListenerResolver::class         => EntityListenerResolverFactory::class,
                 GetIndexViewHandler::class            => GetIndexViewHandlerFactory::class,
             ],
             'aliases'    => [
@@ -144,6 +149,7 @@ class ConfigProvider
             ],
             'configuration' => [
                 'orm_default' => [
+                    'entity_listener_resolver' => EntityListenerResolver::class,
                     'result_cache'       => 'filesystem',
                     'metadata_cache'     => 'filesystem',
                     'query_cache'        => 'filesystem',
@@ -159,8 +165,6 @@ class ConfigProvider
                 ],
             ],
             'driver'        => [
-                // The default metadata driver aggregates all other drivers into a single one.
-                // Override `orm_default` only if you know what you're doing.
                 'orm_default' => [
                     'class' => MappingDriverChain::class,
                 ],
@@ -175,9 +179,9 @@ class ConfigProvider
                     'execution_time_column_name' => 'execution_time',
                 ],
                 'migrations_paths'        => [
-                    'Migration' => 'src/App/src/Migration',
+                        'Migration' => 'src/App/src/Migration',
                 ],
-                'all_or_nothing'          => true,
+                'all_or_nothing'          => false,
                 'check_database_platform' => true,
             ],
             'types'         => [

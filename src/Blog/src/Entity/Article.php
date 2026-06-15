@@ -21,16 +21,16 @@ class Article extends AbstractEntity
     #[ORM\Column(name: 'slug', type: 'string', length: 500, unique: true)]
     private string $slug;
 
-    #[ORM\Column(name: 'post_date', type: 'datetime_immutable', nullable: true)]
-    private string $postDate;
+    #[ORM\Column(name: 'post_date', type: 'datetime_immutable')]
+    private DateTimeImmutable $postDate;
 
     #[ORM\Column(
         name: 'status',
         type: 'article_status_enum',
         enumType: ArticleStatusEnum::class,
-        options: ['default' => ArticleStatusEnum::Published]
+        options: ['default' => ArticleStatusEnum::Draft]
     )]
-    private ArticleStatusEnum $status;
+    private ArticleStatusEnum $status = ArticleStatusEnum::Draft;
 
     #[ORM\ManyToOne(targetEntity: Category::class)]
     #[ORM\JoinColumn(name: 'category_id', referencedColumnName: 'id', nullable: false)]
@@ -60,12 +60,12 @@ class Article extends AbstractEntity
         $this->slug = $slug;
     }
 
-    public function getPostDate(): string
+    public function getPostDate(): DateTimeImmutable
     {
         return $this->postDate;
     }
 
-    public function setPostDate(string $postDate): void
+    public function setPostDate(DateTimeImmutable $postDate): void
     {
         $this->postDate = $postDate;
     }
@@ -118,7 +118,7 @@ class Article extends AbstractEntity
             'title'    => $this->title,
             'slug'     => $this->slug,
             'status'   => $this->status->value,
-            'postDate' => $this->postDate,
+            'postDate' => $this->postDate->format('Y-m-d H:i:s'),
             'category' => $this->category->getArrayCopy(),
             'author'   => $this->author->getArrayCopy(),
         ];
