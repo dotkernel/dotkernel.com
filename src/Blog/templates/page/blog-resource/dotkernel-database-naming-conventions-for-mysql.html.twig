@@ -1,0 +1,123 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">{{ article.category.name
+
+        }}</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">{{ article.title }}</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xl-9 col-lg-11">
+
+            <div class="lead text-muted mb-4 fs-6 lh-base">
+                DotKernel borrows its database naming conventions from
+                <a href="http://fazend.com/a/2009-11-DataNaming.html" target="_blank" rel="noopener noreferrer" class="text-primary text-decoration-none border-bottom border-primary border-opacity-25 pb-1">
+                    FaZend: Rules of naming of database tables and columns <i class="fas fa-external-link-alt fa-xs ms-1"></i>
+                </a>.
+                FaZend is an open-source PHP framework built on top of the Zend Framework ecosystem.
+            </div>
+
+            <div class="card border-0 shadow-sm rounded-3 mb-4">
+                <div class="card-body p-4 p-md-5">
+                    <h4 class="fw-bold text-dark mb-4 d-flex align-items-center">
+                        <i class="fas fa-database text-primary me-3"></i>Database Naming Conventions
+                    </h4>
+
+                    <ul class="list-group list-group-flush gap-3">
+                        <li class="list-group-item border-0 p-0 text-muted">
+                        <span class="d-flex align-items-start">
+                            <i class="fas fa-check-circle text-success mt-1 me-3"></i>
+                            <span><strong>Singular table names only:</strong> e.g., <code class="bg-light text-danger px-2 py-0.5 rounded small">user</code>, <code class="bg-light text-danger px-2 py-0.5 rounded small">category</code>, <code class="bg-light text-danger px-2 py-0.5 rounded small">orderProduct</code>.</span>
+                        </span>
+                        </li>
+                        <li class="list-group-item border-0 p-0 text-muted">
+                        <span class="d-flex align-items-start">
+                            <i class="fas fa-check-circle text-success mt-1 me-3"></i>
+                            <span>Every table <strong>must</strong> have an auto-incrementing integer primary key column named <code class="bg-light text-danger px-2 py-0.5 rounded small">id</code>.</span>
+                        </span>
+                        </li>
+                        <li class="list-group-item border-0 p-0 text-muted">
+                        <span class="d-flex align-items-start">
+                            <i class="fas fa-check-circle text-success mt-1 me-3"></i>
+                            <span><strong>ZF-like names</strong> for columns and tables: e.g., <code class="bg-light text-danger px-2 py-0.5 rounded small">user::isAdmin</code>, <code class="bg-light text-danger px-2 py-0.5 rounded small">orderProduct::product</code>.</span>
+                        </span>
+                        </li>
+                        <li class="list-group-item border-0 p-0 text-muted opacity-50">
+                        <span class="d-flex align-items-start text-decoration-line-through">
+                            <i class="fas fa-times-circle text-secondary mt-1 me-3"></i>
+                            <span>Foreign keys must have the same names as reference tables.</span>
+                        </span>
+                            <span class="badge bg-secondary ms-5 mt-1 small">Obsolete</span>
+                        </li>
+                        <li class="list-group-item border-0 p-0 text-muted">
+                        <span class="d-flex align-items-start">
+                            <i class="fas fa-check-circle text-success mt-1 me-3"></i>
+                            <div>
+                                <strong>Foreign keys</strong> must combine the name of the referenced table and the name of the referenced column.
+                                <div class="mt-2 bg-light p-3 rounded border-start border-3 border-primary small">
+                                    <strong>Example:</strong> Referenced table: <em>admin</em>, Column: <em>id</em> &rarr; Column becomes <code class="text-danger fw-semibold">adminId</code>
+                                </div>
+                            </div>
+                        </span>
+                        </li>
+                        <li class="list-group-item border-0 p-0 text-muted">
+                        <span class="d-flex align-items-start">
+                            <i class="fas fa-check-circle text-success mt-1 me-3"></i>
+                            <div>
+                                <strong>Constraint naming pattern:</strong> <code class="text-dark fw-semibold">FK_referencedTableName_tableName</code>
+                                <div class="mt-2 bg-light p-3 rounded border-start border-3 border-dark small">
+                                    <strong>Example:</strong> <code class="text-danger fw-semibold">CONSTRAINT `FK_user_userType`</code>
+                                </div>
+                            </div>
+                        </span>
+                        </li>
+                        <li class="list-group-item border-0 p-0 text-muted">
+                        <span class="d-flex align-items-start">
+                            <i class="fas fa-check-circle text-success mt-1 me-3"></i>
+                            <span><strong>SQL keywords</strong> must always be fully capitalized: e.g., <code class="text-dark fw-bold small">SELECT</code>, <code class="text-dark fw-bold small">INT</code>, <code class="text-dark fw-bold small">NOT NULL</code>.</span>
+                        </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card border-0 shadow-sm rounded-3 mb-4">
+                <div class="card-body p-4 p-md-5">
+                    <h4 class="fw-bold text-dark mb-4 d-flex align-items-center">
+                        <i class="fas fa-code text-primary me-3"></i>Proper SQL File Formatting
+                    </h4>
+                    <pre class="bg-dark text-light p-4 rounded-3 border-0 shadow-inner position-relative overflow-x-auto m-0" style="font-family: 'Source Code Pro', monospace; font-size: 0.875rem; line-height: 1.6;"><code><span class="text-info">CREATE TABLE IF NOT EXISTS</span> `user` (
+  `id` <span class="text-warning">INT(11) UNSIGNED NOT NULL AUTO_INCREMENT</span>,
+  `username` <span class="text-warning">VARCHAR(255) NOT NULL</span>,
+  `password` <span class="text-warning">VARCHAR(25) NOT NULL</span>,
+  `email` <span class="text-warning">VARCHAR(100) NOT NULL</span>,
+  `firstName` <span class="text-warning">VARCHAR(255) NOT NULL</span>,
+  `lastName` <span class="text-warning">VARCHAR(255) NOT NULL</span>,
+  `dateCreated` <span class="text-warning">TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP</span>,
+  `userTypeId` <span class="text-warning">INT(11) UNSIGNED NOT NULL</span>,
+  `isActive` <span class="text-warning">ENUM('0','1') NOT NULL DEFAULT '1'</span>,
+  <span class="text-info">PRIMARY KEY</span> (`id`),
+  <span class="text-info">UNIQUE KEY</span> `username` (`username`),
+  <span class="text-info">UNIQUE KEY</span> `email` (`email`),
+  <span class="text-info">CONSTRAINT</span> `FK_userType_user` <span class="text-info">FOREIGN KEY</span> (`userTypeId`) <span class="text-info">REFERENCES</span> `userType` (`id`)
+    <span class="text-info">ON UPDATE CASCADE</span>
+    <span class="text-info">ON DELETE CASCADE</span>
+) <span class="text-info">ENGINE</span>=InnoDB <span class="text-info">DEFAULT CHARSET</span>=latin1 <span class="text-info">AUTO_INCREMENT</span>=1;</code></pre>
+                </div>
+            </div>
+
+            <div class="bg-white border-start border-4 border-primary p-4 rounded-end shadow-sm mb-2">
+                <h5 class="fw-bold text-dark mb-2">Conclusion</h5>
+                <p class="text-muted mb-0">
+                    The names of database tables and columns must strictly follow <strong class="text-dark">camelLetter</strong> (camelCase) configurations to keep applications unified, readable, and perfectly compatible with automated system migrations.
+                </p>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

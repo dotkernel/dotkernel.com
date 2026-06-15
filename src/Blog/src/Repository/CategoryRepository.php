@@ -7,6 +7,7 @@ namespace Light\Blog\Repository;
 use Light\App\Repository\AbstractRepository;
 use Light\Blog\Entity\Article;
 use Light\Blog\Entity\Category;
+use Light\Blog\Enum\ArticleStatusEnum;
 
 class CategoryRepository extends AbstractRepository
 {
@@ -42,6 +43,8 @@ class CategoryRepository extends AbstractRepository
             ->select('articles')
             ->from(Article::class, 'articles')
             ->where('articles.category = :category')
+            ->andWhere('articles.status = :published')
+            ->setParameter('published', ArticleStatusEnum::Published)
             ->setParameter('category', $category);
 
         return $qb->getQuery()->getResult();

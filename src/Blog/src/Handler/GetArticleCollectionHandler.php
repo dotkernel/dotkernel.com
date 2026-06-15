@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Light\Blog\Handler;
 
 use Laminas\Diactoros\Response\HtmlResponse;
+use Light\App\Helper\Paginator;
 use Light\Blog\Repository\ArticleRepository;
 use Light\Blog\Repository\CategoryRepository;
 use Mezzio\Template\TemplateRendererInterface;
@@ -25,11 +26,18 @@ class GetArticleCollectionHandler implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $articles = $this->articleRepository->getArticles();
+        $queryParams = $request->getQueryParams();
+
+        $params = Paginator::getParams($queryParams, 'articles.id');
+        $data   = Paginator::wrapper(
+            $this->articleRepository->getArticles($params),
+            $params
+        );
+
         $categories = $this->categoryRepository->getCategories();
         return new HtmlResponse(
             $this->template->render('page::blog', [
-                'articles'   => $articles,
+                'data'       => $data,
                 'categories' => $categories,
             ])
         );

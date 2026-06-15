@@ -22,6 +22,9 @@ class Author extends AbstractEntity
     #[ORM\Column(name: 'bio', type: 'text', nullable: true)]
     private ?string $bio = null;
 
+    #[ORM\Column(name: 'email', type: 'string', length: 255, unique: true)]
+    private string $email;
+
     public function getName(): string
     {
         return $this->name;
@@ -52,11 +55,22 @@ class Author extends AbstractEntity
         $this->bio = $bio;
     }
 
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): void
+    {
+        $this->email = $email;
+    }
+
     /**
      * @return array{
      *     id: non-empty-string,
      *     name: string,
      *     slug: string,
+     *     email: string,
      *     bio: string|null
      * }
      */
@@ -66,6 +80,7 @@ class Author extends AbstractEntity
             'id'   => $this->id->toString(),
             'name' => $this->name,
             'slug' => $this->slug,
+            'email' => $this->email,
             'bio'  => $this->bio,
         ];
     }
