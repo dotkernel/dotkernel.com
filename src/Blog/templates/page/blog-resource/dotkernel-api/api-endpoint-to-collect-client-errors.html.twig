@@ -1,0 +1,45 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}API Endpoint to Collect Client Errors{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel API</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">API Endpoint to Collect Client Errors</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+<!-- wp:heading -->
+<h2>API Endpoint to Collect Client Errors</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Let's say you have a <strong>(Client)</strong> <strong>Frontend</strong> (e.g. Angular) over a <a rel="noreferrer noopener" href="https://github.com/dotkernel/api" data-type="URL" data-id="https://github.com/dotkernel/api" target="_blank">Dotkernel API</a> and there may be cases when there are errors, eighter the API changed it's response(s) over night or just a simple variable being <code>undefined</code> for some reason.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Since in our case <strong>Frontend</strong> is running on user client there is so little to do but we've come with an ideea for "writing down" any inconveniences.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>We have created an <strong>endpoint</strong> where <strong>Clients</strong> can submit the <strong>error message</strong> when things are going down hill.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>A simple <strong>POST</strong> to your <strong>Dotkernel API</strong> on route: <a href="https://api.dotkernel.net/error-report" data-type="URL" data-id="https://api.dotkernel.net/error-report">https://api.dotkernel.net/error-report</a> </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>With body:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>{
+    "message": "My awesome error!!!"
+}</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p>Note: The error <strong>message</strong> will be stored by default in <code>/log/error-report-endpoint-log.log</code>, a separate log for <strong>Client</strong> and the message will be saved with a <strong>timestamp</strong>.</p>
+<!-- /wp:paragraph -->
+{% endblock %}

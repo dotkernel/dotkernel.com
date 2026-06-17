@@ -24,6 +24,9 @@ class Article extends AbstractEntity
     #[ORM\Column(name: 'post_date', type: 'datetime_immutable')]
     private DateTimeImmutable $postDate;
 
+    #[ORM\Column(name: 'excerpt', type: 'text')]
+    private string $excerpt;
+
     #[ORM\Column(
         name: 'status',
         type: 'article_status_enum',
@@ -100,12 +103,23 @@ class Article extends AbstractEntity
         $this->author = $author;
     }
 
+    public function getExcerpt(): string
+    {
+        return $this->excerpt;
+    }
+
+    public function setExcerpt(string $excerpt): void
+    {
+        $this->excerpt = $excerpt;
+    }
+
     /**
      * @return array{
      *     id: non-empty-string,
      *     title: string,
      *     slug: string,
      *     status: string,
+     *     excerpt: string,
      *     postDate: string,
      *     category: array{id: non-empty-string, name: string, slug: string},
      *     author: array{id: non-empty-string, name: string, slug: string, bio: string|null}
@@ -118,6 +132,7 @@ class Article extends AbstractEntity
             'title'    => $this->title,
             'slug'     => $this->slug,
             'status'   => $this->status->value,
+            'excerpt'  => $this->excerpt,
             'postDate' => $this->postDate->format('Y-m-d H:i:s'),
             'category' => $this->category->getArrayCopy(),
             'author'   => $this->author->getArrayCopy(),

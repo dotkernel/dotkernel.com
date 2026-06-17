@@ -1,0 +1,55 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}Protection against SQL Injection using PDO and Zend Framework - part 2{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Best Practice</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">Protection against SQL Injection using PDO and Zend Framework - part 2</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+Following the preview article about <a title="Protection against SQL Injection using PDO and Zend Framework" href="http://www.dotkernel.com/php-development/protection-against-sql-injection-using-pdo-and-zend-framework/" target="_self" rel="noopener noreferrer">SQL Injection</a>, here is more - a strong argument why you should use Zend Framework for handling database access. <em>Zend_Db</em> is the primary class used for access the database, but there is more: <em>Zend_Db_Statement</em>, <em>Zend_Db_Select</em> and <em>Zend_Db_Tables</em>.
+What you should know about their methods is:
+
+<ul>
+	<li><em><a title="details" href="http://framework.zend.com/apidoc/core/Zend_Db/Adapter/Zend_Db_Adapter_Abstract.html#query">query</a> (mixed $sql,  )</em>
+<ul>
+	<li>use prepare statements internally</li>
+	<li>but SQL Injection is still possible if $sql is dynamically created</li>
+</ul>
+</li>
+	<li><em><a title="details" href="http://framework.zend.com/apidoc/core/Zend_Db/Adapter/Zend_Db_Adapter_Abstract.html#fetchAll">fetchAll</a> (string|Zend_Db_Select $sql, ,  )</em>
+<ul>
+	<li>all the fetch methods are using prepared statements internally</li>
+	<li>but SQL Injection is still possible if $sql is dynamically created</li>
+</ul>
+</li>
+	<li><em><a title="details" href="http://framework.zend.com/apidoc/core/Zend_Db/Adapter/Zend_Db_Adapter_Abstract.html#insert">insert</a> (mixed $table,   $bind)</em>
+<ul>
+	<li>use prepare statements internally</li>
+	<li>so, SQL Injection is not possible</li>
+</ul>
+</li>
+	<li><em><a title="details" href="http://framework.zend.com/apidoc/core/Zend_Db/Adapter/Zend_Db_Adapter_Abstract.html#update">update</a> (mixed $table,   $bind, )</em>
+<ul>
+	<li>use prepare statements internally</li>
+</ul>
+<ul>
+	<li>but SQL Injection may be possible if $where is created dynamically</li>
+</ul>
+</li>
+	<li><em><a title="details" href="http://framework.zend.com/apidoc/core/Zend_Db/Adapter/Zend_Db_Adapter_Abstract.html#delete">delete</a> (mixed $table,  )</em>
+<ul>
+	<li>SQL Injection may be possible if $where is created dynamically</li>
+</ul>
+</li>
+</ul>
+<em><strong>Note*:</strong></em> even if you use prepared statements using <em>Zend_Db</em> methods, SQL Injection is still possible if <em>WHERE </em>and <em>ORDER BY</em> clause are wrongly written, so pay attention to them.
+
+For more details see <a title="Secure Programming with the Zend-Framework" href="http://www.suspekt.org/downloads/DPC_Secure_Programming_With_The_Zend_Framework.pdf" target="_blank" rel="noopener noreferrer">Stefan Esser slides</a>.
+
+PS. A short <a href="http://www.dustinweber.com/main-page/type-casting-in-php-whats-the-point/">tip</a>, you can use cast type to avoid SQL Injection in WHERE clause where is possible.
+<pre>>$sql= 'SELECT * FROM table WHERE id = ' . (int)$_POST;
+</pre>
+{% endblock %}

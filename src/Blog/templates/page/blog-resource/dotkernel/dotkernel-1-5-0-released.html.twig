@@ -1,0 +1,35 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}DotKernel 1.5.0 Released{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">DotKernel 1.5.0 Released</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+After a longer wait than usual, DotKernel 1.5.0 was just released. Due to the large amount of changes and the long time spent in development, we chose to skip 1.4 and go straight to 1.5.0.
+
+Here are a few of the many changes to DotKernel in the latest release:
+<h3></h3>
+<h3>Highlights of 1.5.0</h3>
+<h4>Switched from Dojo to jQuery</h4>
+Starting with 1.5.0 we've <a title="Intro to jQuery" href="http://www.dotkernel.com/javascript/intro-to-jquery/">switched from using Dojo to jQuery</a>. This doesn't mean you can't still use Dojo in your own projects, but only jQuery will be used and maintained in the DotKernel distribution.
+<h4>New designs</h4>
+We've redesigned the admin site, with new themes, and a dropdown menu, as well as a new and simpler design for the front-end.
+<h4>Model inheritance</h4>
+Up until now, there was a lot of code duplication in models. For example, in the user model, you might have a <em>getUserById</em> function in the admin as well as the frontend. When you've got more models and more modules, your project can start having a lot of copy-pasted code.
+
+To prevent this, we've introduced a <em>Dot_Model</em> class, and a way to define global models that are inherited in the admin and frontend. This way, you can have <em>User</em> class in the admin that only has methods specific to the admin module, a <em>User</em> class in the frontend that only has code specific for the frontend, and they both inherit the <em>Dot_Model_User</em> class which will have all the common code.
+<h4>Dashed controllers</h4>
+We've changed the way the controller name is parsed, so that you can have controller with multiple words, split with dashes, without breaking the coding standard (for example, <em>www.example.com/search-article</em> will call <em>SearchArticleController.php</em>)
+<h4>Zend Registry reorganization</h4>
+We've changed the structure of the registry, for more about this, please check <a title="Zend Registry usage in DotKernel" href="http://www.dotkernel.com/dotkernel/zend-registry-usage-in-dotkernel/">this blog post</a>.
+
+&nbsp;
+
+There have been about 250 commits in our SVN repository since the latest release, so we can't cover all changes in this blog post. Please <a title="DotKernel 1.5.0" href="http://www.dotkernel.com/download/?did=33">download DotKernel 1.5.0</a> try it out yourself and tell us what you think.
+
+&nbsp;
+{% endblock %}

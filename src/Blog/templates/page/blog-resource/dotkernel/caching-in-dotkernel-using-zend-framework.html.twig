@@ -1,0 +1,54 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}Caching in DotKernel using Zend Framework{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">Caching in DotKernel using Zend Framework</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+It's very expensive to load configurations and settings from XML files, on every requests.
+
+First because of latency of accessing files from hard drive, second because of the XML
+file parsing burden.
+
+Because of that , we implemented in upcoming 1.8 version of DotKernel a cache layer where to store<strong> router, acl_role, menu, options(including seo_xml), browser_xml, os_xml, test</strong> between requests. More information about the variables which DotKernel cache by default follow this link: <a title="DotKernel Reserved Variable Names for Caching" href="http://www.dotkernel.com/dotkernel/dotkernel-reserved-variable-names-for-caching" target="_blank" rel="noopener noreferrer">DotKernel Reserved Variable Names for Caching</a>
+
+
+
+We are implementing 2 different cache factories to choose from: <strong>apc</strong> (or <strong>apcu</strong> for newest PHP installations) and <strong>file</strong>.
+<h3>1. Configuring the cache</h3>
+The configuration can be set from /configs/application.ini, you can choose if you use the caching system, how long your cache stays valid, the cache namespace, and the storage provider (<strong>File</strong> or <strong>APC</strong>). I would disable the cache in development mode if I were you.
+
+For more info about the configuration and help configuring the cache see: <a title="DotKernel - Configuring the Cache in DotKernel" href="http://www.dotkernel.com/dotkernel/configuring-the-cache-in-dotkernel/" target="_blank" rel="noopener noreferrer">Configuring the Cache in DotKernel</a>.
+<h3>2. Using the Cache</h3>
+The cache is automatically loaded in the initialization and stored in the Registry.
+
+Loading the caching engine is not needed because it is already loaded on kernel initialization (<em>see <strong>Dot_Kernel</strong>::<strong>initialize</strong>($startTime)</em>)<em>,</em> but if you would like to use caching for other purposes (where you are not initializing the kernel), the loading syntax is the following:
+<pre>>Dot_Cache::loadCache();</pre>
+Below is a simple object caching sample, yes, you can also cache objects.
+
+<span style="color: #ff0000;">Note: The cache key must match the following RegEx pattern: </span><strong>*</strong>
+<pre>>$id = 'MyCachedKey';
+$obj = new stdClass();
+$obj->text = 'I am a cached text';
+
+// saving an object
+Dot_Cache::save(obj, $id);
+
+// loading the object
+$value = Dot_Cache::load($id);
+
+// checking if we have the object in cache
+if($value !== false)
+{
+     // assuming we only need the text value from the object
+     echo $value->text;
+}
+else
+{
+     echo 'no value cached for '. $id ; 
+}</pre>
+{% endblock %}

@@ -27,7 +27,6 @@ class GetArticleCollectionHandler implements RequestHandlerInterface
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         $queryParams = $request->getQueryParams();
-
         $params = Paginator::getParams($queryParams, 'articles.id');
         $data   = Paginator::wrapper(
             $this->articleRepository->getArticles($params),

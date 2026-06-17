@@ -1,0 +1,172 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}Dependency Injection made easy in Laminas/Mezzio applications{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">Dependency Injection made easy in Laminas/Mezzio applications</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><!-- wp:paragraph -->
+<p><strong>Note</strong>: The package requires Doctrine ORM. Still, it can be used in applications which do not integrate Doctrine.</p>
+<!-- /wp:paragraph --></blockquote>
+<!-- /wp:quote -->
+
+<!-- wp:paragraph -->
+<p>So, first thing first, the problem.<br><br>You have a <strong>Laminas / Mezzio</strong> application with a bunch of services that you need to use in a, let's say, controller class or in any other class, and you are tired of building, updating, and maintaining factories every time you add a new dependency to your class.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>DotKernel </strong>has you covered. We built a <strong>tool to autowire those dependencies in your class</strong>. There is no need for factories for every class you make. Just use one “factory” class that you tie to your custom class in the config, and that's it.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Sounds easy, right? Let’s finish with the chat and speak some code, first showing the problem and then the solution.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><!-- wp:paragraph -->
+<p>The examples below are from the <strong><a href="https://github.com/dotkernel/api" data-type="link" data-id="https://github.com/dotkernel/api" target="_blank" rel="noreferrer noopener">DotKernel API framework</a></strong>, but the pattern applies to all <strong>laminas </strong>and <strong>mezzio </strong>applications and to all PSR-11 applications.</p>
+<!-- /wp:paragraph --></blockquote>
+<!-- /wp:quote -->
+
+<!-- wp:enlighter/codeblock {"language":"php"} -->
+<pre class="EnlighterJSRAW" data-enlighter-language="php" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">class UserHandler implements RequestHandlerInterface
+{
+    public function __construct(
+        protected UserServiceInterface $userService,
+        protected array $config,
+    ) {
+    }
+}</pre>
+<!-- /wp:enlighter/codeblock -->
+
+<!-- wp:paragraph -->
+<p>Above, we have a <strong>UserHandler </strong>(Controller), and we have the required dependencies: <code>UserService&nbsp;</code>and&nbsp;<code>config</code>. Normally, we would build a factory for this to get things from the container and put them in the config provider like this:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:enlighter/codeblock {"language":"php"} -->
+<pre class="EnlighterJSRAW" data-enlighter-language="php" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">class UserHandlerFactory
+{
+    /**
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
+    public function __invoke(ContainerInterface $container)
+    {
+        $userService = $container->get(UserService::class);
+        assert($userService instanceof UserService);
+        
+        $config = $container->get('config');
+
+        return new UserHandler($userService, $config);
+    }
+}</pre>
+<!-- /wp:enlighter/codeblock -->
+
+<!-- wp:paragraph -->
+<p>And in the config provider, we would have the following:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:enlighter/codeblock {"language":"php"} -->
+<pre class="EnlighterJSRAW" data-enlighter-language="php" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">public function getDependencies(): array
+{
+    return 
+    ];
+}</pre>
+<!-- /wp:enlighter/codeblock -->
+
+<!-- wp:paragraph -->
+<p>In one more example, let's look at the real-world required dependencies for <code>UserService</code>, the dependency that is required for <code>UserHandle</code>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:enlighter/codeblock {"language":"php"} -->
+<pre class="EnlighterJSRAW" data-enlighter-language="php" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">class UserService implements UserServiceInterface
+{
+    public function __construct(
+        protected UserRoleServiceInterface $userRoleService,
+        protected MailService $mailService,
+        protected TemplateRendererInterface $templateRenderer,
+        protected OAuthAccessTokenRepository $oAuthAccessTokenRepository,
+        protected OAuthRefreshTokenRepository $oAuthRefreshTokenRepository,
+        protected UserRepository $userRepository,
+        protected UserDetailRepository $userDetailRepository,
+        protected UserResetPasswordRepository $userResetPasswordRepository,
+        protected LoggerInterface $logger,
+        protected array $config = [],
+    ) {
+    }
+}</pre>
+<!-- /wp:enlighter/codeblock -->
+
+<!-- wp:paragraph -->
+<p>Now consider that we need to build the factory for this and update it when we add a new dependency, and so on. Also to build the logic in the factory to handle any dependencies missing from the container. Painful right?</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Now let's use <strong>DotKernel's</strong> <a href="https://github.com/dotkernel/dot-dependency-injection" target="_blank" rel="noreferrer noopener">dot-dependency-injection</a> package to inject the required dependency into your class.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>After you install the package, your class needs to <code>use Dot\DependencyInjection\Attribute\Inject</code> , then you need to add the <code>#</code> attribute to the constructor definition to specify which dependencies should be injected.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:enlighter/codeblock {"language":"php"} -->
+<pre class="EnlighterJSRAW" data-enlighter-language="php" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">use Dot\DependencyInjection\Attribute\Inject;
+
+class UserHandler implements RequestHandlerInterface
+{
+    #
+    public function __construct(
+        protected UserServiceInterface $userService,
+        protected array $config,
+    ) {
+    }
+}</pre>
+<!-- /wp:enlighter/codeblock -->
+
+<!-- wp:paragraph -->
+<p>Add the <code>Dot\DependencyInjection\Factory\AttributedServiceFactory</code> class to your <code>ConfigProvider</code></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:enlighter/codeblock {"language":"php"} -->
+<pre class="EnlighterJSRAW" data-enlighter-language="php" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">public function getDependencies(): array
+{
+    return 
+    ];
+}</pre>
+<!-- /wp:enlighter/codeblock -->
+
+<p>That's right, the `<code>AttributedServiceFactory</code> `class is the only one you need to add to your config, so you are ready to go. This class will "build" the factory for you and will handle all the logic if any dependencies are not found in the container with appropriate exceptions and messages.</p>
+<p><!-- /wp:paragraph --> <!-- wp:paragraph --></p>
+<p>One more time, let's see how the <code>UserService</code> will look now.</p>
+<p><!-- wp:enlighter/codeblock {"language":"php"} --></p>
+<pre class="EnlighterJSRAW" data-enlighter-language="php" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">class UserService implements UserServiceInterface
+{
+    use Dot\DependencyInjection\Attribute\Inject;
+    
+    #
+    public function __construct(
+        protected UserRoleServiceInterface $userRoleService,
+        protected MailService $mailService,
+        protected TemplateRendererInterface $templateRenderer,
+        protected OAuthAccessTokenRepository $oAuthAccessTokenRepository,
+        protected OAuthRefreshTokenRepository $oAuthRefreshTokenRepository,
+        protected UserRepository $userRepository,
+        protected UserDetailRepository $userDetailRepository,
+        protected UserResetPasswordRepository $userResetPasswordRepository,
+        protected LoggerInterface $logger,
+        protected array $config = [],
+    ) {
+    }
+
+}</pre>
+<p><!-- /wp:enlighter/codeblock --></p>
+<p><!-- wp:paragraph --></p>
+<h4>And, that's not all.</h4>
+<p>If you use doctrine and repository pattern and you don't want to get your repository from <code>EntityManager </code>and want to inject it into your service, this package covers that too. The principle is the same, and for more insight about this, you can check the package documentation at <a href="https://docs.dotkernel.org/dot-dependency-injection/">dot-dependency-injection</a>.</p>
+<p><!-- /wp:paragraph --></p>
+{% endblock %}

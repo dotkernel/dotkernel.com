@@ -1,0 +1,52 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}DotKernel Database Naming Conventions for MySQL{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">DotKernel Database Naming Conventions for MySQL</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+DotKernel borrows the database naming conventions from <a href="http://fazend.com/a/2009-11-DataNaming.html" target="_blank" rel="noopener noreferrer">FaZend: Rules of naming of database tables and columns</a>. FaZend is an open-source PHP framework based on Zend Framework.
+
+<strong>Database naming conventions for tables and columns:</strong>
+<ul>
+	<li>Singular table names only (e.g. <em>user</em>, <em>category</em>, <em>product</em>, <em>order, orderProduct</em>)</li>
+	<li>Every table must have an auto-incrementing integer column id</li>
+	<li>ZF-like names of columns and tables (e.g. <em>user::isAdmin</em>, <em>orderProduct::product</em>)</li>
+	<li><del datetime="2010-11-05T12:43:27+00:00">Foreign keys must have the same names as reference tables</del></li>
+       <li>Foreign keys must have the same names as reference tables + the name of the referenced column
+            <strong>Example:</strong> table referenced: <em>admin</em> , column name: <em>Id</em>
+                                      so the column will be<em> adminId </em></li>
+       <li>Pattern for CONSTRAINT name : FK_referencedTableName_tableName
+           <strong>Example:</strong> CONSTRAINT `FK_admin_adminLogin`</li>
+	<li>SQL keywords are capitalized (e.g. SELECT, INT)</li>
+</ul>
+<strong>Example of proper SQL file formatting and naming:</strong>
+<pre>>CREATE TABLE IF NOT EXISTS `user`
+ (
+   `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+   `username` VARCHAR(255) NOT NULL,
+   `password` VARCHAR(25) NOT NULL,
+   `email` VARCHAR(100) NOT NULL,
+   `firstName` VARCHAR(255) NOT NULL,
+   `lastName` VARCHAR(255) NOT NULL,
+   `dateCreated` TIMESTAMP NOT  NULL DEFAULT  CURRENT_TIMESTAMP,
+   `userType` INT(11) NOT NULL AUTO_INCREMENT
+   `isActive` ENUM('0','1') NOT NULL DEFAULT '1',
+   PRIMARY KEY  (`id`),
+   UNIQUE KEY `username` (`username`),
+   UNIQUE KEY `email` (`email`)
+   CONSTRAINT `FK_user_userType` FOREIGN KEY(`userTypeId`) REFERENCES `userType`(`id`)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+ )
+ ENGINE=InnoDB
+ DEFAULT CHARSET=latin1
+ AUTO_INCREMENT=1 ;
+</pre>
+<strong>Conclusion:</strong>
+The names of database tables and columns must follow <em>camelLetter</em> as naming conventions.s
+{% endblock %}

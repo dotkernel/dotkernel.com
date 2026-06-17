@@ -1,0 +1,15 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}Multiple broadcast receivers in the same app, for the same action{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Android</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">Multiple broadcast receivers in the same app, for the same action</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+Did you come to a point where using multiple broadcast receivers to listen for the same intent, separatly, in the same android app, leads to unexpected results? If that"s the case, one broadcast receiver might consume the broadcasted intent, <a href="http://www.cillap.com/">online casino</a>  leaving the others with nothing to receive. This can be the case where you use 3rd party libraries with broadcast receivers defined.
+
+The following is a solution for this kind of problem, a code snippet inspired by the way Admob for android seems to solve this, as shown in their <a title="Admob Download Tracking" href="http://developer.admob.com/wiki/Android_App_Download_Tracking" target="_blank" rel="noopener noreferrer">documentation</a>, using meta-data in manifest file....
+{% endblock %}

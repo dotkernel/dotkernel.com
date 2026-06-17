@@ -1,0 +1,49 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}DotKernel API 1.0.0 Released{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel API</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">DotKernel API 1.0.0 Released</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><!-- wp:paragraph -->
+<p>Dotkernel API has come a long way since this post was created. <a href="https://www.dotkernel.com/headless-platform/version-7-adds-postgresql-native-uuid-and-php-8-5/" data-type="link" data-id="https://www.dotkernel.com/headless-platform/version-7-adds-postgresql-native-uuid-and-php-8-5/">Check out the newest version of Dotkernel API</a> to stay up to date with the latest functional and security features.</p>
+<!-- /wp:paragraph --></blockquote>
+<!-- /wp:quote -->
+
+<h4><a href="https://github.com/dotkernel/api/releases/tag/v1.0.0">DotKernel API 1.0.0</a> was just released!</h4>
+<p> </p>
+<h5>What is DotKernel API?</h5>
+<p>It is a <a href="https://github.com/zendframework/zend-expressive">Zend Expressive 3</a> application aiming to help developers quickly and efficiently develop an API.</p>
+<p> </p>
+<h5>How does it work?</h5>
+<p>Under the hood it uses the following libraries:</p>
+<ul>
+<li><a href="https://github.com/ezimuel/zend-expressive-api">ezimuel/zend-expressive-api</a>: - skeleton application on which this API is based on</li>
+<li><a href="https://github.com/dotkernel/dot-annotated-services">dotkernel/dot-annotated-services</a>: ^1.1 - for handling dependency injection in your services</li>
+<li><a href="https://github.com/dotkernel/dot-console">dotkernel/dot-console</a>: ^0.1.1 - for developing console applications</li>
+<li><a href="https://github.com/dotkernel/dot-errorhandler">dotkernel/dot-errorhandler</a>: ^1.0 - which provides customizable error logging</li>
+<li><a href="https://github.com/dotkernel/dot-mail">dotkernel/dot-mail</a>: ^1.0 - for sending emails via SMTP</li>
+<li><a href="https://github.com/zendframework/zend-expressive-authentication-oauth2">zendframework/zend-expressive-authentication-oauth2</a>: ^1.0 - for OAuth2 authentication</li>
+<li><a href="https://github.com/zendframework/zend-expressive-authorization-rbac">zendframework/zend-expressive-authorization-rbac</a>: ^1.0 - for role-based permissions</li>
+<li><a href="https://github.com/zendframework/zend-expressive-twigrenderer">zendframework/zend-expressive-twigrenderer</a>: ^2.4 - for composing email bodies</li>
+<li><a href="https://github.com/DASPRiD/container-interop-doctrine">dasprid/container-interop-doctrine</a>: ^1.1 - database abstraction layer</li>
+<li><a href="https://github.com/tuupola/cors-middleware">tuupola/cors-middleware</a>: ^0.9.4 - for automatically sending CORS headers with each request</li>
+<li><a href="https://github.com/swagger-api/swagger-ui">swagger-api/swagger-ui</a>: ^3.22 - for creating OpenAPI 3 documentation</li>
+</ul>
+<p> </p>
+<h5>What does it offer?</h5>
+<p>Out-of-the-box, DotKernel API provides the following features:</p>
+<ul>
+<li>Secure authentication via OAuth2</li>
+<li>Two user roles: admin and member</li>
+<li>Admin users are allowed to manage any user account</li>
+<li>Members are allowed to manage only their own accounts</li>
+<li>OpenAPI 3 documentation - also an interactive interface that developers can use to integrate your API</li>
+</ul>
+<p> </p>
+{% endblock %}

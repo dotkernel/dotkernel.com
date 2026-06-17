@@ -1,0 +1,36 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}How To Upgrade Wamp to PHP 5.3.4{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">PHP Development</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">How To Upgrade Wamp to PHP 5.3.4</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+<div id="_mcePaste">1.    Stop WAMP server.</div>
+<div id="_mcePaste">2.    Go to <a href="http://windows.php.net/download/" target="_blank" rel="noopener noreferrer">windows.php.net</a> and download the the latests ZIPPED package for php5.3.4.</div>
+<div id="_mcePaste">Make sure it is the <strong>VC6 Thread Safe build</strong>. DO NOT DOWNLOAD THE INSTALLER.</div>
+<div id="_mcePaste">3.  Create a folder php5.3.4 into wamp/bin/php</div>
+<div id="_mcePaste">4.  Extract the downloaded zip to the newly created php5.3.4 folder</div>
+
+
+<div id="_mcePaste">5.  Copy the files:</div>
+<div id="_mcePaste">-  <em>php.ini</em></div>
+<div id="_mcePaste">-  <em>phpForApache.ini</em></div>
+<div id="_mcePaste">-   <em>wampserver.conf</em></div>
+<div id="_mcePaste">from your existing php5.3 (eg.   wamp/bin/php/php5.3.3) folder to the new php5.3.4 folder.</div>
+<div id="_mcePaste">6.  Open the files:</div>
+<div id="_mcePaste">-   <em>php.ini</em></div>
+<div id="_mcePaste">-  <em>phpForApache.ini</em></div>
+<div id="_mcePaste">and search/replace the string 5.3.3 with 5.3.4</div>
+<div id="_mcePaste">7.   Go to wamp/bin/apache/apache/apache2.2.11/bin and delete the file called <em>php.ini</em></div>
+<div id="_mcePaste">8.   Restart WAMP server.</div>
+<div id="_mcePaste">9.   Choose php version 5.3.0</div>
+<div id="_mcePaste">10.   Restart WAMP server.</div>
+<div id="_mcePaste">11.   Now choose php version 5.3.4 .</div>
+<div id="_mcePaste">12.   Check if PEAR path is correct in php.ini , and modify accordingly.</div>
+<div id="_mcePaste">13.   Restart WAMP server.</div>
+<div id="_mcePaste">14.   Enjoy.</div>
+{% endblock %}

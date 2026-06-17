@@ -1,0 +1,27 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}Templating in DotKernel3{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Documentation News</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">Templating in DotKernel3</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+<strong>DotKernel3</strong> aims to improve the DotKernel stack in every way possible, and one of the painpoints in the previous version of DotKernel was the templating engine.
+Albeit a solid and robust templating engine, it was also 10 years old, and used techniques that's slightly outdated by now.
+
+In DotKernel 3, we made the move to the popular <a href="https://twig.symfony.com/" rel="noopener noreferrer" target="_blank"><strong>Twig Templating Engine</strong></a>, which will allow us to take our templates to a whole new level. It can now be written as HTML code, with some extra Twig tags; It is incredibly powerful and includes features such as:
+
+<ul>
+<li>Layouts</li>
+<li>Loops</li>
+<li>Variables</li>
+<li>Escaping</li>
+</ul>
+
+The templating engine in <strong>DotKernel3</strong> gives you the familiarity of HTML with the overview and convenience of PHP.
+
+You can read the official documentation here: <a href="https://docs.dotkernel.com/Prerequisites/Templates" rel="noopener noreferrer" target="_blank"><strong>Templates</strong></a>
+{% endblock %}

@@ -1,0 +1,224 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}Using Postman for documentation  in DotKernel API 3{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">How to's</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">Using Postman for documentation  in DotKernel API 3</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+<!-- wp:heading -->
+<h2>Using Postman documentation in DotKernel API 3</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Starting from version 3.0 DotKernel API provides it's documentation using <a href="https://www.postman.com/" data-type="URL" data-id="https://www.postman.com/" target="_blank" rel="noreferrer noopener">Postman</a>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>In this article we will go into the details of creating and maintaining your application's documentation.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:more -->
+
+<!-- /wp:more -->
+
+<!-- wp:heading -->
+<h2>Prerequisites</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>In order to follow the steps, you will need the following:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul><li>a working installation of DotKernel API 3</li><li>download and install Postman from their <a href="https://www.postman.com/downloads/" target="_blank" rel="noreferrer noopener">download page</a>.</li></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p><strong>TIP:</strong> If you don't have a Postman account, we recommend you to create one. This way Postman is able to backup your workspace in the cloud and synchronize it across multiple devices.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2>Introduction</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>For better understanding on how Postman works, we need to run through the "building blocks" of Postman:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul><li><strong>Workspace</strong>: is the main container that holds all your collections, APIs, environments etc</li><li><strong>Collection</strong>: holds all requests and dependencies of a project (for example DotKernel API's collection containing all requests)</li><li><strong>Environment</strong>: holds a set of environment-specific variables (for example DotKernel API's environment file cotaining the application URL specific to the development environment)</li><li><strong>Request</strong>: the definition of an API endpoint, including request method, name, description, URL, body, parameters and an example</li></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>There are more terms to cover, like <em>Mock servers</em>, <em>Monitors</em> etc but they are not relevant yet in our case.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+<h4>Importing documentation files</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Open Postman (and log in if you have an account), then follow the below steps:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul><li>open the import modal by clicking <code>File</code> -&gt; <code>Import</code> (or <code>Ctrl + O</code>)</li><li>inside the modal, make sure you're on the <code>File</code> tab, then click <code>Upload files</code></li><li>navigate to <code>documentation</code> directory of your DotKernel API 3 application and select both of the following files:<ul><li><strong>DotKernel_API.postman_collection.json</strong></li><li><strong>DotKernel_API.postman_environment.json</strong></li></ul></li><li>after clicking <code>Open</code> the modal should show the following:</li></ul>
+<!-- /wp:list -->
+
+<!-- wp:preformatted -->
+<pre class="wp-block-preformatted">Select files to import · 2/2 selected
+NAME                 FORMAT                         IMPORT AS
+<span class="has-inline-color has-vivid-red-color">DotKernel_API</span>        Postman Collection v2.1        Collection
+<span class="has-inline-color has-vivid-red-color">DotKernel_API</span>        Postman Environment            Environment</pre>
+<!-- /wp:preformatted -->
+
+<!-- wp:list -->
+<ul><li>at the bottom of the import modal, clicking <code>Import</code> will import the selected files and close the modal.</li></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Under <strong>My Workspace</strong> you should see a tab called <strong>Collections</strong>. Clicking on it should display all your collections, one of them called <code>DotKernel_API</code>. This collection holds all of the provided requests and serves as the documentation of your application.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>DotKernel API 3 collection and environment files ar now imported and ready to use.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>For more information on importing files into Postman, please consult their <a rel="noreferrer noopener" href="https://learning.postman.com/docs/getting-started/importing-and-exporting-data/" data-type="URL" data-id="https://learning.postman.com/docs/getting-started/importing-and-exporting-data/" target="_blank">docs</a>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+<h4>Interacting with the environment</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>On the top right corner of Postman, you'll see the <strong>Environment quick look</strong> button (it looks like an eye). On it's left side, there's a dropdown with all available environments, one of the being called <code>DotKernel_API</code> - click on it to set it as the active environment.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>After this, clicking the <strong>Environment quick look</strong> button will bring up a modal containing all variables found in the environment:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:preformatted -->
+<pre class="wp-block-preformatted">DotKernel_API                                                                              <strong>Edit</strong>
+VARIABLE               INITIAL VALUE                CURRENT_VALUE
+<span class="has-inline-color has-vivid-red-color">APPLICATION_URL</span>        http://localhost:8080        http://localhost:8080</pre>
+<!-- /wp:preformatted -->
+
+<!-- wp:paragraph -->
+<p>If your application runs on a different host/port, click the <strong>Edit</strong> button to modify the initial/current value of the <code>APPLICATION_URL</code> variable.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Once in Edit mode, you can also create new variables. You only have to enter the variable name and it's initial value - current value will be automatically filled in when the variable is used.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2>Usage</h2>
+<!-- /wp:heading -->
+
+<!-- wp:heading {"level":4} -->
+<h4>Creating a new request</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Inside the collection, right-click on any folder and click <code>Add Request</code>. The new request is automatically opened in a new tab, where you will:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul><li>enter request name by replacing <em>New Request</em> with a short and descriptive name</li><li>enter request description (first button under the <strong>Environment quick look</strong> button)</li><li>enter request URL - you should use the already existing variable <code>APPLICATION_URL</code> by wrapping it in double curly braces, then append the request path. Example: <code>{{APPLICATION_URL}}/test</code> becomes <code>http://localhost:8080/test</code> when you send the request.</li><li>select request method</li><li>(optionally) inspect tabs:<ul><li><strong>Params</strong>: manage query parameters</li><li><strong>Authorization</strong>: select authorization type</li><li><strong>Headers</strong>: manage request headers</li><li><strong>Body</strong>: manage request body</li><li><strong>Pre-request script</strong>: provide <em>JavaScript</em> that Postman should run before sending the request</li><li><strong>Tests</strong>: provide <em>JavaScript</em> that Postman should run after receiving the response</li><li><strong>Settings</strong>: manage miscellaneous request settings</li></ul></li><li>save the request using the <strong>Save</strong> button (or <code>Ctrl + S</code>)</li></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading {"level":4} -->
+<h4>Sending a request</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Once opened, you can immediately send a request by clicking the <strong>Send</strong> button.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Optionally, you can save the response as an example (click on <strong>Save Response</strong>, then select <strong>Save as example</strong>), so other developers will have a visual representation of the response without making a request. This opens a new tab, where you can manage the example.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2>Features</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The collection provided by DotKernel API 3 comes with some built-in security features. </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+<h4>Global security</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Due to the hierarchy of the Collection, all requests are children of the Collection's root folder, so they automatically inherit it's Authorization settings. If you edit the Collection's root folder, you will find the following tabs:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul><li><strong>Authorization</strong><ul><li><strong>Type</strong> is set to <code>Bearer Token</code></li><li><strong>Token</strong> reads the environment variable <code>ACCESS_TOKEN</code></li></ul></li><li><strong>Pre-request Script</strong>: here you can add <em>JavaScript</em> that should run on ALL requests before they run</li><li><strong>Tests</strong>: here you can add <em>JavaScript</em> that should run on ALL requests after their response is returned</li><li><strong>Variables</strong>: here you can manage global variables</li></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>To disable this feature globally, set Authorization <strong>Type</strong> to <code>No Auth</code> or whatever value suits your application's requirements.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>To disable this feature at folder/request level, edit the folder/request and set <strong>Type</strong> to <code>No Auth</code> under the Authorization tab.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+<h4>Automatic Token storage</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Once an authorization token is re/generated, two environment variables are set/updated:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul><li><code>ACCESS_TOKEN</code>: the token that gets sent in the Authorization header</li><li><code>REFRESH_TOKEN</code>: the token required to regenerate an ACCESS_TOKEN</li></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>This is achieved by applying the following modifications to both Admin/Security and User/Security folders:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul><li>setting <strong>Type</strong> to <code>No Auth</code> under the <strong>Authorization</strong> tab (because the child requests under these folders should not send Authorization header)</li><li>adding a script under the <strong>Tests</strong> tab, that reads the response and - if successful - set/updates the above mentioned environment variables</li></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2>Exporting documentation</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p><strong>TIP</strong>: You can inspect your application's documentation at any moment by clicking on the <em>three horizontal dots</em> (you will find them on hover next to your collection's name) then click on <strong>View documentation</strong>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+<h4>Exporting collection</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Click on the same <em>three horizontal dots</em>, then select <strong>Export</strong>. You will be presented an <em>Export collection</em> modal asking you to choose the format of the export. Unless specified, choose the recommended version, then click <strong>Export</strong>. When asked to save the exported file, choose to overwrite your application's collection file (<em>documentaion/DotKernel_API.postman_collection.json</em>).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+<h4>Export environment</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>This step is optional. It is needed only if you made modifications to the environment, else you can skip it.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Start by clicking on the <strong>Environment quick look</strong> button, then click <strong>Edit</strong>. Once the edit environment tab opens, locate the <em>three horizontal dots</em> next to the <strong>Share</strong> button on the right of the Postman window. Click them and select <strong>Export</strong>. When asked to save the exported file, choose to overwrite your application's environment file (<em>documentaion/DotKernel_API.postman_environment.json</em>).</p>
+<!-- /wp:paragraph -->
+{% endblock %}

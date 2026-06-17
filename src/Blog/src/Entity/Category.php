@@ -19,6 +19,9 @@ class Category extends AbstractEntity
     #[ORM\Column(name: 'slug', type: 'string', length: 500)]
     private string $slug;
 
+    #[ORM\Column(name: 'isVisible', type: 'boolean')]
+    private bool $isVisible = true;
+
     public function getName(): string
     {
         return $this->name;
@@ -39,10 +42,21 @@ class Category extends AbstractEntity
         $this->slug = $slug;
     }
 
+    public function isVisible(): bool
+    {
+        return $this->isVisible;
+    }
+
+    public function setVisibility(bool $isVisible): void
+    {
+        $this->isVisible = $isVisible;
+    }
+
     /**
      * @return array{
      *     id: non-empty-string,
      *     name: string,
+     *     isVisible: bool,
      *     slug: string
      * }
      */
@@ -51,6 +65,7 @@ class Category extends AbstractEntity
         return [
             'id'   => $this->id->toString(),
             'name' => $this->name,
+            'isVisible' => $this->isVisible,
             'slug' => $this->slug,
         ];
     }

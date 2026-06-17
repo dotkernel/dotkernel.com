@@ -1,0 +1,75 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}How to implement MailChimp in DotKernel API{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel API</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">How to implement MailChimp in DotKernel API</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+<h5>This article will walk you through the process of implementing MailChimp into your instance of <a href="https://github.com/dotkernel/api">DotKernel API</a> using <a href="https://github.com/drewm/mailchimp-api">drewm/mailchimp-api</a></h5>
+&nbsp;
+
+<strong>Step 1</strong>: Add the library to your application using the following command:
+<code class="highlighter-rouge"> composer require drewm/mailchimp-api </code>
+
+&nbsp;
+
+<strong>Step 2</strong>: Create configuration file <strong>config/autoload/mailchimp.global.php</strong> and paste the following content inside of it:
+<pre class="php">&lt;?php
+
+declare(strict_types=1);
+
+return 
+];
+
+</pre>
+&nbsp;
+
+<strong>Step 3</strong>: Create factory <strong>src/App/src/MailChimp/Factory/MailChimpFactory.php</strong> which will return an instance of <strong>DrewM\MailChimp</strong>. Paste the following content inside this file:
+<pre class="php">&lt;?php
+
+declare(strict_types=1);
+
+namespace Api\App\MailChimp\Factory;
+
+use DrewM\MailChimp\MailChimp;
+use Psr\Container\ContainerInterface;
+
+/**
+ * Class MailChimpFactory
+ * @package Api\App\MailChimp\Factory
+ */
+class MailChimpFactory
+{
+    /**
+     * @param ContainerInterface $container
+     * @return MailChimp
+     * @throws \Exception
+     */
+    public function __invoke(ContainerInterface $container) : MailChimp
+    {
+        $config = $container-&gt;get('config') ?? [];
+
+        return new MailChimp($config ?? '');
+    }
+}
+
+</pre>
+&nbsp;
+
+<strong>Step 4</strong>: Let your application use this factory by adding it to the main ConfigProvider:
+To do this, open file <strong>src/App/src/ConfigProvider.php</strong> and locate the method called <strong>getDependencies()</strong>.
+Inside this method, locate the key <strong>factories</strong> which points to an array. Inside this array add the following line:
+<pre class="php">MailChimp::class =&gt; MailChimpFactory::class,
+</pre>
+Make sure you you add the corresponding <strong>use</strong>s:
+<pre class="php">use Api\App\MailChimp\Factory\MailChimpFactory;
+use DrewM\MailChimp\MailChimp;
+</pre>
+&nbsp;
+
+After this, you can start using the library by <strong>@Inject</strong>ing <strong>MailChimp::class</strong> where it's needed.
+{% endblock %}

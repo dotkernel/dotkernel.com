@@ -1,0 +1,387 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}Database seeding: Doctrine data fixtures vs Phinx{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">PHP Development</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">Database seeding: Doctrine data fixtures vs Phinx</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+<!-- wp:heading -->
+<h2>Database seeding: Doctrine data fixtures vs Phinx</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Seeding the database means populating the database with initial values, it's commonly used for seeding the user roles and user accounts. </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Seeding the database the right way is no easy feat, and we will see why.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Previous versions of <strong>DotKernel 3</strong> used <a href="https://github.com/cakephp" target="_blank" rel="noreferrer noopener">cakephp</a>/<strong><a href="https://github.com/cakephp/phinx" target="_blank" rel="noreferrer noopener">phinx</a></strong> for seeding the database. While the package did a great job at populating the database, we wanted more. We wanted more flexibility - so we started to search for alternatives.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Because we are using Doctrine as our database abstraction layer, the obvious choice was to give <a href="https://github.com/doctrine/data-fixtures" data-type="URL" data-id="https://github.com/doctrine/data-fixtures" target="_blank" rel="noreferrer noopener">doctrine/data-fixtures</a> a shot and use it as our database seeder, instead of phinx - but there's a catch.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2>The catch</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Using the <a href="https://github.com/doctrine/data-fixtures" data-type="URL" data-id="https://github.com/doctrine/data-fixtures" target="_blank" rel="noreferrer noopener">doctrine/data-fixtures</a> package provides a concrete implementation of data fixtures, <strong>without a CLI interface</strong>. </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>We need a way to interact with the fixtures, so we created a <strong>package </strong>(<a rel="noreferrer noopener" href="https://github.com/dotkernel/dot-data-fixtures" target="_blank">dotkernel/dot-data-fixtures</a>)  to provide a CLI interface. While there are alternatives that can achieve this out-of-the-box we wanted something slim (in terms of dependencies) and easy to use.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":6} -->
+<h6>NOTE: </h6>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The package <a rel="noreferrer noopener" href="https://github.com/dotkernel/dot-data-fixtures" target="_blank">dotkernel/dot-data-fixture</a>  does <strong>NOT</strong> depend on other DotKernel packages. The only dependency is <strong>Doctrine</strong> </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2>Installation</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Run the following command in you project directory:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>$ composer require dotkernel/dot-data-fixtures</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p>Register the package's <code>ConfigProvider.php</code> in <code>config/config.php</code>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>\Dot\DataFixtures\ConfigProvider::class,</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p>In&nbsp;<code>doctrine.global.php</code>&nbsp;(or your custom doctrine config file) add a new key&nbsp;<code>fixtures</code>, in the&nbsp;<code>doctrine</code>&nbsp;array, the value should be a valid path to a folder where your fixtures can be found.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>return &#91;
+    'dependencies' =&gt; &#91; ... ],
+    'doctrine' =&gt; &#91;
+        ...,
+        'fixtures' =&gt; getcwd() . '/data/doctrine/fixtures',
+    ],
+];</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p><strong>Make sure the path is valid before proceeding to the next step.</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The fixtures can be found in the <code>/data/doctrine/fixtures</code> folder, but you can create a custom folder for them. We choose this location because the migrations live in the <code>/data/doctrine/migrations</code> folder.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The last step is to register 2 commands.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>We will register the commands to work with the doctrine default CLI but you can register them as normal commands also.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Create a new php file <code>bin/doctrine</code> if you don't have it already and paste the below code block.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>&lt;?php
+
+use Doctrine\ORM\Tools\Console\ConsoleRunner;
+use Doctrine\ORM\Tools\Console\EntityManagerProvider\SingleManagerProvider;
+
+require_once 'vendor/autoload.php';
+
+$container = require getcwd() . '/config/container.php' ;
+
+$entityManager = $container-&gt;get(\Doctrine\ORM\EntityManager::class);
+
+$commands = &#91;
+    $container-&gt;get(Dot\DataFixtures\Command\ExecuteFixturesCommand::class),
+    $container-&gt;get(Dot\DataFixtures\Command\ListFixturesCommand::class),
+];
+
+ConsoleRunner::run(
+    new SingleManagerProvider($entityManager),
+    $commands
+);</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p>The installation is complete, we can verify it by running the following command in our terminal.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>php bin/console</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p>It should print out all the doctrine CLI commands available, including our fixtures commands.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"id":5538,"sizeSlug":"large","linkDestination":"none"} -->
+<figure class="wp-block-image size-large"><img src="https://www.dotkernel.com/wp-content/uploads/2022/08/Screenshot-2022-08-30-at-19.14.14-1024x334.png" alt="" class="wp-image-5538"/></figure>
+<!-- /wp:image -->
+
+<!-- wp:heading -->
+<h2>Usage </h2>
+<!-- /wp:heading -->
+
+<!-- wp:heading {"level":5} -->
+<h5>List all available fixtures, by order of execution:</h5>
+<!-- /wp:heading -->
+
+<!-- wp:preformatted -->
+<pre class="wp-block-preformatted">php bin/doctrine fixtures:list</pre>
+<!-- /wp:preformatted -->
+
+<!-- wp:image {"id":5542,"width":840,"height":120,"sizeSlug":"large","linkDestination":"none"} -->
+<figure class="wp-block-image size-large is-resized"><img src="https://www.dotkernel.com/wp-content/uploads/2022/08/Screenshot-2022-08-30-at-19.22.45-1024x147.png" alt="" class="wp-image-5542" width="840" height="120"/></figure>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p><strong>By using this command you can check the execution order of your fixtures <em>before executing them</em>.</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":5} -->
+<h5>Executing fixtures:</h5>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>To execute all fixtures run : <code>php bin/doctrine fixtures:execute</code></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>To run a specific fixture run : <code>php bin/doctrine fixtures:execute --class={FixtureClassName}</code></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Example : </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>php bin/console fixtures:execute --class=RoleLoader</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:heading -->
+<h2>Creating fixtures</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>When creating fixtures, we need to :</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul><li>Create the fixture in the configured folder (<code>/data/doctrine/fixtures</code>).</li><li>Implement <code>Doctrine\Common\DataFixtures\FixtureInterface</code> interface.</li></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Example : </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>&lt;?php
+
+namespace Frontend\Fixtures;
+
+use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Persistence\ObjectManager;
+use Frontend\User\Entity\UserRole;
+
+/**
+ * Class RoleLoader
+ * @package Frontend\Fixtures
+ */
+class RoleLoader implements FixtureInterface
+{
+    public function load(ObjectManager $manager): void
+    {
+        $adminRole = new UserRole();
+        $adminRole-&gt;setName('admin');
+
+        $userRole = new UserRole();
+        $userRole-&gt;setName('user');
+
+        $guestRole = new UserRole();
+        $guestRole-&gt;setName('guest');
+
+        $manager-&gt;persist($adminRole);
+        $manager-&gt;persist($userRole);
+        $manager-&gt;persist($guestRole);
+
+        $manager-&gt;flush();
+    }
+}</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:heading -->
+<h2>Ordering fixtures</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>We can order fixtures using 2 methods : </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+<ol><li>By Order - you can specify the order of execution, by implementing <code>OrderedFixtureInterface</code> interface.</li><li>By dependencies - let's you specify dependency fixtures, chaining fixtures and executing them in the right order</li></ol>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p><strong>Practical example: </strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>Requirements</strong>: Seed the database with a new admin user.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>We will use the second method to order fixtures and need 2 fixtures to achieve this, one of them will create a new user and the other will create a new admin role. In this case the <strong>order matters, we can't create the admin user without having an admin role</strong>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Create new php file in <code>data/doctrine/fixtures</code> with the name <code>RoleLoader.php</code>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This fixture will be executed first and create our user roles.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>&lt;?php
+
+namespace Frontend\Fixtures;
+
+use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Persistence\ObjectManager;
+use Frontend\User\Entity\UserRole;
+
+/**
+ * Class RoleLoader
+ * @package Frontend\Fixtures
+ */
+class RoleLoader implements FixtureInterface
+{
+    public function load(ObjectManager $manager): void
+    {
+        $adminRole = new UserRole();
+        $adminRole-&gt;setName('admin');
+
+        $userRole = new UserRole();
+        $userRole-&gt;setName('user');
+
+        $guestRole = new UserRole();
+        $guestRole-&gt;setName('guest');
+
+        $manager-&gt;persist($adminRole);
+        $manager-&gt;persist($userRole);
+        $manager-&gt;persist($guestRole);
+
+        $manager-&gt;flush();
+    }
+}</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p>The second fixture is <code>UserLoader.php</code> and will contain the following code:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>&lt;?php
+
+namespace Frontend\Fixtures;
+
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Persistence\ObjectManager;
+use Frontend\User\Entity\User;
+use Frontend\User\Entity\UserDetail;
+use Frontend\User\Entity\UserRole;
+
+class UserLoader implements FixtureInterface, DependentFixtureInterface
+{
+    public function load(ObjectManager $manager): void
+    {
+        $user = new User();
+        $user-&gt;setIdentity('admin@test.com');
+        $user-&gt;setPassword(password_hash('admin', PASSWORD_DEFAULT));
+        $user-&gt;setIsDeleted(false);
+        $user-&gt;setHash('hash');
+
+        $userDetail = new UserDetail();
+        $userDetail-&gt;setUser($user);
+        $userDetail-&gt;setFirstName('Admin');
+
+        $user-&gt;setDetail($userDetail);
+
+        $roleRepository = $manager-&gt;getRepository(UserRole::class);
+
+        /** @var UserRole $adminRole */
+        $adminRole = $roleRepository-&gt;findOneBy(&#91;'name' =&gt; UserRole::ROLE_ADMIN]);
+
+        $user-&gt;addRole($adminRole);
+
+        $manager-&gt;persist($user);
+
+        $manager-&gt;flush();
+    }
+
+    public function getDependencies(): array
+    {
+        return &#91;
+           RoleLoader::class
+        ];
+    }
+}</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p>Notice how <code>UserLoader.php</code> implements 2 interfaces, <code>FixtureInterface</code> and <code>DependentFixtureInterface</code>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The method <code>getDependencies()</code> returns an array containing the dependencies (fixtures) that need to be executed prior to the current one.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>After running all the fixtures using <code>php bin/doctrine fixtures:execute</code> the output should look like this: </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"align":"center","id":5564,"width":397,"height":232,"sizeSlug":"full","linkDestination":"none"} -->
+<figure class="wp-block-image aligncenter size-full is-resized"><img src="https://www.dotkernel.com/wp-content/uploads/2022/08/Screenshot-2022-08-30-at-20.39.19.png" alt="" class="wp-image-5564" width="397" height="232"/></figure>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p><code>RoleLoader</code> was executed before <code>UserLoader</code> because <code>UserLoader</code> had <code>RoleLoader</code> as a dependency. </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>To wrap things up, we implemented a database seeder and saw a practical example of how to use it.</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>More details about Fixtures in this blogpost: <a rel="noreferrer noopener" href="https://matthiasnoback.nl/2018/07/about-fixtures/" target="_blank">https://matthiasnoback.nl/2018/07/about-fixtures/</a> .</p>
+<!-- /wp:paragraph -->
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}How to Set a Persistent Connection to Database with Zend Framework Zend_Db adapter{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Best Practice</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">How to Set a Persistent Connection to Database with Zend Framework Zend_Db adapter</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+From time to time, it may be a good idea to have a persistent connection to database.
+
+The place where it should be added that new configuration option is application.ini ( DotKernel approach as an example)
+
+Do <strong>not</strong> try something like below, will not work:
+<pre>>database.params.options.PDO::ATTR_PERSISTENT = TRUE</pre>
+&nbsp;
+
+Instead , use the below line
+<pre>>database.params.persistent = TRUE</pre>
+{% endblock %}

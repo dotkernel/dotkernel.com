@@ -1,0 +1,147 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}CORS policy setup in Dotkernel using mezzio-cors{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Middleware</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">CORS policy setup in Dotkernel using mezzio-cors</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+<!-- wp:heading -->
+<h2>CORS policy setup in Dotkernel using mezzio-cors</h2>
+<!-- /wp:heading -->
+
+<!-- wp:heading -->
+<h2>Error message</h2>
+<!-- /wp:heading -->
+
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><p><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-vivid-red-color">Access to fetch at <em>RESOURCE_URL</em> from origin <em>ORIGIN_URL</em> has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.</mark></p></blockquote>
+<!-- /wp:quote -->
+
+<!-- wp:paragraph -->
+<p>Most developers have encountered this error when interacting with APIs. In this article we will run through the steps required to fix it.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>Cross-Origin Resource Sharing</strong> (<a href="https://developer.mozilla.org/en-US/docs/Glossary/CORS" target="_blank" rel="noreferrer noopener">CORS</a>) is an <a href="https://developer.mozilla.org/en-US/docs/Glossary/HTTP" target="_blank" rel="noreferrer noopener">HTTP</a>-header based mechanism that allows a server to indicate any other <a href="https://developer.mozilla.org/en-US/docs/Glossary/Origin">origin</a>s (domain, scheme, or port) than its own from which a browser should permit loading of resources.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The library we are going to use is <a rel="noreferrer noopener" href="https://docs.mezzio.dev/mezzio-cors/" target="_blank">Mezzio CORS</a> .</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:more -->
+
+<!-- /wp:more -->
+
+<!-- wp:heading -->
+<h2>Setup</h2>
+<!-- /wp:heading -->
+
+<!-- wp:heading {"level":4} -->
+<h4>Install package Mezzio CORS</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Run the following command in your application’s root directory:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:preformatted -->
+<pre class="wp-block-preformatted">composer require mezzio/mezzio-cors</pre>
+<!-- /wp:preformatted -->
+
+<!-- wp:heading {"level":4} -->
+<h4>Register ConfigProvider</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Open your application’s&nbsp;<strong>config/config.php</strong>&nbsp;file and add the following lines to the <code>$aggregator</code> variable:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><code>Laminas\Diactoros\ConfigProvider::class,</code></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><code>Mezzio\Cors\ConfigProvider::class,</code></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+<h4>Register Middleware</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Open your application’s&nbsp;<strong>config/pipeline.php</strong>&nbsp;file and add the following line (preferrably between <em>ErrorHandlerInterface::class</em> and the handler/middleware that will return your response):</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><code>$app-&gt;pipe(CorsMiddleware::class);</code></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Don't forget to add the corresponding use at the top of the file:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><code>use Mezzio\Cors\Middleware\CorsMiddleware;</code></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+<h4>Create config file</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Create and open file <strong>config/autoload/cors.local.php</strong> and add the following code inside it:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>&lt;?php
+
+declare(strict_types=1);
+
+use Mezzio\Cors\Configuration\ConfigurationInterface;
+
+return &#91;
+    ConfigurationInterface::CONFIGURATION_IDENTIFIER =&gt; &#91;
+        'allowed_origins' =&gt; &#91;
+            ConfigurationInterface::ANY_ORIGIN
+        ],
+        'allowed_headers' =&gt; &#91;'Accept', 'Content-Type', 'Authorization'],
+        'allowed_max_age' =&gt; '600',
+        'credentials_allowed' =&gt; true,
+        'exposed_headers' =&gt; &#91;],
+    ],
+];</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p>Note the value <code>ConfigurationInterface::ANY_ORIGIN</code> stored under <code>allowed_origins</code>. Leaving this value as is, makes your application accessible by any origin (<em>permissive mode</em>). To restrict access, replace it with a list of origins that should have access to your application (<em>restrictive mode</em>), for example:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:preformatted -->
+<pre class="wp-block-preformatted">'allowed_origins' =&gt; ,</pre>
+<!-- /wp:preformatted -->
+
+<!-- wp:paragraph -->
+<p>Don't forget to make a <em>distributable</em> version of you <strong>config/autoload/cors.local.php</strong> and add that to your repository.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2>Testing</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Make sure your application sends the <strong>Origin</strong> header and it is set to the correct value, for example <em>example.com</em>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>In your <strong>config/autoload/cors.local.php</strong>:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul><li>when in <em>permissive mode</em>, you should see the expected response from the resource</li><li>when in <em>restrictive mode</em>, if the request origin is not listed under <code>allowed_origins</code>, you should see a <strong>403 Not authorized</strong> response</li></ul>
+<!-- /wp:list -->
+{% endblock %}

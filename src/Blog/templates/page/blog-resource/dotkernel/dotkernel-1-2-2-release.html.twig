@@ -1,0 +1,26 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}DotKernel 1.2.2 release{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">DotKernel 1.2.2 release</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+Yesterday, we released <strong>DotKernel 1.2.2</strong>. It contains some bug fixes:
+<ul>
+	<li><span style="text-decoration: line-through;"><a href="http://www.dotkernel.net/view.php?id=31">31</a></span> – captcha errors try catch</li>
+	<li><span style="text-decoration: line-through;"><a href="http://www.dotkernel.net/view.php?id=32">32</a></span> – pagination issue</li>
+	<li><span style="text-decoration: line-through;"><a href="http://www.dotkernel.net/view.php?id=33">33</a></span> – Admin wrong link</li>
+	<li><span style="text-decoration: line-through;"><a href="http://www.dotkernel.net/view.php?id=34">34</a></span> – Acunetix results July 24th ( notices and one fatal error)</li>
+	<li><span style="text-decoration: line-through;"><a href="http://www.dotkernel.net/view.php?id=35">35</a></span> – update copyright line in files</li>
+</ul>
+
+For more details see <a href="../changelog/1-2-2/">ChangeLog 1.2.2</a>. To get only the changed files from 1.2.1 to 1.2.2, download the <a href="../download/?did=17">upgrade</a> file
+
+<strong>Note*</strong>: because of the Bug 35, all php files have changed. To see what else has changed, check the <a href="http://www.dotkernel.net/">DotKernel Tracker</a> or the <a href="http://websvn.dotkernel.net/listing.php?repname=DotKernel+ver.+1">DotKernel WebSVN</a> .
+
+<em>P.S.</em> On July 22, 2010 we released <em>DotKernel 1.2.1.</em> You can check the <a href="../changelog/1-2-1/">ChangeLog 1.2.1</a> or download <a href="../download/?did=14">the upgrade 1.2.1</a> zip file.
+{% endblock %}

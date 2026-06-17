@@ -1,0 +1,33 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}Migration of Zend Framework 1 PEAR channel{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">Migration of Zend Framework 1 PEAR channel</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+The unofficial <strong>PEAR channel for Zend Framework 1</strong> was hosted on Google Code at this location: <a href="http://code.google.com/p/zend/" target="_blank" rel="noopener noreferrer">ZF Pear</a>, but since the closing of Google Code we were forced to move it.
+
+Zend Framework 1 is still used by a lot of&nbsp; projects in Production, it's still a viable library collection&nbsp; and it's also&nbsp; running on&nbsp; PHP7 ; even if is only in maintenance/security-patch mode, so it's not an option to cancel it completely.
+
+We were unable to migrate the project on github.com since the size of the repository is more then 1 GB. We resorted to building a special server that will host only the <a href="http://pear.dotkernel.com/" target="_blank" rel="noopener noreferrer">PEAR channel for Zend Framework 1</a> and we are commited to <strong>keep it live and running for the long term</strong>.
+
+Instructions on how to use the new channel can be found below .
+<h3>PEAR Channel Migration Guide</h3>
+Use the PEAR installer:
+
+1. Remove the installed pear package
+<pre>>pear uninstall zend/zend</pre>
+2. Remove the old googlecode channel
+<pre>>pear channel-delete zend.googlecode.com/svn</pre>
+3. Discover the new channel
+<pre>>pear channel-discover pear.dotkernel.com/zf1/svn</pre>
+4. Install the package
+<pre>>pear install zend/zend</pre>
+Follow <a href="https://twitter.com/dotkernel" target="_blank" rel="noopener noreferrer">@dotkernel&nbsp; </a> in order to be up to date related to new releases.
+
+&nbsp;
+{% endblock %}

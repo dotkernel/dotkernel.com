@@ -1,0 +1,29 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}Zend_Console implementation in DotKernel{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Zend Framework</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">Zend_Console implementation in DotKernel</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+Starting with 1.5, DotKernel has a Console bootstrap to easily run PHP scripts from the command line. The most common use for this is to be able to run cron jobs without using wget and going through Apache.
+
+
+
+The bootstrap can be found in <em>Console/index.php</em> and it has one controller in <em>Controller.php</em> with two example actions.
+<h3>Usage</h3>
+Currently there are two command line arguments:
+<ul>
+	<li><strong>-a</strong>  - the name of the action that will be executed</li>
+	<li><strong>-e</strong>  - the environment, as defined in application.ini. Possible values are development, staging and production. This argument is optional, it defaults to production</li>
+</ul>
+Any other arguments set when calling the script will be available in the controller in the $registry-&gt;arguments array.
+
+The controller bundled with DotKernel has two example actions, "count-users" which demonstrates how to interact with models, and "send-newsletter" which reads the newsletter from the command line.
+<h3>Examples</h3>
+<pre>>/var/www/vhosts/example.com/httpdocs/Cron/index.php -e staging -a count-users</pre>
+<pre>>/var/www/vhosts/example.com/httpdocs/Cron/index.php -e staging -a send-newsletter "test newsletter"</pre>
+{% endblock %}

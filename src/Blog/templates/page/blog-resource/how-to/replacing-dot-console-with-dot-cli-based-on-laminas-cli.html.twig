@@ -1,0 +1,127 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}Replacing dot-console with dot-cli based on laminas-cli{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">How to's</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">Replacing dot-console with dot-cli based on laminas-cli</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+<!-- wp:heading -->
+<h2>Replacing dot-console with dot-cli based on laminas-cli</h2>
+<!-- /wp:heading -->
+
+<!-- wp:heading -->
+<h2>Implementing dot-cli in your application</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>DotKernel's <a href="https://github.com/dotkernel/dot-cli" data-type="URL" data-id="https://github.com/dotkernel/dot-cli" target="_blank" rel="noreferrer noopener">dot-cli</a> package comes as a replacement for <a href="https://github.com/dotkernel/dot-console" data-type="URL" data-id="https://github.com/dotkernel/dot-console" target="_blank" rel="noreferrer noopener">dot-console</a>, which was abandoned after Laminas abandoned their <a href="https://github.com/laminas/laminas-console" data-type="URL" data-id="https://github.com/laminas/laminas-console" target="_blank" rel="noreferrer noopener">laminas-console</a> package, that dot-console was based on.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:more -->
+
+<!-- /wp:more -->
+
+<!-- wp:heading -->
+<h2>Setup</h2>
+<!-- /wp:heading -->
+
+<!-- wp:heading {"level":4} -->
+<h4>Install package</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Run the following command in your application's root directory:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:preformatted -->
+<pre class="wp-block-preformatted">composer require dotkernel/dot-cli</pre>
+<!-- /wp:preformatted -->
+
+<!-- wp:heading {"level":4} -->
+<h4>Register ConfigProvider</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Open your application's <strong>config/config.php</strong> file and add <code>Dot\Cli\ConfigProvider::class,</code> under the <em>DK packages</em> comment.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+<h4>Create bootstrap file</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Locate the provided <strong>vendor/dotkernel/dot-cli/bin/cli.php</strong> and copy it into your application's <strong>bin</strong> directory.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This is the file you will execute your commands through.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+<h4>Create config file</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Locate the provided <strong>vendor/dotkernel/dot-cli/config/autoload/cli.global.php</strong> and copy it into your application's <strong>config/autoload</strong> directory.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This file already contains a sample command (<strong>demo:command</strong>), that serves as an example on creating an registering new commands.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>For more information on configuring/chaining commands, see <a href="https://docs.laminas.dev/laminas-cli/" data-type="URL" data-id="https://docs.laminas.dev/laminas-cli/" target="_blank" rel="noreferrer noopener">laminas-cli documentation</a>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2>Usage</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Run the following command in your application's root directory:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:preformatted -->
+<pre class="wp-block-preformatted">php ./bin/cli.php</pre>
+<!-- /wp:preformatted -->
+
+<!-- wp:paragraph -->
+<p>The output should look similar to this, containing information on how to start using dot-cli:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:preformatted -->
+<pre class="wp-block-preformatted">DotKernel CLI 1.0.0<br><br>Usage:<br>  command  <br><br>Options:<br>  -h, --help            Display help for the given command. When no command is given display help for the list command<br>  -q, --quiet           Do not output any message<br>  -V, --version         Display this application version<br>      --ansi            Force ANSI output<br>      --no-ansi         Disable ANSI output<br>  -n, --no-interaction  Do not ask any interactive question<br>  -v|vv|vvv, --verbose  Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug<br><br>Available commands:<br>  help          Display help for a command<br>  list          List commands<br> demo<br>  demo:command  Demo command description.</pre>
+<!-- /wp:preformatted -->
+
+<!-- wp:heading -->
+<h2>Set up command as cronjob</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Open your crontab and add the following line:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:preformatted -->
+<pre class="wp-block-preformatted"><code>* * * * {PATH_TO_PHP_EXECUTABLE} {PATH_TO_APPLICATION}/bin/cli.php demo:command</code></pre>
+<!-- /wp:preformatted -->
+
+<!-- wp:paragraph -->
+<p>Where <em>{PATH_TO_PHP_EXECUTABLE}</em> needs to replaced with the full path to the PHP executable and <em>{PATH_TO_APPLICATION}</em> with the full path to your application's root directory.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2>FileLocker</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>dot-cli has a built-in locking system, called FileLocker, enabled by default. This feature prevents multiple calls to the same command overlapping eachother by making sure the latter calls won't run until the former one is finished.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>You can toggle this modifying in the previously created <strong>config/autoload/cli.global.php</strong> under <code>FileLockerInterface::class -&gt; enabled</code></p>
+<!-- /wp:paragraph -->
+{% endblock %}

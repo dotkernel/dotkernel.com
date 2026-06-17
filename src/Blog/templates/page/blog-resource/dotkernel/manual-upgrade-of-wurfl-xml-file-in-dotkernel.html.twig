@@ -1,0 +1,27 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}Manual upgrade of WURFL xml file in DotKernel{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">Manual upgrade of WURFL xml file in DotKernel</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+DotKernel Application Framework can be downloaded with WURFL XML file bundled in it, but is quite an old file,  the latest GPL version, from June 2011. Because of license changed of that WURFL file,  this bundled file will not be upgraded anymore by us.
+
+You need to manually upgrade the xml file, if you still want to use it , and of course, please pay attention to license changes.
+<ol>
+	<li> Download the wurfl-2.3.xml.zip file.</li>
+	<li>Rename it to wurfl.zip</li>
+	<li>Rename the file inside the archive to wurfl.xml</li>
+	<li>Replace the file /externals/wurfl/wurfl.zip with this new wurfl.zip file</li>
+	<li>Download the web_browsers_patch.xml file</li>
+	<li>Replace the /externals/wurfl/web_browsers_patch.xml file with this new one</li>
+	<li>Go to Admin panel, click on <strong>empty</strong> wurfl cache  link, then rebuild the cache</li>
+</ol>
+Again, please pay attention to WURFL license changes.
+
+&nbsp;
+{% endblock %}

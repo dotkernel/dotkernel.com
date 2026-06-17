@@ -1,0 +1,90 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}Database migrations and how to use them{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel 3</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">Database migrations and how to use them</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+<h3>Migrations, the superhero your database deserves</h3>
+Migrations ease the process of working together on projects, as well as deploying the database changes.
+
+&nbsp;
+
+A newly released <a href="https://github.com/JapSeyz/Dot-migrations" target="_blank" rel="noopener noreferrer">package</a> for the DotKernel stack integrates migrations and seeders into the application; This is all done via the newly introduced "php dot" command that's available in the DotKernel stack.
+
+This article assumes that you're familiar with the basic concepts of migrations, if you're not, there's an excellent article available <a href="https://medium.com/@JapSeyz/database-migrations-and-why-you-should-use-them-11bfde52d7c2" target="_blank" rel="noopener noreferrer">here</a>
+
+<strong>To recap the article above, a database migration in a change in the database schema.</strong>
+
+&nbsp;
+<h3>Benefits</h3>
+By using migrations and seeders, you ensure a better workflow for teams, as changes to the database no longer require convoluted messages. It also ensures that all team members use the same types with the same limits on each column, and someone doesn't have <em>VARCHAR(50)</em> while another has <em>VARCHAR(150).</em> <strong>It keeps the database synchronised throughout the team with minimal effort.</strong>
+
+When pushing to production, the deployment script will automatically run the migrations and keep the database schema in sync with the codebase.
+
+<strong>It requires no manual SSH'ing into production servers and no risky manual changes to production databases.</strong>
+
+&nbsp;
+<h3>Getting started</h3>
+To setup migrations, simply follow the installation instructions in the package provided for DotKernel.
+After the package has been successfully setup, you're ready to go.
+To see the available commands, simply write "<em>php dot</em>" in a console that's located in your project root.
+
+&nbsp;
+<h3>How to use migrations in my project?</h3>
+Migrations are very easily adapted to any project.
+<ul>
+ 	<li><em>Existing</em> projects should start by creating a new migration, and mirror the current database design in that file.
+<ul>
+ 	<li><em>Backup the database</em>. in case anything unforeseen should happen.</li>
+ 	<li>After the design has been mirrored, the existing tables should be deleted, and the migrations can be run.</li>
+</ul>
+</li>
+</ul>
+<ol>
+ 	<li>Whenever you would normally manually touch the database, make a migration for doing it instead. (<em>php dot make:migration &lt;name&gt;</em>)</li>
+ 	<li>Give the migrations reasonable names, so it's easy to see their action, and the DB progression, in the project tree.</li>
+ 	<li>Run the migrate command, and watch the database automatically generate and run the SQL to update the tables and columns as configured.</li>
+ 	<li>Enjoy a safe and worry free database that won't suffer from manually touching it.</li>
+</ol>
+&nbsp;
+
+Notice; Migrations are stored in version control, so whenever you pull an update, quickly run <em>php dot migrate</em>, as it will only ever migrate new files, and leave out the ones that have been run already.
+
+&nbsp;
+<h3>Seeders</h3>
+If you need to add some data to a table, e.g. adding a default admin profile on a fresh installation, this can be done via Seeders.
+
+<em>Migrations manage the database layouts, seeders add data to the database.</em>
+
+Seeders can be configured to run every time a certain migration is run, so no matter when you or how you reset your database, it'll make sure that there's always a default admin profile when the <em>CreateAdminTableMigration</em> is run.
+
+Seeders are created the same way as migrations, and also benefits hugely from being given reasonable names that explain what they do.
+<ol>
+ 	<li>Create the required seeders, one for each table is the best practice, so you can have a "UserTableSeeder" and a "CarTableSeeder" etc.</li>
+ 	<li>Setup when these seeders should run;
+<ul>
+ 	<li>When running a migration</li>
+ 	<li>Via a console-command, this is used to seed x amount of rows of (random) data to the database for testing.</li>
+</ul>
+</li>
+</ol>
+<section class="section section--body">
+<div class="section-divider">
+
+<hr class="section-divider" />
+
+</div>
+<div class="section-content">
+<div class="section-inner sectionLayout--insetColumn">
+<h3 class="graf graf--h3">Acknowledgements</h3>
+<p class="graf graf--p">The images in the article shows screenshots from <a class="markup--anchor markup--p-anchor" href="https://www.mysql.com/products/workbench/" target="_blank" rel="noopener noreferrer">MySQL Workbench</a>, and the migration package used is <a class="markup--anchor markup--p-anchor" href="https://phinx.org/" target="_blank" rel="noopener noreferrer">Phinx</a></p>
+
+</div>
+</div>
+</section>
+{% endblock %}

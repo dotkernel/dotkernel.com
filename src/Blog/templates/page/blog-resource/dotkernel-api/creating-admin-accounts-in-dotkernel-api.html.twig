@@ -1,0 +1,148 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}Creating admin accounts in DotKernel API{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel API</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">Creating admin accounts in DotKernel API</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+<!-- wp:heading -->
+<h2>Creating admin accounts in DotKernel API</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Starting from v3, DotKernel API introduces support for admin accounts. In this article we will describe two different methods of creating an admin account.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:more -->
+
+<!-- /wp:more -->
+
+<!-- wp:heading -->
+<h2>Method 1: Using API endpoint</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>This action can be performed only by an authenticated admin/superuser.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Once authenticated call the protected endpoint  <code>POST /admin</code> with the following <strong>JSON</strong> body:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:preformatted -->
+<pre class="wp-block-preformatted">{
+   "identity": "<em>{IDENTITY}</em>",
+   "password": "<em>{PASSWORD}</em>",
+   "passwordConfirm": "<em>{<em>PASSWORD</em>}</em>",
+   "firstname": "<em>{FIRSTNAME}</em>",
+   "lastname": "<em>{LASTNAME}</em>",
+   "roles": 
+ }</pre>
+<!-- /wp:preformatted -->
+
+<!-- wp:paragraph -->
+<p>after replacing:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul><li>{IDENTITY} with a valid username OR email address</li><li>{PASSWORD} with a valid password</li><li>{ROLE_UUID} with a valid admin role UUID (You can get a list of admin roles by calling the protected endpoint <code>GET /admin/role</code>)</li><li>{FIRSTNAME} and {LASTNAME} are optional</li></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p><strong>NOTE:</strong> You can specify multiple admin roles under the <em>roles</em> key.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>If the submitted data is valid, the response will be similar to the below:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:preformatted -->
+<pre class="wp-block-preformatted">{
+     "uuid": "d436b044-be36-11eb-9eb1-78f29ef45f43",
+     "identity": "Letha_Runolfsson96",
+     "firstName": "Oswald",
+     "lastName": "Swift",
+     "status": "active",
+     "roles": ,
+     "created": {
+         "date": "2021-05-26 17:27:06.194613",
+         "timezone_type": 3,
+         "timezone": "Europe/Berlin"
+     },
+     "updated": {
+         "date": "2021-05-26 17:27:06.279705",
+         "timezone_type": 3,
+         "timezone": "Europe/Berlin"
+     },
+     "_links": {
+         "self": {
+             "href": "http://localhost:8080/admin/d436b044-be36-11eb-9eb1-78f29ef45f43"
+         }
+     }
+ }</pre>
+<!-- /wp:preformatted -->
+
+<!-- wp:paragraph -->
+<p>The new admin account is ready to use.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2>Method 2: Using terminal command</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Run the following command in your application's root directory:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:preformatted -->
+<pre class="wp-block-preformatted">php ./bin/cli.php admin:create -i {IDENTITY} -p {PASSWORD}</pre>
+<!-- /wp:preformatted -->
+
+<!-- wp:paragraph -->
+<p>or</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:preformatted -->
+<pre class="wp-block-preformatted">php ./bin/cli.php admin:create --identity {IDENTITY} --password {PASSWORD}</pre>
+<!-- /wp:preformatted -->
+
+<!-- wp:paragraph -->
+<p>after replacing:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul><li>{IDENTITY} with a valid username OR email address</li><li>{PASSWORD} with a valid password</li></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p><strong>NOTE:</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul><li>if the specified <em>identity</em> or <em>password</em> contain special characters, make sure you surround them with double quote signs</li><li>this method does not allow specifying an admin role - newly created accounts will have role of admin</li></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>If the submitted data is valid, the outputted response is:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:preformatted -->
+<pre class="wp-block-preformatted">Admin account has been created.</pre>
+<!-- /wp:preformatted -->
+
+<!-- wp:paragraph -->
+<p>The new admin account is ready to use.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>You can get more help with this command by running:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:preformatted -->
+<pre class="wp-block-preformatted">php ./bin/cli.php help admin:create</pre>
+<!-- /wp:preformatted -->
+{% endblock %}

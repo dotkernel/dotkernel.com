@@ -1,0 +1,148 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}Migrating DotKernel 3 from Zend Expressive 2 to Zend Expressive 3{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">How to's</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">Migrating DotKernel 3 from Zend Expressive 2 to Zend Expressive 3</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+This article covers the steps required to migrate a DotKernel 3 instance to the latest Zend Expressive Version.
+
+
+
+<strong>Migration from Zend Expressive 2 to 3.</strong>
+
+&nbsp;
+
+<em>Notes before starting:</em>
+
+For a better understanding of the migration and how it affects support we recommend reading Zend Expressive's <a target="_blank" href="https://docs.zendframework.com/zend-expressive/v3/reference/migration/#http-interop" rel="noopener noreferrer">article</a> on migration.
+
+If your project contains old middleware it must be refactored to reflect the interfaces provided in the <a target="_blank" href="https://packagist.org/packages/psr/http-server-middleware" rel="noopener noreferrer"><strong>psr/http-server-middleware</strong></a> package.
+
+By updating your middleware the <strong>Delegate</strong>s will become <strong>RequestHandler</strong>s<strong>. </strong>The interfaces are provided in the <strong><a target="_blank" href="https://packagist.org/packages/psr/http-server-handler" rel="noopener noreferrer">psr/http-server-handler</a> </strong>package.
+
+&nbsp;
+
+If your project only contains controller-based middleware it can be migrated by following the guides below.
+
+&nbsp;
+<h2>DotKernel3 Migration - Expressive 2.0 -&gt; 3.0</h2>
+&nbsp;
+<h2><a target="_blank" id="user-content-packages" class="anchor" href="https://github.com/dotkernel/admin/blob/master/docs/Migration.md#packages" aria-hidden="true" rel="noopener noreferrer"></a>Packages</h2>
+In <code>composer.json</code> replace the matching repositories with the following:
+<pre><code>"dotkernel/dot-authentication-service":"^1.0",
+"dotkernel/dot-authentication-service":"^1.0",
+"dotkernel/dot-authentication-web":"^1.0.1",
+"dotkernel/dot-authentication":"^1.0",
+"dotkernel/dot-authorization":"^0.1.2",
+"dotkernel/dot-controller":"^1.0",
+"dotkernel/dot-controller-plugin-authentication":"^1.0",
+"dotkernel/dot-controller-plugin-authorization":"^1.0",
+"dotkernel/dot-controller-plugin-forms":"^1.0",
+"dotkernel/dot-controller-plugin-flashmessenger":"^1.0",
+"dotkernel/dot-controller-plugin-mail":"^1.0",
+"dotkernel/dot-controller-plugin-session":"^1.0",
+"dotkernel/dot-form":"^1.1.1",
+"dotkernel/dot-filter":"^1.1.1",
+"dotkernel/dot-flashmessenger":"^1.0",
+"dotkernel/dot-helpers":"^1.0",
+"dotkernel/dot-inputfilter":"^1.1",
+"dotkernel/dot-mail":"^1.0",
+"dotkernel/dot-mapper":"^1.0",
+"dotkernel/dot-navigation":"^1.0",
+"dotkernel/dot-rbac-guard":"^1.0",
+"dotkernel/dot-session":"^3.0",
+"dotkernel/dot-twigrenderer":"^1.1",
+"dotkernel/dot-user":"^1.0",
+"dotkernel/dot-rbac":"^0.2.1",
+"dotkernel/dot-validator":"^1.1",
+
+"zendframework/zend-escaper":"^2.6",
+"zendframework/zend-expressive-helpers":"^5.0",
+"zendframework/zend-expressive-twigrenderer":"^2.0",
+"zendframework/zend-expressive-template":"^2.0",
+"zendframework/zend-expressive":"^3.0",
+"zendframework/zend-expressive-fastroute":"^3.0",
+"zendframework/zend-expressive-tooling":"^1.0",
+"zendframework/zend-expressive-router":"^3.0",
+"zendframework/zend-stratigility":"^3.0",
+"zendframework/zend-component-installer":"^2.0
+</code></pre>
+also update require-dev dependencies
+<pre><code>"zendframework/zend-expressive-tooling:": "^1.0",
+"zendframework/zend-component-installer": "^2.0",
+
+</code></pre>
+Remove packages:
+<ul>
+ 	<li>http-interop/http-middleware</li>
+ 	<li>webimpress/http-middleware-compatibility</li>
+</ul>
+<h2><a target="_blank" id="user-content-configurations" class="anchor" href="https://github.com/dotkernel/admin/blob/master/docs/Migration.md#configurations" aria-hidden="true" rel="noopener noreferrer"></a>Configurations</h2>
+<h3><a target="_blank" id="user-content-main-configuration" class="anchor" href="https://github.com/dotkernel/admin/blob/master/docs/Migration.md#main-configuration" aria-hidden="true" rel="noopener noreferrer"></a>Main Configuration</h3>
+In <code>config/config.php</code> add the following config providers:
+<div class="highlight highlight-text-html-php">
+<pre><span class="pl-s1"><span class="pl-c">// zend expressive &amp; middleware factory</span></span>
+<span class="pl-s1"><span class="pl-c1">\Zend\Expressive\</span><span class="pl-c1">ConfigProvider</span><span class="pl-k">::</span><span class="pl-c1">class</span>,</span>
+
+<span class="pl-s1"><span class="pl-c">// router config</span></span>
+<span class="pl-s1"><span class="pl-c1">\Zend\Expressive\Router\</span><span class="pl-c1">ConfigProvider</span><span class="pl-k">::</span><span class="pl-c1">class</span>,</span>
+<span class="pl-s1"><span class="pl-c1">\Zend\Expressive\Router\FastRouteRouter\</span><span class="pl-c1">ConfigProvider</span><span class="pl-k">::</span><span class="pl-c1">class</span>,</span>
+
+<span class="pl-s1"><span class="pl-c1">\Zend\Expressive\Twig\</span><span class="pl-c1">ConfigProvider</span><span class="pl-k">::</span><span class="pl-c1">class</span>,</span>
+<span class="pl-s1"><span class="pl-c1">\Zend\Expressive\Helper\</span><span class="pl-c1">ConfigProvider</span><span class="pl-k">::</span><span class="pl-c1">class</span>,</span>
+
+<span class="pl-s1"><span class="pl-c">// handler runner</span></span>
+<span class="pl-s1"><span class="pl-c1">\Zend\HttpHandlerRunner\</span><span class="pl-c1">ConfigProvider</span><span class="pl-k">::</span><span class="pl-c1">class</span>,</span></pre>
+</div>
+Make sure they are the first ConfigProviders or before cached config (<code>ArrayProvider</code>)
+<h3><a target="_blank" id="user-content-routing" class="anchor" href="https://github.com/dotkernel/admin/blob/master/docs/Migration.md#routing" aria-hidden="true" rel="noopener noreferrer"></a>Routing</h3>
+Wrap routing from <code>config/routes.php</code> in a callable with the following format:
+<div class="highlight highlight-text-html-php">
+<pre><span class="pl-s1"><span class="pl-k">return</span> <span class="pl-k">function</span> (<span class="pl-c1">Application</span> <span class="pl-smi">$app</span>, <span class="pl-c1">MiddlewareFactory</span> <span class="pl-smi">$factory</span>, <span class="pl-c1">ContainerInterface</span> <span class="pl-smi">$container</span>) : void {</span>
+<span class="pl-s1">    <span class="pl-c">/** @var \Zend\Expressive\Application $app */</span></span>
+<span class="pl-s1">    <span class="pl-smi">$app</span><span class="pl-k">-&gt;</span>route(<span class="pl-s"><span class="pl-pds">'</span>/<span class="pl-pds">'</span></span>, , , <span class="pl-s"><span class="pl-pds">'</span>home<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1">};</span></pre>
+</div>
+add the following use statements and make sure the names are not duplicate:
+<div class="highlight highlight-text-html-php">
+<pre><span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Psr\Container\ContainerInterface</span>;</span>
+<span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Zend\Expressive\Application</span>;</span>
+<span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Zend\Expressive\MiddlewareFactory</span>;</span></pre>
+</div>
+<h3><a target="_blank" id="user-content-pipeline" class="anchor" href="https://github.com/dotkernel/admin/blob/master/docs/Migration.md#pipeline" aria-hidden="true" rel="noopener noreferrer"></a>Pipeline</h3>
+Wrap routing from <code>config/pipeline.php</code> in a callable with the following format:
+<div class="highlight highlight-text-html-php">
+<pre><span class="pl-s1"><span class="pl-k">return</span> <span class="pl-k">function</span> (<span class="pl-c1">Application</span> <span class="pl-smi">$app</span>, <span class="pl-c1">MiddlewareFactory</span> <span class="pl-smi">$factory</span>, <span class="pl-c1">ContainerInterface</span> <span class="pl-smi">$container</span>) : void {</span>
+<span class="pl-s1">    <span class="pl-c">/** @var \Zend\Expressive\Application $app */</span></span>
+<span class="pl-s1">    <span class="pl-smi">$app</span><span class="pl-k">-&gt;</span>route(<span class="pl-s"><span class="pl-pds">'</span>/<span class="pl-pds">'</span></span>, , , <span class="pl-s"><span class="pl-pds">'</span>home<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1">};</span></pre>
+</div>
+add the following use statements and make sure the names are not duplicate:
+<div class="highlight highlight-text-html-php">
+<pre><span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Psr\Container\ContainerInterface</span>;</span>
+<span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Zend\Expressive\Application</span>;</span>
+<span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Zend\Expressive\MiddlewareFactory</span>;</span></pre>
+</div>
+<h4><a target="_blank" id="user-content-routing-middleware-migration" class="anchor" href="https://github.com/dotkernel/admin/blob/master/docs/Migration.md#routing-middleware-migration" aria-hidden="true" rel="noopener noreferrer"></a>Routing middleware migration</h4>
+add the following use statements
+<div class="highlight highlight-text-html-php">
+<pre><span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Zend\Expressive\Router\Middleware\RouteMiddleware</span>;</span>
+<span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Zend\Expressive\Router\Middleware\DispatchMiddleware</span>;</span></pre>
+</div>
+Replace the following lines to reflect the changes:
+
+<code>$app-&gt;pipeRoutingMiddleware();</code> -&gt; <code>$app-&gt;pipe(RouteMiddleware::class);</code> <code>$app-&gt;pipeDispatchMiddleware();</code> -&gt; <code>$app-&gt;pipe(DispatchMiddleware::class);</code>
+
+&nbsp;
+
+You can check the complete guides and example files from the following links
+
+<strong>Migration guide for Dotkernel Frontend:</strong> <a target="_blank"href="https://github.com/dotkernel/frontend/tree/master/docs">github.com/dotkernel/frontend/tree/master/docs</a>
+
+<strong>Migration guide for Dotkernel Admin:</strong> <a target="_blank" href="https://github.com/dotkernel/admin/tree/master/docs" rel="noopener noreferrer">github.com/dotkernel/admin/tree/master/docs</a>
+{% endblock %}

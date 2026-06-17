@@ -1,0 +1,52 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}SVN keywords setup in  PHP IDE ( Zend  Studio){% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Best Practice</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">SVN keywords setup in  PHP IDE ( Zend  Studio)</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+For a better integration of SVN, your PHP IDE( Zend Studio), and a bug tracker of choice, the below proprieties must be set, <strong>for each project</strong> you have.
+
+
+
+Right click on <strong>project</strong>
+Go to <strong>Team-&gt;Set Propriety</strong>
+<ul>
+	<li>SVN Ignore files, below you have an example. As we do not want to commit your local settings
+to the main repository :-)</li>
+</ul>
+<pre class="bash"><strong>Name:</strong> svn:ignore
+<strong>Propriety:</strong>
+*.project
+*.prefs
+.project
+cache
+.settings
+.buildpath
+*.ini</pre>
+<ul>
+	<li>Basic integration with a bug tracker</li>
+</ul>
+<pre class="bash"><strong>Name:</strong> bugtracq:label
+<strong>Propriety:</strong> Tracker ID:</pre>
+<pre class="bash"><strong>Name:</strong> bugtraq:message
+<strong>Propriety:</strong> </pre>
+<ul>
+	<li>If you have a public bug tracker system , example Mantis</li>
+</ul>
+<pre class="bash"><strong>Name:</strong> bugtraq:url
+<strong>Propriety:</strong> http://www.dotkernel.net/view.php?id=%BUGID%</pre>
+For <strong>above</strong> Proprieties , apply <strong>only</strong> to project folder, <strong>NOT</strong> recursive
+<h3>Final step( below instructions are good <strong>only</strong> for <strong>svn:keywords</strong> )</h3>
+&nbsp;
+
+Check the <strong>Apply property recursively to:</strong>
+Select <strong>All resources</strong>
+Check the <strong>Use filtration by the resource name </strong> and add <strong>Mask: </strong>*.php
+
+<a href="http://www.dotkernel.com/wp-content/uploads/2013/02/svn-add.jpg"><img class="aligncenter size-full wp-image-1980" alt="svn-add" src="http://www.dotkernel.com/wp-content/uploads/2013/02/svn-add.jpg" width="589" height="668" /></a>
+{% endblock %}

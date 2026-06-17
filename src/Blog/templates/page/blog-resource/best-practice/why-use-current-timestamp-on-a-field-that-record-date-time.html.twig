@@ -1,0 +1,30 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}Why use CURRENT_TIMESTAMP on a field that record date/time?{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Best Practice</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">Why use CURRENT_TIMESTAMP on a field that record date/time?</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+On a <em>TIMESTAMP field</em> that records date and time when <em>inserting </em>a new record, it is encouraged to use as a <em>DEFAULT </em>value, the <strong>CURRENT_TIMESTAMP</strong> constant.
+
+<strong>Why? </strong>
+Because when inserting a new row in the table for the date and time field there is no need to specifically add its value, either by creating it from PHP code with the <a href="http://www.php.net/manual/en/ref.datetime.php">Date/ Time functions</a> or with MySQL function <a href="http://dev.mysql.com/doc/refman/5.0/en/date-and-time-functions.html#function_now">NOW()</a>
+<pre>>ALTER TABLE `user` CHANGE `dateCreated` `dateCreated` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;</pre>
+CURRENT_TIMESTAMP is also a solution for  <em>updating </em>date and time fields. Use <em><code>ON UPDATE CURRENT_TIMESTAMP</code></em> clause, if you want the value of the field to be changed automatically each time the row is updated.
+<pre>>ALTER TABLE `user` CHANGE `dateLogin` `dateLogin` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;</pre>
+<em>DEFAULT </em>and <em>ON UPDATE</em> clauses can be used together or separately, depending on your needs:
+<ul>
+	<li>With both <code>DEFAULT CURRENT_TIMESTAMP</code> and <code>ON UPDATE CURRENT_TIMESTAMP</code> clauses, the column has the current timestamp for its default value and is automatically updated.</li>
+	<li>With neither <code>DEFAULT</code> nor <code>ON UPDATE</code> clauses, it is the same as <code>DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP</code>. (Only for the <em><span style="text-decoration: underline;">first </span></em>TIMESTAMP field from the table)</li>
+	<li>With a <code>DEFAULT CURRENT_TIMESTAMP</code> clause and no <code>ON UPDATE</code> clause, the column has the current timestamp for its default value but is not automatically updated.</li>
+	<li>With no <code>DEFAULT</code> clause and with an <code>ON UPDATE CURRENT_TIMESTAMP</code> clause, the column has a default of 0 and is automatically updated.</li>
+	<li>With a constant <code>DEFAULT</code> value, the column has the given default and is not automatically initialized to the current timestamp. If the column also has an <code>ON UPDATE CURRENT_TIMESTAMP</code> clause, it is automatically updated; otherwise, it has a constant default and is not automatically updated.</li>
+</ul>
+For more details check out <a href="http://dev.mysql.com/doc/refman/5.0/en/timestamp.html">MySQL Manual</a>
+
+<strong>Note*:</strong> Only one timestamp field can be <code>DEFAULT CURRENT_TIMESTAMP</code> in a table.
+{% endblock %}

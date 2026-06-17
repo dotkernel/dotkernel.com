@@ -1,0 +1,111 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}Generating a doctrine migration without dropping custom tables{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">How to's</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">Generating a doctrine migration without dropping custom tables</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+<!-- wp:heading -->
+<h2>Generating a doctrine migration without dropping custom tables</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>If your application needs to hold some <strong>custom </strong>(<em>unmapped</em>) tables in the database, then generating migrations with doctrine-migrations diff will try to <strong>drop </strong>the custom tables. This article provides a solution on how to avoid dropping those tables.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:more -->
+
+<!-- /wp:more -->
+
+<!-- wp:heading -->
+<h2>Usage</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Run the following command in your application’s root directory:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:preformatted -->
+<pre class="wp-block-preformatted">vendor/bin/doctrine-migrations diff</pre>
+<!-- /wp:preformatted -->
+
+<!-- wp:paragraph -->
+<p>If you have mapping modifications, this will create a new migration file under<strong> data/doctrine/migrations/</strong> directory. Opening the migration file, you will notice that it contains some queries that will drop your <code>oauth_*</code> tables because they are unmapped (there is no doctrine entity describing them). You should delete your latest migration with the <strong>DROP </strong>queries in it as we will create another one, without the <strong>DROP </strong>queries in it. In order to avoid dropping these tables, you need to add a parameter called filter-expression.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The command to be executed without dropping these tables looks like this:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>On <strong>Windows </strong>(use double quotes):</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:preformatted -->
+<pre class="wp-block-preformatted">vendor/bin/doctrine-migrations diff --filter-expression="/^(?!oauth_)/"</pre>
+<!-- /wp:preformatted -->
+
+<!-- wp:paragraph -->
+<p>On <strong>Linux/macOS</strong> (use single quotes):</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:preformatted -->
+<pre class="wp-block-preformatted">vendor/bin/doctrine-migrations diff --filter-expression='/^(?!oauth_)/'</pre>
+<!-- /wp:preformatted -->
+
+<!-- wp:heading -->
+<h2>Filtering multiple unmapped table patterns</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>If your database contains multiple unmapped table groups, then the pattern in <code>filter-expression</code> should hold all table prefixes concatenated by pipe character (<code>|</code>). For example, if you need to filter tables prefixed with <code>foo_</code> and <code>bar_</code>, then the command should look like this:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>On Windows:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:preformatted -->
+<pre class="wp-block-preformatted"><code>vendor/bin/doctrine-migrations diff --filter-expression="/^(?!foo_|bar_)/"</code></pre>
+<!-- /wp:preformatted -->
+
+<!-- wp:paragraph -->
+<p>On Linux/macOS:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:preformatted -->
+<pre class="wp-block-preformatted">vendor/bin/doctrine-migrations diff --filter-expression='/^(?!foo_|bar_)/'</pre>
+<!-- /wp:preformatted -->
+
+<!-- wp:heading -->
+<h2>Troubleshooting</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>On <strong>Windows</strong>, running the command in <em>PowerShell</em> might still add the <code>DROP TABLE oauth_*</code> queries to the migration file. This happens because for <em>PowerShell </em>the caret (<code>^</code>) is a special character, so it gets dropped (<code>"/^(?!oauth_)/"</code> becomes <code>"/(?!oauth_)/"</code> when it reaches your command). Escaping it will not help either.<br>In this case, we recommend running the command:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul><li>directly from your IDE</li><li>using <code>Linux shell</code></li><li>from the <code>Command Prompt</code></li></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2>Help</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>You can get more help with this command by running:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:preformatted -->
+<pre class="wp-block-preformatted">vendor/bin/doctrine-migrations help diff</pre>
+<!-- /wp:preformatted -->
+
+<!-- wp:paragraph -->
+<p></p>
+<!-- /wp:paragraph -->
+{% endblock %}

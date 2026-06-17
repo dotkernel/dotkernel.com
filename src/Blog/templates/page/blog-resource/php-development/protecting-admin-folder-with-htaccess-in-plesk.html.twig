@@ -1,0 +1,30 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}Protecting admin folder with .htaccess in Plesk{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">PHP Development</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">Protecting admin folder with .htaccess in Plesk</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+In <strong>/var/www/vhosts/exampledomain.com/conf/vhost.conf</strong> file add this code:
+<pre>>
+< Location /admin>	
+   AuthType Basic
+   AuthName "My Site Admin"
+   AuthUserFile /var/www/vhosts/exampledomain.com/conf/.htpasswd
+  Require valid-user
+< /Location ></pre>
+&nbsp;
+
+Notice the server that vhost.conf has been added/changed with command:
+<pre>>/usr/local/psa/admin/sbin/websrvmng -a</pre>
+&nbsp;
+
+Then create the .htpasswd file and upload it to <strong>/var/www/vhosts/exampledomain.com/conf/</strong>
+
+<strong>
+</strong>
+{% endblock %}

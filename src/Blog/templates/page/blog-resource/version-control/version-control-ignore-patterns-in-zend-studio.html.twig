@@ -1,0 +1,27 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}Version Control Ignore Patterns in Zend Studio{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Version Control</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">Version Control Ignore Patterns in Zend Studio</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+In order to globally manage the <a href="http://www.dotkernel.com/best-practice/svn-keywords-setup-in-php-ide-zend-studio/" target="_blank" rel="noopener noreferrer">"Ignored Resources"</a>  patterns in Zend Studio, for all projects , instead of manually add to each project, you can do the following:
+
+1. Go to <strong>Window</strong>-&gt; <strong>Preferences</strong>
+
+2. <strong>Team</strong> -&gt; <strong>Ignored Resources </strong>
+
+3. using <strong>Add Pattern,</strong> you can add each ignored pattern , one by one . Or you can remove some of allready existing patterns.
+
+This is specially useful when you have both Git and SVN projects in your workspace , also when you tend to be less careful about your code and workspace :-)
+
+Also, on each project, you can use either global ignored  patterns, or use specific ones.
+
+&nbsp;
+
+<a href="http://www.dotkernel.com/wp-content/uploads/2013/04/ignore-patterns.png"><img class="aligncenter size-full wp-image-2004" alt="ignore-patterns" src="http://www.dotkernel.com/wp-content/uploads/2013/04/ignore-patterns.png" width="635" height="594" /></a>
+{% endblock %}

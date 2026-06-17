@@ -1,0 +1,43 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}Zend Server 5.5 Quick Setup on Windows{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Best Practice</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">Zend Server 5.5 Quick Setup on Windows</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+In order to make  usable a fresh installation of Zend Server 5.5.0 on Windows 7, and be ready for development , few quick steps are required:
+
+
+
+<strong>1. Enable mod_rewrite</strong>
+
+-  Open the file ZEND_INSTALATION_PATH/Apache2/conf/httpd.conf. Change the directive <em>AllowOverride</em> fron None to All
+
+- Restart Apache service
+
+<strong>2. PHP fine tunes</strong>
+
+- go to Zend Server administration interface, <a href="http://localhost:10081/ZendServer/" target="_blank" rel="noopener noreferrer">http://localhost:10081/ZendServer/</a>, Server Setup-&gt; Directives, and change the following:
+
+- set timezone:  set <strong><em>date</em></strong> to <em>America/New_York</em>
+
+-set error reporting: <strong>display_errors  </strong>set to<strong> on</strong>, and <strong>error_reporting </strong>to<strong> -1</strong> .<strong></strong>
+
+<strong>3. Enable APC</strong>
+
+- APC is listed as been enabled in Zend Server admin interface, but the app dll file is missing, and APC is not working
+
+- download the latest php apc dll file, from <a href="http://windows.php.net/downloads/pecl/releases/apc/" target="_blank" rel="noopener noreferrer">here</a> . Quite old file at the time of this post, <em>php_apc-3.1.5-5.3-nts-vc9-x86.zip</em>, which is the latest Non-thread-safe VC9 file available. Download the archive and extract the file <em>php_apc.dll</em> to ZEND_INSTALATION_PATH/ZendServer/lib/phpext/
+
+- open <em>php.ini</em> file, from ZEND_INSTALATION_PATH/ZendServer\etc\php.ini , add the line <em>extension=php_apc.dll</em>
+
+- Restart Apache service
+
+&nbsp;
+
+&nbsp;
+{% endblock %}

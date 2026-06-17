@@ -1,0 +1,83 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}Mezzio app development in WSL2{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel API</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">Mezzio app development in WSL2</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+<!-- wp:heading -->
+<h2>Install a Mezzio app (DotKernel API) using WSL2</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>This article will run you through the steps of installing a Mezzio application (DotKernel API) in <strong>WSL2 </strong>and run it on <strong>Ubuntu 20.04 LTS</strong>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+<h4>Step 1:</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Make sure you have WSL2 installed on your machine by following <a href="https://github.com/dotkernel/development/blob/main/wsl/README.md" target="_blank" rel="noreferrer noopener">this guide</a>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+<h4>Step 2:</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Install <strong>Ubuntu 20.0 LTS</strong> inside <strong>WLS2</strong> as described <a rel="noreferrer noopener" href="https://github.com/dotkernel/development/blob/main/wsl/os/ubuntu20/README.md" target="_blank">here</a>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+<h4>Step 3:</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Create a virtualhost for your project using <a href="https://github.com/dotkernel/development/blob/main/wsl/os/ubuntu20/README.md#create-virtual-hosts" target="_blank" rel="noreferrer noopener">this guide</a>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+<h4>Step 4:</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Using your terminal, move into the virtualhost directory that you just created:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>cd /home/<em>your-username</em>/projects/<em>your-virtualhost</em></code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p>Install DotKernel API, by following <a href="https://github.com/dotkernel/api" target="_blank" rel="noreferrer noopener">this guide</a>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Make sure your <code>data</code> and <code>log</code> directories are writable by changing their permissions, as described <a rel="noreferrer noopener" href="https://github.com/dotkernel/development/blob/main/wsl/HELP.md#fix-common-permission-issues" target="_blank">here</a>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+<h4>Step 5:</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Setup PHPStorm to work with WSL2 files like in <a href="https://www.jetbrains.com/help/phpstorm/how-to-use-wsl-development-environment-in-product.html" data-type="URL" data-id="https://www.jetbrains.com/help/phpstorm/how-to-use-wsl-development-environment-in-product.html" target="_blank" rel="noreferrer noopener">this article</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>Note:</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><p>There is a guide for <strong>AlmaLinux 8</strong> as well, but that's not fully functional because of a well-known issue regarding running <em>systemd </em>inside <strong>WSL2</strong>.</p></blockquote>
+<!-- /wp:quote -->
+{% endblock %}

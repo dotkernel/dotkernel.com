@@ -1,0 +1,32 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}Using  UTF8 charset in DotKernel{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Best Practice</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">Using  UTF8 charset in DotKernel</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+In order to use UTF8 encoding in your DotKernel based system, is needed to make some changes in both database structure and in the application.ini file.
+<blockquote>Those changes are commited into <strong>DotKernel 1.6.0 dev</strong> codebase, which will be released in next days.</blockquote>
+
+<h3>Database</h3>
+set for all tables and columns proper collation , either <strong>utf8_general_ci</strong> or <strong>utf8_bin</strong>
+<h3>Application.ini</h3>
+add the line
+<pre>>database.params.charset = utf8</pre>
+to your application.ini file, in the <strong></strong> area.
+<h3>Differences between utf8_general_ci and utf8_bin</h3>
+<strong>utf8_bin</strong>: compare strings by the binary value of each character in the string
+<strong>utf8_general_ci</strong>: compare strings using general language rules and using case-insensitive comparisons
+
+For example, the following will evaluate at true with  utf8_general_ci collation, but <strong>not</strong> with the utf8_bin collation:
+
+Ä = A
+Ö = O
+Ü = U
+
+Those differences happens only on <strong>MySQL</strong> level ( for instance in queries using LIKE operator) and <strong>not</strong> at <strong>PHP</strong> level ( for instance, in str_replace() calls )
+{% endblock %}

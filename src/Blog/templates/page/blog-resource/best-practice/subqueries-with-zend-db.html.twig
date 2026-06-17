@@ -1,0 +1,53 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}Subqueries with Zend_Db{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Best Practice</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">Subqueries with Zend_Db</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+Continuing the Zend_DB article <a href="http://www.dotkernel.com/dotkernel/sql-select-zend-db/" target="_blank" rel="noopener noreferrer">series</a>, we are stopping now at subqueries.
+</br>
+As you note, the below is a complicate query, with <i>COUNT()</i>, <i>LEFT JOIN()</i>, <i>GROUP BY</i>
+ - select from 3 tables, and make a count from 2 different tables:
+
+<pre>>
+SELECT a.id,
+	   a.title, 
+       (SELECT COUNT(c.track_id)
+        FROM track_files AS c 
+        WHERE c.track_id = a.id
+       ) AS `count_files`,
+       COUNT(b.track_id) AS count_courses
+FROM tracks AS a 
+LEFT JOIN track_courses AS b ON (a.id = b.track_id)
+GROUP BY a.id
+</pre>
+</br>
+Initialize the connection to our MySql database:
+<pre>>
+$db = Zend_Db::factory('Pdo_Mysql', $dbConnect);
+</pre>
+</br>
+<pre>>
+$db->select()
+   ->from(array('a'=>'tracks'),
+	     array('id',
+	 	     'title',
+		     'count_files' => new Zend_Db_Expr(
+			 		   '('.$db->select()
+						   ->from(array('c'=>'track_files'),
+						             array(new Zend_Db_Expr('COUNT(c.track_id)')))
+						   ->where('c.track_id = a.id').')' )
+			   )
+		  )
+   ->joinLeft(array('b'=>'track_courses'),
+		 'a.id = b.track_id',
+		 array('count_courses' => 'COUNT(b.track_id)')
+		 )
+   ->group('a.id');
+</pre>
+{% endblock %}

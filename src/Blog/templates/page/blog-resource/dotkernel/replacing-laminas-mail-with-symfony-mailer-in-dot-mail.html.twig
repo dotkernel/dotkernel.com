@@ -1,0 +1,163 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}Replacing laminas-mail with Symfony mailer in dot-mail{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">Replacing laminas-mail with Symfony mailer in dot-mail</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+<!-- wp:heading {"level":1} -->
+<h1 class="wp-block-heading"></h1>
+<!-- /wp:heading -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">What prompted the change</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>According to the discussion from the <a href="https://github.com/laminas/technical-steering-committee/blob/main/meetings/minutes/2023-12-04-TSC-Minutes.md#maintainers-for-laminas-mime-and-laminas-mail" target="_blank" rel="noreferrer noopener">LaminasTechnical steering Committee of 2023-12-04</a>, it was decided that the <a href="https://github.com/laminas/laminas-mail">laminas/laminas-mail</a> package would be abandoned. On the one hand, there is nobody to maintain the package and on the other, there are several alternatives available in the ecosystem:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><a href="https://github.com/ddeboer/imap" target="_blank" rel="noreferrer noopener">ddeboer/imap</a> for interacting with IMAP</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="https://github.com/zbateson/mail-mime-parser" target="_blank" rel="noreferrer noopener">zbateson/mail-mime-parser</a> for parsing MIME messages</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="https://github.com/symfony/mailer" target="_blank" rel="noreferrer noopener">symfony/mailer</a> for sending mail</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">How Dotkernel handles the issue</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The Dotkernel team has also opted to replace the laminas/laminas-mail package in the <a href="https://github.com/dotkernel/dot-mail" target="_blank" rel="noreferrer noopener">dotkernel/dot-mail</a> package. This meant revising the code, including the configuraton files. The optimal way to handle this was to try to have minimal impact on existing projects that already use dotkernel/dot-mail. This means that the calls to send the mail should remain the same, even if some lesser-used functionality like mime and imap are lost.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Technical approach</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>In this article we will list the edits that enabled the switch from laminas/laminas-mail to symfony/mailer in the dotkernel/dot-mail package. You can follow all the changes in this list of PRs:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><a href="https://github.com/dotkernel/dot-mail/pull/65/files" target="_blank" rel="noreferrer noopener">dot-mail PR 65</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="https://github.com/dotkernel/dot-mail/pull/66/files" target="_blank" rel="noreferrer noopener">dot-mail PR 66</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="https://github.com/dotkernel/dot-mail/pull/67/files" target="_blank" rel="noreferrer noopener">dot-mail PR 67</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="https://github.com/dotkernel/dot-mail/pull/69/files" target="_blank" rel="noreferrer noopener">dot-mail PR 69</a></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><!-- wp:paragraph -->
+<p>Function definition changes will not be covered in this article.</p>
+<!-- /wp:paragraph --></blockquote>
+<!-- /wp:quote -->
+
+<!-- wp:paragraph -->
+<p>The configuration file <code>mail.global.php</code> was revised to remove features that are no longer available and to make it easier to configure.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:enlighter/codeblock {"language":"php"} -->
+<pre class="EnlighterJSRAW" data-enlighter-language="php" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">&lt;?php
+
+declare(strict_types=1);
+
+return ,
+                //copy destination addresses
+                'cc' => [],
+                //hidden copy destination addresses
+                'bcc' => [],
+                //email subject
+                'subject' => '',
+                //body options - content can be plain text, HTML
+                'body' => ,
+                //attachments config
+                'attachments' => ,
+                    'dir'   => ,
+                ],
+            ],
+            /**
+             * the mail transport to use can be any class implementing
+             * Symfony\Component\Mailer\Transport\TransportInterface
+             *
+             * for standard mail transports, you can use these aliases:
+             * - sendmail  => Symfony\Component\Mailer\Transport\SendmailTransport
+             * - esmtp     => Symfony\Component\Mailer\Transport\Smtp\EsmtpTransport
+             *
+             * defaults to sendmail
+             **/
+            'transport' => 'sendmail',
+            //options that will be used only if esmtp adapter is used
+            'smtp_options' => ,
+            ],
+        ],
+        // option to log the SENT emails
+        'log' => ,
+    ],
+];</pre>
+<!-- /wp:enlighter/codeblock -->
+
+<!-- wp:paragraph -->
+<p>Make sure to use <strong>ONE</strong> of the below transporters, based on your server configuration.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:enlighter/codeblock {"language":"php"} -->
+<pre class="EnlighterJSRAW" data-enlighter-language="php" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">'transport' => 'sendmail',</pre>
+<!-- /wp:enlighter/codeblock -->
+
+<!-- wp:paragraph -->
+<p><strong>OR</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:enlighter/codeblock {"language":"php"} -->
+<pre class="EnlighterJSRAW" data-enlighter-language="php" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">'transport' => 'esmtp',</pre>
+<!-- /wp:enlighter/codeblock -->
+
+<!-- wp:paragraph -->
+<p>We set <strong>Sendmail</strong> to be the default mail transport.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">How to update <code>dotkernel/dot-mail</code> from version 3 or version 4 to version 5 in your projects</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>The first thing to do is download the new <a href="https://github.com/dotkernel/dot-mail/blob/5.0/config/mail.global.php.dist" target="_blank" rel="noreferrer noopener">mail configuration file</a>.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Add the values you configured for your project, focusing on <code>transport</code>, <code>message_options</code> and <code>smtp_options</code>, then replace your old configuration file.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>In your <code>composer.json</code> update <code>"dotkernel/dot-mail": "^5.0.0",</code> and run <code>composer update</code> in the command line.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>At this moment, <code>mime</code> and <code>imap</code> related functionality is removed.</p>
+<!-- /wp:paragraph -->
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}WURFL Zend Framework Integration into DotKernel{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">WURFL Zend Framework Integration into DotKernel</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+<a href="http://wurfl.sourceforge.net/" target="_blank" rel="noopener noreferrer">WURFL</a> is integrated into DotKernel, using the <a href="http://framework.zend.com/manual/1.11/en/zend.http.user-agent.html" target="_blank" rel="noopener noreferrer">Zend_Http_UserAgent</a> class from the latest release <a href="http://framework.zend.com/download/latest" target="_blank" rel="noopener noreferrer">ZF 1.11.0rc1</a> ( Beta release at the date of this post).
+
+The integration of <a href="http://wurfl.sourceforge.net/" target="_blank" rel="noopener noreferrer">WURFL</a> into DotKernel is described below.
+
+Download <a href="http://sourceforge.net/projects/wurfl/files/WURFL%20PHP/1.1/wurfl-php-1.1.tar.gz/download" target="_blank" rel="noopener noreferrer">WURFL PHP API</a> and unzip it into folder <strong><em>wurfl-php-1.1</em></strong>
+
+
+
+<ul>
+	<li>Create folders and make it <strong>writable </strong>by web server
+<ul>
+	<li><strong><em>cache\wurfl\FILE_CACHE_PROVIDER</em></strong></li>
+	<li><strong><em>cache\wurfl\FILE_PERSISTENCE_PROVIDER</em></strong></li>
+</ul>
+</li>
+	<li>In folder <em>configs</em>:
+<ul>
+	<li>Copy  <strong><em>wurfl-config.xml</em></strong> from <strong><em>wurfl-php-1.1\examples\resources</em></strong></li>
+	<li>Rename <strong><em>wurfl-config.xml</em></strong> to <strong><em>wurfl.xml</em></strong></li>
+</ul>
+</li>
+	<li>Edit <strong><em>configs\application.ini</em></strong><em> </em>file; add these lines:</li>
+</ul>
+<pre>>resources.useragent.wurflapi.wurfl_api_version = "1.1"
+resources.useragent.wurflapi.wurfl_lib_dir = APPLICATION_PATH "/library/Wurfl/"
+resources.useragent.wurflapi.wurfl_config_file = APPLICATION_PATH "/configs/wurfl.xml"</pre>
+<ul>
+	<li>Create folder <strong><em>externals\wurfl</em></strong>, and copy the following files from:
+<ul>
+	<li><strong><em>wurfl-php-1.1\examples\resources\web_browsers_patch.xml</em></strong></li>
+	<li><strong><em>wurfl-php-1.1\examples\resources\wurfl-regression.zip</em></strong> and rename it <strong><em>wurfl.zip</em></strong> or download the <a href="http://sourceforge.net/projects/wurfl/files/WURFL/" target="_blank" rel="noopener noreferrer">latest wurfl zip</a> database and rename it <strong><em>wurfl.zip</em></strong></li>
+</ul>
+</li>
+	<li>Copy the contents of the folder <strong><em>wurfl-php-1.1\WURFL</em> </strong>to <strong><em>library\Wurfl</em></strong><strong> </strong></li>
+</ul>
+<a href="http://wurfl.sourceforge.net/" target="_blank" rel="noopener noreferrer">WURFL</a> is integrated into DotKernel in the mobile module, but to access WURFL configuration, use
+<pre>>$userAgent = new Zend_Http_UserAgent($config-&gt;resources-&gt;useragent);
+$device = $userAgent-&gt;getDevice();</pre>
+<em>$userAgent-&gt;getDevice()</em> returns all the relevant information about the current user agent <em>($_SERVER)</em>
+{% endblock %}

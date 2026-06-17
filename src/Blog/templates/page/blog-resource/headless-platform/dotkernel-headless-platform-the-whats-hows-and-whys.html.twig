@@ -1,0 +1,237 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}Dotkernel Headless Platform - The Whats, Hows and Whys{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Headless Platform</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">Dotkernel Headless Platform - The Whats, Hows and Whys</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+<!-- wp:paragraph -->
+<p>The principle of a <strong>Headless Platform</strong> is to decouple the User Interface (<strong>frontend</strong>) from the <strong>backend </strong>services. The responses from the platform are then used by another system, such as a website or mobile app. In this article we will explore the Dotkernel implementation of the <strong>Headless Platform</strong> architecture, how to use it and what are its benefits.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Components of the Dotkernel Headless Platform</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The Dotkernel Headless Platform contains 2 major components:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><a href="https://www.dotkernel.org" target="_blank" rel="noreferrer noopener">Dotkernel API</a>.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="https://github.com/dotkernel/admin" target="_blank" rel="noreferrer noopener">Dotkernel Admin</a>.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p><strong>Dotkernel API</strong> is a REST API based on the <a href="https://github.com/mezzio/mezzio-skeleton" target="_blank" rel="noreferrer noopener"><strong>Mezzio skeleton</strong></a>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>Dotkernel Admin</strong>, a complementary component for the API, is aimed at quickly setting up an backend for your platform.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The Admin is not bundled by default but is available as a first-party, installable application designed to work seamlessly alongside your API. When the API and Admin are put together, you gain a cohesive system that contains an API-first backend with a rich administrative interface, both built with the same underlying architecture and standards support.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Both of the above have a PSR-Compliant Middleware Stack to promote a lean, modular architecture and create a common ground between components from various sources. They implement <a href="https://www.php-fig.org/psr/psr-7" target="_blank" rel="noreferrer noopener">PSR-7</a> and <a href="https://www.php-fig.org/psr/psr-15" target="_blank" rel="noreferrer noopener">PSR-15</a> as defined by the <a href="https://www.php-fig.org/" target="_blank" rel="noreferrer noopener">PHP Framework Interop Group</a>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Rather than making use of elements built into the framework, you <strong>build business logic from scratch</strong>, from handlers, to dependencies. This gives you <strong>full control</strong> over business logic and data architecture.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">How to use the Dotkernel Headless Platform</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Dotkernel API and Admin can be <strong>installed separately or together</strong>, based on your business requirements. The two are normally designed to <strong>complement each other</strong>:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Dotkernel <strong>Admin</strong> manages the data (create, edit, delete).</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Dotkernel <strong>API</strong> exposes the content to 3rd-party frontends or backends.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>A simple project can be designed around one of the two at first, then expand to the other. For example, you can <strong>start with Dotkernel Admin</strong> to populate your database. Later on you can employ Dotkernel API to present the data to other frontends written in your programming language of choice. You can integrate the API with 3rd-party applications which gives you full control over how you present the data.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Alternatively, you can <strong>start with Dotkernel API</strong> and integrate it into your existing platform. The API can manage the access permissions to keep your data secure:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Admins create and edit the data for your existing <strong>backend</strong>.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Users read the data for your <strong>frontend</strong>.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>The Admin can be added later on for its simple table-based approach, its reports and graphs.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Our recommendation is to use both API and Admin from the get go. We will highlight the benefits of this setup in the next chapter.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Benefits of the Dotkernel Headless Platform architecture</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>As we mentioned before, you decide what components of the Dotkernel Headless Platform are installed in your project. If you decide to use both, you gain several benefits, as we will highlight below.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Can be set up to have common code between applications</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>You can configure the file structure to use a <strong>Core</strong> module. The Core then becomes the common code repository between API and Admin, ensuring that the entities and queries are the same. The <strong>entities</strong> for your platform, whether they be products, articles or something else are the building blocks of your application. The <strong>queries</strong> interact with the entities for CRUD purposes. By having these components in a single repository used in both API and Admin, you ensure consistency when interacting with them.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"id":7729,"sizeSlug":"full","linkDestination":"none"} -->
+<figure class="wp-block-image size-full"><img src="https://www.dotkernel.com/wp-content/uploads/2025/06/Core2.png" alt="" class="wp-image-7729"/></figure>
+<!-- /wp:image -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Implement only the handlers you need</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Just because you have e.g. 20 entities in your Core doesn't mean you have to implement handlers for each one in both API and Admin. You only <strong>handle what you need</strong> in each application. For example, your shop may need to edit orders in Admin, but only build monthly sales reports via your API.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Has a shared file structure</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Another advantage is the fact that the API and Admin <strong>share a file structure</strong>. When you become familiar with one, you're good to go with the other as well. This means that <strong>onboarding is easy</strong> and can be <strong>maintained by fewer developers</strong>, maybe even a single developer, at least in the beginning. Conversely, working with an API+Angular approach means you often need 2 developers working in concert to implement any new feature.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:columns -->
+<div class="wp-block-columns"><!-- wp:column -->
+<div class="wp-block-column"><!-- wp:image {"id":7767,"sizeSlug":"full","linkDestination":"none"} -->
+<figure class="wp-block-image size-full"><img src="https://www.dotkernel.com/wp-content/uploads/2025/06/files-api.jpg" alt="" class="wp-image-7767"/></figure>
+<!-- /wp:image --></div>
+<!-- /wp:column -->
+
+<!-- wp:column -->
+<div class="wp-block-column"><!-- wp:image {"id":7768,"sizeSlug":"full","linkDestination":"none"} -->
+<figure class="wp-block-image size-full"><img src="https://www.dotkernel.com/wp-content/uploads/2025/06/files-admin-1.jpg" alt="" class="wp-image-7768"/></figure>
+<!-- /wp:image --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Can satisfy any application size</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Thanks to its use of the common Core module, the API and Admin evolve together. The pair are a good starting point for anything <strong>from microservices, to enterprise-grade APIs</strong>. The initial learning curve is worth it, considering you have a large number of packages available for integrating into your platform. You decide exactly what modules to include, meaning the finished application is more lightweight. This prevents bloat and helps with technical debt in the long run.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Has a versatile architecture</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The aim of the architecture implemented in Dotkernel applications is to provide solutions that follow several architectural designs.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+<h4 class="wp-block-heading">Clean Architecture</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The software components are organized into concentric layers. Code dependencies go from the outer to the inner layers which results in improved testability and independence from components like libraries, user interfaces and databases.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"id":7734,"sizeSlug":"full","linkDestination":"none"} -->
+<figure class="wp-block-image size-full"><img src="https://www.dotkernel.com/wp-content/uploads/2025/06/Flow2.png" alt="" class="wp-image-7734"/></figure>
+<!-- /wp:image -->
+
+<!-- wp:heading {"level":4} -->
+<h4 class="wp-block-heading">Domain-Driven Design (DDD)</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The main focus of the Dotkernel applications is to provide a custom solution for your business logic. Rather than implementing reusable services for a Service Oriented Architecture (SOA), we encourage DDD which only implements the specific components to satisfy your requirements.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+<h4 class="wp-block-heading">Hexagonal Architecture</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The hexagonal architecture divides a system into several loosely-coupled interchangeable components, such as the application core, the database, the user interface, test scripts and interfaces with other systems. This approach is an alternative to the traditional layered architecture.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Supported by an active community</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The Dotkernel development team is actively working on investigating and implementing recommended design patterns. All Dotkernel applications and a large number of packages are still receiving updates that implement bugfixes, improvements and recommendations from the PHP community. Some updates may brake BC (backward compatibility), but this is often highlighted in companion articles that may also contain step-by-step tutorials. The Dotkernel team is available to help you with any issues related to the Dotkernel and Laminas apps and components.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":1} -->
+<h1 class="wp-block-heading">Additional Resources</h1>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><a href="https://github.com/dotkernel/api" target="_blank" rel="noreferrer noopener">Dotkernel API</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="https://github.com/dotkernel/admin" target="_blank" rel="noreferrer noopener">Dotkernel Admin</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="https://github.com/dotkernel" target="_blank" rel="noreferrer noopener">Dotkernel repositories</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="https://docs.dotkernel.org/" target="_blank" rel="noreferrer noopener">Dotkernel documentation</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="https://www.zend.com/blog/headless-cms-vs-traditional-cms" target="_blank" rel="noreferrer noopener">Headless CMS vs. Traditional CMS: What's Right for PHP Apps?</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="https://github.com/orgs/laminas/discussions" target="_blank" rel="noreferrer noopener">Laminas github discussions</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="https://github.com/orgs/dotkernel/discussions" data-type="link" data-id="https://github.com/orgs/dotkernel/discussions" target="_blank" rel="noreferrer noopener">Dotkernel Discussions</a></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p></p>
+<!-- /wp:paragraph -->
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}Adding Composer support in your DotKernel project{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">Adding Composer support in your DotKernel project</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+Composer is an application-level package manager. Composer auto-loads the dependencies on demand and can also auto-load custom classes .
+
+This article will cover the needed steps to add composer support to your DotKernel project or even "composify" it.
+
+Assuming that you know how to use composer (if not you should consider reading <a href="https://www.codementor.io/php/tutorial/composer-install-php-dependency-manager" target="_blank" rel="noopener noreferrer">this article</a>) we wil move on to your DotKernel project "composification".
+
+&nbsp;
+<h3>First things first</h3>
+The DotKernel project must have a <strong>composer.json</strong> file so that composer can work.
+
+Our <strong>composer.json</strong> file should look like this:
+<pre>>{
+  "require" : {
+    "zendframework/zendframework1" : "1.12.*",
+    "mobiledetect/mobiledetectlib" : "2.8.*" 
+  },
+  "require-dev" : {
+    "php" : "&gt;=5.4.0"
+  },
+}</pre>
+<span style="color: #ff0000;">Note that<strong> zend/zendframework1 </strong>may not be necessarily if you already have ZendServer running or the Zend Framework folder within <strong>/usr/share/.</strong></span>
+
+The file above makes sure:
+<ul>
+	<li>Zend Framework is present and at version &gt; 1.12.*</li>
+	<li>MobileDetect is present and at version &gt; 2.8</li>
+	<li>The PHP executable is at least at version &gt; 5.4.0 (<strong>only for development, because it is not present in the main require</strong>)</li>
+</ul>
+&nbsp;
+
+The dependencies provided in the <strong>require</strong> section are also loaded for development purpose if not provided in <strong>require-dev</strong>.
+
+&nbsp;
+
+In order to have these components instaled you must run the following command in your DotKernel root path
+<pre>>composer update</pre>
+If the <em>vendor </em>folder is present composer will check for updates, and update the packages as needed.
+
+If the <em>vendor</em> folder does not exist composer will create a vendor folder. This folder will contain all the requested packages.
+
+Composer will create an autoload file, which will be use to load our dependencies/packages.
+
+&nbsp;
+<h3>Adding Composer Support to DotKernel</h3>
+The autoload file created by composer will be used to load our packages.
+<pre>>$composerAutoLoaderPath = <a href="http://php.net/manual/en/function.realpath.php" target="_blank" rel="noopener noreferrer">realpath</a>(APPLICATION_PATH.'/vendor/autoload.php');
+require_once($composerAutoLoaderPath);</pre>
+So far so good, but what if the file does not exist or composer is not present?
+
+First we must make sure the composer autoload path exists and only load the dependencies if composer autoload file was found.
+<pre>>$composerAutoLoaderPath = realpath('./vendor/autoload.php');
+
+$composerEnabled = <a href="http://php.net/manual/en/function.file-exists.php" target="_blank" rel="noopener noreferrer">file_exists</a>($composerAutoLoaderPath);
+
+if($composerEnabled == true) 
+{
+    require_once($composerAutoLoaderPath);
+}
+else
+{
+    // handle the error gracefully
+   // or load fallbacks - if exist
+}</pre>
+The variable <strong>$composerEnabled</strong> will be true only if the composer path exists so the application behavior can be controlled if composer is not present.
+
+Later on, the packages can be used like this:
+<pre>>use VendorName\PackageName\ClassName as MyDependency;
+
+$myDependency = new MyDependency($neededArguments);
+$myDependency->doSomething();</pre>
+Learn more about how to use dependencies in DotKernel 1.x by reading <a href="http://www.dotkernel.com/dotkernel/using-dotkernel-…ser-dependencies/" target="_blank" rel="noopener noreferrer">this article</a>.
+
+This article works for any <strong>DotKernel 1.x</strong> version if your server is running <strong>PHP &gt;5.4.0.</strong>
+{% endblock %}

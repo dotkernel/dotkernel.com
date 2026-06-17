@@ -1,0 +1,193 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}Naming pattern for PSR-15 handlers in Dotkernel applications{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Design Patterns</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">Naming pattern for PSR-15 handlers in Dotkernel applications</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><!-- wp:paragraph -->
+<p>This naming pattern is used in Dotkernel Admin v6 and will also be implemented in the next releases for Frontend and Light.</p>
+<!-- /wp:paragraph --></blockquote>
+<!-- /wp:quote -->
+
+<!-- wp:paragraph -->
+<p>The bigger a project is, the more time it will take to develop and the more people will be assigned to it. Each developer will use slight variations when it comes to naming files, which is not going to be consistent, sometimes not even with work he has done on the same project in the previous month.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>It might seem ok to use the file names 'CreateUser.php' as much as 'AddUser.php' or 'InsertUser.php', since they perform the same action. But consider that you might have 'CreateUser.php', 'AddProduct.php' and 'InsertOrder.php' in the same application. It's still readable, but chaotic. We will show you a better way to handle file naming, using naming patterns.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">What is a naming pattern?</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>A naming pattern helps you organize and quickly identify your files by using relevant strings in file names like:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>What a file refers to.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>The action a file performs.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>How a file relates to other files.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>The author of the file's contents.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>The creation date or the event the file refers to.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Naming patterns can be defined for different types of files, since <code>image</code> files might need other information than <code>php</code> files or simple <code>txt</code> files used for logs.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Here is a list of items to consider:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>The file names should be kept as <strong>short</strong> as possible, while retaining relevant items to help outline the file's purpose.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Abreviations</strong> are ok to use, but special characters should be avoided, excepting dash and underscore which are fine, no matter the operating system you use.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Versioning and metadata</strong> can also help visually.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Grouping files into <strong>folders</strong> is also recommended, especially when you are dealing with files that are related.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>If <strong>category names</strong> are relevant to use, you can standardize their names by using a shortened version, maybe with 2-3 letters.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>After defining your naming pattern, the most import item by far is to <strong>communicate the pattern to the team</strong>. A top-level README file with the documentation should be kept handy for any developer who creates new files.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">The naming pattern for Dotkernel Handlers</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>HTTP request handlers are at the core of any web application. They receive a request, process it and return a response.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Even the first paragraph above mentions several elements that are relevant. The naming pattern for our <code>Handlers</code> contains:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>The <strong>method</strong> or verb used by the handler (e.g. GET, POST).</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>The <strong>resouce</strong> name (e.g. Admin, Account).</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>The performed <strong>action</strong> (e.g. CreateForm, List).</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>An optional <strong>Form</strong> if the handler returns a form that will perform another action when submitted.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>The string <strong>Handler</strong>.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>In this way, the developer can easily figure out what each handler does, just by looking at the name.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>We have chosen this wording for the performed actions (or CRUD):</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Create</strong></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Get</strong> for Read</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Edit</strong> for Update</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Delete</strong></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Thie image below contains the full list of handlers used in Dotkernel Admin.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"id":7548,"width":"840px","height":"auto","sizeSlug":"large","linkDestination":"none"} -->
+<figure class="wp-block-image size-large is-resized"><img src="https://www.dotkernel.com/wp-content/uploads/2025/05/naming-convention-1024x767.png" alt="Dotkernel Naming Convention" class="wp-image-7548" style="width:840px;height:auto"/></figure>
+<!-- /wp:image -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">A practical example</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Let's assume your application requires you to create products managed by admin users. So how do you go about naming a new set of files for this purpose?</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>First, you need a form to fill out. The form is returned by a <code>handler</code> called with <code>get</code>. Its purpose is to perform a <code>create</code> action for an <code>product</code>, hence you name it: <code>GetProductCreateFormHandler</code>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Then you send the form data to be saved as a new product. The second <code>handler</code> will <code>create</code> the new <code>product</code> account via <code>post</code>, so you get: <code>PostProductCreateHandler</code>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>You will likely need to update and delete products further down the line, so you create the handlers: <code>GetProductEditFormHandler</code>, <code>PostProductEditHandler</code> and <code>PostProductDeleteHandler</code>. The final handler that makes sense in this group is <code>GetProductListHandler</code> that will list all the products you have created, with filtering included.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>It takes only a minute to build the proper name for each handler, which takes you and other team members no more than a second to figure out what it does. You will thank yourself in the future.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Additional resources</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p><a href="https://www.php-fig.org/psr/psr-15/" target="_blank" rel="noreferrer noopener">PSR-15</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><a href="https://github.com/dotkernel" target="_blank" rel="noreferrer noopener">Dotkernel Application Repositories</a></p>
+<!-- /wp:paragraph -->
+{% endblock %}

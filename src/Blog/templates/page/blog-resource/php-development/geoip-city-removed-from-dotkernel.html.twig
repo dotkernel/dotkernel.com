@@ -1,0 +1,56 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}GeoIP City Removed From DotKernel{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">PHP Development</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">GeoIP City Removed From DotKernel</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+In the newest version we have removed the GeoIP City integration. The City database on <em><strong>GeoIP 1.1.0</strong></em> extension was causing a segmentation fault, which resulted in crashing or outputting an error instead of executing the PHP Code.
+
+
+
+This error occurs due to the extension incompatibility with the database(dat) file. If you have an older DotKernel version and version <strong>&gt;=1.1.0</strong> of GeoIP you might get this error.
+
+On some operating systems Apache will respond your request with HTTP Status Code 200 (OK) and a web page containing the text below.
+
+Error result:
+<pre>>The server encountered an internal error or
+ misconfiguration and was unable to complete
+ your request.</pre>
+The error might not be logged as the error is generated the GeoIP extension and not by your PHP code.
+
+If you don't want to use GeoIP City and just want to get rid of the error go to
+<ul>
+	<li>DotKernel/admin/System.php (Admin/System model) and comment or remove the lines below</li>
+</ul>
+<pre>>if(geoip_db_avail(GEOIP_CITY_EDITION_REV0))
+{
+    $info = explode(" ",geoip_database_info(GEOIP_CITY_EDITION_REV0));
+    $return = $info.' '.Dot_Kernel::TimeFormat($info);
+}</pre>
+<ul>
+	<li>library/Dot/GeoIp.php (Dot_GeoIp class) and comment or remove the lines below</li>
+</ul>
+<pre>>if(function_exists('geoip_db_avail') && geoip_db_avail(GEOIP_CITY_EDITION_REV0) 
+&& 'unknown' == $country)
+{
+    //if GeoIPCity.dat file exists
+    $record = geoip_record_by_name($ip);
+    if(!empty($record))
+    {
+        $countryCode = $record;
+        $countryName = $record;
+        $country = $countryCode != false  ? $countryCode : 'unknown';
+        $country = $countryName != false  ? $countryName : 'NA';
+    }
+}</pre>
+Theese changes were also made in the latest version of DotKernel. You should use this fix only if you don't intend to use GeoIP City.
+
+We recommend special coding for using GeoIP City and in the GeoIP extension in general.
+
+Note that GeoIP is an obsolete extension, Maxmind recommends using GeoIP2.
+{% endblock %}

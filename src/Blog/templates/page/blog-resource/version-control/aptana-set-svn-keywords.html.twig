@@ -1,0 +1,32 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}Aptana - set SVN keywords{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Version Control</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">Aptana - set SVN keywords</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+In Aptana it's very simple to set the <a href="http://svnbook.red-bean.com/en/1.4/svn.advanced.props.special.keywords.html">svn:keywords</a> property for a file.
+
+For example if you want to set the svn keyword property <em><strong>Id</strong></em>:
+
+<ul>
+	<li>In the file where you want to add the svn keyword property write <strong>$Id$</strong></li>
+</ul>
+<a href="http://www.dotkernel.com/wp-content/uploads/2011/04/id-file.gif"><img class="alignnone size-medium wp-image-1268" title="Write the ID keyword in the file" src="http://www.dotkernel.com/wp-content/uploads/2011/04/id-file-300x235.gif" alt="" width="300" height="235" /></a>
+<ul>
+	<li>Right click on the file, then follow Team -&gt; Set Property...<strong> </strong><strong>Note*</strong>: <em>Set Property...</em> will not be active if you haven't first added the file to SVN: <em>Team</em>-&gt;<em>Add to Version Controller</em></li>
+</ul>
+<a href="http://www.dotkernel.com/wp-content/uploads/2011/04/set-property.gif"><img class="alignnone size-medium wp-image-1269" title="Select set property..." src="http://www.dotkernel.com/wp-content/uploads/2011/04/set-property-300x152.gif" alt="" width="300" height="152" /></a>
+<ul>
+	<li>Select <strong>svn:keywords</strong>, and write <strong>Id</strong> in the text field <strong></strong></li>
+</ul>
+<a href="http://www.dotkernel.com/wp-content/uploads/2011/04/svn-keywords.gif"><img class="alignnone size-medium wp-image-1272" title="svn-keywords" src="http://www.dotkernel.com/wp-content/uploads/2011/04/svn-keywords-300x298.gif" alt="" width="300" height="298" /></a>
+
+When you make the SVN commit of the file, the <em>$Id$</em> keyword will be replaced with text in the format shown below:
+
+<a href="http://www.dotkernel.com/wp-content/uploads/2011/04/id-file-svn.gif"><img class="alignnone size-medium wp-image-1276" title="Id keyword after commit" src="http://www.dotkernel.com/wp-content/uploads/2011/04/id-file-svn-300x141.gif" alt="" width="300" height="141" /></a>
+{% endblock %}

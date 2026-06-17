@@ -1,0 +1,206 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}Replacing controllers with PSR-15 compliant handlers in Dotkernel Light{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Middleware</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">Replacing controllers with PSR-15 compliant handlers in Dotkernel Light</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+<!-- wp:heading {"level":1} -->
+<h1 class="wp-block-heading"></h1>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The goal of this update is to implement <a href="https://www.php-fig.org/psr/psr-15/" target="_blank" rel="noreferrer noopener">PSR-15</a> handlers into <a href="https://github.com/dotkernel/light" target="_blank" rel="noreferrer noopener">Dotkernel Light</a>. There are several advantages to using handlers, which we will explore below.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>We strive to keep our applications up-to-date with the recommended design guidelines. This ensures that we keep the applications secure, while also implementing standards widely adopted by the PHP community.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">What makes handlers better than controllers?</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>It's all fine and good if you have one large controller file with several actions, but handlers split the code into manageable chunks that make your life a lot easier in the long run. This follows the first of the SOLID principles. SOLID stands for:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>S - Single-responsibility Principle</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>O - Open-closed Principle</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>L - Liskov Substitution Principle</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>I - Interface Segregation Principle</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>D - Dependency Inversion Principle</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></blockquote>
+<!-- /wp:quote -->
+
+<!-- wp:paragraph -->
+<p>We are focusing on that first <code>S</code> in the SOLID acronym. Instead if having multiple actions we would normally include in controllers, with <code>single-responsibility</code> the handlers separate each action into its own class. This makes handlers easier to maintain, refactor and test.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Expanding your application is also helped by handlers. Rather than searching for a place to fit in that new code, simply create a handler to keep thing orderly. Your future self or the programmer that takes over from you will thank you for it.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Refactoring is always easier if you don't have to worry about edge cases that are unexpectedly not supported because of an error on your part. Simpler code means refactoring steps are more obvious.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Writing tests for actions that have multiple branches tends to take a lot of time. Since handlers only deal with a single action, your tests only have to inject or bind mocks for that specific action.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">How to implement the Page handler</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>When it comes to <a href="https://github.com/dotkernel/light" target="_blank" rel="noreferrer noopener">Dotkernel Light</a>, replacing controllers with handlers means we don't need the <code>dot-controller</code> package any more. Go ahead and remove it, along with any <code>Controllers</code> you may have.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Below we are going to detail how to set up the <code>GetPageViewHandler</code>. If you already have Controllers in your application, you will have to repeat the steps below for each controller. Based on your application, you may have to split your actions over multiple Handlers.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>For Dotkernel Light we were able to combine the functionality of most of the old Controller's <code>actions</code> under a single Handler, since the actions performed a single task - displaying static content. The only exception is <code>IndexHandler.php</code> which we opted to leave separate, but its setup is similar to GetPageViewHandler.php.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Handlers use the <code>ConfigProvider</code> in each module to map factories under <code>getDependencies()</code>. You should already have delegators and aliases, but make sure to add <code>GetPageViewHandler</code> under the <code>factories</code> key and remove any reference to PageController.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:enlighter/codeblock {"language":"php"} -->
+<pre class="EnlighterJSRAW" data-enlighter-language="php" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">public function getDependencies(): array
+{
+    return ,
+        ],
+        'factories'  => ,
+        'aliases'    => ,
+    ];
+}</pre>
+<!-- /wp:enlighter/codeblock -->
+
+<!-- wp:paragraph -->
+<p><code>GetPageViewHandlerFactory.php</code> adds the template as a dependency, making it available in the Handler. We don't need the PageControllerFactory.php file, so go ahead and delete it.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:enlighter/codeblock {"language":"php"} -->
+<pre class="EnlighterJSRAW" data-enlighter-language="php" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">&lt;?php
+
+declare(strict_types=1);
+
+namespace Light\Page\Factory;
+
+use Light\Page\Handler\GetPageViewHandler;
+use Mezzio\Template\TemplateRendererInterface;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\ContainerInterface;
+use Psr\Container\NotFoundExceptionInterface;
+
+use function assert;
+
+class GetPageViewHandlerFactory
+{
+    /**
+     * @param class-string $requestedName
+     * @throws NotFoundExceptionInterface
+     * @throws ContainerExceptionInterface
+     */
+    public function __invoke(ContainerInterface $container, string $requestedName): GetPageViewHandler
+    {
+        $template = $container->get(TemplateRendererInterface::class);
+        assert($template instanceof TemplateRendererInterface);
+
+        return new GetPageViewHandler($template);
+    }
+}</pre>
+<!-- /wp:enlighter/codeblock -->
+
+<!-- wp:paragraph -->
+<p><code>GetPageViewHandler.php</code> determines the template file name from the route name and displays it. No dynamic elements are included, since we are dealing only with static pages right now. If you haven't already, delete PageController.php.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:enlighter/codeblock {"language":"php"} -->
+<pre class="EnlighterJSRAW" data-enlighter-language="php" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">&lt;?php
+
+declare(strict_types=1);
+
+namespace Light\Page\Handler;
+
+use Laminas\Diactoros\Response\HtmlResponse;
+use Mezzio\Router\RouteResult;
+use Mezzio\Template\TemplateRendererInterface;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\RequestHandlerInterface;
+
+class GetPageViewHandler implements RequestHandlerInterface
+{
+    public function __construct(
+        protected TemplateRendererInterface $template,
+    ) {
+    }
+
+    public function handle(ServerRequestInterface $request): ResponseInterface
+    {
+        $template = $request->getAttribute(RouteResult::class)->getMatchedRouteName();
+
+        return new HtmlResponse(
+            $this->template->render($template)
+        );
+    }
+}</pre>
+<!-- /wp:enlighter/codeblock -->
+
+<!-- wp:paragraph -->
+<p>And that's it! These are the bare essentials to get yourself started with handlers for a website that displays static pages.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Additional resources</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p><a href="https://www.php-fig.org/psr/psr-15/" target="_blank" rel="noreferrer noopener">PSR-15</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><a href="https://github.com/dotkernel/light" target="_blank" rel="noreferrer noopener">Dotkernel Light</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>While the <a href="https://github.com/dotkernel/light/pull/33" target="_blank" rel="noreferrer noopener">PR for replacing controllers with handlers</a> might not be as focused on the task, because it implements a few other bells and whistles, it's worth reviewing since it includes all the coding details.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><a href="https://docs.mezzio.dev/mezzio/v3/getting-started/features/" target="_blank" rel="noreferrer noopener">Mezzio features</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><a href="https://dev.to/ilyasdeckers/single-action-handlers-in-php-frameworks-3jai" target="_blank" rel="noreferrer noopener">Single Action Handlers in PHP Frameworks</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p></p>
+<!-- /wp:paragraph -->
+{% endblock %}
