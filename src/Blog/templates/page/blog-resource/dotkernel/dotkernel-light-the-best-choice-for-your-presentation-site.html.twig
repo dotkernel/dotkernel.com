@@ -1,0 +1,317 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}Dotkernel Light: the best choice for your presentation site{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">Dotkernel Light: the best choice for your presentation site</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+    <div class="container py-4">
+        <div class="row g-4">
+            
+            {% include '@partial/left-menu.html.twig' %}
+
+            <main class="col-12 col-md-8 col-lg-9">
+                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
+                    <header class="mb-4">
+                        <h1 class="h2 text-dark fw-bold">Dotkernel Light: the best choice for your presentation site</h1>
+                        <div class="text-muted small">
+                            <i class="bi bi-folder2-open me-1"></i> Dotkernel
+                        </div>
+                    </header>
+
+                    <section class="post-content text-secondary lh-lg fs-6">
+                        <!-- wp:heading {"level":1} -->
+<h1 class="wp-block-heading"></h1>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p class="mb-3"><strong>Dotkernel Light </strong>is a good starting point for a project if you want to have <strong>full control over the functionality </strong>it contains. It <strong>easily grows </strong>into something more complex with the integration of packages based on your requirements.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">Its out-of-box functionality is suitable for a <strong>presentation site</strong>:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Routing</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Templating</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Error handling</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Tests and code quality checks</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">Presentation sites don't require features that are present in Dotkernel Frontend. The goal of Dotkernel Light is to have <strong>no clutter</strong>, so these features are removed:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Everything related to the database</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Sessions/Cookies/Flash messages</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Authentication/Authorization</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Dependency Injection</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Mail related stuff</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Navigation</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>CORS</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Forms/Validators/InputFilters</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>User module</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Contact module</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Plugin module</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">The goal of this article</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">In this article we explore how to use Dotkernel Light for a simple presentation site. We will mention what files to focus on to teach you how to add more pages of content to your site and how to manage their assets.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+<h4 class="wp-block-heading">Adding new pages</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">The first step is to add the new pages in <code>src/Page/src/Controller/PageController.php</code>. This means adding an <code>Action</code> function for each page, as seen below.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:enlighter/codeblock -->
+<pre class="EnlighterJSRAW" data-enlighter-language="generic" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">    public function examplePageAction(): ResponseInterface
+    {
+        return new HtmlResponse(
+            $this->template->render('page::example-template')
+        );
+    }</pre>
+<!-- /wp:enlighter/codeblock -->
+
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><!-- wp:paragraph -->
+<p class="mb-3">The url for the new page in this example is <code>/page/example-page</code>.</p>
+<!-- /wp:paragraph --></blockquote>
+<!-- /wp:quote -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">Each page has its own template, so the next step is to create the template files in the <code>src/Page/templates/page/</code> folder. For the example above, the <code>src/Page/templates/page/example-template.html.twig</code> file was created. We won't include the entire code here, just the basic building blocks. The <code>content</code> block is where your page copy goes.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:enlighter/codeblock -->
+<pre class="EnlighterJSRAW" data-enlighter-language="generic" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">{% extends '@layout/default.html.twig' %}
+
+{% block title %}Page Title{% endblock %}
+
+{% block page_title %}{% endblock %}
+
+{% block content %}
+    &lt;div class="page-intro">
+        &lt;div class="container">
+            &lt;h2>Add title here!&lt;/h2>
+        &lt;/div>
+    &lt;/div>
+
+    &lt;div>
+    Add cool content here!  
+    &lt;/div>
+{% endblock %}</pre>
+<!-- /wp:enlighter/codeblock -->
+
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><!-- wp:paragraph -->
+<p class="mb-3">Make sure to check the header for any fonts your content requires.</p>
+<!-- /wp:paragraph --></blockquote>
+<!-- /wp:quote -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">If you haven't already done so, make sure the <code>npm</code> is installed and running during your updates with <code>npm run watch</code> or run this command after the edits are completed <code>npm run prod</code>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">The assets should be copied under the <code>src/App/assets/</code> folder.<br>These are the default asset folders:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>src/App/assets/fonts</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>src/App/assets/images</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>src/App/assets/js</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>src/App/assets/scss</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Optional items</h2>
+<!-- /wp:heading -->
+
+<!-- wp:heading {"level":4} -->
+<h4 class="wp-block-heading">Twitter and OpenGraph cards</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">If you want to promote the pages on other platforms, a helpful item is the header section in the <code>src/App/templates/layout/default.html.twig</code> file. This is where the Twitter (X) and OpenGraph cards should be placed.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">Make sure to update all items based on your page content.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><!-- wp:paragraph -->
+<p class="mb-3">In the example:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><code>{{ url('home') }}</code> is the URL for the homepage, but you can also use this code to generate the url for other pages, just like in the canonical URL <code>{% block canonical %}{{ url(routeName ?? null) }}{% endblock %}</code><!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>The <code>block</code> item is present to mitigate for not-found pages, e.g. when the url is typed incorrectly</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>The image from <code>{{ url('home') }}images/app/My-image.png</code> is found in <code>public/images/app/My-image</code><code>.png</code>, but it is copied there by the <code>npm</code> script from <code>src/App/assets/images/PHP-REST-API.png</code>.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></blockquote>
+<!-- /wp:quote -->
+
+<!-- wp:enlighter/codeblock -->
+<pre class="EnlighterJSRAW" data-enlighter-language="generic" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">&lt;!-- Twitter card -->
+&lt;meta name="twitter:card" content="summary_large_image">
+&lt;meta name="twitter:site" content="@example">
+&lt;meta name="twitter:title" content="Page title">
+&lt;meta name="twitter:description" content="Basic description">
+&lt;meta name="twitter:image" content="{{ url('home') }}images/app/My-image.png">
+&lt;meta name="twitter:image:alt" content="Image alt">
+
+&lt;!-- OpenGraph card -->
+&lt;meta property="og:title" content="Page title"/>
+&lt;meta property="og:type" content="website"/>
+&lt;meta property="og:url" content="{{ url('home') }}"/>
+&lt;meta property="og:image" content="{{ url('home') }}images/app/My-image.png"/>
+&lt;meta property="og:description" content="Basic description"/></pre>
+<!-- /wp:enlighter/codeblock -->
+
+<!-- wp:heading {"level":4} -->
+<h4 class="wp-block-heading">Top menu</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">This menu is displayed on all of the pages, in the header. To edit it, go to <code>src/App/templates/layout/default.html.twig</code> and update the items under <code>id="navbarHeader"</code>. You can use the below as an example.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:enlighter/codeblock -->
+<pre class="EnlighterJSRAW" data-enlighter-language="generic" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">&lt;div class="menu" id="navbarHeader">
+    &lt;ul class="navbar-nav mr-auto">
+    &lt;li class="nav-item">
+        &lt;a class="nav-link" target="_blank" href="https://first.example.com/">First Link&lt;/a>
+    &lt;/li>
+    &lt;li class="nav-item">
+        &lt;a class="nav-link" target="_blank" href="https://second.example.com/">Second Link&lt;/a>
+    &lt;/li>
+    &lt;/ul>
+&lt;/div></pre>
+<!-- /wp:enlighter/codeblock -->
+
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><!-- wp:paragraph -->
+<p class="mb-3">You can also replace the <code>nav-item</code> class for the <code>li</code> elements with <code>button-border</code> for a link that looks more like a button.</p>
+<!-- /wp:paragraph --></blockquote>
+<!-- /wp:quote -->
+
+<!-- wp:heading {"level":4} -->
+<h4 class="wp-block-heading">Footer</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">To edit the footer on all of the pages, search for <code>&lt;footer class="app-footer"&gt;</code> in the <code>src/App/templates/layout/default.html.twig</code> template. We won't include an example here, since the content is usually basic <code>HTML</code> and <code>CSS</code> with <code>twig</code> elements already covered in this article.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">The result of your hard work</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">Whew, well done! That's all there is to it.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">Now you should have a basic idea on how to work on a presentation site. You know how to expand the site with more pages, where to place the assets and how to promote the site.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Useful links</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>See a working example <a href="https://www.dotkernel.org" target="_blank" rel="noreferrer noopener">dotkernel.org</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="https://github.com/dotkernel/light" target="_blank" rel="noreferrer noopener">Dotkernel Light</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>More from <a href="https://github.com/dotkernel" target="_blank" rel="noreferrer noopener">Dotkernel</a></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+                    </section>
+                </article>
+            </main>
+            
+        </div>
+    </div>
+{% endblock %}

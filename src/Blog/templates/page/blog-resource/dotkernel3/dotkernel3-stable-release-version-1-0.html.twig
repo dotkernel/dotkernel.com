@@ -1,0 +1,106 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}DotKernel3 - Stable Release version 1.0{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel 3</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">DotKernel3 - Stable Release version 1.0</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+    <div class="container py-4">
+        <div class="row g-4">
+            
+            {% include '@partial/left-menu.html.twig' %}
+
+            <main class="col-12 col-md-8 col-lg-9">
+                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
+                    <header class="mb-4">
+                        <h1 class="h2 text-dark fw-bold">DotKernel3 - Stable Release version 1.0</h1>
+                        <div class="text-muted small">
+                            <i class="bi bi-folder2-open me-1"></i> Dotkernel 3
+                        </div>
+                    </header>
+
+                    <section class="post-content text-secondary lh-lg fs-6">
+                        DotKernel was updated to support <strong><a href="https://docs.zendframework.com/zend-expressive/" target="_blank" rel="noopener noreferrer">Zend Expressive 3</a> </strong>alongside with <strong>PSR-15 </strong>middleware.
+
+We have updated the core packages to support <strong><a href="https://www.php-fig.org/psr/psr-15/" target="_blank" rel="noopener noreferrer">PSR-15 Middleware</a>.</strong>
+
+By updating the core packages both frontend and admin are easier to migrate.
+
+The new versions are:
+frontend -&gt; <a target="_blank" href="https://packagist.org/packages/dotkernel/frontend#v1.0.0" rel="noopener noreferrer">1.0.0</a>
+admin -&gt; <a target="_blank" href="https://packagist.org/packages/dotkernel/admin#v1.0.1" rel="noopener noreferrer">1.0.1</a>
+
+<!--more-->
+
+If your project is a DotKernel 3 instance (based on expressive 2), you can migrate your project to Zend Expressive 3 by following <a href="https://www.dotkernel.com/dotkernel3/migrating-dotkernel-3-from-zend-expressive-2-to-zend-expressive-3/" target="_blank" rel="noopener noreferrer">this guide</a>.
+
+&nbsp;
+<h4>What's new</h4>
+<ul>
+ 	<li>Runs on Zend Stratigility / Zend Expressive 3.0</li>
+ 	<li>Middleware is now PSR-15 compliant</li>
+ 	<li>PHP &gt;=7.1 Support</li>
+</ul>
+&nbsp;
+<h4>Changes</h4>
+<ul>
+ 	<li>No functional changes were made in the core code</li>
+ 	<li>If your middleware code is based on the <strong>dotkernel</strong>/<strong>dot-controller</strong> package no middleware migration is needed</li>
+ 	<li>If your middleware code is based on the <strong>http-interop/http-middleware</strong> migration must be made to implement interfaces in <strong>psr/http-server-middleware</strong></li>
+</ul>
+&nbsp;
+<h4>Packages Updated</h4>
+<ul>
+ 	<li>dotkernel/dot-authentication-service:^1.0</li>
+ 	<li>dotkernel/dot-authentication-web:^1.0.1</li>
+ 	<li>dotkernel/dot-authentication:^1.0</li>
+ 	<li>dotkernel/dot-controller:^1.0</li>
+ 	<li>dotkernel/dot-controller-plugin-authentication:^1.0</li>
+ 	<li>dotkernel/dot-controller-plugin-authorization:^1.0</li>
+ 	<li>dotkernel/dot-controller-plugin-flashmessenger:^1.0</li>
+ 	<li>dotkernel/dot-controller-plugin-forms:^1.0</li>
+ 	<li>dotkernel/dot-controller-plugin-mail:^1.0</li>
+ 	<li>dotkernel/dot-controller-plugin-session:^1.0</li>
+ 	<li>dotkernel/dot-flashmessenger:^1.0</li>
+ 	<li>dotkernel/dot-helpers:^1.0</li>
+ 	<li>dotkernel/dot-log:^1.1.1</li>
+ 	<li>dotkernel/dot-mail:^1.0</li>
+ 	<li>dotkernel/dot-mapper:^1.0</li>
+ 	<li>dotkernel/dot-navigation:^1.0</li>
+ 	<li>dotkernel/dot-rbac:^0.2.1</li>
+ 	<li>dotkernel/dot-rbac-guard:^1.0</li>
+ 	<li>dotkernel/dot-session:^3.0</li>
+ 	<li>dotkernel/dot-twigrenderer:^1.1</li>
+ 	<li>dotkernel/dot-user:^1.0</li>
+</ul>
+<h4>Zend Packages (support) Updated</h4>
+<ul>
+ 	<li>psr/http-server-middleware:^1.0</li>
+ 	<li>psr/http-server-handler:^1.0</li>
+ 	<li>zendframework/zend-expressive-helpers:^5.0</li>
+ 	<li>zendframework/zend-expressive-twigrenderer:^2.0</li>
+ 	<li>zendframework/zend-expressive-template:^2.0</li>
+ 	<li>zendframework/zend-expressive:^3.0</li>
+ 	<li>zendframework/zend-expressive-fastroute:^3.0</li>
+ 	<li>zendframework/zend-expressive-tooling:^1.0</li>
+ 	<li>zendframework/zend-expressive-router:^3.0</li>
+ 	<li>zendframework/zend-stratigility:^3.0</li>
+ 	<li>zendframework/zend-component-installer:^2.0</li>
+</ul>
+&nbsp;
+<h4>Packages Removed</h4>
+<ul>
+ 	<li>http-interop/http-middleware</li>
+ 	<li>webimpress/http-middleware-compatibility</li>
+</ul>
+                    </section>
+                </article>
+            </main>
+            
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}Forcing UTF8 connections and character set in MySQL{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">Forcing UTF8 connections and character set in MySQL</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+    <div class="container py-4">
+        <div class="row g-4">
+            
+            {% include '@partial/left-menu.html.twig' %}
+
+            <main class="col-12 col-md-8 col-lg-9">
+                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
+                    <header class="mb-4">
+                        <h1 class="h2 text-dark fw-bold">Forcing UTF8 connections and character set in MySQL</h1>
+                        <div class="text-muted small">
+                            <i class="bi bi-folder2-open me-1"></i> Dotkernel
+                        </div>
+                    </header>
+
+                    <section class="post-content text-secondary lh-lg fs-6">
+                        In some situations, it may be neccesar to force MySQL server collation and character set to UTF8.
+As you can't control all scripts that are connecting to your database( for instance: mysql command line, or mysqldump)
+
+For that , open the my.cnf file
+and add the below lines:
+<pre class="bg-light border rounded p-3 overflow-auto">>character_set_server=utf8
+skip-character-set-client-handshake</pre>
+If you are interested in better performance, add the below line:
+<pre class="bg-light border rounded p-3 overflow-auto">>collation_server=utf8_general_ci</pre>
+If you are interested in better sorting order, add the below line instead:
+<pre class="bg-light border rounded p-3 overflow-auto">>collation_server=utf8_unicode_ci</pre>
+                    </section>
+                </article>
+            </main>
+            
+        </div>
+    </div>
+{% endblock %}

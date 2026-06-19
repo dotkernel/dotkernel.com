@@ -1,0 +1,252 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}ConfigProvider - Bootstrap Modern PHP Applications{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Architecture</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">ConfigProvider - Bootstrap Modern PHP Applications</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+    <div class="container py-4">
+        <div class="row g-4">
+            
+            {% include '@partial/left-menu.html.twig' %}
+
+            <main class="col-12 col-md-8 col-lg-9">
+                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
+                    <header class="mb-4">
+                        <h1 class="h2 text-dark fw-bold">ConfigProvider - Bootstrap Modern PHP Applications</h1>
+                        <div class="text-muted small">
+                            <i class="bi bi-folder2-open me-1"></i> Architecture
+                        </div>
+                    </header>
+
+                    <section class="post-content text-secondary lh-lg fs-6">
+                        <!-- wp:paragraph -->
+<p class="mb-3">In PHP, the <code>ConfigProvider</code> is a class that is part of an application's bootstrap process. <strong>It's a class or callable that returns configuration data telling the platform which middleware should run, in what order, and sometimes under what conditions.</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">If you're talking specifically about the ConfigProvider in the Laminas/Mezzio ecosystem, it's literally an array of configuration, settings, or anything else your application needs.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading"><a href="#where-is-the-configprovider-used"></a>Where Is the ConfigProvider Used?</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">Mezzio (formerly Zend Expressive), Laminas, Slim, the Dotkernel Headless Platform, or other middleware-based frameworks often have a <code>ConfigProvider</code> class. In Laminas/Mezzio specifically, each module or package may contain a <code>ConfigProvider</code> that returns:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Middleware pipeline configuration.<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Middleware classes or service names.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Error-handling middleware, which should have the lowest priority.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Middleware groups or nested arrays.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Dependency injection mappings.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Request Handlers.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">Example in Dotkernel, which is an approach similar to Laminas/Mezzio:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:enlighter/codeblock {"language":"php"} -->
+<pre class="EnlighterJSRAW" data-enlighter-language="php" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">class ConfigProvider
+{
+    public function __invoke(): array
+    {
+        return ;
+    }
+
+    public function getDependencies(): array
+    {
+        return ,
+           'invokables'   => ,
+        ];
+    }
+
+    public function getTemplates(): array
+    {
+        return ,
+	    'error'  => ,
+        ];
+    }
+}</pre>
+<!-- /wp:enlighter/codeblock -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">What each item above means:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><code>dependencies</code> is used by the dependency injector (like <a href="https://docs.mezzio.dev/mezzio/v3/features/container/laminas-servicemanager/" target="_blank" rel="noreferrer noopener">laminas-servicemanager</a>) to construct every requested service.<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><code>factories</code> will have the factory build the service.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><code>invokables</code> will use <code>new</code> directly.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>You can also use <code>aliases</code> to redirect to another service name and <code>delegators</code> to wrap the original service.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><code>templates</code> defines the paths for the template files.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading"><a href="#how-the-configprovider-works"></a>How the ConfigProvider works</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">The ConfigProvider is automatically picked up by the framework during application bootstrap. Let's look at it step by step:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Merge the global configuration</strong> - All ConfigProviders are merged into one array.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Read the configuration array</strong> - The call is similar to the below and expects an array of entries:</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:enlighter/codeblock {"language":"php"} -->
+<pre class="EnlighterJSRAW" data-enlighter-language="php" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">$config = $container->get('config') ?? [];</pre>
+<!-- /wp:enlighter/codeblock -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Resolve item</strong> - <code>$app-&gt;pipe()</code> is called to resolve one of the below instances:<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Resolve the service name from the container</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Wrap the middleware, if an array is provided</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Call the closure or invokable object.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Handle errors</strong> - This middleware is the last one in the pipeline to make sure it handles any exceptions.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Execute at runtime</strong> - <a href="https://docs.laminas.dev/laminas-stratigility/" target="_blank" rel="noreferrer noopener">Laminas Stratigility</a> iterates over the pipeline in the order it was registered.<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Each middleware can <strong>handle</strong> the request and return a response, or <strong>delegate</strong> execution to the next middleware in the pipeline, until a <code>ResponseInterface</code> is returned to the client.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">Below you can see how Mezzio and Dotkernel merge and use ConfigProviders to build the middleware pipeline and dependencies.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"id":8186,"sizeSlug":"full","linkDestination":"custom"} -->
+<figure class="wp-block-image size-full"><img src="https://www.dotkernel.com/wp-content/uploads/2025/08/ConfigProvider2.png" alt="" class="wp-image-8186"/ class="img-fluid rounded my-2"></figure>
+<!-- /wp:image -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading"><a href="#benefits"></a>Benefits</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Centralized setup – Instead of hardcoding bootstrap code, you declare it in a config provider so it's easy to read, change, or extend.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Modular – Each package can ship with its own config without interfering with others.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Container-friendly – It works well with frameworks using DI containers like Laminas ServiceManager, PHP-DI, or Pimple.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Standardized service definitions - It has consistent rules for object creation that are separate from business logic.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Auto-Discovery - In Laminas/Mezzio, the <a href="https://docs.laminas.dev/laminas-config-aggregator/" target="_blank" rel="noreferrer noopener">ConfigAggregator</a> automatically loads and merges all ConfigProviders.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><!-- wp:paragraph -->
+<p class="mb-3">Dotkernel is an exception to this rule: new ConfigProviders have to be added manually in <code>config/config.php</code>, because all the initial ConfigProviders required to install the applications are already injected.</p>
+<!-- /wp:paragraph --></blockquote>
+<!-- /wp:quote -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Environment-agnostic - It returns an array that defines dev, test, or prod environments.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Testability - The consistent, central configuration promotes isolated (e.g. per-module) testing, easier swapping of dependencies and the assertion of pipeline setup (e.g. check if a config key is present).</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading"><a href="#additional-resources"></a>Additional Resources</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><a href="https://docs.mezzio.dev/mezzio/v3/features/container/config/" target="_blank" rel="noreferrer noopener">Mezzio Container</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="https://docs.laminas.dev/laminas-config-aggregator/config-providers/" target="_blank" rel="noreferrer noopener">Laminas Config Aggregator</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="https://www.php-fig.org/psr/psr-15/" target="_blank" rel="noreferrer noopener">PSR-15 (HTTP Server Request Handlers)</a></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p class="mb-3"></p>
+<!-- /wp:paragraph -->
+                    </section>
+                </article>
+            </main>
+            
+        </div>
+    </div>
+{% endblock %}

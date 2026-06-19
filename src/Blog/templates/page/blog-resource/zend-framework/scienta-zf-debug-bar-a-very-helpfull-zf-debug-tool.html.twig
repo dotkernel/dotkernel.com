@@ -1,0 +1,38 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}Scienta ZF Debug Bar: A very helpfull ZF debug tool{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Zend Framework</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">Scienta ZF Debug Bar: A very helpfull ZF debug tool</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+    <div class="container py-4">
+        <div class="row g-4">
+            
+            {% include '@partial/left-menu.html.twig' %}
+
+            <main class="col-12 col-md-8 col-lg-9">
+                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
+                    <header class="mb-4">
+                        <h1 class="h2 text-dark fw-bold">Scienta ZF Debug Bar: A very helpfull ZF debug tool</h1>
+                        <div class="text-muted small">
+                            <i class="bi bi-folder2-open me-1"></i> Zend Framework
+                        </div>
+                    </header>
+
+                    <section class="post-content text-secondary lh-lg fs-6">
+                        Just found today a very interesting and helpful debug tool:
+
+<strong><a title="Scienta ZF Debug Bar" href="http://jokke.dk/software/scientadebugbar" target="_blank" rel="noopener noreferrer">Scienta</a></strong>
+
+We at DotKernel used some very basic debug bar:  queries, time spent , memory used.  But this <strong>Scienta</strong> is way more complex and nicer then our internal code,  so we switch to it and integrate it in DotKernel code base.
+                    </section>
+                </article>
+            </main>
+            
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,148 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}What are returning the FETCH functions from Zend_Db{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Best Practice</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">What are returning the FETCH functions from Zend_Db</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+    <div class="container py-4">
+        <div class="row g-4">
+            
+            {% include '@partial/left-menu.html.twig' %}
+
+            <main class="col-12 col-md-8 col-lg-9">
+                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
+                    <header class="mb-4">
+                        <h1 class="h2 text-dark fw-bold">What are returning the FETCH functions from Zend_Db</h1>
+                        <div class="text-muted small">
+                            <i class="bi bi-folder2-open me-1"></i> Best Practice
+                        </div>
+                    </header>
+
+                    <section class="post-content text-secondary lh-lg fs-6">
+                        Continuing the Zend_DB article <a href="http://www.dotkernel.com/dotkernel/sql-select-zend-db/" target="_blank" rel="noopener noreferrer">series</a>, we are stopping now at <i>FETCH</i> methods that are in <a href="http://framework.zend.com/apidoc/core/Zend_Db/Adapter/Zend_Db_Adapter_Abstract.html#sec-method-summary" target="_blank" rel="noopener noreferrer">Zend_Db_Adapter_Abstract</a>:
+<pre class="bg-light border rounded p-3 overflow-auto">>
+array  fetchAll  (string|Zend_Db_Select $sql, , )
+array fetchAssoc (string|Zend_Db_Select $sql, )
+array fetchCol (string|Zend_Db_Select $sql, )
+string fetchOne (string|Zend_Db_Select $sql, )
+array fetchPairs (string|Zend_Db_Select $sql, )
+array fetchRow (string|Zend_Db_Select $sql, , ) 
+</pre>
+To be more easily to follow, in <span style="background-color: #B5DFC1">green</span> box is the classical SQL statement, and in <span style="background-color:  #9FCFFF">blue</span> box is the query written in Zend_Db style.
+</br>
+<!--more-->
+Lets start.
+Initialize the connection to our MySql database:
+<pre class="bg-light border rounded p-3 overflow-auto"> style="background-color: #9FCFFF">
+$db = Zend_Db::factory('Pdo_Mysql', $dbConnect);
+</pre>
+Here is a SQL query, that we want to fetch:
+</br>
+<pre class="bg-light border rounded p-3 overflow-auto"> style="background-color: #B5DFC1">
+$sql = "SELECT id, title FROM files";
+$db->query($sql)
+</pre>
+</br>
+<pre class="bg-light border rounded p-3 overflow-auto"> style="background-color: #9FCFFF">
+$select = $db->select()
+             ->from('files', array('id', 'title'))
+</pre>
+<i>Note*:</i> for the old style of fetching we used an old class. What you need to know is: </br>
+- <i>query()</i> method is similar with mysqli_query() from <i>Mysqli</i> PHP extension </br>
+- <i>next_record()</i> method is similar with mysqli_next_result() from <i>Mysqli</i> PHP extension </br>
+- <i>f()</i> method retrieve the value of the column specified as parameter
+</br>
+<b>fetchAll</b>
+</br>
+<pre class="bg-light border rounded p-3 overflow-auto"> style="background-color: #B5DFC1">
+while($db->next_record())
+{
+    $a[] = array(
+				 'id' => $db->f('id'),
+				 'title' => $db->f('title')
+		     	);
+}
+</pre>
+</br>
+<pre class="bg-light border rounded p-3 overflow-auto"> style="background-color: #9FCFFF">
+$a = $db->fetchAll($select);
+</pre>
+</br>
+<b>fetchAssoc</b>
+</br>
+<pre class="bg-light border rounded p-3 overflow-auto"> style="background-color: #B5DFC1">
+while($db->next_record())
+{
+	$a = array(
+							 'id' => $db->f('id'),
+							 'title' => $db->f('title')
+							);
+}
+</pre>
+</br>
+<pre class="bg-light border rounded p-3 overflow-auto"> style="background-color: #9FCFFF">
+$a = $db->fetchAssoc($select);
+</pre>
+</br>
+<b>fetchCol</b>
+</br>
+<pre class="bg-light border rounded p-3 overflow-auto"> style="background-color: #B5DFC1">
+while($db->next_record())
+{
+    $a[] = $db->f('id');
+}
+</pre>
+</br>
+<pre class="bg-light border rounded p-3 overflow-auto"> style="background-color: #9FCFFF">
+$a = $db->fetchCol($select);
+</pre>
+</br>
+<b>fetchOne</b>
+</br>
+<pre class="bg-light border rounded p-3 overflow-auto"> style="background-color: #B5DFC1">
+$db->next_record();
+$a = $db->f('id');
+</pre>
+</br>
+<pre class="bg-light border rounded p-3 overflow-auto"> style="background-color: #9FCFFF">
+$a = $db->fetchOne($select);
+</pre>
+</br>
+<b>fetchPairs</b>
+</br>
+<pre class="bg-light border rounded p-3 overflow-auto"> style="background-color: #B5DFC1">
+while($db->next_record())
+{
+    $a = $db->f('title');
+}
+</pre>
+</br>
+<pre class="bg-light border rounded p-3 overflow-auto"> style="background-color: #9FCFFF">
+$a = $db->fetchPairs($select);
+</pre>
+</br>
+<b>fetchRow</b>
+</br>
+<pre class="bg-light border rounded p-3 overflow-auto"> style="background-color: #B5DFC1">
+$db->next_record();
+$a = array(
+		   'id' => $db->f('id'),
+		   'title' => $db->f('title')
+	      );
+</pre>
+</br>
+<pre class="bg-light border rounded p-3 overflow-auto"> style="background-color: #9FCFFF">
+$a = $db->fetchRow($select);
+</pre>
+                    </section>
+                </article>
+            </main>
+            
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,379 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}Dotkernel API: architecture and components{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel 3</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">Dotkernel API: architecture and components</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+    <div class="container py-4">
+        <div class="row g-4">
+            
+            {% include '@partial/left-menu.html.twig' %}
+
+            <main class="col-12 col-md-8 col-lg-9">
+                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
+                    <header class="mb-4">
+                        <h1 class="h2 text-dark fw-bold">Dotkernel API: architecture and components</h1>
+                        <div class="text-muted small">
+                            <i class="bi bi-folder2-open me-1"></i> Dotkernel 3
+                        </div>
+                    </header>
+
+                    <section class="post-content text-secondary lh-lg fs-6">
+                        <blockquote style="font-size: 16px;
+  font-weight: 400;">This article refers to Dotkernel API v5. Checkout out the new additions for <a href="https://www.dotkernel.com/headless-platform/dotkernel-api-v6-the-root-of-dotkernel-headless-platform/">Dotkernel API v6</a> to stay up-to-date.</blockquote>
+<p class="mb-3">Based on Enrico Zimuel's <a href="https://github.com/ezimuel/zend-expressive-api" target="_blank" rel="noreferrer noopener">Zend Expressive API - Skeleton example</a>, Dotkernel API runs on <a href="https://github.com/mezzio" target="_blank" rel="noreferrer noopener">Mezzio</a> microframework   and<a href="https://github.com/laminas" target="_blank" rel="noreferrer noopener">Laminas</a> components and implements standards like PSR-3, PSR-4, PSR-7, PSR-11 and PSR-15.</p>
+<p class="mb-3"><!-- /wp:paragraph --></p>
+<p class="mb-3"><!-- wp:paragraph --></p>
+<p class="mb-3">Here is a list of the core components:</p>
+<p class="mb-3"><!-- /wp:paragraph --></p>
+<p class="mb-3"><!-- wp:list --></p>
+<ul>
+<li style="list-style-type: none;">
+<ul><!-- wp:list-item --></ul>
+</li>
+</ul>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li>Mezzio Microframework (<a href="https://github.com/mezzio/mezzio" target="_blank" rel="noreferrer noopener" data-type="URL" data-id="https://github.com/mezzio/mezzio">mezzio/mezzio</a>)</li>
+</ul>
+</li>
+</ul>
+<p class="mb-3"><!-- /wp:list-item --></p>
+<p class="mb-3"><!-- wp:list-item --></p>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li>Error Handler (<a href="https://packagist.org/packages/dotkernel/dot-errorhandler" target="_blank" rel="noreferrer noopener" data-type="URL" data-id="https://packagist.org/packages/dotkernel/dot-errorhandler">dotkernel/dot-errorhandler</a>)</li>
+</ul>
+</li>
+</ul>
+<p class="mb-3"><!-- /wp:list-item --></p>
+<p class="mb-3"><!-- wp:list-item --></p>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li>Problem Details (<a href="https://docs.mezzio.dev/mezzio-problem-details/" target="_blank" rel="noopener">mezzio/mezzio-problem-details</a>)</li>
+</ul>
+</li>
+</ul>
+<p class="mb-3"><!-- /wp:list-item --></p>
+<p class="mb-3"><!-- wp:list-item --></p>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li>CORS (<a href="https://docs.mezzio.dev/mezzio-cors/" target="_blank" rel="noopener">mezzio/mezzio-cors</a>)</li>
+</ul>
+</li>
+</ul>
+<p class="mb-3"><!-- /wp:list-item --></p>
+<p class="mb-3"><!-- wp:list-item --></p>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li>Routing (<a href="https://github.com/mezzio/mezzio-fastroute" target="_blank" rel="noreferrer noopener" data-type="URL" data-id="https://github.com/mezzio/mezzio-fastroute">mezzio/mezzio-fastroute</a>)</li>
+</ul>
+</li>
+</ul>
+<p class="mb-3"><!-- /wp:list-item --></p>
+<p class="mb-3"><!-- wp:list-item --></p>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li>Authentication (<a href="https://docs.mezzio.dev/mezzio-authentication/" target="_blank" rel="noopener">mezzio/mezzio-authentication</a>)</li>
+</ul>
+</li>
+</ul>
+<p class="mb-3"><!-- /wp:list-item --></p>
+<p class="mb-3"><!-- wp:list-item --></p>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li>Authorization (<a href="https://docs.mezzio.dev/mezzio-authorization/" target="_blank" rel="noopener">mezzio/mezzio-authorization</a>)</li>
+</ul>
+</li>
+</ul>
+<p class="mb-3"><!-- /wp:list-item --></p>
+<p class="mb-3"><!-- wp:list-item --></p>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li>Config Aggregator (<a href="https://github.com/laminas/laminas-config-aggregator" target="_blank" rel="noreferrer noopener" data-type="URL" data-id="https://github.com/laminas/laminas-config-aggregator">laminas/laminas-config-aggregator</a>)</li>
+</ul>
+</li>
+</ul>
+<p class="mb-3"><!-- /wp:list-item --></p>
+<p class="mb-3"><!-- wp:list-item --></p>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li>Container (<a href="https://github.com/Roave/psr-container-doctrine" target="_blank" rel="noreferrer noopener" data-type="URL" data-id="https://github.com/Roave/psr-container-doctrine">roave/psr-container-doctrine</a>)</li>
+</ul>
+</li>
+</ul>
+<p class="mb-3"><!-- /wp:list-item --></p>
+<p class="mb-3"><!-- wp:list-item --></p>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li>Annotations (<a href="https://packagist.org/packages/dotkernel/dot-annotated-services" target="_blank" rel="noreferrer noopener" data-type="URL" data-id="https://packagist.org/packages/dotkernel/dot-annotated-services">dotkernel/dot-annotated-services</a>)</li>
+</ul>
+</li>
+</ul>
+<p class="mb-3"><!-- /wp:list-item --></p>
+<p class="mb-3"><!-- wp:list-item --></p>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li>Input Filter (<a href="https://github.com/laminas/laminas-inputfilter" target="_blank" rel="noreferrer noopener" data-type="URL" data-id="https://github.com/laminas/laminas-inputfilter">laminas/laminas-inputfilter</a>)</li>
+</ul>
+</li>
+</ul>
+<p class="mb-3"><!-- /wp:list-item --></p>
+<p class="mb-3"><!-- wp:list-item --></p>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li>Doctrine  2 ORM (<a href="https://github.com/doctrine/orm" target="_blank" rel="noopener">doctrine/orm</a>)</li>
+</ul>
+</li>
+</ul>
+<p class="mb-3"><!-- /wp:list-item --></p>
+<p class="mb-3"><!-- wp:list-item --></p>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li>Hydrator (<a href="https://github.com/laminas/laminas-hydrator" target="_blank" rel="noreferrer noopener" data-type="URL" data-id="https://github.com/laminas/laminas-hydrator">laminas/laminas-hydrator</a>)</li>
+</ul>
+</li>
+</ul>
+<p class="mb-3"><!-- /wp:list-item --></p>
+<p class="mb-3"><!-- wp:list-item --></p>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li>Paginator (<a href="https://github.com/laminas/laminas-paginator" target="_blank" rel="noreferrer noopener" data-type="URL" data-id="https://github.com/laminas/laminas-paginator">laminas/laminas-paginator</a>)</li>
+</ul>
+</li>
+</ul>
+<p class="mb-3"><!-- /wp:list-item --></p>
+<p class="mb-3"><!-- wp:list-item --></p>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li>HAL (<a href="https://docs.mezzio.dev/mezzio-hal/" target="_blank" rel="noopener">mezzio/mezzio-hal</a>)</li>
+</ul>
+</li>
+</ul>
+<p class="mb-3"><!-- /wp:list-item --></p>
+<p class="mb-3"><!-- wp:list-item --></p>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li>CLI (<a href="https://packagist.org/packages/dotkernel/dot-cli" target="_blank" rel="noreferrer noopener" data-type="URL" data-id="https://packagist.org/packages/dotkernel/dot-cli">dotkernel/dot-cli</a>)</li>
+</ul>
+</li>
+</ul>
+<p class="mb-3"><!-- /wp:list-item --></p>
+<p class="mb-3"><!-- wp:list-item --></p>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li>TwigRenderer (<a href="https://github.com/mezzio/mezzio-twigrenderer" target="_blank" rel="noreferrer noopener" data-type="URL" data-id="https://github.com/mezzio/mezzio-twigrenderer">mezzio/mezzio-twigrenderer</a>)</li>
+</ul>
+</li>
+</ul>
+<p class="mb-3"><!-- /wp:list-item --></p>
+<p class="mb-3"><!-- wp:list-item --></p>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li>Fixtures (<a href="https://packagist.org/packages/dotkernel/dot-data-fixtures" target="_blank" rel="noreferrer noopener" data-type="URL" data-id="https://packagist.org/packages/dotkernel/dot-data-fixtures">dotkernel/dot-data-fixtures</a>)</li>
+</ul>
+</li>
+</ul>
+<p class="mb-3"><!-- /wp:list-item --></p>
+<p class="mb-3"><!-- wp:list-item --></p>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li>UUID (<a href="https://github.com/mezzio/mezzio-twigrenderer" target="_blank" rel="noreferrer noopener" data-type="URL" data-id="https://github.com/mezzio/mezzio-twigrenderer">ramsey/uuid-doctrine</a>)</li>
+</ul>
+</li>
+</ul>
+<p class="mb-3"><!-- /wp:list-item --></p>
+<p class="mb-3"><!-- /wp:list --></p>
+<p class="mb-3"><!-- wp:heading {"level":4} --></p>
+<h4>Doctrine 2 ORM</h4>
+<p class="mb-3"><!-- /wp:heading --></p>
+<p class="mb-3"><!-- wp:paragraph --></p>
+<p class="mb-3">For the persistence in a relational database management system we chose <a href="https://www.doctrine-project.org/projects/doctrine-orm/en/2.14/index.html" target="_blank" rel="noreferrer noopener" data-type="URL" data-id="https://www.doctrine-project.org/projects/doctrine-orm/en/2.14/index.html">Doctrine ORM</a> (object-relational mapper).</p>
+<p class="mb-3"><!-- /wp:paragraph --></p>
+<p class="mb-3"><!-- wp:paragraph --></p>
+<p class="mb-3">The benefit of Doctrine for the programmer is the ability to focus on the object-oriented business logic and worry about persistence only as a secondary priority.</p>
+<p class="mb-3"><!-- /wp:paragraph --></p>
+<p class="mb-3"><!-- wp:heading {"level":4} --></p>
+<h4>Documentation</h4>
+<p class="mb-3"><!-- /wp:heading --></p>
+<p class="mb-3"><!-- wp:paragraph --></p>
+<p class="mb-3">Our documentation is <a href="https://www.postman.com/" target="_blank" rel="noreferrer noopener" data-type="URL" data-id="https://www.postman.com/">Postman</a> based. We use the following files in which we store information about every available endpoint ready to be tested:</p>
+<p class="mb-3"><!-- /wp:paragraph --></p>
+<p class="mb-3"><!-- wp:list --></p>
+<ul>
+<li style="list-style-type: none;">
+<ul><!-- wp:list-item --></ul>
+</li>
+</ul>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li><code>documentation/DotKernel_API.postman_collection.json</code></li>
+</ul>
+</li>
+</ul>
+<p class="mb-3"><!-- /wp:list-item --></p>
+<p class="mb-3"><!-- wp:list-item --></p>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li><code>documentation/DotKernel_API.postman_environment.json</code></li>
+</ul>
+</li>
+</ul>
+<p class="mb-3"><!-- /wp:list-item --></p>
+<p class="mb-3"><!-- /wp:list --></p>
+<p class="mb-3"><!-- wp:heading {"level":4} --></p>
+<h4>Hypertext Application Language</h4>
+<p class="mb-3"><!-- /wp:heading --></p>
+<p class="mb-3"><!-- wp:paragraph --></p>
+<p class="mb-3">For our API payloads (a value object for describing the API resource, its relational links and any embedded/child resources related to it) we chose <a href="https://docs.mezzio.dev/mezzio-hal/" target="_blank" rel="noreferrer noopener" data-type="URL" data-id="https://docs.mezzio.dev/mezzio-hal/">mezzio-hal</a>.</p>
+<p class="mb-3"><!-- /wp:paragraph --></p>
+<p class="mb-3"><!-- wp:heading {"level":4} --></p>
+<h4>CORS</h4>
+<p class="mb-3"><!-- /wp:heading --></p>
+<p class="mb-3"><!-- wp:paragraph --></p>
+<p class="mb-3">By using <code>MezzioCorsMiddlewareCorsMiddleware</code>, the <strong>CORS preflight</strong> will be recognized and the middleware will start to detect the proper <strong>CORS configuration</strong>. The <strong>Router</strong> is used to detect every allowed request method by executing a route match with all possible request methods. Therefore, for every preflight request, there is at least one Router request.</p>
+<p class="mb-3"><!-- /wp:paragraph --></p>
+<p class="mb-3"><!-- wp:heading {"level":4} --></p>
+<h4>OAuth 2.0</h4>
+<p class="mb-3"><!-- /wp:heading --></p>
+<p class="mb-3"><!-- wp:paragraph --></p>
+<p class="mb-3">OAuth 2.0 is an authorization framework that enables applications to obtain limited access to user accounts on your <strong>Dotkernel API</strong>. We are using <a href="https://docs.mezzio.dev/mezzio-authentication-oauth2/" target="_blank" rel="noreferrer noopener" data-type="URL" data-id="https://docs.mezzio.dev/mezzio-authentication-oauth2/">mezzio/mezzio-authentication-oauth2</a> which provides <strong>OAuth 2.0</strong> authentication for Mezzio and PSR-7/PSR-15 applications by using <a href="https://oauth2.thephpleague.com/" target="_blank" rel="noreferrer noopener" data-type="URL" data-id="https://oauth2.thephpleague.com/">league/oauth2-server</a> package.</p>
+<p class="mb-3"><!-- /wp:paragraph --></p>
+<p class="mb-3"><!-- wp:heading {"level":4} --></p>
+<h4>Email</h4>
+<p class="mb-3"><!-- /wp:heading --></p>
+<p class="mb-3"><!-- wp:paragraph --></p>
+<p class="mb-3">It is not unlikely for an API to send emails depending on the use case. Here is another area where <strong>Dotkernel API</strong> shines. Using <code>DotMailServiceMailService</code> provided by <a href="https://packagist.org/packages/dotkernel/dot-mail" target="_blank" rel="noreferrer noopener" data-type="URL" data-id="https://packagist.org/packages/dotkernel/dot-mail">dotkernel/dot-mail</a> you can easily send custom email templates.</p>
+<p class="mb-3"><!-- /wp:paragraph --></p>
+<p class="mb-3"><!-- wp:heading {"level":4} --></p>
+<h4>Configuration</h4>
+<p class="mb-3"><!-- /wp:heading --></p>
+<p class="mb-3"><!-- wp:paragraph --></p>
+<p class="mb-3">From authorization at request route level to API keys for your application, you can find every configuration variable in the <strong>config</strong> directory.</p>
+<p class="mb-3"><!-- /wp:paragraph --></p>
+<p class="mb-3"><!-- wp:paragraph --></p>
+<p class="mb-3"><strong>Registering</strong> a <strong>new module</strong> can be done by including its <code>ConfigProvider.php</code> in <code>config.php</code>.</p>
+<p class="mb-3"><!-- /wp:paragraph --></p>
+<p class="mb-3"><!-- wp:paragraph --></p>
+<p class="mb-3">Brand new <strong>middleware</strong>s should go into <code>pipeline.php</code>. Here you can edit the order in which they run and find more info about the currently included ones.</p>
+<p class="mb-3"><!-- /wp:paragraph --></p>
+<p class="mb-3"><!-- wp:paragraph --></p>
+<p class="mb-3">You can further customize your api within the <strong>autoload</strong> directory where each configuration category has its own file.</p>
+<p class="mb-3"><!-- /wp:paragraph --></p>
+<p class="mb-3"><!-- wp:heading {"level":4} --></p>
+<h4>Routing</h4>
+<p class="mb-3"><!-- /wp:heading --></p>
+<p class="mb-3"><!-- wp:paragraph --></p>
+<p class="mb-3">Each module has a <code>RoutesDelegator.php</code> file for managing existing routes inside that specific module. It also allows an quick way of adding new routes by providing the route path, Middlewares that the route will use and the route name.</p>
+<p class="mb-3"><!-- /wp:paragraph --></p>
+<p class="mb-3"><!-- wp:paragraph --></p>
+<p class="mb-3">You can allocate <strong>permissions</strong> per <strong>route name</strong> in order to restrict access for a user role to a specific route in <code>config/autoload/authorization.global.php</code>.</p>
+<p class="mb-3"><!-- /wp:paragraph --></p>
+<p class="mb-3"><!-- wp:heading {"level":4} --></p>
+<h4>Commands</h4>
+<p class="mb-3"><!-- /wp:heading --></p>
+<p class="mb-3"><!-- wp:paragraph --></p>
+<p class="mb-3">For registering new commands first make sure your command class extends <code>SymfonyComponentConsoleCommandCommand</code>. Then you can enable it by registering it in <code>config/autoload/cli.global.php</code>.</p>
+<p class="mb-3"><!-- /wp:paragraph --></p>
+<p class="mb-3"><!-- wp:heading {"level":4} --></p>
+<h4>File locker</h4>
+<p class="mb-3"><!-- /wp:heading --></p>
+<p class="mb-3"><!-- wp:paragraph --></p>
+<p class="mb-3">Here you will also find our brand new <strong>file locker</strong> configuration so you can easily turn it on or off ( by default: <code>'enabled' =&gt; true</code> )</p>
+<p class="mb-3"><!-- /wp:paragraph --></p>
+<p class="mb-3"><!-- wp:paragraph --></p>
+<p class="mb-3">Note: The <strong>File Locker System</strong> will create a <code>command-{command-default-name}.lock</code> file which will not let another instance of the same command to run until the previous one has finished.</p>
+<p class="mb-3"><!-- /wp:paragraph --></p>
+<p class="mb-3"><!-- wp:heading {"level":4} --></p>
+<h4>PSR Standards</h4>
+<p class="mb-3"><!-- /wp:heading --></p>
+<p class="mb-3"><!-- wp:list --></p>
+<ul>
+<li style="list-style-type: none;">
+<ul><!-- wp:list-item --></ul>
+</li>
+</ul>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li><a href="https://www.php-fig.org/psr/psr-3/" target="_blank" rel="noreferrer noopener">PSR-3: Logger Interface</a> - the application uses <code>LoggerInterface</code> for error logging</li>
+</ul>
+</li>
+</ul>
+<p class="mb-3"><!-- /wp:list-item --></p>
+<p class="mb-3"><!-- wp:list-item --></p>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li><a href="https://www.php-fig.org/psr/psr-4/" target="_blank" rel="noreferrer noopener">PSR-4: Autoloader</a> - the application locates classes using an autoloader</li>
+</ul>
+</li>
+</ul>
+<p class="mb-3"><!-- /wp:list-item --></p>
+<p class="mb-3"><!-- wp:list-item --></p>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li><a href="https://www.php-fig.org/psr/psr-7/" target="_blank" rel="noreferrer noopener">PSR-7: HTTP message interfaces</a> - the handlers return <code>ResponseInterface</code></li>
+</ul>
+</li>
+</ul>
+<p class="mb-3"><!-- /wp:list-item --></p>
+<p class="mb-3"><!-- wp:list-item --></p>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li><a href="https://www.php-fig.org/psr/psr-11/" target="_blank" rel="noreferrer noopener">PSR-11: Container interface</a> - the application is container-based</li>
+</ul>
+</li>
+</ul>
+<p class="mb-3"><!-- /wp:list-item --></p>
+<p class="mb-3"><!-- wp:list-item --></p>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li><a href="https://www.php-fig.org/psr/psr-15/" target="_blank" rel="noreferrer noopener">PSR-15: HTTP Server Request Handlers</a> - the handlers implement <code>RequestHandlerInterface</code></li>
+</ul>
+</li>
+</ul>
+<p class="mb-3"><!-- /wp:list-item --></p>
+<p class="mb-3"><!-- /wp:list --></p>
+<p class="mb-3"><!-- wp:heading {"level":4} --></p>
+<h4>Tests</h4>
+<p class="mb-3"><!-- /wp:heading --></p>
+<p class="mb-3"><!-- wp:paragraph --></p>
+<p class="mb-3">One of the best ways to ensure the quality of your product is to create and run functional and unit tests. You can find factory-made tests in the <code>tests/AppTest/</code> folder, and you can also register your own.</p>
+<p class="mb-3"><!-- /wp:paragraph --></p>
+                    </section>
+                </article>
+            </main>
+            
+        </div>
+    </div>
+{% endblock %}

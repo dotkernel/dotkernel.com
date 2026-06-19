@@ -1,0 +1,146 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}Dotkernel Light improvements: PSR-15 Handlers, Vite, PHPStan{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Middleware</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">Dotkernel Light improvements: PSR-15 Handlers, Vite, PHPStan</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+    <div class="container py-4">
+        <div class="row g-4">
+            
+            {% include '@partial/left-menu.html.twig' %}
+
+            <main class="col-12 col-md-8 col-lg-9">
+                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
+                    <header class="mb-4">
+                        <h1 class="h2 text-dark fw-bold">Dotkernel Light improvements: PSR-15 Handlers, Vite, PHPStan</h1>
+                        <div class="text-muted small">
+                            <i class="bi bi-folder2-open me-1"></i> Middleware
+                        </div>
+                    </header>
+
+                    <section class="post-content text-secondary lh-lg fs-6">
+                        <!-- wp:paragraph -->
+<p class="mb-3"><a href="https://github.com/dotkernel/light" target="_blank" rel="noreferrer noopener">Dotkernel Light</a> is a PSR-15 compliant application that uses the Mezzio microframework and Laminas components. It's aimed at creating a simple website, like a presentation site, but can be expanded as needed.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">Dotkernel Light has come a long way since our <a href="https://www.dotkernel.com/dotkernel/dotkernel-light-the-best-choice-for-your-presentation-site/">last update</a>. It's just as useful for a presentation site, but our perfectionist devs thought we could do better. Let's see what we have improved to make your use of Light that much more convenient.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Migrating from controllers to handlers</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p class="mb-3"><a href="https://github.com/dotkernel/dot-controller" target="_blank" rel="noreferrer noopener">dotkernel/dot-controller</a> isn't going away, but we have switched to <a href="https://www.php-fig.org/psr/psr-15/" target="_blank" rel="noreferrer noopener">PSR-15</a> handlers instead. <a href="https://www.php-fig.org/psr/psr-7/" target="_blank" rel="noreferrer noopener">PSR-7 HTTP message interfaces</a> defines the request handler as an individual component that processes a request and produces a response. Given that it's used in a middleware architecture, the request can be wildly different (e.g. filtered, augmented) by the time it reaches your custom code. Handlers split the code into more manageable chunks and cleaner file structure. An added benefit is it allows us to figure out an application's functionality easier. We will expand on this aspect further down in the article, in the 'Naming pattern' chapter.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Implementing PSR-15 compatible handlers</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">We are striving to implement every feature with the most modern standards and design patterns in mind. The <a href="https://www.php-fig.org/" target="_blank" rel="noreferrer noopener">PHP Framework Interop Group</a> defines PSR-15 as common interfaces for HTTP server request handlers and HTTP middleware that use HTTP messages as described by PSR-7. The MVC design pattern is considered obsolete by respected members of the PHP community, so we are replacing it with Middleware and HTTP message desing pattern.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Adopting a naming pattern for PSR-15 handlers</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">Now the file names reflect the functionality at a glance. We devised a naming pattern for our PSR-15 handlers that highlights the method, resouce and action for each file to make navigation and onboarding that much easier. We like to keep things tidy, as well as informative.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Implementing Vite</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p class="mb-3"><a href="https://vite.dev/">Vite</a> replaces <a href="https://webpack.js.org">webpack</a> as our static modules bundler. It concatenates and compresses <code>.css</code> and <code>.js</code> files to enable faster downloads. It also preprocesses <code>.scss</code> files into <code>.css</code>. As far as devs using Light are concerned, Vite was configured to work similarly to webpack. We decided the technical advantages like easier dependency management and execution speed justified the migration to Vite. It's also highly recommended by the PHP community.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Replacing Psalm with PHPStan</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">Both <a href="https://psalm.dev/" target="_blank" rel="noreferrer noopener">Psalm</a> and <a href="https://phpstan.org/" target="_blank" rel="noreferrer noopener">PHPStan</a> are respected and widely-used static analysis tools. Some of the big names in the PHP ecosystem have opted for the same switch, so we decided to follow suit. Ultimately, the functionality is similar to our previous tool, but the growing interest and improved detection quality make PHPStan a great choice for our applications. PHPStan is configured to run at rule level 8 to help prevent bugs and write better code.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Other updates</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">Some of the smaller updates involve:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Adding support for PHP 8.4.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Enabling <a href="https://phpstan.org/" target="_blank" rel="noreferrer noopener">PHPStan</a> and <a href="https://www.jetbrains.com/qodana/" target="_blank" rel="noreferrer noopener">Qodana</a> to run for PHP 8.4 as well.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Cleaning up and adapting the error configuration file to make use of the latest features.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Updating <a href="https://github.com/laminas/laminas-coding-standard" target="_blank" rel="noreferrer noopener">laminas/laminas-coding-standard</a> to the latest major version.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Updating composer.json to make sure it's up-to-date with the latest releases for each dependency, as well as to remove any now-obsolete items.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Implementing a more reliable and efficient post install script to help get you up and running that much faster.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Removing <a href="https://github.com/dotkernel/dot-twigrenderer" target="_blank" rel="noreferrer noopener">dotkernel/dot-twigrenderer</a> in favor of a direct implementation of <a href="https://github.com/mezzio/mezzio-twigrenderer" target="_blank" rel="noreferrer noopener">mezzio/mezzio-twigrenderer</a>.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Additional resources</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p class="mb-3"><a href="https://github.com/dotkernel/light" target="_blank" rel="noreferrer noopener">Dotkernel Light Git</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p class="mb-3"><a href="https://light.dotkernel.net/" target="_blank" rel="noreferrer noopener">Dotkernel Light demo</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p class="mb-3"><a href="https://docs.dotkernel.org/light-documentation/" target="_blank" rel="noreferrer noopener">Dotkernel Light documentation</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p class="mb-3"><a href="https://www.php-fig.org/" target="_blank" rel="noreferrer noopener">PHP Framework Interop Group</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p class="mb-3"><a href="https://www.php-fig.org/psr/psr-15/" target="_blank" rel="noreferrer noopener">PSR-15: HTTP Server Request Handlers</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p class="mb-3"><a href="https://www.dotkernel.com/php-development/static-analysis-replacing-psalm-with-phpstan/" target="_blank" rel="noreferrer noopener">Static Analysis – Replacing Psalm with PHPStan</a></p>
+<!-- /wp:paragraph -->
+                    </section>
+                </article>
+            </main>
+            
+        </div>
+    </div>
+{% endblock %}

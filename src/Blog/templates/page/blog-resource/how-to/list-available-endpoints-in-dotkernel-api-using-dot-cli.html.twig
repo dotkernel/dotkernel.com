@@ -1,0 +1,158 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}List available endpoints in  DotKernel API using dot-cli{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">How to's</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">List available endpoints in  DotKernel API using dot-cli</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+    <div class="container py-4">
+        <div class="row g-4">
+            
+            {% include '@partial/left-menu.html.twig' %}
+
+            <main class="col-12 col-md-8 col-lg-9">
+                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
+                    <header class="mb-4">
+                        <h1 class="h2 text-dark fw-bold">List available endpoints in  DotKernel API using dot-cli</h1>
+                        <div class="text-muted small">
+                            <i class="bi bi-folder2-open me-1"></i> How to's
+                        </div>
+                    </header>
+
+                    <section class="post-content text-secondary lh-lg fs-6">
+                        <!-- wp:heading -->
+<h2>Displaying DotKernel API endpoints using dot-cli</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">Starting from version 3, DotKernel API uses <a href="https://github.com/dotkernel/dot-cli" data-type="URL" data-id="https://github.com/dotkernel/dot-cli" target="_blank" rel="noreferrer noopener">dot-cli</a> to display a list of available endpoints.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2>Usage</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">Run the following command in your application’s root directory:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>php ./bin/cli.php route:list</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">The command runs through all routes and extracts endpoint information in realtime. The output should be similar to the following:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>+--------+---------------------------------+--------------------------------+
+| Method | Name                            | Path                           |
++--------+---------------------------------+--------------------------------+
+| PATCH  | account.activate                | /account/activate/{hash}       |
+| POST   | account.activate.request        | /account/activate              |
+| PATCH  | account.modify-password         | /account/reset-password/{hash} |
+| POST   | account.recover-identity        | /account/recover-identity      |
+| POST   | account.register                | /account/register              |
+| POST   | account.reset-password.request  | /account/reset-password        |
+| GET    | account.reset-password.validate | /account/reset-password/{hash} |
+| POST   | admin.create                    | /admin                         |
+| DELETE | admin.delete                    | /admin/{uuid}                  |
+| GET    | admin.list                      | /admin                         |
+| PATCH  | admin.my-account.update         | /admin/my-account              |
+| GET    | admin.my-account.view           | /admin/my-account              |
+| GET    | admin.role.list                 | /admin/role                    |
+| GET    | admin.role.view                 | /admin/role/{uuid}             |
+| PATCH  | admin.update                    | /admin/{uuid}                  |
+| GET    | admin.view                      | /admin/{uuid}                  |
+| POST   | error.report                    | /error-report                  |
+| GET    | home                            | /                              |
+| POST   | security.generate-token         | /security/generate-token       |
+| POST   | security.refresh-token          | /security/refresh-token        |
+| POST   | user.activate                   | /user/{uuid}/activate          |
+| POST   | user.avatar.create              | /user/{uuid}/avatar            |
+| DELETE | user.avatar.delete              | /user/{uuid}/avatar            |
+| GET    | user.avatar.view                | /user/{uuid}/avatar            |
+| POST   | user.create                     | /user                          |
+| DELETE | user.delete                     | /user/{uuid}                   |
+| GET    | user.list                       | /user                          |
+| DELETE | user.my-account.delete          | /user/my-account               |
+| PATCH  | user.my-account.update          | /user/my-account               |
+| GET    | user.my-account.view            | /user/my-account               |
+| POST   | user.my-avatar.create           | /user/my-avatar                |
+| DELETE | user.my-avatar.delete           | /user/my-avatar                |
+| GET    | user.my-avatar.view             | /user/my-avatar                |
+| GET    | user.role.list                  | /user/role                     |
+| GET    | user.role.view                  | /user/role/{uuid}              |
+| PATCH  | user.update                     | /user/{uuid}                   |
+| GET    | user.view                       | /user/{uuid}                   |
++--------+---------------------------------+--------------------------------+</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:heading -->
+<h2>Filtering results</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">The following filters can be applied when displaying the routes list:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li>Filter routes by name, using: <code>-i|--name</code></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Filter routes by path, using: <code>-p|--path</code></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Filter routes by method, using: <code>-m|--method</code></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">The filters are case-insensitive and can be combined.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":4} -->
+<h4>Example</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">Let's find which path should one call to register their user account. For this we will list routes where method is <strong>POST</strong> and name contains the string <strong>register</strong>:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>php ./bin/cli.php route:list --method=post --name=register</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">The output is the following:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>+--------+------------------+-------------------+
+| Method | Name             | Path              |
++--------+------------------+-------------------+
+| POST   | account.register | /account/register |
++--------+------------------+-------------------+</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">You can get more help with this command by running:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>php ./bin/cli.php route:list --help</code></pre>
+<!-- /wp:code -->
+                    </section>
+                </article>
+            </main>
+            
+        </div>
+    </div>
+{% endblock %}

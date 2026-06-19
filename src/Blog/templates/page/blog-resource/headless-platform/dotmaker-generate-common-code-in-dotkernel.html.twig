@@ -1,0 +1,233 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}DotMaker - Generate common code in Dotkernel{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Headless Platform</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">DotMaker - Generate common code in Dotkernel</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+    <div class="container py-4">
+        <div class="row g-4">
+            
+            {% include '@partial/left-menu.html.twig' %}
+
+            <main class="col-12 col-md-8 col-lg-9">
+                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
+                    <header class="mb-4">
+                        <h1 class="h2 text-dark fw-bold">DotMaker - Generate common code in Dotkernel</h1>
+                        <div class="text-muted small">
+                            <i class="bi bi-folder2-open me-1"></i> Headless Platform
+                        </div>
+                    </header>
+
+                    <section class="post-content text-secondary lh-lg fs-6">
+                        <!-- wp:paragraph -->
+<p class="mb-3">The <code>dotkernel/dot-maker</code> library, also named DotMaker, is designed to <strong>programmatically generate project files and directories</strong> that match the Dotkernel file structure inspired by Mezzio.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">Handling the file creation and configuration task manually invites mistakes that nobody has time for. Enter DotMaker which provides a big <strong>productivity boost</strong> compared to doing everything manually by promoting <strong>consistenty and standardization</strong> for these common tasks.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">DotMaker is inspired by <a href="https://github.com/symfony/maker-bundle" target="_blank" rel="noreferrer noopener">Symfony Maker Bundle</a> in terms of functionality. Mezzio has its own <a href="https://docs.mezzio.dev/mezzio/v3/reference/cli-tooling/" target="_blank" rel="noreferrer noopener">CLI Tooling</a> that performs similar actions, while DotMaker has a more opinionated naming pattern and is designed specifically for Dotkernel applications.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:embed {"url":"https://www.youtube.com/watch?v=CPDilXP2kAc","type":"video","providerNameSlug":"youtube","responsive":true,"className":"wp-embed-aspect-16-9 wp-has-aspect-ratio"} -->
+<figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">
+https://www.youtube.com/watch?v=CPDilXP2kAc
+</div></figure>
+<!-- /wp:embed -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading"><a href="#the-file-structure-for-a-module"></a>The File Structure for a Module</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">Below is an example of the file structure for a <code>Book</code> module and the related files it uses from the <code>Core</code> module.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:enlighter/codeblock -->
+<pre class="EnlighterJSRAW" data-enlighter-language="generic" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">.
+└── src/
+    ├── Book/
+    │   └── src/
+    │       ├── Collection/
+    │       │   └── BookCollection.php
+    │       ├── Handler/
+    │       │   ├── GetBookCollectionHandler.php
+    │       │   ├── GetBookResourceHandler.php
+    │       │   └── PostBookResourceHandler.php
+    │       ├── InputFilter/
+    │       │   ├── Input/
+    │       │   │   ├── AuthorInput.php
+    │       │   │   ├── NameInput.php
+    │       │   │   └── ReleaseDateInput.php
+    │       │   └── CreateBookInputFilter.php
+    │       ├── Service/
+    │       │   ├── BookService.php
+    │       │   └── BookServiceInterface.php
+    │       ├── ConfigProvider.php
+    │       └── RoutesDelegator.php
+    └── Core/
+        └── src/
+            └── Book/
+                └── src/
+                    ├── Entity/
+                    │   └── Book.php
+                    ├── Repository/
+                    │   └── BookRepository.php
+                    └── ConfigProvider.php</pre>
+<!-- /wp:enlighter/codeblock -->
+
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><!-- wp:paragraph -->
+<p class="mb-3">The example above is for a Dotkernel API project. This means that it has a Collection item, but is missing Form and template files that Dotkernel Admin requires. DotMaker can tell the difference between Dotkernel applications and will create the required files for each.</p>
+<!-- /wp:paragraph --></blockquote>
+<!-- /wp:quote -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading"><a href="#why-use-dot-maker"></a>Why Use dot-maker?</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">Even this simple example showcases the relatively <strong>large number of files and folders</strong> needed to make a new module work. A developer can perform the task <strong>manually</strong>, but there are too many places where things can be left out which <strong>generate errors and delay development</strong>. The <strong>solution</strong> is to use DotMaker which was built to help with the heavy lifting here.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading"><a href="#how-dot-maker-works"></a>How dot-maker Works</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">Let's say you want to <strong>create a new module</strong> in your application:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>After you enter the command <code>./vendor/bin/dot-maker module</code>, you are <strong>prompted to go through a list of steps</strong> that <strong>create each item</strong> relevant to your module, from entities and repositories, to handlers and services.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>DotMaker automatically creates the <code>ConfigProvider.php</code> that is vital for <strong>configuring your module</strong> and tells you how to <strong>register</strong> it in <code>config/config.php</code> and <code>composer.json</code>.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>The library also generates <strong>documentation</strong> in <code>OpenApi.php</code> file and tells you what command to run to generate <strong>migrations</strong> for your new module.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Once the files are created, you should <strong>manually configure the authorization</strong> for the new module based on your platform's requirements.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><!-- wp:paragraph -->
+<p class="mb-3">Authorization is configured in different files between Dotkernel applications:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Dotkernel Api uses <code>config/autoload/authorization.global.php</code>. You can check <a href="https://docs.dotkernel.org/api-documentation/v6/core-features/authorization/" target="_blank" rel="noreferrer noopener">Api authorization</a> for details.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Dotkernel Admin and Dotkernel Frontend use <code>config/autoload/authorization-guards.global.php</code>. Here are the links for <a href="https://docs.dotkernel.org/admin-documentation/v6/how-to/authorization/" target="_blank" rel="noreferrer noopener">Admin authorization</a> and <a href="https://docs.dotkernel.org/frontend-documentation/v5/how-to/authorization/" target="_blank" rel="noreferrer noopener">Frontend authorization</a>.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></blockquote>
+<!-- /wp:quote -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">DotMaker can also create <strong>individual items</strong> related to a module, like an entity or a form, as well as a new command or middleware. Below if a list of the available commands. Most of them are aimed at creating an item within existing modules, excepting the one that handles module creation, of course.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><!-- wp:paragraph -->
+<p class="mb-3">The commands below work only after the basic command is added to <code>composer.json</code>.</p>
+<!-- /wp:paragraph --></blockquote>
+<!-- /wp:quote -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><code>composer make collection</code> or <code>./vendor/bin/dot-maker collection</code> creates a Collection for an existing module.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><code>composer make command</code> or <code>./vendor/bin/dot-maker command</code> creates a Command for an existing module.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><code>composer make entity</code> or <code>./vendor/bin/dot-maker entity</code> creates an Entity and its associated Repository (e.g. <code>Entity\Phone.php</code> and <code>Repository\PhoneRepository.php</code>) for an existing module. If the Repository is already created, dot-maker will skip its creation and will return a message stating that it exists.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><code>composer make form</code> or <code>./vendor/bin/dot-maker form</code> creates a Form for an existing module.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><code>composer make handler</code> or <code>./vendor/bin/dot-maker handler</code> creates a Handler for an existing module.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><code>composer make input</code> or <code>./vendor/bin/dot-maker input</code> creates an Input for an existing module.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><code>composer make input-filter</code> or <code>./vendor/bin/dot-maker input-filter</code> creates an InputFilter for an existing module. You will be prompted to choose between 3 types of InputFilters: create, edit, replace.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><code>composer make middleware</code> or <code>./vendor/bin/dot-maker middleware</code> creates a Middleware for an existing module.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><code>composer make module</code> or <code>./vendor/bin/dot-maker module</code> creates a Module and its predefined files like entity, repository, service, handler etc.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><code>composer make repository</code> or <code>./vendor/bin/dot-maker repository</code> creates a Repository and its Entity (e.g. <code>Entity\Phone.php</code> and <code>Repository\PhoneRepository.php</code>) for an existing module. If the Entity is already created, dot-maker will skip its creation and will return a message stating that it exists.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><code>composer make service</code> or <code>./vendor/bin/dot-maker service</code> creates a Service and its associated ServiceInterface (e.g. <code>Service\PhoneService.php</code> and <code>Service\PhoneServiceInterface.php</code>) for an existing module. If the ServiceInterface is already created, dot-maker will skip its creation and will return a message stating that it exists.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><code>composer make service-interface</code> or <code>./vendor/bin/dot-maker service-interface</code> creates a ServiceInterface and its associated Service (e.g. <code>Service\PhoneServiceInterface.php</code> and <code>Service\PhoneService.php</code>) for an existing module. If the Service is already created, dot-maker will skip its creation and will return a message stating that it exists.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">This tool won't do all the work for you, but after running through the maker process, you know you are <strong>working on a solid foundation that can now accept your custom code</strong>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading"><a href="#additional-resources"></a>Additional Resources</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><a href="https://docs.dotkernel.org/dot-maker/v1/overview/" target="_blank" rel="noreferrer noopener">DotMaker full documentation</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="https://docs.dotkernel.org/api-documentation/v6/tutorials/create-book-module-via-dot-maker/" target="_blank" rel="noreferrer noopener">Implementing a book module in Dotkernel API using DotMaker</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="https://docs.dotkernel.org/api-documentation/v6/introduction/file-structure/" target="_blank" rel="noreferrer noopener">API file structure</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="https://symfony.com/bundles/SymfonyMakerBundle/current/index.html" target="_blank" rel="noreferrer noopener">Symfony Maker Bundle Documentation</a></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+                    </section>
+                </article>
+            </main>
+            
+        </div>
+    </div>
+{% endblock %}

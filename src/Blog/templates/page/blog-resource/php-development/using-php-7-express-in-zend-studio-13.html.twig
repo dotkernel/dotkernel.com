@@ -1,0 +1,83 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}Using PHP 7 Express in Zend Studio 13{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">PHP Development</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">Using PHP 7 Express in Zend Studio 13</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+    <div class="container py-4">
+        <div class="row g-4">
+            
+            {% include '@partial/left-menu.html.twig' %}
+
+            <main class="col-12 col-md-8 col-lg-9">
+                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
+                    <header class="mb-4">
+                        <h1 class="h2 text-dark fw-bold">Using PHP 7 Express in Zend Studio 13</h1>
+                        <div class="text-muted small">
+                            <i class="bi bi-folder2-open me-1"></i> PHP Development
+                        </div>
+                    </header>
+
+                    <section class="post-content text-secondary lh-lg fs-6">
+                        This article will cover the steps needed in order to check the PHP7 compatibility, a small troubleshooter.
+
+This article will also contain a compatibility issue check on the latest Zend Framework 1 version.
+
+<!--more-->
+<h3>What is PHP 7 Express?</h3>
+PHP 7 Express is the newest feature added in Zend Studio (from version 13). This feature is very useful for checking if your pre-PHP7 code will work on a PHP7 server.
+<h3>The project creation</h3>
+If you already have the project backup and you are sure you can modify your project you can skip this step.
+
+If you want to create a new project for testing instead of modifying the original project make sure the PHP Version is set to PHP 5.6 or the PHP Version you use in the project. Choosing the PHP 7 option will hide the PHP 7 Express feature because Zend Studio assumes a PHP 7 project doesn't need compatibility checks, but if the project is using a different version of PHP compatibility issues might apper.
+
+Long story short: Use the exact PHP version your project is using at the project creation.
+
+<a href="https://www.dotkernel.com/wp-content/uploads/2015/12/Screenshot-2015-12-22-16.21.56.png" rel="attachment wp-att-2900"><img class="wp-image-2900 size-full" src="https://www.dotkernel.com/wp-content/uploads/2015/12/Screenshot-2015-12-22-16.21.56.png" alt="The New Local PHP Project dialog in Zend Studio 13 " width="613" height="548" class="img-fluid rounded my-2"></a> The "New Local PHP Project" dialog in Zend Studio 13 and the PHP version selection
+<h3>The 'PHP Interpreter' selection</h3>
+If the <strong>PHP 7 Express </strong>feature is won't show up the issue might be the <strong>PHP Interpreter </strong>selected.
+
+To check and modify the PHP Interpreter:
+<ul>
+ 	<li>right click the project</li>
+ 	<li>type "interpreter"</li>
+ 	<li>The <strong>PHP</strong> -&gt; <strong>Interpreter </strong>option should show up</li>
+ 	<li>If you only need a specific interpreter for a specific project you can check "Enable Project specific settings" by checking this option you won't affect the other projects in the current workspace</li>
+</ul>
+<a href="https://www.dotkernel.com/wp-content/uploads/2015/12/zftest.png" rel="attachment wp-att-2902"><img class="wp-image-2902 size-full" src="https://www.dotkernel.com/wp-content/uploads/2015/12/zftest.png" alt="Zend Studio PHP Interpreter Dialog" width="801" height="555" class="img-fluid rounded my-2"></a> Zend Studio PHP Interpreter Dialog
+
+The <strong>PHP 7 Express</strong> feature should now show up.
+<h3>Project preparation</h3>
+As we created a local project named <strong>zend-framework-test</strong> we will add the latest Zend Framework 1 version in our project.
+<ul>
+ 	<li>right click on the project</li>
+ 	<li>create a new folder named <strong>library</strong></li>
+ 	<li>download the latest <strong>Zend Framework 1</strong> version from <a href="http://framework.zend.com/downloads/latest#ZF1" target="_blank" rel="noopener noreferrer">here</a>, make sure you choose the <strong>Full</strong> option, not the <strong>Full Package</strong> one</li>
+ 	<li>extract the archive and browse the <strong>library</strong> folder</li>
+ 	<li>copy the <strong>Zend</strong> folder in your project's <strong>library</strong> folder</li>
+ 	<li>if the Drag and Drop didn't work and you had to manually copy the folder in your project you can click the project folder in Zend Studio and just press <strong>F5</strong> (Refresh)</li>
+</ul>
+<h3>Using PHP 7 Express - Testing Zend Framework 1</h3>
+Now let's see <strong>PHP 7 Express</strong> in action. Using PHP 7 Express is very easy:
+<ul>
+ 	<li>right-click the <strong>project,</strong> not a folder or a file because the feature won't show up</li>
+ 	<li>click "<strong>Run PHP 7 Express...</strong>"</li>
+ 	<li>a confirmation prompt will be displayed</li>
+</ul>
+After the analysis was done, you should see the <strong>PHP 7 Express </strong>view (or tab) in the bottom pane in Zend Studio (this depends on the perspective).
+
+The result should look like this:
+
+<a href="https://www.dotkernel.com/wp-content/uploads/2015/12/php7errors.png" rel="attachment wp-att-2904"><img class="size-full wp-image-2904" src="https://www.dotkernel.com/wp-content/uploads/2015/12/php7errors.png" alt="Zend Framework 1 compatibility issues with PHP7 " width="1006" height="647" class="img-fluid rounded my-2"></a> Zend Framework 1 compatibility issues with PHP7
+                    </section>
+                </article>
+            </main>
+            
+        </div>
+    </div>
+{% endblock %}

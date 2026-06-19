@@ -1,0 +1,97 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}Doctrine cache using symfony/cache{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">Doctrine cache using symfony/cache</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+    <div class="container py-4">
+        <div class="row g-4">
+            
+            {% include '@partial/left-menu.html.twig' %}
+
+            <main class="col-12 col-md-8 col-lg-9">
+                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
+                    <header class="mb-4">
+                        <h1 class="h2 text-dark fw-bold">Doctrine cache using symfony/cache</h1>
+                        <div class="text-muted small">
+                            <i class="bi bi-folder2-open me-1"></i> Dotkernel
+                        </div>
+                    </header>
+
+                    <section class="post-content text-secondary lh-lg fs-6">
+                        <p class="mb-3"><!-- wp:paragraph --></p>
+<p class="mb-3">When it comes to web development, performance is one of the critical elements that influence the success of an application. Developers focus on improving response times and overall speed to enhance the user experience.</p>
+<p class="mb-3"><!-- /wp:paragraph --><!-- wp:paragraph --></p>
+<p class="mb-3">When a user visits a website or interacts with a web application, various resources such as images, scripts, and database queries are requested from the server. Retrieving these resources can sometimes be time-consuming, especially if they require complex processing or querying a database.</p>
+<p class="mb-3"><!-- /wp:paragraph --><!-- wp:paragraph --></p>
+<p class="mb-3">To speed up this process and improve overall performance, developers implement caching mechanisms. When data is first requested, it's stored in a cache. Then, when subsequent requests for the same data are made, the application can retrieve it from the cache instead of fetching it from the original source. This reduces the time it takes to serve the content to the user because accessing data from the cache is typically much faster than retrieving it from the original source.</p>
+<blockquote class="blockquote border-start border-4 ps-3 text-muted my-3">
+<p class="mb-3">This article is a follow-up to the <a href="https://www.dotkernel.com/how-to/doctrine-cache-in-mezzio-and-dotkernel/" target="_blank" rel="noopener" data-wplink-edit="true">previous article</a> where we tackled the caching topic.</p>
+</blockquote>
+<p class="mb-3"><!-- /wp:paragraph --><!-- wp:image {"id":6077,"sizeSlug":"large","linkDestination":"none"} --></p>
+<figure></figure>
+<p class="mb-3"><!-- /wp:image --></p>		
+													<img width="710" height="351" src="https://www.dotkernel.com/wp-content/uploads/2024/02/sdasdadsa.drawio.png" alt="" srcset="https://www.dotkernel.com/wp-content/uploads/2024/02/sdasdadsa.drawio.png 710w, https://www.dotkernel.com/wp-content/uploads/2024/02/sdasdadsa.drawio-300x148.png 300w, https://www.dotkernel.com/wp-content/uploads/2024/02/sdasdadsa.drawio-71x35.png 71w, https://www.dotkernel.com/wp-content/uploads/2024/02/sdasdadsa.drawio-162x80.png 162w, https://www.dotkernel.com/wp-content/uploads/2024/02/sdasdadsa.drawio-394x195.png 394w" sizes="(max-width: 710px) 100vw, 710px" / class="img-fluid rounded my-2">													
+		<p class="mb-3">In this article our focus will be on enabling the <a href="https://packagist.org/packages/dotkernel/dot-cache" target="_blank" rel="noopener">dot-cache</a> component and effectively implementing caching in <a href="https://github.com/dotkernel/admin/" target="_blank" rel="noopener">DotKernel Admin</a>.</p>		
+			<h5>Installation</h5>		
+		<p class="mb-3">Run the following command in your project directory:</p><pre data-enlighter-language="php">composer require dotkernel/dot-cache</pre><p class="mb-3">After installing, add the <code>DotCacheConfigProvider::class</code> class to your configuration aggregate (config/config.php).</p>
+<p class="mb-3">Before we continue with the configuration process we need to know a few things about how and where the data is stored.</p>
+<p class="mb-3">The <a href="https://packagist.org/packages/dotkernel/dot-cache" target="_blank" rel="noopener">dotkernel/dot-cache</a> component is a wrapper that sits on top of <a href="https://packagist.org/packages/symfony/cache" target="_blank" rel="noopener">symfony/cache</a>. It currently supports two adapters and can store data in two distinct locations:</p>
+<ol>
+<li><b>array </b>- stores data in-memory</li>
+<li><b>filesystem </b>- stores data on local disk files</li>
+</ol>
+<p class="mb-3">1. Storing data in-memory is the fastest and sometimes the cheapest caching mechanism, but it also comes with down-sides. Storing everything in the RAM memory is not the best idea when your application is running on a low memory system. In this case you should consider using the <b>filesystem</b> mechanism.</p>
+<p class="mb-3">2. The second caching mechanism involves storing data into files on the local disk, known as the <b>filesystem </b>option. While this option may be slightly slower than the first one, it provides a more persistent storage solution.</p>
+<p class="mb-3"><strong>Feel free to explore and use other adapters from <a href="https://packagist.org/packages/symfony/cache" target="_blank" rel="noopener">symfony/cache</a></strong> <b>by checking the <a href="https://symfony.com/doc/current/components/cache.html#advanced-usage" target="_blank" rel="noopener">official documentation</a>.</b></p>		
+			<h5>Configuration</h5>		
+		<p class="mb-3">In <code>configautoloaddoctrine.global.php</code>, in the <code data-enlighter-language="php">doctrine.configuration.orm_default</code> key add the following entry:</p>
+<pre data-enlighter-language="php"><code data-enlighter-language="php">'result_cache'       =&gt; 'filesystem',
+'metadata_cache'     =&gt; 'filesystem',
+'query_cache'        =&gt; 'filesystem',
+'hydration_cache'    =&gt; 'array',
+'second_level_cache' =&gt; ,
+],</code><code data-enlighter-language="php"><br /></code></pre>
+<p dir="auto">Next, under the <code>doctrine</code> key add the following items:</p>
+<pre class="bg-light border rounded p-3 overflow-auto">'cache' =&gt; ,
+    'filesystem' =&gt; ,
+],</pre>
+<p class="mb-3">The result is that the metadata and query cache will be stored in the <code data-enlighter-language="php">data/cache/doctrine</code> folder and the hydration cache will be stored in-memory.</p>
+<p class="mb-3">Each system is unique, requiring customized configurations. Make sure to identify the specific configuration requirements for your application.</p>
+<p class="mb-3"><b>Doctrine cache is divided into 4 different types: </b></p>
+<ul>
+<li><code data-enlighter-language="php">result_cache</code></li>
+<li><code data-enlighter-language="php">metadata_cache</code></li>
+<li><code data-enlighter-language="php">query_cache</code></li>
+<li><code data-enlighter-language="php">hydration_cache</code></li>
+</ul>
+<h6><b>Result cache</b></h6>
+<p class="mb-3">The result cache can be used to store the results of your queries, enabling Doctrine to avoid querying the database or hydrating the data again after the initial retrieval.</p>
+<p class="mb-3"> </p>
+<h6><b>Metadata cache</b></h6>
+<p class="mb-3">Parsing your class metadata on every request is inefficient. Instead, it's advisable to cache this information using one of the available cache adapters.</p>
+<p class="mb-3"> </p>
+<h6><b>Query cache</b></h6>
+<p class="mb-3">In a production environment, it's strongly recommended to cache the resulted DQL query into its SQL equivalent. Since the query doesn't change unless the DQL query itself changes, it's unnecessary to parse it multiple times.</p>
+<h6><b>Hydration cache</b></h6>
+Doctrine hydration cache is a feature that stores the results of data hydration, which is the process of converting raw database data into usable objects or arrays. By caching these results, it avoids repeating the hydration process for repeated queries, improving performance.		
+			<h5>How to use</h5>		
+		<p class="mb-3">To enable caching for entities, need to add the &nbsp;<code data-enlighter-language="php">#</code> attribute like in the following example:</p>
+<pre data-enlighter-language="php">#<br>#<br>#<br>class Admin extends AbstractEntity implements AdminInterface<br>{<br>}</pre>
+<p class="mb-3">For further details about the cache mode please refer to the <a href="https://www.doctrine-project.org/projects/doctrine-orm/en/3.0/reference/second-level-cache.html" target="_blank" rel="noopener">official documentation</a>.</p>
+<p class="mb-3">When querying data, you can have Doctrine cache your results. You do this by calling the <code data-enlighter-language="php">setCacheable</code> method on the query builder.</p>
+<pre data-enlighter-language="php">$this-&gt;getQueryBuilder()<br>     -&gt;select('admin')<br>     -&gt;from(Admin::class, 'admin')<br>     -&gt;setCacheable(true)<br>     -&gt;getQuery()<br>     -&gt;getResult();</pre>
+<p class="mb-3">Caching is not limited to entities alone. Objects can be cached too. Check the <a href="https://symfony.com/doc/current/components/cache.html#basic-usage-psr-6" target="_blank" rel="noopener">basic cache usage</a> for this purpose.</p>
+<p class="mb-3">In conclusion, cache plays a vital role in optimizing system performance and improving user experience by storing frequently accessed data. As technology continues to evolve, caching mechanisms will remain an integral part of modern computing architectures, driving faster access to data and smoother user interactions across various digital platforms.</p>
+                    </section>
+                </article>
+            </main>
+            
+        </div>
+    </div>
+{% endblock %}

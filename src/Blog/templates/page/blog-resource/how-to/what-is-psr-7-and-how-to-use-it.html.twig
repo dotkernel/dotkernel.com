@@ -1,0 +1,95 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}What is PSR-7 and how to use it{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">How to's</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">What is PSR-7 and how to use it</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+    <div class="container py-4">
+        <div class="row g-4">
+            
+            {% include '@partial/left-menu.html.twig' %}
+
+            <main class="col-12 col-md-8 col-lg-9">
+                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
+                    <header class="mb-4">
+                        <h1 class="h2 text-dark fw-bold">What is PSR-7 and how to use it</h1>
+                        <div class="text-muted small">
+                            <i class="bi bi-folder2-open me-1"></i> How to's
+                        </div>
+                    </header>
+
+                    <section class="post-content text-secondary lh-lg fs-6">
+                        <h2>What is PSR-7 and how to use it</h2><p class="mb-3">PSR-7 is a set of common interfaces defined by PHP Framework Interop Group. These interfaces are representing HTTP messages, and URIs for use when communicating trough HTTP.</p><p class="mb-3">Any web application using this set of interfaces is a PSR-7 application.</p><p class="mb-3">More about interfaces and interfaces examples can be found <a href="http://php.net/manual/language.oop5.interfaces.php" target="_blank" rel="noopener noreferrer">here</a>.</p><h2 id="interfaces">Interfaces</h2><p class="mb-3">In this section the Interfaces methods will be listed. The purpose of this list is to help in finding the methods when working with PSR-7. This can be considered as a cheatsheet for PSR-7 interfaces. The interfaces defined in PSR-7 are the following:</p><div class="table-responsive"><table class="table table-bordered table-sm"><thead><tr><th>Class Name</th><th>Description</th></tr></thead><tbody><tr><td><a href="http://www.php-fig.org/psr/psr-7/#psrhttpmessagemessageinterface" target="_blank" rel="noopener noreferrer">PsrHttpMessageMessageInterface</a></td><td>Representation of a HTTP message</td></tr><tr><td><a href="http://www.php-fig.org/psr/psr-7/#psrhttpmessagerequestinterface" target="_blank" rel="noopener noreferrer">PsrHttpMessageRequestInterface</a></td><td>Representation of an outgoing, client-side request.</td></tr><tr><td><a href="http://www.php-fig.org/psr/psr-7/#psrhttpmessageserverrequestinterface" target="_blank" rel="noopener noreferrer">PsrHttpMessageServerRequestInterface</a></td><td>Representation of an incoming, server-side HTTP request.</td></tr><tr><td><a href="http://www.php-fig.org/psr/psr-7/#psrhttpmessageresponseinterface" target="_blank" rel="noopener noreferrer">PsrHttpMessageResponseInterface</a></td><td>Representation of an outgoing, server-side response.</td></tr><tr><td><a href="http://www.php-fig.org/psr/psr-7/#psrhttpmessagestreaminterface" target="_blank" rel="noopener noreferrer">PsrHttpMessageStreamInterface</a></td><td>Describes a data stream</td></tr><tr><td><a href="http://www.php-fig.org/psr/psr-7/#psrhttpmessageuriinterface" target="_blank" rel="noopener noreferrer">PsrHttpMessageUriInterface</a></td><td>Value object representing a URI.</td></tr><tr><td><a href="http://www.php-fig.org/psr/psr-7/#psrhttpmessageuploadedfileinterface" target="_blank" rel="noopener noreferrer">PsrHttpMessageUploadedFileInterface</a></td><td>Value object representing a file uploaded through an HTTP request.</td></tr></tbody></table></div><h2 id="psr-7-usage">Working with PSR-7</h2><p class="mb-3">The following examples will illustrate how basic operations are done in PSR-7.</p><p class="mb-3">Zend Diactoros is an implementation for PSR-7 interfaces. It will be used to illustrate these examples. Installation guide for Zend Diactoros: <a href="https://zendframework.github.io/zend-diactoros/install/" target="_blank" rel="noopener noreferrer">Zend Diactoros Documentation &#8211; Installation</a></p><blockquote class="blockquote border-start border-4 ps-3 text-muted my-3"><p class="mb-3">All other PSR-7 implementations should have the same behaviour.</p></blockquote><p class="mb-3">Alternative <a href="https://packagist.org/search/?q=psr7%20implementation" target="_blank" rel="noopener noreferrer">PSR-7 implementations</a>.</p><p class="mb-3">To use the <code>Zend Diactoros</code> classes add this at the beggining of the php file:</p><pre class="bg-light border rounded p-3 overflow-auto">>use ZendDiactorosServerRequestFactory;
+use ZendDiactorosResponse;
+// autoloading
+$request = ServerRequestFactory::fromGlobals($_SERVER, $_GET, $_POST, $_COOKIE, $_FILES);
+$response = new Response();
+</pre><blockquote class="blockquote border-start border-4 ps-3 text-muted my-3"><p class="mb-3">Note: The article applies to all PSR-7 implementations from this point forward.</p></blockquote><h2 id="working-with-http-headers">Working with HTTP Headers</h2><h4 id="adding-headers-to-response">Adding headers to response:</h4><pre class="bg-light border rounded p-3 overflow-auto">>$response-&gt;withHeader('My-Custom-Header', 'My Custom Message');
+</pre><h4 id="appending-values-to-headers">Appending values to headers</h4><pre class="bg-light border rounded p-3 overflow-auto">>$response-&gt;withAddedHeader('My-Custom-Header', 'The second message');
+</pre><h4 id="checking-if-header-exists">Checking if header exists:</h4><pre class="bg-light border rounded p-3 overflow-auto">>$response-&gt;hasHeader('My-Custom-Header'); // will return true
+</pre><blockquote class="blockquote border-start border-4 ps-3 text-muted my-3"><p class="mb-3">Note: My-Custom-Header was only added in the Response</p></blockquote><h4 id="getting-comma-separated-values-from-a-header-also-applies-to-request">Getting comma-separated values from a header (also applies to request)</h4><pre class="bg-light border rounded p-3 overflow-auto">>// getting value from request headers
+$request-&gt;getHeaderLine('Content-Type'); // will return: "text/html; charset=UTF-8"
+// getting value from response headers
+$response-&gt;getHeaderLine('My-Custom-Header'); // will return:  "My Custom Message; The second message"
+</pre><pre class="bg-light border rounded p-3 overflow-auto">>// getting value from request headers
+$request-&gt;getHeaderLine('Content-Type'); // will return: "text/html; charset=UTF-8"
+// getting value from response headers
+$response-&gt;getHeaderLine('My-Custom-Header'); // will return:  "My Custom Message; The second message"
+</pre><h4 id="getting-array-of-value-from-a-header-also-applies-to-request">Getting array of value from a header (also applies to request)</h4><pre class="bg-light border rounded p-3 overflow-auto">>// getting value from request headers
+$request-&gt;getHeader('Content-Type'); // will return: 
+// getting value from response headers
+$response-&gt;getHeader('My-Custom-Header'); // will return:  
+</pre><h4 id="removing-headers-from-http-messages">Removing headers from HTTP Messages</h4><pre class="bg-light border rounded p-3 overflow-auto">>// removing a header from Request, removing deprecated "Content-MD5" header
+$request-&gt;withoutHeader('Content-MD5'); 
+// removing a header from Response
+// effect: the browser won't know the size of the stream
+// the browser will download the stream till it ends
+$response-&gt;withoutHeader('Content-Length');
+</pre><h2 id="working-with-http-message-body">Working with HTTP Message Body</h2><p class="mb-3">When working with the PSR-7 there are two methods of implementation:</p><h4 id="1-getting-the-body-separately">1. Getting the body separately</h4><blockquote class="blockquote border-start border-4 ps-3 text-muted my-3"><p class="mb-3">This method makes the body handling easier to understand and is useful when repeatedly calling body methods. (You only call <code>getBody()</code> once). Using this method mistakes like <code>$response-&gt;write()</code> are also prevented.</p></blockquote><pre class="bg-light border rounded p-3 overflow-auto">>$body = $response-&gt;getBody();
+// operations on body, eg. read, write, seek
+// ...
+// replacing the old body
+$response-&gt;withBody($body); 
+// this last statement is optional as we working with objects
+// in this case the "new" body is same with the "old" one
+// the $body variable has the same value as the one in $request, only the reference is passed
+</pre><h4 id="2-working-directly-on-response">2. Working directly on response</h4><blockquote class="blockquote border-start border-4 ps-3 text-muted my-3"><p class="mb-3">This method is useful when only performing few operations as the <code>$request-&gt;getBody()</code> statement fragment is required</p></blockquote><pre class="bg-light border rounded p-3 overflow-auto">>$response-&gt;getBody()-&gt;write('hello');
+</pre><h2 id="getting-the-body-contents">Getting the body contents</h2><p class="mb-3">The following snippet gets the contents of a stream contents.</p><blockquote class="blockquote border-start border-4 ps-3 text-muted my-3"><p class="mb-3">Note: Streams must be rewinded, if content was written into streams, it will be ignored when calling <code>getContents()</code> because the stream pointer is set to the last character, which is <code> </code> &#8211; meaning end of stream.</p></blockquote><pre class="bg-light border rounded p-3 overflow-auto"><code lang="php">
+$body = $response-&gt;getBody();
+$body-&gt;rewind(); // or $body-&gt;seek(0);
+$bodyText = $body-&gt;getContends();
+</code></pre><blockquote class="blockquote border-start border-4 ps-3 text-muted my-3"><p class="mb-3">Note: If <code>$body-&gt;seek(1)</code> is called before <code>$body-&gt;getContents()</code>, the first character will be ommited as the starting pointer is set to <code>1</code>, not <code>0</code>. This is why using <code>$body-&gt;rewind()</code> is recommended.</p></blockquote><h2 id="append-to-body">Append to body</h2><pre class="bg-light border rounded p-3 overflow-auto">>$response-&gt;getBody()-&gt;write('Hello'); // writing directly
+$body = $request-&gt;getBody(); // which is a `StreamInterface`
+$body-&gt;write('xxxxx');
+</pre><h2 id="prepend-to-body">Prepend to body</h2><p class="mb-3">Prepending is different when it comes to streams. The content must be copied before writing the content to be prepended. The following example will explain the behaviour of streams.</p><pre class="bg-light border rounded p-3 overflow-auto">>// assuming our response is initially empty
+$body = $repsonse-&gt;getBody();
+// writing the string "abcd"
+$body-&gt;write('abcd');
+// seeking to start of stream
+$body-&gt;seek(0);
+// writing 'ef'
+$body-&gt;write('ef'); // at this point the stream contains "efcd"
+</pre><h4 id="prepending-by-rewriting-separately">Prepending by rewriting separately</h4><pre class="bg-light border rounded p-3 overflow-auto">>// assuming our response body stream only contains: "abcd"
+$body = $response-&gt;getBody();
+$body-&gt;rewind();
+$contents = $body-&gt;getContents(); // abcd
+// seeking the stream to beginning
+$body-&gt;rewind();
+$body-&gt;write('ef'); // stream contains "efcd"
+$body-&gt;write($contents); // stream contains "efabcd"
+</pre><blockquote class="blockquote border-start border-4 ps-3 text-muted my-3"><p class="mb-3">Note: <code>getContents()</code> seeks the stream while reading it, therefore if the second <code>rewind()</code> method call was not present the stream would have resulted in <code>abcdefabcd</code> because the <code>write()</code> method appends to stream if not preceeded by <code>rewind()</code> or <code>seek(0)</code>.</p></blockquote><h4 id="prepending-by-using-contents-as-a-string">Prepending by using contents as a string</h4><pre class="bg-light border rounded p-3 overflow-auto">>$body = $response-&gt;getBody();
+$body-&gt;rewind(); // or $body-&gt;seek(0);
+$bodyText = $body-&gt;getContends();
+</pre><p class="mb-3">More information can be found in the <a href="https://docs.dotkernel.com/Prerequisites/PSR-7.html">PSR-7 article</a> in<a href="https://docs.dotkernel.com/"> DotKernel3 documentation portal</a>.</p><p class="mb-3">Sources: <a href="http://www.php-fig.org/psr/psr-7/">PSR-7: HTTP messages</a> <a href="https://zendframework.github.io/zend-diactoros/">zend-diactoros</a></p>
+                    </section>
+                </article>
+            </main>
+            
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}DotKernel Coding Standard{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">DotKernel Coding Standard</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+    <div class="container py-4">
+        <div class="row g-4">
+            
+            {% include '@partial/left-menu.html.twig' %}
+
+            <main class="col-12 col-md-8 col-lg-9">
+                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
+                    <header class="mb-4">
+                        <h1 class="h2 text-dark fw-bold">DotKernel Coding Standard</h1>
+                        <div class="text-muted small">
+                            <i class="bi bi-folder2-open me-1"></i> Dotkernel
+                        </div>
+                    </header>
+
+                    <section class="post-content text-secondary lh-lg fs-6">
+                        <strong>DotKernel</strong> will be a "skeleton"of <a href="http://framework.zend.com/" target="_blank" rel="noopener noreferrer"><strong>Zend Framework</strong></a>.
+DotKernel borrowed the coding standard from Zend Framework: <strong><a title="ZF Coding Standard" href="http://framework.zend.com/manual/en/coding-standard.php-file-formatting.html" target="_blank" rel="noopener noreferrer">ZF Coding Standard</a> </strong>with some exceptions.
+
+In what follows, we will make remarks only on those features that are slightly different in the coding standards of DotKernel.
+<!--more-->
+
+<a href="http://framework.zend.com/manual/en/coding-standard.php-file-formatting.html" target="_blank" rel="noopener noreferrer"><strong>B.2. PHP File Formatting</strong></a>
+<ul>
+	<li><a href="http://framework.zend.com/manual/en/coding-standard.php-file-formatting.html#coding-standard.php-file-formatting.indentation" target="_blank" rel="noopener noreferrer"><strong>B.2.2. Indentation</strong></a></li>
+indentation - make indent with tabs, and not with space</ul>
+<a href="http://framework.zend.com/manual/en/coding-standard.naming-conventions.html" target="_blank" rel="noopener noreferrer"><strong>B.3. Naming Conventions</strong></a>
+
+Camel naming convention
+<ul>
+	<li><a href="http://framework.zend.com/manual/en/coding-standard.naming-conventions.html#coding-standard.naming-conventions.classes" target="_blank" rel="noopener noreferrer"><strong>B.3.1. Classes</strong></a></li>
+starts with Dot_ (e.g. Dot_Templates)
+	<li><strong><a href="http://framework.zend.com/manual/en/coding-standard.naming-conventions.html#coding-standard.naming-conventions.interfaces" target="_blank" rel="noopener noreferrer">B.3.2. Interfaces</a></strong></li>
+ends with the string "Interface"(e.g. Dot_Db_Interface)
+	<li><strong><a href="http://framework.zend.com/manual/en/coding-standard.naming-conventions.html#coding-standard.naming-conventions.filenames" target="_blank" rel="noopener noreferrer">B.3.3. Filenames</a></strong></li>
+All php files will have the  extension  ".php". No fancy extensions like .inc
+
+&nbsp;</ul>
+<a href="http://framework.zend.com/manual/en/coding-standard.coding-style.html#coding-standard.coding-style.control-statements" target="_blank" rel="noopener noreferrer"><strong>B.4.6. Control Statements</strong></a>
+every starting curly brace <strong>}</strong> after a statement starts on a new line, end it's closing curly brace <strong>} </strong>will be on a new line too. The start and end braces must be on the same column (for better indentation of the code)
+e.g:
+<pre class="bg-light border rounded p-3 overflow-auto">>if ($a != 2)
+{
+   $a = 2;
+}</pre>
+<pre class="bg-light border rounded p-3 overflow-auto">>if ($a != 2)
+{
+    $a = 2;
+    if($a == 2)
+    {
+       $c = 3;
+    }
+}</pre>
+                    </section>
+                </article>
+            </main>
+            
+        </div>
+    </div>
+{% endblock %}

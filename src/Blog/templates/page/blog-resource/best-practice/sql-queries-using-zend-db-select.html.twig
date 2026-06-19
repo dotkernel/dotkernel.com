@@ -1,0 +1,122 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}SQL queries using Zend_Db – SELECT{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Best Practice</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">SQL queries using Zend_Db – SELECT</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+    <div class="container py-4">
+        <div class="row g-4">
+            
+            {% include '@partial/left-menu.html.twig' %}
+
+            <main class="col-12 col-md-8 col-lg-9">
+                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
+                    <header class="mb-4">
+                        <h1 class="h2 text-dark fw-bold">SQL queries using Zend_Db – SELECT</h1>
+                        <div class="text-muted small">
+                            <i class="bi bi-folder2-open me-1"></i> Best Practice
+                        </div>
+                    </header>
+
+                    <section class="post-content text-secondary lh-lg fs-6">
+                        <a href="http://framework.zend.com/manual/en/zend.db.adapter.html" target="_blank" rel="noopener noreferrer">Zend_Db</a> and its related classes provide a simple SQL database interface for Zend Framework.
+To connect to MySql database, we are using Pdo_Mysql adapter :
+<pre class="bg-light border rounded p-3 overflow-auto">>
+$db = Zend_Db::factory('Pdo_Mysql', $dbConnect);
+</pre>
+</br>
+</br>
+<!--more-->
+<b>SELECT query - WHERE clause</b>
+</br>
+The below 2 classical SQL queries are equivalent. First one is simple, the second one use INNER JOIN keyword, but the result is the same.
+<pre class="bg-light border rounded p-3 overflow-auto">>
+SELECT a.id, a.name, b.order_id  
+FROM users AS a, orders AS b
+WHERE a.id = b.user_id
+AND a.id = {$userId}
+</pre>
+</br>
+<pre class="bg-light border rounded p-3 overflow-auto">>
+SELECT `a`.`id`, `a`.`name`, `b`.`order_id`
+FROM `users` AS `a` INNER JOIN `orders` AS `b` ON a.id = b.user_id
+WHERE (a.id = '{$userId}')
+</pre>
+</br>
+The above querys are translated in Zend_Db style: 
+</br>
+<pre class="bg-light border rounded p-3 overflow-auto">>
+$select = $db->select()
+             ->from(array('a'=>'users'),
+                    array('a.id', 'a.name'))
+             ->join(array('b'=>'orders'), 'a.id = b.user_id', array('b.order_id'))
+             ->where('a.id = ?', $userId) 
+</pre>
+</br>
+If we don't want to select any column from the second table, the 3rd parameter of join() method should be an empty string
+<pre class="bg-light border rounded p-3 overflow-auto">>
+SELECT a.id, a.name
+FROM users AS a, orders AS b
+WHERE a.id = b.user_id
+AND a.id = {$userId}
+</pre>
+</br>
+<pre class="bg-light border rounded p-3 overflow-auto"> >
+$select = $db->select()
+             ->from(array('a'=>'users'),
+                    array('a.id', 'a.name'))
+             ->join(array('b'=>'orders'), 'a.id = b.user_id', '')
+             ->where('a.id = ?', $userId) 
+</pre>
+</br>
+Note*: If we don't write the 3rd parameter, it will select all the fields from that table:
+<pre class="bg-light border rounded p-3 overflow-auto">>
+SELECT a.id, a.name, b.*
+FROM users AS a, orders AS b
+WHERE a.id = b.user_id
+AND a.id = {$user_id}
+</pre>
+</br>
+<pre class="bg-light border rounded p-3 overflow-auto"> >
+$select = $db->select()
+             ->from(array('a'=>'users'),
+                    array('a.id', 'a.name'))
+              ->join(array('b'=>'orders'), 'a.id = b.user_id')
+              ->where('a.id = ?', $userId) 
+</pre>
+</br>
+<b>SELECT query - WHERE IN clause</b>
+</br>
+<pre class="bg-light border rounded p-3 overflow-auto">>
+SELECT id 
+FROM users 
+WHERE aff_id IN ('1','2','3')
+</pre>
+</br>
+<pre class="bg-light border rounded p-3 overflow-auto"> >
+$select = $db->select()
+             ->from('users', array('id'))
+             ->where('aff_id IN (?)', array(1,2,3));
+</pre>
+</br>
+<b>Note*:</b> If you are not sure if you write the correct query, before you fetch it you can echo your query to visualize it:
+<pre class="bg-light border rounded p-3 overflow-auto">>
+echo $select->__toString();exit;
+</pre>
+</br>
+Also see:
+ - <a href="http://www.dotkernel.com/best-practice/sql-fetch-zend-db/">What are returning the FETCH functions from Zend_Db</a></br>
+ - <a href="http://www.dotkernel.com/best-practice/subqueris-with-zend-db/">Subqueries with Zend_Db</a></br>
+ - <a href="http://www.dotkernel.com/best-practice/iud-statements-with-zend-d/">INSERT, UPDATE, DELETE statements with Zend_Db</a>
+                    </section>
+                </article>
+            </main>
+            
+        </div>
+    </div>
+{% endblock %}

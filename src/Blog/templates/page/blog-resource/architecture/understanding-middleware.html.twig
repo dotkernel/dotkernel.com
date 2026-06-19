@@ -1,0 +1,232 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}Understanding Middleware{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Architecture</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">Understanding Middleware</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+    <div class="container py-4">
+        <div class="row g-4">
+            
+            {% include '@partial/left-menu.html.twig' %}
+
+            <main class="col-12 col-md-8 col-lg-9">
+                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
+                    <header class="mb-4">
+                        <h1 class="h2 text-dark fw-bold">Understanding Middleware</h1>
+                        <div class="text-muted small">
+                            <i class="bi bi-folder2-open me-1"></i> Architecture
+                        </div>
+                    </header>
+
+                    <section class="post-content text-secondary lh-lg fs-6">
+                        <!-- wp:paragraph -->
+<p class="mb-3"><strong>Middleware </strong>is code that exists <strong>between the request and response</strong>, and which can take the incoming request, perform actions based on it, and either <strong>complete the response or pass delegation </strong>on to the next middleware in the queue.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">The purpose of middleware</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">Middleware makes it easier for software developers to implement communication and input/output, so they can focus on the specific purpose of their application. In web services the <code>Input</code> represents the <code>Request</code> received, and <code>Output</code> represents the <code>Response</code> to be sent.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Using middleware</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">Middleware can be used to, but is not limited to, the following purposes:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>A/B Testing</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Debugging</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Caching</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>CORS</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Authentication (HTTP Basic Auth, OAuth 2.0, OpenID)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>CSRF Protection</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Rate Limiting</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Referrals</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>IP Restriction</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Usage</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">According to <a href="https://www.php-fig.org/psr/psr-15/" data-type="link" data-id="https://www.php-fig.org/psr/psr-15/" target="_blank" rel="noreferrer noopener">PSR-15: HTTP Server Request Handlers</a>, a component that processes an incoming request and generates a response is a middleware. To be compliant with the PSR-15 standard, the middleware must implement <a href="https://github.com/php-fig/http-server-middleware" data-type="link" data-id="https://github.com/php-fig/http-server-middleware" target="_blank" rel="noreferrer noopener">Psr\Http\Server\MiddlewareInterface</a>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:enlighter/codeblock {"language":"php"} -->
+<pre class="EnlighterJSRAW" data-enlighter-language="php" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">class MyMiddleware implements MiddlewareInterface</pre>
+<!-- /wp:enlighter/codeblock -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">The middleware class must then implement the <code>process </code>method.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:enlighter/codeblock {"language":"php"} -->
+<pre class="EnlighterJSRAW" data-enlighter-language="php" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface;</pre>
+<!-- /wp:enlighter/codeblock -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">Below is an example implementation of a middleware which processes the request.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:enlighter/codeblock {"language":"php"} -->
+<pre class="EnlighterJSRAW" data-enlighter-language="php" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">class ExampleMiddleware implements MiddlewareInterface
+{
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
+    {
+        //process request
+
+        return $handler->handle($request);
+    }
+}</pre>
+<!-- /wp:enlighter/codeblock -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">This is an example implementation of a middleware which processes the response.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:enlighter/codeblock {"language":"php"} -->
+<pre class="EnlighterJSRAW" data-enlighter-language="php" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">class ExampleMiddleware implements MiddlewareInterface
+{
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
+    {
+        $response = $handler->handle($request);
+
+        //process response 
+
+        return $response;
+    }
+}</pre>
+<!-- /wp:enlighter/codeblock -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">This approach processes both the request and response.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:enlighter/codeblock {"language":"php"} -->
+<pre class="EnlighterJSRAW" data-enlighter-language="php" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">class ExampleMiddleware implements MiddlewareInterface
+{
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
+    {
+        //process request
+
+        $response = $handler->handle($request);
+
+        //process response 
+
+        return $response;
+    }
+}</pre>
+<!-- /wp:enlighter/codeblock -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">How middleware is called</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">The <strong>application pipeline</strong> defines the execution flow. The request passes through the middleware in the pipeline, one by one, in the order they are placed in the pipeline. Each middleware processes the request and/or response and either <strong>passes control </strong>to the next middleware in the chain or it <strong>terminates the request</strong> and returns a reponse.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>If control passes through all middleware successfully, the execution is eventually passed to your custom code which generates a response of its own. The execution then passes through the middleware in reverse order and returns the response.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>If the execution is terminated before reaching your custom code (e.g. via an exception), then the response is generated by the last middleware reached by the execution.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Middleware in practice</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">A simple real world example of middleware usage can be the enhancement of a request with the user IP for logging porposes or building reports based on geographical data. For this example the pipeline has a single middleware.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">The flow begins with a request. The execution passes the control to the IP middleware which enhances the request with the user's IP and other relevant data. The control passes to your custom handler that processes the request and returns a response. The flow continues in reverse order, back to the IP middleware which can, if needed, change the output before it gets returned to the user that initiated the request.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Additional resources<a href="https://getlaminas.org/blog/2025-04-08-mezzio101-what-defines-a-middleware-architecture.html#content-additional-resources"></a>:</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><a href="https://philsturgeon.uk/php/2016/05/31/why-care-about-php-middleware/" target="_blank" rel="noreferrer noopener">Why Care About PHP Middleware?</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="https://docs.mezzio.dev/" target="_blank" rel="noreferrer noopener">Learn more about Mezzio from the source</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="https://docs.laminas.dev/components/" target="_blank" rel="noreferrer noopener">Laminas components</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="https://github.com/dotkernel/light" target="_blank" rel="noreferrer noopener">Dotkernel Light, an implementation of Mezzio using handlers</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="https://www.slimframework.com/" target="_blank" rel="noreferrer noopener">The Slim PHP micro framework</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="https://www.php-fig.org/psr/" target="_blank" rel="noreferrer noopener">The PHP Framework Interop Group's full list of PSRs</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="https://vimeo.com/showcase/4061778/video/177154167" target="_blank" rel="noreferrer noopener">PSR-7: The magical middleware tour</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="https://www.youtube.com/watch?v=v1I57-_Rsv0" target="_blank" rel="noreferrer noopener">From Helpers to Middleware</a></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+                    </section>
+                </article>
+            </main>
+            
+        </div>
+    </div>
+{% endblock %}

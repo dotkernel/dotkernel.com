@@ -1,0 +1,131 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}Where is the intl PHP extension? Problem solved!{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">PHP Troubleshooting</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">Where is the intl PHP extension? Problem solved!</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+    <div class="container py-4">
+        <div class="row g-4">
+            
+            {% include '@partial/left-menu.html.twig' %}
+
+            <main class="col-12 col-md-8 col-lg-9">
+                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
+                    <header class="mb-4">
+                        <h1 class="h2 text-dark fw-bold">Where is the intl PHP extension? Problem solved!</h1>
+                        <div class="text-muted small">
+                            <i class="bi bi-folder2-open me-1"></i> PHP Troubleshooting
+                        </div>
+                    </header>
+
+                    <section class="post-content text-secondary lh-lg fs-6">
+                        <h2>Problem</h2>
+PHP packages/frameworks/libraries/scripts we work with might require different PHP extensions. In this case the Intl extension is needed to work with using Internationalization Functions.
+
+<a href="https://www.gala-global.org/language-industry/intro-language-industry/what-internationalization" target="_blank" rel="noopener noreferrer">What is Internationalization?</a>
+
+Got any of these error messages?
+<ul>
+ 	<li>Zend InputFilter requires intl PHP extension</li>
+ 	<li>The requested PHP extension intl is missing from your system</li>
+</ul>
+&nbsp;
+
+This happened because the PHP Intl extension isn't installed or enabled.
+
+Parts of this tutorial can be also a guide for installing or enabling other extensions.
+<h2>What is PHP Intl?</h2>
+<blockquote class="blockquote border-start border-4 ps-3 text-muted my-3">Internationalization extension (further is referred as Intl) is a wrapper for » ICU library, enabling PHP programmers to perform various locale-aware operations including but not limited to formatting, transliteration, encoding conversion, calendar operations</blockquote>
+Source: <a href="http://php.net/manual/en/intro.intl.php" target="_blank" rel="noopener noreferrer">PHP Documentation</a>
+<blockquote class="blockquote border-start border-4 ps-3 text-muted my-3">This extension may be installed using the bundled version as of PHP 5.3.0, or as a PECL extension as of PHP 5.2.0. In other words, there are two methods to install the intl extension.</blockquote>
+Source: <a href="http://php.net/manual/en/intl.installation.php" target="_blank" rel="noopener noreferrer">PHP Documentation</a>
+<h2>Cause</h2>
+If you have installed the unbundled PHP version, the extension is not installed on the system. (unless you've installed it separately)
+
+If you have the bundled PHP version, the extension might be existing but not enabled.
+
+&nbsp;
+<h2>Solutions</h2>
+<h4>For Linux-based Server (assuming you have root access):</h4>
+<ul>
+ 	<li>Make sure the <strong>php_intl.so</strong> file exists within your php extensions directory, find the extensions directory by:
+<ul>
+ 	<li>using <strong>phpinfo()</strong></li>
+ 	<li>running this command:  <code>php -r "echo ini_get('extension_dir');"</code></li>
+ 	<li>(note: both options gets the extension_dir right from the PHP runtime configuration)</li>
+</ul>
+</li>
+</ul>
+<ul>
+ 	<li>If the file exists:
+<ul>
+ 	<li>search for the config file (<strong>php.ini, </strong>usually <strong>/etc/php.ini</strong>) and open it</li>
+ 	<li>Make sure the line "extension=php_intl.so" is existing and not commented</li>
+ 	<li>Restart the web server (usually <strong>sudo service httpd restart</strong>)</li>
+ 	<li>Check if the extension is enabled using <strong>phpinfo()</strong></li>
+</ul>
+</li>
+ 	<li>If the file doesn't exist
+<ul>
+ 	<li>Check your php version by running the "php -v" command</li>
+ 	<li>For PHP 5 install the <strong>php-intl</strong> package using your package manager - <a href="https://en.wikipedia.org/wiki/Package_manager#Front-ends_for_locally_compiled_packages" target="_blank" rel="noopener noreferrer">package managers and commands</a>
+<ul>
+ 	<li>Most common: <strong>apt-get install php-intl (for ubuntu-based linux) </strong>or <strong>yum install php-intl (for CentOS)</strong></li>
+</ul>
+</li>
+ 	<li>For PHP 7, install the<strong> php7.x-intl </strong>(depending on your php version)</li>
+ 	<li>Repeat the steps for the case in which the file exists</li>
+</ul>
+</li>
+</ul>
+For projects hosted on a shared hosting platform you must ask your hosting provider to install/enable the PHP Intl extension.
+
+&nbsp;
+<h4>For Windows-based Server:</h4>
+<ul>
+ 	<li>Make sure the <strong>php_intl.dll</strong> file exists within your php extensions directory
+<ul>
+ 	<li>for separately installed PHP: C:\path\to\php\ext\</li>
+ 	<li>for xampp: C:\path\to\xampp\php\ext</li>
+ 	<li>(note: your drive letter might be different)</li>
+</ul>
+</li>
+</ul>
+<ul>
+ 	<li>If the file exists:
+<ul>
+ 	<li>search for the config file (<strong>php.ini, </strong>usually in the same folder as the php executable) and open it</li>
+ 	<li>Make sure the line "extension=php_intl.dll" is existing and not commented</li>
+ 	<li>Restart the web server (usually apache)</li>
+ 	<li>Check if the extension is enabled using <strong>phpinfo()</strong></li>
+</ul>
+</li>
+</ul>
+<ul>
+ 	<li>If the file doesn't exist:
+<ul>
+ 	<li>Check your php version by running the "php -v" command</li>
+ 	<li>Download the PHP version that corresponds to yours from the <a href="http://windows.php.net/download/" target="_blank" rel="noopener noreferrer">PHP Downloads Page</a> (TS/NTS, x86/x64)
+<ul>
+ 	<li>To find thread safety for php, run: <strong>php -i | findstr "Thread" </strong>, <a href="http://stackoverflow.com/questions/5799843/find-if-the-installed-php-is-threadsafe-or-nonthreadsafe target=" rel="noopener noreferrer">source &amp; more info</a>. <strong>
+</strong></li>
+</ul>
+</li>
+ 	<li>Search for the <strong>php_intl.dll</strong> file in the ext folder in that version and copy it in your php\ext folder</li>
+ 	<li>Repeat the steps for the case in which the file exists</li>
+</ul>
+</li>
+</ul>
+Edit: changed <strong>php7.0 </strong>occurrences with <strong>php7.x</strong> as the version may vary.
+                    </section>
+                </article>
+            </main>
+            
+        </div>
+    </div>
+{% endblock %}

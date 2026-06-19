@@ -1,0 +1,67 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}SVN Export in a virtual host{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Best Practice</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">SVN Export in a virtual host</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+    <div class="container py-4">
+        <div class="row g-4">
+            
+            {% include '@partial/left-menu.html.twig' %}
+
+            <main class="col-12 col-md-8 col-lg-9">
+                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
+                    <header class="mb-4">
+                        <h1 class="h2 text-dark fw-bold">SVN Export in a virtual host</h1>
+                        <div class="text-muted small">
+                            <i class="bi bi-folder2-open me-1"></i> Best Practice
+                        </div>
+                    </header>
+
+                    <section class="post-content text-secondary lh-lg fs-6">
+                        The following commands should be run in the terminal (for example, using Putty in Windows) on the host where you want to export the repository). It's recommended that you run them using the domain's user, not root.
+<!--more-->
+
+
+First make sure that Subversion is installed on the host. To check if it is installed, run:
+<pre class="bash">svn --version</pre>
+If you don't get a "command not found" message, subversion is installed. Otherwise, you need to install it.
+
+The next step is to go to where you want to export the contents of the repository (eg.: "<em>cd /var/www/vhosts/example.com/httpdocs</em>" or "<em>cd /home/sitename/public_html</em>").
+
+The command looks like this:
+<pre class="bg-light border rounded p-3 overflow-auto">>svn export   <repositoryUrl> <targetDirectory></pre>
+
+where:
+<ul>
+	<li><strong>-r revisionNumber</strong> - <em>optional</em> - export a specific revision. By default, the latest revision will be used</li>
+	<li><strong>repositoryUrl</strong> - the repository URL (eg: <em>http://example.com/repos/project-name/trunk/</em>). Remember to add /trunk/, or change it appropriately if you need to export a certain branch or tag</li>
+	<li><strong>targetDirectory</strong>
+<ul>
+	<li><strong>./</strong> - means the current directory</li>
+	<li><strong>./project-name</strong> - will export to the <em>project-name</em> subdirectory</li>
+	<li><strong>/var/www/vhosts/example.com/httpdocs</strong> - will export to an absolute path</li>
+</ul>
+</li>
+	<li><strong>--force</strong> - <em>optional</em> - by default SVN will not export in an existing directory. if you want to override this, you have to use the <em>force</em> parameter. <strong>Be careful, this option can overwrite files</strong></li>
+</ul>
+Examples:
+<pre class="bg-light border rounded p-3 overflow-auto">>svn export http://v1.dotkernel.net/svn/trunk ./ --force
+svn export -r 423 http://v1.dotkernel.net/svn/trunk ./ --force
+svn export http://v1.dotkernel.net/svn/trunk /var/www/vhosts/domain.com/httpdocs/dk</pre>
+For more information, you can run <strong>svn help export</strong>.
+
+If you've exported the repository using a different user (root for example), you can change the permissions back by running the following command as root:
+<pre class="bg-light border rounded p-3 overflow-auto">>chown -R siteuser.psacln /var/www/vhosts/example.com/httpdocs</pre>
+                    </section>
+                </article>
+            </main>
+            
+        </div>
+    </div>
+{% endblock %}

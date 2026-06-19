@@ -1,0 +1,57 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}Zend_Mail and Zend_Http Security Fixes in Zend Framework 1.12.12{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Zend Framework</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">Zend_Mail and Zend_Http Security Fixes in Zend Framework 1.12.12</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+    <div class="container py-4">
+        <div class="row g-4">
+            
+            {% include '@partial/left-menu.html.twig' %}
+
+            <main class="col-12 col-md-8 col-lg-9">
+                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
+                    <header class="mb-4">
+                        <h1 class="h2 text-dark fw-bold">Zend_Mail and Zend_Http Security Fixes in Zend Framework 1.12.12</h1>
+                        <div class="text-muted small">
+                            <i class="bi bi-folder2-open me-1"></i> Zend Framework
+                        </div>
+                    </header>
+
+                    <section class="post-content text-secondary lh-lg fs-6">
+                        The release of ZF 1.12.12 was just announced,  with Security Updates especially on
+Zend_Mail and Zend_Http components.
+
+For more information, please read the official release announcement:
+<a href="http://bit.ly/1Hr0K6e" target="_blank" rel="noopener noreferrer">Zend Framework 1.12.12 Released</a>
+
+Also, the ZF  PEAR channel was updated to latest 1.12.12 release.
+
+<strong>pear upgrade zend/zend</strong>
+
+We strongly recommend that consumers of the Zend_Http and Zend_Mail components upgrade immediately.
+Also, DotKernel Application Framework use intensively the Zend_Mail component.
+
+If you cannot, you can download the patch separately and apply it to your ZF install:
+
+<a href="https://packages.zendframework.com/releases/ZendFramework-1.12.12/0001-ZF2015-04-Fix-CRLF-injections-in-HTTP-and-Mail.patch" target="_blank" rel="noopener noreferrer">ZF2015-04 patch for ZF1</a>
+
+&nbsp;
+
+<strong>May 20, 2015 EDIT:</strong>
+
+Zend Framework 1.12.13 was released, in order to fix a regression issue introduced in 1.12.12 release.
+
+<a href="http://framework.zend.com/blog/zend-framework-1-12-13-released.html" target="_blank" rel="noopener noreferrer">Release Announcement </a>
+                    </section>
+                </article>
+            </main>
+            
+        </div>
+    </div>
+{% endblock %}

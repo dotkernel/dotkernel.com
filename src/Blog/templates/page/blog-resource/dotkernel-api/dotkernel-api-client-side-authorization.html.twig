@@ -1,0 +1,60 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}DotKernel API Client Side  Authorization{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel API</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">DotKernel API Client Side  Authorization</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+    <div class="container py-4">
+        <div class="row g-4">
+            
+            {% include '@partial/left-menu.html.twig' %}
+
+            <main class="col-12 col-md-8 col-lg-9">
+                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
+                    <header class="mb-4">
+                        <h1 class="h2 text-dark fw-bold">DotKernel API Client Side  Authorization</h1>
+                        <div class="text-muted small">
+                            <i class="bi bi-folder2-open me-1"></i> Dotkernel API
+                        </div>
+                    </header>
+
+                    <section class="post-content text-secondary lh-lg fs-6">
+                        <strong>This article covers the basic authorization of a Client application which use a backend built using </strong><a href="https://github.com/dotkernel/api" target="_blank" rel="noopener noreferrer"><strong>DotKernel API</strong></a>
+
+<h3>Authorization Request</h3>
+Client application users send a <strong>POST</strong> request to the backend containing the following JSON object:
+<pre class="php">
+{
+"grant_type": "password",
+"client_id": "{API_CLIENT}",
+"client_secret": "{API_CLIENT_SECRET}",
+"scope": "{SCOPE}",
+"username": "{USERNAME/EMAIL}",
+"password": "{PASSWORD}"
+}
+</pre>
+
+<h3>Authorization Response</h3>
+If the credentials are correct, the <strong>API</strong> will return a <strong>JSON</strong> object containing the authentication data:
+<pre class="php" >
+{
+"token_type": "Bearer",
+"expires_in": 86400,
+"access_token": "...",
+"refresh_token": "..."
+}
+</pre>
+
+When sending <strong>API</strong> requests to an endpoint which requires authorization, an <em>Authorization</em> header must be present containing the following data: <code class="highlighter-rouge"> "Bearer {access_token}"</code>, where {access_token} represents the content of the key with the same name found in the above response.
+                    </section>
+                </article>
+            </main>
+            
+        </div>
+    </div>
+{% endblock %}

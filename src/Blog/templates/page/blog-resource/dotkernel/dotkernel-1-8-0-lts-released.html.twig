@@ -1,0 +1,78 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}DotKernel 1.8.0 LTS Released{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">DotKernel 1.8.0 LTS Released</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+    <div class="container py-4">
+        <div class="row g-4">
+            
+            {% include '@partial/left-menu.html.twig' %}
+
+            <main class="col-12 col-md-8 col-lg-9">
+                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
+                    <header class="mb-4">
+                        <h1 class="h2 text-dark fw-bold">DotKernel 1.8.0 LTS Released</h1>
+                        <div class="text-muted small">
+                            <i class="bi bi-folder2-open me-1"></i> Dotkernel
+                        </div>
+                    </header>
+
+                    <section class="post-content text-secondary lh-lg fs-6">
+                        DotKernel 1.8.0 (LTS) was just released.
+<h4><strong>What is LTS?
+</strong></h4>
+Long-term support (LTS) is a type of special versions or editions of software designed to be supported for a longer than normal period. It is particularly applicable to open-source software projects. It contains many bug fixes, some refactoring and a few minor features. Find more details read <a href="http://www.dotkernel.com/long-term-support" target="_blank" rel="noopener noreferrer">this article</a>.
+
+&nbsp;
+
+Here are a few of the many changes to DotKernel in the latest release:
+<h3><!--more--></h3>
+<h3>Highlights of 1.8.0 (LTS)</h3>
+&nbsp;
+<h4>Plugin Architecture</h4>
+Starting with 1.8.0 we will start using Plugins to make the DotKernel extending easier. We'll keep you up to date about how you create and use a plugin.
+<h4>New design</h4>
+We've redesigned the admin module and the frontend module is now mobile-friendly, but you can still use the mobile module.
+<h4>Loads Faster</h4>
+The DotKernel framework just got a big boost because it supports APC &amp; File Caching within the framework, all the XML's and config files are cached in order to maximize response speed for more information about caching and how to cache your data see <a href="http://www.dotkernel.com/dotkernel/caching-in-dotkernel-using-zend-framework/" target="_blank" rel="noopener noreferrer">this article</a>.
+<h4>Easier Request Handling</h4>
+We've added a new class, Dot_Request, which lets you have control over the request data before you use it, for example the variables $_SERVER, $_GET and $_POST are only used within controllers.
+<h4>Features added</h4>
+<ul>
+	<li>API with Rate Limit - we've added a simple API with a single key authentification and a simple implementation of a rate limit (see /configs/application.ini - section params.api)</li>
+	<li>Cache System - Built on the Zend_Cache backends, provides caching within DotKernel, but also in library, more details about this and how it works can be found <a href="http://www.dotkernel.com/dotkernel/dotkernel-reserved-variable-names-for-caching/" target="_blank" rel="noopener noreferrer">here</a>.</li>
+</ul>
+<h4>Other changes</h4>
+<ul>
+	<li>Removed WURFL integration, DotKernel can detect wether you use a mobile device separately now, the WURFL Library can be added as a Plugin from now on</li>
+	<li>Removed multiple SMTP Transporter, it can be added as a plugin</li>
+	<li>Security scan in Admin Dashboard - you can now see which are the recommended settings (especially security related) for DotKernel to work at it's best</li>
+	<li>Admin fail logins are no longer sent to the first admin, they are sent to all developers found in <em>devEmails</em> within <em>settings</em> table in the database</li>
+	<li>Alert System - Alerts can be sent to all the developers to notify them if something goes wrong, for more information about alerts read <a href="http://www.dotkernel.com/dotkernel/how-to-use-alerts-in-dotkernel/" target="_blank" rel="noopener noreferrer">this article</a>.</li>
+</ul>
+<h4>Bug Fixes</h4>
+<ul>
+	<li><tt><span style="text-decoration: line-through;"><a class="resolved" title=" seo.xml will cause error on same varname for two modules instead of overwriting" href="http://dotkernel.net/view.php?id=289">0000289</a>: <b></b> seo.xml will cause error on same varname for two modules instead of overwriting</span></tt></li>
+	<li><tt><span style="text-decoration: line-through;"><a class="resolved" title=" email sent twice" href="http://dotkernel.net/view.php?id=249">0000249</a>: <b></b> email sent twice</span></tt></li>
+	<li><tt><span style="text-decoration: line-through;"><a class="resolved" title=" wrong unwritable warning on nginx" href="http://dotkernel.net/view.php?id=275">0000275</a>: <b></b> wrong unwritable warning on nginx</span></tt></li>
+</ul>
+&nbsp;
+
+&nbsp;
+
+There have been a lot of commits in our SVN repository since the latest release, so we can't cover all changes in this blog post. Please <a title="DotKernel 1.5.0" href="http://www.dotkernel.com/download/?did=41" target="_blank" rel="noopener noreferrer">download DotKernel 1.8.0 (LTS)</a> try it out yourself and tell us what you think.
+
+&nbsp;
+                    </section>
+                </article>
+            </main>
+            
+        </div>
+    </div>
+{% endblock %}

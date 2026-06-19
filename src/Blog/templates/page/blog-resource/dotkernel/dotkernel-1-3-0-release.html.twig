@@ -1,0 +1,72 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}DotKernel 1.3.0 release{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">DotKernel 1.3.0 release</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+    <div class="container py-4">
+        <div class="row g-4">
+            
+            {% include '@partial/left-menu.html.twig' %}
+
+            <main class="col-12 col-md-8 col-lg-9">
+                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
+                    <header class="mb-4">
+                        <h1 class="h2 text-dark fw-bold">DotKernel 1.3.0 release</h1>
+                        <div class="text-muted small">
+                            <i class="bi bi-folder2-open me-1"></i> Dotkernel
+                        </div>
+                    </header>
+
+                    <section class="post-content text-secondary lh-lg fs-6">
+                        <a href="../download/?did=23">DotKernel 1.3.0</a> is released at last. It contains important changes and new features.
+
+- <span style="text-decoration: line-through;"><a title=" Skin switcher in admin" href="http://www.dotkernel.net/view.php?id=64">64</a></span>: <strong></strong> Skin switcher in admin - closed.
+
+The admin skin can be customized. There are several readymade skins like: <em>blue</em>, <em>brown</em>, <em>gray</em> and <em>green</em>. To set the admin skin, change the value of <em>settings.admin.skin</em> from application (e.g. <em>settings.admin.skin = green</em>).
+<!--more-->
+
+- <span style="text-decoration: line-through;"><a title=" Want-Url in frontend" href="http://www.dotkernel.net/view.php?id=76">76</a></span>: <strong></strong> Want-Url in frontend - closed.
+
+To protect a link that is accessible by members only, add this line in the controller file to protect what is below it: <em>Dot_Auth::checkIdentity();</em>
+
+- <span style="text-decoration: line-through;"><a title=" Dot_Sessions // rename" href="http://www.dotkernel.net/view.php?id=77">77</a></span>: <strong></strong> Dot_Sessions / rename - closed.
+- <span style="text-decoration: line-through;"><a title=" Menu issue in Admin and frontend" href="http://www.dotkernel.net/view.php?id=70">70</a></span>: <strong></strong> Menu issue in Admin and frontend - closed.
+- <span style="text-decoration: line-through;"><a title=" Naming consistency Upper-lower case in url" href="http://www.dotkernel.net/view.php?id=73">73</a></span>: <strong></strong> Naming consistency Upper-lower case in url - closed.
+- <span style="text-decoration: line-through;"><a title=" XSS forgot password" href="http://www.dotkernel.net/view.php?id=71">71</a></span>: <strong></strong> XSS forgot password - closed.
+- <span style="text-decoration: line-through;"><a title=" scan result Oct 12th" href="http://www.dotkernel.net/view.php?id=72">72</a></span>: <strong></strong> scan result Oct 12th - closed.
+- <span style="text-decoration: line-through;"><a title=" Scan results Oct 1, 2010 on 1.3.0 RC" href="http://www.dotkernel.net/view.php?id=63">63</a></span>: <strong></strong> Scan results Oct 1, 2010 on 1.3.0 RC - closed.
+- <span style="text-decoration: line-through;"><a title=" reorganization of XMl files" href="http://www.dotkernel.net/view.php?id=69">69</a></span>: <strong></strong> reorganization of XMl files - closed.
+
+Some xml files from configs folder have been changed to encompass the current needs of DotKernel. <em>resource.xml</em> has been deleted and its content split between <em>route.xml</em> and <em>dots.xml</em>. Check the manual to find more about <a href="../docs/router-xml/">route.xml</a> and <a href="../docs/dots-xml/">dots.xml</a>
+
+- <span style="text-decoration: line-through;"><a title=" Security Issue // test controller " href="http://www.dotkernel.net/view.php?id=67">67</a></span>: <strong></strong> Security Issue / test controller - closed.
+- <span style="text-decoration: line-through;"><a title=" The canonical URL isn't escaped" href="http://www.dotkernel.net/view.php?id=68">68</a></span>: <strong></strong> The canonical URL isn't escaped - closed.
+- <span style="text-decoration: line-through;"><a title=" Blank line at the beginning of every file in the frontend" href="http://www.dotkernel.net/view.php?id=66">66</a></span>: <strong></strong> Blank line at the beginning of every file in the frontend - closed.
+- <span style="text-decoration: line-through;"><a title=" 1.3.0 as Release Candidate  Friday Oct 1st" href="http://www.dotkernel.net/view.php?id=60">60</a></span>: <strong></strong> 1.3.0 as Release Candidate Friday Oct 1st - closed.
+- <span style="text-decoration: line-through;"><a title=" Admin text box class dojo" href="http://www.dotkernel.net/view.php?id=62">62</a></span>: <strong></strong> Admin text box class dojo - closed.
+- <span style="text-decoration: line-through;"><a title=" geoIP extension : record by name + list in dashboard admin GEOIP version and build " href="http://www.dotkernel.net/view.php?id=55">55</a></span>: <strong></strong> geoIP extension: record by name + list in dashboard admin GEOIP version and build - closed.
+- <span style="text-decoration: line-through;"><a title=" Admin listings #" href="http://www.dotkernel.net/view.php?id=59">59</a></span>: <strong></strong> Admin listings # - closed.
+- <span style="text-decoration: line-through;"><a title=" Admin Add Transporter not working" href="http://www.dotkernel.net/view.php?id=61">61</a></span>: <strong></strong> Admin Add Transporter not working - closed.
+- <span style="text-decoration: line-through;"><a title=" Admin : list stuff, div float" href="http://www.dotkernel.net/view.php?id=58">58</a></span>: <strong></strong> Admin : list stuff, div float - closed.
+- <span style="text-decoration: line-through;"><a title=" OS name on admin/on mouse over" href="http://www.dotkernel.net/view.php?id=57">57</a></span>: <strong></strong> OS name on admin/on mouse over - closed.
+- <span style="text-decoration: line-through;"><a title=" drop-down list in admin/user logins" href="http://www.dotkernel.net/view.php?id=53">53</a></span>: <strong></strong> drop-down list in admin/user logins - closed.
+- <span style="text-decoration: line-through;"><a title=" Admin hide debug bar in Login page" href="http://www.dotkernel.net/view.php?id=52">52</a></span>: <strong></strong> Admin hide debug bar in Login page - closed.
+
+ 
+
+For more details see <a href="../changelog/1-3-0/">ChangeLog 1.3.0</a>.
+
+<strong>Note*</strong>: because of the bug <span style="text-decoration: line-through;"><a title=" reorganization of XMl files" href="http://www.dotkernel.net/view.php?id=69">69</a></span>, this release is not compatible with the previous versions. To see what else has changed, check <a href="http://www.dotkernel.net/">DotKernel Tracker</a> or <a href="http://websvn.dotkernel.net/listing.php?repname=DotKernel">DotKernel WebSVN</a>.
+                    </section>
+                </article>
+            </main>
+            
+        </div>
+    </div>
+{% endblock %}

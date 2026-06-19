@@ -1,0 +1,78 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}New Features in Zend Framework 1.12{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">New Features in Zend Framework 1.12</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+    <div class="container py-4">
+        <div class="row g-4">
+            
+            {% include '@partial/left-menu.html.twig' %}
+
+            <main class="col-12 col-md-8 col-lg-9">
+                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
+                    <header class="mb-4">
+                        <h1 class="h2 text-dark fw-bold">New Features in Zend Framework 1.12</h1>
+                        <div class="text-muted small">
+                            <i class="bi bi-folder2-open me-1"></i> Dotkernel
+                        </div>
+                    </header>
+
+                    <section class="post-content text-secondary lh-lg fs-6">
+                        According to <a href="http://devzone.zend.com/2366/zend-framework-1-12-series-1-12-0rc1-now-available/" target="_blank" rel="noopener noreferrer">Matthew Weier O'Phinney announcement</a>, Zend Framework team is pleased to announce the immediate availability of the first release candidate of the Zend Framework 1.12 series, 1.12.0RC1
+<h3> New Features</h3>
+<!--more-->
+<ul>
+	<li>Zend_Loader changes</li>
+</ul>
+<blockquote class="blockquote border-start border-4 ps-3 text-muted my-3">A number of autoloaders and autoloader facilities were back ported from ZF2 to provide performant alternatives to those already available in the 1.X releases.  These include: Zend_Loader_StandardAutoloader, which improves on Zend_Loader_Autoloader by allowing the ability to specify a specific path to associate with a vendor prefix or namespace; Zend_Loader_ClassMapAutoloader, which provides the ability to use lookup tables for autoloading (which are typically the fastest possible way to autoload); and Zend_Loader_AutoloaderFactory, which can both create and update autoloaders for you, as well as register them with spl_autoload_register().
+
+The Zend_Loader changes were back ported from ZF2 by Matthew Weier O'Phinney</blockquote>
+<ul>
+	<li>Zend_EventManager</li>
+</ul>
+<blockquote class="blockquote border-start border-4 ps-3 text-muted my-3">Zend_EventManager is a component that allows you to attach and detach listeners to named events, both on a per-instance basis as well as via shared collections; trigger events; and interrupt execution of listeners.
+
+Zend_EventManager was back ported from ZF2 by Matthew Weier O'Phinney</blockquote>
+<ul>
+	<li>Zend_Http_UserAgent_Features_Adapter_Browscap</li>
+</ul>
+<blockquote class="blockquote border-start border-4 ps-3 text-muted my-3">This class provides a features adapter that calls get_browser() in order to discover mobile device capabilities to inject into UserAgent device instances.
+
+Browscap (<a href="http://browsers.garykeith.com/" target="_blank" rel="noopener noreferrer">http://browsers.garykeith.com/</a>) is an open project dedicated to collecting an disseminating a "database" of browser capabilities. PHP has built-in support for using these files via the get_browser() function. This function requires that your php.ini provides a browscap entry pointing to the PHP-specific php_browscap.ini file which is available at <a href="http://browsers.garykeith.com/stream.asp?PHP_BrowsCapINI" target="_blank" rel="noopener noreferrer">http://browsers.garykeith.com/stream.asp?PHP_BrowsCapINI</a>.
+
+Zend_Http_UserAgent_Features_Adapter_Browscap was created by Matthew Weier O'Phinney</blockquote>
+<ul>
+	<li>Zend_Mobile_Push</li>
+</ul>
+<blockquote class="blockquote border-start border-4 ps-3 text-muted my-3">Zend_Mobile_Push is a component for implementing push notifications for the 3 major push notification platforms (Apple (Apns), Google (C2dm) and Microsoft (Mpns).
+
+Zend_Mobile_Push was contributed by Mike Willbanks.</blockquote>
+<ul>
+	<li>Zend_Gdata_Analytics</li>
+</ul>
+<blockquote class="blockquote border-start border-4 ps-3 text-muted my-3">Zend_Gdata_Analytics is an extension to Zend_Gdata to allow interaction with Google's Analytics Data Export API. This extension does not encompass any major changes in the overall operation of Zend_Gdata components.
+
+Zend_Gdata_Analytics was contributed by Daniel Hartmann.</blockquote>
+<h3>Removed features</h3>
+<ul>
+	<li>Zend_Http_UserAgent_Features_Adapter_WurflApi  ( announced few months ago <a href="http://www.dotkernel.com/dotkernel/zend-framework-dropped-integration-of-wurfl-adapter/" target="_blank" rel="noopener noreferrer">here </a>)</li>
+</ul>
+<blockquote class="blockquote border-start border-4 ps-3 text-muted my-3">Due to the changes in licensing of WURFL, we have removed the WurflApi adapter. We will be providing the WurflApi adapter to ScientiaMobile so that users of WURFL will still have that option.</blockquote>
+<h3>Bug Fixes</h3>
+<blockquote class="blockquote border-start border-4 ps-3 text-muted my-3">In addition over 200 reported issues in the tracker have been fixed. We'd like to particularly thank Adam Lundrigan, Frank Brückner and Martin Hujer for their efforts in making this happen. Thanks also to the many people who ran the ZF1 unit tests and reported their results!
+
+For a complete list go here:<a href="http://framework.zend.com/issues/secure/IssueNavigator.jspa?requestId=12877" target="_blank" rel="noopener noreferrer"> http://framework.zend.com/issues/secure/IssueNavigator.jspa?requestId=12877</a></blockquote>
+&nbsp;
+                    </section>
+                </article>
+            </main>
+            
+        </div>
+    </div>
+{% endblock %}

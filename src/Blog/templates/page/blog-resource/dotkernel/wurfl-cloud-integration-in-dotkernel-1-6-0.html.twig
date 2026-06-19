@@ -1,0 +1,53 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}Wurfl Cloud Integration in DotKernel 1.6.0{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">Wurfl Cloud Integration in DotKernel 1.6.0</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+    <div class="container py-4">
+        <div class="row g-4">
+            
+            {% include '@partial/left-menu.html.twig' %}
+
+            <main class="col-12 col-md-8 col-lg-9">
+                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
+                    <header class="mb-4">
+                        <h1 class="h2 text-dark fw-bold">Wurfl Cloud Integration in DotKernel 1.6.0</h1>
+                        <div class="text-muted small">
+                            <i class="bi bi-folder2-open me-1"></i> Dotkernel
+                        </div>
+                    </header>
+
+                    <section class="post-content text-secondary lh-lg fs-6">
+                        Another new feature in version 1.6.0 of DotKernel is the integration of Wurfl Cloud.
+
+Wurfl or Wireless Universal Resource FiLe is coming with a new way to deliver their services of device detection and they named it Wurfl Cloud.
+
+Because of the need to detect mobile devices in DotKernel we have integrated Wurfl Cloud as the default detection method.
+
+<!--more-->
+
+If you want to see the Wurfl Cloud library you can find it in the library folder of DotKernel.
+
+Quick steps to have a functional device detection in DotKernel.
+<ul>
+	<li>register for an Wurfl Cloud account <a title="Scientia Mobile account register" href="https://www.scientiamobile.com/register" target="_blank" rel="noopener noreferrer">here</a></li>
+	<li>choose <strong>device_os</strong> and <strong>mobile_browser</strong> as your capabilities</li>
+	<li>copy your API Key in application.ini in DotKernel</li>
+</ul>
+<pre class="bg-light border rounded p-3 overflow-auto">>resources.useragent.wurflcloud.api_key = 000000:XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</pre>
+Now you can test it by changing the user agent in your browser to a mobile device and access your project. Now you can see that you are redirected to the mobile module.
+
+To see how mobile detection is working in DotKernel read this <a title="Detecting Mobile Devices in DotKernel 1.6.0" href="http://www.dotkernel.com/?p=1465">post</a>.
+                    </section>
+                </article>
+            </main>
+            
+        </div>
+    </div>
+{% endblock %}

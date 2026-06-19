@@ -1,0 +1,254 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}PHP 8.3 support in Dotkernel API{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel 3</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">PHP 8.3 support in Dotkernel API</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+    <div class="container py-4">
+        <div class="row g-4">
+            
+            {% include '@partial/left-menu.html.twig' %}
+
+            <main class="col-12 col-md-8 col-lg-9">
+                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
+                    <header class="mb-4">
+                        <h1 class="h2 text-dark fw-bold">PHP 8.3 support in Dotkernel API</h1>
+                        <div class="text-muted small">
+                            <i class="bi bi-folder2-open me-1"></i> Dotkernel 3
+                        </div>
+                    </header>
+
+                    <section class="post-content text-secondary lh-lg fs-6">
+                        <!-- wp:paragraph -->
+<p class="mb-3">The last remaining application to be updated to support PHP 8.3 is the <a href="https://github.com/dotkernel/api" data-type="link" data-id="https://github.com/dotkernel/api" target="_blank" rel="noreferrer noopener">API</a>, now at v4.2.1. The steps taken to perform the update are similar to the ones in the update for the <a href="https://github.com/dotkernel/frontend" data-type="link" data-id="https://github.com/dotkernel/frontend" target="_blank" rel="noreferrer noopener">Frontend</a>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p class="mb-3">The full list of file changes is <a href="https://github.com/dotkernel/api/pull/222" data-type="link" data-id="https://github.com/dotkernel/admin/pull/218/files" target="_blank" rel="noreferrer noopener">here</a>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li><strong>Supports only PHP 8.2 and PHP 8.3</strong><!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li>Removed support for PHP 8.1</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Updated workflows - removed PHP 8.1</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Commit <a href="https://github.com/dotkernel/api/commit/53d95c5e04eacc339d4ba87d7f94ce3b042e819d" data-type="link" data-id="https://github.com/dotkernel/frontend/commit/e6c3e6495d50e181cfe4ff6a4edec7af12120abf" target="_blank" rel="noreferrer noopener">#1</a></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Updated </strong>dependencies<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li>Commit <a href="https://github.com/dotkernel/api/commit/53d95c5e04eacc339d4ba87d7f94ce3b042e819d" data-type="link" data-id="https://github.com/dotkernel/frontend/commit/e6c3e6495d50e181cfe4ff6a4edec7af12120abf" target="_blank" rel="noreferrer noopener">#1</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>require</strong><!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li>"dotkernel/dot-annotated-services": "^4.1.7",</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>"dotkernel/dot-cli": "^3.5.0",</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>"dotkernel/dot-data-fixtures": "^1.1.3",</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>"dotkernel/dot-doctrine-metadata": "^3.2.2",</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>"dotkernel/dot-errorhandler": "^3.3.2",</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>"dotkernel/dot-mail": "^4.1.1",</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>"dotkernel/dot-response-header": "^3.2.3",</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>"laminas/laminas-component-installer": "^3.4.0",</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>"laminas/laminas-config": "^3.9.0",</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>"laminas/laminas-config-aggregator": "^1.14.0",</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>"laminas/laminas-http": "^2.19.0",</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>"laminas/laminas-hydrator": "^4.15.0",</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>"laminas/laminas-inputfilter": "^2.29.0",</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>"laminas/laminas-paginator": "^2.18.0",</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>"laminas/laminas-stdlib": "^3.19.0",</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>"laminas/laminas-text": "^2.11.0",</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>"mezzio/mezzio": "^3.19.0",</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>"mezzio/mezzio-authentication-oauth2": "^2.8.0",</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>"mezzio/mezzio-authorization-acl": "^1.10.0",</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>"mezzio/mezzio-authorization-rbac": "^1.7.0",</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>"mezzio/mezzio-cors": "^1.11.1",</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>"mezzio/mezzio-fastroute": "^3.11.0",</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>"mezzio/mezzio-problem-details": "^1.13.1",</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>"mezzio/mezzio-twigrenderer": "^2.15.0",</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>"ramsey/uuid-doctrine": "^2.0.0",</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>"roave/psr-container-doctrine": "^4.1.0",</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>"symfony/filesystem": "^7.0.3"</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>require-dev</strong><!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li>"laminas/laminas-coding-standard": "^2.5",</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>"laminas/laminas-development-mode": "^3.12.0",</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>"mezzio/mezzio-tooling": "^2.9.0",</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>"phpunit/phpunit": "^10.5.10",</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>"roave/security-advisories": "dev-latest",</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>"vimeo/psalm": "^5.22.0"</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Removed</strong> parameter from configuration files and uses for class <em>PhpFileCache</em> (previously required by cache)<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li>Updated <em>config/autoload/doctrine.global.php</em><!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li>Removed <em>use Doctrine\Common\Cache\PhpFileCache</em></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Removed the parameters used by cache <em>configuration</em> and <em>cache</em></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Commit <a href="https://github.com/dotkernel/api/commit/53d95c5e04eacc339d4ba87d7f94ce3b042e819d" target="_blank" rel="noreferrer noopener">#1</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Make sure to keep the lines from the more recent commit <a href="https://github.com/dotkernel/api/commit/7d5f018f5845e10305d7815ad0b5067148ea68fa" data-type="link" data-id="https://github.com/dotkernel/frontend/commit/f693750602b8c0e5d6582826604ef65a4f0f6b02" target="_blank" rel="noreferrer noopener">#2</a></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Added dot-cache</strong><!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li>Updated <em>composer.json</em>, <em>config/autoload/doctrine.global.php</em> and <em>config/config.php</em></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Commit <a href="https://github.com/dotkernel/api/pull/227/files" data-type="link" data-id="https://github.com/dotkernel/api/pull/227/files" target="_blank" rel="noreferrer noopener">#1</a></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Note</strong><!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li>When upgrading from older versions of DotKernel API (before PHP 8.3), you may need to run <em>composer update</em> and/or install Sodium (run <em>sudo dnf install php-sodium.x86_64</em>)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Update your queries: replace <em>useQueryCache()</em> with <em>setCacheable()</em> wherever it's used</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+                    </section>
+                </article>
+            </main>
+            
+        </div>
+    </div>
+{% endblock %}

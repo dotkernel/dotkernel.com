@@ -1,0 +1,40 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}Zend Studio PHP Formatter file for DotKernel coding standard.{% endblock %}
+
+{% block page_title %}
+    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel</div>
+    <h1 class="fw-bold text-dark display-6 mb-0">Zend Studio PHP Formatter file for DotKernel coding standard.</h1>
+    <hr class="mt-4 mb-2 opacity-25">
+{% endblock %}
+
+{% block content %}
+    <div class="container py-4">
+        <div class="row g-4">
+            
+            {% include '@partial/left-menu.html.twig' %}
+
+            <main class="col-12 col-md-8 col-lg-9">
+                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
+                    <header class="mb-4">
+                        <h1 class="h2 text-dark fw-bold">Zend Studio PHP Formatter file for DotKernel coding standard.</h1>
+                        <div class="text-muted small">
+                            <i class="bi bi-folder2-open me-1"></i> Dotkernel
+                        </div>
+                    </header>
+
+                    <section class="post-content text-secondary lh-lg fs-6">
+                        <a title="DotKernel PHP Formatter" href="http://www.dotkernel.com/download/?did=34" target="_blank" rel="noopener noreferrer">Here</a> is  uploaded the XML file , ready to be imported in your Zend Studio, version 9.x
+
+This file follow DotKernel’s Coding standard.
+
+Unzip the file.
+Go to Zend Studio -&gt; Preferences -&gt; PHP -&gt; Code Style -&gt; Formatter
+Import the xml file.
+                    </section>
+                </article>
+            </main>
+            
+        </div>
+    </div>
+{% endblock %}
