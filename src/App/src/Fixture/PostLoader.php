@@ -8,10 +8,19 @@ use DateTimeImmutable;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
-use Light\Blog\Entity\Post;
 use Light\Blog\Entity\Author;
 use Light\Blog\Entity\Category;
+use Light\Blog\Entity\Post;
 use Light\Blog\Enum\PostStatusEnum;
+
+use function file_get_contents;
+use function html_entity_decode;
+use function json_decode;
+use function preg_replace;
+use function strtolower;
+use function trim;
+
+use const ENT_QUOTES;
 
 class PostLoader extends Fixture implements DependentFixtureInterface
 {
@@ -28,7 +37,7 @@ class PostLoader extends Fixture implements DependentFixtureInterface
 
             foreach ($cat['articles'] as $articleData) {
                 $wpAuthorId = $articleData['author']['user_email'] ?? null;
-                if (!$wpAuthorId || !$this->hasReference('author_' . $wpAuthorId, Author::class)) {
+                if (! $wpAuthorId || ! $this->hasReference('author_' . $wpAuthorId, Author::class)) {
                     echo "SKIP (no author): {$articleData['post_title']}\n";
                     continue;
                 }
@@ -52,7 +61,7 @@ class PostLoader extends Fixture implements DependentFixtureInterface
                 };
 
                 $rawDate  = $articleData['post_date'] ?? '';
-                $postDate = (!empty($rawDate) && $rawDate !== '0000-00-00 00:00:00')
+                $postDate = ! empty($rawDate) && $rawDate !== '0000-00-00 00:00:00'
                     ? new DateTimeImmutable($rawDate)
                     : new DateTimeImmutable();
 
@@ -71,6 +80,7 @@ class PostLoader extends Fixture implements DependentFixtureInterface
 
         $manager->flush();
     }
+
     public function getDependencies(): array
     {
         return [

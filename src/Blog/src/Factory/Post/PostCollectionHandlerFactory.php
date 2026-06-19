@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Light\Blog\Factory\Post;
 
 use Light\Blog\Handler\GetPostCollectionHandler;
-use Light\Blog\Repository\PostRepository;
 use Light\Blog\Repository\CategoryRepository;
+use Light\Blog\Repository\PostRepository;
 use Mezzio\Template\TemplateRendererInterface;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;

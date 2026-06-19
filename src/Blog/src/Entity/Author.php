@@ -77,11 +77,11 @@ class Author extends AbstractEntity
     public function getArrayCopy(): array
     {
         return [
-            'id'   => $this->id->toString(),
-            'name' => $this->name,
-            'slug' => $this->slug,
+            'id'    => $this->id->toString(),
+            'name'  => $this->name,
+            'slug'  => $this->slug,
             'email' => $this->email,
-            'bio'  => $this->bio,
+            'bio'   => $this->bio,
         ];
     }
 }

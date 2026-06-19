@@ -1,10 +1,10 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Light\Blog\Repository;
 
 use Doctrine\ORM\Tools\Pagination\Paginator as DoctrinePaginator;
-use Light\App\Helper\Paginator;
 use Light\App\Repository\AbstractRepository;
 use Light\Blog\Entity\Post;
 use Light\Blog\Enum\PostStatusEnum;

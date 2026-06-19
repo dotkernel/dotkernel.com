@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Light\Blog\Repository;
 
 use Light\App\Repository\AbstractRepository;
-use Light\Blog\Entity\Post;
 use Light\Blog\Entity\Category;
+use Light\Blog\Entity\Post;
 use Light\Blog\Enum\PostStatusEnum;
 
 class CategoryRepository extends AbstractRepository

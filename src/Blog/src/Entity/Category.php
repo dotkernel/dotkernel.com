@@ -63,10 +63,10 @@ class Category extends AbstractEntity
     public function getArrayCopy(): array
     {
         return [
-            'id'   => $this->id->toString(),
-            'name' => $this->name,
+            'id'        => $this->id->toString(),
+            'name'      => $this->name,
             'isVisible' => $this->isVisible,
-            'slug' => $this->slug,
+            'slug'      => $this->slug,
         ];
     }
 }

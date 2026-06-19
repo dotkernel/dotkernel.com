@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Light\Blog\Handler;
 
 use Laminas\Diactoros\Response\HtmlResponse;
-use Light\Blog\Repository\PostRepository;
 use Light\Blog\Repository\CategoryRepository;
+use Light\Blog\Repository\PostRepository;
 use Mezzio\Template\TemplateRendererInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -16,8 +16,8 @@ class GetPostResourceHandler implements RequestHandlerInterface
 {
     public function __construct(
         private readonly TemplateRendererInterface $template,
-        private readonly PostRepository            $articleRepository,
-        private readonly CategoryRepository        $categoryRepository,
+        private readonly PostRepository $articleRepository,
+        private readonly CategoryRepository $categoryRepository,
     ) {
     }
 
@@ -25,8 +25,8 @@ class GetPostResourceHandler implements RequestHandlerInterface
     {
         $slug         = $request->getAttribute('slug');
         $categorySlug = $request->getAttribute('categorySlug');
-        $article    = $this->articleRepository->getArticleResource($slug, $categorySlug);
-        $categories = $this->categoryRepository->getCategories();
+        $article      = $this->articleRepository->getArticleResource($slug, $categorySlug);
+        $categories   = $this->categoryRepository->getCategories();
 
         return new HtmlResponse(
             $this->template->render('page::blog-resource/' . $article->getCategory()->getSlug() . '/' . $slug, [

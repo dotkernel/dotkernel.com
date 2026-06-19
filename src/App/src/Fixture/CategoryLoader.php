@@ -8,6 +8,9 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Light\Blog\Entity\Category;
 
+use function file_get_contents;
+use function json_decode;
+
 class CategoryLoader extends Fixture
 {
     public function load(ObjectManager $manager): void

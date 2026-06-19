@@ -6,18 +6,18 @@ namespace Light\Blog;
 
 use Doctrine\ORM\Mapping\Driver\AttributeDriver;
 use Light\Blog\DBAL\Types\PostStatusEnumType;
-use Light\Blog\Factory\Post\PostCollectionHandlerFactory;
-use Light\Blog\Factory\Post\PostCollectionRepositoryFactory;
-use Light\Blog\Factory\Post\PostResourceHandlerFactory;
 use Light\Blog\Factory\Category\CategoryCollectionHandlerFactory;
 use Light\Blog\Factory\Category\CategoryCollectionRepositoryFactory;
 use Light\Blog\Factory\Category\CategoryResourceHandlerFactory;
-use Light\Blog\Handler\GetPostCollectionHandler;
-use Light\Blog\Handler\GetPostResourceHandler;
+use Light\Blog\Factory\Post\PostCollectionHandlerFactory;
+use Light\Blog\Factory\Post\PostCollectionRepositoryFactory;
+use Light\Blog\Factory\Post\PostResourceHandlerFactory;
 use Light\Blog\Handler\GetCategoryCollectionHandler;
 use Light\Blog\Handler\GetCategoryResourceHandler;
-use Light\Blog\Repository\PostRepository;
+use Light\Blog\Handler\GetPostCollectionHandler;
+use Light\Blog\Handler\GetPostResourceHandler;
 use Light\Blog\Repository\CategoryRepository;
+use Light\Blog\Repository\PostRepository;
 use Mezzio\Application;
 
 class ConfigProvider
@@ -54,9 +54,9 @@ class ConfigProvider
             'factories'  => [
                 GetCategoryCollectionHandler::class => CategoryCollectionHandlerFactory::class,
                 CategoryRepository::class           => CategoryCollectionRepositoryFactory::class,
-                GetPostCollectionHandler::class  => PostCollectionHandlerFactory::class,
-                PostRepository::class            => PostCollectionRepositoryFactory::class,
-                GetPostResourceHandler::class    => PostResourceHandlerFactory::class,
+                GetPostCollectionHandler::class     => PostCollectionHandlerFactory::class,
+                PostRepository::class               => PostCollectionRepositoryFactory::class,
+                GetPostResourceHandler::class       => PostResourceHandlerFactory::class,
                 GetCategoryResourceHandler::class   => CategoryResourceHandlerFactory::class,
             ],
         ];

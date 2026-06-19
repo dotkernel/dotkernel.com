@@ -8,11 +8,17 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Light\Blog\Entity\Author;
 
+use function file_get_contents;
+use function json_decode;
+use function preg_replace;
+use function strtolower;
+use function trim;
+
 class AuthorLoader extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        $jsonFile = __DIR__ . '/articles_cleaned.json';
+        $jsonFile   = __DIR__ . '/articles_cleaned.json';
         $categories = json_decode(file_get_contents($jsonFile), true);
 
         $seenAuthorIds = [];
@@ -20,10 +26,14 @@ class AuthorLoader extends Fixture
         foreach ($categories as $cat) {
             foreach ($cat['articles'] as $article) {
                 $authorData = $article['author'] ?? null;
-                if (!$authorData) continue;
+                if (! $authorData) {
+                    continue;
+                }
 
                 $wpAuthorId = $authorData['user_email'];
-                if (isset($seenAuthorIds[$wpAuthorId])) continue;
+                if (isset($seenAuthorIds[$wpAuthorId])) {
+                    continue;
+                }
                 $seenAuthorIds[$wpAuthorId] = true;
 
                 $name  = $authorData['display_name'];

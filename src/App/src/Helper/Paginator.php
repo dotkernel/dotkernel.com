@@ -1,7 +1,8 @@
 <?php
 
-namespace Light\App\Helper;
+declare(strict_types=1);
 
+namespace Light\App\Helper;
 
 use Doctrine\ORM\Tools\Pagination\Paginator as DoctrinePaginator;
 

@@ -10,12 +10,12 @@ use Doctrine\Persistence\Mapping\Driver\MappingDriver;
 use Doctrine\Persistence\Mapping\Driver\MappingDriverChain;
 use Dot\Cache\Adapter\ArrayAdapter;
 use Dot\Cache\Adapter\FilesystemAdapter;
+use Light\App\DBAL\Types\UuidType;
 use Light\App\Factory\EntityListenerResolverFactory;
 use Light\App\Factory\GetIndexViewHandlerFactory;
 use Light\App\Handler\GetIndexViewHandler;
 use Light\App\Resolver\EntityListenerResolver;
 use Mezzio\Application;
-use Light\App\DBAL\Types\UuidType;
 use Roave\PsrContainerDoctrine\EntityManagerFactory;
 use Symfony\Component\Cache\Adapter\AdapterInterface;
 
@@ -79,9 +79,9 @@ class ConfigProvider
     public function __invoke(): array
     {
         return [
-            'dependencies' => $this->getDependencies(),
-            'doctrine'     => $this->getDoctrineConfig(),
-            'templates'    => $this->getTemplates(),
+            'dependencies'        => $this->getDependencies(),
+            'doctrine'            => $this->getDoctrineConfig(),
+            'templates'           => $this->getTemplates(),
             'resultCacheLifetime' => 3600,
         ];
     }
@@ -150,12 +150,12 @@ class ConfigProvider
             'configuration' => [
                 'orm_default' => [
                     'entity_listener_resolver' => EntityListenerResolver::class,
-                    'result_cache'       => 'filesystem',
-                    'metadata_cache'     => 'filesystem',
-                    'query_cache'        => 'filesystem',
-                    'hydration_cache'    => 'array',
-                    'typed_field_mapper' => null,
-                    'second_level_cache' => [
+                    'result_cache'             => 'filesystem',
+                    'metadata_cache'           => 'filesystem',
+                    'query_cache'              => 'filesystem',
+                    'hydration_cache'          => 'array',
+                    'typed_field_mapper'       => null,
+                    'second_level_cache'       => [
                         'enabled'                    => true,
                         'default_lifetime'           => 3600,
                         'default_lock_lifetime'      => 60,
@@ -179,7 +179,7 @@ class ConfigProvider
                     'execution_time_column_name' => 'execution_time',
                 ],
                 'migrations_paths'        => [
-                        'Migration' => 'src/App/src/Migration',
+                    'Migration' => 'src/App/src/Migration',
                 ],
                 'all_or_nothing'          => false,
                 'check_database_platform' => true,

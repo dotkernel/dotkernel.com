@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Light\Blog;
 
-use Light\Blog\Handler\GetPostCollectionHandler;
-use Light\Blog\Handler\GetPostResourceHandler;
 use Light\Blog\Handler\GetCategoryCollectionHandler;
 use Light\Blog\Handler\GetCategoryResourceHandler;
+use Light\Blog\Handler\GetPostCollectionHandler;
+use Light\Blog\Handler\GetPostResourceHandler;
 use Mezzio\Application;
 use Psr\Container\ContainerInterface;
 
