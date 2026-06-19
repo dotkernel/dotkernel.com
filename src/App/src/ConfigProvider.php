@@ -15,7 +15,7 @@ use Light\App\Factory\GetIndexViewHandlerFactory;
 use Light\App\Handler\GetIndexViewHandler;
 use Light\App\Resolver\EntityListenerResolver;
 use Mezzio\Application;
-use Ramsey\Uuid\Doctrine\UuidType;
+use Light\App\DBAL\Types\UuidType;
 use Roave\PsrContainerDoctrine\EntityManagerFactory;
 use Symfony\Component\Cache\Adapter\AdapterInterface;
 

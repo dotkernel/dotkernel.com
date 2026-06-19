@@ -9,14 +9,14 @@ use Light\App\Entity\AbstractEntity;
 use Light\Blog\Repository\CategoryRepository;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
-#[ORM\Table(name: 'categories')]
+#[ORM\Table(name: 'category')]
 #[ORM\HasLifecycleCallbacks]
 class Category extends AbstractEntity
 {
-    #[ORM\Column(name: 'name', type: 'string', length: 500)]
+    #[ORM\Column(name: 'name', type: 'text')]
     private string $name;
 
-    #[ORM\Column(name: 'slug', type: 'string', length: 500)]
+    #[ORM\Column(name: 'slug', type: 'text')]
     private string $slug;
 
     #[ORM\Column(name: 'isVisible', type: 'boolean')]

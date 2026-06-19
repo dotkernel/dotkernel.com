@@ -19,7 +19,7 @@
                         <div class="card-body p-4 d-flex flex-column justify-content-between">
                             <div>
                                 <h2 class="h5 fw-bold mb-3">
-                                    <a href="{{ url('page::blog-resource', {slug: article.slug}) }}" class="link-dark text-decoration-none">
+                                    <a href="{{ url('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}" class="link-dark text-decoration-none">
                                         {{ article.title }}
                                     </a>
                                 </h2>
@@ -34,7 +34,7 @@
                                     <i class="bi bi-tags me-1"></i> Related posts
                                 </a>
 
-                                <a href="{{ url('page::blog-resource', {slug: article.slug}) }}" class="text-primary small fw-bold text-decoration-none d-inline-flex align-items-center gap-1">
+                                <a href="{{ url('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}" class="text-primary small fw-bold text-decoration-none d-inline-flex align-items-center gap-1">
                                     Read more <i class="bi bi-arrow-right"></i>
                                 </a>
                             </div>

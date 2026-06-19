@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Light\Blog;
 
-use Light\Blog\Handler\GetArticleCollectionHandler;
-use Light\Blog\Handler\GetArticleResourceHandler;
+use Light\Blog\Handler\GetPostCollectionHandler;
+use Light\Blog\Handler\GetPostResourceHandler;
 use Light\Blog\Handler\GetCategoryCollectionHandler;
 use Light\Blog\Handler\GetCategoryResourceHandler;
 use Mezzio\Application;
@@ -20,10 +20,10 @@ class RoutesDelegator
         $app = $callback();
         assert($app instanceof Application);
 
-        $app->get('/blog/categories', [GetCategoryCollectionHandler::class], 'page::categories');
-        $app->get('/blog', [GetArticleCollectionHandler::class], 'page::blog');
-        $app->get('/blog/{slug}', [GetArticleResourceHandler::class], 'page::blog-resource');
-        $app->get('/blog/categories/{slug}', [GetCategoryResourceHandler::class], 'page::category-resource');
+        $app->get('/blog', [GetPostCollectionHandler::class], 'page::blog');
+        $app->get('/category/{slug}', [GetCategoryResourceHandler::class], 'page::category-resource');
+        $app->get('/categories', [GetCategoryCollectionHandler::class], 'page::categories');
+        $app->get('/{categorySlug}/{slug}', [GetPostResourceHandler::class], 'page::blog-resource');
 
         return $app;
     }

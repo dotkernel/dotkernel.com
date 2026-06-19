@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Light\Blog\Repository;
 
 use Light\App\Repository\AbstractRepository;
-use Light\Blog\Entity\Article;
+use Light\Blog\Entity\Post;
 use Light\Blog\Entity\Category;
-use Light\Blog\Enum\ArticleStatusEnum;
+use Light\Blog\Enum\PostStatusEnum;
 
 class CategoryRepository extends AbstractRepository
 {
@@ -35,16 +35,16 @@ class CategoryRepository extends AbstractRepository
     }
 
     /**
-     * @return array<Article>
+     * @return array<Post>
      */
     public function getCategoryArticles(Category $category): array
     {
         $qb = $this->getQueryBuilder()
             ->select('articles')
-            ->from(Article::class, 'articles')
+            ->from(Post::class, 'articles')
             ->where('articles.category = :category')
             ->andWhere('articles.status = :published')
-            ->setParameter('published', ArticleStatusEnum::Published)
+            ->setParameter('published', PostStatusEnum::Published)
             ->setParameter('category', $category);
 
         return $qb->getQuery()->getResult();

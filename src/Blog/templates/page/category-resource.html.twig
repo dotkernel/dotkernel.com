@@ -30,7 +30,7 @@
                     <article class="card border-0 shadow-sm rounded-3 card-hover transition">
                         <div class="card-body p-4">
                             <h3 class="h5 mb-0">
-                                <a href="{{ url('page::blog-resource', {slug: article.slug}) }}"
+                                <a href="{{ url('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}"
                                    class="text-decoration-none text-dark link-primary fw-semibold stretched-link">
                                     {{ article.title }}
                                 </a>

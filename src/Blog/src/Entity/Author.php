@@ -9,20 +9,20 @@ use Light\App\Entity\AbstractEntity;
 use Light\Blog\Repository\AuthorRepository;
 
 #[ORM\Entity(repositoryClass: AuthorRepository::class)]
-#[ORM\Table(name: 'authors')]
+#[ORM\Table(name: 'author')]
 #[ORM\HasLifecycleCallbacks]
 class Author extends AbstractEntity
 {
-    #[ORM\Column(name: 'name', type: 'string', length: 255)]
+    #[ORM\Column(name: 'name', type: 'text')]
     private string $name;
 
-    #[ORM\Column(name: 'slug', type: 'string', length: 255, unique: true)]
+    #[ORM\Column(name: 'slug', type: 'text', unique: true)]
     private string $slug;
 
     #[ORM\Column(name: 'bio', type: 'text', nullable: true)]
     private ?string $bio = null;
 
-    #[ORM\Column(name: 'email', type: 'string', length: 255, unique: true)]
+    #[ORM\Column(name: 'email', type: 'text', unique: true)]
     private string $email;
 
     public function getName(): string

@@ -5,18 +5,18 @@ declare(strict_types=1);
 namespace Light\Blog;
 
 use Doctrine\ORM\Mapping\Driver\AttributeDriver;
-use Light\Blog\DBAL\Types\ArticleStatusEnumType;
-use Light\Blog\Factory\Articles\ArticleCollectionHandlerFactory;
-use Light\Blog\Factory\Articles\ArticleCollectionRepositoryFactory;
-use Light\Blog\Factory\Articles\ArticleResourceHandlerFactory;
-use Light\Blog\Factory\Categories\CategoryCollectionHandlerFactory;
-use Light\Blog\Factory\Categories\CategoryCollectionRepositoryFactory;
-use Light\Blog\Factory\Categories\CategoryResourceHandlerFactory;
-use Light\Blog\Handler\GetArticleCollectionHandler;
-use Light\Blog\Handler\GetArticleResourceHandler;
+use Light\Blog\DBAL\Types\PostStatusEnumType;
+use Light\Blog\Factory\Post\PostCollectionHandlerFactory;
+use Light\Blog\Factory\Post\PostCollectionRepositoryFactory;
+use Light\Blog\Factory\Post\PostResourceHandlerFactory;
+use Light\Blog\Factory\Category\CategoryCollectionHandlerFactory;
+use Light\Blog\Factory\Category\CategoryCollectionRepositoryFactory;
+use Light\Blog\Factory\Category\CategoryResourceHandlerFactory;
+use Light\Blog\Handler\GetPostCollectionHandler;
+use Light\Blog\Handler\GetPostResourceHandler;
 use Light\Blog\Handler\GetCategoryCollectionHandler;
 use Light\Blog\Handler\GetCategoryResourceHandler;
-use Light\Blog\Repository\ArticleRepository;
+use Light\Blog\Repository\PostRepository;
 use Light\Blog\Repository\CategoryRepository;
 use Mezzio\Application;
 
@@ -54,9 +54,9 @@ class ConfigProvider
             'factories'  => [
                 GetCategoryCollectionHandler::class => CategoryCollectionHandlerFactory::class,
                 CategoryRepository::class           => CategoryCollectionRepositoryFactory::class,
-                GetArticleCollectionHandler::class  => ArticleCollectionHandlerFactory::class,
-                ArticleRepository::class            => ArticleCollectionRepositoryFactory::class,
-                GetArticleResourceHandler::class    => ArticleResourceHandlerFactory::class,
+                GetPostCollectionHandler::class  => PostCollectionHandlerFactory::class,
+                PostRepository::class            => PostCollectionRepositoryFactory::class,
+                GetPostResourceHandler::class    => PostResourceHandlerFactory::class,
                 GetCategoryResourceHandler::class   => CategoryResourceHandlerFactory::class,
             ],
         ];
@@ -84,7 +84,7 @@ class ConfigProvider
                 ],
             ],
             'types'  => [
-                ArticleStatusEnumType::NAME => ArticleStatusEnumType::class,
+                PostStatusEnumType::NAME => PostStatusEnumType::class,
             ],
         ];
     }
