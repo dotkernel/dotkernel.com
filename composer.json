@@ -60,7 +60,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "LightTest\\Unit\\": "test/Unit/"
+            "LightTest\\Unit\\": "test/Unit/",
+            "LightTest\\Common\\": "test/Common/"
         }
     },
     "scripts": {

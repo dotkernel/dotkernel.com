@@ -6,6 +6,7 @@ namespace Light\Blog\Repository;
 
 use Doctrine\ORM\Tools\Pagination\Paginator as DoctrinePaginator;
 use Light\App\Repository\AbstractRepository;
+use Light\Blog\Entity\Author;
 use Light\Blog\Entity\Post;
 use Light\Blog\Enum\PostStatusEnum;
 
@@ -22,7 +23,7 @@ class PostRepository extends AbstractRepository
             ->leftJoin('articles.category', 'category')
             ->where('articles.status = :published')
             ->setParameter('published', PostStatusEnum::Published)
-            ->orderBy($params['sort'], $params['dir'])
+            ->orderBy('articles.postDate', $params['dir'])
             ->setFirstResult($params['offset'])
             ->setMaxResults($params['limit']);
 
@@ -40,5 +41,22 @@ class PostRepository extends AbstractRepository
             ->setParameter('published', PostStatusEnum::Published);
 
         return $qb->getQuery()->getOneOrNullResult();
+    }
+
+    /**
+     * @return Post[]
+     */
+    public function getArticleByAuthor(Author $author, array $params): DoctrinePaginator
+    {
+        $qb = $this->getQueryBuilder()
+            ->select('posts')
+            ->from(Post::class, 'posts')
+            ->where('posts.author = :author')
+            ->setParameter('author', $author)
+            ->orderBy('posts.postDate', $params['dir'])
+            ->setFirstResult($params['offset'])
+            ->setMaxResults($params['limit']);
+
+        return new DoctrinePaginator($qb->getQuery());
     }
 }

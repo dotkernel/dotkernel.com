@@ -12,12 +12,23 @@ class AuthorRepository extends AbstractRepository
     /**
      * @return array<Author>
      */
-    public function getCategories(): array
+    public function getAuthor(): array
     {
         $qb = $this->getQueryBuilder()
-            ->select('authors.name, authors.slug')
+            ->select('author.name, author.slug')
             ->from(Author::class, 'authors');
 
         return $qb->getQuery()->getResult();
+    }
+
+    public function getAuthorResource(string $slug): ?Author
+    {
+        $qb = $this->getQueryBuilder()
+            ->select('author')
+            ->from(Author::class, 'author')
+            ->where('author.slug = :slug')
+            ->setParameter('slug', $slug);
+
+        return $qb->getQuery()->getOneOrNullResult();
     }
 }

@@ -6,16 +6,20 @@ namespace Light\Blog;
 
 use Doctrine\ORM\Mapping\Driver\AttributeDriver;
 use Light\Blog\DBAL\Types\PostStatusEnumType;
+use Light\Blog\Factory\Author\AuthorResourceHandlerFactory;
+use Light\Blog\Factory\Author\AuthorResourceRepositoryFactory;
 use Light\Blog\Factory\Category\CategoryCollectionHandlerFactory;
 use Light\Blog\Factory\Category\CategoryCollectionRepositoryFactory;
 use Light\Blog\Factory\Category\CategoryResourceHandlerFactory;
 use Light\Blog\Factory\Post\PostCollectionHandlerFactory;
 use Light\Blog\Factory\Post\PostCollectionRepositoryFactory;
 use Light\Blog\Factory\Post\PostResourceHandlerFactory;
+use Light\Blog\Handler\GetAuthorResourceHandler;
 use Light\Blog\Handler\GetCategoryCollectionHandler;
 use Light\Blog\Handler\GetCategoryResourceHandler;
 use Light\Blog\Handler\GetPostCollectionHandler;
 use Light\Blog\Handler\GetPostResourceHandler;
+use Light\Blog\Repository\AuthorRepository;
 use Light\Blog\Repository\CategoryRepository;
 use Light\Blog\Repository\PostRepository;
 use Mezzio\Application;
@@ -58,6 +62,8 @@ class ConfigProvider
                 PostRepository::class               => PostCollectionRepositoryFactory::class,
                 GetPostResourceHandler::class       => PostResourceHandlerFactory::class,
                 GetCategoryResourceHandler::class   => CategoryResourceHandlerFactory::class,
+                AuthorRepository::class             => AuthorResourceRepositoryFactory::class,
+                GetAuthorResourceHandler::class     => AuthorResourceHandlerFactory::class,
             ],
         ];
     }

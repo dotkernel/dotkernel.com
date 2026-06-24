@@ -27,7 +27,7 @@ class GetCategoryResourceHandler implements RequestHandlerInterface
             return new HtmlResponse('Category not found', 404);
         }
         $categories       = $this->categoryRepository->getCategories();
-        $categoryArticles = $this->categoryRepository->getCategoryArticles($category);
+        $categoryArticles = $this->categoryRepository->getCategoryPost($category);
         return new HtmlResponse(
             $this->template->render('page::category-resource', [
                 'categories'       => $categories,

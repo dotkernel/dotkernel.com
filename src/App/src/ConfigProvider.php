@@ -6,6 +6,7 @@ namespace Light\App;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Mapping\EntityListenerResolver as EntityListenerResolverInterface;
 use Doctrine\Persistence\Mapping\Driver\MappingDriver;
 use Doctrine\Persistence\Mapping\Driver\MappingDriverChain;
 use Dot\Cache\Adapter\ArrayAdapter;
@@ -40,6 +41,7 @@ use function getcwd;
  *      },
  *      configuration: array{
  *          orm_default: array{
+ *              entity_listener_resolver: class-string<EntityListenerResolverInterface>,
  *              result_cache: non-empty-string,
  *              metadata_cache: non-empty-string,
  *              query_cache: non-empty-string,
@@ -149,13 +151,12 @@ class ConfigProvider
             ],
             'configuration' => [
                 'orm_default' => [
-                    'entity_listener_resolver' => EntityListenerResolver::class,
-                    'result_cache'             => 'filesystem',
-                    'metadata_cache'           => 'filesystem',
-                    'query_cache'              => 'filesystem',
-                    'hydration_cache'          => 'array',
-                    'typed_field_mapper'       => null,
-                    'second_level_cache'       => [
+                    'result_cache'       => 'filesystem',
+                    'metadata_cache'     => 'filesystem',
+                    'query_cache'        => 'filesystem',
+                    'hydration_cache'    => 'array',
+                    'typed_field_mapper' => null,
+                    'second_level_cache' => [
                         'enabled'                    => true,
                         'default_lifetime'           => 3600,
                         'default_lock_lifetime'      => 60,

@@ -18,8 +18,9 @@ class CategoryRepository extends AbstractRepository
     {
         $qb = $this->getQueryBuilder()
             ->select('categories.name, categories.slug')
-            ->from(Category::class, 'categories');
-
+            ->from(Category::class, 'categories')
+            ->where('categories.isVisible = :visible')
+            ->setParameter('visible', true);
         return $qb->getQuery()->getResult();
     }
 
@@ -37,13 +38,14 @@ class CategoryRepository extends AbstractRepository
     /**
      * @return array<Post>
      */
-    public function getCategoryArticles(Category $category): array
+    public function getCategoryPost(Category $category): array
     {
         $qb = $this->getQueryBuilder()
             ->select('articles')
             ->from(Post::class, 'articles')
             ->where('articles.category = :category')
             ->andWhere('articles.status = :published')
+            ->orderBy('articles.postDate', 'DESC')
             ->setParameter('published', PostStatusEnum::Published)
             ->setParameter('category', $category);
 

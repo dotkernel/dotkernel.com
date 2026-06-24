@@ -4,20 +4,8 @@
 
 {% block content %}
     <div class="row g-4 py-4 z-0">
-        <aside class="col-lg-3 col-md-4">
-                <h5 class="text-uppercase text-muted small fw-bold tracking-wider mb-3">
-                    Categories
-                </h5>
-                <div class="list-group list-group-flush rounded-3 shadow-sm border">
-                    {% for cat in categories %}
-                        {% set is_active = cat.slug == category.slug %}
-                        <a href="{{ url('page::category-resource', {slug: cat.slug}) }}"
-                           class="list-group-item list-group-item-action py-2.5 px-3 border-0 {% if is_active %}active fw-semibold{% else %}text-secondary{% endif %}">
-                            {{ cat.name }}
-                        </a>
-                    {% endfor %}
-                </div>
-        </aside>
+        {% include'@partial/left-menu.html.twig' %}
+
 
         <main class="col-lg-9 col-md-8">
             <header class="mb-4 pb-3 border-bottom">
@@ -35,6 +23,15 @@
                                     {{ article.title }}
                                 </a>
                             </h3>
+                            <p class="text-muted mb-0 mt-1">{{ article.excerpt }}</p>
+                            <p class="text-muted small mt-2">
+                                <i class="far fa-clock me-1"></i>
+                                {{ article.postDate|date('d M Y') }}
+                            </p>
+                            <p class="text-muted small mb-0">
+                                By: <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}"
+                                       style="position: relative; z-index: 1;">{{ article.author.name }}</a>
+                            </p>
                         </div>
                     </article>
                 {% else %}
