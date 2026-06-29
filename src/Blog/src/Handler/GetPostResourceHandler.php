@@ -27,7 +27,7 @@ class GetPostResourceHandler implements RequestHandlerInterface
         $categorySlug = $request->getAttribute('categorySlug');
         $article      = $this->articleRepository->getArticleResource($slug, $categorySlug);
         $categories   = $this->categoryRepository->getCategories();
-        $meta = $article;
+        $meta         = $article;
         return new HtmlResponse(
             $this->template->render('page::blog-resource/' . $article->getCategory()->getSlug() . '/' . $slug, [
                 'article'    => $article,

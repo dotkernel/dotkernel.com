@@ -17,10 +17,11 @@ class CategoryRepository extends AbstractRepository
     public function getCategories(): array
     {
         $qb = $this->getQueryBuilder()
-            ->select('categories.name, categories.slug')
+            ->select('categories')
             ->from(Category::class, 'categories')
             ->where('categories.isVisible = :visible')
             ->setParameter('visible', true);
+
         return $qb->getQuery()->getResult();
     }
 
