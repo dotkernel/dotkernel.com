@@ -23,6 +23,8 @@ class GetCategoryResourceHandler implements RequestHandlerInterface
     {
         $categorySlug = $request->getAttribute('slug');
         $category     = $this->categoryRepository->getCategoryResource($categorySlug);
+        $meta = $category;
+
         if (! $category) {
             return new HtmlResponse('Category not found', 404);
         }
@@ -32,6 +34,7 @@ class GetCategoryResourceHandler implements RequestHandlerInterface
             $this->template->render('page::category-resource', [
                 'categories'       => $categories,
                 'category'         => $category,
+                'meta'             => $meta,
                 'categoryArticles' => $categoryArticles,
             ])
         );
