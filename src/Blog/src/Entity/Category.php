@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace Light\Blog\Entity;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Light\App\Entity\AbstractEntity;
@@ -26,6 +27,12 @@ class Category extends AbstractEntity
     #[ORM\OneToMany(mappedBy: 'category', targetEntity: Post::class)]
     private Collection $posts;
 
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->posts    = new ArrayCollection();
+    }
     public function getName(): string
     {
         return $this->name;
