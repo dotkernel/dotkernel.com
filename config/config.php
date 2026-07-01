@@ -27,6 +27,7 @@ $aggregator = new ConfigAggregator([
     // Dotkernel packages
     \Dot\ErrorHandler\ConfigProvider::class,
     \Dot\Log\ConfigProvider::class,
+    \Dot\Cache\ConfigProvider::class,
 
     // Default App module config
     \Light\App\ConfigProvider::class,
