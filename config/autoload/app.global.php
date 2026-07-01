@@ -1,9 +1,9 @@
 <?php
 
 declare(strict_types=1);
-$baseUrl = 'https://light-blog.localhost/';
+$baseUrl = 'https://new.dotkernel.com/';
 $app = [
-    'baseUrl' => 'https://light-blog.localhost/',
+    'baseUrl' => $baseUrl,
     'name' => 'Dotkernel Light | PSR-15 compliant application',
     'meta' => [
         'title'       => 'Dotkernel Light',

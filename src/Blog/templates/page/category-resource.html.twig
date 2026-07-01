@@ -3,15 +3,16 @@
 {% block title %}{{ category.name }}{% endblock %}
 
 {% block content %}
-    <div class="row g-4 py-4 z-0">
+    <div class="row g-4 z-0">
+        <header class="mb-4 pb-3 border-bottom">
+            <span class="text-uppercase text-muted small fw-bold d-block mb-1">Category</span>
+            <h1 class="display-6 fw-bold text-dark mb-0">{{ category.name }}</h1>
+        </header>
         {% include'@partial/left-menu.html.twig' %}
 
 
         <main class="col-lg-9 col-md-8">
-            <header class="mb-4 pb-3 border-bottom">
-                <span class="text-uppercase text-muted small fw-bold d-block mb-1">Category</span>
-                <h1 class="display-6 fw-bold text-dark mb-0">{{ category.name }}</h1>
-            </header>
+
 
             <div class="posts d-flex flex-column gap-3">
                 {% for article in categoryArticles %}
