@@ -27,9 +27,6 @@ abstract class AbstractEntity implements ArraySerializableInterface, EntityInter
     #[ORM\Column(name: 'updated', type: 'datetime_immutable', nullable: true)]
     protected ?DateTimeImmutable $updated = null;
 
-    #[ORM\Column(name: 'deleted', type: 'boolean', nullable: false, options: ['default' => false])]
-    protected bool $deleted = false;
-
     public function __construct()
     {
         $this->id = Uuid::uuid7();
@@ -69,18 +66,6 @@ abstract class AbstractEntity implements ArraySerializableInterface, EntityInter
         }
 
         return null;
-    }
-
-    public function isDeleted(): bool
-    {
-        return $this->deleted;
-    }
-
-    public function setDeleted(bool $deleted): static
-    {
-        $this->deleted = $deleted;
-
-        return $this;
     }
 
     #[ORM\PrePersist]
