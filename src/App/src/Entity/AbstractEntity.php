@@ -15,7 +15,7 @@ use function method_exists;
 use function ucfirst;
 
 #[ORM\MappedSuperclass]
-abstract class AbstractEntity implements ArraySerializableInterface, EntityInterface
+abstract class AbstractEntity implements ArraySerializableInterface
 {
     #[ORM\Id]
     #[ORM\Column(name: 'id', type: 'uuid', unique: true, nullable: false)]
