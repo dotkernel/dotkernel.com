@@ -1,8 +1,10 @@
 <?php
 
 declare(strict_types=1);
+
 use LightTest\Common\TestMode;
-if (!TestMode::class::isEnabled()) {
+
+if (! TestMode::class::isEnabled()) {
     return [];
 }
 
