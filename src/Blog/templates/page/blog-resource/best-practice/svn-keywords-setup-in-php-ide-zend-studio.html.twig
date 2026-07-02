@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -31,7 +31,7 @@
 Right click on <strong>project</strong>
 Go to <strong>Team-&gt;Set Propriety</strong>
 <ul>
-	<li>SVN Ignore files, below you have an example. As we do not want to commit your local settings
+    <li>SVN Ignore files, below you have an example. As we do not want to commit your local settings
 to the main repository :-)</li>
 </ul>
 <pre class="bash"><strong>Name:</strong> svn:ignore
@@ -44,14 +44,14 @@ cache
 .buildpath
 *.ini</pre>
 <ul>
-	<li>Basic integration with a bug tracker</li>
+    <li>Basic integration with a bug tracker</li>
 </ul>
 <pre class="bash"><strong>Name:</strong> bugtracq:label
 <strong>Propriety:</strong> Tracker ID:</pre>
 <pre class="bash"><strong>Name:</strong> bugtraq:message
 <strong>Propriety:</strong> </pre>
 <ul>
-	<li>If you have a public bug tracker system , example Mantis</li>
+    <li>If you have a public bug tracker system , example Mantis</li>
 </ul>
 <pre class="bash"><strong>Name:</strong> bugtraq:url
 <strong>Propriety:</strong> http://www.dotkernel.net/view.php?id=%BUGID%</pre>
@@ -67,7 +67,7 @@ Check the <strong>Use filtration by the resource name </strong> and add <strong>
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

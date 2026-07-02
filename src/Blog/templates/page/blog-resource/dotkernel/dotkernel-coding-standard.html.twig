@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -32,17 +32,17 @@ In what follows, we will make remarks only on those features that are slightly d
 
 <a href="http://framework.zend.com/manual/en/coding-standard.php-file-formatting.html" target="_blank" rel="noopener noreferrer"><strong>B.2. PHP File Formatting</strong></a>
 <ul>
-	<li><a href="http://framework.zend.com/manual/en/coding-standard.php-file-formatting.html#coding-standard.php-file-formatting.indentation" target="_blank" rel="noopener noreferrer"><strong>B.2.2. Indentation</strong></a></li>
+    <li><a href="http://framework.zend.com/manual/en/coding-standard.php-file-formatting.html#coding-standard.php-file-formatting.indentation" target="_blank" rel="noopener noreferrer"><strong>B.2.2. Indentation</strong></a></li>
 indentation - make indent with tabs, and not with space</ul>
 <a href="http://framework.zend.com/manual/en/coding-standard.naming-conventions.html" target="_blank" rel="noopener noreferrer"><strong>B.3. Naming Conventions</strong></a>
 
 Camel naming convention
 <ul>
-	<li><a href="http://framework.zend.com/manual/en/coding-standard.naming-conventions.html#coding-standard.naming-conventions.classes" target="_blank" rel="noopener noreferrer"><strong>B.3.1. Classes</strong></a></li>
+    <li><a href="http://framework.zend.com/manual/en/coding-standard.naming-conventions.html#coding-standard.naming-conventions.classes" target="_blank" rel="noopener noreferrer"><strong>B.3.1. Classes</strong></a></li>
 starts with Dot_ (e.g. Dot_Templates)
-	<li><strong><a href="http://framework.zend.com/manual/en/coding-standard.naming-conventions.html#coding-standard.naming-conventions.interfaces" target="_blank" rel="noopener noreferrer">B.3.2. Interfaces</a></strong></li>
+    <li><strong><a href="http://framework.zend.com/manual/en/coding-standard.naming-conventions.html#coding-standard.naming-conventions.interfaces" target="_blank" rel="noopener noreferrer">B.3.2. Interfaces</a></strong></li>
 ends with the string "Interface"(e.g. Dot_Db_Interface)
-	<li><strong><a href="http://framework.zend.com/manual/en/coding-standard.naming-conventions.html#coding-standard.naming-conventions.filenames" target="_blank" rel="noopener noreferrer">B.3.3. Filenames</a></strong></li>
+    <li><strong><a href="http://framework.zend.com/manual/en/coding-standard.naming-conventions.html#coding-standard.naming-conventions.filenames" target="_blank" rel="noopener noreferrer">B.3.3. Filenames</a></strong></li>
 All php files will have the  extension  ".php". No fancy extensions like .inc
 
 &nbsp;</ul>
@@ -64,7 +64,7 @@ e.g:
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

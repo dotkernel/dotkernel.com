@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -30,11 +30,11 @@
 
 If you're not familiar with how WURFL's caching works, here's a brief introduction:
 <ol>
-	<li>The device data is stored at first in a large, zipped XML file, with one entry for each device.</li>
-	<li>When first called, WURFL unzips the file and reads each device entry.</li>
-	<li>It then serializes the data and writes it to the cache, using and MD5 signature for the file name (or key name if the cache is not on the filesystem)</li>
-	<li>When a user agent is looked up, its MD5 signature is computed and then searched in the cache.</li>
-	<li>For a number of reasons, the data in the data file is stored as a tree, each device being a node and inheriting all the properties of the nodes above it. So, <strong>for each look-up, a number of files have to be read and their capabilities merged to get all the capabilities of the requested device.</strong></li>
+    <li>The device data is stored at first in a large, zipped XML file, with one entry for each device.</li>
+    <li>When first called, WURFL unzips the file and reads each device entry.</li>
+    <li>It then serializes the data and writes it to the cache, using and MD5 signature for the file name (or key name if the cache is not on the filesystem)</li>
+    <li>When a user agent is looked up, its MD5 signature is computed and then searched in the cache.</li>
+    <li>For a number of reasons, the data in the data file is stored as a tree, each device being a node and inheriting all the properties of the nodes above it. So, <strong>for each look-up, a number of files have to be read and their capabilities merged to get all the capabilities of the requested device.</strong></li>
 </ol>
 WURFL has cache providers for APC and memcache as well, which we've tried, but the results weren't impressive.
 
@@ -46,7 +46,7 @@ This small change (under 10 lines of code), decreased our response time by an <s
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

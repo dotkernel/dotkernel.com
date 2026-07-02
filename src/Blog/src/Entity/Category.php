@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace Light\Blog\Entity;
+
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -14,7 +15,6 @@ use Light\Blog\Repository\CategoryRepository;
 #[ORM\HasLifecycleCallbacks]
 class Category extends AbstractEntity
 {
-
     #[ORM\Column(name: 'name', type: 'text')]
     private string $name;
 
@@ -24,6 +24,7 @@ class Category extends AbstractEntity
     #[ORM\Column(name: 'isVisible', type: 'boolean')]
     private bool $isVisible = true;
 
+    /** @var Collection<int, Post> */
     #[ORM\OneToMany(mappedBy: 'category', targetEntity: Post::class)]
     private Collection $posts;
 
@@ -31,8 +32,9 @@ class Category extends AbstractEntity
     {
         parent::__construct();
 
-        $this->posts    = new ArrayCollection();
+        $this->posts = new ArrayCollection();
     }
+
     public function getName(): string
     {
         return $this->name;
@@ -63,6 +65,9 @@ class Category extends AbstractEntity
         $this->isVisible = $isVisible;
     }
 
+    /**
+     * @return Collection<int, Post>
+     */
     public function getPosts(): Collection
     {
         return $this->posts;

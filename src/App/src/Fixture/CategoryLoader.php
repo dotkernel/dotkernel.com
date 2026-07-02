@@ -7,6 +7,7 @@ namespace Light\App\Fixture;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Light\Blog\Entity\Category;
+use RuntimeException;
 
 use function file_get_contents;
 use function json_decode;
@@ -15,8 +16,14 @@ class CategoryLoader extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        $jsonFile   = __DIR__ . '/articles_cleaned.json';
-        $categories = json_decode(file_get_contents($jsonFile), true);
+        $jsonFile = __DIR__ . '/articles_cleaned.json';
+        $contents = file_get_contents($jsonFile);
+
+        if ($contents === false) {
+            throw new RuntimeException("Unable to read file: {$jsonFile}");
+        }
+
+        $categories = json_decode($contents, true);
 
         foreach ($categories as $cat) {
             $category = new Category();

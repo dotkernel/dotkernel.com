@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -38,7 +38,7 @@ Our <strong>composer.json</strong> file should look like this:
 <pre class="bg-light border rounded p-3 overflow-auto">>{
   "require" : {
     "zendframework/zendframework1" : "1.12.*",
-    "mobiledetect/mobiledetectlib" : "2.8.*" 
+    "mobiledetect/mobiledetectlib" : "2.8.*"
   },
   "require-dev" : {
     "php" : "&gt;=5.4.0"
@@ -48,9 +48,9 @@ Our <strong>composer.json</strong> file should look like this:
 
 The file above makes sure:
 <ul>
-	<li>Zend Framework is present and at version &gt; 1.12.*</li>
-	<li>MobileDetect is present and at version &gt; 2.8</li>
-	<li>The PHP executable is at least at version &gt; 5.4.0 (<strong>only for development, because it is not present in the main require</strong>)</li>
+    <li>Zend Framework is present and at version &gt; 1.12.*</li>
+    <li>MobileDetect is present and at version &gt; 2.8</li>
+    <li>The PHP executable is at least at version &gt; 5.4.0 (<strong>only for development, because it is not present in the main require</strong>)</li>
 </ul>
 &nbsp;
 
@@ -78,7 +78,7 @@ First we must make sure the composer autoload path exists and only load the depe
 
 $composerEnabled = <a href="http://php.net/manual/en/function.file-exists.php" target="_blank" rel="noopener noreferrer">file_exists</a>($composerAutoLoaderPath);
 
-if($composerEnabled == true) 
+if($composerEnabled == true)
 {
     require_once($composerAutoLoaderPath);
 }
@@ -100,7 +100,7 @@ This article works for any <strong>DotKernel 1.x</strong> version if your server
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

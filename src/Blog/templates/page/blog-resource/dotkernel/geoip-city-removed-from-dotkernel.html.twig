@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -40,7 +40,7 @@ The error might not be logged as the error is generated the GeoIP extension and 
 
 If you don't want to use GeoIP City and just want to get rid of the error go to
 <ul>
-	<li>DotKernel/admin/System.php (Admin/System model) and comment or remove the lines below</li>
+    <li>DotKernel/admin/System.php (Admin/System model) and comment or remove the lines below</li>
 </ul>
 <pre class="bg-light border rounded p-3 overflow-auto">>if(geoip_db_avail(GEOIP_CITY_EDITION_REV0))
 {
@@ -48,9 +48,9 @@ If you don't want to use GeoIP City and just want to get rid of the error go to
     $return = $info.' '.Dot_Kernel::TimeFormat($info);
 }</pre>
 <ul>
-	<li>library/Dot/GeoIp.php (Dot_GeoIp class) and comment or remove the lines below</li>
+    <li>library/Dot/GeoIp.php (Dot_GeoIp class) and comment or remove the lines below</li>
 </ul>
-<pre class="bg-light border rounded p-3 overflow-auto">>if(function_exists('geoip_db_avail') && geoip_db_avail(GEOIP_CITY_EDITION_REV0) 
+<pre class="bg-light border rounded p-3 overflow-auto">>if(function_exists('geoip_db_avail') && geoip_db_avail(GEOIP_CITY_EDITION_REV0)
 && 'unknown' == $country)
 {
     //if GeoIPCity.dat file exists
@@ -71,7 +71,7 @@ Note that GeoIP is an obsolete extension, Maxmind recommends using GeoIP2.
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -33,31 +33,31 @@ Download <a href="http://sourceforge.net/projects/wurfl/files/WURFL%20PHP/1.1/wu
 <!--more-->
 
 <ul>
-	<li>Create folders and make it <strong>writable </strong>by web server
+    <li>Create folders and make it <strong>writable </strong>by web server
 <ul>
-	<li><strong><em>cache\wurfl\FILE_CACHE_PROVIDER</em></strong></li>
-	<li><strong><em>cache\wurfl\FILE_PERSISTENCE_PROVIDER</em></strong></li>
+    <li><strong><em>cache\wurfl\FILE_CACHE_PROVIDER</em></strong></li>
+    <li><strong><em>cache\wurfl\FILE_PERSISTENCE_PROVIDER</em></strong></li>
 </ul>
 </li>
-	<li>In folder <em>configs</em>:
+    <li>In folder <em>configs</em>:
 <ul>
-	<li>Copy  <strong><em>wurfl-config.xml</em></strong> from <strong><em>wurfl-php-1.1\examples\resources</em></strong></li>
-	<li>Rename <strong><em>wurfl-config.xml</em></strong> to <strong><em>wurfl.xml</em></strong></li>
+    <li>Copy  <strong><em>wurfl-config.xml</em></strong> from <strong><em>wurfl-php-1.1\examples\resources</em></strong></li>
+    <li>Rename <strong><em>wurfl-config.xml</em></strong> to <strong><em>wurfl.xml</em></strong></li>
 </ul>
 </li>
-	<li>Edit <strong><em>configs\application.ini</em></strong><em> </em>file; add these lines:</li>
+    <li>Edit <strong><em>configs\application.ini</em></strong><em> </em>file; add these lines:</li>
 </ul>
 <pre class="bg-light border rounded p-3 overflow-auto">>resources.useragent.wurflapi.wurfl_api_version = "1.1"
 resources.useragent.wurflapi.wurfl_lib_dir = APPLICATION_PATH "/library/Wurfl/"
 resources.useragent.wurflapi.wurfl_config_file = APPLICATION_PATH "/configs/wurfl.xml"</pre>
 <ul>
-	<li>Create folder <strong><em>externals\wurfl</em></strong>, and copy the following files from:
+    <li>Create folder <strong><em>externals\wurfl</em></strong>, and copy the following files from:
 <ul>
-	<li><strong><em>wurfl-php-1.1\examples\resources\web_browsers_patch.xml</em></strong></li>
-	<li><strong><em>wurfl-php-1.1\examples\resources\wurfl-regression.zip</em></strong> and rename it <strong><em>wurfl.zip</em></strong> or download the <a href="http://sourceforge.net/projects/wurfl/files/WURFL/" target="_blank" rel="noopener noreferrer">latest wurfl zip</a> database and rename it <strong><em>wurfl.zip</em></strong></li>
+    <li><strong><em>wurfl-php-1.1\examples\resources\web_browsers_patch.xml</em></strong></li>
+    <li><strong><em>wurfl-php-1.1\examples\resources\wurfl-regression.zip</em></strong> and rename it <strong><em>wurfl.zip</em></strong> or download the <a href="http://sourceforge.net/projects/wurfl/files/WURFL/" target="_blank" rel="noopener noreferrer">latest wurfl zip</a> database and rename it <strong><em>wurfl.zip</em></strong></li>
 </ul>
 </li>
-	<li>Copy the contents of the folder <strong><em>wurfl-php-1.1\WURFL</em> </strong>to <strong><em>library\Wurfl</em></strong><strong> </strong></li>
+    <li>Copy the contents of the folder <strong><em>wurfl-php-1.1\WURFL</em> </strong>to <strong><em>library\Wurfl</em></strong><strong> </strong></li>
 </ul>
 <a href="http://wurfl.sourceforge.net/" target="_blank" rel="noopener noreferrer">WURFL</a> is integrated into DotKernel in the mobile module, but to access WURFL configuration, use
 <pre class="bg-light border rounded p-3 overflow-auto">>$userAgent = new Zend_Http_UserAgent($config-&gt;resources-&gt;useragent);
@@ -66,7 +66,7 @@ $device = $userAgent-&gt;getDevice();</pre>
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

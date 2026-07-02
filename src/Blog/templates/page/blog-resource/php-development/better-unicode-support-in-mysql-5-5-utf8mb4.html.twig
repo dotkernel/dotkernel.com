@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -42,7 +42,7 @@ Other changes that can be made in <strong>my.cnf</strong> file are all related t
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

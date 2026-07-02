@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -47,380 +47,380 @@
 
 <style>
 .section-block {
-	margin: 0 0  70px;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background: transparent linear-gradient(180deg, #F4F6FF 0%, #FFFFFF 100%) 0% 0% no-repeat padding-box;
-	border-radius: 44px;
-	padding: 20px;
+    margin: 0 0  70px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent linear-gradient(180deg, #F4F6FF 0%, #FFFFFF 100%) 0% 0% no-repeat padding-box;
+    border-radius: 44px;
+    padding: 20px;
 }
 
 .middleware-flow {
-	width: 650px;
+    width: 650px;
 }
 .middleware-flow .title {
-	font-family: 'Barlow Condensed', sans-serif;
-	font-size: 24px;
-	font-weight: bold;
-	color: #003396;
-	text-align: center;
-	margin-bottom: 20px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: #003396;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 .entry-point {
-	padding: 5px 24px 20px;
-	border-radius: 16px;
-	line-height: 1.6;
-	font-size: 16px;
-	background: #dce6ff;
-	width: 650px;
+    padding: 5px 24px 20px;
+    border-radius: 16px;
+    line-height: 1.6;
+    font-size: 16px;
+    background: #dce6ff;
+    width: 650px;
 }
 
 .entry-point p {
-	text-align: center;
-	margin: 17px auto;
-	font-weight: bold;
-	max-width: 300px;
-	line-height: 15px;
+    text-align: center;
+    margin: 17px auto;
+    font-weight: bold;
+    max-width: 300px;
+    line-height: 15px;
 }
 
 .entry-point .items {
-	display: flex;
-	justify-content: space-between;
-	gap: 5px;
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
 }
 
 .entry-point .item {
-	padding: 15px;
-	border-radius: 16px;
-	font-size: 14px;
-	font-weight: bold;
-	background: #cbd5ef;
-	border-left: 4px solid #64748b;
+    padding: 15px;
+    border-radius: 16px;
+    font-size: 14px;
+    font-weight: bold;
+    background: #cbd5ef;
+    border-left: 4px solid #64748b;
 }
 
 .entry-point .item:hover {
-	background: #dadfec;
+    background: #dadfec;
 }
 
 .onion {
-	position: relative;
-	height: 450px;
-	text-align: center;
+    position: relative;
+    height: 450px;
+    text-align: center;
 }
 
 .onion .layer {
-	position: absolute;
-	border-radius: 50%;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	border: 1px solid #b1b1b1;
+    position: absolute;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #b1b1b1;
 }
 
 .onion .tool-tip {
-	padding: 10px;
-	position: absolute;
-	border-radius: 16px;
-	top: 0;
-	left: 62%;
-	width: 245px;
-	background: #dddff1db;
-	border-left: 4px solid #64748b;
+    padding: 10px;
+    position: absolute;
+    border-radius: 16px;
+    top: 0;
+    left: 62%;
+    width: 245px;
+    background: #dddff1db;
+    border-left: 4px solid #64748b;
 }
 
 .onion .tool-tip .title {
-	font-family: 'Barlow', sans-serif;
-	font-size: 14px;
-	font-weight: bold;
-	color: #333;
-	margin-bottom: 10px;
-	text-align: left;
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+    text-align: left;
 }
 
 .onion .tool-tip .line {
-	font-family: 'Barlow', sans-serif;
-	font-size: 14px;
-	margin-bottom: 10px;
-	text-align: left;
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+    margin-bottom: 10px;
+    text-align: left;
 }
 
 .onion p {
-	font-size: 14px;
-	margin: auto;
-	max-width: initial;
+    font-size: 14px;
+    margin: auto;
+    max-width: initial;
 }
 
 .onion .layer p {
-	text-align: center;
-	margin: 17px auto;
-	font-weight: bold;
-	max-width: 140px;
-	line-height: 15px !important;
+    text-align: center;
+    margin: 17px auto;
+    font-weight: bold;
+    max-width: 140px;
+    line-height: 15px !important;
 }
 
 .onion .layer.layer1 {
-	width: 450px;
-	height: 450px;
-	background-color: #ea8989;
-	background-image: linear-gradient(to bottom right, #ffffff 0%, #ea9f9f 40%, #dd6a6a 80%, #531919 100%);
+    width: 450px;
+    height: 450px;
+    background-color: #ea8989;
+    background-image: linear-gradient(to bottom right, #ffffff 0%, #ea9f9f 40%, #dd6a6a 80%, #531919 100%);
 }
 
 .onion .layer.layer1:hover {
-	background-image: linear-gradient(to bottom right, #ffffff 0%, #efcbcb 40%, #dd6a6a 80%, #8f3636 100%);
+    background-image: linear-gradient(to bottom right, #ffffff 0%, #efcbcb 40%, #dd6a6a 80%, #8f3636 100%);
 }
 
 .onion .layer.layer2 {
-	width: 380px;
-	height: 380px;
-	background-color: #79e1da;
-	background-image: linear-gradient(to bottom right, #ffffff 0%, #9de1dd 40%, #3aa396 80%, #13514d 100%);
-	margin-top: 30px;
+    width: 380px;
+    height: 380px;
+    background-color: #79e1da;
+    background-image: linear-gradient(to bottom right, #ffffff 0%, #9de1dd 40%, #3aa396 80%, #13514d 100%);
+    margin-top: 30px;
 }
 
 .onion .layer.layer2:hover {
-	background-image: linear-gradient(to bottom right, #ffffff 0%, #c0efed 40%, #3aa396 80%, #328a85 100%);
+    background-image: linear-gradient(to bottom right, #ffffff 0%, #c0efed 40%, #3aa396 80%, #328a85 100%);
 }
 
 .onion .layer.layer3 {
-	width: 310px;
-	height: 310px;
-	background-color: #a9e1a7;
-	background-image: linear-gradient(to bottom right, #ffffff 0%, #a9e1a7 40%, #55b151 80%, #1b5c19 100%);
-	margin-top: 60px;
+    width: 310px;
+    height: 310px;
+    background-color: #a9e1a7;
+    background-image: linear-gradient(to bottom right, #ffffff 0%, #a9e1a7 40%, #55b151 80%, #1b5c19 100%);
+    margin-top: 60px;
 }
 
 .onion .layer.layer3:hover {
-	background-image: linear-gradient(to bottom right, #ffffff 0%, #c9eac8 40%, #79ca75 80%, #419a3f 100%);
+    background-image: linear-gradient(to bottom right, #ffffff 0%, #c9eac8 40%, #79ca75 80%, #419a3f 100%);
 }
 
 .onion .layer.layer4 {
-	width: 240px;
-	height: 240px;
-	background-color: #ffad5f;
-	background-image: linear-gradient(to bottom right, #ffffff 0%, #efd0bc 40%, #d38d4a 80%, #af5e13 100%);
-	margin-top: 90px;
+    width: 240px;
+    height: 240px;
+    background-color: #ffad5f;
+    background-image: linear-gradient(to bottom right, #ffffff 0%, #efd0bc 40%, #d38d4a 80%, #af5e13 100%);
+    margin-top: 90px;
 }
 
 .onion .layer.layer4:hover {
-	background-image: linear-gradient(to bottom right, #ffffff 0%, #f1e4db 40%, #dcae80 80%, #ae7035 100%);
+    background-image: linear-gradient(to bottom right, #ffffff 0%, #f1e4db 40%, #dcae80 80%, #ae7035 100%);
 }
 
 .onion .layer.layer5 {
-	width: 170px;
-	height: 170px;
-	background-color: #f1e5c5;
-	background-image: linear-gradient(to bottom right, #ffffff 0%, #e6dcc6 40%, #b69749 80%, #5e4415 100%);
-	margin-top: 120px;
+    width: 170px;
+    height: 170px;
+    background-color: #f1e5c5;
+    background-image: linear-gradient(to bottom right, #ffffff 0%, #e6dcc6 40%, #b69749 80%, #5e4415 100%);
+    margin-top: 120px;
 }
 
 .onion .layer.layer5:hover {
-	background-image: linear-gradient(to bottom right, #ffffff 0%, #f1eae4 40%, #b69749 80%, #816433 100%);
+    background-image: linear-gradient(to bottom right, #ffffff 0%, #f1eae4 40%, #b69749 80%, #816433 100%);
 }
 
 .onion .layer.layer6 {
-	width: 100px;
-	height: 100px;
-	background-color: #d7c5f1;
-	background-image: linear-gradient(to bottom right, #ffffff 0%, #cbc0e6 40%, #6239aa 80%, #451b80 100%);
-	margin-top: 150px;
+    width: 100px;
+    height: 100px;
+    background-color: #d7c5f1;
+    background-image: linear-gradient(to bottom right, #ffffff 0%, #cbc0e6 40%, #6239aa 80%, #451b80 100%);
+    margin-top: 150px;
 }
 
 .onion .layer.layer6:hover {
-	background-image: linear-gradient(to bottom right, #ffffff 0%, #dcd5ea 40%, #7f5dbd 80%, #6836ae 100%);
+    background-image: linear-gradient(to bottom right, #ffffff 0%, #dcd5ea 40%, #7f5dbd 80%, #6836ae 100%);
 }
 
 .onion .layer.layer6 p {
-	margin-top: 30px;
+    margin-top: 30px;
 }
 
 .exit-point {
-	padding: 5px 24px 20px;
-	border-radius: 16px;
-	line-height: 1.6;
-	font-size: 16px;
-	background: #e5f1e1;
-	margin-top: 25px;
+    padding: 5px 24px 20px;
+    border-radius: 16px;
+    line-height: 1.6;
+    font-size: 16px;
+    background: #e5f1e1;
+    margin-top: 25px;
 }
 
 .exit-point p {
-	 text-align: center;
-	 margin: 17px auto;
-	 font-weight: bold;
-	 max-width: 300px;
-	 line-height: 15px;
+     text-align: center;
+     margin: 17px auto;
+     font-weight: bold;
+     max-width: 300px;
+     line-height: 15px;
  }
 
 .exit-point .items {
-	display: flex;
-	justify-content: space-evenly;
-	font-weight: bold;
+    display: flex;
+    justify-content: space-evenly;
+    font-weight: bold;
 }
 
 .exit-point .item {
-	padding: 15px;
-	border-radius: 16px;
-	max-width: 33%;
-	background: #c8dfc4;
-	border-left: 4px solid #47803f;
+    padding: 15px;
+    border-radius: 16px;
+    max-width: 33%;
+    background: #c8dfc4;
+    border-left: 4px solid #47803f;
 }
 
 .exit-point .item:hover {
-	background: #dce6d9;
+    background: #dce6d9;
 }
 
 .arrow-flow {
-	position: absolute;
+    position: absolute;
 }
 
 .arrow-center {
-	left: 50%;
+    left: 50%;
 }
 
 .arrow-offset1 {
-	right: 120px;
-	bottom: -25px;
+    right: 120px;
+    bottom: -25px;
 }
 
 .arrow-offset2 {
-	right: 155px;
-	bottom: -25px;
+    right: 155px;
+    bottom: -25px;
 }
 
 .arrow-offset3 {
-	right: 190px;
-	bottom: -25px;
+    right: 190px;
+    bottom: -25px;
 }
 
 .arrow-offset4 {
-	right: 225px;
-	bottom: -25px;
+    right: 225px;
+    bottom: -25px;
 }
 
 .arrow-offset5 {
-	right: 260px;
-	bottom: -25px;
+    right: 260px;
+    bottom: -25px;
 }
 
 .arrow1 {
-	top: 50px;
+    top: 50px;
 }
 
 .arrow2 {
-	top: 115px;
+    top: 115px;
 }
 
 .arrow3 {
-	top: 180px;
+    top: 180px;
 }
 
 .arrow4 {
-	top: 245px;
+    top: 245px;
 }
 
 .arrow5 {
-	top: 310px;
+    top: 310px;
 }
 
 .arrow-response {
-	position: absolute;
-	bottom: -25px;
-	left: 50%;
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
 }
 
 .down-arrow {
-	--arrow-length: 120px;
-	--arrow-color: #333;
-	--arrow-thickness: 2px;
+    --arrow-length: 120px;
+    --arrow-color: #333;
+    --arrow-thickness: 2px;
 
-	position: relative;
-	width: var(--arrow-thickness);
-	height: var(--arrow-length);
-	background: var(--arrow-color);
-	margin: 5px auto 15px;
+    position: relative;
+    width: var(--arrow-thickness);
+    height: var(--arrow-length);
+    background: var(--arrow-color);
+    margin: 5px auto 15px;
 }
 
 .entry-point .down-arrow {
-	margin: 10px auto 25px;
+    margin: 10px auto 25px;
 }
 
 .down-arrow::after {
-	content: "";
-	position: absolute;
-	bottom: -8px;
-	left: 50%;
-	width: 12px;
-	height: 12px;
-	border-right: var(--arrow-thickness) solid var(--arrow-color);
-	border-bottom: var(--arrow-thickness) solid var(--arrow-color);
-	transform: translateX(-50%) rotate(45deg);
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    border-right: var(--arrow-thickness) solid var(--arrow-color);
+    border-bottom: var(--arrow-thickness) solid var(--arrow-color);
+    transform: translateX(-50%) rotate(45deg);
 }
 
 .right-arrow {
-	--arrow-length: 4px;
-	--arrow-color: #333;
-	--arrow-thickness: 10px;
+    --arrow-length: 4px;
+    --arrow-color: #333;
+    --arrow-thickness: 10px;
 
-	position: relative;
-	width: var(--arrow-thickness);
-	height: var(--arrow-length);
-	background: var(--arrow-color);
-	margin: 40px 13px 0 0;
+    position: relative;
+    width: var(--arrow-thickness);
+    height: var(--arrow-length);
+    background: var(--arrow-color);
+    margin: 40px 13px 0 0;
 }
 
 .right-arrow::after {
-	content: "";
-	position: absolute;
-	bottom: -6px;
-	right: 0;
-	width: 16px;
-	height: 16px;
-	border-right: var(--arrow-length) solid var(--arrow-color);
-	border-bottom: var(--arrow-length) solid var(--arrow-color);
-	transform: translateX(80%) rotate(-45deg);
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    right: 0;
+    width: 16px;
+    height: 16px;
+    border-right: var(--arrow-length) solid var(--arrow-color);
+    border-bottom: var(--arrow-length) solid var(--arrow-color);
+    transform: translateX(80%) rotate(-45deg);
 }
 
 .arrow-15 {
-	--arrow-length: 15px;
+    --arrow-length: 15px;
 }
 
 .arrow-20 {
-	--arrow-length: 20px;
+    --arrow-length: 20px;
 }
 
 .arrow-40 {
-	--arrow-length: 40px;
+    --arrow-length: 40px;
 }
 
 .arrow-170 {
-	--arrow-length: 170px;
+    --arrow-length: 170px;
 }
 
 .arrow-95 {
-	--arrow-length: 95px;
-	--arrow-thickness: 1px;
+    --arrow-length: 95px;
+    --arrow-thickness: 1px;
 }
 
 .arrow-125 {
-	--arrow-length: 125px;
-	--arrow-thickness: 1px;
+    --arrow-length: 125px;
+    --arrow-thickness: 1px;
 }
 
 .arrow-155 {
-	--arrow-length: 155px;
-	--arrow-thickness: 1px;
+    --arrow-length: 155px;
+    --arrow-thickness: 1px;
 }
 
 .arrow-185 {
-	--arrow-length: 185px;
-	--arrow-thickness: 1px;
+    --arrow-length: 185px;
+    --arrow-thickness: 1px;
 }
 
 .arrow-215 {
-	--arrow-length: 215px;
-	--arrow-thickness: 1px;
+    --arrow-length: 215px;
+    --arrow-thickness: 1px;
 }
 </style>
                 <div class="middleware-flow">
@@ -575,7 +575,7 @@ $('.hasTooltip').hover(
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

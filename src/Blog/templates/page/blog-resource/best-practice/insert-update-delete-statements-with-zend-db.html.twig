@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -27,9 +27,9 @@
                         Continuing the Zend_DB article <a href="http://www.dotkernel.com/dotkernel/sql-select-zend-db/" target="_blank" rel="noopener noreferrer">series</a>, we are stopping now at DML statements.</br>
 DML (Data Manipulation Language) statements are statements that change data values in database tables. There are 3 primary DML statements:
 <ul>
-	<li>INSERT - Inserting new rows into database tables.
-	<li>UPDATE - Updating existing rows in database tables .
-	<li>DELETE - Deleting existing rows from database tables.
+    <li>INSERT - Inserting new rows into database tables.
+    <li>UPDATE - Updating existing rows in database tables .
+    <li>DELETE - Deleting existing rows from database tables.
 </ul>
 </br>
 <!--more-->
@@ -41,15 +41,15 @@ $db = Zend_Db::factory('Pdo_Mysql', $dbConnect);
 <b>INSERT</b>
 <pre class="bg-light border rounded p-3 overflow-auto">>
 INSERT INTO user(email, password, firstName, lastName, active)
-	   VALUES ('$email', '$password', '$firstName', '$lastName', 1);
+       VALUES ('$email', '$password', '$firstName', '$lastName', 1);
 </pre>
 The above SQL <i>INSERT</i> statement is translated in Zend_Db as follow:
 <pre class="bg-light border rounded p-3 overflow-auto">>
 $data = array( 'email' => $email,
-		    'password' => $password,
-		    'firstName' => $firstName,
-		    'lastName' => $lastName,
-		    'active' => '1');
+            'password' => $password,
+            'firstName' => $firstName,
+            'lastName' => $lastName,
+            'active' => '1');
 $db->insert('user', $data);
 </pre></br>
 <b>UPDATE</b>
@@ -81,7 +81,7 @@ $db->delete('user', 'id = '.$id);
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

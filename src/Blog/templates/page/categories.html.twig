@@ -9,11 +9,9 @@
     </header>
     <div class="row g-4 py-4">
 
-        {% include'@partial/left-menu.html.twig' %}
+        {{ include('@partial/left-menu.html.twig') }}
 
         <main class="col-lg-9 col-md-8">
-
-
 
             <div class="row g-4">
                 {% for category in categories %}

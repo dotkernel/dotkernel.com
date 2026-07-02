@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -41,11 +41,11 @@ $request-&gt;getHeaderLine('Content-Type'); // will return: "text/html; charset=
 // getting value from response headers
 $response-&gt;getHeaderLine('My-Custom-Header'); // will return:  "My Custom Message; The second message"
 </pre><h4 id="getting-array-of-value-from-a-header-also-applies-to-request">Getting array of value from a header (also applies to request)</h4><pre class="bg-light border rounded p-3 overflow-auto">>// getting value from request headers
-$request-&gt;getHeader('Content-Type'); // will return: 
+$request-&gt;getHeader('Content-Type'); // will return:
 // getting value from response headers
-$response-&gt;getHeader('My-Custom-Header'); // will return:  
+$response-&gt;getHeader('My-Custom-Header'); // will return:
 </pre><h4 id="removing-headers-from-http-messages">Removing headers from HTTP Messages</h4><pre class="bg-light border rounded p-3 overflow-auto">>// removing a header from Request, removing deprecated "Content-MD5" header
-$request-&gt;withoutHeader('Content-MD5'); 
+$request-&gt;withoutHeader('Content-MD5');
 // removing a header from Response
 // effect: the browser won't know the size of the stream
 // the browser will download the stream till it ends
@@ -54,7 +54,7 @@ $response-&gt;withoutHeader('Content-Length');
 // operations on body, eg. read, write, seek
 // ...
 // replacing the old body
-$response-&gt;withBody($body); 
+$response-&gt;withBody($body);
 // this last statement is optional as we working with objects
 // in this case the "new" body is same with the "old" one
 // the $body variable has the same value as the one in $request, only the reference is passed
@@ -89,7 +89,7 @@ $bodyText = $body-&gt;getContends();
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

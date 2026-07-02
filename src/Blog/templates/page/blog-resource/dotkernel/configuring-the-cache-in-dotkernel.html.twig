@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -28,8 +28,8 @@
 
 The DotKernel Caching Layer is based on Zend Framework Cache, more configuration options can be found at the following links:
 <ul>
-	<li><a title="Zend Framework Cache Frontends" href="http://framework.zend.com/manual/1.12/en/zend.cache.frontends.html" target="_blank" rel="noopener noreferrer">Zend Framework Cache Frontends</a></li>
-	<li><a title="Zend Framework Cache Backends" href="http://framework.zend.com/manual/1.12/en/zend.cache.backends.html" target="_blank" rel="noopener noreferrer">Zend Framework Cache Backends</a></li>
+    <li><a title="Zend Framework Cache Frontends" href="http://framework.zend.com/manual/1.12/en/zend.cache.frontends.html" target="_blank" rel="noopener noreferrer">Zend Framework Cache Frontends</a></li>
+    <li><a title="Zend Framework Cache Backends" href="http://framework.zend.com/manual/1.12/en/zend.cache.backends.html" target="_blank" rel="noopener noreferrer">Zend Framework Cache Backends</a></li>
 </ul>
 <!--more-->
 <h2>Main cache settings (Cache Frontend)</h2>
@@ -61,7 +61,7 @@ cache.file.file_name_prefix = "DotKernel"</pre>
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

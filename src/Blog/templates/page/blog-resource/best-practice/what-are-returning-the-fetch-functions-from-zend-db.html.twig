@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -31,7 +31,7 @@ array fetchAssoc (string|Zend_Db_Select $sql, )
 array fetchCol (string|Zend_Db_Select $sql, )
 string fetchOne (string|Zend_Db_Select $sql, )
 array fetchPairs (string|Zend_Db_Select $sql, )
-array fetchRow (string|Zend_Db_Select $sql, , ) 
+array fetchRow (string|Zend_Db_Select $sql, , )
 </pre>
 To be more easily to follow, in <span style="background-color: #B5DFC1">green</span> box is the classical SQL statement, and in <span style="background-color:  #9FCFFF">blue</span> box is the query written in Zend_Db style.
 </br>
@@ -63,9 +63,9 @@ $select = $db->select()
 while($db->next_record())
 {
     $a[] = array(
-				 'id' => $db->f('id'),
-				 'title' => $db->f('title')
-		     	);
+                 'id' => $db->f('id'),
+                 'title' => $db->f('title')
+                 );
 }
 </pre>
 </br>
@@ -78,10 +78,10 @@ $a = $db->fetchAll($select);
 <pre class="bg-light border rounded p-3 overflow-auto"> style="background-color: #B5DFC1">
 while($db->next_record())
 {
-	$a = array(
-							 'id' => $db->f('id'),
-							 'title' => $db->f('title')
-							);
+    $a = array(
+                             'id' => $db->f('id'),
+                             'title' => $db->f('title')
+                            );
 }
 </pre>
 </br>
@@ -131,9 +131,9 @@ $a = $db->fetchPairs($select);
 <pre class="bg-light border rounded p-3 overflow-auto"> style="background-color: #B5DFC1">
 $db->next_record();
 $a = array(
-		   'id' => $db->f('id'),
-		   'title' => $db->f('title')
-	      );
+           'id' => $db->f('id'),
+           'title' => $db->f('title')
+          );
 </pre>
 </br>
 <pre class="bg-light border rounded p-3 overflow-auto"> style="background-color: #9FCFFF">
@@ -142,7 +142,7 @@ $a = $db->fetchRow($select);
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

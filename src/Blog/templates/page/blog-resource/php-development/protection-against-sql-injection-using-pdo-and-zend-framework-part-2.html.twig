@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -28,35 +28,35 @@
 What you should know about their methods is:
 <!--more-->
 <ul>
-	<li><em><a title="details" href="http://framework.zend.com/apidoc/core/Zend_Db/Adapter/Zend_Db_Adapter_Abstract.html#query">query</a> (mixed $sql,  )</em>
+    <li><em><a title="details" href="http://framework.zend.com/apidoc/core/Zend_Db/Adapter/Zend_Db_Adapter_Abstract.html#query">query</a> (mixed $sql,  )</em>
 <ul>
-	<li>use prepare statements internally</li>
-	<li>but SQL Injection is still possible if $sql is dynamically created</li>
+    <li>use prepare statements internally</li>
+    <li>but SQL Injection is still possible if $sql is dynamically created</li>
 </ul>
 </li>
-	<li><em><a title="details" href="http://framework.zend.com/apidoc/core/Zend_Db/Adapter/Zend_Db_Adapter_Abstract.html#fetchAll">fetchAll</a> (string|Zend_Db_Select $sql, ,  )</em>
+    <li><em><a title="details" href="http://framework.zend.com/apidoc/core/Zend_Db/Adapter/Zend_Db_Adapter_Abstract.html#fetchAll">fetchAll</a> (string|Zend_Db_Select $sql, ,  )</em>
 <ul>
-	<li>all the fetch methods are using prepared statements internally</li>
-	<li>but SQL Injection is still possible if $sql is dynamically created</li>
+    <li>all the fetch methods are using prepared statements internally</li>
+    <li>but SQL Injection is still possible if $sql is dynamically created</li>
 </ul>
 </li>
-	<li><em><a title="details" href="http://framework.zend.com/apidoc/core/Zend_Db/Adapter/Zend_Db_Adapter_Abstract.html#insert">insert</a> (mixed $table,   $bind)</em>
+    <li><em><a title="details" href="http://framework.zend.com/apidoc/core/Zend_Db/Adapter/Zend_Db_Adapter_Abstract.html#insert">insert</a> (mixed $table,   $bind)</em>
 <ul>
-	<li>use prepare statements internally</li>
-	<li>so, SQL Injection is not possible</li>
+    <li>use prepare statements internally</li>
+    <li>so, SQL Injection is not possible</li>
 </ul>
 </li>
-	<li><em><a title="details" href="http://framework.zend.com/apidoc/core/Zend_Db/Adapter/Zend_Db_Adapter_Abstract.html#update">update</a> (mixed $table,   $bind, )</em>
+    <li><em><a title="details" href="http://framework.zend.com/apidoc/core/Zend_Db/Adapter/Zend_Db_Adapter_Abstract.html#update">update</a> (mixed $table,   $bind, )</em>
 <ul>
-	<li>use prepare statements internally</li>
+    <li>use prepare statements internally</li>
 </ul>
 <ul>
-	<li>but SQL Injection may be possible if $where is created dynamically</li>
+    <li>but SQL Injection may be possible if $where is created dynamically</li>
 </ul>
 </li>
-	<li><em><a title="details" href="http://framework.zend.com/apidoc/core/Zend_Db/Adapter/Zend_Db_Adapter_Abstract.html#delete">delete</a> (mixed $table,  )</em>
+    <li><em><a title="details" href="http://framework.zend.com/apidoc/core/Zend_Db/Adapter/Zend_Db_Adapter_Abstract.html#delete">delete</a> (mixed $table,  )</em>
 <ul>
-	<li>SQL Injection may be possible if $where is created dynamically</li>
+    <li>SQL Injection may be possible if $where is created dynamically</li>
 </ul>
 </li>
 </ul>
@@ -70,7 +70,7 @@ PS. A short <a href="http://www.dustinweber.com/main-page/type-casting-in-php-wh
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

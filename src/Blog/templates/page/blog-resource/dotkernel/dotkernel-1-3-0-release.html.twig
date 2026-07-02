@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -58,15 +58,13 @@ Some xml files from configs folder have been changed to encompass the current ne
 - <span style="text-decoration: line-through;"><a title=" drop-down list in admin/user logins" href="http://www.dotkernel.net/view.php?id=53">53</a></span>: <strong></strong> drop-down list in admin/user logins - closed.
 - <span style="text-decoration: line-through;"><a title=" Admin hide debug bar in Login page" href="http://www.dotkernel.net/view.php?id=52">52</a></span>: <strong></strong> Admin hide debug bar in Login page - closed.
 
- 
-
 For more details see <a href="../changelog/1-3-0/">ChangeLog 1.3.0</a>.
 
 <strong>Note*</strong>: because of the bug <span style="text-decoration: line-through;"><a title=" reorganization of XMl files" href="http://www.dotkernel.net/view.php?id=69">69</a></span>, this release is not compatible with the previous versions. To see what else has changed, check <a href="http://www.dotkernel.net/">DotKernel Tracker</a> or <a href="http://websvn.dotkernel.net/listing.php?repname=DotKernel">DotKernel WebSVN</a>.
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

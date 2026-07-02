@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -30,92 +30,92 @@ DotKernel uses <em><strong>GeoIP </strong></em>to get user statistics by country
 <!--more-->
 Let’s explain what function <strong><em>getCountryByIp </em></strong>does:
 <ul>
-	<li>Line 41: get session variable to memorize the possible error messages later.</li>
-	<li>Line 42: initialize country with ‘unknown’ value, in case the country isn’t found.</li>
+    <li>Line 41: get session variable to memorize the possible error messages later.</li>
+    <li>Line 42: initialize country with ‘unknown’ value, in case the country isn’t found.</li>
 </ul>
 Next there are 4 <strong><em>if/else</em></strong> statements:
 <a name="1"></a>
 <strong>1. </strong>Line 43 – 57: <em><strong>mod_geoip </strong></em>PECL extension is not installed</a>
 <ul>
-	<li>In this case we use the already existing file <strong>externals/geoip/GeoIP.dat</strong> from DotKernel (If you don’t have it, download it from <a href="http://www.maxmind.com/app/geolitecountry">here</a>).</li>
+    <li>In this case we use the already existing file <strong>externals/geoip/GeoIP.dat</strong> from DotKernel (If you don’t have it, download it from <a href="http://www.maxmind.com/app/geolitecountry">here</a>).</li>
 </ul>
 <strong>2. </strong>Line 58 – 63: <em><strong>mod_geoip</strong></em> is installed and <strong><em>GeoIP.dat</em></strong> file exists on the server: <em>geoip_db_avail(GEOIP_COUNTRY_EDITION)</em>
 <ul>
-	<li>In this case we simply use the default PHP functions <em><strong><a href="http://php.net/manual/en/book.geoip.php" target="_blank" rel="noopener noreferrer">geoip_country_code_by_name</a></strong> </em>and <em><strong><a href="http://php.net/manual/en/book.geoip.php" target="_blank" rel="noopener noreferrer">geoip_country_name_by_name</a></strong> </em>to get the country code and name.</li>
+    <li>In this case we simply use the default PHP functions <em><strong><a href="http://php.net/manual/en/book.geoip.php" target="_blank" rel="noopener noreferrer">geoip_country_code_by_name</a></strong> </em>and <em><strong><a href="http://php.net/manual/en/book.geoip.php" target="_blank" rel="noopener noreferrer">geoip_country_name_by_name</a></strong> </em>to get the country code and name.</li>
 </ul>
 <strong>3. </strong>Line 64 – 73 : <em><strong>mod_geoip</strong></em> is installed, <em><strong>GeoIP.dat</strong></em> file does not exist, but <em><strong>GeoIpCity.dat</strong></em> exists
 <ul>
-	<li>In this case we use the PHP function <em><strong><a href="http://php.net/manual/en/book.geoip.php" target="_blank" rel="noopener noreferrer">geoip_record_by_name</a></strong> </em> to get the country code and name.</li>
+    <li>In this case we use the PHP function <em><strong><a href="http://php.net/manual/en/book.geoip.php" target="_blank" rel="noopener noreferrer">geoip_record_by_name</a></strong> </em> to get the country code and name.</li>
 </ul>
 <strong>4. </strong>Line 74 – 88 : <em><strong>mod_geoip</strong></em> is installed, but neither GeoIP.dat or GeoIPCity.dat exist
 <ul>
-	<li>This has the same behavior like item <a name="#1"></a>#1<a> in this list –  it uses <strong><em>externals/geoip/GeoIP.dat</em></strong> from the DotKernel framework</a></li>
+    <li>This has the same behavior like item <a name="#1"></a>#1<a> in this list –  it uses <strong><em>externals/geoip/GeoIP.dat</em></strong> from the DotKernel framework</a></li>
 </ul>
 <pre class="bg-light border rounded p-3 overflow-auto"> line="32">/**
  * Get the country by IP
  * Return an array with : short name, like 'us' and long name, like 'United States'
- * @access public 
+ * @access public
  * @param string $ip
  * @return array
  */
 public function getCountryByIp($ip)
 {
-	$session = Zend_Registry::get('session');
-	$country = array(0 => 'unknown',1 => 'NA');
-	if(extension_loaded('geoip') == FALSE)
-	{
-		// GeoIp extension is not active
-		$api = new Dot_Geoip_Country();
-		$geoipPath = 'externals/geoip/GeoIP.dat';
-		if(file_exists($geoipPath))
-		{
-			$country = $api->getCountryByAddr($geoipPath, $ip);
-		}
-		else
-		{				
-			$session->message = $this->option->warningMessage->modGeoIp;
-			$session->message = 'warning';
-		}
-	}
-	elseif(geoip_db_avail(GEOIP_COUNTRY_EDITION))
-	{ 
-		//if GeoIP.dat file exists
-		$country = geoip_country_code_by_name ($ip);
-		$country = geoip_country_name_by_name($ip);
-	}		
-	elseif(geoip_db_avail(GEOIP_CITY_EDITION_REV0))
-	{	
-		//if GeoIPCity.dat file exists
-		$record = geoip_record_by_name($ip);
-		if(!empty($record))
-		{
-			$country = $record;
-			$country = $record;
-		}
-	}
-	else
-	{
-		// GeoIp extension is not active
-		$api = new Dot_Geoip_Country();
-		$geoipPath = 'externals/geoip/GeoIP.dat';
-		if(file_exists($geoipPath))
-		{
-			$country = $api->getCountryByAddr($geoipPath, $ip);
-		}
-		else
-		{				
-			$session->message = $this->option->warningMessage->modGeoIp;;
-			$session->message = 'warning';
-		}
-	}
-	return $country;
-}	
+    $session = Zend_Registry::get('session');
+    $country = array(0 => 'unknown',1 => 'NA');
+    if(extension_loaded('geoip') == FALSE)
+    {
+        // GeoIp extension is not active
+        $api = new Dot_Geoip_Country();
+        $geoipPath = 'externals/geoip/GeoIP.dat';
+        if(file_exists($geoipPath))
+        {
+            $country = $api->getCountryByAddr($geoipPath, $ip);
+        }
+        else
+        {
+            $session->message = $this->option->warningMessage->modGeoIp;
+            $session->message = 'warning';
+        }
+    }
+    elseif(geoip_db_avail(GEOIP_COUNTRY_EDITION))
+    {
+        //if GeoIP.dat file exists
+        $country = geoip_country_code_by_name ($ip);
+        $country = geoip_country_name_by_name($ip);
+    }
+    elseif(geoip_db_avail(GEOIP_CITY_EDITION_REV0))
+    {
+        //if GeoIPCity.dat file exists
+        $record = geoip_record_by_name($ip);
+        if(!empty($record))
+        {
+            $country = $record;
+            $country = $record;
+        }
+    }
+    else
+    {
+        // GeoIp extension is not active
+        $api = new Dot_Geoip_Country();
+        $geoipPath = 'externals/geoip/GeoIP.dat';
+        if(file_exists($geoipPath))
+        {
+            $country = $api->getCountryByAddr($geoipPath, $ip);
+        }
+        else
+        {
+            $session->message = $this->option->warningMessage->modGeoIp;;
+            $session->message = 'warning';
+        }
+    }
+    return $country;
+}
 }
 </pre>
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

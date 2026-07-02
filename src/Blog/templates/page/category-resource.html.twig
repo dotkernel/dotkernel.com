@@ -8,11 +8,9 @@
             <span class="text-uppercase text-muted small fw-bold d-block mb-1">Category</span>
             <h1 class="display-6 fw-bold text-dark mb-0">{{ category.name }}</h1>
         </header>
-        {% include'@partial/left-menu.html.twig' %}
-
+        {{ include('@partial/left-menu.html.twig') }}
 
         <main class="col-lg-9 col-md-8">
-
 
             <div class="posts d-flex flex-column gap-3">
                 {% for article in categoryArticles %}

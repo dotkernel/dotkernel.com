@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -29,21 +29,21 @@
 Also that way we can forget about the need to update ZF at latest versions, and keep tracks of which version and on which server we have ZF.  Of course, backward compatibility  can be an issue in future ZF releases ( like 2.0 branch for PHP &gt; 5.3)
 <!--more-->
 <ol>
-	<li> Install PEAR if is not installed  already .</li>
-	<li> Follow the instructions for <a href="http://code.google.com/p/zend/" target="_blank" rel="noopener noreferrer">ZF PEAR </a>. Then simply use: <em>pear install zend/zend</em></li>
-	<li>Create a vhosts.conf file in /var/www/vhosts/dotkernel.com/conf  or where is your vhost configuration folder located.</li>
-	<li>In that file, remove the open_basedir :</li>
+    <li> Install PEAR if is not installed  already .</li>
+    <li> Follow the instructions for <a href="http://code.google.com/p/zend/" target="_blank" rel="noopener noreferrer">ZF PEAR </a>. Then simply use: <em>pear install zend/zend</em></li>
+    <li>Create a vhosts.conf file in /var/www/vhosts/dotkernel.com/conf  or where is your vhost configuration folder located.</li>
+    <li>In that file, remove the open_basedir :</li>
 <pre class="bg-light border rounded p-3 overflow-auto">>php_admin_value open_basedir "/var/www/vhosts/dotkernel.com/httpdocs:/tmp:/usr/share/pear"</pre>
-	<li>rebuild all vhosts:  /usr/local/psa/admin/sbin/websrvmng -a</li>
-	<li>Restart httpd</li>
-	<li>Call directly the preloader:
+    <li>rebuild all vhosts:  /usr/local/psa/admin/sbin/websrvmng -a</li>
+    <li>Restart httpd</li>
+    <li>Call directly the preloader:
 <pre class="bg-light border rounded p-3 overflow-auto">> require_once 'Zend/Loader/Autoloader.php';</pre>
 </li>
 </ol>
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

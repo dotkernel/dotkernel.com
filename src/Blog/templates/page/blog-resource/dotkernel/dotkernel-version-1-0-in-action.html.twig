@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -34,17 +34,17 @@ It has eliminated the complexity of Zend Framework by using a different approach
 <!--more--><br>
 <h3>From Zend Framework, DotKernel is using only the necessary classes:</h3>
 <ul>
-	<li><strong>Zend_Config</strong> - While Zend Framework itself is configuration-less, it's often necessary to have some way to specify configurable options. Zend_Config provides multiple backends for configuration storage, and a simple, intuitive, object-oriented interface for accessing it. We store configuration as simple PHP arrays, which are then wrapped by Zend_Config.</li>
-	<li><strong>Zend_Db and Zend_Db_Table</strong> - Zend_Db_Table is a classic implementation of both the Table Data Gateway and Row Data Gateway design patterns, allowing for easy and  intuitive access to database tables and rows, as well as an entry point for custom business logic surrounding our data.</li>
-	<li><strong>Zend_Mail</strong> - Zend_Mail provides generalized functionality to compose and send both text and MIME-compliant multipart e-mail messages. Mail can be sent with Zend_Mail via the default Zend_Mail_Transport_Sendmail transport or via Zend_Mail_Transport_Smtp.</li>
-	<li><strong>Zend_Registry</strong> - A registry is a container for storing objects and values in the application space. By storing the value in a registry, the same object is always available throughout the application. This mechanism is an alternative to using global storage.</li>
-	<li><strong>Zend_Validate</strong> - The Zend_Validate component provides a set of commonly needed validators. It also provides a simple validator chaining mechanism by which multiple validators may be applied to a single datum in a user-defined order.</li>
+    <li><strong>Zend_Config</strong> - While Zend Framework itself is configuration-less, it's often necessary to have some way to specify configurable options. Zend_Config provides multiple backends for configuration storage, and a simple, intuitive, object-oriented interface for accessing it. We store configuration as simple PHP arrays, which are then wrapped by Zend_Config.</li>
+    <li><strong>Zend_Db and Zend_Db_Table</strong> - Zend_Db_Table is a classic implementation of both the Table Data Gateway and Row Data Gateway design patterns, allowing for easy and  intuitive access to database tables and rows, as well as an entry point for custom business logic surrounding our data.</li>
+    <li><strong>Zend_Mail</strong> - Zend_Mail provides generalized functionality to compose and send both text and MIME-compliant multipart e-mail messages. Mail can be sent with Zend_Mail via the default Zend_Mail_Transport_Sendmail transport or via Zend_Mail_Transport_Smtp.</li>
+    <li><strong>Zend_Registry</strong> - A registry is a container for storing objects and values in the application space. By storing the value in a registry, the same object is always available throughout the application. This mechanism is an alternative to using global storage.</li>
+    <li><strong>Zend_Validate</strong> - The Zend_Validate component provides a set of commonly needed validators. It also provides a simple validator chaining mechanism by which multiple validators may be applied to a single datum in a user-defined order.</li>
 </ul>
 </div>
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

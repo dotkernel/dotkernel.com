@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -26,11 +26,11 @@
                     <section class="post-content text-secondary lh-lg fs-6">
                         Yesterday, we released <strong>DotKernel 1.2.2</strong>. It contains some bug fixes:
 <ul>
-	<li><span style="text-decoration: line-through;"><a href="http://www.dotkernel.net/view.php?id=31">31</a></span> – captcha errors try catch</li>
-	<li><span style="text-decoration: line-through;"><a href="http://www.dotkernel.net/view.php?id=32">32</a></span> – pagination issue</li>
-	<li><span style="text-decoration: line-through;"><a href="http://www.dotkernel.net/view.php?id=33">33</a></span> – Admin wrong link</li>
-	<li><span style="text-decoration: line-through;"><a href="http://www.dotkernel.net/view.php?id=34">34</a></span> – Acunetix results July 24th ( notices and one fatal error)</li>
-	<li><span style="text-decoration: line-through;"><a href="http://www.dotkernel.net/view.php?id=35">35</a></span> – update copyright line in files</li>
+    <li><span style="text-decoration: line-through;"><a href="http://www.dotkernel.net/view.php?id=31">31</a></span> – captcha errors try catch</li>
+    <li><span style="text-decoration: line-through;"><a href="http://www.dotkernel.net/view.php?id=32">32</a></span> – pagination issue</li>
+    <li><span style="text-decoration: line-through;"><a href="http://www.dotkernel.net/view.php?id=33">33</a></span> – Admin wrong link</li>
+    <li><span style="text-decoration: line-through;"><a href="http://www.dotkernel.net/view.php?id=34">34</a></span> – Acunetix results July 24th ( notices and one fatal error)</li>
+    <li><span style="text-decoration: line-through;"><a href="http://www.dotkernel.net/view.php?id=35">35</a></span> – update copyright line in files</li>
 </ul>
 <!--more-->
 For more details see <a href="../changelog/1-2-2/">ChangeLog 1.2.2</a>. To get only the changed files from 1.2.1 to 1.2.2, download the <a href="../download/?did=17">upgrade</a> file
@@ -41,7 +41,7 @@ For more details see <a href="../changelog/1-2-2/">ChangeLog 1.2.2</a>. To get o
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

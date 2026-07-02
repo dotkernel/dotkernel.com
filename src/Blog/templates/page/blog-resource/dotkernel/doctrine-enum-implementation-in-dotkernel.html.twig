@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -219,7 +219,7 @@ class UserStatusEnumType extends AbstractEnumType
 <!-- /wp:paragraph -->
 
 <!-- wp:enlighter/codeblock {"language":"php"} -->
-<pre class="EnlighterJSRAW" data-enlighter-language="php" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">'types'         => 
+<pre class="EnlighterJSRAW" data-enlighter-language="php" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">'types'         =>
     UserStatusEnumType::NAME => UserStatusEnumType::class,
 
 ],</pre>
@@ -297,16 +297,16 @@ public function setStatus(UserStatusEnum $status): self
 <!-- wp:enlighter/codeblock {"language":"php"} -->
 <pre class="EnlighterJSRAW" data-enlighter-language="php" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">$this->addSql('
 CREATE TABLE user (
-	uuid BINARY(16) NOT NULL,
-	identity VARCHAR(191) NOT NULL,
-	password VARCHAR(191) NOT NULL,
-	status ENUM(\'active\', \'pending\') DEFAULT \'pending\' NOT NULL,
-	isDeleted TINYINT(1) NOT NULL,
-	hash VARCHAR(64) NOT NULL,
-	created DATETIME NOT NULL,
-	updated DATETIME DEFAULT NULL,
-	UNIQUE INDEX UNIQ_8D93D6496A95E9C4 (identity), UNIQUE INDEX UNIQ_8D93D649D1B862B8 (hash),
-	PRIMARY KEY(uuid)) DEFAULT CHARACTER SET utf8mb4');</pre>
+    uuid BINARY(16) NOT NULL,
+    identity VARCHAR(191) NOT NULL,
+    password VARCHAR(191) NOT NULL,
+    status ENUM(\'active\', \'pending\') DEFAULT \'pending\' NOT NULL,
+    isDeleted TINYINT(1) NOT NULL,
+    hash VARCHAR(64) NOT NULL,
+    created DATETIME NOT NULL,
+    updated DATETIME DEFAULT NULL,
+    UNIQUE INDEX UNIQ_8D93D6496A95E9C4 (identity), UNIQUE INDEX UNIQ_8D93D649D1B862B8 (hash),
+    PRIMARY KEY(uuid)) DEFAULT CHARACTER SET utf8mb4');</pre>
 <!-- /wp:enlighter/codeblock -->
 
 <!-- wp:paragraph -->
@@ -360,7 +360,7 @@ new setup: status ENUM(\'active\', \'pending\') DEFAULT \'pending\' NOT NULL</pr
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

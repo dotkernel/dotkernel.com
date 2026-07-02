@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -74,7 +74,7 @@
     {
         $userService = $container->get(UserService::class);
         assert($userService instanceof UserService);
-        
+
         $config = $container->get('config');
 
         return new UserHandler($userService, $config);
@@ -89,7 +89,7 @@
 <!-- wp:enlighter/codeblock {"language":"php"} -->
 <pre class="EnlighterJSRAW" data-enlighter-language="php" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">public function getDependencies(): array
 {
-    return 
+    return
     ];
 }</pre>
 <!-- /wp:enlighter/codeblock -->
@@ -150,7 +150,7 @@ class UserHandler implements RequestHandlerInterface
 <!-- wp:enlighter/codeblock {"language":"php"} -->
 <pre class="EnlighterJSRAW" data-enlighter-language="php" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">public function getDependencies(): array
 {
-    return 
+    return
     ];
 }</pre>
 <!-- /wp:enlighter/codeblock -->
@@ -162,7 +162,7 @@ class UserHandler implements RequestHandlerInterface
 <pre class="EnlighterJSRAW" data-enlighter-language="php" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">class UserService implements UserServiceInterface
 {
     use Dot\DependencyInjection\Attribute\Inject;
-    
+
     #
     public function __construct(
         protected UserRoleServiceInterface $userRoleService,
@@ -187,7 +187,7 @@ class UserHandler implements RequestHandlerInterface
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

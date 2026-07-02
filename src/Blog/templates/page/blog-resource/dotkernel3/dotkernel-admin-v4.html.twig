@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -97,14 +97,14 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:code -->
-<pre class="wp-block-code"><code>&#91;  
-	'options' =&gt; &#91;  
-		'label' =&gt; 'Dashboard',  
-		'route' =&gt; &#91;  
-			'route_name' =&gt; 'dashboard',  
-		],  
-		'icon' =&gt; 'fas fa-tachometer-alt',  
-	]  
+<pre class="wp-block-code"><code>&#91;
+    'options' =&gt; &#91;
+        'label' =&gt; 'Dashboard',
+        'route' =&gt; &#91;
+            'route_name' =&gt; 'dashboard',
+        ],
+        'icon' =&gt; 'fas fa-tachometer-alt',
+    ]
 ]</code></pre>
 <!-- /wp:code -->
 
@@ -113,28 +113,28 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:code -->
-<pre class="wp-block-code"><code>&#91;  
-	'options' =&gt; &#91;  
-		'label' =&gt; 'Manage admins',  
-		'route' =&gt; '',  
-		'icon' =&gt; 'fas fa-user-circle',  
-	],  
-	'pages' =&gt; &#91;  
-		&#91;
-			'options' =&gt; &#91;  
-				'label' =&gt; 'Admins',  
-				'uri' =&gt; '/admin/manage',  
-				'icon' =&gt; 'fas fa-user-circle',  
-			],  
-		],  
-		&#91;  
-			'options' =&gt; &#91;  
-				'label' =&gt; 'Logins',  
-				'uri' =&gt; '/admin/logins',  
-				'icon' =&gt; 'fas fa-sign-in-alt',  
-			],  
-		]  
-	]
+<pre class="wp-block-code"><code>&#91;
+    'options' =&gt; &#91;
+        'label' =&gt; 'Manage admins',
+        'route' =&gt; '',
+        'icon' =&gt; 'fas fa-user-circle',
+    ],
+    'pages' =&gt; &#91;
+        &#91;
+            'options' =&gt; &#91;
+                'label' =&gt; 'Admins',
+                'uri' =&gt; '/admin/manage',
+                'icon' =&gt; 'fas fa-user-circle',
+            ],
+        ],
+        &#91;
+            'options' =&gt; &#91;
+                'label' =&gt; 'Logins',
+                'uri' =&gt; '/admin/logins',
+                'icon' =&gt; 'fas fa-sign-in-alt',
+            ],
+        ]
+    ]
 ]</code></pre>
 <!-- /wp:code -->
 
@@ -151,22 +151,22 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:code -->
-<pre class="wp-block-code"><code>//example of a flat RBAC model that specifies two types of roles as well as their permission  
+<pre class="wp-block-code"><code>//example of a flat RBAC model that specifies two types of roles as well as their permission
 'roles' =&gt; &#91;
-	'superuser' =&gt; &#91;
-		'permissions' =&gt; &#91;
-			'authenticated',
-			'edit',
-			'delete',
-			//etc.. 
-		]
-	],
-	'admin' =&gt; &#91;
-		'permissions' =&gt; &#91;
-			'authenticated',
-			//etc..
-		]
-	]
+    'superuser' =&gt; &#91;
+        'permissions' =&gt; &#91;
+            'authenticated',
+            'edit',
+            'delete',
+            //etc..
+        ]
+    ],
+    'admin' =&gt; &#91;
+        'permissions' =&gt; &#91;
+            'authenticated',
+            //etc..
+        ]
+    ]
 ]</code></pre>
 <!-- /wp:code -->
 
@@ -175,31 +175,31 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:code -->
-<pre class="wp-block-code"><code>//example of configuration example to restrict certain actions of some routes based on the permissions specified in the dot-rbac configuration file  
+<pre class="wp-block-code"><code>//example of configuration example to restrict certain actions of some routes based on the permissions specified in the dot-rbac configuration file
 'rules' =&gt; &#91;
-	&#91;
-		'route' =&gt; 'account',
-		'actions' =&gt; &#91;
-			//list of actions to apply , or empty array for all actions
-			'unregister',
-			'avatar',
-			'details',
-			'changePassword'
-		],
-		'permissions' =&gt; &#91;
-			'authenticated'
-		]
-	],
-	&#91;
-		'route' =&gt; 'admin',
-		'actions' =&gt; &#91;
-			'deleteAccount'
-		],
-		'permissions' =&gt; &#91;
-			'delete'
-			//list of roles to allow
-		]
-	]
+    &#91;
+        'route' =&gt; 'account',
+        'actions' =&gt; &#91;
+            //list of actions to apply , or empty array for all actions
+            'unregister',
+            'avatar',
+            'details',
+            'changePassword'
+        ],
+        'permissions' =&gt; &#91;
+            'authenticated'
+        ]
+    ],
+    &#91;
+        'route' =&gt; 'admin',
+        'actions' =&gt; &#91;
+            'deleteAccount'
+        ],
+        'permissions' =&gt; &#91;
+            'delete'
+            //list of roles to allow
+        ]
+    ]
 ]</code></pre>
 <!-- /wp:code -->
 
@@ -240,14 +240,14 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:code -->
-<pre class="wp-block-code"><code>$app-&gt;route(  
-	'/admin&#91;/{action}&#91;/{uuid}]]',
-	AdminController::class,
-	&#91;
-		RequestMethodInterface::METHOD_GET,
-		RequestMethodInterface::METHOD_POST
-	],
-	'admin'
+<pre class="wp-block-code"><code>$app-&gt;route(
+    '/admin&#91;/{action}&#91;/{uuid}]]',
+    AdminController::class,
+    &#91;
+        RequestMethodInterface::METHOD_GET,
+        RequestMethodInterface::METHOD_POST
+    ],
+    'admin'
  );</code></pre>
 <!-- /wp:code -->
 
@@ -277,7 +277,7 @@
 
 <!-- wp:code -->
 <pre class="wp-block-code"><code>&lt;table data-toggle="table" data-url="/admin/list" data-click-to-select="true"
-       data-mobile-responsive="true" data-min-width="800" 
+       data-mobile-responsive="true" data-min-width="800"
        data-check-on-init="true" data-id-field="uuid"
        data-show-refresh="true" data-show-toggle="true" data-show-columns="true"
        data-search="true" data-pagination="true" data-toolbar="#tableToolbar"
@@ -313,7 +313,7 @@
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

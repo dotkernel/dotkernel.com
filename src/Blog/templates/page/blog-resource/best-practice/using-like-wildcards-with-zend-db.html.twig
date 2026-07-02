@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -30,8 +30,8 @@ The <strong>LIKE </strong>condition allows you to use wildcards in the <em>WHERE
 
 <strong>LIKE wildcards:</strong>
 <ul>
-	<li><em><strong>_</strong></em> allows you to match a single character</li>
-	<li><em><strong>%</strong></em> allows you to match any string of any length (including zero length)</li>
+    <li><em><strong>_</strong></em> allows you to match a single character</li>
+    <li><em><strong>%</strong></em> allows you to match any string of any length (including zero length)</li>
 </ul>
 
 <!--more-->
@@ -39,117 +39,117 @@ The <strong>LIKE </strong>condition allows you to use wildcards in the <em>WHERE
 <pre class="bg-light border rounded p-3 overflow-auto">>$db = Zend_Db::factory('Pdo_Mysql', $dbConnect);</pre>
 <b>LIKE _</b>
 <ul>
-	<li>Return all ids which start with '1' and second digit is between 0 and 9 (10, 11, 12, ..., 18, 19):</li>
+    <li>Return all ids which start with '1' and second digit is between 0 and 9 (10, 11, 12, ..., 18, 19):</li>
 </ul>
 <pre class="bg-light border rounded p-3 overflow-auto">>SELECT * FROM `table` WHERE (`id` LIKE '1_' )</pre>
-<pre class="bg-light border rounded p-3 overflow-auto">>$col = $this->db->quoteIdentifier('id'); 
-$where = $this->db->quoteInto("$col LIKE ? ", '1_'); 		
+<pre class="bg-light border rounded p-3 overflow-auto">>$col = $this->db->quoteIdentifier('id');
+$where = $this->db->quoteInto("$col LIKE ? ", '1_');
 $select = $this->db->select()
-	->from('table')
-	->where($where);
+    ->from('table')
+    ->where($where);
 $result = $this->db->fetchAll($select);</pre>
 <ul>
-	<li>Return all instances whose name is 4 characters long, where the first two characters are 'Fr' and the last character is 'd' (Frad, Fred, Frod, etc.) :</li>
+    <li>Return all instances whose name is 4 characters long, where the first two characters are 'Fr' and the last character is 'd' (Frad, Fred, Frod, etc.) :</li>
 </ul>
 <pre class="bg-light border rounded p-3 overflow-auto">>
 SELECT * FROM `table` WHERE (`name` LIKE 'Fr_d' )
 </pre>
 <pre class="bg-light border rounded p-3 overflow-auto">>
-$col = $this->db->quoteIdentifier('name'); 
-$where = $this->db->quoteInto("$col LIKE ? ", 'Fr_d'); 
+$col = $this->db->quoteIdentifier('name');
+$where = $this->db->quoteInto("$col LIKE ? ", 'Fr_d');
 $select = $this->db->select()
-	->from('table')
-	->where($where);
+    ->from('table')
+    ->where($where);
 $result = $this->db->fetchAll($select);
 </pre>
 </br>
 </br>
 <b>LIKE %</b>
 <ul>
-	<li>Returns all instances that have the 'gallery' string in the <em>source</em> field:</li>
+    <li>Returns all instances that have the 'gallery' string in the <em>source</em> field:</li>
 </ul>
 <pre class="bg-light border rounded p-3 overflow-auto">>
 SELECT * FROM `table` WHERE (`source` LIKE '%gallery%' )
 </pre>
 <pre class="bg-light border rounded p-3 overflow-auto">>
-$col = $this->db->quoteIdentifier('source'); 
-$where = $this->db->quoteInto("$col LIKE ? ", '%gallery%'); 
+$col = $this->db->quoteIdentifier('source');
+$where = $this->db->quoteInto("$col LIKE ? ", '%gallery%');
 $select = $this->db->select()
-	->from('table')
-	->where($where);
+    ->from('table')
+    ->where($where);
 $result = $this->db->fetchAll($select);
 </pre>
 <ul>
-	<li>Returns all instances that have the 'gallery' or 'folder' strings in the <em>source</em> field:</li>
+    <li>Returns all instances that have the 'gallery' or 'folder' strings in the <em>source</em> field:</li>
 </ul>
 <pre class="bg-light border rounded p-3 overflow-auto">>
 SELECT * FROM `table` WHERE (`source` LIKE '%gallery%' OR `source` LIKE ('%folder%') )
 </pre>
 <pre class="bg-light border rounded p-3 overflow-auto">>
-$col = $this->db->quoteIdentifier('source'); 
-$where = $this->db->quoteInto("$col LIKE ? ", '%gallery%'); 
+$col = $this->db->quoteIdentifier('source');
+$where = $this->db->quoteInto("$col LIKE ? ", '%gallery%');
 $where .= $this->db->quoteInto("OR $col LIKE (?) ", '%folder%');
 $select = $this->db->select()
-	->from('table')
-	->where($where);
+    ->from('table')
+    ->where($where);
 $result = $this->db->fetchAll($select);
 </pre>
 </br>
 </br>
 <b>NOT LIKE _</b>
 <ul>
-	<li>Returns all 2-digit ids that don't start with <em>1</em> (20->99 ) or have a different number of digits than 2 (1, 2, ..., 8, 9, 100, 101, ...):</li>
+    <li>Returns all 2-digit ids that don't start with <em>1</em> (20->99 ) or have a different number of digits than 2 (1, 2, ..., 8, 9, 100, 101, ...):</li>
 </ul>
 <pre class="bg-light border rounded p-3 overflow-auto">>
 SELECT * FROM `table` WHERE (`id` NOT LIKE '1_' )
 </pre>
 <pre class="bg-light border rounded p-3 overflow-auto">>
-$col = $this->db->quoteIdentifier('id'); 
-$where = $this->db->quoteInto("$col NOT LIKE ? ", '1_'); 
+$col = $this->db->quoteIdentifier('id');
+$where = $this->db->quoteInto("$col NOT LIKE ? ", '1_');
 $select = $this->db->select()
-	->from('table')
-	->where($where);
+    ->from('table')
+    ->where($where);
 $result = $this->db->fetchAll($select);
 </pre>
 </br>
 </br>
 <b>NOT LIKE %</b>
 <ul>
-	<li>Returns all instances that don't have 'gallery', 'folder' or 'file' strings in the <em>source</em> field:</li>
+    <li>Returns all instances that don't have 'gallery', 'folder' or 'file' strings in the <em>source</em> field:</li>
 </ul>
 <pre class="bg-light border rounded p-3 overflow-auto">>
 SELECT * FROM `table` WHERE (`source` NOT LIKE ('%gallery%') AND `source` NOT LIKE ('%folder%') AND `source` NOT LIKE ('%file%') )
 </pre>
 <pre class="bg-light border rounded p-3 overflow-auto">>
-$col = $this->db->quoteIdentifier('source'); 
-$where = $this->db->quoteInto("$col NOT LIKE (?) ", '%gallery%'); 
+$col = $this->db->quoteIdentifier('source');
+$where = $this->db->quoteInto("$col NOT LIKE (?) ", '%gallery%');
 $where .= $this->db->quoteInto("AND $col NOT LIKE (?) ", '%folder%');
-$where .= $this->db->quoteInto("AND $col NOT LIKE (?) ", '%file%');		
+$where .= $this->db->quoteInto("AND $col NOT LIKE (?) ", '%file%');
 $select = $this->db->select()
-	->from('table')
-	->where($where);
+    ->from('table')
+    ->where($where);
 $result = $this->db->fetchAll($select);
 </pre>
 </br>
 </br>
 <b>OTHER Example</b>
 <pre class="bg-light border rounded p-3 overflow-auto">>SELECT * FROM `table` WHERE `number` LIKE '_6%' </pre>
-<pre class="bg-light border rounded p-3 overflow-auto">>$col = $this->db->quoteIdentifier('number'); 
-$where = $this->db->quoteInto("$col LIKE ? ", '_6%'); 		
+<pre class="bg-light border rounded p-3 overflow-auto">>$col = $this->db->quoteIdentifier('number');
+$where = $this->db->quoteInto("$col LIKE ? ", '_6%');
 $select = $this->db->select()
-	->from('table')
-	->where($where);
+    ->from('table')
+    ->where($where);
 $result = $this->db->fetchAll($select);</pre>
 <ul>
-	<li>The <em>number</em> column starts with a digit between 4 and 6 (<em></em>)</li>
-	<li>The second character in the <em>number</em> column can be anything (<em>_</em>)</li>
-	<li>The third character in the <em>number</em> column is 6 (<em>6</em>)</li>
-	<li>The rest of the <em>number</em> column can be any string, of any length (<em>%</em>)</li>
+    <li>The <em>number</em> column starts with a digit between 4 and 6 (<em></em>)</li>
+    <li>The second character in the <em>number</em> column can be anything (<em>_</em>)</li>
+    <li>The third character in the <em>number</em> column is 6 (<em>6</em>)</li>
+    <li>The rest of the <em>number</em> column can be any string, of any length (<em>%</em>)</li>
 </ul>
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

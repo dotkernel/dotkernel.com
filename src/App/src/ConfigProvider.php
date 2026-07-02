@@ -41,7 +41,6 @@ use function getcwd;
  *      },
  *      configuration: array{
  *          orm_default: array{
- *              entity_listener_resolver: class-string<EntityListenerResolverInterface>,
  *              result_cache: non-empty-string,
  *              metadata_cache: non-empty-string,
  *              query_cache: non-empty-string,
@@ -61,12 +60,20 @@ use function getcwd;
  *              class: class-string<MappingDriver>,
  *          },
  *      },
- *     fixtures: non-empty-string,
+ *      fixtures: non-empty-string,
  *      migrations: array{
+ *          table_storage: array{
+ *              table_name: non-empty-string,
+ *              version_column_name: non-empty-string,
+ *              version_column_length: int,
+ *              executed_at_column_name: non-empty-string,
+ *              execution_time_column_name: non-empty-string,
+ *          },
  *          migrations_paths: array<non-empty-string, non-empty-string>,
  *          all_or_nothing: bool,
  *          check_database_platform: bool,
  *      },
+ *      types: array<non-empty-string, class-string>,
  * }
  * @phpstan-type DependenciesType array{
  *       factories: array<class-string|non-empty-string, class-string|non-empty-string>,

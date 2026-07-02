@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -32,8 +32,8 @@ The bootstrap can be found in <em>Console/index.php</em> and it has one controll
 <h3>Usage</h3>
 Currently there are two command line arguments:
 <ul>
-	<li><strong>-a</strong>  - the name of the action that will be executed</li>
-	<li><strong>-e</strong>  - the environment, as defined in application.ini. Possible values are development, staging and production. This argument is optional, it defaults to production</li>
+    <li><strong>-a</strong>  - the name of the action that will be executed</li>
+    <li><strong>-e</strong>  - the environment, as defined in application.ini. Possible values are development, staging and production. This argument is optional, it defaults to production</li>
 </ul>
 Any other arguments set when calling the script will be available in the controller in the $registry-&gt;arguments array.
 
@@ -44,7 +44,7 @@ The controller bundled with DotKernel has two example actions, "count-users" whi
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

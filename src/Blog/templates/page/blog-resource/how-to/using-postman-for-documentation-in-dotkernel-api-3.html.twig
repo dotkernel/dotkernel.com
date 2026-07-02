@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -146,7 +146,7 @@ VARIABLE               INITIAL VALUE                CURRENT_VALUE
 <!-- /wp:paragraph -->
 
 <!-- wp:list -->
-<ul><li>enter request name by replacing <em>New Request</em> with a short and descriptive name</li><li>enter request description (first button under the <strong>Environment quick look</strong> button)</li><li>enter request URL - you should use the already existing variable <code>APPLICATION_URL</code> by wrapping it in double curly braces, then append the request path. Example: <code>{{APPLICATION_URL}}/test</code> becomes <code>http://localhost:8080/test</code> when you send the request.</li><li>select request method</li><li>(optionally) inspect tabs:<ul><li><strong>Params</strong>: manage query parameters</li><li><strong>Authorization</strong>: select authorization type</li><li><strong>Headers</strong>: manage request headers</li><li><strong>Body</strong>: manage request body</li><li><strong>Pre-request script</strong>: provide <em>JavaScript</em> that Postman should run before sending the request</li><li><strong>Tests</strong>: provide <em>JavaScript</em> that Postman should run after receiving the response</li><li><strong>Settings</strong>: manage miscellaneous request settings</li></ul></li><li>save the request using the <strong>Save</strong> button (or <code>Ctrl + S</code>)</li></ul>
+<ul><li>enter request name by replacing <em>New Request</em> with a short and descriptive name</li><li>enter request description (first button under the <strong>Environment quick look</strong> button)</li><li>enter request URL - you should use the already existing variable <code>APPLICATION_URL</code> by wrapping it in double curly braces, then append the request path. Example: <code>{{ APPLICATION_URL }}/test</code> becomes <code>http://localhost:8080/test</code> when you send the request.</li><li>select request method</li><li>(optionally) inspect tabs:<ul><li><strong>Params</strong>: manage query parameters</li><li><strong>Authorization</strong>: select authorization type</li><li><strong>Headers</strong>: manage request headers</li><li><strong>Body</strong>: manage request body</li><li><strong>Pre-request script</strong>: provide <em>JavaScript</em> that Postman should run before sending the request</li><li><strong>Tests</strong>: provide <em>JavaScript</em> that Postman should run after receiving the response</li><li><strong>Settings</strong>: manage miscellaneous request settings</li></ul></li><li>save the request using the <strong>Save</strong> button (or <code>Ctrl + S</code>)</li></ul>
 <!-- /wp:list -->
 
 <!-- wp:heading {"level":4} -->
@@ -239,7 +239,7 @@ VARIABLE               INITIAL VALUE                CURRENT_VALUE
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

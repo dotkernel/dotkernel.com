@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -94,8 +94,8 @@ also update require-dev dependencies
 </code></pre>
 Remove packages:
 <ul>
- 	<li>http-interop/http-middleware</li>
- 	<li>webimpress/http-middleware-compatibility</li>
+     <li>http-interop/http-middleware</li>
+     <li>webimpress/http-middleware-compatibility</li>
 </ul>
 <h2><a target="_blank" id="user-content-configurations" class="anchor" href="https://github.com/dotkernel/admin/blob/master/docs/Migration.md#configurations" aria-hidden="true" rel="noopener noreferrer"></a>Configurations</h2>
 <h3><a target="_blank" id="user-content-main-configuration" class="anchor" href="https://github.com/dotkernel/admin/blob/master/docs/Migration.md#main-configuration" aria-hidden="true" rel="noopener noreferrer"></a>Main Configuration</h3>
@@ -163,7 +163,7 @@ You can check the complete guides and example files from the following links
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

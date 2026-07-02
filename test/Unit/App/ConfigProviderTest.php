@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 class ConfigProviderTest extends TestCase
 {
-    /** @var array<string, array<string, mixed>>*/
+    /** @var array<mixed> */
     protected array $config = [];
 
     protected function setup(): void

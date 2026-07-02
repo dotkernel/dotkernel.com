@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -33,11 +33,11 @@ CURRENT_TIMESTAMP is also a solution for  <em>updating </em>date and time field
 <pre class="bg-light border rounded p-3 overflow-auto">>ALTER TABLE `user` CHANGE `dateLogin` `dateLogin` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;</pre>
 <em>DEFAULT </em>and <em>ON UPDATE</em> clauses can be used together or separately, depending on your needs:
 <ul>
-	<li>With both <code>DEFAULT CURRENT_TIMESTAMP</code> and <code>ON UPDATE CURRENT_TIMESTAMP</code> clauses, the column has the current timestamp for its default value and is automatically updated.</li>
-	<li>With neither <code>DEFAULT</code> nor <code>ON UPDATE</code> clauses, it is the same as <code>DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP</code>. (Only for the <em><span style="text-decoration: underline;">first </span></em>TIMESTAMP field from the table)</li>
-	<li>With a <code>DEFAULT CURRENT_TIMESTAMP</code> clause and no <code>ON UPDATE</code> clause, the column has the current timestamp for its default value but is not automatically updated.</li>
-	<li>With no <code>DEFAULT</code> clause and with an <code>ON UPDATE CURRENT_TIMESTAMP</code> clause, the column has a default of 0 and is automatically updated.</li>
-	<li>With a constant <code>DEFAULT</code> value, the column has the given default and is not automatically initialized to the current timestamp. If the column also has an <code>ON UPDATE CURRENT_TIMESTAMP</code> clause, it is automatically updated; otherwise, it has a constant default and is not automatically updated.</li>
+    <li>With both <code>DEFAULT CURRENT_TIMESTAMP</code> and <code>ON UPDATE CURRENT_TIMESTAMP</code> clauses, the column has the current timestamp for its default value and is automatically updated.</li>
+    <li>With neither <code>DEFAULT</code> nor <code>ON UPDATE</code> clauses, it is the same as <code>DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP</code>. (Only for the <em><span style="text-decoration: underline;">first </span></em>TIMESTAMP field from the table)</li>
+    <li>With a <code>DEFAULT CURRENT_TIMESTAMP</code> clause and no <code>ON UPDATE</code> clause, the column has the current timestamp for its default value but is not automatically updated.</li>
+    <li>With no <code>DEFAULT</code> clause and with an <code>ON UPDATE CURRENT_TIMESTAMP</code> clause, the column has a default of 0 and is automatically updated.</li>
+    <li>With a constant <code>DEFAULT</code> value, the column has the given default and is not automatically initialized to the current timestamp. If the column also has an <code>ON UPDATE CURRENT_TIMESTAMP</code> clause, it is automatically updated; otherwise, it has a constant default and is not automatically updated.</li>
 </ul>
 For more details check out <a href="http://dev.mysql.com/doc/refman/5.0/en/timestamp.html">MySQL Manual</a>
 
@@ -45,7 +45,7 @@ For more details check out <a href="http://dev.mysql.com/doc/refman/5.0/en/times
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

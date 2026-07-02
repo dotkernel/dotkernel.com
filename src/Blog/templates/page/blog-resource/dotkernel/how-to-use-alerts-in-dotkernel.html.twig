@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -35,25 +35,25 @@ The Dot_Alert class resembles with Dot_Email, the alerts, like a mail message, h
 In DotKernel we use the Alerts for notifying the developer that an email was not sent successfully.
 
 In this case we kept the message in the dots.xml file
-<pre class="bg-light border rounded p-3 overflow-auto">>    
+<pre class="bg-light border rounded p-3 overflow-auto">>
 <variable option="global">
-	<alertMessages>
-		<email>
-			<subject> SMTP Error on {SITE_NAME} </subject>
-			<message>
+    <alertMessages>
+        <email>
+            <subject> SMTP Error on {SITE_NAME} </subject>
+            <message>
 SMTP Error on {SITE_NAME}
 We were unable to send SMTP email
 ---------------------------------
-Caught exception: {E_CLASS} 
+Caught exception: {E_CLASS}
 Message:  {E_MESSAGE}
 To Email: {TO_EMAIL}
 From Email: {FROM_EMAIL}
 Date: {DATE_NOW}
 ---------------------------------
-			</message>
-		</email>
-	</alertMessages>
-</variable>    
+            </message>
+        </email>
+    </alertMessages>
+</variable>
 </pre>
 If you're not familiar  with the dots.xml, you should see <a href="http://www.dotkernel.com/docs/dots-xml/" target="_blank" rel="noopener noreferrer">this article</a>.
 
@@ -70,7 +70,7 @@ As you can see the Alert messages contains <strong>{VARIABLES}</strong> called d
 <pre class="bg-light border rounded p-3 overflow-auto">>$details = array(
     'e_class' => get_class($e),
     'site_name' => $this->seoOption->siteName,
-    'site_url' => $registry->configuration->website->params->url, 
+    'site_url' => $registry->configuration->website->params->url,
     'e_message' => $e->getMessage(),
     'to_email' => implode(',', $this->_to),
     'from_email' => $this->getFrom(),
@@ -83,7 +83,7 @@ This is just an empty alert, we will now set the sender, the subject and the mes
 <pre class="bg-light border rounded p-3 overflow-auto">>$alert->addHeader( "From: " . $this->settings->siteEmail);
 $alert->addHeader( "Reply-To:" . $this->settings->siteEmail );
 $alert->addHeader( "X-Mailer: PHP/" . phpversion() ) ;</pre>
-<pre class="bg-light border rounded p-3 overflow-auto">>$alert->setTo($devEmails); 
+<pre class="bg-light border rounded p-3 overflow-auto">>$alert->setTo($devEmails);
 $alert->setSubject($subject);
 $alert->setContent($message);</pre>
 Our message doesn't look that good, the setDetails method will replace our <strong>{VARIABLES}</strong> within subject and message with actual data
@@ -93,7 +93,7 @@ Everything is great, we can now send our alert:
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

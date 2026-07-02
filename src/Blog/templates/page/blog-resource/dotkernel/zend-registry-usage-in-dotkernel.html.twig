@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -26,17 +26,17 @@
                     <section class="post-content text-secondary lh-lg fs-6">
                         In DotKernel, Zend_Registry will contain the following variables:
 <ul>
-	<li><strong>startTime</strong> - the result of <a title="microtime" href="http://php.net/manual/en/function.microtime.php" target="_blank" rel="noopener noreferrer">microtime()</a> at the beginning of the request</li>
-	<li><strong>configuration</strong> - the configuration options loaded from <em>configs/application.ini</em></li>
-	<li><strong>router</strong> - routing settings loaded from <em>configs/router.xml</em></li>
+    <li><strong>startTime</strong> - the result of <a title="microtime" href="http://php.net/manual/en/function.microtime.php" target="_blank" rel="noopener noreferrer">microtime()</a> at the beginning of the request</li>
+    <li><strong>configuration</strong> - the configuration options loaded from <em>configs/application.ini</em></li>
+    <li><strong>router</strong> - routing settings loaded from <em>configs/router.xml</em></li>
 <!--more-->
-	<li><strong>database</strong> - the database adapter</li>
-	<li><strong>settings</strong> - the settings loaded from the database</li>
-	<li><strong>requestModule, requestController, requestAction</strong> - the module, controller and action of the current request</li>
-	<li><strong>request</strong> - additional request variables</li>
-	<li><strong>seo</strong> - seo information loaded from <em>configs/dots/seo.xml</em> (site name, default description, keywords etc)</li>
-	<li><strong>option</strong> - the options for the current dot loaded from <em>configs/dots/&lt;moduleName&gt;.xml</em></li>
-	<li><strong>session</strong> - the session object</li>
+    <li><strong>database</strong> - the database adapter</li>
+    <li><strong>settings</strong> - the settings loaded from the database</li>
+    <li><strong>requestModule, requestController, requestAction</strong> - the module, controller and action of the current request</li>
+    <li><strong>request</strong> - additional request variables</li>
+    <li><strong>seo</strong> - seo information loaded from <em>configs/dots/seo.xml</em> (site name, default description, keywords etc)</li>
+    <li><strong>option</strong> - the options for the current dot loaded from <em>configs/dots/&lt;moduleName&gt;.xml</em></li>
+    <li><strong>session</strong> - the session object</li>
 </ul>
 To use the variables in the registry, you must first get an instance of the registry object:
 <pre class="bg-light border rounded p-3 overflow-auto">>$registry = Zend_Registry::getInstance();
@@ -50,7 +50,7 @@ You can find more information about Zend_Registry, in the <a href="http://framew
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

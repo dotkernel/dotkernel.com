@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -27,9 +27,9 @@
                         <strong>This article covers the basic authorization of a Server Side application  built using <a href="https://github.com/dotkernel/api" target="_blank" rel="noopener noreferrer">DotKernel API</a></strong>
 <h3>Protecting an endpoint</h3>
 <ul>
- 	<li><strong>no-auth:</strong> the resource can be accessed without the need of authentication/authorization</li>
- 	<li><strong>authentication</strong>: the resource can be accessed only by authenticated users</li>
- 	<li><strong>authorization:</strong> the resource can be accessed only by authenticated AND authorized users</li>
+     <li><strong>no-auth:</strong> the resource can be accessed without the need of authentication/authorization</li>
+     <li><strong>authentication</strong>: the resource can be accessed only by authenticated users</li>
+     <li><strong>authorization:</strong> the resource can be accessed only by authenticated AND authorized users</li>
 </ul>
 Configuring access to the endpoints is done by editing the following config file:
 
@@ -48,13 +48,13 @@ You should look for the array inside this config key: <code class="&quot;highlig
 </pre>
 Under the key <strong>roles </strong> you can define role inheritance. In the above example
 <ul>
- 	<li><strong>admin </strong>inherits from no other role
+     <li><strong>admin </strong>inherits from no other role
 <pre class="php"> 'admin' =&gt; []</pre>
 </li>
- 	<li><strong>member </strong>inherits from admin
+     <li><strong>member </strong>inherits from admin
 <pre class="php">'member' =&gt; </pre>
 </li>
- 	<li><strong>guest </strong>inherits from member
+     <li><strong>guest </strong>inherits from member
 <pre class="php">'guest' =&gt; </pre>
 </li>
 </ul>
@@ -83,7 +83,7 @@ $app->get('/users', , 'users');
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

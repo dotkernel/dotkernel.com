@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -25,7 +25,7 @@
 
                     <section class="post-content text-secondary lh-lg fs-6">
                         To test if you have php_geoip extension on your Zend Server, create an php file and copy the following code. This will output true if extension is available or false if not.
-<pre class="bg-light border rounded p-3 overflow-auto">><?php 
+<pre class="bg-light border rounded p-3 overflow-auto">><?php
 var_dump(function_exists('geoip_database_info'));</pre>
 If your output is false than you have to download an php_geoip.dll file correctly compiled for your zend server version.
 <!--more-->
@@ -60,10 +60,10 @@ Otherwise your geoip extension is loaded and your test script from the beginning
 
 The next step is to download some geoip databases from maxmind.
 <ul>
-	<li>geoIP.dat</li>
-	<li>geoIPCity.dat</li>
-	<li>geoIPOrganization.dat</li>
-	<li>or anything you need</li>
+    <li>geoIP.dat</li>
+    <li>geoIPCity.dat</li>
+    <li>geoIPOrganization.dat</li>
+    <li>or anything you need</li>
 </ul>
 Copy those .dat files in
 
@@ -73,7 +73,7 @@ And now you can use geoip functions on your Zend Server 5.6
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

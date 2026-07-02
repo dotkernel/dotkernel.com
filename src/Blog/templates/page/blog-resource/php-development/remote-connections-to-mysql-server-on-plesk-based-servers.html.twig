@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -39,9 +39,9 @@ If this user is used in other scripts executed by PHP 5.2 or earlier you might n
  the old-passwords flag from your my.cnf file' in</pre>
 <!--more-->How to fix that  :
 <ol>
-	<li>Create a new database user,  <strong>someuser</strong> for instance directly in command line</li>
-	<li>Grant priviledges to that user to the database you want to connect to.</li>
-	<li>Now run the below SQL statements:</li>
+    <li>Create a new database user,  <strong>someuser</strong> for instance directly in command line</li>
+    <li>Grant priviledges to that user to the database you want to connect to.</li>
+    <li>Now run the below SQL statements:</li>
 </ol>
 <pre class="bg-light border rounded p-3 overflow-auto">>SET old_passwords = 0;
 UPDATE mysql.user SET Password = PASSWORD('somepassword') WHERE User = 'someuser' limit 1;
@@ -57,7 +57,7 @@ NOTE: if you browse the table mysql.user , you will note that the password field
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

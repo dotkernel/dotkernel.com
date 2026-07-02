@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -28,13 +28,13 @@
 
 You need to manually upgrade the xml file, if you still want to use it , and of course, please pay attention to license changes.
 <ol>
-	<li> Download the wurfl-2.3.xml.zip file.</li>
-	<li>Rename it to wurfl.zip</li>
-	<li>Rename the file inside the archive to wurfl.xml</li>
-	<li>Replace the file /externals/wurfl/wurfl.zip with this new wurfl.zip file</li>
-	<li>Download the web_browsers_patch.xml file</li>
-	<li>Replace the /externals/wurfl/web_browsers_patch.xml file with this new one</li>
-	<li>Go to Admin panel, click on <strong>empty</strong> wurfl cache  link, then rebuild the cache</li>
+    <li> Download the wurfl-2.3.xml.zip file.</li>
+    <li>Rename it to wurfl.zip</li>
+    <li>Rename the file inside the archive to wurfl.xml</li>
+    <li>Replace the file /externals/wurfl/wurfl.zip with this new wurfl.zip file</li>
+    <li>Download the web_browsers_patch.xml file</li>
+    <li>Replace the /externals/wurfl/web_browsers_patch.xml file with this new one</li>
+    <li>Go to Admin panel, click on <strong>empty</strong> wurfl cache  link, then rebuild the cache</li>
 </ol>
 Again, please pay attention to WURFL license changes.
 
@@ -42,7 +42,7 @@ Again, please pay attention to WURFL license changes.
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

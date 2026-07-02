@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -29,13 +29,13 @@
 Since the previous released 1.1.2, some changes have been made.
 <!--more-->
 <ul>
-	<li>On database, we changed the names and structure of tables to respect database naming convention. <a href="../dotkernel/dotkernel-database-naming-conventions-for-mysql/"><em>http://www.dotkernel.com/dotkernel/dotkernel-database-naming-conventions-for-mysql/</em></a></li>
+    <li>On database, we changed the names and structure of tables to respect database naming convention. <a href="../dotkernel/dotkernel-database-naming-conventions-for-mysql/"><em>http://www.dotkernel.com/dotkernel/dotkernel-database-naming-conventions-for-mysql/</em></a></li>
 </ul>
 <ul>
-	<li>A new word came into our DotKernel discussions: <strong><em>dots.</em></strong> We use this term when talking about a submodule and all its component files. For example, <em>“user”</em> is a submodule of <em>frontend</em> module. Note that one dots can be part of multiple modules. (For example, <em>“user”</em> dots belong to <em>frontend</em> and <em>admin</em> module). For each dots, the configurations values have been added to xml files which are stored in <em>configs/dots</em> folder. In the preview versions, this values where hard-coded in the php files.</li>
+    <li>A new word came into our DotKernel discussions: <strong><em>dots.</em></strong> We use this term when talking about a submodule and all its component files. For example, <em>“user”</em> is a submodule of <em>frontend</em> module. Note that one dots can be part of multiple modules. (For example, <em>“user”</em> dots belong to <em>frontend</em> and <em>admin</em> module). For each dots, the configurations values have been added to xml files which are stored in <em>configs/dots</em> folder. In the preview versions, this values where hard-coded in the php files.</li>
 </ul>
 <ul>
-	<li>Another change made in <em>configs </em>folder is <em>resource.xml</em>, which contains the configuration values for the controllers of each module.</li>
+    <li>Another change made in <em>configs </em>folder is <em>resource.xml</em>, which contains the configuration values for the controllers of each module.</li>
 </ul>
 To be easier to start an application from DotKernel, in admin module, there are now the following dots:  admin, user and system.
 
@@ -50,7 +50,7 @@ For more details, see  <a title=http://www.dotkernel.com/changelog/1-2-0/" href
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

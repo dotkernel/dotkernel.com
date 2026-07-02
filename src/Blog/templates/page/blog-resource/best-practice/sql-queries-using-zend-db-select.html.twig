@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -36,7 +36,7 @@ $db = Zend_Db::factory('Pdo_Mysql', $dbConnect);
 </br>
 The below 2 classical SQL queries are equivalent. First one is simple, the second one use INNER JOIN keyword, but the result is the same.
 <pre class="bg-light border rounded p-3 overflow-auto">>
-SELECT a.id, a.name, b.order_id  
+SELECT a.id, a.name, b.order_id
 FROM users AS a, orders AS b
 WHERE a.id = b.user_id
 AND a.id = {$userId}
@@ -48,14 +48,14 @@ FROM `users` AS `a` INNER JOIN `orders` AS `b` ON a.id = b.user_id
 WHERE (a.id = '{$userId}')
 </pre>
 </br>
-The above querys are translated in Zend_Db style: 
+The above querys are translated in Zend_Db style:
 </br>
 <pre class="bg-light border rounded p-3 overflow-auto">>
 $select = $db->select()
              ->from(array('a'=>'users'),
                     array('a.id', 'a.name'))
              ->join(array('b'=>'orders'), 'a.id = b.user_id', array('b.order_id'))
-             ->where('a.id = ?', $userId) 
+             ->where('a.id = ?', $userId)
 </pre>
 </br>
 If we don't want to select any column from the second table, the 3rd parameter of join() method should be an empty string
@@ -71,7 +71,7 @@ $select = $db->select()
              ->from(array('a'=>'users'),
                     array('a.id', 'a.name'))
              ->join(array('b'=>'orders'), 'a.id = b.user_id', '')
-             ->where('a.id = ?', $userId) 
+             ->where('a.id = ?', $userId)
 </pre>
 </br>
 Note*: If we don't write the 3rd parameter, it will select all the fields from that table:
@@ -87,14 +87,14 @@ $select = $db->select()
              ->from(array('a'=>'users'),
                     array('a.id', 'a.name'))
               ->join(array('b'=>'orders'), 'a.id = b.user_id')
-              ->where('a.id = ?', $userId) 
+              ->where('a.id = ?', $userId)
 </pre>
 </br>
 <b>SELECT query - WHERE IN clause</b>
 </br>
 <pre class="bg-light border rounded p-3 overflow-auto">>
-SELECT id 
-FROM users 
+SELECT id
+FROM users
 WHERE aff_id IN ('1','2','3')
 </pre>
 </br>
@@ -116,7 +116,7 @@ Also see:
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -28,19 +28,19 @@
 <h3> New Features</h3>
 <!--more-->
 <ul>
-	<li>Zend_Loader changes</li>
+    <li>Zend_Loader changes</li>
 </ul>
 <blockquote class="blockquote border-start border-4 ps-3 text-muted my-3">A number of autoloaders and autoloader facilities were back ported from ZF2 to provide performant alternatives to those already available in the 1.X releases.  These include: Zend_Loader_StandardAutoloader, which improves on Zend_Loader_Autoloader by allowing the ability to specify a specific path to associate with a vendor prefix or namespace; Zend_Loader_ClassMapAutoloader, which provides the ability to use lookup tables for autoloading (which are typically the fastest possible way to autoload); and Zend_Loader_AutoloaderFactory, which can both create and update autoloaders for you, as well as register them with spl_autoload_register().
 
 The Zend_Loader changes were back ported from ZF2 by Matthew Weier O'Phinney</blockquote>
 <ul>
-	<li>Zend_EventManager</li>
+    <li>Zend_EventManager</li>
 </ul>
 <blockquote class="blockquote border-start border-4 ps-3 text-muted my-3">Zend_EventManager is a component that allows you to attach and detach listeners to named events, both on a per-instance basis as well as via shared collections; trigger events; and interrupt execution of listeners.
 
 Zend_EventManager was back ported from ZF2 by Matthew Weier O'Phinney</blockquote>
 <ul>
-	<li>Zend_Http_UserAgent_Features_Adapter_Browscap</li>
+    <li>Zend_Http_UserAgent_Features_Adapter_Browscap</li>
 </ul>
 <blockquote class="blockquote border-start border-4 ps-3 text-muted my-3">This class provides a features adapter that calls get_browser() in order to discover mobile device capabilities to inject into UserAgent device instances.
 
@@ -48,20 +48,20 @@ Browscap (<a href="http://browsers.garykeith.com/" target="_blank" rel="noopener
 
 Zend_Http_UserAgent_Features_Adapter_Browscap was created by Matthew Weier O'Phinney</blockquote>
 <ul>
-	<li>Zend_Mobile_Push</li>
+    <li>Zend_Mobile_Push</li>
 </ul>
 <blockquote class="blockquote border-start border-4 ps-3 text-muted my-3">Zend_Mobile_Push is a component for implementing push notifications for the 3 major push notification platforms (Apple (Apns), Google (C2dm) and Microsoft (Mpns).
 
 Zend_Mobile_Push was contributed by Mike Willbanks.</blockquote>
 <ul>
-	<li>Zend_Gdata_Analytics</li>
+    <li>Zend_Gdata_Analytics</li>
 </ul>
 <blockquote class="blockquote border-start border-4 ps-3 text-muted my-3">Zend_Gdata_Analytics is an extension to Zend_Gdata to allow interaction with Google's Analytics Data Export API. This extension does not encompass any major changes in the overall operation of Zend_Gdata components.
 
 Zend_Gdata_Analytics was contributed by Daniel Hartmann.</blockquote>
 <h3>Removed features</h3>
 <ul>
-	<li>Zend_Http_UserAgent_Features_Adapter_WurflApi  ( announced few months ago <a href="http://www.dotkernel.com/dotkernel/zend-framework-dropped-integration-of-wurfl-adapter/" target="_blank" rel="noopener noreferrer">here </a>)</li>
+    <li>Zend_Http_UserAgent_Features_Adapter_WurflApi  ( announced few months ago <a href="http://www.dotkernel.com/dotkernel/zend-framework-dropped-integration-of-wurfl-adapter/" target="_blank" rel="noopener noreferrer">here </a>)</li>
 </ul>
 <blockquote class="blockquote border-start border-4 ps-3 text-muted my-3">Due to the changes in licensing of WURFL, we have removed the WurflApi adapter. We will be providing the WurflApi adapter to ScientiaMobile so that users of WURFL will still have that option.</blockquote>
 <h3>Bug Fixes</h3>
@@ -72,7 +72,7 @@ For a complete list go here:<a href="http://framework.zend.com/issues/secure/Iss
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

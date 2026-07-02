@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -32,47 +32,47 @@ With the integration of these two major components for user authorization and ac
 
 The <em>Dot_Auth</em> class authenticates the user by checking the database – <span style="color: #666699;"><em>Zend_Auth_Adapter_DbTable</em></span>.
 <pre class="bg-light border rounded p-3 overflow-auto">>private function _getAuthAdapter($who)
-	{
-		$dbAdapter = Zend_Registry::get('database');
-		$authAdapter = new Zend_Auth_Adapter_DbTable($dbAdapter);
-		$authAdapter-&gt;setTableName($who)
-			-&gt;setIdentityColumn('username')
-			-&gt;setCredentialColumn('password');
-		return $authAdapter;
-	}</pre>
+    {
+        $dbAdapter = Zend_Registry::get('database');
+        $authAdapter = new Zend_Auth_Adapter_DbTable($dbAdapter);
+        $authAdapter-&gt;setTableName($who)
+            -&gt;setIdentityColumn('username')
+            -&gt;setCredentialColumn('password');
+        return $authAdapter;
+    }</pre>
 ACL roles (user types) and permissions are configured in the <em>configs/acl/role.xml </em>file.
 In DotKernel there are 3 roles: <em>guest</em>, <em>user</em> and <em>admin</em>.
 The resources for ACL are taken from <em>configs/router.xml</em> – see <em>controllers</em> tag.
 
 The <em>Dot_Acl</em> class
 <ul>
-	<li>controls the user access (ACL – Access Controller Layer),</li>
-	<li>is used for setting and checking the permissions of a user<em>,</em></li>
-	<li><em></em>uses Zend_Acl,  for checking if a role (user) has access to a resource (controller)</li>
+    <li>controls the user access (ACL – Access Controller Layer),</li>
+    <li>is used for setting and checking the permissions of a user<em>,</em></li>
+    <li><em></em>uses Zend_Acl,  for checking if a role (user) has access to a resource (controller)</li>
 </ul>
 <em>Dot_Auth</em> calls the <span style="color: #666699;"><em>isAllowed </em></span>method from <em>Dot_Acl</em> which authenticates the user.
 <pre class="bg-light border rounded p-3 overflow-auto">>// instantiate Zend_Acl
 $this-&gt;acl = new Zend_Acl();</pre>
 <pre class="bg-light border rounded p-3 overflow-auto">>public function isAllowed($role)
-	{
-		$resource = $this-&gt;requestControllerProcessed;
-		$privillege = $this-&gt;requestAction;
-		if(!$this-&gt;acl-&gt;has($resource))
-		{
-			return FALSE;	
-		}
-		else
-		{
-			return $this-&gt;acl-&gt;isAllowed($role, $resource, $privillege);
-		}
-	}</pre>
+    {
+        $resource = $this-&gt;requestControllerProcessed;
+        $privillege = $this-&gt;requestAction;
+        if(!$this-&gt;acl-&gt;has($resource))
+        {
+            return FALSE;
+        }
+        else
+        {
+            return $this-&gt;acl-&gt;isAllowed($role, $resource, $privillege);
+        }
+    }</pre>
 <em>IndexController.php</em> is calling <em>Dot_Auth</em>
 <pre class="bg-light border rounded p-3 overflow-auto">>$dotAuth = Dot_Auth::getInstance();
 $dotAuth-&gt;checkIdentity('user');</pre>
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

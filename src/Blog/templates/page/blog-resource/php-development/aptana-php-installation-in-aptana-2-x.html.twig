@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -25,24 +25,24 @@
 
                     <section class="post-content text-secondary lh-lg fs-6">
                         As all <a href="http://www.aptana.org/" target="_blank" rel="noopener noreferrer">aptana</a> fans know, <a href="http://www.aptana.org/php" target="_blank" rel="noopener noreferrer">Aptana PHP</a> plugin was discontinued in Aptana 2.x, in favor of PDT.
- But PDT is a joke, not suitable for professional PHP development, major features are missing. 
+ But PDT is a joke, not suitable for professional PHP development, major features are missing.
  So if you want to continue using Aptana PHP, that's what need to be done:
 <ol>
-	<li>Aptana -> Help -> Install New Software</li>
-	<li>Add http://update.aptana.com/install/php</li>
-	<li>Then select Aptana PHP and install it.</li>
+    <li>Aptana -> Help -> Install New Software</li>
+    <li>Add http://update.aptana.com/install/php</li>
+    <li>Then select Aptana PHP and install it.</li>
 </ol>
 
-In case you don't have yet a SVN plugin, go to 
+In case you don't have yet a SVN plugin, go to
 <ol>
-	<li>Aptana -> Help -> Install Aptana Features</li>
-	<li>Others -> Subclipse</li>
-	<li>Follow the instructions</li>
+    <li>Aptana -> Help -> Install Aptana Features</li>
+    <li>Others -> Subclipse</li>
+    <li>Follow the instructions</li>
 </ol>
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

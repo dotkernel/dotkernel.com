@@ -11,6 +11,7 @@ use Mezzio\Template\TemplateRendererInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use Throwable;
 
 class GetPostResourceHandler implements RequestHandlerInterface
 {
@@ -26,14 +27,38 @@ class GetPostResourceHandler implements RequestHandlerInterface
         $slug         = $request->getAttribute('slug');
         $categorySlug = $request->getAttribute('categorySlug');
         $article      = $this->articleRepository->getArticleResource($slug, $categorySlug);
-        $categories   = $this->categoryRepository->getCategories();
-        $meta         = $article;
+
+        if ($article === null) {
+            return $this->notFound($categorySlug);
+        }
+
+        $categories = $this->categoryRepository->getCategories();
+        $meta       = $article;
+
+        try {
+            $html = $this->template->render(
+                'page::blog-resource/' . $article->getCategory()->getSlug() . '/' . $slug,
+                [
+                    'article'    => $article,
+                    'meta'       => $meta,
+                    'categories' => $categories,
+                ]
+            );
+        } catch (Throwable $e) {
+            return $this->notFound($categorySlug);
+        }
+
+        return new HtmlResponse($html);
+    }
+
+    private function notFound(?string $categorySlug): HtmlResponse
+    {
+        $categories = $this->categoryRepository->getCategories();
         return new HtmlResponse(
-            $this->template->render('page::blog-resource/' . $article->getCategory()->getSlug() . '/' . $slug, [
-                'article'    => $article,
-                'meta'       => $meta,
+            $this->template->render('error::404', [
                 'categories' => $categories,
-            ])
+            ]),
+            404
         );
     }
 }

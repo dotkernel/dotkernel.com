@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -45,22 +45,22 @@ The DotKernel framework just got a big boost because it supports APC &amp; File 
 We've added a new class, Dot_Request, which lets you have control over the request data before you use it, for example the variables $_SERVER, $_GET and $_POST are only used within controllers.
 <h4>Features added</h4>
 <ul>
-	<li>API with Rate Limit - we've added a simple API with a single key authentification and a simple implementation of a rate limit (see /configs/application.ini - section params.api)</li>
-	<li>Cache System - Built on the Zend_Cache backends, provides caching within DotKernel, but also in library, more details about this and how it works can be found <a href="http://www.dotkernel.com/dotkernel/dotkernel-reserved-variable-names-for-caching/" target="_blank" rel="noopener noreferrer">here</a>.</li>
+    <li>API with Rate Limit - we've added a simple API with a single key authentification and a simple implementation of a rate limit (see /configs/application.ini - section params.api)</li>
+    <li>Cache System - Built on the Zend_Cache backends, provides caching within DotKernel, but also in library, more details about this and how it works can be found <a href="http://www.dotkernel.com/dotkernel/dotkernel-reserved-variable-names-for-caching/" target="_blank" rel="noopener noreferrer">here</a>.</li>
 </ul>
 <h4>Other changes</h4>
 <ul>
-	<li>Removed WURFL integration, DotKernel can detect wether you use a mobile device separately now, the WURFL Library can be added as a Plugin from now on</li>
-	<li>Removed multiple SMTP Transporter, it can be added as a plugin</li>
-	<li>Security scan in Admin Dashboard - you can now see which are the recommended settings (especially security related) for DotKernel to work at it's best</li>
-	<li>Admin fail logins are no longer sent to the first admin, they are sent to all developers found in <em>devEmails</em> within <em>settings</em> table in the database</li>
-	<li>Alert System - Alerts can be sent to all the developers to notify them if something goes wrong, for more information about alerts read <a href="http://www.dotkernel.com/dotkernel/how-to-use-alerts-in-dotkernel/" target="_blank" rel="noopener noreferrer">this article</a>.</li>
+    <li>Removed WURFL integration, DotKernel can detect wether you use a mobile device separately now, the WURFL Library can be added as a Plugin from now on</li>
+    <li>Removed multiple SMTP Transporter, it can be added as a plugin</li>
+    <li>Security scan in Admin Dashboard - you can now see which are the recommended settings (especially security related) for DotKernel to work at it's best</li>
+    <li>Admin fail logins are no longer sent to the first admin, they are sent to all developers found in <em>devEmails</em> within <em>settings</em> table in the database</li>
+    <li>Alert System - Alerts can be sent to all the developers to notify them if something goes wrong, for more information about alerts read <a href="http://www.dotkernel.com/dotkernel/how-to-use-alerts-in-dotkernel/" target="_blank" rel="noopener noreferrer">this article</a>.</li>
 </ul>
 <h4>Bug Fixes</h4>
 <ul>
-	<li><tt><span style="text-decoration: line-through;"><a class="resolved" title=" seo.xml will cause error on same varname for two modules instead of overwriting" href="http://dotkernel.net/view.php?id=289">0000289</a>: <b></b> seo.xml will cause error on same varname for two modules instead of overwriting</span></tt></li>
-	<li><tt><span style="text-decoration: line-through;"><a class="resolved" title=" email sent twice" href="http://dotkernel.net/view.php?id=249">0000249</a>: <b></b> email sent twice</span></tt></li>
-	<li><tt><span style="text-decoration: line-through;"><a class="resolved" title=" wrong unwritable warning on nginx" href="http://dotkernel.net/view.php?id=275">0000275</a>: <b></b> wrong unwritable warning on nginx</span></tt></li>
+    <li><tt><span style="text-decoration: line-through;"><a class="resolved" title=" seo.xml will cause error on same varname for two modules instead of overwriting" href="http://dotkernel.net/view.php?id=289">0000289</a>: <b></b> seo.xml will cause error on same varname for two modules instead of overwriting</span></tt></li>
+    <li><tt><span style="text-decoration: line-through;"><a class="resolved" title=" email sent twice" href="http://dotkernel.net/view.php?id=249">0000249</a>: <b></b> email sent twice</span></tt></li>
+    <li><tt><span style="text-decoration: line-through;"><a class="resolved" title=" wrong unwritable warning on nginx" href="http://dotkernel.net/view.php?id=275">0000275</a>: <b></b> wrong unwritable warning on nginx</span></tt></li>
 </ul>
 &nbsp;
 
@@ -72,7 +72,7 @@ There have been a lot of commits in our SVN repository since the latest release,
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

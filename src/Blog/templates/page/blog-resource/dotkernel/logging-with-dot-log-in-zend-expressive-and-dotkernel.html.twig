@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -33,21 +33,21 @@ Since dot-log extends zendframework/zend-log this tutorial mostly compatible wit
 For a more detailed documentation about the zend-log visit the <a href="https://zendframework.github.io/zend-log/" target="_blank" rel="noopener noreferrer">zend-log documentation</a>.
 <h2>Adding The Config Provider</h2>
 <ul>
- 	<li>Enter <strong>config/config.php</strong></li>
- 	<li>If there is no entry for the config provider below, add it:
+     <li>Enter <strong>config/config.php</strong></li>
+     <li>If there is no entry for the config provider below, add it:
 <pre class="bg-light border rounded p-3 overflow-auto">\Dot\Log\ConfigProvider::class</pre>
 </li>
- 	<li>Make sure it is added before with the Application-Specific components, eg.: <code>\Frontend\App\ConfigProvider.php</code>,  <code>\Admin\App\ConfigProvider::class</code>,  <code>MyProject\ConfigProvider::class</code> , etc.</li>
- 	<li>Open the <code>Dot\Log\ConfigProvider</code>
+     <li>Make sure it is added before with the Application-Specific components, eg.: <code>\Frontend\App\ConfigProvider.php</code>,  <code>\Admin\App\ConfigProvider::class</code>,  <code>MyProject\ConfigProvider::class</code> , etc.</li>
+     <li>Open the <code>Dot\Log\ConfigProvider</code>
 <ul>
- 	<li>In the dependencies section you will see an <strong>absctract factory </strong>(<code>LoggerAbstractServiceFactory::class</code>)</li>
- 	<li>This class responds to "selectors" instead of class names</li>
- 	<li>Instead of requesting the <code>Zend\Log\Logger::class</code> from the container, <code>dot-log.my_logger</code> should be requested (or just <code>my_logger</code> if using zend-log)</li>
+     <li>In the dependencies section you will see an <strong>absctract factory </strong>(<code>LoggerAbstractServiceFactory::class</code>)</li>
+     <li>This class responds to "selectors" instead of class names</li>
+     <li>Instead of requesting the <code>Zend\Log\Logger::class</code> from the container, <code>dot-log.my_logger</code> should be requested (or just <code>my_logger</code> if using zend-log)</li>
 </ul>
 </li>
- 	<li>Next, create a <strong>log.global.php </strong>file within <strong>/config/autoload</strong>
+     <li>Next, create a <strong>log.global.php </strong>file within <strong>/config/autoload</strong>
 <ul>
- 	<li>return an empty array for start</li>
+     <li>return an empty array for start</li>
 </ul>
 </li>
 </ul>
@@ -63,7 +63,7 @@ In the newly created value add a key loggers, and the value should be an array w
 &nbsp;
 
 At this point your log.global.php should look like this:
-<pre class="bg-light border rounded p-3 overflow-auto">return 
+<pre class="bg-light border rounded p-3 overflow-auto">return
         ],
     ],
 ];</pre>
@@ -83,12 +83,12 @@ It is possible separate logs into multiple files using writers and filters. For
 
 In this example all the log messages will be written in one file.
 <ul>
- 	<li>In the my_logger key insert an empty array on key <strong>writers</strong>
+     <li>In the my_logger key insert an empty array on key <strong>writers</strong>
 <ul>
- 	<li>The <strong>writers</strong> will all be used when writing logs</li>
+     <li>The <strong>writers</strong> will all be used when writing logs</li>
 </ul>
 </li>
- 	<li>The following is the simplest example to write anything to <strong>/data/logs/dk.log</strong></li>
+     <li>The following is the simplest example to write anything to <strong>/data/logs/dk.log</strong></li>
 </ul>
 <pre class="bg-light border rounded p-3 overflow-auto">return ,
                     ],
@@ -103,9 +103,9 @@ The writer <strong>name</strong> key is a developer-provided name for that write
 
 The writer priority key is not affecting the errors that are written, it is a way to organize writers, for example:
 <ul>
- 	<li>1 - FILE</li>
- 	<li>2 - SQL</li>
- 	<li>3 - E-mail</li>
+     <li>1 - FILE</li>
+     <li>2 - SQL</li>
+     <li>3 - E-mail</li>
 </ul>
 It is the most important to write in the file, the sql or e-mail are more probably fail because the servers can be external and offline, the file is on the same server.
 
@@ -117,14 +117,14 @@ To write into a file the key <strong>stream</strong> must be present in the <s
 
 For more examples see the zend-log streams:
 <ul class="toc__list">
- 	<li class="toc__entry"><a class="toc__link" href="https://zendframework.github.io/zend-log/writers/#writing-to-streams" target="_blank" rel="noopener noreferrer">Writing to Streams</a></li>
- 	<li class="toc__entry"><a class="toc__link" href="https://zendframework.github.io/zend-log/writers/#writing-to-databases" target="_blank" rel="noopener noreferrer">Writing to Databases</a></li>
- 	<li class="toc__entry"><a class="toc__link" href="https://zendframework.github.io/zend-log/writers/#writing-to-firephp" target="_blank" rel="noopener noreferrer">Writing to FirePHP</a></li>
- 	<li class="toc__entry"><a class="toc__link" href="https://zendframework.github.io/zend-log/writers/#writing-to-chromephp" target="_blank" rel="noopener noreferrer">Writing to ChromePHP</a></li>
- 	<li class="toc__entry"><a class="toc__link" href="https://zendframework.github.io/zend-log/writers/#writing-to-mail" target="_blank" rel="noopener noreferrer">Writing to Mail</a></li>
- 	<li class="toc__entry"><a class="toc__link" href="https://zendframework.github.io/zend-log/writers/#writing-to-mongodb" target="_blank" rel="noopener noreferrer">Writing to MongoDB</a></li>
- 	<li class="toc__entry"><a class="toc__link" href="https://zendframework.github.io/zend-log/writers/#writing-to-syslog" target="_blank" rel="noopener noreferrer">Writing to Syslog</a></li>
- 	<li class="toc__entry"><a class="toc__link" href="https://zendframework.github.io/zend-log/writers/#writing-to-zend-monitor" target="_blank" rel="noopener noreferrer">Writing to Zend Monitor</a></li>
+     <li class="toc__entry"><a class="toc__link" href="https://zendframework.github.io/zend-log/writers/#writing-to-streams" target="_blank" rel="noopener noreferrer">Writing to Streams</a></li>
+     <li class="toc__entry"><a class="toc__link" href="https://zendframework.github.io/zend-log/writers/#writing-to-databases" target="_blank" rel="noopener noreferrer">Writing to Databases</a></li>
+     <li class="toc__entry"><a class="toc__link" href="https://zendframework.github.io/zend-log/writers/#writing-to-firephp" target="_blank" rel="noopener noreferrer">Writing to FirePHP</a></li>
+     <li class="toc__entry"><a class="toc__link" href="https://zendframework.github.io/zend-log/writers/#writing-to-chromephp" target="_blank" rel="noopener noreferrer">Writing to ChromePHP</a></li>
+     <li class="toc__entry"><a class="toc__link" href="https://zendframework.github.io/zend-log/writers/#writing-to-mail" target="_blank" rel="noopener noreferrer">Writing to Mail</a></li>
+     <li class="toc__entry"><a class="toc__link" href="https://zendframework.github.io/zend-log/writers/#writing-to-mongodb" target="_blank" rel="noopener noreferrer">Writing to MongoDB</a></li>
+     <li class="toc__entry"><a class="toc__link" href="https://zendframework.github.io/zend-log/writers/#writing-to-syslog" target="_blank" rel="noopener noreferrer">Writing to Syslog</a></li>
+     <li class="toc__entry"><a class="toc__link" href="https://zendframework.github.io/zend-log/writers/#writing-to-zend-monitor" target="_blank" rel="noopener noreferrer">Writing to Zend Monitor</a></li>
 </ul>
 <h2>(Optional) Configuring the Filters</h2>
 A <em>filter</em> prevents a message from being written to the log. (from <a href="https://zendframework.github.io/zend-log/filters/" target="_blank" rel="noopener noreferrer">zend-log filters documentation</a>)
@@ -142,7 +142,7 @@ Starting from the basic writer configuration, several configurations will be add
 &nbsp;
 <pre class="bg-light border rounded p-3 overflow-auto">&lt;?php
 
-return 
+return
                                 ],
                             ],</strong>
                         ],
@@ -186,8 +186,8 @@ Zend Log provides String formatting, XML, JSON and FirePHP formatting.
 
 The formatter accepts following parameters:
 <ul>
- 	<li>name - the formatter class (it must implement <strong>Zend\Log\Formatter\FormatterInterface</strong>)</li>
- 	<li>options - options to pass to the formatter constructor if required</li>
+     <li>name - the formatter class (it must implement <strong>Zend\Log\Formatter\FormatterInterface</strong>)</li>
+     <li>options - options to pass to the formatter constructor if required</li>
 </ul>
 &nbsp;
 
@@ -195,24 +195,23 @@ The following formats the message as JSON data:
 <pre class="bg-light border rounded p-3 overflow-auto">'formatter' =&gt; ,</pre>
 &nbsp;
 <ul class="toc__list">
- 	<li class="toc__entry"><a class="toc__link" href="https://zendframework.github.io/zend-log/formatters/#simple-formatting" target="_blank" rel="noopener noreferrer">Simple Formatting</a></li>
- 	<li class="toc__entry"><a class="toc__link" href="https://zendframework.github.io/zend-log/formatters/#formatting-to-json" target="_blank" rel="noopener noreferrer">Formatting to JSON</a></li>
- 	<li class="toc__entry"><a class="toc__link" href="https://zendframework.github.io/zend-log/formatters/#formatting-to-xml" target="_blank" rel="noopener noreferrer">Formatting to XML</a></li>
- 	<li class="toc__entry"><a class="toc__link" href="https://zendframework.github.io/zend-log/formatters/#formatting-to-firephp" target="_blank" rel="noopener noreferrer">Formatting to FirePhp</a></li>
+     <li class="toc__entry"><a class="toc__link" href="https://zendframework.github.io/zend-log/formatters/#simple-formatting" target="_blank" rel="noopener noreferrer">Simple Formatting</a></li>
+     <li class="toc__entry"><a class="toc__link" href="https://zendframework.github.io/zend-log/formatters/#formatting-to-json" target="_blank" rel="noopener noreferrer">Formatting to JSON</a></li>
+     <li class="toc__entry"><a class="toc__link" href="https://zendframework.github.io/zend-log/formatters/#formatting-to-xml" target="_blank" rel="noopener noreferrer">Formatting to XML</a></li>
+     <li class="toc__entry"><a class="toc__link" href="https://zendframework.github.io/zend-log/formatters/#formatting-to-firephp" target="_blank" rel="noopener noreferrer">Formatting to FirePhp</a></li>
 </ul>
 &nbsp;
 <h2>Full example</h2>
 Below an example which:
 <ul>
- 	<li>The log is used through <strong>dot-log</strong></li>
- 	<li>The logger name is <strong>my_logger</strong></li>
- 	<li>Writes to file: <strong>data/logs/dk.log</strong></li>
- 	<li>Explicitly allows <strong>all the messages</strong> to be written</li>
- 	<li>Formats the message as <strong>JSON</strong></li>
+     <li>The log is used through <strong>dot-log</strong></li>
+     <li>The logger name is <strong>my_logger</strong></li>
+     <li>Writes to file: <strong>data/logs/dk.log</strong></li>
+     <li>Explicitly allows <strong>all the messages</strong> to be written</li>
+     <li>Formats the message as <strong>JSON</strong></li>
 </ul>
 The key elements are <strong>bold</strong>.
 <pre class="bg-light border rounded p-3 overflow-auto">&lt;?php
-
 
 return ,
                                 ],
@@ -246,9 +245,9 @@ $logger-&gt;debug('7 debug');
 $logger-&gt;log(Logger::NOTICE, 'NOTICE from log()');</pre>
 <h6>Sources:</h6>
 <ul>
- 	<li>https://zendframework.github.io/zend-log/</li>
- 	<li>https://zendframework.github.io/zend-log/writers/</li>
- 	<li>https://zendframework.github.io/zend-log/filters/</li>
+     <li>https://zendframework.github.io/zend-log/</li>
+     <li>https://zendframework.github.io/zend-log/writers/</li>
+     <li>https://zendframework.github.io/zend-log/filters/</li>
 </ul>
 This article will be continued in a different article that treats the error handling in middleware applications.
 
@@ -256,7 +255,7 @@ This article will be continued in a different article that treats the error hand
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

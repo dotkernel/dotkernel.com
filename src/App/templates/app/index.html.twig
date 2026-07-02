@@ -3,97 +3,72 @@
 {% block title %}A PSR-15 compliant application{% endblock %}
 
 {% block content %}
-    <div class="page-intro home-intro">
+
+    {# ---------- Componente ale platformei ---------- #}
+    <section class="platform-components">
         <div class="container">
-            <p class="welcome">Dotkernel Light is a basic</p>
-            <h1>PSR-15 Middleware skeleton</h1>
-            <p>Built on top of the Mezzio microframework. <br/>Composed of a set of custom and extended Laminas components.</p>
-        </div>
-        <div class="arrow_down">
-            <div class="arrow_down_content">&nbsp;</div>
-        </div>
-    </div>
+            <h2 class="text-center">Headless Platform</h2>
+            <p class="text-center">
+                Built from independent applications that can be combined into a single platform
+                that is more useful than any one piece on its own.
+            </p>
 
-    <div class="home-list">
-        <div class="container">
-            <h2><a href="https://docs.mezzio.dev/mezzio/" target="_blank" class="text-decoration-none">Mezzio</a></h2>
-            <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <h3>
-                        <a href="https://github.com/php-fig/container" target="_blank" class="text-decoration-none">containers</a>
-                    </h3>
-                    <p>
-                        Dotkernel is built around the PSR-11 dependency container.
-                        We have chosen <b>Laminas Service Manager</b> as our default implementation.
-                    </p>
-                    <p>
-                        Get Started with
-                        <br />
-                        <a href="https://github.com/php-fig/container" target="_blank" class="text-decoration-none">PSR-11</a>
-                        and
-                        <a href="https://github.com/laminas/laminas-servicemanager" target="_blank" class="text-decoration-none">Laminas Service Manager</a>
-                    </p>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h3>
-                        <a href="https://github.com/twigphp/Twig" target="_blank" class="text-decoration-none">templating</a>
-                    </h3>
-                    <p>
-                        By default, no middleware in Laminas is templated.
-                        For Dotkernel's Light application, we have chosen <b>Twig</b> as the default templating engine.
-                    </p>
-                    <p>
-                        Get started with
-                        <br />
-                        <a href="https://twig.symfony.com/" target="_blank" class="text-decoration-none">Twig</a>
-                        and
-                        <a href="https://github.com/mezzio/mezzio-twigrenderer" target="_blank" class="text-decoration-none">Mezzio TwigRenderer</a>
-                    </p>
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="component-card">
+                        <div class="component-card-header">
+                            <span class="component-star">*</span> API
+                        </div>
+                        <div class="component-card-body">
+                            <div class="badge-row">
+                                <img src="https://img.shields.io/packagist/dependency-v/dotkernel/api/php?style=flat&label=PHP&color=B9E3BB" alt="PHP version" loading="lazy">
+                                <img src="https://img.shields.io/packagist/v/dotkernel/api?style=flat&label=Packagist&color=B9E3BB" alt="Packagist version" loading="lazy">
+                                <img src="https://img.shields.io/github/license/dotkernel/api?style=flat&label=License&color=B9E3BB" alt="License" loading="lazy">
+                                <img src="https://img.shields.io/github/issues/dotkernel/api?style=flat&label=Issues&color=B9E3BB" alt="Issues" loading="lazy">
+                                <img src="https://img.shields.io/github/stars/dotkernel/api?style=flat&label=Stars&color=B9E3BB" alt="Stars" loading="lazy">
+                            </div>
+                            <p>
+                                Dotkernel API is a framework-less alternative to legacy Laminas API Tools setups,
+                                aimed at developers who want to build REST APIs quickly without extra overhead.
+                            </p>
+                            <div class="component-buttons">
+                                <a href="https://github.com/dotkernel/api" target="_blank" class="btn btn-dark btn-sm">
+                                    <i class="bi bi-github me-1"></i> Git
+                                </a>
+                                <a href="https://api.dotkernel.net/" target="_blank" class="btn btn-outline-primary btn-sm">Demo</a>
+                                <a href="https://docs.dotkernel.org/api-documentation/" target="_blank" class="btn btn-outline-primary btn-sm">Guide</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="col-lg-3 col-md-6">
-                    <h3>
-                        <a href="https://github.com/nikic/FastRoute" target="_blank" class="text-decoration-none">routers</a>
-                    </h3>
-                    <p>
-                        Among the various routing implementations compatible with Expressive, we have chosen <b>FastRoute</b> as Dotkernel's default routing library.
-                    </p>
-                    <p>
-                        Get started with
-                        <br />
-                        <a href="https://github.com/nikic/FastRoute" target="_blank" class="text-decoration-none">FastRoute</a>
-                    </p>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h3>
-                        <a href="https://github.com/laminas/laminas-diactoros" target="_blank" class="text-decoration-none">http messages</a>
-                    </h3>
-                    <p>
-                        Laminas, and consequently Dotkernel, is built around the PSR-7 standard.<br />It uses <b>Laminas Diactoros</b> as the PSR-7 implementation.
-                    </p>
-                    <p>
-                        Get started with
-                        <br />
-                        <a href="https://github.com/php-fig/http-message" target="_blank" class="text-decoration-none">PSR-7</a>
-                        and
-                        <a href="https://github.com/laminas/laminas-diactoros" target="_blank" class="text-decoration-none">Laminas Diactoros</a>
-                    </p>
-                </div>
-            </div>
-
-            <h2>Dotkernel Light components</h2>
-            <div class="row">
-                <div class="col-md-12 text-start">
-                    <ul class="list-unstyled list-group list-group-flush">
-                        <li class="list-group-item">
-                            <a href="https://github.com/dotkernel/dot-log" target="_blank" class="text-decoration-none">dot-log</a>: generic logging component
-                        </li>
-                        <li class="list-group-item">
-                            <a href="https://github.com/dotkernel/dot-errorhandler" target="_blank" class="text-decoration-none">dot-errorhandler</a>: error logging component
-                        </li>
-                    </ul>
+                <div class="col-lg-6">
+                    <div class="component-card">
+                        <div class="component-card-header">
+                            <span class="component-star">*</span> ADMIN
+                        </div>
+                        <div class="component-card-body">
+                            <div class="badge-row">
+                                <img src="https://img.shields.io/packagist/dependency-v/dotkernel/admin/php?style=flat&label=PHP&color=B6CFFF" alt="PHP version" loading="lazy">
+                                <img src="https://img.shields.io/packagist/v/dotkernel/admin?style=flat&label=Packagist&color=B6CFFF" alt="Packagist version" loading="lazy">
+                                <img src="https://img.shields.io/github/license/dotkernel/admin?style=flat&label=License&color=B6CFFF" alt="License" loading="lazy">
+                                <img src="https://img.shields.io/github/issues/dotkernel/admin?style=flat&label=Issues&color=B6CFFF" alt="Issues" loading="lazy">
+                                <img src="https://img.shields.io/github/stars/dotkernel/admin?style=flat&label=Stars&color=B6CFFF" alt="Stars" loading="lazy">
+                            </div>
+                            <p>
+                                Dotkernel Admin is the back-office application used to manage users, roles
+                                and permissions across the rest of the platform's applications.
+                            </p>
+                            <div class="component-buttons">
+                                <a href="https://github.com/dotkernel/admin" target="_blank" class="btn btn-dark btn-sm">
+                                    <i class="bi bi-github me-1"></i> Git
+                                </a>
+                                <a href="https://docs.dotkernel.org/" target="_blank" class="btn btn-outline-primary btn-sm">Guide</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 {% endblock %}

@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -34,15 +34,15 @@ In this article we will have the icon upgrade guide.
 
 &nbsp;
 <ol>
-	<li>Make sure your project is running on version <strong>1.5.0</strong> or <strong>newer</strong></li>
-	<li>Download the <a href="http://www.dotkernel.com/download/?did=46" target="_blank" rel="noopener noreferrer">patch</a></li>
-	<li>Extract the archive in a folder, let's name it <strong>icons_patch
+    <li>Make sure your project is running on version <strong>1.5.0</strong> or <strong>newer</strong></li>
+    <li>Download the <a href="http://www.dotkernel.com/download/?did=46" target="_blank" rel="noopener noreferrer">patch</a></li>
+    <li>Extract the archive in a folder, let's name it <strong>icons_patch
 </strong></li>
-	<li>We recommend creating a backup of your project before you continue</li>
-	<li>Now copy all the files in the <strong>icons_patch</strong> folder in your DotKernel</li>
-	<li>You will be prompted to replace 2 files, simply replace the files and agree to merge the folders content (files will be added, not replaced this time)</li>
-	<li>You need to clear the cache for changes to take effect, the os and browser xml's are cached. For more information read <a href="http://www.dotkernel.com/dotkernel/dotkernel-reserved-variable-names-for-caching/" target="_blank" rel="noopener noreferrer">this article</a> (look for <strong>Browser &amp; OS</strong>)</li>
-	<li>You can now delete the <strong>icons_patch</strong> folder or use it to patch another project</li>
+    <li>We recommend creating a backup of your project before you continue</li>
+    <li>Now copy all the files in the <strong>icons_patch</strong> folder in your DotKernel</li>
+    <li>You will be prompted to replace 2 files, simply replace the files and agree to merge the folders content (files will be added, not replaced this time)</li>
+    <li>You need to clear the cache for changes to take effect, the os and browser xml's are cached. For more information read <a href="http://www.dotkernel.com/dotkernel/dotkernel-reserved-variable-names-for-caching/" target="_blank" rel="noopener noreferrer">this article</a> (look for <strong>Browser &amp; OS</strong>)</li>
+    <li>You can now delete the <strong>icons_patch</strong> folder or use it to patch another project</li>
 </ol>
 List of affected files:
 <pre class="bg-light border rounded p-3 overflow-auto">M /configs/useragent/browser.xml
@@ -55,7 +55,7 @@ A /images/os/windows_metro.png</pre>
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

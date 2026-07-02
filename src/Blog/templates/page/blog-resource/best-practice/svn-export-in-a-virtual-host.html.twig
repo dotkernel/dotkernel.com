@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -27,7 +27,6 @@
                         The following commands should be run in the terminal (for example, using Putty in Windows) on the host where you want to export the repository). It's recommended that you run them using the domain's user, not root.
 <!--more-->
 
-
 First make sure that Subversion is installed on the host. To check if it is installed, run:
 <pre class="bash">svn --version</pre>
 If you don't get a "command not found" message, subversion is installed. Otherwise, you need to install it.
@@ -39,16 +38,16 @@ The command looks like this:
 
 where:
 <ul>
-	<li><strong>-r revisionNumber</strong> - <em>optional</em> - export a specific revision. By default, the latest revision will be used</li>
-	<li><strong>repositoryUrl</strong> - the repository URL (eg: <em>http://example.com/repos/project-name/trunk/</em>). Remember to add /trunk/, or change it appropriately if you need to export a certain branch or tag</li>
-	<li><strong>targetDirectory</strong>
+    <li><strong>-r revisionNumber</strong> - <em>optional</em> - export a specific revision. By default, the latest revision will be used</li>
+    <li><strong>repositoryUrl</strong> - the repository URL (eg: <em>http://example.com/repos/project-name/trunk/</em>). Remember to add /trunk/, or change it appropriately if you need to export a certain branch or tag</li>
+    <li><strong>targetDirectory</strong>
 <ul>
-	<li><strong>./</strong> - means the current directory</li>
-	<li><strong>./project-name</strong> - will export to the <em>project-name</em> subdirectory</li>
-	<li><strong>/var/www/vhosts/example.com/httpdocs</strong> - will export to an absolute path</li>
+    <li><strong>./</strong> - means the current directory</li>
+    <li><strong>./project-name</strong> - will export to the <em>project-name</em> subdirectory</li>
+    <li><strong>/var/www/vhosts/example.com/httpdocs</strong> - will export to an absolute path</li>
 </ul>
 </li>
-	<li><strong>--force</strong> - <em>optional</em> - by default SVN will not export in an existing directory. if you want to override this, you have to use the <em>force</em> parameter. <strong>Be careful, this option can overwrite files</strong></li>
+    <li><strong>--force</strong> - <em>optional</em> - by default SVN will not export in an existing directory. if you want to override this, you have to use the <em>force</em> parameter. <strong>Be careful, this option can overwrite files</strong></li>
 </ul>
 Examples:
 <pre class="bg-light border rounded p-3 overflow-auto">>svn export http://v1.dotkernel.net/svn/trunk ./ --force
@@ -61,7 +60,7 @@ If you've exported the repository using a different user (root for example), you
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

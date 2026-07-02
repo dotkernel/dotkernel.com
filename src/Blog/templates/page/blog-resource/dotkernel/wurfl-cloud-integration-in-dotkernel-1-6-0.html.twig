@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -36,9 +36,9 @@ If you want to see the Wurfl Cloud library you can find it in the library folder
 
 Quick steps to have a functional device detection in DotKernel.
 <ul>
-	<li>register for an Wurfl Cloud account <a title="Scientia Mobile account register" href="https://www.scientiamobile.com/register" target="_blank" rel="noopener noreferrer">here</a></li>
-	<li>choose <strong>device_os</strong> and <strong>mobile_browser</strong> as your capabilities</li>
-	<li>copy your API Key in application.ini in DotKernel</li>
+    <li>register for an Wurfl Cloud account <a title="Scientia Mobile account register" href="https://www.scientiamobile.com/register" target="_blank" rel="noopener noreferrer">here</a></li>
+    <li>choose <strong>device_os</strong> and <strong>mobile_browser</strong> as your capabilities</li>
+    <li>copy your API Key in application.ini in DotKernel</li>
 </ul>
 <pre class="bg-light border rounded p-3 overflow-auto">>resources.useragent.wurflcloud.api_key = 000000:XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</pre>
 Now you can test it by changing the user agent in your browser to a mobile device and access your project. Now you can see that you are redirected to the mobile module.
@@ -47,7 +47,7 @@ To see how mobile detection is working in DotKernel read this <a title="Detectin
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -36,9 +36,9 @@ The <a href="https://docs.dotkernel.com/Guidelines/Documentation-Guidelines/Api
 
 <strong>Links</strong>:
 <ul>
- 	<li><a href="https://docs.dotkernel.com/Overview/Release-Notes.html" target="_blank" rel="noopener noreferrer">Release Notes</a> page</li>
- 	<li><a href="https://docs.dotkernel.com/Prerequisites/Webpack.html" target="_blank" rel="noopener noreferrer">Webpack</a> tutorial</li>
- 	<li><a href="https://docs.dotkernel.com/Guidelines/Documentation-Guidelines/Api-Endpoint.html">Api Endpoint Documentation Guidelines</a></li>
+     <li><a href="https://docs.dotkernel.com/Overview/Release-Notes.html" target="_blank" rel="noopener noreferrer">Release Notes</a> page</li>
+     <li><a href="https://docs.dotkernel.com/Prerequisites/Webpack.html" target="_blank" rel="noopener noreferrer">Webpack</a> tutorial</li>
+     <li><a href="https://docs.dotkernel.com/Guidelines/Documentation-Guidelines/Api-Endpoint.html">Api Endpoint Documentation Guidelines</a></li>
 </ul>
 &nbsp;
 
@@ -48,7 +48,7 @@ The <a href="https://docs.dotkernel.com/Guidelines/Documentation-Guidelines/Api
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

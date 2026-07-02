@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -28,16 +28,16 @@
 <!--more-->
 <strong>Database naming conventions for tables and columns:</strong>
 <ul>
-	<li>Singular table names only (e.g. <em>user</em>, <em>category</em>, <em>product</em>, <em>order, orderProduct</em>)</li>
-	<li>Every table must have an auto-incrementing integer column id</li>
-	<li>ZF-like names of columns and tables (e.g. <em>user::isAdmin</em>, <em>orderProduct::product</em>)</li>
-	<li><del datetime="2010-11-05T12:43:27+00:00">Foreign keys must have the same names as reference tables</del></li>
+    <li>Singular table names only (e.g. <em>user</em>, <em>category</em>, <em>product</em>, <em>order, orderProduct</em>)</li>
+    <li>Every table must have an auto-incrementing integer column id</li>
+    <li>ZF-like names of columns and tables (e.g. <em>user::isAdmin</em>, <em>orderProduct::product</em>)</li>
+    <li><del datetime="2010-11-05T12:43:27+00:00">Foreign keys must have the same names as reference tables</del></li>
        <li>Foreign keys must have the same names as reference tables + the name of the referenced column
             <strong>Example:</strong> table referenced: <em>admin</em> , column name: <em>Id</em>
                                       so the column will be<em> adminId </em></li>
        <li>Pattern for CONSTRAINT name : FK_referencedTableName_tableName
            <strong>Example:</strong> CONSTRAINT `FK_admin_adminLogin`</li>
-	<li>SQL keywords are capitalized (e.g. SELECT, INT)</li>
+    <li>SQL keywords are capitalized (e.g. SELECT, INT)</li>
 </ul>
 <strong>Example of proper SQL file formatting and naming:</strong>
 <pre class="bg-light border rounded p-3 overflow-auto">>CREATE TABLE IF NOT EXISTS `user`
@@ -67,7 +67,7 @@ The names of database tables and columns must follow <em>camelLetter</em> as nam
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

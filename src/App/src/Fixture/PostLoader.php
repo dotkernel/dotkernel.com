@@ -12,6 +12,7 @@ use Light\Blog\Entity\Author;
 use Light\Blog\Entity\Category;
 use Light\Blog\Entity\Post;
 use Light\Blog\Enum\PostStatusEnum;
+use RuntimeException;
 
 use function file_get_contents;
 use function html_entity_decode;
@@ -26,8 +27,14 @@ class PostLoader extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
-        $jsonFile   = __DIR__ . '/articles_cleaned.json';
-        $categories = json_decode(file_get_contents($jsonFile), true);
+        $jsonFile = __DIR__ . '/articles_cleaned.json';
+        $contents = file_get_contents($jsonFile);
+
+        if ($contents === false) {
+            throw new RuntimeException("Unable to read file: {$jsonFile}");
+        }
+
+        $categories = json_decode($contents, true);
 
         $usedSlugs = [];
 
@@ -92,7 +99,7 @@ class PostLoader extends Fixture implements DependentFixtureInterface
     private function slugify(string $text): string
     {
         $text = strtolower(trim($text));
-        $text = preg_replace('/[^a-z0-9]+/', '-', $text);
+        $text = preg_replace('/[^a-z0-9]+/', '-', $text) ?? '';
         return trim($text, '-');
     }
 

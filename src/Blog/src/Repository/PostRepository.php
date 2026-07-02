@@ -13,6 +13,7 @@ use Light\Blog\Enum\PostStatusEnum;
 class PostRepository extends AbstractRepository
 {
     /**
+     * @param array<string, mixed> $params
      * @return DoctrinePaginator<Post>
      */
     public function getArticles(array $params): DoctrinePaginator
@@ -30,7 +31,7 @@ class PostRepository extends AbstractRepository
         return new DoctrinePaginator($qb->getQuery());
     }
 
-    public function getArticleResource(string $slug): ?Post
+    public function getArticleResource(string $slug, ?string $categorySlug = null): ?Post
     {
         $qb = $this->getQueryBuilder()
             ->select('articles')
@@ -40,11 +41,18 @@ class PostRepository extends AbstractRepository
             ->setParameter('slug', $slug)
             ->setParameter('published', PostStatusEnum::Published);
 
+        if ($categorySlug !== null) {
+            $qb->leftJoin('articles.category', 'category')
+                ->andWhere('category.slug = :categorySlug')
+                ->setParameter('categorySlug', $categorySlug);
+        }
+
         return $qb->getQuery()->getOneOrNullResult();
     }
 
     /**
-     * @return Post[]
+     * @param array<string, mixed> $params
+     * @return DoctrinePaginator<Post>
      */
     public function getArticleByAuthor(Author $author, array $params): DoctrinePaginator
     {

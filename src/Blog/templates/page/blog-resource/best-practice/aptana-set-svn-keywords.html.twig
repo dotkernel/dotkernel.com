@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -29,15 +29,15 @@
 For example if you want to set the svn keyword property <em><strong>Id</strong></em>:
 <!--more-->
 <ul>
-	<li>In the file where you want to add the svn keyword property write <strong>$Id$</strong></li>
+    <li>In the file where you want to add the svn keyword property write <strong>$Id$</strong></li>
 </ul>
 <a href="/uploads/2011/04/id-file.gif"><img class="alignnone size-medium wp-image-1268" title="Write the ID keyword in the file" src="/uploads/2011/04/id-file-300x235.gif" alt="" width="300" height="235" / class="img-fluid rounded my-2"></a>
 <ul>
-	<li>Right click on the file, then follow Team -&gt; Set Property...<strong> </strong><strong>Note*</strong>: <em>Set Property...</em> will not be active if you haven't first added the file to SVN: <em>Team</em>-&gt;<em>Add to Version Controller</em></li>
+    <li>Right click on the file, then follow Team -&gt; Set Property...<strong> </strong><strong>Note*</strong>: <em>Set Property...</em> will not be active if you haven't first added the file to SVN: <em>Team</em>-&gt;<em>Add to Version Controller</em></li>
 </ul>
 <a href="/uploads/2011/04/set-property.gif"><img class="alignnone size-medium wp-image-1269" title="Select set property..." src="/uploads/2011/04/set-property-300x152.gif" alt="" width="300" height="152" / class="img-fluid rounded my-2"></a>
 <ul>
-	<li>Select <strong>svn:keywords</strong>, and write <strong>Id</strong> in the text field <strong></strong></li>
+    <li>Select <strong>svn:keywords</strong>, and write <strong>Id</strong> in the text field <strong></strong></li>
 </ul>
 <a href="/uploads/2011/04/svn-keywords.gif"><img class="alignnone size-medium wp-image-1272" title="svn-keywords" src="/uploads/2011/04/svn-keywords-300x298.gif" alt="" width="300" height="298" / class="img-fluid rounded my-2"></a>
 
@@ -47,7 +47,7 @@ When you make the SVN commit of the file, the <em>$Id$</em> keyword will be repl
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

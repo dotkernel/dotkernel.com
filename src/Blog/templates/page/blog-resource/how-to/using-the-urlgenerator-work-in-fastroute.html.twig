@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -47,11 +47,11 @@ A controller redirect may then look like this:
 Using the URLGenerator in views is approximately the same, since you have access to the global <code class="highlighter-rouge">path()</code> method.
 
 The path method works the same way as the <code class="highlighter-rouge">url()</code> method, and takes the route name as the first parameter, and any optional blocks as its second parameter. This is of course done in <code class="highlighter-rouge">Twig</code>, so we need to put curly brackets around it since it's dynamic and not static HTML. It could look like this:
-<pre class="codeblock-code"><code><span class="hljs-template-variable">{{ path(name = 'page', parameters = {action: 'thank-you'}, relative = false) }}</span></code></pre>
+<pre class="codeblock-code"><code><span class="hljs-template-variable">{{ path(name: 'page', parameters: {action: 'thank-you'}, relative: false) }}</span></code></pre>
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -26,19 +26,19 @@
                     <section class="post-content text-secondary lh-lg fs-6">
                         To always redirect users to the www site (for example: http://dotboost.com to http://www.dotboost.com), add the following lines to .htaccess, right after <strong>RewriteEngine On</strong>:
 
-<pre class="ini">RewriteCond %{HTTP_HOST} ^dotboost.com 
+<pre class="ini">RewriteCond %{HTTP_HOST} ^dotboost.com
 RewriteRule ^(.*)$ http://www.dotboost.com/$1 </pre>
 <!--more-->
 If, on the other hand, you want to redirect http://www.dotboost.com to http://dotboost.com, add the following lines instead:
 
-<pre class="ini">RewriteCond %{HTTP_HOST} ^www.dotboost.com 
+<pre class="ini">RewriteCond %{HTTP_HOST} ^www.dotboost.com
 RewriteRule ^(.*)$ http://dotboost.com/$1 </pre>
 
 Replace dotboost.com with your site's domain.
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

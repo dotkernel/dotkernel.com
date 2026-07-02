@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -44,10 +44,10 @@ If the <strong>PHP 7 Express </strong>feature is won't show up the issue might b
 
 To check and modify the PHP Interpreter:
 <ul>
- 	<li>right click the project</li>
- 	<li>type "interpreter"</li>
- 	<li>The <strong>PHP</strong> -&gt; <strong>Interpreter </strong>option should show up</li>
- 	<li>If you only need a specific interpreter for a specific project you can check "Enable Project specific settings" by checking this option you won't affect the other projects in the current workspace</li>
+     <li>right click the project</li>
+     <li>type "interpreter"</li>
+     <li>The <strong>PHP</strong> -&gt; <strong>Interpreter </strong>option should show up</li>
+     <li>If you only need a specific interpreter for a specific project you can check "Enable Project specific settings" by checking this option you won't affect the other projects in the current workspace</li>
 </ul>
 <a href="/uploads/2015/12/zftest.png" rel="attachment wp-att-2902"><img class="wp-image-2902 size-full" src="/uploads/2015/12/zftest.png" alt="Zend Studio PHP Interpreter Dialog" width="801" height="555" class="img-fluid rounded my-2"></a> Zend Studio PHP Interpreter Dialog
 
@@ -55,19 +55,19 @@ The <strong>PHP 7 Express</strong> feature should now show up.
 <h3>Project preparation</h3>
 As we created a local project named <strong>zend-framework-test</strong> we will add the latest Zend Framework 1 version in our project.
 <ul>
- 	<li>right click on the project</li>
- 	<li>create a new folder named <strong>library</strong></li>
- 	<li>download the latest <strong>Zend Framework 1</strong> version from <a href="http://framework.zend.com/downloads/latest#ZF1" target="_blank" rel="noopener noreferrer">here</a>, make sure you choose the <strong>Full</strong> option, not the <strong>Full Package</strong> one</li>
- 	<li>extract the archive and browse the <strong>library</strong> folder</li>
- 	<li>copy the <strong>Zend</strong> folder in your project's <strong>library</strong> folder</li>
- 	<li>if the Drag and Drop didn't work and you had to manually copy the folder in your project you can click the project folder in Zend Studio and just press <strong>F5</strong> (Refresh)</li>
+     <li>right click on the project</li>
+     <li>create a new folder named <strong>library</strong></li>
+     <li>download the latest <strong>Zend Framework 1</strong> version from <a href="http://framework.zend.com/downloads/latest#ZF1" target="_blank" rel="noopener noreferrer">here</a>, make sure you choose the <strong>Full</strong> option, not the <strong>Full Package</strong> one</li>
+     <li>extract the archive and browse the <strong>library</strong> folder</li>
+     <li>copy the <strong>Zend</strong> folder in your project's <strong>library</strong> folder</li>
+     <li>if the Drag and Drop didn't work and you had to manually copy the folder in your project you can click the project folder in Zend Studio and just press <strong>F5</strong> (Refresh)</li>
 </ul>
 <h3>Using PHP 7 Express - Testing Zend Framework 1</h3>
 Now let's see <strong>PHP 7 Express</strong> in action. Using PHP 7 Express is very easy:
 <ul>
- 	<li>right-click the <strong>project,</strong> not a folder or a file because the feature won't show up</li>
- 	<li>click "<strong>Run PHP 7 Express...</strong>"</li>
- 	<li>a confirmation prompt will be displayed</li>
+     <li>right-click the <strong>project,</strong> not a folder or a file because the feature won't show up</li>
+     <li>click "<strong>Run PHP 7 Express...</strong>"</li>
+     <li>a confirmation prompt will be displayed</li>
 </ul>
 After the analysis was done, you should see the <strong>PHP 7 Express </strong>view (or tab) in the bottom pane in Zend Studio (this depends on the perspective).
 
@@ -77,7 +77,7 @@ The result should look like this:
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -31,13 +31,13 @@ As you note, the below is a complicate query, with <i>COUNT()</i>, <i>LEFT JOIN(
 <!--more-->
 <pre class="bg-light border rounded p-3 overflow-auto">>
 SELECT a.id,
-	   a.title, 
+       a.title,
        (SELECT COUNT(c.track_id)
-        FROM track_files AS c 
+        FROM track_files AS c
         WHERE c.track_id = a.id
        ) AS `count_files`,
        COUNT(b.track_id) AS count_courses
-FROM tracks AS a 
+FROM tracks AS a
 LEFT JOIN track_courses AS b ON (a.id = b.track_id)
 GROUP BY a.id
 </pre>
@@ -50,25 +50,25 @@ $db = Zend_Db::factory('Pdo_Mysql', $dbConnect);
 <pre class="bg-light border rounded p-3 overflow-auto">>
 $db->select()
    ->from(array('a'=>'tracks'),
-	     array('id',
-	 	     'title',
-		     'count_files' => new Zend_Db_Expr(
-			 		   '('.$db->select()
-						   ->from(array('c'=>'track_files'),
-						             array(new Zend_Db_Expr('COUNT(c.track_id)')))
-						   ->where('c.track_id = a.id').')' )
-			   )
-		  )
+         array('id',
+              'title',
+             'count_files' => new Zend_Db_Expr(
+                        '('.$db->select()
+                           ->from(array('c'=>'track_files'),
+                                     array(new Zend_Db_Expr('COUNT(c.track_id)')))
+                           ->where('c.track_id = a.id').')' )
+               )
+          )
    ->joinLeft(array('b'=>'track_courses'),
-		 'a.id = b.track_id',
-		 array('count_courses' => 'COUNT(b.track_id)')
-		 )
+         'a.id = b.track_id',
+         array('count_courses' => 'COUNT(b.track_id)')
+         )
    ->group('a.id');
 </pre>
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}

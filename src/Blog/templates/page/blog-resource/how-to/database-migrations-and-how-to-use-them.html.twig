@@ -11,8 +11,8 @@
 {% block content %}
     <div class="container py-4">
         <div class="row g-4">
-            
-            {% include '@partial/left-menu.html.twig' %}
+
+            {{ include('@partial/left-menu.html.twig') }}
 
             <main class="col-12 col-md-8 col-lg-9">
                 <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
@@ -53,18 +53,18 @@ To see the available commands, simply write "<em>php dot</em>" in a console that
 <h3>How to use migrations in my project?</h3>
 Migrations are very easily adapted to any project.
 <ul>
- 	<li><em>Existing</em> projects should start by creating a new migration, and mirror the current database design in that file.
+     <li><em>Existing</em> projects should start by creating a new migration, and mirror the current database design in that file.
 <ul>
- 	<li><em>Backup the database</em>. in case anything unforeseen should happen.</li>
- 	<li>After the design has been mirrored, the existing tables should be deleted, and the migrations can be run.</li>
+     <li><em>Backup the database</em>. in case anything unforeseen should happen.</li>
+     <li>After the design has been mirrored, the existing tables should be deleted, and the migrations can be run.</li>
 </ul>
 </li>
 </ul>
 <ol>
- 	<li>Whenever you would normally manually touch the database, make a migration for doing it instead. (<em>php dot make:migration &lt;name&gt;</em>)</li>
- 	<li>Give the migrations reasonable names, so it's easy to see their action, and the DB progression, in the project tree.</li>
- 	<li>Run the migrate command, and watch the database automatically generate and run the SQL to update the tables and columns as configured.</li>
- 	<li>Enjoy a safe and worry free database that won't suffer from manually touching it.</li>
+     <li>Whenever you would normally manually touch the database, make a migration for doing it instead. (<em>php dot make:migration &lt;name&gt;</em>)</li>
+     <li>Give the migrations reasonable names, so it's easy to see their action, and the DB progression, in the project tree.</li>
+     <li>Run the migrate command, and watch the database automatically generate and run the SQL to update the tables and columns as configured.</li>
+     <li>Enjoy a safe and worry free database that won't suffer from manually touching it.</li>
 </ol>
 &nbsp;
 
@@ -80,11 +80,11 @@ Seeders can be configured to run every time a certain migration is run, so no ma
 
 Seeders are created the same way as migrations, and also benefits hugely from being given reasonable names that explain what they do.
 <ol>
- 	<li>Create the required seeders, one for each table is the best practice, so you can have a "UserTableSeeder" and a "CarTableSeeder" etc.</li>
- 	<li>Setup when these seeders should run;
+     <li>Create the required seeders, one for each table is the best practice, so you can have a "UserTableSeeder" and a "CarTableSeeder" etc.</li>
+     <li>Setup when these seeders should run;
 <ul>
- 	<li>When running a migration</li>
- 	<li>Via a console-command, this is used to seed x amount of rows of (random) data to the database for testing.</li>
+     <li>When running a migration</li>
+     <li>Via a console-command, this is used to seed x amount of rows of (random) data to the database for testing.</li>
 </ul>
 </li>
 </ol>
@@ -105,7 +105,7 @@ Seeders are created the same way as migrations, and also benefits hugely from be
                     </section>
                 </article>
             </main>
-            
+
         </div>
     </div>
 {% endblock %}
