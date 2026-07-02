@@ -40,7 +40,7 @@ $aggregator = new ConfigAggregator([
     //   - `*.global.php`
     //   - `local.php`
     //   - `*.local.php`
-    //   - `test.local.php`
+    //   - `local.test.php`
     new PhpFileProvider(
         realpath(__DIR__) . '/autoload/{{,*.}global,{,*.}local,{,*.}test}.php'
     ),

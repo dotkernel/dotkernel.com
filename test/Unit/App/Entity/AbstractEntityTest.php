@@ -6,7 +6,6 @@ namespace LightTest\Unit\App\Entity;
 
 use DateTimeImmutable;
 use Light\App\Entity\AbstractEntity;
-use Light\App\Entity\EntityInterface;
 use LightTest\Unit\UnitTest;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
@@ -50,7 +49,7 @@ class AbstractEntityTest extends UnitTest
             }
         };
 
-        $this->assertContainsOnlyInstancesOf(EntityInterface::class, [$entity]);
+        $this->assertContainsOnlyInstancesOf(AbstractEntity::class, [$entity]);
         $this->assertContainsOnlyInstancesOf(UuidInterface::class, [$entity->getId()]);
     }
 }
