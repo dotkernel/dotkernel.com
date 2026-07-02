@@ -15,7 +15,7 @@ use function method_exists;
 use function ucfirst;
 
 #[ORM\MappedSuperclass]
-abstract class AbstractEntity implements ArraySerializableInterface
+abstract class AbstractEntity implements ArraySerializableInterface, EntityInterface
 {
     #[ORM\Id]
     #[ORM\Column(name: 'id', type: 'uuid', unique: true, nullable: false)]
@@ -26,6 +26,9 @@ abstract class AbstractEntity implements ArraySerializableInterface
 
     #[ORM\Column(name: 'updated', type: 'datetime_immutable', nullable: true)]
     protected ?DateTimeImmutable $updated = null;
+
+    #[ORM\Column(name: 'deleted', type: 'boolean', nullable: false, options: ['default' => false])]
+    protected bool $deleted = false;
 
     public function __construct()
     {
@@ -66,6 +69,18 @@ abstract class AbstractEntity implements ArraySerializableInterface
         }
 
         return null;
+    }
+
+    public function isDeleted(): bool
+    {
+        return $this->deleted;
+    }
+
+    public function setDeleted(bool $deleted): static
+    {
+        $this->deleted = $deleted;
+
+        return $this;
     }
 
     #[ORM\PrePersist]
