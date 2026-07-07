@@ -28,7 +28,7 @@ class RoutesDelegator
         foreach ($routes as $prefix => $moduleRoutes) {
             foreach ($moduleRoutes as $routeUri => $templateName) {
                 $app->get(
-                    sprintf('/%s/%s', $prefix, $routeUri),
+                    sprintf('/%s/', $routeUri),
                     GetPageViewHandler::class,
                     sprintf('%s::%s', $prefix, $templateName)
                 );
