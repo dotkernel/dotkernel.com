@@ -1,23 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
+    <meta charset="utf-8" />
     {{ include('@partial/meta.html.twig') }}
-    {% block canonical %}<link rel="canonical" href="{{ url(routeName ?? null) }}" />{% endblock %}
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/app/favicon/apple-touch-icon.png') }}">
+    {% block canonical %}<link rel="canonical" href="{{ url(routeName ?? null) }}" />
+    {% endblock %}<link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/app/favicon/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/app/favicon/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/app/favicon/favicon-16x16.png') }}">
     <link rel="manifest" href="{{ asset('images/app/favicon/site.webmanifest') }}">
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600" rel="stylesheet">
-
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
-
-    {% block stylesheets %}{% endblock %}
+    {% block stylesheets %}
+    {% endblock %}
 </head>
 <body class="app d-flex flex-column min-vh-100 bg-light text-secondary {% block body_class %}{% endblock %}">
-
 <header class="app-header sticky-top bg-white border-bottom shadow-sm">
     <nav class="navbar navbar-expand-lg navbar-light py-2">
         <div class="container-fluid px-4 px-lg-5">
@@ -25,28 +23,31 @@
                 <img src="{{ asset('images/app/logo.svg') }}"
                      onerror="this.onerror=null; this.src='{{ asset('images/app/logo.png') }}';"
                      alt="Dotkernel"
-                     style="height: 35px;" />
+                     style="height: 50px;" />
             </a>
-
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
             <div class="collapse navbar-collapse" id="navbarHeader">
                 <ul class="navbar-nav mx-auto gap-lg-4">
                     <li class="nav-item">
-                        <a class="nav-link px-3 fw-semibold transition-all" href="{{ url('page::blog') }}">Posts</a>
+                        <a class="nav-link px-3 fw-semibold fs-5 transition-all" target="_blank" href="https://docs.dotkernel.org/">Documentation</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link px-3 fw-semibold transition-all" href="{{ url('page::categories') }}">Categories</a>
+                        <a class="nav-link px-3 fw-semibold fs-5 transition-all" href="{{ url('page::dotkernel-packages-oss-lifecycle') }}">Packages Lifecycle</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link px-3 fw-semibold transition-all" href="{{ url('page::about') }}">About Us</a>
+                        <a class="nav-link px-3 fw-semibold fs-5 transition-all" href="{{ url('page::category-resource', {slug: 'how-to'}) }}">How to's</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3 fw-semibold fs-5 transition-all" href="{{ url('page::blog') }}">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3 fw-semibold fs-5 transition-all" href="{{ url('page::categories') }}">Categories</a>
                     </li>
                 </ul>
-
                 <div class="d-none d-lg-block">
-                    <a href="#" class="btn btn-primary rounded-pill px-4">Contact</a>
+                    <a href="{{ url('page::contact') }}" class="btn btn-primary rounded-pill px-4">Contact</a>
                 </div>
             </div>
         </div>
@@ -57,13 +58,11 @@
         <header class="content-header mb-4">
             {% block page_title %}{% endblock %}
         </header>
-
         <section class="content">
             {% block content %}{% endblock %}
         </section>
     </div>
 </main>
-
 <footer class="app-footer bg-white border-top py-4 mt-auto text-muted">
     <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
         <p class="enjoy text-uppercase tracking-wider small fw-bold text-primary mb-0">
@@ -74,7 +73,6 @@
         </p>
     </div>
 </footer>
-
 <script src="{{ asset('js/app.js') }}"></script>
 {% block javascript %}{% endblock %}
 </body>

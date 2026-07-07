@@ -1,0 +1,49 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block page_title %}<h1>Contact Us</h1>{% endblock %}
+
+
+{% block content %}
+    <div class="row g-4 py-3 justify-content-center">
+        <div class="col-12 col-md-6 col-lg-6">
+            <div class="card h-100 border-0 shadow-sm text-center p-4">
+                <div class="mb-3">
+                    <i class="fab fa-github fa-3x text-primary"></i>
+                </div>
+                <h2 class="h4 fw-semibold mb-2">GitHub</h2>
+                <p class="text-muted mb-4">
+                    Browse our repositories, open issues, or contribute to the DotKernel ecosystem.
+                </p>
+                <a href="https://github.com/dotkernel"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="btn btn-primary rounded-pill px-4 mt-auto">
+                    Visit GitHub
+                </a>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-6">
+            <div class="card h-100 border-0 shadow-sm text-center p-4">
+                <div class="mb-3">
+                    <i class="fas fa-book fa-3x text-primary"></i>
+                </div>
+                <h2 class="h4 fw-semibold mb-2">Documentation</h2>
+                <p class="text-muted mb-4">
+                    Read the guides, references, and best practices for building with DotKernel.
+                </p>
+                <a href="https://docs.dotkernel.org/"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="btn btn-primary rounded-pill px-4 mt-auto">
+                    Read the Docs
+                </a>
+            </div>
+        </div>
+        <hr>
+        <h3>Our Approach</h3>
+        <p>
+            Dotkernel is a Headless Platform for building modern web applications.
+
+            The Dotkernel Headless Platform is made up of Open Source components aimed at businesses that need custom solutions.</p>
+    </div>
+{% endblock %}
