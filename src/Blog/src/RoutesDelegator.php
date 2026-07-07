@@ -20,11 +20,11 @@ class RoutesDelegator
     {
         $app = $callback();
         assert($app instanceof Application);
-        $app->get('/blog', [GetPostCollectionHandler::class], 'page::blog');
-        $app->get('/category/{slug}', [GetCategoryResourceHandler::class], 'page::category-resource');
-        $app->get('/categories', [GetCategoryCollectionHandler::class], 'page::categories');
-        $app->get('/author/{slug}', [GetAuthorResourceHandler::class], 'page::author-resource');
-        $app->get('/{categorySlug}/{slug}', [GetPostResourceHandler::class], 'page::blog-resource');
+        $app->get('/blog/', [GetPostCollectionHandler::class], 'page::blog');
+        $app->get('/category/{slug}/', [GetCategoryResourceHandler::class], 'page::category-resource');
+        $app->get('/categories/', [GetCategoryCollectionHandler::class], 'page::categories');
+        $app->get('/author/{slug}/', [GetAuthorResourceHandler::class], 'page::author-resource');
+        $app->get('/{categorySlug}/{slug}/', [GetPostResourceHandler::class], 'page::blog-resource');
         return $app;
     }
 }

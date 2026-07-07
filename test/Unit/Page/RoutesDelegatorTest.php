@@ -25,9 +25,9 @@ class RoutesDelegatorTest extends TestCase
      */
     public function testWillInvoke(): void
     {
-        $moduleName   = 'test';
+        $moduleName   = 'test_module_name';
         $routeName    = 'test_route_name';
-        $routeUri     = sprintf('/%s/%s', $moduleName, $routeName);
+        $routeUri     = sprintf('/%s/', $routeName);
         $templateName = sprintf('%s::%s', $moduleName, $routeName);
 
         $container = $this->createStub(ContainerInterface::class);
