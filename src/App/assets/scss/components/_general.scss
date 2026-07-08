@@ -72,7 +72,6 @@ label {
   font-weight: 500;
 }
 
-/* layout - sticky footer */
 #wrapper {
   min-height: 100%;
   height: auto !important;
@@ -178,7 +177,6 @@ input[type="submit"]:hover {
   box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
 }
 
-/* blog post content (importat din WP) */
 .post-content .EnlighterJSRAW {
   display: block;
   background-color: #1e1e2e;
@@ -268,4 +266,15 @@ input[type="submit"]:hover {
 
 .post-content p a:hover {
   text-decoration-color: var(--color-primary);
+}
+
+.entry-content img,
+.wp-block-image img,
+[class*="wp-image-"] {
+  max-width: 100%;
+  height: auto;
+}
+
+.bg-red {
+  background-color: #0d6efd;
 }
