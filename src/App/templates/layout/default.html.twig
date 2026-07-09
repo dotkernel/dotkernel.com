@@ -34,7 +34,7 @@
                         <a class="nav-link px-3 fw-semibold fs-5 transition-all" target="_blank" href="https://docs.dotkernel.org/">Documentation</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link px-3 fw-semibold fs-5 transition-all" href="{{ url('page::dotkernel-packages-oss-lifecycle') }}">Packages Lifecycle</a>
+                        <a class="nav-link px-3 fw-semibold fs-5 transition-all" href="{{ url('page::static-page', {'static-page': 'dotkernel-packages-oss-lifecycle'}) }}">Packages Lifecycle</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link px-3 fw-semibold fs-5 transition-all" href="{{ url('page::category-resource', {slug: 'how-to'}) }}">How to's</a>
@@ -47,7 +47,7 @@
                     </li>
                 </ul>
                 <div class="d-none d-lg-block">
-                    <a href="{{ url('page::contact') }}" class="btn btn-primary rounded-pill px-4">Contact</a>
+                    <a href="{{ url('page::static-page', {'static-page': 'contact'}) }}" class="btn btn-primary rounded-pill px-4">Contact</a>
                 </div>
             </div>
         </div>

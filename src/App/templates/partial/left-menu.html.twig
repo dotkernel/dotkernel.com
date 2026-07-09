@@ -23,8 +23,8 @@
                                class="list-group-item list-group-item-action border-0 px-1 py-2 rounded">
                                 <p class="mb-1 small fw-semibold text-dark lh-sm">{{ article.title }}</p>
                                 <span class="text-muted" >
-                        <i class="bi bi-calendar3 me-1"></i>{{ article.postDate|date('M d, Y') }}
-                    </span>
+                                    <i class="bi bi-calendar3 me-1"></i>{{ article.postDate|date('M d, Y') }}
+                                </span>
                             </a>
                         {% else %}
                             <p class="text-muted small mb-0">No recent articles.</p>
@@ -52,9 +52,31 @@
                         See all categories <i class="bi bi-arrow-right fs-7"></i>
                     </a>
                 </div>
-
             </div>
-
         </div>
+        {% if posts is defined and posts %}
+            <div class="card border-0 shadow-sm rounded-3 my-2">
+                <div class="card-body p-3">
+                    <h6 class="fw-bold text-uppercase text-muted small px-1 mb-2">Recent Articles</h6>
+
+                    <div class="list-group list-group-flush">
+
+                        {% for post in posts %}
+                            <a href="{{ url('page::blog-resource', {categorySlug: post.category.slug, slug: post.slug}) }}"
+                               class="list-group-item list-group-item-action border-0 px-1 py-2 rounded">
+                                <p class="mb-1 small fw-semibold text-dark lh-sm">{{ post.title }}</p>
+                                <span class="text-muted">
+                            <i class="bi bi-calendar3 me-1"></i>{{ post.postDate|date('M d, Y') }}
+                        </span>
+                            </a>
+                        {% else %}
+                            <p class="text-muted small mb-0">No recent articles.</p>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
     </div>
 </aside>

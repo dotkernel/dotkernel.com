@@ -67,4 +67,20 @@ class PostRepository extends AbstractRepository
 
         return new DoctrinePaginator($qb->getQuery());
     }
+
+    /**
+     * @return array<int, Post>
+     */
+    public function getRecentPosts(int $limit = 5): array
+    {
+        $qb = $this->getQueryBuilder()
+            ->select('articles')
+            ->from(Post::class, 'articles')
+            ->where('articles.status = :published')
+            ->setParameter('published', PostStatusEnum::Published)
+            ->orderBy('articles.postDate', 'DESC')
+            ->setMaxResults($limit);
+
+        return $qb->getQuery()->getResult();
+    }
 }
