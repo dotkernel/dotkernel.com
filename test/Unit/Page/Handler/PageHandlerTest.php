@@ -32,10 +32,10 @@ class PageHandlerTest extends TestCase
      */
     public function testHandle(): void
     {
-        $routeName   = 'test_route_name';
-        $request     = $this->createStub(ServerRequestInterface::class);
-        $template    = $this->createStub(TemplateRendererInterface::class);
-        $routeResult = $this->createStub(RouteResult::class);
+        $routeName          = 'test_route_name';
+        $request            = $this->createStub(ServerRequestInterface::class);
+        $template           = $this->createStub(TemplateRendererInterface::class);
+        $routeResult        = $this->createStub(RouteResult::class);
         $postRepository     = $this->createStub(PostRepository::class);
         $categoryRepository = $this->createStub(CategoryRepository::class);
 
