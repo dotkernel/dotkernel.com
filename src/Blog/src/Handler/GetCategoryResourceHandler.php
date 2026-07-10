@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Light\Blog\Handler;
 
+use Fig\Http\Message\StatusCodeInterface;
 use Laminas\Diactoros\Response\HtmlResponse;
 use Light\Blog\Repository\CategoryRepository;
 use Mezzio\Template\TemplateRendererInterface;
@@ -26,7 +27,7 @@ class GetCategoryResourceHandler implements RequestHandlerInterface
         $meta         = $category;
 
         if (! $category) {
-            return new HtmlResponse('Category not found', 404);
+            return new HtmlResponse('Category not found', StatusCodeInterface::STATUS_NOT_FOUND);
         }
         $categories       = $this->categoryRepository->getCategories();
         $categoryArticles = $this->categoryRepository->getCategoryPost($category);

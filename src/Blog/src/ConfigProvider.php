@@ -66,7 +66,6 @@ class ConfigProvider
                 GetCategoryResourceHandler::class   => CategoryResourceHandlerFactory::class,
                 AuthorRepository::class             => AuthorResourceRepositoryFactory::class,
                 GetAuthorResourceHandler::class     => AuthorResourceHandlerFactory::class,
-                GetStaticPageDataHandler::class     => GetStaticPageDataFactory::class,
             ],
         ];
     }

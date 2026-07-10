@@ -11,7 +11,7 @@
                 </div>
             </div>
         </div>
-        {% if data is defined %}
+        {% if data is defined and data is iterable %}
             <div class="card border-0 shadow-sm rounded-3 my-2">
                 <div class="card-body p-3">
                     <h6 class="fw-bold text-uppercase text-muted small px-1 mb-2">Recent Articles</h6>
@@ -54,7 +54,7 @@
                 </div>
             </div>
         </div>
-        {% if posts is defined and posts %}
+        {% if posts is defined and posts is iterable %}
             <div class="card border-0 shadow-sm rounded-3 my-2">
                 <div class="card-body p-3">
                     <h6 class="fw-bold text-uppercase text-muted small px-1 mb-2">Recent Articles</h6>

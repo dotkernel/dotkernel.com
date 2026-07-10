@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Light\Blog\Handler;
 
+use Fig\Http\Message\StatusCodeInterface;
 use Laminas\Diactoros\Response\HtmlResponse;
 use Light\Blog\Repository\CategoryRepository;
 use Light\Blog\Repository\PostRepository;
@@ -58,7 +59,7 @@ class GetPostResourceHandler implements RequestHandlerInterface
             $this->template->render('error::404', [
                 'categories' => $categories,
             ]),
-            404
+            StatusCodeInterface::STATUS_NOT_FOUND
         );
     }
 }
