@@ -63,14 +63,46 @@
         </section>
     </div>
 </main>
-<footer class="app-footer bg-white border-top py-4 mt-auto text-muted">
-    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
-        <p class="enjoy text-uppercase tracking-wider small fw-bold text-primary mb-0">
-            enjoy dotkernel
-        </p>
-        <p class="mb-0 small">
-            &copy; 2024 - {{ 'now'|date('Y') }} Dotkernel by Apidemia
-        </p>
+<footer class="app-footer border-top py-4 mt-auto text-muted">
+    <div class="container">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-2 mb-3">
+            <p class="enjoy text-uppercase tracking-wider small fw-bold text-primary mb-0">
+                enjoy dotkernel
+            </p>
+            <p class="mb-0 small">
+                &copy; 2024 - {{ 'now'|date('Y') }} Dotkernel by Apidemia
+            </p>
+        </div>
+
+        <hr class="my-3">
+
+        <div class="row gy-3 align-items-center">
+            <div class="col-md-6">
+                <p class="small mb-2">
+                    &copy; 2009 - 2016 Dotboost Technologies Inc.<br>
+                    &copy; 2017 - {{ 'now'|date('Y') }} Apidemia Inc.<br>
+                    The Laminas logo is copyright of the
+                    <a href="https://getlaminas.org/about/foundation" target="_blank" rel="noopener" class="text-primary">Laminas Foundation</a>
+                </p>
+                <div class="d-flex align-items-center gap-3">
+                    <a href="https://github.com/dotkernel" target="_blank" rel="noopener">
+                        <img src="https://www.dotkernel.com/wp-content/uploads/2025/01/icon_git.svg" alt="GitHub" style="height: 24px; width: auto;">
+                    </a>
+                    <a href="https://dotkernel.slack.com/" target="_blank" rel="noopener">
+                        <img src="https://www.dotkernel.com/wp-content/uploads/2025/01/icon_slack.svg" alt="Slack" style="height: 24px; width: auto;">
+                    </a>
+                    <a href="https://www.dotkernel.com/feed/" target="_blank" rel="noopener">
+                        <img src="https://www.dotkernel.com/wp-content/uploads/2025/01/icon_feed.svg" alt="RSS Feed" style="height: 24px; width: auto;">
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-6 text-md-end">
+                <a href="https://jb.gg/OpenSourceSupport" target="_blank" rel="noopener" class="d-inline-block">
+                    <img src="https://www.dotkernel.com/wp-content/uploads/2025/03/jetbrains-mono-white.svg" alt="JetBrains" style="width: 150px; height: auto;">
+                </a>
+            </div>
+        </div>
     </div>
 </footer>
 <script src="{{ asset('js/app.js') }}"></script>

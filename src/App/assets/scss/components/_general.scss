@@ -79,11 +79,6 @@ label {
   background: var(--color-bg);
 }
 
-#push,
-.app-footer {
-  height: 115px;
-}
-
 .navbar {
   margin-bottom: 0;
   background-color: var(--color-surface);
@@ -111,7 +106,7 @@ label {
 
 .app-footer {
   padding: 30px 50px;
-  background: var(--color-surface);
+  background-color: #1c1f2b;
   border-top: 1px solid var(--color-border);
 }
 
