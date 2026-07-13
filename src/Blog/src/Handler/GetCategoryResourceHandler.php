@@ -43,10 +43,10 @@ class GetCategoryResourceHandler implements RequestHandlerInterface
                     'categoryArticles' => $categoryArticles,
                 ]
             );
+            return new HtmlResponse($html);
         } catch (Throwable $e) {
             return $this->notFound($categories);
         }
-        return new HtmlResponse($html);
     }
 
     /**

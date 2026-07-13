@@ -43,11 +43,10 @@ class GetPostResourceHandler implements RequestHandlerInterface
                     'categories' => $categories,
                 ]
             );
+            return new HtmlResponse($html);
         } catch (Throwable $e) {
             return $this->notFound($categories);
         }
-
-        return new HtmlResponse($html);
     }
 
     /**

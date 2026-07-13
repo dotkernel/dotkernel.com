@@ -9,13 +9,13 @@
 
 declare(strict_types=1);
 
-$baseUrl   = 'light-blog.localhost';
+$baseUrl   = 'http://dotkernel.com.localhost';
 $databases = [
     'default' => [
-        'host'     => 'db_host',
-        'dbname'   => 'db_name',
-        'user'     => 'db_user',
-        'password' => 'db_password',
+        'host'     => 'localhost',
+        'dbname'   => '',
+        'user'     => '',
+        'password' => '',
         'port'     => 3306,
         'driver'   => 'pdo_mysql',
         'collate'  => 'utf8mb4_general_ci',
