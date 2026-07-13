@@ -1,0 +1,707 @@
+{% extends '@layout/default.html.twig' %}
+{% block page_title %}
+    <h1>Dotkernel packages OSS Lifecycle</h1>
+{% endblock %}
+{% block content %}
+    <div class="row g-4 py-4">
+        {{ include('@partial/left-menu.html.twig') }}
+        <main class="col-lg-9 col-md-8">
+            <div class="card border-0 shadow-sm rounded-3">
+                <div class="card-body p-3">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-success-subtle border-success-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/light" target="_blank" class="fw-semibold text-success-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> light
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-success border border-success-subtle rounded-pill">active</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/light/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-success-subtle border-success-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/admin" target="_blank" class="fw-semibold text-success-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> admin
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-success border border-success-subtle rounded-pill">active</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/admin/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-success-subtle border-success-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/queue" target="_blank" class="fw-semibold text-success-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> queue
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-success border border-success-subtle rounded-pill">active</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/queue/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-success-subtle border-success-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/api" target="_blank" class="fw-semibold text-success-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> api
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-success border border-success-subtle rounded-pill">active</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/api/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-success-subtle border-success-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-sso-entra" target="_blank" class="fw-semibold text-success-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-sso-entra
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-success border border-success-subtle rounded-pill">active</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-sso-entra/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-success-subtle border-success-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/frontend" target="_blank" class="fw-semibold text-success-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> frontend
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-success border border-success-subtle rounded-pill">active</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/frontend/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-success-subtle border-success-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-cli" target="_blank" class="fw-semibold text-success-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-cli
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-success border border-success-subtle rounded-pill">active</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-cli/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-success-subtle border-success-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-event" target="_blank" class="fw-semibold text-success-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-event
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-success border border-success-subtle rounded-pill">active</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-event/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-success-subtle border-success-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-mail" target="_blank" class="fw-semibold text-success-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-mail
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-success border border-success-subtle rounded-pill">active</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-mail/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-success-subtle border-success-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-twigrenderer" target="_blank" class="fw-semibold text-success-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-twigrenderer
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-success border border-success-subtle rounded-pill">active</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-twigrenderer/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-success-subtle border-success-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-totp" target="_blank" class="fw-semibold text-success-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-totp
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-success border border-success-subtle rounded-pill">active</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-totp/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-success-subtle border-success-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-authorization" target="_blank" class="fw-semibold text-success-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-authorization
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-success border border-success-subtle rounded-pill">active</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-authorization/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-success-subtle border-success-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-maker" target="_blank" class="fw-semibold text-success-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-maker
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-success border border-success-subtle rounded-pill">active</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-maker/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-success-subtle border-success-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-geoip" target="_blank" class="fw-semibold text-success-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-geoip
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-success border border-success-subtle rounded-pill">active</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-geoip/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-warning-subtle border-warning-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-annotated-services" target="_blank" class="fw-semibold text-warning-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-annotated-services
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-warning border border-warning-subtle rounded-pill">security-only</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-annotated-services/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-success-subtle border-success-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-navigation" target="_blank" class="fw-semibold text-success-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-navigation
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-success border border-success-subtle rounded-pill">active</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-navigation/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-success-subtle border-success-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-flashmessenger" target="_blank" class="fw-semibold text-success-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-flashmessenger
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-success border border-success-subtle rounded-pill">active</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-flashmessenger/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-success-subtle border-success-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-session" target="_blank" class="fw-semibold text-success-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-session
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-success border border-success-subtle rounded-pill">active</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-session/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-success-subtle border-success-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-log" target="_blank" class="fw-semibold text-success-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-log
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-success border border-success-subtle rounded-pill">active</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-log/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-success-subtle border-success-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-errorhandler" target="_blank" class="fw-semibold text-success-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-errorhandler
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-success border border-success-subtle rounded-pill">active</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-errorhandler/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-success-subtle border-success-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-form" target="_blank" class="fw-semibold text-success-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-form
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-success border border-success-subtle rounded-pill">active</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-form/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-success-subtle border-success-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-rbac-guard" target="_blank" class="fw-semibold text-success-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-rbac-guard
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-success border border-success-subtle rounded-pill">active</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-rbac-guard/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-success-subtle border-success-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-mail-outlook" target="_blank" class="fw-semibold text-success-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-mail-outlook
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-success border border-success-subtle rounded-pill">active</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-mail-outlook/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-success-subtle border-success-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-rbac-route-guard" target="_blank" class="fw-semibold text-success-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-rbac-route-guard
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-success border border-success-subtle rounded-pill">active</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-rbac-route-guard/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-success-subtle border-success-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-controller" target="_blank" class="fw-semibold text-success-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-controller
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-success border border-success-subtle rounded-pill">active</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-controller/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-success-subtle border-success-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-rbac" target="_blank" class="fw-semibold text-success-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-rbac
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-success border border-success-subtle rounded-pill">active</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-rbac/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-success-subtle border-success-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-authentication" target="_blank" class="fw-semibold text-success-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-authentication
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-success border border-success-subtle rounded-pill">active</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-authentication/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-success-subtle border-success-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-user-agent-sniffer" target="_blank" class="fw-semibold text-success-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-user-agent-sniffer
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-success border border-success-subtle rounded-pill">active</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-user-agent-sniffer/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-success-subtle border-success-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-auth-social" target="_blank" class="fw-semibold text-success-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-auth-social
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-success border border-success-subtle rounded-pill">active</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-auth-social/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-success-subtle border-success-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-helpers" target="_blank" class="fw-semibold text-success-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-helpers
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-success border border-success-subtle rounded-pill">active</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-helpers/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-success-subtle border-success-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-router" target="_blank" class="fw-semibold text-success-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-router
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-success border border-success-subtle rounded-pill">active</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-router/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-success-subtle border-success-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-response-header" target="_blank" class="fw-semibold text-success-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-response-header
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-success border border-success-subtle rounded-pill">active</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-response-header/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-success-subtle border-success-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-dependency-injection" target="_blank" class="fw-semibold text-success-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-dependency-injection
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-success border border-success-subtle rounded-pill">active</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-dependency-injection/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-success-subtle border-success-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-cache" target="_blank" class="fw-semibold text-success-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-cache
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-success border border-success-subtle rounded-pill">active</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-cache/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-success-subtle border-success-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-data-fixtures" target="_blank" class="fw-semibold text-success-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-data-fixtures
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-success border border-success-subtle rounded-pill">active</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-data-fixtures/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-success-subtle border-success-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-debugbar" target="_blank" class="fw-semibold text-success-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-debugbar
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-success border border-success-subtle rounded-pill">active</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-debugbar/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-warning-subtle border-warning-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-doctrine-metadata" target="_blank" class="fw-semibold text-warning-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-doctrine-metadata
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-warning border border-warning-subtle rounded-pill">security-only</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-doctrine-metadata/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-warning-subtle border-warning-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-mapper" target="_blank" class="fw-semibold text-warning-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-mapper
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-warning border border-warning-subtle rounded-pill">security-only</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-mapper/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-warning-subtle border-warning-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-paginator" target="_blank" class="fw-semibold text-warning-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-paginator
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-warning border border-warning-subtle rounded-pill">security-only</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-paginator/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-warning-subtle border-warning-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-validator" target="_blank" class="fw-semibold text-warning-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-validator
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-warning border border-warning-subtle rounded-pill">security-only</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-validator/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-warning-subtle border-warning-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-inputfilter" target="_blank" class="fw-semibold text-warning-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-inputfilter
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-warning border border-warning-subtle rounded-pill">security-only</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-inputfilter/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-info-subtle border-info-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-authentication-service" target="_blank" class="fw-semibold text-info-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-authentication-service
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-info border border-info-subtle rounded-pill">maintenance</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-authentication-service/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-warning-subtle border-warning-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-hydrator" target="_blank" class="fw-semibold text-warning-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-hydrator
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-warning border border-warning-subtle rounded-pill">security-only</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-hydrator/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-warning-subtle border-warning-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-authentication-web" target="_blank" class="fw-semibold text-warning-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-authentication-web
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-warning border border-warning-subtle rounded-pill">security-only</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-authentication-web/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-warning-subtle border-warning-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-controller-plugin-mail" target="_blank" class="fw-semibold text-warning-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-controller-plugin-mail
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-warning border border-warning-subtle rounded-pill">security-only</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-controller-plugin-mail/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-warning-subtle border-warning-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-controller-plugin-session" target="_blank" class="fw-semibold text-warning-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-controller-plugin-session
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-warning border border-warning-subtle rounded-pill">security-only</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-controller-plugin-session/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-warning-subtle border-warning-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-user" target="_blank" class="fw-semibold text-warning-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-user
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-warning border border-warning-subtle rounded-pill">security-only</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-user/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-warning-subtle border-warning-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-controller-plugin-flashmessenger" target="_blank" class="fw-semibold text-warning-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-controller-plugin-flashmessenger
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-warning border border-warning-subtle rounded-pill">security-only</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-controller-plugin-flashmessenger/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-warning-subtle border-warning-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-filter" target="_blank" class="fw-semibold text-warning-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-filter
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-warning border border-warning-subtle rounded-pill">security-only</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-filter/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-warning-subtle border-warning-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-controller-plugin-forms" target="_blank" class="fw-semibold text-warning-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-controller-plugin-forms
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-warning border border-warning-subtle rounded-pill">security-only</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-controller-plugin-forms/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-warning-subtle border-warning-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-controller-plugin-authorization" target="_blank" class="fw-semibold text-warning-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-controller-plugin-authorization
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-warning border border-warning-subtle rounded-pill">security-only</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-controller-plugin-authorization/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-warning-subtle border-warning-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-controller-plugin-authentication" target="_blank" class="fw-semibold text-warning-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-controller-plugin-authentication
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-warning border border-warning-subtle rounded-pill">security-only</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-controller-plugin-authentication/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 shadow-sm bg-secondary-subtle border-secondary-subtle">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <a href="https://github.com/dotkernel/dot-console" target="_blank" class="fw-semibold text-secondary-emphasis text-decoration-none stretched-link">
+                                        <i class="bi bi-github me-1"></i> dot-console
+                                    </a>
+                                    <div class="d-flex align-items-center gap-2 position-relative" style="z-index: 2;">
+                                        <span class="badge bg-white text-secondary border border-secondary-subtle rounded-pill">archived</span>
+                                        <img decoding="async" src="https://img.shields.io/packagist/dependency-v/dotkernel/dot-console/php?style=social" alt="PHP version">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-muted small mt-3 mb-0">Last updated: 2026-07-09 00:00</p>
+                </div>
+            </div>
+        </main>
+    </div>
+{% endblock %}

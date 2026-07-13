@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace LightTest\Unit\Page\Handler;
 
 use Laminas\Diactoros\Response\HtmlResponse;
+use Light\Blog\Repository\CategoryRepository;
+use Light\Blog\Repository\PostRepository;
 use Light\Page\Handler\GetPageViewHandler;
 use Mezzio\Router\RouteResult;
 use Mezzio\Template\TemplateRendererInterface;
@@ -30,10 +32,20 @@ class PageHandlerTest extends TestCase
      */
     public function testHandle(): void
     {
-        $routeName   = 'test_route_name';
-        $request     = $this->createStub(ServerRequestInterface::class);
-        $template    = $this->createStub(TemplateRendererInterface::class);
-        $routeResult = $this->createStub(RouteResult::class);
+        $routeName          = 'test_route_name';
+        $request            = $this->createStub(ServerRequestInterface::class);
+        $template           = $this->createStub(TemplateRendererInterface::class);
+        $routeResult        = $this->createStub(RouteResult::class);
+        $postRepository     = $this->createStub(PostRepository::class);
+        $categoryRepository = $this->createStub(CategoryRepository::class);
+
+        $postRepository
+            ->method('getRecentPosts')
+            ->willReturn([]);
+
+        $categoryRepository
+            ->method('getCategories')
+            ->willReturn([]);
 
         $routeResult
             ->method('getMatchedRouteName')
@@ -47,7 +59,7 @@ class PageHandlerTest extends TestCase
             ->method('render')
             ->willReturn('<p>' . $routeName . '</p>');
 
-        $handler = new GetPageViewHandler($template);
+        $handler = new GetPageViewHandler($template, $categoryRepository, $postRepository);
 
         $response = $handler->handle($request);
 

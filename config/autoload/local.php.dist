@@ -9,16 +9,36 @@
 
 declare(strict_types=1);
 
-$baseUrl = 'http://light.dotkernel.localhost';
-
+$baseUrl   = 'http://dotkernel.com.localhost';
+$databases = [
+    'default' => [
+        'host'     => 'localhost',
+        'dbname'   => '',
+        'user'     => '',
+        'password' => '',
+        'port'     => 3306,
+        'driver'   => 'pdo_mysql',
+        'collate'  => 'utf8mb4_general_ci',
+    ],
+];
 return [
     'application' => [
         'url' => $baseUrl,
     ],
+    'databases'   => $databases,
+    'doctrine'    => [
+        'connection' => [
+            'orm_default' => [
+                'params' => $databases['default'],
+            ],
+        ],
+    ],
     'routes'      => [
         'page' => [
-            'about'      => 'about',
-            'who-we-are' => 'who-we-are',
+            'about'                            => 'about',
+            'who-we-are'                       => 'who-we-are',
+            'contact'                          => 'contact',
+            'dotkernel-packages-oss-lifecycle' => 'dotkernel-packages-oss-lifecycle',
         ],
     ],
 ];

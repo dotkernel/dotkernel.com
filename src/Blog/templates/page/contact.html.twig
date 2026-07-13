@@ -3,46 +3,114 @@
 {% block page_title %}<h1>Contact Us</h1>{% endblock %}
 
 {% block content %}
-    <div class="row g-4 py-3 justify-content-center">
-        <div class="col-12 col-md-6 col-lg-6">
-            <div class="card h-100 border-0 shadow-sm text-center p-4">
-                <div class="mb-3">
-                    <i class="fab fa-github fa-3x text-primary"></i>
-                </div>
-                <h2 class="h4 fw-semibold mb-2">GitHub</h2>
-                <p class="text-muted mb-4">
-                    Browse our repositories, open issues, or contribute to the DotKernel ecosystem.
-                </p>
-                <a href="https://github.com/dotkernel"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="btn btn-primary rounded-pill px-4 mt-auto">
-                    Visit GitHub
-                </a>
-            </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-6">
-            <div class="card h-100 border-0 shadow-sm text-center p-4">
-                <div class="mb-3">
-                    <i class="fas fa-book fa-3x text-primary"></i>
-                </div>
-                <h2 class="h4 fw-semibold mb-2">Documentation</h2>
-                <p class="text-muted mb-4">
-                    Read the guides, references, and best practices for building with DotKernel.
-                </p>
-                <a href="https://docs.dotkernel.org/"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="btn btn-primary rounded-pill px-4 mt-auto">
-                    Read the Docs
-                </a>
-            </div>
-        </div>
-        <hr>
-        <h3>Our Approach</h3>
-        <p>
-            Dotkernel is a Headless Platform for building modern web applications.
+    <div class="row g-4 py-3">
 
-            The Dotkernel Headless Platform is made up of Open Source components aimed at businesses that need custom solutions.</p>
+        {{ include('@partial/left-menu.html.twig') }}
+
+        <main class="col-lg-9 col-md-8">
+
+            <div class="row g-4">
+                <div class="col-12 col-md-6">
+                    <div class="card h-100 border-0 shadow-sm text-center p-4">
+                        <div class="mb-3">
+                            <i class="fab fa-github fa-3x text-primary"></i>
+                        </div>
+                        <h2 class="h4 fw-semibold mb-2">GitHub</h2>
+                        <p class="text-muted mb-4">
+                            Browse our repositories, open issues, or contribute to the DotKernel ecosystem.
+                        </p>
+                        <a href="https://github.com/dotkernel"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="btn btn-primary rounded-pill px-4 mt-auto">
+                            Visit GitHub
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <div class="card h-100 border-0 shadow-sm text-center p-4">
+                        <div class="mb-3">
+                            <i class="fas fa-book fa-3x text-primary"></i>
+                        </div>
+                        <h2 class="h4 fw-semibold mb-2">Documentation</h2>
+                        <p class="text-muted mb-4">
+                            Read the guides, references, and best practices for building with DotKernel.
+                        </p>
+                        <a href="https://docs.dotkernel.org/"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="btn btn-primary rounded-pill px-4 mt-auto">
+                            Read the Docs
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card border-0 shadow-sm mt-4">
+                <div class="card-body p-4">
+                    <h3 class="h5 fw-bold mb-3">Our Approach</h3>
+                    <p class="text-muted mb-0">
+                        Dotkernel is a Headless Platform for building modern web applications.
+                        The Dotkernel Headless Platform is made up of Open Source components aimed at businesses that need custom solutions.
+                    </p>
+                </div>
+            </div>
+
+            {% if posts is defined and posts|length > 0 %}
+                <div class="card border-0 shadow-sm mt-4">
+                    <div class="card-body p-4">
+                        <h3 class="h5 fw-bold mb-3">Latest posts</h3>
+
+                        <div id="postsCarousel" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                {% for post in posts %}
+                                    <div class="carousel-item {% if loop.first %}active{% endif %}">
+                                        <span class="text-muted small">
+                                            <i class="bi bi-calendar3 me-1"></i>{{ post.postDate|date('M d, Y') }}
+                                        </span>
+                                        <h4 class="h5 fw-semibold mt-2 mb-2">{{ post.title }}</h4>
+                                        {% if post.excerpt is defined %}
+                                            <p class="text-muted mb-3">{{ post.excerpt }}</p>
+                                        {% endif %}
+                                        <a href="{{ url('page::blog-resource', {categorySlug: post.category.slug, slug: post.slug}) }}"
+                                           class="btn btn-primary btn-sm rounded-pill px-3">
+                                            Read more
+                                        </a>
+                                    </div>
+                                {% endfor %}
+                            </div>
+
+                            {% if posts|length > 1 %}
+                                <div class="d-flex justify-content-between align-items-center mt-4">
+                                    <button class="btn btn-outline-secondary btn-sm rounded-circle" type="button"
+                                            data-bs-target="#postsCarousel" data-bs-slide="prev">
+                                        <i class="fas fa-chevron-left"></i>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+
+                                    <div class="carousel-indicators position-relative m-0">
+                                        {% for post in posts %}
+                                            <button type="button" data-bs-target="#postsCarousel" data-bs-slide-to="{{ loop.index0 }}"
+                                                    class="{% if loop.first %}active{% endif %} bg-primary rounded-circle"
+                                                    style="width: 8px; height: 8px;"
+                                                    aria-current="{% if loop.first %}true{% endif %}"
+                                                    aria-label="Slide {{ loop.index }}"></button>
+                                        {% endfor %}
+                                    </div>
+
+                                    <button class="btn btn-outline-secondary btn-sm rounded-circle" type="button"
+                                            data-bs-target="#postsCarousel" data-bs-slide="next">
+                                        <i class="fas fa-chevron-right"></i>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+
+        </main>
     </div>
 {% endblock %}
