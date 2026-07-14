@@ -3,121 +3,71 @@
 {% block title %}Adding a CORS implementation to Zend Expressive{% endblock %}
 
 {% block page_title %}
-    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel</div>
-    <h1 class="fw-bold text-dark display-6 mb-0">Adding a CORS implementation to Zend Expressive</h1>
-    <hr class="mt-4 mb-2 opacity-25">
+    <div class="wrap">
+        <div class="post-hero">
+            <a href="{{ url('page::blog') }}" class="breadcrumb-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                Back to Blog
+            </a>
+            <div><span class="eyebrow">Dotkernel</span></div>
+            <h1>Adding a CORS implementation to Zend Expressive</h1>
+            <div class="post-meta">
+                <span>Dotkernel</span>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block content %}
-    <div class="container py-4">
-        <div class="row g-4">
+    <div class="wrap post-body-wrap">
+        <div class="post-layout">
 
             {{ include('@partial/left-menu.html.twig') }}
 
-            <main class="col-12 col-md-8 col-lg-9">
-                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
-                    <header class="mb-4">
-                        <h1 class="h2 text-dark fw-bold">Adding a CORS implementation to Zend Expressive</h1>
-                        <div class="text-muted small">
-                            <i class="bi bi-folder2-open me-1"></i> Dotkernel
-                        </div>
-                    </header>
+            <article class="article">
+                <div class="entry">
+                    <p>This article is a guide on how to add a CORS implementation on an existing DotKernel3 project.</p>
 
-                    <section class="post-content text-secondary lh-lg fs-6">
-                        <!-- wp:paragraph -->
-<p class="mb-3">This article is a guide on how to add a CORS implementation on an existing DotKernel3 project.</p>
-<!-- /wp:paragraph -->
+                    <h3>The issue</h3>
+                    <p>If you're facing this message:</p>
+                    <p>"Access to XMLHttpRequest at 'url' has been blocked by cors policy. No 'Access-Control-Allow-Origin header is present on the requested resource."</p>
+                    <p>It means the server didn't sent the header that lets you access its data through a local client (eg.: browser).</p>
+                    <p>This issue is most common when trying to get some data (usually json) that you want to process using JavaScript.</p>
+                    <p>The error looks similar to the image below:</p>
 
-<!-- wp:heading {"level":3} -->
-<h3>The issue</h3>
-<!-- /wp:heading -->
+                    <figure>
+                        <img src="/uploads/2019/04/Screenshot-2019-04-06-at-15.03.21-1024x165-1-1024x165.png" alt="">
+                    </figure>
 
-<!-- wp:paragraph -->
-<p class="mb-3">If you're facing this message:</p>
-<!-- /wp:paragraph -->
+                    <h2>The solution</h2>
+                    <p>A simple implementation would be using <a rel="noreferrer noopener" href="https://packagist.org/packages/tuupola/cors-middleware" target="_blank">Tuupola's Cors Middleware</a> package.</p>
+                    <p>This article was inspired by: <a href="https://akrabat.com/implementing-tuupola-cors-in-expressive/" target="_blank" rel="noreferrer noopener">akrabat.com/implementing-tuupola-cors-in-expressive</a></p>
 
-<!-- wp:paragraph -->
-<p class="mb-3"> "Access to XMLHttpRequest at ‘url’ has been blocked by cors policy. No ‘Access-Control-Allow-Origin header is present on the requested resource."</p>
-<!-- /wp:paragraph -->
+                    <h4>Adding the package to your project</h4>
+                    <p>Run the following command in your project:</p>
+                    <pre><code>composer require tuupola/cors-middleware</code></pre>
+                    <p>At the time writing this article the current package version is: 0.9.4.</p>
+                    <p>Follow the next steps to get your Zend Expressive or DotKernel3 project <strong>CORS friendly</strong>.</p>
 
-<!-- wp:paragraph -->
-<p class="mb-3">It means the server didn't sent the header that lets you access its data through a local client (eg.: browser).</p>
-<!-- /wp:paragraph -->
+                    <h4>Create the CORS config file</h4>
+                    <p>Create a <strong>cors.global.php</strong> file in the config/autoload directory.</p>
+                    <pre><code>return [
+    'cors' => [
+        "origin" => [],
+        "methods" => [],
+        "headers.allow" => [],
+        "headers.expose" => [],
+        "credentials" => false,
+        "cache" => 0,
+    ],
+    'dependencies' => [],
+];</code></pre>
+                    <p>We'll come back at this file to register the CORS middleware.</p>
 
-<!-- wp:paragraph -->
-<p class="mb-3">This issue is most common when trying to get some data (usually json) that you want to process using JavaScript.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p class="mb-3">The error looks similar to the image below:</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:image {"align":"center","id":3521} -->
-<div class="wp-block-image"><figure class="aligncenter"><img src="/uploads/2019/04/Screenshot-2019-04-06-at-15.03.21-1024x165-1-1024x165.png" alt="" class="wp-image-3521"/ class="img-fluid rounded my-2"></figure></div>
-<!-- /wp:image -->
-
-<!-- wp:heading -->
-<h2>The solution</h2>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p class="mb-3">A simple implementation would be using <a rel="noreferrer noopener" href="https://packagist.org/packages/tuupola/cors-middleware" target="_blank">Tuupola's Cors Middleware</a> package. </p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p class="mb-3">This article was inspired by: <a href="https://akrabat.com/implementing-tuupola-cors-in-expressive/">https://akrabat.com/implementing-tuupola-cors-in-expressive/</a></p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":4} -->
-<h4>Adding the package to your project</h4>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p class="mb-3">Run the following command in your project:</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:preformatted -->
-<pre class="wp-block-preformatted">composer require tuupola/cors-middleware</pre>
-<!-- /wp:preformatted -->
-
-<!-- wp:paragraph -->
-<p class="mb-3">At the time writing this article the current package version is: 0.9.4.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p class="mb-3">Follow the next steps to get your Zend Expressive or DotKernel3 project <strong>CORS friendly</strong>.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":4} -->
-<h4>Create the CORS config file</h4>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p class="mb-3">Create a <strong>cors.global.php</strong> file in the config/autoload directory.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:preformatted -->
-<pre class="wp-block-preformatted">return ,<br>        "methods" =&gt; ,<br>        "headers.allow" =&gt; ,<br>        "headers.expose" =&gt; [],<br>        "credentials" =&gt; false,<br>        "cache" =&gt; 0,<br>    ],<br>    'dependencies' =&gt; ,<br>];<br></pre>
-<!-- /wp:preformatted -->
-
-<!-- wp:paragraph -->
-<p class="mb-3">We'll come back at this file to register the CORS middleware.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":4} -->
-<h4>Creating a factory for the middleware</h4>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p class="mb-3">The factory should look like the one below.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p class="mb-3">The code below extracts de config from the <strong>cors</strong> key if provided or initializes an empty array and instantiates the <strong>Tuupola CORS middleware</strong>.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:code -->
-<pre class="wp-block-code"><code>&lt;?php
+                    <h4>Creating a factory for the middleware</h4>
+                    <p>The factory should look like the one below.</p>
+                    <p>The code below extracts de config from the <strong>cors</strong> key if provided or initializes an empty array and instantiates the <strong>Tuupola CORS middleware</strong>.</p>
+                    <pre><code>&lt;?php
 
 namespace App\Cors;
 
@@ -127,57 +77,48 @@ class CorsMiddlewareFactory
 {
     public function __invoke($container)
     {
-        $corsConfig = $container-&gt;get('config')&#91;'cors'] ?? &#91;];
+        $corsConfig = $container->get('config')['cors'] ?? [];
         return new CorsMiddleware($corsConfig);
     }
 }</code></pre>
-<!-- /wp:code -->
 
-<!-- wp:heading {"level":4} -->
-<h4>Registering the CORS middleware </h4>
-<!-- /wp:heading -->
+                    <h4>Registering the CORS middleware</h4>
+                    <p>Back at <strong>cors.global.php</strong> we will register the cors middleware so our custom implemented factory will be used to create the middleware. (basic config example below)</p>
+                    <pre><code>&lt;?php
 
-<!-- wp:paragraph -->
-<p class="mb-3">Back at <strong>cors.global.php</strong> we will register the cors middleware so our custom implemented factory will be used to create the middleware. (basic config example below)</p>
-<!-- /wp:paragraph -->
+use App\Cors\CorsMiddlewareFactory;
+use Tuupola\Middleware\CorsMiddleware;
 
-<!-- wp:preformatted -->
-<pre class="wp-block-preformatted">&lt;?php<br><br>use App\Cors\CorsMiddlewareFactory;<br>use Tuupola\Middleware\CorsMiddleware;<br><br>return ,<br>        "methods" =&gt; ,<br>        "headers.allow" =&gt; ,<br>        "headers.expose" =&gt; [],<br>        "credentials" =&gt; false,<br>        "cache" =&gt; 0,<br>    ],<br>    'dependencies' =&gt; <br>    ]<br>];<br></pre>
-<!-- /wp:preformatted -->
+return [
+    'cors' => [
+        "origin" => [],
+        "methods" => [],
+        "headers.allow" => [],
+        "headers.expose" => [],
+        "credentials" => false,
+        "cache" => 0,
+    ],
+    'dependencies' => [
+        'factories' => [
+            CorsMiddleware::class => CorsMiddlewareFactory::class,
+        ]
+    ]
+];</code></pre>
 
-<!-- wp:heading {"level":4} -->
-<h4>Final step: Adding (registering) the CorsMiddleware in the pipeline</h4>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p class="mb-3">In this last step we only need to add the CorsMiddleware in config/pipelines.php</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:code -->
-<pre class="wp-block-code"><code>// don't forget the use statement
+                    <h4>Final step: Adding (registering) the CorsMiddleware in the pipeline</h4>
+                    <p>In this last step we only need to add the CorsMiddleware in config/pipelines.php</p>
+                    <pre><code>// don't forget the use statement
 use Tuupola\Middleware\CorsMiddleware;
 
 return function (Application $app, MiddlewareFactory $factory, ContainerInterface $container) : void {
     // ...
-    $app-&gt;pipe(CorsMiddleware::class);
+    $app->pipe(CorsMiddleware::class);
     // ...
 };</code></pre>
-<!-- /wp:code -->
-
-<!-- wp:paragraph -->
-<p class="mb-3">Add the cors middleware <strong>after</strong> the Error handler and <strong>before</strong> the middleware providing the data you want to access to make sure everything runs smoothly.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p class="mb-3">This should get your project working with CORS. </p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p class="mb-3"></p>
-<!-- /wp:paragraph -->
-                    </section>
-                </article>
-            </main>
+                    <p>Add the cors middleware <strong>after</strong> the Error handler and <strong>before</strong> the middleware providing the data you want to access to make sure everything runs smoothly.</p>
+                    <p>This should get your project working with CORS.</p>
+                </div>
+            </article>
 
         </div>
     </div>

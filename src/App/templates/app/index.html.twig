@@ -4,697 +4,341 @@
 
 {% block content %}
 
-    <section class="py-5 platform-header">
-        <div class="container">
-            <h1 class="text-center">Dotkernel is a Headless Platform for<br> building modern web applications</h1>
-            <p class="text-center py-3">
-                Dotkernel is a collection of applications (skeletons) that use a middleware-first architecture built on top of the Mezzio microframework using Laminas components. <br>
-                The goal is to provide
-                a pre-configured environment for applications ranging from presentation sites, to
-                enterprise-level APIs and everything in between.
-            </p>
-        </div>
-    </section>
-
-    <section class="py-5 what-is-platform">
-        <div class="container">
-            <div class="row g-4 align-items-center">
-                <div class="col-lg-6">
-                    <h2>What is the Dotkernel Headless Platform?</h2>
-                    <p>
-                        The Dotkernel Headless Platform is made up of Open Source components aimed at
-                        businesses that need custom solutions. It supports microservices, as well as
-                        enterprise-grade APIs. Its modern, future-proof architecture is based on
-                        middleware and PSRs.
-                    </p>
-
-                    <div class="row">
-                        <div class="col-12">
-                            <p class="extending-power-label">Extending the power of</p>
-                            <img src="/uploads/2025/09/mezzio-by-laminas.svg" alt="Mezzio by Laminas" loading="lazy">
-                        </div>
-                    </div>
+    <section class="hero">
+        <div class="wrap hero-grid">
+            <div>
+                <span class="eyebrow">PSR-15 · middleware-first architecture</span>
+                <h1>A headless platform for building modern web applications</h1>
+                <p class="sub">Dotkernel is a collection of open-source application skeletons built on Mezzio and Laminas — pre-configured and ready for anything from a presentation site to an enterprise-grade API.</p>
+                <div class="hero-ctas">
+                    <a class="btn btn-primary" href="https://docs.dotkernel.org" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                        Read the docs
+                    </a>
+                    <a class="btn btn-ghost" href="https://github.com/dotkernel" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.1.83-.27.83-.58v-2.17c-3.34.73-4.04-1.42-4.04-1.42-.55-1.4-1.34-1.77-1.34-1.77-1.08-.75.09-.73.09-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.84 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.53.12-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.65.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .31.22.69.83.57A12 12 0 0 0 12 .5z"/></svg>
+                        View on GitHub
+                    </a>
                 </div>
+                <div class="hero-stack-note">
+                    <div><span>Runtime</span> Mezzio + Laminas</div>
+                    <div><span>Standards</span> PSR-7 · PSR-11 · PSR-15</div>
+                    <div><span>License</span> BSD-3-Clause</div>
+                </div>
+            </div>
 
-                <div class="col-lg-6">
-                    <div class="elementor-widget-container">
-                        <div class="what-is-row">
-                            <div class="col-md-6 what-is-box">
-                                <img decoding="async" src="/uploads/2025/06/traffic-sign-50.png" alt="Unmatched flexibility" loading="lazy">
-                                <p>Unmatched flexibility</p>
-                            </div>
-                            <div class="col-md-6 what-is-box">
-                                <img decoding="async" src="/uploads/2025/06/success-50.png" alt="Unlimited scalability" loading="lazy">
-                                <p>Unlimited scalability</p>
-                            </div>
-                        </div>
-                        <div class="what-is-row">
-                            <div class="col-md-6 what-is-box">
-                                <img decoding="async" src="/uploads/2025/06/speed-radar-50.png" alt="Lightning-fast performance" loading="lazy">
-                                <p>Lightning-fast performance</p>
-                            </div>
-                            <div class="col-md-6 what-is-box">
-                                <img decoding="async" src="/uploads/2025/06/maintenance.png" alt="Easier maintenance and onboarding" loading="lazy">
-                                <p>Easier maintenance and onboarding</p>
-                            </div>
-                        </div>
-                    </div>
+            <div class="pipeline">
+                <div class="pipeline-label"><span>Request lifecycle</span></div>
+                <div class="pipeline-track">
+                    <div class="pl-packet" aria-hidden="true"></div>
+                    <div class="pl-step"><span class="name">Router</span><span class="tag">FastRoute</span></div>
+                    <div class="pl-step"><span class="name">Authentication</span><span class="tag">dot-authentication</span></div>
+                    <div class="pl-step"><span class="name">RBAC guard</span><span class="tag">dot-rbac-guard</span></div>
+                    <div class="pl-step"><span class="name">Your handler</span><span class="tag">PSR-15</span></div>
+                    <div class="pl-step"><span class="name">Response</span><span class="tag">Diactoros</span></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-5 bg-light">
-        <div class="container">
-            <h2 class="text-center">Headless Platform</h2>
-            <p class="text-center text-muted mb-5">
-                Built from independent applications that can be combined into a single platform
-                that is more useful than any one piece on its own.
-            </p>
-
-            <div class="row g-4 mb-4">
-                <div class="col-lg-6">
-                    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
-                        <div class="card-header bg-success-subtle border-0 py-3 px-4">
-                            <h5 class="mb-0 text-success-emphasis"><span class="fw-bold">*</span> API</h5>
-                        </div>
-                        <div class="card-body d-flex flex-column p-4">
-                            <div class="d-flex flex-wrap gap-1 mb-3">
-                                <img src="https://img.shields.io/packagist/dependency-v/dotkernel/api/php?style=flat&label=PHP&color=B9E3BB" alt="PHP version" loading="lazy">
-                                <img src="https://img.shields.io/packagist/v/dotkernel/api?style=flat&label=Packagist&color=B9E3BB" alt="Packagist version" loading="lazy">
-                                <img src="https://img.shields.io/github/license/dotkernel/api?style=flat&label=License&color=B9E3BB" alt="License" loading="lazy">
-                                <img src="https://img.shields.io/github/issues/dotkernel/api?style=flat&label=Issues&color=B9E3BB" alt="Issues" loading="lazy">
-                                <img src="https://img.shields.io/github/stars/dotkernel/api?style=flat&label=Stars&color=B9E3BB" alt="Stars" loading="lazy">
-                            </div>
-                            <p class="card-text text-muted flex-grow-1">
-                                Dotkernel API is a framework-less alternative to legacy Laminas API Tools setups,
-                                aimed at developers who want to build REST APIs quickly without extra overhead.
-                            </p>
-                            <div class="d-grid gap-2 d-sm-flex">
-                                <a href="https://github.com/dotkernel/api" target="_blank" class="btn btn-dark btn-sm rounded-pill">
-                                    <i class="fab fa-github me-1"></i> Git
-                                </a>
-                                <a href="https://api.dotkernel.net/" target="_blank" class="btn btn-outline-primary btn-sm rounded-pill">Demo</a>
-                                <a href="https://docs.dotkernel.org/api-documentation/" target="_blank" class="btn btn-outline-primary btn-sm rounded-pill">Guide</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-6">
-                    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
-                        <div class="card-header bg-primary-subtle border-0 py-3 px-4">
-                            <h5 class="mb-0 text-primary-emphasis"><span class="fw-bold">*</span> ADMIN</h5>
-                        </div>
-                        <div class="card-body d-flex flex-column p-4">
-                            <div class="d-flex flex-wrap gap-1 mb-3">
-                                <img src="https://img.shields.io/packagist/dependency-v/dotkernel/admin/php?style=flat&label=PHP&color=B6CFFF" alt="PHP version" loading="lazy">
-                                <img src="https://img.shields.io/packagist/v/dotkernel/admin?style=flat&label=Packagist&color=B6CFFF" alt="Packagist version" loading="lazy">
-                                <img src="https://img.shields.io/github/license/dotkernel/admin?style=flat&label=License&color=B6CFFF" alt="License" loading="lazy">
-                                <img src="https://img.shields.io/github/issues/dotkernel/admin?style=flat&label=Issues&color=B6CFFF" alt="Issues" loading="lazy">
-                                <img src="https://img.shields.io/github/stars/dotkernel/admin?style=flat&label=Stars&color=B6CFFF" alt="Stars" loading="lazy">
-                            </div>
-                            <p class="card-text text-muted flex-grow-1">
-                                Dotkernel Admin is the back-office application used to manage users, roles
-                                and permissions across the rest of the platform's applications.
-                            </p>
-                            <div class="d-grid gap-2 d-sm-flex">
-                                <a href="https://github.com/dotkernel/admin" target="_blank" class="btn btn-dark btn-sm rounded-pill">
-                                    <i class="fab fa-github me-1"></i> Git
-                                </a>
-                                <a href="https://docs.dotkernel.org/" target="_blank" class="btn btn-outline-primary btn-sm rounded-pill">Guide</a>
-                            </div>
-                        </div>
+    <section class="what-is-platform">
+        <div class="wrap split">
+            <div>
+                <span class="eyebrow">What it is</span>
+                <h2>What is the Dotkernel Headless Platform?</h2>
+                <p class="lede">
+                    The Dotkernel Headless Platform is made up of Open Source components aimed at
+                    businesses that need custom solutions. It supports microservices, as well as
+                    enterprise-grade APIs. Its modern, future-proof architecture is based on
+                    middleware and PSRs.
+                </p>
+                <div class="extending">
+                    Extending the power of
+                    <div class="extending-logo">
+                        <img src="{{ asset('images/app/content/mezzio-by-laminas.svg') }}" alt="Mezzio by Laminas" loading="lazy">
                     </div>
                 </div>
             </div>
-
-            <div class="row g-4">
-                <div class="col-lg-4">
-                    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
-                        <div class="card-header bg-primary-subtle border-0 py-3 px-4">
-                            <h5 class="mb-0 text-primary-emphasis"><span class="fw-bold">*</span> QUEUE</h5>
-                        </div>
-                        <div class="card-body d-flex flex-column p-4">
-                            <div class="d-flex flex-wrap gap-1 mb-3">
-                                <img src="https://img.shields.io/packagist/dependency-v/dotkernel/queue/php?style=flat&label=PHP&color=B6CFFF" alt="PHP version" loading="lazy">
-                                <img src="https://img.shields.io/packagist/v/dotkernel/queue?style=flat&label=Packagist&color=B6CFFF" alt="Packagist version" loading="lazy">
-                                <img src="https://img.shields.io/github/license/dotkernel/queue?style=flat&label=License&color=B6CFFF" alt="License" loading="lazy">
-                                <img src="https://img.shields.io/github/issues/dotkernel/queue?style=flat&label=Issues&color=B6CFFF" alt="Issues" loading="lazy">
-                                <img src="https://img.shields.io/github/stars/dotkernel/queue?style=flat&label=Stars&color=B6CFFF" alt="Stars" loading="lazy">
-                            </div>
-                            <p class="card-text text-muted small flex-grow-1">
-                                <b>Dotkernel Queue</b> is a component based on <a href="https://github.com/symfony/messenger" target="_blank">Symfony Messenger</a> that is used to queue asynchronous tasks.
-                            </p>
-                            <div class="d-grid gap-2 d-sm-flex">
-                                <a href="https://github.com/dotkernel/queue" target="_blank" class="btn btn-dark btn-sm rounded-pill">
-                                    <i class="fab fa-github me-1"></i> Git
-                                </a>
-                                <a href="https://docs.dotkernel.org/queue-documentation/" target="_blank" class="btn btn-outline-primary btn-sm rounded-pill">Guide</a>
-                            </div>
-                        </div>
-                    </div>
+            <div class="traits">
+                <div class="trait">
+                    <img class="icon-dark" decoding="async" src="{{ asset('images/app/content/traffic-sign-50-w.svg') }}" alt="Unmatched flexibility" loading="lazy">
+                    <img class="icon-light" decoding="async" src="{{ asset('images/app/content/traffic-sign-50-d.svg') }}" alt="Unmatched flexibility" loading="lazy">
+                    <p>Unmatched flexibility</p>
                 </div>
 
-                <div class="col-lg-4">
-                    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
-                        <div class="card-header bg-danger-subtle border-0 py-3 px-4">
-                            <h5 class="mb-0 text-danger-emphasis"><span class="fw-bold">*</span> LIGHT</h5>
-                        </div>
-                        <div class="card-body d-flex flex-column p-4">
-                            <div class="d-flex flex-wrap gap-1 mb-3">
-                                <img src="https://img.shields.io/packagist/php-v/dotkernel/light/1.0.x-dev?style=flat&label=PHP&color=ffc6cd" alt="PHP version" loading="lazy">
-                                <img src="https://img.shields.io/packagist/v/dotkernel/light?style=flat&label=Packagist&color=ffc6cd" alt="Packagist version" loading="lazy">
-                                <img src="https://img.shields.io/github/license/dotkernel/light?style=flat&label=License&color=ffc6cd" alt="License" loading="lazy">
-                                <img src="https://img.shields.io/github/issues/dotkernel/light?style=flat&label=Issues&color=ffc6cd" alt="Issues" loading="lazy">
-                                <img src="https://img.shields.io/github/stars/dotkernel/light?style=flat&label=Stars&color=ffc6cd" alt="Stars" loading="lazy">
-                            </div>
-                            <p class="card-text text-muted small flex-grow-1">
-                                <b>Dotkernel Light</b> is a PSR-15 compliant skeleton for <b>learning purposes</b> and simple presentation sites.
-                            </p>
-                            <div class="d-grid gap-2 d-sm-flex">
-                                <a href="https://github.com/dotkernel/light" target="_blank" class="btn btn-dark btn-sm rounded-pill">
-                                    <i class="fab fa-github me-1"></i> Git
-                                </a>
-                                <a href="https://light.dotkernel.net/" target="_blank" class="btn btn-outline-secondary btn-sm rounded-pill">Demo</a>
-                                <a href="https://docs.dotkernel.org/light-documentation/" target="_blank" class="btn btn-outline-primary btn-sm rounded-pill">Guide</a>
-                            </div>
-                        </div>
-                    </div>
+                <div class="trait">
+                    <img class="icon-dark" decoding="async" src="{{ asset('images/app/content/success-50-w.svg') }}" alt="Unlimited scalability" loading="lazy">
+                    <img class="icon-light" decoding="async" src="{{ asset('images/app/content/success-50-d.svg') }}" alt="Unlimited scalability" loading="lazy">
+                    <p>Unlimited scalability</p>
                 </div>
 
-                <div class="col-lg-4">
-                    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
-                        <div class="card-header bg-warning-subtle border-0 py-3 px-4">
-                            <h5 class="mb-0 text-warning-emphasis"><span class="fw-bold">*</span> FRONTEND</h5>
-                        </div>
-                        <div class="card-body d-flex flex-column p-4">
-                            <div class="d-flex flex-wrap gap-1 mb-3">
-                                <img src="https://img.shields.io/packagist/php-v/dotkernel/frontend/5.0.0?style=flat&label=PHP&color=FFDCB3" alt="PHP version" loading="lazy">
-                                <img src="https://img.shields.io/packagist/v/dotkernel/frontend?style=flat&label=Packagist&color=FFDCB3" alt="Packagist version" loading="lazy">
-                                <img src="https://img.shields.io/github/license/dotkernel/frontend?style=flat&label=License&color=FFDCB3" alt="License" loading="lazy">
-                                <img src="https://img.shields.io/github/issues/dotkernel/frontend?style=flat&label=Issues&color=FFDCB3" alt="Issues" loading="lazy">
-                                <img src="https://img.shields.io/github/stars/dotkernel/frontend?style=flat&label=Stars&color=FFDCB3" alt="Stars" loading="lazy">
-                            </div>
-                            <p class="card-text text-muted small flex-grow-1">
-                                <b>Dotkernel Frontend</b> is a Mezzio-based skeleton, a web starter package for <b>frontend applications</b>.
-                            </p>
-                            <div class="d-grid gap-2 d-sm-flex">
-                                <a href="https://github.com/dotkernel/frontend" target="_blank" class="btn btn-dark btn-sm rounded-pill">
-                                    <i class="fab fa-github me-1"></i> Git
-                                </a>
-                                <a href="https://v5.dotkernel.net/" target="_blank" class="btn btn-outline-secondary btn-sm rounded-pill">Demo</a>
-                                <a href="https://docs.dotkernel.org/frontend/" target="_blank" class="btn btn-outline-primary btn-sm rounded-pill">Guide</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <section class="py-5 bg-light">
-        <div class="container">
-            <div class="row g-4 mb-4">
-                <div class="col-lg-4">
-                    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
-                        <div class="card-header border-0 py-3 px-4 bg-success-subtle">
-                            <h5 class="mb-0 text-success-emphasis">Containers</h5>
-                        </div>
-                        <div class="card-body d-flex flex-column p-4">
-                            <p class="card-text text-muted flex-grow-1">
-                                Dotkernel is built around the <a href="https://docs.mezzio.dev/mezzio/v3/features/container/intro/" target="_blank" rel="noopener">PSR-11 dependency container</a>. We have chosen <strong>Laminas Service Manager</strong> as our default implementation.
-                            </p>
-                            <div class="d-flex flex-wrap gap-2">
-                                <a href="https://github.com/php-fig/container" target="_blank" rel="noopener" class="btn btn-outline-dark btn-sm rounded-pill">PSR-11</a>
-                                <a href="https://github.com/laminas/laminas-servicemanager" target="_blank" rel="noopener" class="btn btn-outline-dark btn-sm rounded-pill">Laminas Service Manager</a>
-                            </div>
-                        </div>
-                    </div>
+                <div class="trait">
+                    <img class="icon-dark" decoding="async" src="{{ asset('images/app/content/speed-radar-50-w.svg') }}" alt="Lightning-fast performance" loading="lazy">
+                    <img class="icon-light" decoding="async" src="{{ asset('images/app/content/speed-radar-50-d.svg') }}" alt="Lightning-fast performance" loading="lazy">
+                    <p>Lightning-fast performance</p>
                 </div>
 
-                <div class="col-lg-4">
-                    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
-                        <div class="card-header border-0 py-3 px-4 bg-success-subtle">
-                            <h5 class="mb-0 text-success-emphasis">Templating</h5>
-                        </div>
-                        <div class="card-body d-flex flex-column p-4">
-                            <p class="card-text text-muted flex-grow-1">
-                                By default, no middleware in Mezzio is templated. For Dotkernel's Frontend skeleton, we have chosen <strong>Twig</strong> as the default <a href="https://docs.mezzio.dev/mezzio/v3/features/template/intro/" target="_blank" rel="noopener">templating engine</a>.
-                            </p>
-                            <div class="d-flex flex-wrap gap-2">
-                                <a href="https://twig.symfony.com/" target="_blank" rel="noopener" class="btn btn-outline-dark btn-sm rounded-pill">Twig</a>
-                                <a href="https://github.com/mezzio/mezzio-twigrenderer" target="_blank" rel="noopener" class="btn btn-outline-dark btn-sm rounded-pill">Mezzio TwigRenderer</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4">
-                    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
-                        <div class="card-header border-0 py-3 px-4 bg-success-subtle">
-                            <h5 class="mb-0 text-success-emphasis">Routers</h5>
-                        </div>
-                        <div class="card-body d-flex flex-column p-4">
-                            <p class="card-text text-muted flex-grow-1">
-                                Of the many routing implementations compatible with Expressive, we have chosen <strong><a href="https://docs.mezzio.dev/mezzio/v3/features/router/intro/" target="_blank" rel="noopener">FastRoute</a></strong> as Dotkernel's default routing library.
-                            </p>
-                            <div class="d-flex flex-wrap gap-2">
-                                <a href="https://github.com/nikic/FastRoute" target="_blank" rel="noopener" class="btn btn-outline-dark btn-sm rounded-pill">FastRoute</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row g-4">
-                <div class="col-lg-4">
-                    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
-                        <div class="card-header border-0 py-3 px-4 bg-success-subtle">
-                            <h5 class="mb-0 text-success-emphasis">HTTP Messages</h5>
-                        </div>
-                        <div class="card-body d-flex flex-column p-4">
-                            <p class="card-text text-muted flex-grow-1">
-                                Mezzio, and consequently Dotkernel, is built around the <a href="https://github.com/php-fig/http-message" target="_blank" rel="noopener">PSR-7 standard</a>. It uses <strong>Laminas Diactoros</strong> as the PSR-7 implementation.
-                            </p>
-                            <div class="d-flex flex-wrap gap-2">
-                                <a href="https://github.com/php-fig/http-message" target="_blank" rel="noopener" class="btn btn-outline-dark btn-sm rounded-pill">PSR-7</a>
-                                <a href="https://github.com/laminas/laminas-diactoros" target="_blank" rel="noopener" class="btn btn-outline-dark btn-sm rounded-pill">Diactoros</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4">
-                    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
-                        <div class="card-header border-0 py-3 px-4 bg-success-subtle">
-                            <h5 class="mb-0 text-success-emphasis">HTTP Request Handlers</h5>
-                        </div>
-                        <div class="card-body d-flex flex-column p-4">
-                            <p class="card-text text-muted flex-grow-1">
-                                Dotkernel follows the <a href="https://github.com/php-fig/http-server-handler" target="_blank" rel="noopener">PSR-15</a> (HTTP Request Handlers) specifications, by implementing the <strong>laminas-httphandlerrunner</strong> package.
-                            </p>
-                            <div class="d-flex flex-wrap gap-2">
-                                <a href="https://github.com/php-fig/http-server-handler" target="_blank" rel="noopener" class="btn btn-outline-dark btn-sm rounded-pill">PSR-15</a>
-                                <a href="https://github.com/laminas/laminas-httphandlerrunner" target="_blank" rel="noopener" class="btn btn-outline-dark btn-sm rounded-pill">Laminas HTTP Handler Runner</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4">
-                    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
-                        <div class="card-header border-0 py-3 px-4 bg-success-subtle">
-                            <h5 class="mb-0 text-success-emphasis">Database &amp; Object Mapping</h5>
-                        </div>
-                        <div class="card-body d-flex flex-column p-4">
-                            <p class="card-text text-muted flex-grow-1">
-                                The <a href="https://www.doctrine-project.org/projects/doctrine-orm/en/current/tutorials/getting-started.html" target="_blank" rel="noopener">Doctrine Project's</a> PHP libraries with their flexible and stable features are at the core of our database storage and object mapping.
-                            </p>
-                            <div class="d-flex flex-wrap gap-2">
-                                <a href="https://www.doctrine-project.org/projects/orm.html" target="_blank" rel="noopener" class="btn btn-outline-dark btn-sm rounded-pill">Doctrine ORM</a>
-                                <a href="https://www.doctrine-project.org/projects/dbal.html" target="_blank" rel="noopener" class="btn btn-outline-dark btn-sm rounded-pill">DBAL</a>
-                            </div>
-                        </div>
-                    </div>
+                <div class="trait">
+                    <img class="icon-dark" decoding="async" src="{{ asset('images/app/content/maintenance-w.svg') }}" alt="Easier maintenance and onboarding" loading="lazy">
+                    <img class="icon-light" decoding="async" src="{{ asset('images/app/content/maintenance-d.svg') }}" alt="Easier maintenance and onboarding" loading="lazy">
+                    <p>Easier maintenance and onboarding</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-5">
-        <div class="container">
-            <h4 class="text-center py-2">Dotkernel</h4>
-            <h2 class="mb-4 text-center pb-2">Components</h2>
+    <section style="background:var(--surface-2);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Headless Platform</span>
+                <h2>Three applications, one platform</h2>
+                <p>API, Admin, and Queue are designed to integrate into a single, unified headless platform — better together than the sum of their parts.</p>
+            </div>
 
-            <div class="row g-4">
-                <!-- Left column -->
-                <div class="col-md-6">
-                    <div class="accordion" id="accordionLeft">
+            <div class="products-grid">
 
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#left-1">
-                                    Authentication
-                                </button>
-                            </h2>
-                            <div id="left-1" class="accordion-collapse collapse" data-bs-parent="#accordionLeft">
-                                <div class="accordion-body">
-                                    <ul class="list-unstyled mb-0">
-                                        <li class="mb-3">
-                                            <a href="https://github.com/dotkernel/dot-authentication" target="_blank" rel="noopener">dot-authentication</a><br>
-                                            <img decoding="async" src="https://img.shields.io/osslifecycle/dotkernel/dot-authentication" alt="OSS Lifecycle"><br>
-                                            core authentication interfaces
-                                        </li>
-                                        <li>
-                                            <a href="https://github.com/dotkernel/dot-auth-social" target="_blank" rel="noopener">dot-auth-social</a><br>
-                                            <img decoding="async" src="https://img.shields.io/osslifecycle/dotkernel/dot-auth-social" alt="OSS Lifecycle"><br>
-                                            wrapper for <a href="https://github.com/thephpleague/oauth2-client" target="_blank" rel="noopener">thephpleague/oauth2-client</a> to authenticate users though Facebook
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#left-2">
-                                    Authorization
-                                </button>
-                            </h2>
-                            <div id="left-2" class="accordion-collapse collapse" data-bs-parent="#accordionLeft">
-                                <div class="accordion-body">
-                                    <ul class="list-unstyled mb-0">
-                                        <li class="mb-3">
-                                            <a href="https://github.com/dotkernel/dot-authorization" target="_blank" rel="noopener">dot-authorization</a><br>
-                                            <img decoding="async" src="https://img.shields.io/osslifecycle/dotkernel/dot-authorization" alt="OSS Lifecycle"><br>
-                                            core authorization interfaces
-                                        </li>
-                                        <li class="mb-3">
-                                            <a href="https://github.com/dotkernel/dot-rbac" target="_blank" rel="noopener">dot-rbac</a><br>
-                                            <img decoding="async" src="https://img.shields.io/osslifecycle/dotkernel/dot-rbac" alt="OSS Lifecycle"><br>
-                                            RBAC authorization implementation
-                                        </li>
-                                        <li>
-                                            <a href="https://github.com/dotkernel/dot-rbac-guard" target="_blank" rel="noopener">dot-rbac-guard</a><br>
-                                            <img decoding="async" src="https://img.shields.io/osslifecycle/dotkernel/dot-rbac-guard" alt="OSS Lifecycle"><br>
-                                            RBAC for authorizing sections of an application
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#left-3">
-                                    Controllers
-                                </button>
-                            </h2>
-                            <div id="left-3" class="accordion-collapse collapse" data-bs-parent="#accordionLeft">
-                                <div class="accordion-body">
-                                    <ul class="list-unstyled mb-0">
-                                        <li>
-                                            <a href="https://github.com/dotkernel/dot-controller" target="_blank" rel="noopener">dot-controller</a><br>
-                                            <img decoding="async" src="https://img.shields.io/osslifecycle/dotkernel/dot-controller" alt="OSS Lifecycle"><br>
-                                            controller-like middleware for mezzio
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#left-4">
-                                    Forms
-                                </button>
-                            </h2>
-                            <div id="left-4" class="accordion-collapse collapse" data-bs-parent="#accordionLeft">
-                                <div class="accordion-body">
-                                    <ul class="list-unstyled mb-0">
-                                        <li>
-                                            <a href="https://github.com/laminas/laminas-form" target="_blank" rel="noopener">laminas-form</a><br>
-                                            validate and display forms
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#left-5">
-                                    Session
-                                </button>
-                            </h2>
-                            <div id="left-5" class="accordion-collapse collapse" data-bs-parent="#accordionLeft">
-                                <div class="accordion-body">
-                                    <ul class="list-unstyled mb-0">
-                                        <li class="mb-3">
-                                            <a href="https://github.com/dotkernel/dot-session" target="_blank" rel="noopener">dot-session</a><br>
-                                            <img decoding="async" src="https://img.shields.io/osslifecycle/dotkernel/dot-session" alt="OSS Lifecycle"><br>
-                                            extends <a href="https://docs.laminas.dev/laminas-session/" target="_blank" rel="noopener">laminas-session</a>
-                                        </li>
-                                        <li class="mb-3">
-                                            <a href="https://github.com/dotkernel/dot-flashmessenger" target="_blank" rel="noopener">dot-flashmessenger</a><br>
-                                            <img decoding="async" src="https://img.shields.io/osslifecycle/dotkernel/dot-flashmessenger" alt="OSS Lifecycle"><br>
-                                            short lived session messages
-                                        </li>
-                                        <li>
-                                            <a href="https://github.com/dotkernel/dot-cache" target="_blank" rel="noopener">dot-cache</a><br>
-                                            <img decoding="async" src="https://img.shields.io/osslifecycle/dotkernel/dot-cache" alt="OSS Lifecycle"><br>
-                                            extends <a href="https://github.com/symfony/cache" target="_blank" rel="noopener">symfony/cache</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#left-6">
-                                    Logging and error handling
-                                </button>
-                            </h2>
-                            <div id="left-6" class="accordion-collapse collapse" data-bs-parent="#accordionLeft">
-                                <div class="accordion-body">
-                                    <ul class="list-unstyled mb-0">
-                                        <li class="mb-3">
-                                            <a href="https://github.com/dotkernel/dot-log" target="_blank" rel="noopener">dot-log</a><br>
-                                            <img decoding="async" src="https://img.shields.io/osslifecycle/dotkernel/dot-log" alt="OSS Lifecycle">
-                                        </li>
-                                        <li>
-                                            <a href="https://github.com/dotkernel/dot-errorhandler" target="_blank" rel="noopener">dot-errorhandler</a><br>
-                                            <img decoding="async" src="https://img.shields.io/osslifecycle/dotkernel/dot-errorhandler" alt="OSS Lifecycle">
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Skeleton</span><h3>API</h3></div>
+                    </div>
+                    <div class="badges">
+                        <img alt="PHP" src="https://img.shields.io/packagist/dependency-v/dotkernel/api/php?style=flat&label=php&color=F2ABB6">
+                        <img alt="Packagist" src="https://img.shields.io/packagist/v/dotkernel/api?style=flat&label=&color=F2ABB6">
+                        <img alt="License" src="https://img.shields.io/github/license/dotkernel/api?style=flat&label=&color=F2ABB6">
+                        <img alt="Stars" src="https://img.shields.io/github/stars/dotkernel/api?style=flat&label=%E2%98%85&color=F2ABB6">
+                    </div>
+                    <p class="desc">An alternative to legacy Laminas API Tools (Apigility). A framework-less, opinionated toolkit for intermediate-to-advanced developers who want to ship REST APIs quickly and efficiently.</p>
+                    <div class="card-btns">
+                        <a class="btn btn-ghost btn-sm" href="https://github.com/dotkernel/api" target="_blank" rel="noopener">GitHub</a>
+                        <a class="btn btn-ghost btn-sm" href="https://api.dotkernel.net/" target="_blank" rel="noopener">Demo</a>
+                        <a class="btn btn-ghost btn-sm" href="https://docs.dotkernel.org/api-documentation/" target="_blank" rel="noopener">Guide</a>
                     </div>
                 </div>
 
-                <!-- Right column -->
-                <div class="col-md-6">
-                    <div class="accordion" id="accordionRight">
-
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#right-1">
-                                    Emailing
-                                </button>
-                            </h2>
-                            <div id="right-1" class="accordion-collapse collapse" data-bs-parent="#accordionRight">
-                                <div class="accordion-body">
-                                    <ul class="list-unstyled mb-0">
-                                        <li>
-                                            <a href="https://github.com/dotkernel/dot-mail" target="_blank" rel="noopener">dot-mail</a><br>
-                                            <img decoding="async" src="https://img.shields.io/osslifecycle/dotkernel/dot-mail" alt="OSS Lifecycle"><br>
-                                            extends <a href="https://symfony.com/doc/current/mailer.html" target="_blank" rel="noopener">symfony/mailer</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#right-2">
-                                    Backend abstraction (database)
-                                </button>
-                            </h2>
-                            <div id="right-2" class="accordion-collapse collapse" data-bs-parent="#accordionRight">
-                                <div class="accordion-body">
-                                    <ul class="list-unstyled mb-0">
-                                        <li class="mb-3">
-                                            <a href="https://github.com/doctrine/orm/" target="_blank" rel="noopener">doctrine/orm</a><br>
-                                            object-relational-mapper for PHP
-                                        </li>
-                                        <li class="mb-3">
-                                            <a href="https://github.com/doctrine/dbal/" target="_blank" rel="noopener">doctrine/dbal</a><br>
-                                            database abstraction layer with features for database schema introspection and management
-                                        </li>
-                                        <li>
-                                            <a href="https://github.com/dotkernel/dot-data-fixtures" target="_blank" rel="noopener">dot-data-fixtures</a><br>
-                                            <img decoding="async" src="https://img.shields.io/osslifecycle/dotkernel/dot-data-fixtures" alt="OSS Lifecycle"><br>
-                                            extends <a href="https://github.com/doctrine/data-fixtures" target="_blank" rel="noopener">doctrine/data-fixtures</a> to populate tables
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#right-3">
-                                    Navigation
-                                </button>
-                            </h2>
-                            <div id="right-3" class="accordion-collapse collapse" data-bs-parent="#accordionRight">
-                                <div class="accordion-body">
-                                    <ul class="list-unstyled mb-0">
-                                        <li>
-                                            <a href="https://github.com/dotkernel/dot-navigation" target="_blank" rel="noopener">dot-navigation</a><br>
-                                            <img decoding="async" src="https://img.shields.io/osslifecycle/dotkernel/dot-navigation" alt="OSS Lifecycle"><br>
-                                            easy menu configuration and parsing
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#right-4">
-                                    Template engine
-                                </button>
-                            </h2>
-                            <div id="right-4" class="accordion-collapse collapse" data-bs-parent="#accordionRight">
-                                <div class="accordion-body">
-                                    <ul class="list-unstyled mb-0">
-                                        <li>
-                                            <a href="https://github.com/dotkernel/dot-twigrenderer" target="_blank" rel="noopener">dot-twigrenderer</a><br>
-                                            <img decoding="async" src="https://img.shields.io/osslifecycle/dotkernel/dot-twigrenderer" alt="OSS Lifecycle"><br>
-                                            extend the twig renderer with useful extensions and laminas-view helpers
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#right-5">
-                                    Tools
-                                </button>
-                            </h2>
-                            <div id="right-5" class="accordion-collapse collapse" data-bs-parent="#accordionRight">
-                                <div class="accordion-body">
-                                    <ul class="list-unstyled mb-0">
-                                        <li class="mb-3">
-                                            <a href="https://github.com/dotkernel/dot-annotated-services" target="_blank" rel="noopener">dot-annotated-services</a><br>
-                                            <img decoding="async" src="https://img.shields.io/osslifecycle/dotkernel/dot-annotated-services" alt="OSS Lifecycle"><br>
-                                            create and inject services with dependecies through annotations
-                                        </li>
-                                        <li class="mb-3">
-                                            <a href="https://github.com/dotkernel/dot-event" target="_blank" rel="noopener">dot-event</a><br>
-                                            <img decoding="async" src="https://img.shields.io/osslifecycle/dotkernel/dot-event" alt="OSS Lifecycle"><br>
-                                            extends <a href="https://docs.laminas.dev/laminas-eventmanager/" target="_blank" rel="noopener">laminas-eventmanager</a>
-                                        </li>
-                                        <li class="mb-3">
-                                            <a href="https://github.com/dotkernel/dot-helpers" target="_blank" rel="noopener">dot-helpers</a><br>
-                                            <img decoding="async" src="https://img.shields.io/osslifecycle/dotkernel/dot-helpers" alt="OSS Lifecycle">
-                                        </li>
-                                        <li class="mb-3">
-                                            <a href="https://github.com/dotkernel/dot-cli" target="_blank" rel="noopener">dot-cli</a><br>
-                                            <img decoding="async" src="https://img.shields.io/osslifecycle/dotkernel/dot-cli" alt="OSS Lifecycle"><br>
-                                            extends <a href="https://github.com/laminas/laminas-cli" target="_blank" rel="noopener">laminas-cli</a> for building console applications
-                                        </li>
-                                        <li class="mb-3">
-                                            <a href="https://github.com/dotkernel/dot-doctrine-metadata" target="_blank" rel="noopener">dot-doctrine-metadata</a><br>
-                                            <img decoding="async" src="https://img.shields.io/osslifecycle/dotkernel/dot-doctrine-metadata" alt="OSS Lifecycle"><br>
-                                            extends <a href="https://github.com/mezzio/mezzio-hal" target="_blank" rel="noopener">mezzio/mezzio-hal</a> for extracting and rendering Doctrine entities
-                                        </li>
-                                        <li>
-                                            <a href="https://github.com/dotkernel/dot-response-header" target="_blank" rel="noopener">dot-response-header</a><br>
-                                            <img decoding="async" src="https://img.shields.io/osslifecycle/dotkernel/dot-response-header" alt="OSS Lifecycle"><br>
-                                            middleware for setting and overwriting custom response headers
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#right-6">
-                                    Extra libraries
-                                </button>
-                            </h2>
-                            <div id="right-6" class="accordion-collapse collapse" data-bs-parent="#accordionRight">
-                                <div class="accordion-body">
-                                    <ul class="list-unstyled mb-0">
-                                        <li class="mb-3">
-                                            <a href="https://github.com/dotkernel/dot-user-agent-sniffer" target="_blank" rel="noopener">dot-user-agent-sniffer</a><br>
-                                            <img decoding="async" src="https://img.shields.io/osslifecycle/dotkernel/dot-user-agent-sniffer" alt="OSS Lifecycle"><br>
-                                            provides details about a device by parsing a user agent
-                                        </li>
-                                        <li class="mb-3">
-                                            <a href="https://github.com/dotkernel/dot-debugbar" target="_blank" rel="noopener">dot-debugbar</a><br>
-                                            <img decoding="async" src="https://img.shields.io/osslifecycle/dotkernel/dot-debugbar" alt="OSS Lifecycle"><br>
-                                            extends <a href="https://github.com/maximebf/php-debugbar" target="_blank" rel="noopener">maximebf/php-debugbar</a> to collect session data, log messages, debug database queries etc.
-                                        </li>
-                                        <li>
-                                            <a href="https://github.com/dotkernel/dot-geoip" target="_blank" rel="noopener">dot-geoip</a><br>
-                                            <img decoding="async" src="https://img.shields.io/osslifecycle/dotkernel/dot-geoip" alt="OSS Lifecycle"><br>
-                                            extends <a href="https://github.com/maxmind/GeoIP2-php" target="_blank" rel="noopener">maxmind/GeoIP2-php</a> to provide geographical details about an IP address
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
+                <div class="card" style="--accent:var(--periwinkle)">
+                    <div class="card-top">
+                        <div><span class="kicker">Skeleton</span><h3>Admin</h3></div>
+                    </div>
+                    <div class="badges">
+                        <img alt="PHP" src="https://img.shields.io/packagist/dependency-v/dotkernel/admin/php?style=flat&label=php&color=D6D2CC">
+                        <img alt="Packagist" src="https://img.shields.io/packagist/v/dotkernel/admin?style=flat&label=&color=D6D2CC">
+                        <img alt="License" src="https://img.shields.io/github/license/dotkernel/admin?style=flat&label=&color=D6D2CC">
+                        <img alt="Stars" src="https://img.shields.io/github/stars/dotkernel/admin?style=flat&label=%E2%98%85&color=D6D2CC">
+                    </div>
+                    <p class="desc">A ready-to-go admin skeleton for managing your platform's records with a simple, table-based approach — plus the tools to build reports and dashboards.</p>
+                    <div class="card-btns">
+                        <a class="btn btn-ghost btn-sm" href="https://github.com/dotkernel/admin" target="_blank" rel="noopener">GitHub</a>
+                        <a class="btn btn-ghost btn-sm" href="https://admin7.dotkernel.net/" target="_blank" rel="noopener">Demo</a>
+                        <a class="btn btn-ghost btn-sm" href="https://docs.dotkernel.org/admin/" target="_blank" rel="noopener">Guide</a>
                     </div>
                 </div>
+
+                <div class="card" style="--accent:var(--teal)">
+                    <div class="card-top">
+                        <div><span class="kicker">Skeleton</span><h3>Queue</h3></div>
+                    </div>
+                    <div class="badges">
+                        <img alt="PHP" src="https://img.shields.io/packagist/php-v/dotkernel/queue?style=flat&label=php&color=E8B3BE">
+                        <img alt="Packagist" src="https://img.shields.io/packagist/v/dotkernel/queue?style=flat&label=&color=E8B3BE">
+                        <img alt="License" src="https://img.shields.io/github/license/dotkernel/queue?style=flat&label=&color=E8B3BE">
+                        <img alt="Stars" src="https://img.shields.io/github/stars/dotkernel/queue?style=flat&label=%E2%98%85&color=E8B3BE">
+                    </div>
+                    <p class="desc">Asynchronous task queuing built on Symfony Messenger, wired into the Laminas Service Manager container via netglue/laminas-messenger.</p>
+                    <div class="card-btns">
+                        <a class="btn btn-ghost btn-sm" href="https://github.com/dotkernel/queue" target="_blank" rel="noopener">GitHub</a>
+                        <a class="btn btn-ghost btn-sm" href="https://docs.dotkernel.org/queue-documentation/" target="_blank" rel="noopener">Guide</a>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
+    <section>
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Other skeletons</span>
+                <h2>For projects outside the platform</h2>
+                <p>Not every project needs a headless platform. These two skeletons stand on their own, outside the API/Admin/Queue bundle above.</p>
+            </div>
+
+            <div class="products-grid other-skeletons-grid">
+
+                <div class="card" style="--accent:var(--rose)">
+                    <div class="card-top">
+                        <div><span class="kicker">Skeleton · Didactic</span><h3>Light</h3></div>
+                    </div>
+                    <div class="badges">
+                        <img alt="PHP" src="https://img.shields.io/packagist/php-v/dotkernel/light?style=flat&label=php&color=F6D6DA">
+                        <img alt="Packagist" src="https://img.shields.io/packagist/v/dotkernel/light?style=flat&label=&color=F6D6DA">
+                        <img alt="License" src="https://img.shields.io/github/license/dotkernel/light?style=flat&label=&color=F6D6DA">
+                        <img alt="Stars" src="https://img.shields.io/github/stars/dotkernel/light?style=flat&label=%E2%98%85&color=F6D6DA">
+                    </div>
+                    <p class="desc">A minimal, PSR-15 compliant skeleton built for learning purposes — a simple, didactic example of how to put together a basic website, not a Headless Platform component.</p>
+                    <div class="card-btns">
+                        <a class="btn btn-ghost btn-sm" href="https://github.com/dotkernel/light" target="_blank" rel="noopener">GitHub</a>
+                        <a class="btn btn-ghost btn-sm" href="https://light.dotkernel.net/" target="_blank" rel="noopener">Demo</a>
+                        <a class="btn btn-ghost btn-sm" href="https://docs.dotkernel.org/light-documentation/" target="_blank" rel="noopener">Guide</a>
+                    </div>
+                </div>
+
+                <div class="card" style="--accent:var(--sage)">
+                    <div class="card-top">
+                        <div><span class="kicker">Skeleton · Standalone</span><h3>Frontend</h3></div>
+                    </div>
+                    <div class="badges">
+                        <img alt="PHP" src="https://img.shields.io/packagist/php-v/dotkernel/frontend?style=flat&label=php&color=E39AA8">
+                        <img alt="Packagist" src="https://img.shields.io/packagist/v/dotkernel/frontend?style=flat&label=&color=E39AA8">
+                        <img alt="License" src="https://img.shields.io/github/license/dotkernel/frontend?style=flat&label=&color=E39AA8">
+                        <img alt="Stars" src="https://img.shields.io/github/stars/dotkernel/frontend?style=flat&label=%E2%98%85&color=E39AA8">
+                    </div>
+                    <p class="desc">A web starter skeleton for building frontend applications on Mezzio and Laminas — a standalone alternative, separate from the Headless Platform.</p>
+                    <div class="card-btns">
+                        <a class="btn btn-ghost btn-sm" href="https://github.com/dotkernel/frontend" target="_blank" rel="noopener">GitHub</a>
+                        <a class="btn btn-ghost btn-sm" href="https://v5.dotkernel.net/" target="_blank" rel="noopener">Demo</a>
+                        <a class="btn btn-ghost btn-sm" href="https://docs.dotkernel.org/frontend/" target="_blank" rel="noopener">Guide</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section style="background:var(--surface-2);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Components</span>
+                <h2>Every layer, on its own</h2>
+                <p>Small, independent dot-* packages — pull in what you need. Lifecycle status for each lives on the <a href="https://www.dotkernel.com/dotkernel-packages-oss-lifecycle/" style="color:var(--teal);">Packages Lifecycle</a> page.</p>
+            </div>
+            <div class="components-grid">
+                <div>
+                    <details class="acc" open>
+                        <summary>Authentication <span class="chev">+</span></summary>
+                        <div class="acc-body">
+                            <div class="pkg-row"><a href="https://github.com/dotkernel/dot-authentication" target="_blank" rel="noopener">dot-authentication</a><span class="pkg-desc">core authentication interfaces</span></div>
+                            <div class="pkg-row"><a href="https://github.com/dotkernel/dot-auth-social" target="_blank" rel="noopener">dot-auth-social</a><span class="pkg-desc">Facebook auth via thephpleague/oauth2-client</span></div>
+                        </div>
+                    </details>
+                    <details class="acc">
+                        <summary>Authorization <span class="chev">+</span></summary>
+                        <div class="acc-body">
+                            <div class="pkg-row"><a href="https://github.com/dotkernel/dot-authorization" target="_blank" rel="noopener">dot-authorization</a><span class="pkg-desc">core authorization interfaces</span></div>
+                            <div class="pkg-row"><a href="https://github.com/dotkernel/dot-rbac" target="_blank" rel="noopener">dot-rbac</a><span class="pkg-desc">RBAC implementation</span></div>
+                            <div class="pkg-row"><a href="https://github.com/dotkernel/dot-rbac-guard" target="_blank" rel="noopener">dot-rbac-guard</a><span class="pkg-desc">RBAC for authorizing app sections</span></div>
+                        </div>
+                    </details>
+                    <details class="acc">
+                        <summary>Controllers <span class="chev">+</span></summary>
+                        <div class="acc-body">
+                            <div class="pkg-row"><a href="https://github.com/dotkernel/dot-controller" target="_blank" rel="noopener">dot-controller</a><span class="pkg-desc">controller-like middleware for Mezzio</span></div>
+                        </div>
+                    </details>
+                    <details class="acc">
+                        <summary>Forms <span class="chev">+</span></summary>
+                        <div class="acc-body">
+                            <div class="pkg-row"><a href="https://github.com/laminas/laminas-form" target="_blank" rel="noopener">laminas-form</a><span class="pkg-desc">validate and display forms</span></div>
+                        </div>
+                    </details>
+                    <details class="acc">
+                        <summary>Session <span class="chev">+</span></summary>
+                        <div class="acc-body">
+                            <div class="pkg-row"><a href="https://github.com/dotkernel/dot-session" target="_blank" rel="noopener">dot-session</a><span class="pkg-desc">extends laminas-session</span></div>
+                            <div class="pkg-row"><a href="https://github.com/dotkernel/dot-flashmessenger" target="_blank" rel="noopener">dot-flashmessenger</a><span class="pkg-desc">short-lived session messages</span></div>
+                            <div class="pkg-row"><a href="https://github.com/dotkernel/dot-cache" target="_blank" rel="noopener">dot-cache</a><span class="pkg-desc">extends symfony/cache</span></div>
+                        </div>
+                    </details>
+                    <details class="acc">
+                        <summary>Logging &amp; error handling <span class="chev">+</span></summary>
+                        <div class="acc-body">
+                            <div class="pkg-row"><a href="https://github.com/dotkernel/dot-log" target="_blank" rel="noopener">dot-log</a><span class="pkg-desc">structured application logging</span></div>
+                            <div class="pkg-row"><a href="https://github.com/dotkernel/dot-errorhandler" target="_blank" rel="noopener">dot-errorhandler</a><span class="pkg-desc">centralized error handling</span></div>
+                        </div>
+                    </details>
+                </div>
+                <div>
+                    <details class="acc">
+                        <summary>Emailing <span class="chev">+</span></summary>
+                        <div class="acc-body">
+                            <div class="pkg-row"><a href="https://github.com/dotkernel/dot-mail" target="_blank" rel="noopener">dot-mail</a><span class="pkg-desc">extends symfony/mailer</span></div>
+                        </div>
+                    </details>
+                    <details class="acc">
+                        <summary>Backend abstraction (database) <span class="chev">+</span></summary>
+                        <div class="acc-body">
+                            <div class="pkg-row"><a href="https://github.com/doctrine/orm/" target="_blank" rel="noopener">doctrine/orm</a><span class="pkg-desc">object-relational mapper for PHP</span></div>
+                            <div class="pkg-row"><a href="https://github.com/doctrine/dbal/" target="_blank" rel="noopener">doctrine/dbal</a><span class="pkg-desc">DB abstraction, schema introspection</span></div>
+                            <div class="pkg-row"><a href="https://github.com/dotkernel/dot-data-fixtures" target="_blank" rel="noopener">dot-data-fixtures</a><span class="pkg-desc">extends doctrine/data-fixtures</span></div>
+                        </div>
+                    </details>
+                    <details class="acc">
+                        <summary>Navigation <span class="chev">+</span></summary>
+                        <div class="acc-body">
+                            <div class="pkg-row"><a href="https://github.com/dotkernel/dot-navigation" target="_blank" rel="noopener">dot-navigation</a><span class="pkg-desc">easy menu configuration &amp; parsing</span></div>
+                        </div>
+                    </details>
+                    <details class="acc">
+                        <summary>Template engine <span class="chev">+</span></summary>
+                        <div class="acc-body">
+                            <div class="pkg-row"><a href="https://github.com/dotkernel/dot-twigrenderer" target="_blank" rel="noopener">dot-twigrenderer</a><span class="pkg-desc">Twig + laminas-view helpers</span></div>
+                        </div>
+                    </details>
+                    <details class="acc">
+                        <summary>Tools <span class="chev">+</span></summary>
+                        <div class="acc-body">
+                            <div class="pkg-row"><a href="https://github.com/dotkernel/dot-annotated-services" target="_blank" rel="noopener">dot-annotated-services</a><span class="pkg-desc">inject services via annotations</span></div>
+                            <div class="pkg-row"><a href="https://github.com/dotkernel/dot-event" target="_blank" rel="noopener">dot-event</a><span class="pkg-desc">extends laminas-eventmanager</span></div>
+                            <div class="pkg-row"><a href="https://github.com/dotkernel/dot-helpers" target="_blank" rel="noopener">dot-helpers</a><span class="pkg-desc">shared utility helpers</span></div>
+                            <div class="pkg-row"><a href="https://github.com/dotkernel/dot-cli" target="_blank" rel="noopener">dot-cli</a><span class="pkg-desc">extends laminas-cli</span></div>
+                            <div class="pkg-row"><a href="https://github.com/dotkernel/dot-doctrine-metadata" target="_blank" rel="noopener">dot-doctrine-metadata</a><span class="pkg-desc">extends mezzio/mezzio-hal</span></div>
+                            <div class="pkg-row"><a href="https://github.com/dotkernel/dot-response-header" target="_blank" rel="noopener">dot-response-header</a><span class="pkg-desc">custom response headers</span></div>
+                        </div>
+                    </details>
+                    <details class="acc">
+                        <summary>Extra libraries <span class="chev">+</span></summary>
+                        <div class="acc-body">
+                            <div class="pkg-row"><a href="https://github.com/dotkernel/dot-user-agent-sniffer" target="_blank" rel="noopener">dot-user-agent-sniffer</a><span class="pkg-desc">parses device info from user agent</span></div>
+                            <div class="pkg-row"><a href="https://github.com/dotkernel/dot-debugbar" target="_blank" rel="noopener">dot-debugbar</a><span class="pkg-desc">extends maximebf/php-debugbar</span></div>
+                            <div class="pkg-row"><a href="https://github.com/dotkernel/dot-geoip" target="_blank" rel="noopener">dot-geoip</a><span class="pkg-desc">extends maxmind/GeoIP2-php</span></div>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </section>
     {% if posts is defined and posts is iterable %}
-    <section class="py-5">
-        <div class="container">
-            <h4 class="text-center py-2">Blog</h4>
-            <h2 class="mb-4 text-center pb-2">Useful Reads</h2>
-            <div class="row g-4">
+        <section>
+            <div class="wrap">
+                <div class="section-head">
+                    <span class="eyebrow">From the blog</span>
+                    <h2>Useful reads</h2>
+                </div>
+                <div class="posts-grid">
                     {% for post in posts %}
-                    <div class="col-md-4">
-                        <div class="card h-100 border-0 shadow-sm rounded-3">
-                            <div class="card-body d-flex flex-column p-4">
-                            <span class="badge bg-primary-subtle text-primary-emphasis rounded-pill align-self-start mb-2">
-                                {{ post.category.name }}
-                            </span>
-                                <h5 class="card-title fw-semibold mb-2">
-                                    <a href="{{ url('page::blog-resource', {categorySlug: post.category.slug, slug: post.slug}) }}"
-                                       class="text-dark text-decoration-none stretched-link">
-                                        {{ post.title }}
-                                    </a>
-                                </h5>
-                                <p class="card-text text-muted small flex-grow-1">
-                                    {{ post.excerpt }}
-                                </p>
-                                <span class="text-muted small mt-2">
-                                <i class="bi bi-calendar3 me-1"></i>{{ post.postDate|date('M d, Y') }}
-                            </span>
-                            </div>
-                        </div>
-                    </div>
-                {% else %}
-                    <div class="col-12">
+                        <a class="post-card" href="{{ url('page::blog-resource', {categorySlug: post.category.slug, slug: post.slug}) }}">
+                            <div class="post-date">{{ post.postDate|date('M d, Y') }}</div>
+                            <h4>{{ post.title }}</h4>
+                            <p>{{ post.excerpt }}</p>
+                            <span class="read-more">Read more →</span>
+                        </a>
+                    {% else %}
                         <p class="text-muted text-center mb-0">No recent posts.</p>
-                    </div>
-                {% endfor %}
+                    {% endfor %}
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
     {% endif %}
 
-    <section class="py-5">
-        <div class="container">
-            <div class="row justify-content-center text-center">
-                <div class="col-lg-8">
-                    <p class="text-uppercase text-muted fw-bold mb-2">Designed and built by Apidemia</p>
-                    <h2 class="mb-3">Control, Scalability &amp; Performance</h2>
-                    <p class="text-muted mb-4">
-                        Dotkernel is an Open Source project created and led by the dev team @Apidemia,
-                        initially as an internal tool to handle complex architectures, now freely open,
-                        our way of giving back to the community.
-                    </p>
-                    <a href="{{ url('page::contact') }}" class="btn bg-primary-subtle text-primary-emphasis rounded-pill">
-                        See more about us
-                    </a>
+    <section class="about-band">
+        <div class="wrap about-inner">
+            <div>
+                <span class="eyebrow">Designed &amp; built by Apidemia</span>
+                <h2>Control, scalability &amp; performance you can build on.</h2>
+            </div>
+            <div>
+                <p class="about-text">Dotkernel is an open-source project created and led by the dev team at Apidemia — built first as an internal tool for handling complex architectures, now freely shared as our way of giving back to the community.</p>
+                <div class="about-cta">
+                    <a class="btn btn-ghost" href="{{ url('page::contact') }}">See more about us →</a>
                 </div>
             </div>
         </div>

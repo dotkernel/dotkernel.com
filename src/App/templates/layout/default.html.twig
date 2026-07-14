@@ -2,12 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
+    <script>
+        (function () {
+            var saved = localStorage.getItem('theme');
+            document.documentElement.setAttribute('data-theme', saved === 'dark' ? 'dark' : 'light');
+        })();
+    </script>
     {{ include('@partial/meta.html.twig') }}
     {% block canonical %}<link rel="canonical" href="{{ url(routeName ?? null) }}" />
     {% endblock %}<link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/app/favicon/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/app/favicon/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/app/favicon/favicon-16x16.png') }}">
     <link rel="manifest" href="{{ asset('images/app/favicon/site.webmanifest') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600" rel="stylesheet">
@@ -15,93 +22,85 @@
     {% block stylesheets %}
     {% endblock %}
 </head>
-<body class="app d-flex flex-column min-vh-100 bg-light text-secondary {% block body_class %}{% endblock %}">
-<header class="app-header sticky-top bg-white border-bottom shadow-sm">
-    <nav class="navbar navbar-expand-lg navbar-light py-2">
-        <div class="container-fluid px-4 px-lg-5">
-            <a href="/" class="navbar-brand d-flex align-items-center">
-                <img src="{{ asset('images/app/logo.svg') }}"
-                     onerror="this.onerror=null; this.src='{{ asset('images/app/logo.png') }}';"
-                     alt="Dotkernel"
-                     style="height: 50px;" />
+<body class="app d-flex flex-column min-vh-100 {% block body_class %}{% endblock %}">
+<header class="sticky-top">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container wrap">
+            <a href="/" class="navbar-brand logo">
+                <svg class="logo-full" viewBox="0 0 1934 356" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M176.344 355.347H0.275879V227.009H174.625C180.587 227.009 186.549 228.145 191.974 231.013C198.258 234.151 203.092 238.479 206.745 243.89L258.523 334.733H258.791C233.171 348.476 204.757 355.347 176.29 355.347H176.344Z" fill="#C71F38"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0.275879 168.519V0.629395H176.344H177.471L108.344 168.519H0.275879Z" fill="#C71F38"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M305.2 298.914V298.644L260.834 221.273L256 212.67C245.472 196.601 233.548 186.591 218.186 178.854C203.684 171.388 188.323 168.25 173.229 168.52H172.961L236.663 11.2354C256.59 18.7019 275.604 29.8476 292.416 44.7808C365.518 109.275 372.93 221.543 308.637 294.911C307.509 296.317 306.381 297.508 305.2 298.914Z" fill="#C71F38"/>
+                    <g style="fill:var(--text)">
+                        <path d="M589.915 284.401C576.692 284.401 564.254 281.078 552.6 274.433C541.17 267.558 531.981 257.589 525.034 244.527C518.086 231.465 514.612 215.653 514.612 197.091V191.591C514.612 173.029 518.086 157.217 525.034 144.155C531.981 131.093 541.17 121.239 552.6 114.593C564.03 107.719 576.468 104.281 589.915 104.281C600 104.281 608.405 105.542 615.128 108.062C622.076 110.354 627.679 113.333 631.937 117C636.195 120.666 639.445 124.562 641.686 128.687H647.737V53.8359H690.095V279.589H648.409V258.964H642.358C638.548 265.381 632.609 271.224 624.541 276.495C616.697 281.766 605.155 284.401 589.915 284.401ZM602.69 246.59C615.689 246.59 626.558 242.35 635.299 233.871C644.039 225.163 648.409 212.559 648.409 196.06V192.622C648.409 176.123 644.039 163.634 635.299 155.155C626.782 146.447 615.913 142.093 602.69 142.093C589.691 142.093 578.821 146.447 570.081 155.155C561.34 163.634 556.97 176.123 556.97 192.966V196.06C556.97 212.559 561.34 225.163 570.081 233.871C578.821 242.35 589.691 246.59 602.69 246.59Z"/>
+                        <path d="M802.947 284.401C786.362 284.401 771.459 280.964 758.236 274.089C745.013 267.214 734.592 257.246 726.972 244.183C719.352 231.121 715.542 215.424 715.542 197.091V191.591C715.542 173.258 719.352 157.561 726.972 144.499C734.592 131.437 745.013 121.468 758.236 114.593C771.459 107.719 786.362 104.281 802.947 104.281C819.531 104.281 834.435 107.719 847.658 114.593C860.881 121.468 871.302 131.437 878.922 144.499C886.542 157.561 890.352 173.258 890.352 191.591V197.091C890.352 215.424 886.542 231.121 878.922 244.183C871.302 257.246 860.881 267.214 847.658 274.089C834.435 280.964 819.531 284.401 802.947 284.401ZM802.947 245.902C815.946 245.902 826.703 241.663 835.22 233.184C843.736 224.476 847.994 212.101 847.994 196.06V192.622C847.994 176.581 843.736 164.321 835.22 155.842C826.927 147.134 816.17 142.78 802.947 142.78C789.948 142.78 779.191 147.134 770.674 155.842C762.158 164.321 757.9 176.581 757.9 192.622V196.06C757.9 212.101 762.158 224.476 770.674 233.184C779.191 241.663 789.948 245.902 802.947 245.902Z"/>
+                        <path d="M974.296 279.589C963.314 279.589 954.349 276.151 947.402 269.277C940.678 262.173 937.316 252.777 937.316 241.09V144.843H895.631V109.094H937.316V63.5902H979.674V109.094H1025.39V144.843H979.674V233.528C979.674 240.402 982.812 243.84 989.087 243.84H1021.36V279.589H974.296Z"/>
+                        <path d="M1050.29 279.589V53.8359H1092.65V171.998H1098.7L1153.83 109.094H1208.96L1131.98 191.591L1211.65 279.589H1157.19L1098.7 211.872H1092.65V279.589H1050.29Z"/>
+                        <path d="M1292.39 284.401C1275.81 284.401 1261.13 280.849 1248.36 273.745C1235.81 266.412 1225.94 256.214 1218.77 243.152C1211.82 229.861 1208.35 214.278 1208.35 196.404V192.279C1208.35 174.404 1211.82 158.936 1218.77 145.874C1225.72 132.582 1235.47 122.385 1248.02 115.281C1260.57 107.948 1275.14 104.281 1291.72 104.281C1308.08 104.281 1322.31 108.062 1334.42 115.625C1346.52 122.958 1355.93 133.27 1362.65 146.561C1369.38 159.623 1372.74 174.863 1372.74 192.279V207.06H1251.38C1251.83 218.747 1256.09 228.257 1264.16 235.59C1272.22 242.923 1282.09 246.59 1293.74 246.59C1305.62 246.59 1314.36 243.954 1319.96 238.684C1325.56 233.413 1329.82 227.569 1332.74 221.153L1367.36 239.715C1364.22 245.673 1359.63 252.204 1353.58 259.308C1347.75 266.183 1339.91 272.141 1330.05 277.183C1320.18 281.995 1307.63 284.401 1292.39 284.401ZM1251.72 174.748H1329.71C1328.81 164.894 1324.89 156.988 1317.94 151.03C1311.22 145.072 1302.37 142.093 1291.39 142.093C1279.96 142.093 1270.88 145.072 1264.16 151.03C1257.43 156.988 1253.29 164.894 1251.72 174.748Z"/>
+                        <path d="M1396.99 279.589V109.094H1438.68V128.343H1444.73C1447.2 121.468 1451.23 116.427 1456.83 113.218C1462.66 110.01 1469.38 108.406 1477 108.406H1497.17V146.905H1476.33C1465.57 146.905 1456.72 149.884 1449.77 155.842C1442.83 161.571 1439.35 170.508 1439.35 182.654V279.589H1396.99Z"/>
+                        <path d="M1516.84 279.589V109.094H1558.52V131.437H1564.57C1567.26 125.478 1572.3 119.864 1579.7 114.593C1587.1 109.094 1598.3 106.344 1613.32 106.344C1626.32 106.344 1637.63 109.437 1647.27 115.625C1657.13 121.583 1664.75 129.947 1670.13 140.718C1675.51 151.259 1678.2 163.634 1678.2 177.842V279.589H1635.84V181.279C1635.84 168.446 1632.7 158.821 1626.43 152.405C1620.38 145.988 1611.64 142.78 1600.21 142.78C1587.21 142.78 1577.12 147.249 1569.95 156.186C1562.78 164.894 1559.19 177.154 1559.19 192.966V279.589H1516.84Z"/>
+                        <path d="M1786.52 284.401C1769.93 284.401 1755.25 280.849 1742.48 273.745C1729.93 266.412 1720.07 256.214 1712.9 243.152C1705.95 229.861 1702.47 214.278 1702.47 196.404V192.279C1702.47 174.404 1705.95 158.936 1712.9 145.874C1719.84 132.582 1729.59 122.385 1742.14 115.281C1754.69 107.948 1769.26 104.281 1785.84 104.281C1802.21 104.281 1816.44 108.062 1828.54 115.625C1840.64 122.958 1850.05 133.27 1856.78 146.561C1863.5 159.623 1866.86 174.863 1866.86 192.279V207.06H1745.5C1745.95 218.747 1750.21 228.257 1758.28 235.59C1766.35 242.923 1776.21 246.59 1787.86 246.59C1799.74 246.59 1808.48 243.954 1814.08 238.684C1819.69 233.413 1823.94 227.569 1826.86 221.153L1861.48 239.715C1858.35 245.673 1853.75 252.204 1847.7 259.308C1841.87 266.183 1834.03 272.141 1824.17 277.183C1814.31 281.995 1801.76 284.401 1786.52 284.401ZM1745.84 174.748H1823.83C1822.94 164.894 1819.01 156.988 1812.07 151.03C1805.34 145.072 1796.49 142.093 1785.51 142.093C1774.08 142.093 1765 145.072 1758.28 151.03C1751.56 156.988 1747.41 164.894 1745.84 174.748Z"/>
+                        <path d="M1891.12 279.589V53.8359H1933.47V279.589H1891.12Z"/>
+                    </g>
+                </svg>
             </a>
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarHeader">
-                <ul class="navbar-nav mx-auto gap-lg-4">
-                    <li class="nav-item">
-                        <a class="nav-link px-3 fw-semibold fs-5 transition-all" target="_blank" href="https://docs.dotkernel.org/">Documentation</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link px-3 fw-semibold fs-5 transition-all" href="{{ url('page::dotkernel-packages-oss-lifecycle') }}">Packages Lifecycle</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link px-3 fw-semibold fs-5 transition-all" href="{{ url('page::category-resource', {slug: 'how-to'}) }}">How to's</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link px-3 fw-semibold fs-5 transition-all" href="{{ url('page::blog') }}">Blog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link px-3 fw-semibold fs-5 transition-all" href="{{ url('page::categories') }}">Categories</a>
-                    </li>
+            <div class="d-flex align-items-center order-lg-2">
+                <button class="theme-toggle" aria-label="Switch color theme" onclick="toggleTheme()">
+                    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.6 4.6l1.7 1.7M17.7 17.7l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.6 19.4l1.7-1.7M17.7 6.3l1.7-1.7"/></svg>
+                    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z"/></svg>
+                </button>
+                <button class="navbar-toggler ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse order-lg-1" id="mainNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link" href="https://docs.dotkernel.org/" target="_blank" rel="noopener">Documentation</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url('page::dotkernel-packages-oss-lifecycle') }}">Packages Lifecycle</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url('page::category-resource', {slug: 'how-to'}) }}">How to's</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url('page::blog') }}">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url('page::categories') }}">Categories</a></li>
+                    <li class="nav-item"><a class="nav-link nav-cta mx-2 " href="{{ url('page::contact') }}">Contact us</a></li>
                 </ul>
-                <div class="d-none d-lg-block">
-                    <a href="{{ url('page::contact') }}" class="btn btn-primary rounded-pill px-4">Contact</a>
-                </div>
             </div>
         </div>
     </nav>
 </header>
-<main class="app-content flex-grow-1 py-5">
-    <div class="container">
-        <header class="content-header mb-4">
-            {% block page_title %}{% endblock %}
-        </header>
-        <section class="content">
-            {% block content %}{% endblock %}
-        </section>
-    </div>
+<main id="top">
+    {% block content %}{% endblock %}
 </main>
-<footer class="app-footer border-top py-4 mt-auto text-muted">
-    <div class="container">
-        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-2 mb-3">
-            <p class="enjoy text-uppercase tracking-wider small fw-bold text-primary mb-0">
-                enjoy dotkernel
-            </p>
-            <p class="mb-0 small">
-                &copy; 2024 - {{ 'now'|date('Y') }} Dotkernel by Apidemia
-            </p>
-        </div>
-
-        <hr class="my-3">
-
-        <div class="row gy-3 align-items-center">
-            <div class="col-md-6">
-                <p class="small mb-2">
-                    &copy; 2009 - 2016 Dotboost Technologies Inc.<br>
-                    &copy; 2017 - {{ 'now'|date('Y') }} Apidemia Inc.<br>
-                    The Laminas logo is copyright of the
-                    <a href="https://getlaminas.org/about/foundation" target="_blank" rel="noopener" class="text-primary">Laminas Foundation</a>
-                </p>
-                <div class="d-flex align-items-center gap-3">
-                    <a href="https://github.com/dotkernel" target="_blank" rel="noopener">
-                        <img src="{{ asset('images/app/icon/icon_git.svg') }}" alt="GitHub" style="height: 24px; width: auto;">
-                    </a>
-                    <a href="https://dotkernel.slack.com/" target="_blank" rel="noopener">
-                        <img src="{{ asset('images/app/icon/icon_slack.svg') }}" alt="Slack" style="height: 24px; width: auto;">
-                    </a>
-                    <a href="https://www.dotkernel.com/feed/" target="_blank" rel="noopener">
-                        <img src="{{ asset('images/app/icon/icon_feed.svg') }}" alt="RSS Feed" style="height: 24px; width: auto;">
-                    </a>
-                </div>
+<footer>
+    <div class="wrap">
+        <div class="footer-top">
+            <div class="footer-copy">
+                &copy; 2009 - 2016 Dotboost Technologies Inc.<br>
+                &copy; 2017 - {{ 'now'|date('Y') }} Apidemia Inc.<br>
+                The Laminas logo is copyright of the <a href="https://getlaminas.org/about/foundation" target="_blank" rel="noopener">Laminas Foundation</a>.
             </div>
-
-            <div class="col-md-6 text-md-end">
-                <a href="https://jb.gg/OpenSourceSupport" target="_blank" rel="noopener" class="d-inline-block">
-                    <img src="{{ asset('images/app/icon/jetbrains-mono-white.svg') }}" alt="JetBrains" style="width: 150px; height: auto;">
+            <div class="footer-social">
+                <a href="https://github.com/dotkernel" target="_blank" rel="noopener" aria-label="GitHub">
+                    <img class="icon-dark" src="{{ asset('images/app/icon/icon_git-w.svg') }}" alt="GitHub">
+                    <img class="icon-light" src="{{ asset('images/app/icon/icon_git-d.svg') }}" alt="GitHub">
+                </a>
+                <a href="https://dotkernel.slack.com/" target="_blank" rel="noopener" aria-label="Slack">
+                    <img class="icon-dark" src="{{ asset('images/app/icon/icon_slack-w.svg') }}" alt="Slack">
+                    <img class="icon-light" src="{{ asset('images/app/icon/icon_slack-d.svg') }}" alt="Slack">
+                </a>
+                <a href="https://www.dotkernel.com/feed/" target="_blank" rel="noopener" aria-label="RSS feed">
+                    <img class="icon-dark" src="{{ asset('images/app/icon/icon_feed-w.svg') }}" alt="RSS Feed">
+                    <img class="icon-light" src="{{ asset('images/app/icon/icon_feed-d.svg') }}" alt="RSS Feed">
                 </a>
             </div>
+        </div>
+        <div class="footer-bottom">
+                <span class="sponsor">
+                    Open-source tooling supported by
+                    <a href="https://jb.gg/OpenSourceSupport" target="_blank" rel="noopener" class="jetbrains-link">
+                        <img class="icon-light jetbrains-logo mt-1" src="{{ asset('images/app/icon/jetbrains-mono-dark.svg') }}" alt="JetBrains">
+                        <img class="icon-dark jetbrains-logo mt-1" src="{{ asset('images/app/icon/jetbrains-mono-white.svg') }}" alt="JetBrains">
+                    </a>
+                </span>
+            <span class="sponsor">Built with Mezzio, Laminas &amp; Doctrine — for PHP developers, by PHP developers.</span>
         </div>
     </div>
 </footer>
