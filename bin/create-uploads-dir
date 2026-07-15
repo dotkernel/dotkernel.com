@@ -1,0 +1,153 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+use Doctrine\ORM\EntityManager;
+use Light\Blog\Entity\Post;
+
+chdir(__DIR__ . '/../');
+
+require 'vendor/autoload.php';
+
+$templatesDir = 'src/Blog/templates/page/blog-resource';
+$uploadsDir   = 'public/uploads';
+$articleDir   = $uploadsDir . '/article';
+$limit        = null;
+
+if (isset($argv[1])) {
+    if (! ctype_digit($argv[1]) || (int) $argv[1] < 1) {
+        fwrite(STDERR, sprintf("Invalid file limit '%s'. Expected a positive integer.%s", $argv[1], PHP_EOL));
+        exit(1);
+    }
+    $limit = (int) $argv[1];
+}
+
+if (! is_dir($templatesDir)) {
+    fwrite(STDERR, sprintf("Directory '%s' not found%s", $templatesDir, PHP_EOL));
+    exit(1);
+}
+
+$container      = require 'config/container.php';
+$entityManager  = $container->get(EntityManager::class);
+$postRepository = $entityManager->getRepository(Post::class);
+
+/**
+ * Index every file currently under public/uploads (excluding the
+ * uploads/article destination tree) by basename, so we can locate the
+ * source file for each image referenced from a template.
+ *
+ * @return array<string, string>
+ */
+function indexUploadSources(string $uploadsDir, string $articleDir): array
+{
+    $index = [];
+
+    $iterator = new RecursiveIteratorIterator(
+        new RecursiveDirectoryIterator($uploadsDir, FilesystemIterator::SKIP_DOTS)
+    );
+
+    foreach ($iterator as $file) {
+        if (! $file->isFile()) {
+            continue;
+        }
+
+        $path = $file->getPathname();
+        if (str_starts_with($path, $articleDir . '/')) {
+            continue;
+        }
+
+        $basename = $file->getFilename();
+        if (! isset($index[$basename])) {
+            $index[$basename] = $path;
+        }
+    }
+
+    return $index;
+}
+
+$sourceIndex = indexUploadSources($uploadsDir, $articleDir);
+
+// Matches the filename in: asset('uploads/article/' ~ article.id ~ '/filename.ext')
+$pattern = '/~\s*article\.id\s*~\s*\'\/([^\']+)\'/';
+
+$filesProcessed = 0;
+$dirsCreated    = 0;
+$imagesCopied   = 0;
+$imagesMissing  = 0;
+
+$templateIterator = new RecursiveIteratorIterator(
+    new RecursiveDirectoryIterator($templatesDir, FilesystemIterator::SKIP_DOTS)
+);
+
+foreach ($templateIterator as $file) {
+    if ($limit !== null && $filesProcessed >= $limit) {
+        break;
+    }
+
+    if (! $file->isFile() || $file->getExtension() !== 'twig') {
+        continue;
+    }
+
+    $path     = $file->getPathname();
+    $slug     = preg_replace('/\.html\.twig$/', '', $file->getFilename());
+    $contents = file_get_contents($path);
+    if ($contents === false) {
+        continue;
+    }
+
+    preg_match_all($pattern, $contents, $matches);
+    $filenames = array_unique($matches[1] ?? []);
+    if ($filenames === []) {
+        continue;
+    }
+
+    $post = $postRepository->findOneBy(['slug' => $slug]);
+    if ($post === null) {
+        printf("No Post found for slug '%s' (%s), skipping%s", $slug, $path, PHP_EOL);
+        continue;
+    }
+
+    $filesProcessed++;
+
+    $targetDir = $articleDir . '/' . $post->getId()->toString();
+    if (! is_dir($targetDir)) {
+        if (! mkdir($targetDir, 0775, true) && ! is_dir($targetDir)) {
+            fwrite(STDERR, sprintf("Failed to create directory '%s'%s", $targetDir, PHP_EOL));
+            continue;
+        }
+        $dirsCreated++;
+    }
+
+    foreach ($filenames as $filename) {
+        $targetPath = $targetDir . '/' . $filename;
+        if (file_exists($targetPath)) {
+            continue;
+        }
+
+        if (! isset($sourceIndex[$filename])) {
+            printf("Source image '%s' not found for %s%s", $filename, $path, PHP_EOL);
+            $imagesMissing++;
+            continue;
+        }
+
+        if (! copy($sourceIndex[$filename], $targetPath)) {
+            fwrite(STDERR, sprintf("Failed to copy '%s' to '%s'%s", $sourceIndex[$filename], $targetPath, PHP_EOL));
+            continue;
+        }
+
+        $imagesCopied++;
+    }
+}
+
+printf(
+    "Done. %d template%s processed, %d director%s created, %d image%s copied, %d missing.%s",
+    $filesProcessed,
+    $filesProcessed === 1 ? '' : 's',
+    $dirsCreated,
+    $dirsCreated === 1 ? 'y' : 'ies',
+    $imagesCopied,
+    $imagesCopied === 1 ? '' : 's',
+    $imagesMissing,
+    PHP_EOL
+);

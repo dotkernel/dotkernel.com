@@ -3,28 +3,33 @@
 {% block title %}Using PHP 7 Express in Zend Studio 13{% endblock %}
 
 {% block page_title %}
-    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">PHP Development</div>
-    <h1 class="fw-bold text-dark display-6 mb-0">Using PHP 7 Express in Zend Studio 13</h1>
-    <hr class="mt-4 mb-2 opacity-25">
+    <div class="wrap">
+        <div class="post-hero">
+            <a href="{{ url('page::blog') }}" class="breadcrumb-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                Back to Blog
+            </a>
+            <div><span class="eyebrow">PHP Development</span></div>
+            <h1>{{ article.title }}</h1>
+            <div class="post-meta">
+                <span class="text-muted small">
+                    By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
+                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                </span>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block content %}
-    <div class="container py-4">
-        <div class="row g-4">
+    <div class="wrap post-body-wrap">
+        <div class="post-layout">
 
             {{ include('@partial/left-menu.html.twig') }}
 
-            <main class="col-12 col-md-8 col-lg-9">
-                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
-                    <header class="mb-4">
-                        <h1 class="h2 text-dark fw-bold">Using PHP 7 Express in Zend Studio 13</h1>
-                        <div class="text-muted small">
-                            <i class="bi bi-folder2-open me-1"></i> PHP Development
-                        </div>
-                    </header>
-
-                    <section class="post-content text-secondary lh-lg fs-6">
-                        This article will cover the steps needed in order to check the PHP7 compatibility, a small troubleshooter.
+            <article class="article">
+                <div class="entry">
+This article will cover the steps needed in order to check the PHP7 compatibility, a small troubleshooter.
 
 This article will also contain a compatibility issue check on the latest Zend Framework 1 version.
 
@@ -38,7 +43,7 @@ If you want to create a new project for testing instead of modifying the origina
 
 Long story short: Use the exact PHP version your project is using at the project creation.
 
-<a href="/uploads/2015/12/Screenshot-2015-12-22-16.21.56.png" rel="attachment wp-att-2900"><img class="wp-image-2900 size-full" src="/uploads/2015/12/Screenshot-2015-12-22-16.21.56.png" alt="The New Local PHP Project dialog in Zend Studio 13 " width="613" height="548" class="img-fluid rounded my-2"></a> The "New Local PHP Project" dialog in Zend Studio 13 and the PHP version selection
+<a href="/uploads/2015/12/Screenshot-2015-12-22-16.21.56.png" rel="attachment wp-att-2900"><img src="{{ asset('uploads/article/' ~ article.id ~ '/Screenshot-2015-12-22-16.21.56.png') }}" alt="The New Local PHP Project dialog in Zend Studio 13 " width="613" height="548" class="img-fluid rounded my-2"></a> The "New Local PHP Project" dialog in Zend Studio 13 and the PHP version selection
 <h3>The 'PHP Interpreter' selection</h3>
 If the <strong>PHP 7 Express </strong>feature is won't show up the issue might be the <strong>PHP Interpreter </strong>selected.
 
@@ -49,7 +54,7 @@ To check and modify the PHP Interpreter:
      <li>The <strong>PHP</strong> -&gt; <strong>Interpreter </strong>option should show up</li>
      <li>If you only need a specific interpreter for a specific project you can check "Enable Project specific settings" by checking this option you won't affect the other projects in the current workspace</li>
 </ul>
-<a href="/uploads/2015/12/zftest.png" rel="attachment wp-att-2902"><img class="wp-image-2902 size-full" src="/uploads/2015/12/zftest.png" alt="Zend Studio PHP Interpreter Dialog" width="801" height="555" class="img-fluid rounded my-2"></a> Zend Studio PHP Interpreter Dialog
+<a href="/uploads/2015/12/zftest.png" rel="attachment wp-att-2902"><img src="{{ asset('uploads/article/' ~ article.id ~ '/zftest.png') }}" alt="Zend Studio PHP Interpreter Dialog" width="801" height="555" class="img-fluid rounded my-2"></a> Zend Studio PHP Interpreter Dialog
 
 The <strong>PHP 7 Express</strong> feature should now show up.
 <h3>Project preparation</h3>
@@ -73,10 +78,11 @@ After the analysis was done, you should see the <strong>PHP 7 Express </strong>v
 
 The result should look like this:
 
-<a href="/uploads/2015/12/php7errors.png" rel="attachment wp-att-2904"><img class="size-full wp-image-2904" src="/uploads/2015/12/php7errors.png" alt="Zend Framework 1 compatibility issues with PHP7 " width="1006" height="647" class="img-fluid rounded my-2"></a> Zend Framework 1 compatibility issues with PHP7
-                    </section>
-                </article>
-            </main>
+<a href="/uploads/2015/12/php7errors.png" rel="attachment wp-att-2904"><img src="{{ asset('uploads/article/' ~ article.id ~ '/php7errors.png') }}" alt="Zend Framework 1 compatibility issues with PHP7 " width="1006" height="647" class="img-fluid rounded my-2"></a> Zend Framework 1 compatibility issues with PHP7
+                </div>
+
+                {{ include('@partial/post-nav.html.twig') }}
+            </article>
 
         </div>
     </div>

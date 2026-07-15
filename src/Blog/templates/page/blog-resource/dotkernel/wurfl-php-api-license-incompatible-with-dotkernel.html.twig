@@ -3,28 +3,33 @@
 {% block title %}WURFL PHP API license incompatible with DotKernel{% endblock %}
 
 {% block page_title %}
-    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel</div>
-    <h1 class="fw-bold text-dark display-6 mb-0">WURFL PHP API license incompatible with DotKernel</h1>
-    <hr class="mt-4 mb-2 opacity-25">
+    <div class="wrap">
+        <div class="post-hero">
+            <a href="{{ url('page::blog') }}" class="breadcrumb-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                Back to Blog
+            </a>
+            <div><span class="eyebrow">Dotkernel</span></div>
+            <h1>{{ article.title }}</h1>
+            <div class="post-meta">
+                <span class="text-muted small">
+                    By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
+                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                </span>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block content %}
-    <div class="container py-4">
-        <div class="row g-4">
+    <div class="wrap post-body-wrap">
+        <div class="post-layout">
 
             {{ include('@partial/left-menu.html.twig') }}
 
-            <main class="col-12 col-md-8 col-lg-9">
-                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
-                    <header class="mb-4">
-                        <h1 class="h2 text-dark fw-bold">WURFL PHP API license incompatible with DotKernel</h1>
-                        <div class="text-muted small">
-                            <i class="bi bi-folder2-open me-1"></i> Dotkernel
-                        </div>
-                    </header>
-
-                    <section class="post-content text-secondary lh-lg fs-6">
-                        We integrated long time ago the WURFL PHP API into DotKernel code base. At that time, the license of that WURFL library was GNU/GPL, which make it perfect compatible with Zend Framework license( <strong>new BSD</strong>) and DotKernel ( <strong>OSL 3.0</strong>). Everybody was happy, users was able to make web applications for them or for their customers without worry about licensing costs at all.
+            <article class="article">
+                <div class="entry">
+We integrated long time ago the WURFL PHP API into DotKernel code base. At that time, the license of that WURFL library was GNU/GPL, which make it perfect compatible with Zend Framework license( <strong>new BSD</strong>) and DotKernel ( <strong>OSL 3.0</strong>). Everybody was happy, users was able to make web applications for them or for their customers without worry about licensing costs at all.
 
 On June 6th, 2011, the WURFL PHP API library was updated to version 1.3.0. So we updated too the latest DotKernel 1.5.0 ( now in release candidate stage, soon to be released as stable) , without noticing the change on its license, from GNU/GPL to AGPL which suddenly transform it into a 'trial only' library, for "Product evaluation" only.
 
@@ -42,9 +47,10 @@ But we must keep <a href="http://www.dotkernel.com" target="_blank" rel="noopene
 &nbsp;
 
 <em>later edit: the correct link to announcement is <strong><a href="http://tech.groups.yahoo.com/group/wmlprogramming/message/34031" target="_blank" rel="noopener noreferrer">here </a></strong></em>
-                    </section>
-                </article>
-            </main>
+                </div>
+
+                {{ include('@partial/post-nav.html.twig') }}
+            </article>
 
         </div>
     </div>

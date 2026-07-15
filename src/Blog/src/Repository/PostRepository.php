@@ -69,6 +69,38 @@ class PostRepository extends AbstractRepository
     }
 
     /**
+     * @return array{previous: Post|null, next: Post|null}
+     */
+    public function getAdjacentPosts(Post $post): array
+    {
+        $previous = $this->getQueryBuilder()
+            ->select('articles')
+            ->from(Post::class, 'articles')
+            ->where('articles.status = :published')
+            ->andWhere('articles.postDate < :postDate')
+            ->setParameter('published', PostStatusEnum::Published)
+            ->setParameter('postDate', $post->getPostDate())
+            ->orderBy('articles.postDate', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+
+        $next = $this->getQueryBuilder()
+            ->select('articles')
+            ->from(Post::class, 'articles')
+            ->where('articles.status = :published')
+            ->andWhere('articles.postDate > :postDate')
+            ->setParameter('published', PostStatusEnum::Published)
+            ->setParameter('postDate', $post->getPostDate())
+            ->orderBy('articles.postDate', 'ASC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+
+        return ['previous' => $previous, 'next' => $next];
+    }
+
+    /**
      * @return array<int, Post>
      */
     public function getRecentPosts(int $limit = 5): array

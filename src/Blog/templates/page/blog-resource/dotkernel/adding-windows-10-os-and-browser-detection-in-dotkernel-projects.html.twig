@@ -3,32 +3,37 @@
 {% block title %}Adding Windows 10 OS and Browser detection in DotKernel projects{% endblock %}
 
 {% block page_title %}
-    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel</div>
-    <h1 class="fw-bold text-dark display-6 mb-0">Adding Windows 10 OS and Browser detection in DotKernel projects</h1>
-    <hr class="mt-4 mb-2 opacity-25">
+    <div class="wrap">
+        <div class="post-hero">
+            <a href="{{ url('page::blog') }}" class="breadcrumb-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                Back to Blog
+            </a>
+            <div><span class="eyebrow">Dotkernel</span></div>
+            <h1>{{ article.title }}</h1>
+            <div class="post-meta">
+                <span class="text-muted small">
+                    By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
+                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                </span>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block content %}
-    <div class="container py-4">
-        <div class="row g-4">
+    <div class="wrap post-body-wrap">
+        <div class="post-layout">
 
             {{ include('@partial/left-menu.html.twig') }}
 
-            <main class="col-12 col-md-8 col-lg-9">
-                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
-                    <header class="mb-4">
-                        <h1 class="h2 text-dark fw-bold">Adding Windows 10 OS and Browser detection in DotKernel projects</h1>
-                        <div class="text-muted small">
-                            <i class="bi bi-folder2-open me-1"></i> Dotkernel
-                        </div>
-                    </header>
-
-                    <section class="post-content text-secondary lh-lg fs-6">
-                        Recently we have added the Windows 8, 8.1 and 10 OS icon and Microsoft's Edge browser icon.
+            <article class="article">
+                <div class="entry">
+Recently we have added the Windows 8, 8.1 and 10 OS icon and Microsoft's Edge browser icon.
 
 In this article we will have the icon upgrade guide.
 
-<a href="/uploads/2015/09/icons.png"><img class="size-full wp-image-2862" src="/uploads/2015/09/icons.png" alt="Icons Patch" width="232" height="162" / class="img-fluid rounded my-2"></a> The new Icons listed in User and Admin Logins
+<a href="/uploads/2015/09/icons.png"><img src="{{ asset('uploads/article/' ~ article.id ~ '/icons.png') }}" alt="Icons Patch" width="232" height="162" / class="img-fluid rounded my-2"></a> The new Icons listed in User and Admin Logins
 
 <!--more-->
 
@@ -45,16 +50,17 @@ In this article we will have the icon upgrade guide.
     <li>You can now delete the <strong>icons_patch</strong> folder or use it to patch another project</li>
 </ol>
 List of affected files:
-<pre class="bg-light border rounded p-3 overflow-auto">M /configs/useragent/browser.xml
+<pre>M /configs/useragent/browser.xml
 M /configs/useragent/os.xml
 A /images/browsers/edge.png
 A /images/os/windows_metro.png</pre>
 <strong>M </strong>stands for <strong>modify</strong>
 
 <strong>A</strong> stands for <strong>add</strong>
-                    </section>
-                </article>
-            </main>
+                </div>
+
+                {{ include('@partial/post-nav.html.twig') }}
+            </article>
 
         </div>
     </div>

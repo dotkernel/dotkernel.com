@@ -3,129 +3,85 @@
 {% block title %}Dotkernel API v6: The root of Dotkernel Headless Platform{% endblock %}
 
 {% block page_title %}
-    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Headless Platform</div>
-    <h1 class="fw-bold text-dark display-6 mb-0">Dotkernel API v6: The root of Dotkernel Headless Platform</h1>
-    <hr class="mt-4 mb-2 opacity-25">
+    <div class="wrap">
+        <div class="post-hero">
+            <a href="{{ url('page::blog') }}" class="breadcrumb-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                Back to Blog
+            </a>
+            <div><span class="eyebrow">Headless Platform</span></div>
+            <h1>{{ article.title }}</h1>
+            <div class="post-meta">
+                <span class="text-muted small">
+                    By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
+                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                </span>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block content %}
-    <div class="container py-4">
-        <div class="row g-4">
+    <div class="wrap post-body-wrap">
+        <div class="post-layout">
 
             {{ include('@partial/left-menu.html.twig') }}
 
-            <main class="col-12 col-md-8 col-lg-9">
-                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
-                    <header class="mb-4">
-                        <h1 class="h2 text-dark fw-bold">Dotkernel API v6: The root of Dotkernel Headless Platform</h1>
-                        <div class="text-muted small">
-                            <i class="bi bi-folder2-open me-1"></i> Headless Platform
-                        </div>
-                    </header>
-
-                    <section class="post-content text-secondary lh-lg fs-6">
-                        <!-- wp:paragraph -->
+            <article class="article">
+                <div class="entry">
 <p class="mb-3">Dotkernel API has come a long way since we published a list of its <a href="https://www.dotkernel.com/dotkernel3/dotkernel-api-architecture-components/" rel="noreferrer noopener" target="_blank">architecture and components</a> a while ago. We implemented new features, while some components were replaced, and others were enhanced. Our ultimate goal is to stay relevant in the PHP ecosystem by implementing best practices recommended by the PHP community.</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:heading -->
-<h2 class="wp-block-heading"><a href="#new-features"></a>New Features</h2>
-<!-- /wp:heading -->
+<h2><a href="#new-features"></a>New Features</h2>
 
-<!-- wp:list -->
-<ul class="wp-block-list"><!-- wp:list-item -->
-<li><strong>Content Negotiation</strong> makes it possible for diverse systems to work seamlessly together. It defines the communication parameters between client and server to make sure both sides agree on how the data exchange takes place.</li>
-<!-- /wp:list-item -->
+<ul><li><strong>Content Negotiation</strong> makes it possible for diverse systems to work seamlessly together. It defines the communication parameters between client and server to make sure both sides agree on how the data exchange takes place.</li>
 
-<!-- wp:list-item -->
 <li>The implemented of <a href="https://github.com/mezzio/mezzio-problem-details" target="_blank" rel="noreferrer noopener">mezzio-problem-details</a> is used to return <strong>standardized error codes</strong>. The generated problem details responses are based on either PHP primitives or exceptions/throwables. This ultimately helps <strong>error reporting</strong> system-wide.</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>The common logic is now moved to the <strong>Core module</strong>. This also allows an easier <strong>sharing</strong> of the <strong>functionality</strong> within Core with other Dotkernel applications. To share the Code module, you need to save it as a separate Git repository which can then be added as a <strong>submodule</strong> to any Dotkernel application.</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>Replaced Twig with <strong>custom templating</strong> solution to avoid using <a href="https://github.com/mezzio/mezzio-twigrenderer" target="_blank" rel="noreferrer noopener">mezzio-twigrenderer</a>. This ultimately offers more reliable template handling as the small cost of some features that are normally not used in APIs.</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>Handle delegators and injected InputFilters were refactored to <strong>reduce the number of dependencies in handlers</strong>.</li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list -->
+</ul>
 
-<!-- wp:paragraph -->
 <p class="mb-3">Some smaller changes are listed below:</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:list -->
-<ul class="wp-block-list"><!-- wp:list-item -->
-<li>Added OpenAPI documentation for all endpoints.</li>
-<!-- /wp:list-item -->
+<ul><li>Added OpenAPI documentation for all endpoints.</li>
 
-<!-- wp:list-item -->
 <li>Added .gitattributes to set some git properties based on path and filename.</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>Implemented enums in the database, where relevant, mostly as a proof of concept.</li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list -->
+</ul>
 
-<!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading"><a href="#coming-soon"></a>Coming Soon</h3>
-<!-- /wp:heading -->
+<h3><a href="#coming-soon"></a>Coming Soon</h3>
 
-<!-- wp:paragraph -->
 <p class="mb-3">Currently we support:</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:list -->
-<ul class="wp-block-list"><!-- wp:list-item -->
-<li>Service Manager version 3 - restricted because of constraints from some dependencies.</li>
-<!-- /wp:list-item -->
+<ul><li>Service Manager version 3 - restricted because of constraints from some dependencies.</li>
 
-<!-- wp:list-item -->
 <li>PHP 8.3.</li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list -->
+</ul>
 
-<!-- wp:paragraph -->
 <p class="mb-3">This setup is soon going to change. The very next version in the Roadmap for version 6.1 will implement:</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:list -->
-<ul class="wp-block-list"><!-- wp:list-item -->
-<li>Service Manager 4.</li>
-<!-- /wp:list-item -->
+<ul><li>Service Manager 4.</li>
 
-<!-- wp:list-item -->
 <li>Support for PHP 8.4 and 8.5.</li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list -->
+</ul>
 
-<!-- wp:heading -->
-<h2 class="wp-block-heading"><a href="#composer-updates"></a>Composer updates</h2>
-<!-- /wp:heading -->
+<h2><a href="#composer-updates"></a>Composer updates</h2>
 
-<!-- wp:paragraph -->
 <p class="mb-3">As with all regular updates, all <strong>packages</strong> were <strong>updated to their most recent versions</strong> that still allow for an installable set of dependencies.</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
 <p class="mb-3">One of the packages that stands out is <a href="https://github.com/ramsey/uuid" rel="noreferrer noopener" target="_blank">ramsey/uuid</a>. <strong>UUID version 7</strong> is already being used for ramsey/uuid version 4 and thus will be available with no additional code changes for the release of ramsey/uuid version 5.</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:heading -->
-<h2 class="wp-block-heading"><a href="#tweaked-configuration-and-testing"></a>Tweaked configuration and testing</h2>
-<!-- /wp:heading -->
+<h2><a href="#tweaked-configuration-and-testing"></a>Tweaked configuration and testing</h2>
 
-<!-- wp:paragraph -->
 <p class="mb-3">Alongside some smaller changes related to cache configuration for doctrine and route grouping, the <strong>test suite</strong> has been revised. <a href="https://psalm.dev/" rel="noreferrer noopener" target="_blank">Psalm</a> has been replaced with <a href="https://phpstan.org/" rel="noreferrer noopener" target="_blank">PHPStan</a>. This decision was made to remain in line with developers from popular projects like Doctrine and Composer who have also made the switch recently. A separate upgrade was dedicated to increasing the <strong>rule level to 8</strong> which enables stricter static analysis and reveales more potential errors.</p>
-<!-- /wp:paragraph -->
-                    </section>
-                </article>
-            </main>
+                </div>
+
+                {{ include('@partial/post-nav.html.twig') }}
+            </article>
 
         </div>
     </div>

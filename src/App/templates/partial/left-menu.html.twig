@@ -26,10 +26,12 @@
         <div class="widget-title">Categories</div>
         <ul>
             {% for category in categories %}
-                <a href="{{ url('page::category-resource', {slug: category.slug}) }}">
-                    {{ category.name }}
-                    <span class="cat-count">{{ category.posts.count() }}</span>
-                </a>
+                <li>
+                    <a href="{{ url('page::category-resource', {slug: category.slug}) }}">
+                        {{ category.name }}
+                        <span class="cat-count">{{ category.posts.count() }}</span>
+                    </a>
+                </li>
             {% endfor %}
         </ul>
         <div class="widget-more">

@@ -2,92 +2,83 @@
 
 {% block title %}{{ author.name }}{% endblock %}
 
-{% block content %}
-    <div class="container py-4">
-
-        <div class="card mb-4 border-0 shadow-sm rounded-3">
-            <div class="card-body p-4 d-flex align-items-center gap-3">
-                <div class="bg-primary bg-opacity-10 rounded-circle p-3">
-                    <i class="fas fa-person-fill fs-3 text-primary"></i>
-                </div>
-                <div>
-                    <h1 class="h4 fw-bold mb-1">{{ author.name }}</h1>
-                    <p class="text-muted mb-0 small">
-                        <i class="fas fa-envelope me-1"></i>{{ author.email }}
-                    </p>
-                </div>
+{% block page_title %}
+    <div class="wrap">
+        <div class="post-hero">
+            <a href="{{ url('page::blog') }}" class="breadcrumb-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                Back to Blog
+            </a>
+            <div><span class="eyebrow">Author</span></div>
+            <h1>Articles by {{ author.name }}</h1>
+            <div class="post-meta author-meta">
+                <span class="author-avatar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                        <circle cx="12" cy="8" r="4"/>
+                        <path d="M4 20c0-3.3 3.6-5 8-5s8 1.7 8 5"/>
+                    </svg>
+                </span>
+                <a href="mailto:{{ author.email }}">{{ author.email }}</a>
             </div>
         </div>
+    </div>
+{% endblock %}
 
-        <div class="row g-4">
+{% block content %}
+    <div class="wrap post-body-wrap">
+        <div class="post-layout">
 
             {{ include('@partial/left-menu.html.twig') }}
 
-            <main class="col-lg-9 col-md-8">
-
-                <header class="mb-4 pb-3 border-bottom">
-                    <span class="text-uppercase text-muted small fw-bold d-block mb-1">Author</span>
-                    <h2 class="display-6 fw-bold text-dark mb-0">Articles by {{ author.name }}</h2>
-                </header>
-
-                <div class="d-flex flex-column gap-3">
+            <main class="article">
+                <div class="posts-list">
                     {% for post in data.items %}
-                        <article class="card border-0 shadow-sm rounded-3">
-                            <div class="card-body p-4 d-flex flex-column justify-content-between">
-                                <div>
-                                    <h3 class="h5 fw-bold mb-3">
-                                        <a href="{{ url('page::blog-resource', {categorySlug: post.category.slug, slug: post.slug}) }}" class="link-dark text-decoration-none">
-                                            {{ post.title }}
-                                        </a>
-                                    </h3>
-                                    <p class="text-muted small mb-0">{{ post.excerpt }}</p>
-                                </div>
-                                <div class="d-flex align-items-center justify-content-between mt-3 pt-3 border-top">
-                                    <span class="text-muted small">
-                                        <i class="fas fa-calendar3 me-1"></i>{{ post.postDate|date('Y-m-d') }}
-                                    </span>
-                                    <a href="{{ url('page::blog-resource', {categorySlug: post.category.slug, slug: post.slug}) }}" class="text-primary small fw-bold text-decoration-none d-inline-flex align-items-center gap-1">
-                                        Read more <i class="fas fa-arrow-right"></i>
-                                    </a>
-                                </div>
+                        <article class="card my-3">
+                            <h3>
+                                <a href="{{ url('page::blog-resource', {categorySlug: post.category.slug, slug: post.slug}) }}">
+                                    {{ post.title }}
+                                </a>
+                            </h3>
+
+                            <p class="desc">{{ post.excerpt }}</p>
+
+                            <div class="card-btns">
+                                <span class="post-date">{{ post.postDate|date('Y-m-d') }}</span>
+
+                                <a href="{{ url('page::blog-resource', {categorySlug: post.category.slug, slug: post.slug}) }}"
+                                   class="btn btn-ghost btn-sm">
+                                    Read more →
+                                </a>
                             </div>
                         </article>
                     {% else %}
-                        <div class="text-center py-5 bg-white rounded-3 border shadow-sm">
-                            <i class="fas fa-newspaper display-4 text-muted d-block mb-3"></i>
-                            <p class="text-muted mb-0">No posts found.</p>
+                        <div class="card posts-empty">
+                            <p class="desc">No posts found.</p>
                         </div>
                     {% endfor %}
                 </div>
 
                 {% if data.lastPage > 1 %}
-                    <nav class="mt-4 d-flex justify-content-center">
-                        <ul class="pagination pagination-sm">
-                            <li class="page-item {% if data.isFirstPage %}disabled{% endif %}">
-                                <a class="page-link rounded-start-3" href="?page={{ data.previousPage }}">
-                                    <i class="fas fa-chevron-left"></i>
-                                </a>
-                            </li>
-                            {% for p in data.pages %}
-                                <li class="page-item {% if p == data.currentPage %}active{% endif %}">
-                                    <a class="page-link" href="?page={{ p }}">{{ p }}</a>
-                                </li>
-                            {% endfor %}
-                            <li class="page-item {% if data.isLastPage %}disabled{% endif %}">
-                                <a class="page-link rounded-end-3" href="?page={{ data.nextPage }}">
-                                    <i class="fas fa-chevron-right"></i>
-                                </a>
-                            </li>
-                        </ul>
+                    <nav class="pagination-row" aria-label="Author posts pagination">
+                        <a class="btn btn-ghost btn-sm {% if data.isFirstPage %}disabled{% endif %}"
+                           href="?page={{ data.previousPage }}" aria-label="Previous page">←</a>
+
+                        {% for p in data.pages %}
+                            <a class="btn btn-sm {% if p == data.currentPage %}btn-primary{% else %}btn-ghost{% endif %}"
+                               href="?page={{ p }}">{{ p }}</a>
+                        {% endfor %}
+
+                        <a class="btn btn-ghost btn-sm {% if data.isLastPage %}disabled{% endif %}"
+                           href="?page={{ data.nextPage }}" aria-label="Next page">→</a>
                     </nav>
-                    <p class="text-center text-muted small mt-2">
+
+                    <p class="post-date pagination-summary">
                         Page {{ data.currentPage }} of {{ data.lastPage }}
-                        &nbsp;·&nbsp;
-                        {{ data.count }} articles total
+                        &nbsp;·&nbsp; {{ data.count }} articles total
                     </p>
                 {% endif %}
-
             </main>
+
         </div>
     </div>
 {% endblock %}

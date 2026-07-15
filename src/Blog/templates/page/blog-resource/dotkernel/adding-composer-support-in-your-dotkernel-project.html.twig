@@ -3,28 +3,33 @@
 {% block title %}Adding Composer support in your DotKernel project{% endblock %}
 
 {% block page_title %}
-    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel</div>
-    <h1 class="fw-bold text-dark display-6 mb-0">Adding Composer support in your DotKernel project</h1>
-    <hr class="mt-4 mb-2 opacity-25">
+    <div class="wrap">
+        <div class="post-hero">
+            <a href="{{ url('page::blog') }}" class="breadcrumb-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                Back to Blog
+            </a>
+            <div><span class="eyebrow">Dotkernel</span></div>
+            <h1>{{ article.title }}</h1>
+            <div class="post-meta">
+                <span class="text-muted small">
+                    By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
+                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                </span>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block content %}
-    <div class="container py-4">
-        <div class="row g-4">
+    <div class="wrap post-body-wrap">
+        <div class="post-layout">
 
             {{ include('@partial/left-menu.html.twig') }}
 
-            <main class="col-12 col-md-8 col-lg-9">
-                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
-                    <header class="mb-4">
-                        <h1 class="h2 text-dark fw-bold">Adding Composer support in your DotKernel project</h1>
-                        <div class="text-muted small">
-                            <i class="bi bi-folder2-open me-1"></i> Dotkernel
-                        </div>
-                    </header>
-
-                    <section class="post-content text-secondary lh-lg fs-6">
-                        Composer is an application-level package manager. Composer auto-loads the dependencies on demand and can also auto-load custom classes .
+            <article class="article">
+                <div class="entry">
+Composer is an application-level package manager. Composer auto-loads the dependencies on demand and can also auto-load custom classes .
 
 This article will cover the needed steps to add composer support to your DotKernel project or even "composify" it.
 
@@ -35,7 +40,7 @@ Assuming that you know how to use composer (if not you should consider reading <
 The DotKernel project must have a <strong>composer.json</strong> file so that composer can work.
 
 Our <strong>composer.json</strong> file should look like this:
-<pre class="bg-light border rounded p-3 overflow-auto">>{
+<pre>>{
   "require" : {
     "zendframework/zendframework1" : "1.12.*",
     "mobiledetect/mobiledetectlib" : "2.8.*"
@@ -59,7 +64,7 @@ The dependencies provided in the <strong>require</strong> section are also loade
 &nbsp;
 
 In order to have these components instaled you must run the following command in your DotKernel root path
-<pre class="bg-light border rounded p-3 overflow-auto">>composer update</pre>
+<pre>>composer update</pre>
 If the <em>vendor </em>folder is present composer will check for updates, and update the packages as needed.
 
 If the <em>vendor</em> folder does not exist composer will create a vendor folder. This folder will contain all the requested packages.
@@ -69,12 +74,12 @@ Composer will create an autoload file, which will be use to load our dependencie
 &nbsp;
 <h3>Adding Composer Support to DotKernel</h3>
 The autoload file created by composer will be used to load our packages.
-<pre class="bg-light border rounded p-3 overflow-auto">>$composerAutoLoaderPath = <a href="http://php.net/manual/en/function.realpath.php" target="_blank" rel="noopener noreferrer">realpath</a>(APPLICATION_PATH.'/vendor/autoload.php');
+<pre>>$composerAutoLoaderPath = <a href="http://php.net/manual/en/function.realpath.php" target="_blank" rel="noopener noreferrer">realpath</a>(APPLICATION_PATH.'/vendor/autoload.php');
 require_once($composerAutoLoaderPath);</pre>
 So far so good, but what if the file does not exist or composer is not present?
 
 First we must make sure the composer autoload path exists and only load the dependencies if composer autoload file was found.
-<pre class="bg-light border rounded p-3 overflow-auto">>$composerAutoLoaderPath = realpath('./vendor/autoload.php');
+<pre>>$composerAutoLoaderPath = realpath('./vendor/autoload.php');
 
 $composerEnabled = <a href="http://php.net/manual/en/function.file-exists.php" target="_blank" rel="noopener noreferrer">file_exists</a>($composerAutoLoaderPath);
 
@@ -90,16 +95,17 @@ else
 The variable <strong>$composerEnabled</strong> will be true only if the composer path exists so the application behavior can be controlled if composer is not present.
 
 Later on, the packages can be used like this:
-<pre class="bg-light border rounded p-3 overflow-auto">>use VendorName\PackageName\ClassName as MyDependency;
+<pre>>use VendorName\PackageName\ClassName as MyDependency;
 
 $myDependency = new MyDependency($neededArguments);
 $myDependency->doSomething();</pre>
 Learn more about how to use dependencies in DotKernel 1.x by reading <a href="http://www.dotkernel.com/dotkernel/using-dotkernel-…ser-dependencies/" target="_blank" rel="noopener noreferrer">this article</a>.
 
 This article works for any <strong>DotKernel 1.x</strong> version if your server is running <strong>PHP &gt;5.4.0.</strong>
-                    </section>
-                </article>
-            </main>
+                </div>
+
+                {{ include('@partial/post-nav.html.twig') }}
+            </article>
 
         </div>
     </div>

@@ -3,257 +3,151 @@
 {% block title %}Shared Core Submodule in Dotkernel Headless Platform{% endblock %}
 
 {% block page_title %}
-    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Headless Platform</div>
-    <h1 class="fw-bold text-dark display-6 mb-0">Shared Core Submodule in Dotkernel Headless Platform</h1>
-    <hr class="mt-4 mb-2 opacity-25">
+    <div class="wrap">
+        <div class="post-hero">
+            <a href="{{ url('page::blog') }}" class="breadcrumb-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                Back to Blog
+            </a>
+            <div><span class="eyebrow">Headless Platform</span></div>
+            <h1>{{ article.title }}</h1>
+            <div class="post-meta">
+                <span class="text-muted small">
+                    By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
+                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                </span>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block content %}
-    <div class="container py-4">
-        <div class="row g-4">
+    <div class="wrap post-body-wrap">
+        <div class="post-layout">
 
             {{ include('@partial/left-menu.html.twig') }}
 
-            <main class="col-12 col-md-8 col-lg-9">
-                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
-                    <header class="mb-4">
-                        <h1 class="h2 text-dark fw-bold">Shared Core Submodule in Dotkernel Headless Platform</h1>
-                        <div class="text-muted small">
-                            <i class="bi bi-folder2-open me-1"></i> Headless Platform
-                        </div>
-                    </header>
-
-                    <section class="post-content text-secondary lh-lg fs-6">
-                        <!-- wp:paragraph -->
+            <article class="article">
+                <div class="entry">
 <p class="mb-3"><strong>Dotkernel</strong> has implemented a <strong>Headless</strong> solution made up of these applications:</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:list -->
-<ul class="wp-block-list"><!-- wp:list-item -->
-<li><a href="https://github.com/dotkernel/api" target="_blank" rel="noreferrer noopener">Dotkernel API</a> - a REST API, the root of the platform.</li>
-<!-- /wp:list-item -->
+<ul><li><a href="https://github.com/dotkernel/api" target="_blank" rel="noreferrer noopener">Dotkernel API</a> - a REST API, the root of the platform.</li>
 
-<!-- wp:list-item -->
 <li><a href="https://github.com/dotkernel/admin" target="_blank" rel="noreferrer noopener">Dotkernel Admin</a> - (optional) complementary backend management.</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li><a href="https://github.com/dotkernel/queue" target="_blank" rel="noreferrer noopener">Dotkernel Queue</a> - (optional) queue management microservice.</li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list -->
+</ul>
 
-<!-- wp:paragraph -->
 <p class="mb-3">This is effectively a <strong>Headless CMS</strong> architecture where the <strong>Dotkernel Admin</strong> manages the data via the database. The same data is independently exposed by <strong>Dotkernel API</strong> and used by <strong>Dotkernel Queue</strong>.</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:heading -->
-<h2 class="wp-block-heading"><a href="#what-is-the-core-submodule"></a>What is the Core submodule?</h2>
-<!-- /wp:heading -->
+<h2><a href="#what-is-the-core-submodule"></a>What is the Core submodule?</h2>
 
-<!-- wp:paragraph -->
 <p class="mb-3">The Core submodule is a common codebase set up to be used by the applications you added to your project. It can just as well work for any project setup, e.g. two APIs, one Admin, 3 Frontends.</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
 <p class="mb-3">By having a common module in your Dotkernel applications, you ensure that each of them uses entities and services in the same way. Thus, rather than making e.g. an update in each application's services, you only update the relevant service in the Core once and sync it in each application.</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:quote -->
-<blockquote class="wp-block-quote"><!-- wp:paragraph -->
-<p class="mb-3">The golden rule for the Core codebase is that it is the <strong>only</strong> place which manages the database entities.</p>
-<!-- /wp:paragraph -->
+<blockquote><p class="mb-3">The golden rule for the Core codebase is that it is the <strong>only</strong> place which manages the database entities.</p>
 
-<!-- wp:paragraph -->
 <p class="mb-3">As much as possible, all Doctrine entities must reside in <strong>Core</strong>.</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
 <p class="mb-3">The current location of the Core submodule is <code>src/Core</code>.</p>
-<!-- /wp:paragraph --></blockquote>
-<!-- /wp:quote -->
+</blockquote>
 
-<!-- wp:heading -->
-<h2 class="wp-block-heading"><a href="#how-do-i-create-a-core-submodule"></a>How do I create a Core submodule?</h2>
-<!-- /wp:heading -->
+<h2><a href="#how-do-i-create-a-core-submodule"></a>How do I create a Core submodule?</h2>
 
-<!-- wp:paragraph -->
 <p class="mb-3">The full steps for creating a submodule are described in <a href="https://git-scm.com/book/en/v2/Git-Tools-Submodules" rel="noreferrer noopener" target="_blank">Git Tools - Submodules</a>.</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:quote -->
-<blockquote class="wp-block-quote"><!-- wp:paragraph -->
-<p class="mb-3">There is already a Core module in some of the Dotkernel applications, but it works like any other module (App, Page or User). The Core modules are designed to be a starting point for the module's transformation into a Git submodule.</p>
-<!-- /wp:paragraph --></blockquote>
-<!-- /wp:quote -->
+<blockquote><p class="mb-3">There is already a Core module in some of the Dotkernel applications, but it works like any other module (App, Page or User). The Core modules are designed to be a starting point for the module's transformation into a Git submodule.</p>
+</blockquote>
 
-<!-- wp:paragraph -->
 <p class="mb-3">First create a new Git repository that will contain the Core code. To create the submodule in an application, you need to have Git create the <code>.gitmodules</code> file in the root of the main repository by running the command below. Use the url from the new repository you just created instead of <code>&lt;url&gt;</code>:</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:enlighter/codeblock {"language":"shell"} -->
-<pre class="EnlighterJSRAW" data-enlighter-language="shell" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">git submodule add &lt;url></pre>
-<!-- /wp:enlighter/codeblock -->
+<pre>git submodule add &lt;url></pre>
 
-<!-- wp:quote -->
-<blockquote class="wp-block-quote"><!-- wp:paragraph -->
-<p class="mb-3">You can have multiple submodules, but for this article we will only create the Core submodule.</p>
-<!-- /wp:paragraph --></blockquote>
-<!-- /wp:quote -->
+<blockquote><p class="mb-3">You can have multiple submodules, but for this article we will only create the Core submodule.</p>
+</blockquote>
 
-<!-- wp:paragraph -->
 <p class="mb-3">The <code>.gitmodules</code> file maps the submodule and its corresponding local directory within the main project (e.g. src/Core). This allows Git to manage the submodule correctly, from cloning, to updating, to tracking its changes.</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:quote -->
-<blockquote class="wp-block-quote"><!-- wp:paragraph -->
-<p class="mb-3">None of the Dotkernel applications have the <code>.gitmodules</code> file out of the box. Only after isolating the Core into a Git submodule and pushing it to a separate Git repository does it become available to be included into any Dotkernel application.</p>
-<!-- /wp:paragraph --></blockquote>
-<!-- /wp:quote -->
+<blockquote><p class="mb-3">None of the Dotkernel applications have the <code>.gitmodules</code> file out of the box. Only after isolating the Core into a Git submodule and pushing it to a separate Git repository does it become available to be included into any Dotkernel application.</p>
+</blockquote>
 
-<!-- wp:paragraph -->
 <p class="mb-3">From now on, any changes to the Core submodule must be commited from within the Core folder, like for any other Git repository, using these commands (simplified version, provided as an example):</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:enlighter/codeblock {"language":"shell"} -->
-<pre class="EnlighterJSRAW" data-enlighter-language="shell" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">cd &lt;path/to/submodule>
+<pre>cd &lt;path/to/submodule>
 git add .
 git commit -m "comment"
 git push</pre>
-<!-- /wp:enlighter/codeblock -->
 
-<!-- wp:paragraph -->
 <p class="mb-3">Whenever you clone the project, you simply need to init and update the submodule with these commands:</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:enlighter/codeblock {"language":"shell"} -->
-<pre class="EnlighterJSRAW" data-enlighter-language="shell" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">git submodule init
+<pre>git submodule init
 git submodule update</pre>
-<!-- /wp:enlighter/codeblock -->
 
-<!-- wp:quote -->
-<blockquote class="wp-block-quote"><!-- wp:paragraph -->
-<p class="mb-3">Do not forget to delete the existing Core module before adding the submodule to other applications.</p>
-<!-- /wp:paragraph --></blockquote>
-<!-- /wp:quote -->
+<blockquote><p class="mb-3">Do not forget to delete the existing Core module before adding the submodule to other applications.</p>
+</blockquote>
 
-<!-- wp:heading -->
-<h2 class="wp-block-heading"><a href="#how-do-i-use-the-core-submodule"></a>How do I use the Core submodule?</h2>
-<!-- /wp:heading -->
+<h2><a href="#how-do-i-use-the-core-submodule"></a>How do I use the Core submodule?</h2>
 
-<!-- wp:paragraph -->
 <p class="mb-3">Once the shared Core submodule is separated and imported into each application, your platform will look something like this:</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:list -->
-<ul class="wp-block-list"><!-- wp:list-item -->
-<li>API + Core</li>
-<!-- /wp:list-item -->
+<ul><li>API + Core</li>
 
-<!-- wp:list-item -->
 <li>Admin + Core</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>Queue + Core</li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list -->
+</ul>
 
-<!-- wp:image {"id":8033,"sizeSlug":"full","linkDestination":"custom"} -->
-<figure class="wp-block-image size-full"><img src="/uploads/2025/07/core-queue2.png" alt="" class="wp-image-8033"/ class="img-fluid rounded my-2"></figure>
-<!-- /wp:image -->
+<figure><img src="{{ asset('uploads/article/' ~ article.id ~ '/core-queue2.png') }}" alt=""/ class="img-fluid rounded my-2"></figure>
 
-<!-- wp:quote -->
-<blockquote class="wp-block-quote"><!-- wp:paragraph -->
-<p class="mb-3">Each box in the image is a different Git repository.</p>
-<!-- /wp:paragraph --></blockquote>
-<!-- /wp:quote -->
+<blockquote><p class="mb-3">Each box in the image is a different Git repository.</p>
+</blockquote>
 
-<!-- wp:paragraph -->
 <p class="mb-3">Whenever work begins on a new feature or update, the devs should normally have the most recent Core in their development environment. So in total you have four code bases which will be kept in four separate repositories.</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
 <p class="mb-3">The Dotkernel applications include various <strong>entities</strong> to get you started quickly. This is not a complete list, but it should help you understand what each application is aimed toward:</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:list -->
-<ul class="wp-block-list"><!-- wp:list-item -->
-<li>The <strong>admin</strong> has admins, admin logins and settings entities.</li>
-<!-- /wp:list-item -->
+<ul><li>The <strong>admin</strong> has admins, admin logins and settings entities.</li>
 
-<!-- wp:list-item -->
 <li>The <strong>api</strong> has both users and admins, as well as authentication entities.</li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list -->
+</ul>
 
-<!-- wp:paragraph -->
 <p class="mb-3">There are already shared entities which are identical, so the best place for them is within the Core submodule. Whenever you create new shared code, you should add it in the Core submodule and make sure to keep it updated in all your applications.</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:quote -->
-<blockquote class="wp-block-quote"><!-- wp:paragraph -->
-<p class="mb-3">This does not mean that all new code should be in Core, as there are plenty of instances when certain functionality is designed to only be used by one application.</p>
-<!-- /wp:paragraph --></blockquote>
-<!-- /wp:quote -->
+<blockquote><p class="mb-3">This does not mean that all new code should be in Core, as there are plenty of instances when certain functionality is designed to only be used by one application.</p>
+</blockquote>
 
-<!-- wp:heading -->
-<h2 class="wp-block-heading"><a href="#why-the-core-submodule-is-effective"></a>Why the Core submodule is effective</h2>
-<!-- /wp:heading -->
+<h2><a href="#why-the-core-submodule-is-effective"></a>Why the Core submodule is effective</h2>
 
-<!-- wp:paragraph -->
 <p class="mb-3">This design pattern ensures:</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:list -->
-<ul class="wp-block-list"><!-- wp:list-item -->
-<li>Design flexibility.</li>
-<!-- /wp:list-item -->
+<ul><li>Design flexibility.</li>
 
-<!-- wp:list-item -->
 <li>Scalability based on future requirements.</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>Consistent, enterprise-level growth, while also being suited for smaller applications.</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>The ability to split the work to multiple developers.</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>Easier bugfixes and onboarding.</li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list -->
+</ul>
 
-<!-- wp:paragraph -->
 <p class="mb-3">As your platform expands, each new application connects to the Dotkernel Headless Platform via the central API which services everything the other applications require. This ensures consistency throughout your platform, while allowing any number of outside connections as requirements arise.</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:image {"id":8065,"sizeSlug":"full","linkDestination":"custom"} -->
-<figure class="wp-block-image size-full"><img src="/uploads/2025/07/api-comms4-2.png" alt="" class="wp-image-8065"/ class="img-fluid rounded my-2"></figure>
-<!-- /wp:image -->
+<figure><img src="{{ asset('uploads/article/' ~ article.id ~ '/api-comms4-2.png') }}" alt=""/ class="img-fluid rounded my-2"></figure>
 
-<!-- wp:heading -->
-<h2 class="wp-block-heading"><a href="#additional-resources"></a>Additional Resources</h2>
-<!-- /wp:heading -->
+<h2><a href="#additional-resources"></a>Additional Resources</h2>
 
-<!-- wp:list -->
-<ul class="wp-block-list"><!-- wp:list-item -->
-<li><a href="https://github.com/dotkernel" target="_blank" rel="noreferrer noopener">Dotkernel Git Repositories</a></li>
-<!-- /wp:list-item -->
+<ul><li><a href="https://github.com/dotkernel" target="_blank" rel="noreferrer noopener">Dotkernel Git Repositories</a></li>
 
-<!-- wp:list-item -->
 <li><a href="https://docs.dotkernel.org/headless-documentation/v1/core/introduction/" data-type="link" data-id="https://docs.dotkernel.org/headless-documentation/v1/core/introduction/" target="_blank" rel="noreferrer noopener">Core in Dotkernel Headless Platform </a></li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list -->
+</ul>
 
-<!-- wp:paragraph -->
 <p class="mb-3"></p>
-<!-- /wp:paragraph -->
-                    </section>
-                </article>
-            </main>
+                </div>
+
+                {{ include('@partial/post-nav.html.twig') }}
+            </article>
 
         </div>
     </div>

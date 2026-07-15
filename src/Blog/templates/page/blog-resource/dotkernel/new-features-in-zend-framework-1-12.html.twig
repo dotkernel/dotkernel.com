@@ -3,28 +3,33 @@
 {% block title %}New Features in Zend Framework 1.12{% endblock %}
 
 {% block page_title %}
-    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel</div>
-    <h1 class="fw-bold text-dark display-6 mb-0">New Features in Zend Framework 1.12</h1>
-    <hr class="mt-4 mb-2 opacity-25">
+    <div class="wrap">
+        <div class="post-hero">
+            <a href="{{ url('page::blog') }}" class="breadcrumb-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                Back to Blog
+            </a>
+            <div><span class="eyebrow">Dotkernel</span></div>
+            <h1>{{ article.title }}</h1>
+            <div class="post-meta">
+                <span class="text-muted small">
+                    By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
+                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                </span>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block content %}
-    <div class="container py-4">
-        <div class="row g-4">
+    <div class="wrap post-body-wrap">
+        <div class="post-layout">
 
             {{ include('@partial/left-menu.html.twig') }}
 
-            <main class="col-12 col-md-8 col-lg-9">
-                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
-                    <header class="mb-4">
-                        <h1 class="h2 text-dark fw-bold">New Features in Zend Framework 1.12</h1>
-                        <div class="text-muted small">
-                            <i class="bi bi-folder2-open me-1"></i> Dotkernel
-                        </div>
-                    </header>
-
-                    <section class="post-content text-secondary lh-lg fs-6">
-                        According to <a href="http://devzone.zend.com/2366/zend-framework-1-12-series-1-12-0rc1-now-available/" target="_blank" rel="noopener noreferrer">Matthew Weier O'Phinney announcement</a>, Zend Framework team is pleased to announce the immediate availability of the first release candidate of the Zend Framework 1.12 series, 1.12.0RC1
+            <article class="article">
+                <div class="entry">
+According to <a href="http://devzone.zend.com/2366/zend-framework-1-12-series-1-12-0rc1-now-available/" target="_blank" rel="noopener noreferrer">Matthew Weier O'Phinney announcement</a>, Zend Framework team is pleased to announce the immediate availability of the first release candidate of the Zend Framework 1.12 series, 1.12.0RC1
 <h3> New Features</h3>
 <!--more-->
 <ul>
@@ -69,9 +74,10 @@ Zend_Gdata_Analytics was contributed by Daniel Hartmann.</blockquote>
 
 For a complete list go here:<a href="http://framework.zend.com/issues/secure/IssueNavigator.jspa?requestId=12877" target="_blank" rel="noopener noreferrer"> http://framework.zend.com/issues/secure/IssueNavigator.jspa?requestId=12877</a></blockquote>
 &nbsp;
-                    </section>
-                </article>
-            </main>
+                </div>
+
+                {{ include('@partial/post-nav.html.twig') }}
+            </article>
 
         </div>
     </div>

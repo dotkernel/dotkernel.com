@@ -3,28 +3,33 @@
 {% block title %}DotKernel API Server Side Authorization{% endblock %}
 
 {% block page_title %}
-    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel API</div>
-    <h1 class="fw-bold text-dark display-6 mb-0">DotKernel API Server Side Authorization</h1>
-    <hr class="mt-4 mb-2 opacity-25">
+    <div class="wrap">
+        <div class="post-hero">
+            <a href="{{ url('page::blog') }}" class="breadcrumb-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                Back to Blog
+            </a>
+            <div><span class="eyebrow">Dotkernel API</span></div>
+            <h1>{{ article.title }}</h1>
+            <div class="post-meta">
+                <span class="text-muted small">
+                    By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
+                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                </span>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block content %}
-    <div class="container py-4">
-        <div class="row g-4">
+    <div class="wrap post-body-wrap">
+        <div class="post-layout">
 
             {{ include('@partial/left-menu.html.twig') }}
 
-            <main class="col-12 col-md-8 col-lg-9">
-                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
-                    <header class="mb-4">
-                        <h1 class="h2 text-dark fw-bold">DotKernel API Server Side Authorization</h1>
-                        <div class="text-muted small">
-                            <i class="bi bi-folder2-open me-1"></i> Dotkernel API
-                        </div>
-                    </header>
-
-                    <section class="post-content text-secondary lh-lg fs-6">
-                        <strong>This article covers the basic authorization of a Server Side application  built using <a href="https://github.com/dotkernel/api" target="_blank" rel="noopener noreferrer">DotKernel API</a></strong>
+            <article class="article">
+                <div class="entry">
+<strong>This article covers the basic authorization of a Server Side application  built using <a href="https://github.com/dotkernel/api" target="_blank" rel="noopener noreferrer">DotKernel API</a></strong>
 <h3>Protecting an endpoint</h3>
 <ul>
      <li><strong>no-auth:</strong> the resource can be accessed without the need of authentication/authorization</li>
@@ -33,12 +38,12 @@
 </ul>
 Configuring access to the endpoints is done by editing the following config file:
 
-<code class="&quot;highlighter-rouge"> config/autoload/authorization.local.php </code>
+<code> config/autoload/authorization.local.php </code>
 <blockquote class="blockquote border-start border-4 ps-3 text-muted my-3"><strong>NOTE</strong>
-If this file is missing from your application, locate it's dist file: <code class="&quot;highlighter-rouge">config/autoload/authorization.local.php.dist </code>
-and copy-paste it as the above-mentioned <code class="&quot;highlighter-rouge">config/autoload/authorization.local.php </code></blockquote>
-You should look for the array inside this config key: <code class="&quot;highlighter-rouge">zend-expressive-authorization-rbac</code>
-<pre class="php">'zend-expressive-authorization-rbac' =&gt; ,
+If this file is missing from your application, locate it's dist file: <code>config/autoload/authorization.local.php.dist </code>
+and copy-paste it as the above-mentioned <code>config/autoload/authorization.local.php </code></blockquote>
+You should look for the array inside this config key: <code>zend-expressive-authorization-rbac</code>
+<pre>'zend-expressive-authorization-rbac' =&gt; ,
         'member' =&gt; ,
         'guest'  =&gt; ,
     ],
@@ -49,13 +54,13 @@ You should look for the array inside this config key: <code class="&quot;highlig
 Under the key <strong>roles </strong> you can define role inheritance. In the above example
 <ul>
      <li><strong>admin </strong>inherits from no other role
-<pre class="php"> 'admin' =&gt; []</pre>
+<pre> 'admin' =&gt; []</pre>
 </li>
      <li><strong>member </strong>inherits from admin
-<pre class="php">'member' =&gt; </pre>
+<pre>'member' =&gt; </pre>
 </li>
      <li><strong>guest </strong>inherits from member
-<pre class="php">'guest' =&gt; </pre>
+<pre>'guest' =&gt; </pre>
 </li>
 </ul>
 <strong><em>Of course, this setup is just a model, you should not use it in live projects because guests will end up having the same rights as admins.</em></strong>
@@ -65,24 +70,25 @@ Under the key <strong>permissions </strong>you can define which routes are acces
 These endpoints can be accessed without authentication/authorization. Examples could be: <em>login</em>, <em>register</em>, <em>contact </em>etc...
 Creating a route for such an endpoint will use only the handler(s) responsible for returning the content:
 
-<pre class="php">
+<pre>
 $app->get('/users', UserHandler::class, 'users');
 </pre>
 <h4>2. Endpoints requiring Authentication:</h4>
-These endpoints can be accessed only if a valid <code class="&quot;highlighter-rouge">Bearer token</code> is present in the request headers. Else, the API will return a <code class="&quot;highlighter-rouge">**401 Unauthorized**</code> response. Creating a route for such an endpoint will have a structure similar to the following example:
+These endpoints can be accessed only if a valid <code>Bearer token</code> is present in the request headers. Else, the API will return a <code>**401 Unauthorized**</code> response. Creating a route for such an endpoint will have a structure similar to the following example:
 
-<pre class="php">
+<pre>
 $app->get('/users', , 'users');
 </pre>
 <h4>3. Endpoints requiring Authorization:</h4>
-These endpoints can be accessed only if a valid <code class="&quot;highlighter-rouge"> Bearer token</code> is present in the request headers. Else, the API will return a <code class="&quot;highlighter-rouge">**403 Forbidden**</code> response. Creating a route for such an endpoint will have a structure similar to the following example:
+These endpoints can be accessed only if a valid <code> Bearer token</code> is present in the request headers. Else, the API will return a <code>**403 Forbidden**</code> response. Creating a route for such an endpoint will have a structure similar to the following example:
 
-<pre class="php">
+<pre>
 $app->get('/users', , 'users');
 </pre>
-                    </section>
-                </article>
-            </main>
+                </div>
+
+                {{ include('@partial/post-nav.html.twig') }}
+            </article>
 
         </div>
     </div>

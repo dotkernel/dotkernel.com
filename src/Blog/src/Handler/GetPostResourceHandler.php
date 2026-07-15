@@ -33,14 +33,17 @@ class GetPostResourceHandler implements RequestHandlerInterface
         if ($article === null) {
             return $this->notFound($categories);
         }
-        $meta = $article;
+        $meta     = $article;
+        $adjacent = $this->articleRepository->getAdjacentPosts($article);
         try {
             $html = $this->template->render(
                 'page::blog-resource/' . $article->getCategory()->getSlug() . '/' . $slug,
                 [
-                    'article'    => $article,
-                    'meta'       => $meta,
-                    'categories' => $categories,
+                    'article'      => $article,
+                    'meta'         => $meta,
+                    'categories'   => $categories,
+                    'previousPost' => $adjacent['previous'],
+                    'nextPost'     => $adjacent['next'],
                 ]
             );
             return new HtmlResponse($html);

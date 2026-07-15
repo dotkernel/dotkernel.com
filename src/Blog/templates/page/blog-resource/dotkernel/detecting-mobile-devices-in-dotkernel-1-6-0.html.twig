@@ -3,28 +3,33 @@
 {% block title %}Detecting Mobile Devices in DotKernel 1.6.0{% endblock %}
 
 {% block page_title %}
-    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel</div>
-    <h1 class="fw-bold text-dark display-6 mb-0">Detecting Mobile Devices in DotKernel 1.6.0</h1>
-    <hr class="mt-4 mb-2 opacity-25">
+    <div class="wrap">
+        <div class="post-hero">
+            <a href="{{ url('page::blog') }}" class="breadcrumb-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                Back to Blog
+            </a>
+            <div><span class="eyebrow">Dotkernel</span></div>
+            <h1>{{ article.title }}</h1>
+            <div class="post-meta">
+                <span class="text-muted small">
+                    By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
+                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                </span>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block content %}
-    <div class="container py-4">
-        <div class="row g-4">
+    <div class="wrap post-body-wrap">
+        <div class="post-layout">
 
             {{ include('@partial/left-menu.html.twig') }}
 
-            <main class="col-12 col-md-8 col-lg-9">
-                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
-                    <header class="mb-4">
-                        <h1 class="h2 text-dark fw-bold">Detecting Mobile Devices in DotKernel 1.6.0</h1>
-                        <div class="text-muted small">
-                            <i class="bi bi-folder2-open me-1"></i> Dotkernel
-                        </div>
-                    </header>
-
-                    <section class="post-content text-secondary lh-lg fs-6">
-                        The new DotKernel version 1.6.0 is comming with some changes how we are detecting mobile devices, this changes are because of the new Wurfl Cloud integration.
+            <article class="article">
+                <div class="entry">
+The new DotKernel version 1.6.0 is comming with some changes how we are detecting mobile devices, this changes are because of the new Wurfl Cloud integration.
 
 This version of DotKernel is not comming anymore with a working built in method for mobile detection, so first we have to configure it.
 
@@ -41,7 +46,7 @@ We choosed device_os and mobile_browser capabilities because with these two capa
 Choosing other capabilities from scientiamobile will result in wrong detection of these extra capabilities, but you can get only those capabilities using another method from Dot_UserAgent_WurflCloud class.
 
 Wurfl Cloud setting in application.ini
-<pre class="bg-light border rounded p-3 overflow-auto">>resources.useragent.wurflcloud.active = TRUE
+<pre>>resources.useragent.wurflcloud.active = TRUE
 resources.useragent.wurflcloud.redirect = TRUE
 resources.useragent.wurflcloud.cache = TRUE
 resources.useragent.wurflcloud.cache_lifetime = 3600
@@ -61,17 +66,17 @@ Because of these changes we removed the old Dot_UserAgent_Wurfl class and added 
 <h3>Example of Dot_UserAgent usage in DotKernel:</h3>
 
 Get Wurfl configuration
-<pre class="bg-light border rounded p-3 overflow-auto">>$wurflConf = $registry->configuration->resources->useragent->wurflcloud;</pre>
+<pre>>$wurflConf = $registry->configuration->resources->useragent->wurflcloud;</pre>
 Note: You can have more Wurfl configurations if you have more libraries like Wurfl Package (GPL)
 
 If Wurfl is active then get device info
-<pre class="bg-light border rounded p-3 overflow-auto">>if($wurflConf->active)
+<pre>>if($wurflConf->active)
 {
     $deviceInfo = Dot_UserAgent :: getDeviceInfo($_SERVER);
     ...
 }</pre>
 If detected device is an mobile device we will save device info in database and redirect it to the mobile controller
-<pre class="bg-light border rounded p-3 overflow-auto">>if( (0 < count((array)$deviceInfo)) && $deviceInfo->isMobile)
+<pre>>if( (0 < count((array)$deviceInfo)) && $deviceInfo->isMobile)
 {
 
     if(!$registry->session->visitId)
@@ -96,9 +101,10 @@ If detected device is an mobile device we will save device info in database and 
         }
     }
 }</pre>
-                    </section>
-                </article>
-            </main>
+                </div>
+
+                {{ include('@partial/post-nav.html.twig') }}
+            </article>
 
         </div>
     </div>

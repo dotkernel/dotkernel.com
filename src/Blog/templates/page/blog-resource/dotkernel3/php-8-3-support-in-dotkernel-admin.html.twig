@@ -3,275 +3,158 @@
 {% block title %}PHP 8.3 support in Dotkernel Admin{% endblock %}
 
 {% block page_title %}
-    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel 3</div>
-    <h1 class="fw-bold text-dark display-6 mb-0">PHP 8.3 support in Dotkernel Admin</h1>
-    <hr class="mt-4 mb-2 opacity-25">
+    <div class="wrap">
+        <div class="post-hero">
+            <a href="{{ url('page::blog') }}" class="breadcrumb-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                Back to Blog
+            </a>
+            <div><span class="eyebrow">Dotkernel 3</span></div>
+            <h1>{{ article.title }}</h1>
+            <div class="post-meta">
+                <span class="text-muted small">
+                    By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
+                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                </span>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block content %}
-    <div class="container py-4">
-        <div class="row g-4">
+    <div class="wrap post-body-wrap">
+        <div class="post-layout">
 
             {{ include('@partial/left-menu.html.twig') }}
 
-            <main class="col-12 col-md-8 col-lg-9">
-                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
-                    <header class="mb-4">
-                        <h1 class="h2 text-dark fw-bold">PHP 8.3 support in Dotkernel Admin</h1>
-                        <div class="text-muted small">
-                            <i class="bi bi-folder2-open me-1"></i> Dotkernel 3
-                        </div>
-                    </header>
-
-                    <section class="post-content text-secondary lh-lg fs-6">
-                        <!-- wp:paragraph -->
+            <article class="article">
+                <div class="entry">
 <p class="mb-3">With the release of <strong>PHP 8.3</strong>, the DotKernel team has been working on updating the dependencies in our packages. Eventually, this allowed us to update our Applications as well, starting with the <a href="https://github.com/dotkernel/admin" data-type="link" data-id="https://github.com/dotkernel/admin" target="_blank" rel="noreferrer noopener">Admin</a>, in release <strong>4.3.1</strong></p>
-<!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
 <p class="mb-3">There were some issues and backward incompatibilities that we will list below.</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
 <p class="mb-3">The full list of file changes is <a href="https://github.com/dotkernel/admin/pull/218/files" data-type="link" data-id="https://github.com/dotkernel/admin/pull/218/files" target="_blank" rel="noreferrer noopener">here</a>.</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:list -->
-<ul><!-- wp:list-item -->
-<li><strong>Supports only PHP 8.2 and PHP 8.3</strong><!-- wp:list -->
-<ul><!-- wp:list-item -->
-<li>Removed support for PHP 8.1</li>
-<!-- /wp:list-item -->
+<ul><li><strong>Supports only PHP 8.2 and PHP 8.3</strong><ul><li>Removed support for PHP 8.1</li>
 
-<!-- wp:list-item -->
 <li>Updated workflows - removed PHP 8.1</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>Commits <a href="https://github.com/dotkernel/admin/commit/12d46e671ea430d93e4f4a38ba10e74d375ca944" target="_blank" rel="noreferrer noopener">#1</a> and <a href="https://github.com/dotkernel/admin/commit/5233c9dabe5264553956df29a66ddfd5808a283b">#</a><a href="https://github.com/dotkernel/admin/commit/5233c9dabe5264553956df29a66ddfd5808a283b" target="_blank" rel="noreferrer noopener">2</a></li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list --></li>
-<!-- /wp:list-item -->
+</ul>
+</li>
 
-<!-- wp:list-item -->
-<li><strong>Updated </strong>dependencies<!-- wp:list -->
-<ul><!-- wp:list-item -->
-<li><strong>require</strong><!-- wp:list -->
-<ul><!-- wp:list-item -->
-<li>"dotkernel/dot-cli": "^3.4.2",</li>
-<!-- /wp:list-item -->
+<li><strong>Updated </strong>dependencies<ul><li><strong>require</strong><ul><li>"dotkernel/dot-cli": "^3.4.2",</li>
 
-<!-- wp:list-item -->
 <li>"dotkernel/dot-controller": "^3.4.3",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"dotkernel/dot-data-fixtures": "^1.1.3",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"dotkernel/dot-errorhandler": "^3.3.2",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"dotkernel/dot-flashmessenger": "^3.4.2",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"dotkernel/dot-geoip": "^3.5.3",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"dotkernel/dot-helpers": "^3.4.2",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"dotkernel/dot-mail": "^4.1.1",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"dotkernel/dot-navigation": "^3.4.2",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"dotkernel/dot-rbac-guard": "^3.4.2",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"dotkernel/dot-session": "^5.4.2",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"dotkernel/dot-twigrenderer": "3.4.3",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"dotkernel/dot-user-agent-sniffer": "^3.3.3",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"friendsofphp/proxy-manager-lts": "^1.0.16",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"laminas/laminas-component-installer": "^3.4.0",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"laminas/laminas-config-aggregator": "^1.14.0",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"laminas/laminas-i18n": "^2.26.0",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"laminas/laminas-math": "^3.7.0",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"mezzio/mezzio": "^3.18.0",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"mezzio/mezzio-authorization-rbac": "^1.7.0",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"mezzio/mezzio-cors": "^1.11.1",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"mezzio/mezzio-fastroute": "^3.11.0",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"ramsey/uuid-doctrine": "^2.0.0",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"roave/psr-container-doctrine": "^4.1.0"</li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list --></li>
-<!-- /wp:list-item -->
+</ul>
+</li>
 
-<!-- wp:list-item -->
-<li><strong>require-dev</strong><!-- wp:list -->
-<ul><!-- wp:list-item -->
-<li>"filp/whoops": "^2.15.4",</li>
-<!-- /wp:list-item -->
+<li><strong>require-dev</strong><ul><li>"filp/whoops": "^2.15.4",</li>
 
-<!-- wp:list-item -->
 <li>"laminas/laminas-development-mode": "^3.12.0",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"laminas/laminas-http": "^2.19.0",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"mezzio/mezzio-tooling": "^2.9.0",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"phpunit/phpunit": "^10.5.9",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"vimeo/psalm": "^5.20.0"</li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list --></li>
-<!-- /wp:list-item -->
+</ul>
+</li>
 
-<!-- wp:list-item -->
 <li>Commit <a href="https://github.com/dotkernel/admin/commit/a4cfb4f8873e18e100ed089a7ccfed0b3e8603fc" data-type="link" data-id="https://github.com/dotkernel/admin/commit/a4cfb4f8873e18e100ed089a7ccfed0b3e8603fc" target="_blank" rel="noreferrer noopener">#1</a></li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list --></li>
-<!-- /wp:list-item -->
+</ul>
+</li>
 
-<!-- wp:list-item -->
-<li><strong>Added</strong> <em>"laminas/laminas-http": "^2.19.0"</em> to composer.json <em>require-dev </em>(required for tests)<!-- wp:list -->
-<ul><!-- wp:list-item -->
-<li>Commit<em> </em><a href="https://github.com/dotkernel/admin/commit/b47119e7cbd1c96648cac2d1781fb227f3c12cc9" data-type="link" data-id="https://github.com/dotkernel/admin/commit/b47119e7cbd1c96648cac2d1781fb227f3c12cc9" target="_blank" rel="noreferrer noopener">#1</a></li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list --></li>
-<!-- /wp:list-item -->
+<li><strong>Added</strong> <em>"laminas/laminas-http": "^2.19.0"</em> to composer.json <em>require-dev </em>(required for tests)<ul><li>Commit<em> </em><a href="https://github.com/dotkernel/admin/commit/b47119e7cbd1c96648cac2d1781fb227f3c12cc9" data-type="link" data-id="https://github.com/dotkernel/admin/commit/b47119e7cbd1c96648cac2d1781fb227f3c12cc9" target="_blank" rel="noreferrer noopener">#1</a></li>
+</ul>
+</li>
 
-<!-- wp:list-item -->
-<li><strong>Updated</strong> <em>src/Admin/src/Service/AdminService.php</em>, function <em>logAdminVisit</em><!-- wp:list -->
-<ul><!-- wp:list-item -->
-<li>Note: No longer returns <em>AddressNotFoundException</em></li>
-<!-- /wp:list-item -->
+<li><strong>Updated</strong> <em>src/Admin/src/Service/AdminService.php</em>, function <em>logAdminVisit</em><ul><li>Note: No longer returns <em>AddressNotFoundException</em></li>
 
-<!-- wp:list-item -->
 <li>Commit<em> </em><a href="https://github.com/dotkernel/admin/commit/b47119e7cbd1c96648cac2d1781fb227f3c12cc9">#</a><a href="https://github.com/dotkernel/admin/commit/b47119e7cbd1c96648cac2d1781fb227f3c12cc9" target="_blank" rel="noreferrer noopener">1</a></li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list --></li>
-<!-- /wp:list-item -->
+</ul>
+</li>
 
-<!-- wp:list-item -->
-<li><strong>Removed</strong> parameter from configuration files and uses for class <em>PhpFileCache</em> (required by cache)<!-- wp:list -->
-<ul><!-- wp:list-item -->
-<li>Removed <em>use Doctrine\Common\Cache\PhpFileCache;</em> from from local.php.dist (local.php) and doctrine.global.php</li>
-<!-- /wp:list-item -->
+<li><strong>Removed</strong> parameter from configuration files and uses for class <em>PhpFileCache</em> (required by cache)<ul><li>Removed <em>use Doctrine\Common\Cache\PhpFileCache;</em> from from local.php.dist (local.php) and doctrine.global.php</li>
 
-<!-- wp:list-item -->
 <li>Removed the parameters used by cache <em>configuration</em> from local.php.dist (local.php) and <em>cache</em> from doctrine.global.php</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>Commit <a href="https://github.com/dotkernel/admin/commit/73c79dd707e8575adec013ae1cd85f87c01787f1" target="_blank" rel="noreferrer noopener">#1</a> and <a href="https://github.com/dotkernel/admin/commit/6585a39c0077763e55161b8749f19ac2a846f5df" data-type="link" data-id="https://github.com/dotkernel/admin/commit/6585a39c0077763e55161b8749f19ac2a846f5df" target="_blank" rel="noreferrer noopener">#2</a></li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list --></li>
-<!-- /wp:list-item -->
+</ul>
+</li>
 
-<!-- wp:list-item -->
-<li><strong>Updated</strong> <em>dotkernel/dot-twigrenderer</em> dependencies<!-- wp:list -->
-<ul><!-- wp:list-item -->
-<li>Removed <em>doctrine/doctrine-module</em> because of conflict</li>
-<!-- /wp:list-item -->
+<li><strong>Updated</strong> <em>dotkernel/dot-twigrenderer</em> dependencies<ul><li>Removed <em>doctrine/doctrine-module</em> because of conflict</li>
 
-<!-- wp:list-item -->
-<li>Other packages that don’t get installed because of removing <em>doctrine/doctrine-module - </em>make sure to check if their functionality is used in your project<!-- wp:list -->
-<ul><!-- wp:list-item -->
-<li>doctrine/doctrine-laminas-hydrator</li>
-<!-- /wp:list-item -->
+<li>Other packages that don’t get installed because of removing <em>doctrine/doctrine-module - </em>make sure to check if their functionality is used in your project<ul><li>doctrine/doctrine-laminas-hydrator</li>
 
-<!-- wp:list-item -->
 <li>laminas/laminas-cache-storage-adapter-filesystem</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>laminas/laminas-cache-storage-adapter-memory</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>laminas/laminas-mvc</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>laminas/laminas-paginator</li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list --></li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list --></li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list -->
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
-<!-- wp:paragraph -->
 <p class="mb-3">Updating to <strong>PHP 8.3</strong> has not been as streamlined as in previous updates, but the advantages of doing so outweigh the extra work on the custom code to remove potential incompatibilities. </p>
-<!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
 <p class="mb-3"></p>
-<!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
 <p class="mb-3">The DotKernel team is focused on the cache that has been removed in the current version because <em>doctrine/cache </em>deleted their cache implementation classes. We are also updating our existing projects to PHP 8.3 and testing the changes on live environments to iron out any other issues.</p>
-<!-- /wp:paragraph -->
-                    </section>
-                </article>
-            </main>
+                </div>
+
+                {{ include('@partial/post-nav.html.twig') }}
+            </article>
 
         </div>
     </div>

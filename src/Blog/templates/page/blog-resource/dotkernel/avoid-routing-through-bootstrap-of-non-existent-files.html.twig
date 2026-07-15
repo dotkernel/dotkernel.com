@@ -3,43 +3,49 @@
 {% block title %}Avoid routing through bootstrap of non existent files{% endblock %}
 
 {% block page_title %}
-    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel</div>
-    <h1 class="fw-bold text-dark display-6 mb-0">Avoid routing through bootstrap of non existent files</h1>
-    <hr class="mt-4 mb-2 opacity-25">
+    <div class="wrap">
+        <div class="post-hero">
+            <a href="{{ url('page::blog') }}" class="breadcrumb-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                Back to Blog
+            </a>
+            <div><span class="eyebrow">Dotkernel</span></div>
+            <h1>{{ article.title }}</h1>
+            <div class="post-meta">
+                <span class="text-muted small">
+                    By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
+                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                </span>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block content %}
-    <div class="container py-4">
-        <div class="row g-4">
+    <div class="wrap post-body-wrap">
+        <div class="post-layout">
 
             {{ include('@partial/left-menu.html.twig') }}
 
-            <main class="col-12 col-md-8 col-lg-9">
-                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
-                    <header class="mb-4">
-                        <h1 class="h2 text-dark fw-bold">Avoid routing through bootstrap of non existent files</h1>
-                        <div class="text-muted small">
-                            <i class="bi bi-folder2-open me-1"></i> Dotkernel
-                        </div>
-                    </header>
-
-                    <section class="post-content text-secondary lh-lg fs-6">
-                        In some cases you may encounter missing files: images, css or js files.
+            <article class="article">
+                <div class="entry">
+In some cases you may encounter missing files: images, css or js files.
 All those missing files are processed by the current bootstrap: index.php
 
 If the session is set to regenerate on each request, as a normal security measure,
 the currently logged user is logged off, because the session ID is different now.
 
 To avoid this, <strong>below</strong> the following line
-<pre class="bg-light border rounded p-3 overflow-auto">>RewriteEngine On</pre>
+<pre>>RewriteEngine On</pre>
 add the line :
-<pre class="bg-light border rounded p-3 overflow-auto">>RewriteCond %{REQUEST_FILENAME} (\.gif|\.jpg|\.png|\.css|\.js)$ </pre>
+<pre>>RewriteCond %{REQUEST_FILENAME} (\.gif|\.jpg|\.png|\.css|\.js)$ </pre>
 Save and don't forget to test.
 
 Even though it's a well known fact that real men do not test...
-                    </section>
-                </article>
-            </main>
+                </div>
+
+                {{ include('@partial/post-nav.html.twig') }}
+            </article>
 
         </div>
     </div>

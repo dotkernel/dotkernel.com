@@ -3,28 +3,33 @@
 {% block title %}Zend_Mail and Zend_Http Security Fixes in Zend Framework 1.12.12{% endblock %}
 
 {% block page_title %}
-    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Zend Framework</div>
-    <h1 class="fw-bold text-dark display-6 mb-0">Zend_Mail and Zend_Http Security Fixes in Zend Framework 1.12.12</h1>
-    <hr class="mt-4 mb-2 opacity-25">
+    <div class="wrap">
+        <div class="post-hero">
+            <a href="{{ url('page::blog') }}" class="breadcrumb-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                Back to Blog
+            </a>
+            <div><span class="eyebrow">Zend Framework</span></div>
+            <h1>{{ article.title }}</h1>
+            <div class="post-meta">
+                <span class="text-muted small">
+                    By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
+                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                </span>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block content %}
-    <div class="container py-4">
-        <div class="row g-4">
+    <div class="wrap post-body-wrap">
+        <div class="post-layout">
 
             {{ include('@partial/left-menu.html.twig') }}
 
-            <main class="col-12 col-md-8 col-lg-9">
-                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
-                    <header class="mb-4">
-                        <h1 class="h2 text-dark fw-bold">Zend_Mail and Zend_Http Security Fixes in Zend Framework 1.12.12</h1>
-                        <div class="text-muted small">
-                            <i class="bi bi-folder2-open me-1"></i> Zend Framework
-                        </div>
-                    </header>
-
-                    <section class="post-content text-secondary lh-lg fs-6">
-                        The release of ZF 1.12.12 was just announced,  with Security Updates especially on
+            <article class="article">
+                <div class="entry">
+The release of ZF 1.12.12 was just announced,  with Security Updates especially on
 Zend_Mail and Zend_Http components.
 
 For more information, please read the official release announcement:
@@ -48,9 +53,10 @@ If you cannot, you can download the patch separately and apply it to your ZF ins
 Zend Framework 1.12.13 was released, in order to fix a regression issue introduced in 1.12.12 release.
 
 <a href="http://framework.zend.com/blog/zend-framework-1-12-13-released.html" target="_blank" rel="noopener noreferrer">Release Announcement </a>
-                    </section>
-                </article>
-            </main>
+                </div>
+
+                {{ include('@partial/post-nav.html.twig') }}
+            </article>
 
         </div>
     </div>

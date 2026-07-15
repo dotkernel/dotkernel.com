@@ -3,28 +3,33 @@
 {% block title %}Development Report December 11, 2017{% endblock %}
 
 {% block page_title %}
-    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel 3</div>
-    <h1 class="fw-bold text-dark display-6 mb-0">Development Report December 11, 2017</h1>
-    <hr class="mt-4 mb-2 opacity-25">
+    <div class="wrap">
+        <div class="post-hero">
+            <a href="{{ url('page::blog') }}" class="breadcrumb-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                Back to Blog
+            </a>
+            <div><span class="eyebrow">Dotkernel 3</span></div>
+            <h1>{{ article.title }}</h1>
+            <div class="post-meta">
+                <span class="text-muted small">
+                    By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
+                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                </span>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block content %}
-    <div class="container py-4">
-        <div class="row g-4">
+    <div class="wrap post-body-wrap">
+        <div class="post-layout">
 
             {{ include('@partial/left-menu.html.twig') }}
 
-            <main class="col-12 col-md-8 col-lg-9">
-                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
-                    <header class="mb-4">
-                        <h1 class="h2 text-dark fw-bold">Development Report December 11, 2017</h1>
-                        <div class="text-muted small">
-                            <i class="bi bi-folder2-open me-1"></i> Dotkernel 3
-                        </div>
-                    </header>
-
-                    <section class="post-content text-secondary lh-lg fs-6">
-                        This report contains updates about the DotKernel3 documentation.
+            <article class="article">
+                <div class="entry">
+This report contains updates about the DotKernel3 documentation.
 
 We have added the release notes for DotKernel3 <strong>frontend</strong> and <strong>admin</strong>: you can now check the <a href="https://docs.dotkernel.com/Overview/Release-Notes.html" target="_blank" rel="noopener noreferrer">Release Notes</a> page.
 
@@ -45,9 +50,10 @@ The <a href="https://docs.dotkernel.com/Guidelines/Documentation-Guidelines/Api
 <strong>Thanks to our contributors:</strong>
 
 <a href="https://github.com/JapSeyz">JapSeyz</a>
-                    </section>
-                </article>
-            </main>
+                </div>
+
+                {{ include('@partial/post-nav.html.twig') }}
+            </article>
 
         </div>
     </div>

@@ -3,28 +3,33 @@
 {% block title %}Configuring the Cache in DotKernel{% endblock %}
 
 {% block page_title %}
-    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel</div>
-    <h1 class="fw-bold text-dark display-6 mb-0">Configuring the Cache in DotKernel</h1>
-    <hr class="mt-4 mb-2 opacity-25">
+    <div class="wrap">
+        <div class="post-hero">
+            <a href="{{ url('page::blog') }}" class="breadcrumb-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                Back to Blog
+            </a>
+            <div><span class="eyebrow">Dotkernel</span></div>
+            <h1>{{ article.title }}</h1>
+            <div class="post-meta">
+                <span class="text-muted small">
+                    By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
+                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                </span>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block content %}
-    <div class="container py-4">
-        <div class="row g-4">
+    <div class="wrap post-body-wrap">
+        <div class="post-layout">
 
             {{ include('@partial/left-menu.html.twig') }}
 
-            <main class="col-12 col-md-8 col-lg-9">
-                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
-                    <header class="mb-4">
-                        <h1 class="h2 text-dark fw-bold">Configuring the Cache in DotKernel</h1>
-                        <div class="text-muted small">
-                            <i class="bi bi-folder2-open me-1"></i> Dotkernel
-                        </div>
-                    </header>
-
-                    <section class="post-content text-secondary lh-lg fs-6">
-                        This article contains the DotKernel cache layer configuration guide.
+            <article class="article">
+                <div class="entry">
+This article contains the DotKernel cache layer configuration guide.
 
 The DotKernel Caching Layer is based on Zend Framework Cache, more configuration options can be found at the following links:
 <ul>
@@ -34,7 +39,7 @@ The DotKernel Caching Layer is based on Zend Framework Cache, more configuration
 <!--more-->
 <h2>Main cache settings (Cache Frontend)</h2>
 The main cache settings within the <strong>application.ini </strong>file should look like this:
-<pre class="bg-light border rounded p-3 overflow-auto">>cache.enable = true
+<pre>>cache.enable = true
 cache.factory = "apc"
 cache.lifetime = "86400"
 cache.namespace = "dotkernel"</pre>
@@ -47,7 +52,7 @@ The <em>cache.namespace </em>will be the cache variables prefix and the <em>cach
 &nbsp;
 <h2>Individual cache settings (Cache Backend)</h2>
 The individual cache settings are optional but we highly recommend that you have theese values set, otherwise other projects might use the same cache
-<pre class="bg-light border rounded p-3 overflow-auto">>; file caching settings
+<pre>>; file caching settings
  cache.file.cache_dir = APPLICATION_PATH "/cache"
  cache.file.cache_file_perm = 0600</pre>
 &nbsp;
@@ -55,12 +60,13 @@ The individual cache settings are optional but we highly recommend that you have
 For more settings and caching alternatives see the Zend Framework Cache Links at the article beginning.
 
 The setting pattern and sample are below:
-<pre class="bg-light border rounded p-3 overflow-auto">>cache.BACKEND_NAME.SETTING = "VALUE"
+<pre>>cache.BACKEND_NAME.SETTING = "VALUE"
 ; example:
 cache.file.file_name_prefix = "DotKernel"</pre>
-                    </section>
-                </article>
-            </main>
+                </div>
+
+                {{ include('@partial/post-nav.html.twig') }}
+            </article>
 
         </div>
     </div>

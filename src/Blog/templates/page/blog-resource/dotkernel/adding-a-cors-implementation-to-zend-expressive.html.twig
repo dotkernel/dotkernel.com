@@ -10,9 +10,12 @@
                 Back to Blog
             </a>
             <div><span class="eyebrow">Dotkernel</span></div>
-            <h1>Adding a CORS implementation to Zend Expressive</h1>
+            <h1>{{ article.title }}</h1>
             <div class="post-meta">
-                <span>Dotkernel</span>
+                <span class="text-muted small">
+                    By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
+                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                </span>
             </div>
         </div>
     </div>
@@ -36,7 +39,7 @@
                     <p>The error looks similar to the image below:</p>
 
                     <figure>
-                        <img src="/uploads/2019/04/Screenshot-2019-04-06-at-15.03.21-1024x165-1-1024x165.png" alt="">
+                        <img src="{{ asset('uploads/article/' ~ article.id ~ '/Screenshot-2019-04-06-at-15.03.21-1024x165-1-1024x165.png') }}" alt="">
                     </figure>
 
                     <h2>The solution</h2>
@@ -118,6 +121,8 @@ return function (Application $app, MiddlewareFactory $factory, ContainerInterfac
                     <p>Add the cors middleware <strong>after</strong> the Error handler and <strong>before</strong> the middleware providing the data you want to access to make sure everything runs smoothly.</p>
                     <p>This should get your project working with CORS.</p>
                 </div>
+
+                {{ include('@partial/post-nav.html.twig') }}
             </article>
 
         </div>

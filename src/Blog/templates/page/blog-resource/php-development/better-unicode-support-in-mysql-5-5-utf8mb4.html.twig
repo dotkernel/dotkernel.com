@@ -3,45 +3,51 @@
 {% block title %}Better Unicode Support in MySQL 5.5 UTF8MB4{% endblock %}
 
 {% block page_title %}
-    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">PHP Development</div>
-    <h1 class="fw-bold text-dark display-6 mb-0">Better Unicode Support in MySQL 5.5 UTF8MB4</h1>
-    <hr class="mt-4 mb-2 opacity-25">
+    <div class="wrap">
+        <div class="post-hero">
+            <a href="{{ url('page::blog') }}" class="breadcrumb-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                Back to Blog
+            </a>
+            <div><span class="eyebrow">PHP Development</span></div>
+            <h1>{{ article.title }}</h1>
+            <div class="post-meta">
+                <span class="text-muted small">
+                    By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
+                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                </span>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block content %}
-    <div class="container py-4">
-        <div class="row g-4">
+    <div class="wrap post-body-wrap">
+        <div class="post-layout">
 
             {{ include('@partial/left-menu.html.twig') }}
 
-            <main class="col-12 col-md-8 col-lg-9">
-                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
-                    <header class="mb-4">
-                        <h1 class="h2 text-dark fw-bold">Better Unicode Support in MySQL 5.5 UTF8MB4</h1>
-                        <div class="text-muted small">
-                            <i class="bi bi-folder2-open me-1"></i> PHP Development
-                        </div>
-                    </header>
-
-                    <section class="post-content text-secondary lh-lg fs-6">
-                        Beginning with version 5.5 of MySQL , <strong>utf8mb4 </strong> character set was introduced, in order to better support <strong>Unicode</strong>.
+            <article class="article">
+                <div class="entry">
+Beginning with version 5.5 of MySQL , <strong>utf8mb4 </strong> character set was introduced, in order to better support <strong>Unicode</strong>.
 Further reading: <a href="http://mzsanford.com/blog/mysql-and-unicode/" target="_blank" rel="noopener noreferrer">MySQL and Unicode</a> , also directly related to <a href="http://www.phptherightway.com/#php_and_utf8" target="_blank" rel="noopener noreferrer">PHP</a>
 
 Sample dk.sql file, part of DotKernel framework, was updated in <a title="Revision 793" href="http://websvn.dotkernel.net/filedetails.php?repname=DotKernel&amp;path=%2Ftrunk%2Fdot_kernel.sql&amp;rev=793&amp;peg=793" target="_blank" rel="noopener noreferrer">revision 793</a>
 
 Only one downside , is not possible to use anymore VARCHAR(255), as you will get the error:
-<pre class="bg-light border rounded p-3 overflow-auto">>#1071 - Specified key was too long; max key length is 767 bytes</pre>
+<pre>>#1071 - Specified key was too long; max key length is 767 bytes</pre>
 Explanation <a href="http://stackoverflow.com/questions/1814532/1071-specified-key-was-too-long-max-key-length-is-767-bytes" target="_blank" rel="noopener noreferrer">here</a> ; so we use instead VARCHAR(150)
 
 Now we should change the connection charset. In config/application.ini file, edit the below line :
-<pre class="bg-light border rounded p-3 overflow-auto">>database.params.charset = utf8mb4</pre>
+<pre>>database.params.charset = utf8mb4</pre>
 Other changes that can be made in <strong>my.cnf</strong> file are all related to replacing the string <strong>utf8_*</strong> with <strong>utf8mb4_* </strong>
-<pre class="bg-light border rounded p-3 overflow-auto">>character_set_server=utf8mb4</pre>
-<pre class="bg-light border rounded p-3 overflow-auto">>collation_server=utf8mb4_general_ci</pre>
-<pre class="bg-light border rounded p-3 overflow-auto">>collation_server=utf8mb4_unicode_ci</pre>
-                    </section>
-                </article>
-            </main>
+<pre>>character_set_server=utf8mb4</pre>
+<pre>>collation_server=utf8mb4_general_ci</pre>
+<pre>>collation_server=utf8mb4_unicode_ci</pre>
+                </div>
+
+                {{ include('@partial/post-nav.html.twig') }}
+            </article>
 
         </div>
     </div>

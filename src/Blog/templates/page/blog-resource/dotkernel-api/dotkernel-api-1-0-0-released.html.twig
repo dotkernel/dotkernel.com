@@ -3,32 +3,34 @@
 {% block title %}DotKernel API 1.0.0 Released{% endblock %}
 
 {% block page_title %}
-    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel API</div>
-    <h1 class="fw-bold text-dark display-6 mb-0">DotKernel API 1.0.0 Released</h1>
-    <hr class="mt-4 mb-2 opacity-25">
+    <div class="wrap">
+        <div class="post-hero">
+            <a href="{{ url('page::blog') }}" class="breadcrumb-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                Back to Blog
+            </a>
+            <div><span class="eyebrow">Dotkernel API</span></div>
+            <h1>{{ article.title }}</h1>
+            <div class="post-meta">
+                <span class="text-muted small">
+                    By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
+                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                </span>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block content %}
-    <div class="container py-4">
-        <div class="row g-4">
+    <div class="wrap post-body-wrap">
+        <div class="post-layout">
 
             {{ include('@partial/left-menu.html.twig') }}
 
-            <main class="col-12 col-md-8 col-lg-9">
-                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
-                    <header class="mb-4">
-                        <h1 class="h2 text-dark fw-bold">DotKernel API 1.0.0 Released</h1>
-                        <div class="text-muted small">
-                            <i class="bi bi-folder2-open me-1"></i> Dotkernel API
-                        </div>
-                    </header>
-
-                    <section class="post-content text-secondary lh-lg fs-6">
-                        <!-- wp:quote -->
-<blockquote class="wp-block-quote"><!-- wp:paragraph -->
-<p class="mb-3">Dotkernel API has come a long way since this post was created. <a href="https://www.dotkernel.com/headless-platform/version-7-adds-postgresql-native-uuid-and-php-8-5/" data-type="link" data-id="https://www.dotkernel.com/headless-platform/version-7-adds-postgresql-native-uuid-and-php-8-5/">Check out the newest version of Dotkernel API</a> to stay up to date with the latest functional and security features.</p>
-<!-- /wp:paragraph --></blockquote>
-<!-- /wp:quote -->
+            <article class="article">
+                <div class="entry">
+<blockquote><p class="mb-3">Dotkernel API has come a long way since this post was created. <a href="https://www.dotkernel.com/headless-platform/version-7-adds-postgresql-native-uuid-and-php-8-5/" data-type="link" data-id="https://www.dotkernel.com/headless-platform/version-7-adds-postgresql-native-uuid-and-php-8-5/">Check out the newest version of Dotkernel API</a> to stay up to date with the latest functional and security features.</p>
+</blockquote>
 
 <h4><a href="https://github.com/dotkernel/api/releases/tag/v1.0.0">DotKernel API 1.0.0</a> was just released!</h4>
 <p class="mb-3"> </p>
@@ -61,9 +63,10 @@
 <li>OpenAPI 3 documentation - also an interactive interface that developers can use to integrate your API</li>
 </ul>
 <p class="mb-3"> </p>
-                    </section>
-                </article>
-            </main>
+                </div>
+
+                {{ include('@partial/post-nav.html.twig') }}
+            </article>
 
         </div>
     </div>

@@ -3,28 +3,33 @@
 {% block title %}SVN keywords setup in  PHP IDE ( Zend  Studio){% endblock %}
 
 {% block page_title %}
-    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Best Practice</div>
-    <h1 class="fw-bold text-dark display-6 mb-0">SVN keywords setup in  PHP IDE ( Zend  Studio)</h1>
-    <hr class="mt-4 mb-2 opacity-25">
+    <div class="wrap">
+        <div class="post-hero">
+            <a href="{{ url('page::blog') }}" class="breadcrumb-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                Back to Blog
+            </a>
+            <div><span class="eyebrow">Best Practice</span></div>
+            <h1>{{ article.title }}</h1>
+            <div class="post-meta">
+                <span class="text-muted small">
+                    By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
+                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                </span>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block content %}
-    <div class="container py-4">
-        <div class="row g-4">
+    <div class="wrap post-body-wrap">
+        <div class="post-layout">
 
             {{ include('@partial/left-menu.html.twig') }}
 
-            <main class="col-12 col-md-8 col-lg-9">
-                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
-                    <header class="mb-4">
-                        <h1 class="h2 text-dark fw-bold">SVN keywords setup in  PHP IDE ( Zend  Studio)</h1>
-                        <div class="text-muted small">
-                            <i class="bi bi-folder2-open me-1"></i> Best Practice
-                        </div>
-                    </header>
-
-                    <section class="post-content text-secondary lh-lg fs-6">
-                        For a better integration of SVN, your PHP IDE( Zend Studio), and a bug tracker of choice, the below proprieties must be set, <strong>for each project</strong> you have.
+            <article class="article">
+                <div class="entry">
+For a better integration of SVN, your PHP IDE( Zend Studio), and a bug tracker of choice, the below proprieties must be set, <strong>for each project</strong> you have.
 
 <!--more-->
 
@@ -34,7 +39,7 @@ Go to <strong>Team-&gt;Set Propriety</strong>
     <li>SVN Ignore files, below you have an example. As we do not want to commit your local settings
 to the main repository :-)</li>
 </ul>
-<pre class="bash"><strong>Name:</strong> svn:ignore
+<pre><strong>Name:</strong> svn:ignore
 <strong>Propriety:</strong>
 *.project
 *.prefs
@@ -46,14 +51,14 @@ cache
 <ul>
     <li>Basic integration with a bug tracker</li>
 </ul>
-<pre class="bash"><strong>Name:</strong> bugtracq:label
+<pre><strong>Name:</strong> bugtracq:label
 <strong>Propriety:</strong> Tracker ID:</pre>
-<pre class="bash"><strong>Name:</strong> bugtraq:message
+<pre><strong>Name:</strong> bugtraq:message
 <strong>Propriety:</strong> </pre>
 <ul>
     <li>If you have a public bug tracker system , example Mantis</li>
 </ul>
-<pre class="bash"><strong>Name:</strong> bugtraq:url
+<pre><strong>Name:</strong> bugtraq:url
 <strong>Propriety:</strong> http://www.dotkernel.net/view.php?id=%BUGID%</pre>
 For <strong>above</strong> Proprieties , apply <strong>only</strong> to project folder, <strong>NOT</strong> recursive
 <h3>Final step( below instructions are good <strong>only</strong> for <strong>svn:keywords</strong> )</h3>
@@ -63,10 +68,11 @@ Check the <strong>Apply property recursively to:</strong>
 Select <strong>All resources</strong>
 Check the <strong>Use filtration by the resource name </strong> and add <strong>Mask: </strong>*.php
 
-<a href="/uploads/2013/02/svn-add.jpg"><img class="aligncenter size-full wp-image-1980" alt="svn-add" src="/uploads/2013/02/svn-add.jpg" width="589" height="668" / class="img-fluid rounded my-2"></a>
-                    </section>
-                </article>
-            </main>
+<a href="/uploads/2013/02/svn-add.jpg"><img alt="svn-add" src="{{ asset('uploads/article/' ~ article.id ~ '/svn-add.jpg') }}" width="589" height="668" / class="img-fluid rounded my-2"></a>
+                </div>
+
+                {{ include('@partial/post-nav.html.twig') }}
+            </article>
 
         </div>
     </div>
