@@ -14,7 +14,7 @@
             <div class="post-meta">
                 <span class="text-muted small">
                     By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
-                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                    &nbsp;.&nbsp; {{ article.postDate|date('M d, Y') }}
                 </span>
             </div>
         </div>
@@ -31,7 +31,7 @@
                 <div class="entry">
 <p class="mb-3">PHP_CodeSniffer or phpcs is a tool that helps developers maintain a specific standard in the way they write code. In order to be able to provide relevant information, phpcs needs to be configured correctly in PHPStorm (see image).</p>
 
-<figure><img src="{{ asset('uploads/article/' ~ article.id ~ '/image.png') }}" alt=""/ class="img-fluid rounded my-2"></figure>
+<figure><img src="{{ asset('uploads/article/' ~ article.id ~ '/image.png') }}" alt=""> class="img-fluid rounded my-2"></figure>
 
 <div style="height:50px" aria-hidden="true"></div>
 
@@ -88,19 +88,19 @@
 
 <p class="mb-3">After you have the above configurations, you should start seeing information in the top-right corner of the editor.</p>
 
-<figure><img src="{{ asset('uploads/article/' ~ article.id ~ '/image-1-1024x83.png') }}" alt=""/ class="img-fluid rounded my-2"></figure>
+<figure><img src="{{ asset('uploads/article/' ~ article.id ~ '/image-1-1024x83.png') }}" alt=""> class="img-fluid rounded my-2"></figure>
 
 <p class="mb-3">Once the PHPStorm has finished analyzing the opened file, you should see either a green tick (meaning no errors)</p>
 
-<figure><img src="{{ asset('uploads/article/' ~ article.id ~ '/image-2-1024x66.png') }}" alt=""/ class="img-fluid rounded my-2"></figure>
+<figure><img src="{{ asset('uploads/article/' ~ article.id ~ '/image-2-1024x66.png') }}" alt=""> class="img-fluid rounded my-2"></figure>
 
 <p class="mb-3">or a count of all the errors, warnings, typos:</p>
 
-<figure><img src="{{ asset('uploads/article/' ~ article.id ~ '/image-3.png') }}" alt=""/ class="img-fluid rounded my-2"></figure>
+<figure><img src="{{ asset('uploads/article/' ~ article.id ~ '/image-3.png') }}" alt=""> class="img-fluid rounded my-2"></figure>
 
 <p class="mb-3">Clicking on them will open a section where you get detailed information on each item, their location and recommendations on how to fix them:</p>
 
-<figure><img src="{{ asset('uploads/article/' ~ article.id ~ '/image-5.png') }}" alt=""/ class="img-fluid rounded my-2"></figure>
+<figure><img src="{{ asset('uploads/article/' ~ article.id ~ '/image-5.png') }}" alt=""> class="img-fluid rounded my-2"></figure>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

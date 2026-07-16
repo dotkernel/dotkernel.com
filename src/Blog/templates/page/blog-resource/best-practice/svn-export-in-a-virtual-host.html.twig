@@ -14,7 +14,7 @@
             <div class="post-meta">
                 <span class="text-muted small">
                     By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
-                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                    &nbsp;.&nbsp; {{ article.postDate|date('M d, Y') }}
                 </span>
             </div>
         </div>
@@ -39,7 +39,7 @@ If you don't get a "command not found" message, subversion is installed. Otherwi
 The next step is to go to where you want to export the contents of the repository (eg.: "<em>cd /var/www/vhosts/example.com/httpdocs</em>" or "<em>cd /home/sitename/public_html</em>").
 
 The command looks like this:
-<pre>>svn export   <repositoryUrl> <targetDirectory></pre>
+<pre>>svn export </pre>
 
 where:
 <ul>

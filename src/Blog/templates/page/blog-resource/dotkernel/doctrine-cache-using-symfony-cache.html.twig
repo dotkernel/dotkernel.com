@@ -14,7 +14,7 @@
             <div class="post-meta">
                 <span class="text-muted small">
                     By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
-                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                    &nbsp;.&nbsp; {{ article.postDate|date('M d, Y') }}
                 </span>
             </div>
         </div>
@@ -41,7 +41,7 @@
 <p class="mb-3"></p>
 <figure></figure>
 <p class="mb-3"></p>
-                                                    <img width="710" height="351" src="{{ asset('uploads/article/' ~ article.id ~ '/sdasdadsa.drawio.png') }}" alt="" srcset="/uploads/2024/02/sdasdadsa.drawio.png 710w, /uploads/2024/02/sdasdadsa.drawio-300x148.png 300w, /uploads/2024/02/sdasdadsa.drawio-71x35.png 71w, /uploads/2024/02/sdasdadsa.drawio-162x80.png 162w, /uploads/2024/02/sdasdadsa.drawio-394x195.png 394w" sizes="(max-width: 710px) 100vw, 710px" / class="img-fluid rounded my-2">
+                                                    <img width="710" height="351" src="{{ asset('uploads/article/' ~ article.id ~ '/sdasdadsa.drawio.png') }}" alt="" srcset="/uploads/2024/02/sdasdadsa.drawio.png 710w, /uploads/2024/02/sdasdadsa.drawio-300x148.png 300w, /uploads/2024/02/sdasdadsa.drawio-71x35.png 71w, /uploads/2024/02/sdasdadsa.drawio-162x80.png 162w, /uploads/2024/02/sdasdadsa.drawio-394x195.png 394w" sizes="(max-width: 710px) 100vw, 710px"> class="img-fluid rounded my-2">
         <p class="mb-3">In this article our focus will be on enabling the <a href="https://packagist.org/packages/dotkernel/dot-cache" target="_blank" rel="noopener">dot-cache</a> component and effectively implementing caching in <a href="https://github.com/dotkernel/admin/" target="_blank" rel="noopener">DotKernel Admin</a>.</p>
             <h5>Installation</h5>
         <p class="mb-3">Run the following command in your project directory:</p><pre>composer require dotkernel/dot-cache</pre><p class="mb-3">After installing, add the <code>DotCacheConfigProvider::class</code> class to your configuration aggregate (config/config.php).</p>

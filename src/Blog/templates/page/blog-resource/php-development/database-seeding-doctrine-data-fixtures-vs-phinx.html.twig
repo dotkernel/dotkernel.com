@@ -14,7 +14,7 @@
             <div class="post-meta">
                 <span class="text-muted small">
                     By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
-                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                    &nbsp;.&nbsp; {{ article.postDate|date('M d, Y') }}
                 </span>
             </div>
         </div>
@@ -108,7 +108,7 @@ ConsoleRunner::run(
 
 <p class="mb-3">It should print out all the doctrine CLI commands available, including our fixtures commands.</p>
 
-<figure><img src="{{ asset('uploads/article/' ~ article.id ~ '/Screenshot-2022-08-30-at-19.14.14-1024x334.png') }}" alt=""/ class="img-fluid rounded my-2"></figure>
+<figure><img src="{{ asset('uploads/article/' ~ article.id ~ '/Screenshot-2022-08-30-at-19.14.14-1024x334.png') }}" alt=""> class="img-fluid rounded my-2"></figure>
 
 <h2>Usage </h2>
 
@@ -116,7 +116,7 @@ ConsoleRunner::run(
 
 <pre>php bin/doctrine fixtures:list</pre>
 
-<figure><img src="{{ asset('uploads/article/' ~ article.id ~ '/Screenshot-2022-08-30-at-19.22.45-1024x147.png') }}" alt="" width="840" height="120"/ class="img-fluid rounded my-2"></figure>
+<figure><img src="{{ asset('uploads/article/' ~ article.id ~ '/Screenshot-2022-08-30-at-19.22.45-1024x147.png') }}" alt="" width="840" height="120"> class="img-fluid rounded my-2"></figure>
 
 <p class="mb-3"><strong>By using this command you can check the execution order of your fixtures <em>before executing them</em>.</strong></p>
 
@@ -275,7 +275,7 @@ class UserLoader implements FixtureInterface, DependentFixtureInterface
 
 <p class="mb-3">After running all the fixtures using <code>php bin/doctrine fixtures:execute</code> the output should look like this: </p>
 
-<figure><img src="{{ asset('uploads/article/' ~ article.id ~ '/Screenshot-2022-08-30-at-20.39.19.png') }}" alt="" width="397" height="232"/ class="img-fluid rounded my-2"></figure>
+<figure><img src="{{ asset('uploads/article/' ~ article.id ~ '/Screenshot-2022-08-30-at-20.39.19.png') }}" alt="" width="397" height="232"> class="img-fluid rounded my-2"></figure>
 
 <p class="mb-3"><code>RoleLoader</code> was executed before <code>UserLoader</code> because <code>UserLoader</code> had <code>RoleLoader</code> as a dependency. </p>
 

@@ -6,6 +6,7 @@ namespace Light\Blog\Handler;
 
 use Fig\Http\Message\StatusCodeInterface;
 use Laminas\Diactoros\Response\HtmlResponse;
+use Light\App\Helper\Paginator;
 use Light\Blog\Entity\Category;
 use Light\Blog\Repository\CategoryRepository;
 use Mezzio\Template\TemplateRendererInterface;
@@ -30,17 +31,23 @@ class GetCategoryResourceHandler implements RequestHandlerInterface
         if ($category === null) {
             return $this->notFound($categories);
         }
-        $meta             = $category;
-        $categoryArticles = $this->categoryRepository->getCategoryPost($category);
+        $meta = $category;
+
+        $queryParams = $request->getQueryParams();
+        $params      = Paginator::getParams($queryParams, 'articles.id');
+        $data        = Paginator::wrapper(
+            $this->categoryRepository->getCategoryPost($category, $params),
+            $params
+        );
 
         try {
             $html = $this->template->render(
                 'page::category-resource',
                 [
-                    'categories'       => $categories,
-                    'category'         => $category,
-                    'meta'             => $meta,
-                    'categoryArticles' => $categoryArticles,
+                    'categories' => $categories,
+                    'category'   => $category,
+                    'meta'       => $meta,
+                    'data'       => $data,
                 ]
             );
             return new HtmlResponse($html);

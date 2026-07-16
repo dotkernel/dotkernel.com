@@ -14,7 +14,7 @@
             <div class="post-meta">
                 <span class="text-muted small">
                     By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
-                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                    &nbsp;.&nbsp; {{ article.postDate|date('M d, Y') }}
                 </span>
             </div>
         </div>
@@ -36,19 +36,19 @@ For example if you want to set the svn keyword property <em><strong>Id</strong><
 <ul>
     <li>In the file where you want to add the svn keyword property write <strong>$Id$</strong></li>
 </ul>
-<a href="/uploads/2011/04/id-file.gif"><img title="Write the ID keyword in the file" src="{{ asset('uploads/article/' ~ article.id ~ '/id-file-300x235.gif') }}" alt="" width="300" height="235" / class="img-fluid rounded my-2"></a>
+<a href="/uploads/2011/04/id-file.gif"><img title="Write the ID keyword in the file" src="{{ asset('uploads/article/' ~ article.id ~ '/id-file-300x235.gif') }}" alt="" width="300" height="235"> class="img-fluid rounded my-2"></a>
 <ul>
     <li>Right click on the file, then follow Team -&gt; Set Property...<strong> </strong><strong>Note*</strong>: <em>Set Property...</em> will not be active if you haven't first added the file to SVN: <em>Team</em>-&gt;<em>Add to Version Controller</em></li>
 </ul>
-<a href="/uploads/2011/04/set-property.gif"><img title="Select set property..." src="{{ asset('uploads/article/' ~ article.id ~ '/set-property-300x152.gif') }}" alt="" width="300" height="152" / class="img-fluid rounded my-2"></a>
+<a href="/uploads/2011/04/set-property.gif"><img title="Select set property..." src="{{ asset('uploads/article/' ~ article.id ~ '/set-property-300x152.gif') }}" alt="" width="300" height="152"> class="img-fluid rounded my-2"></a>
 <ul>
     <li>Select <strong>svn:keywords</strong>, and write <strong>Id</strong> in the text field <strong></strong></li>
 </ul>
-<a href="/uploads/2011/04/svn-keywords.gif"><img title="svn-keywords" src="{{ asset('uploads/article/' ~ article.id ~ '/svn-keywords-300x298.gif') }}" alt="" width="300" height="298" / class="img-fluid rounded my-2"></a>
+<a href="/uploads/2011/04/svn-keywords.gif"><img title="svn-keywords" src="{{ asset('uploads/article/' ~ article.id ~ '/svn-keywords-300x298.gif') }}" alt="" width="300" height="298"> class="img-fluid rounded my-2"></a>
 
 When you make the SVN commit of the file, the <em>$Id$</em> keyword will be replaced with text in the format shown below:
 
-<a href="/uploads/2011/04/id-file-svn.gif"><img title="Id keyword after commit" src="{{ asset('uploads/article/' ~ article.id ~ '/id-file-svn-300x141.gif') }}" alt="" width="300" height="141" / class="img-fluid rounded my-2"></a>
+<a href="/uploads/2011/04/id-file-svn.gif"><img title="Id keyword after commit" src="{{ asset('uploads/article/' ~ article.id ~ '/id-file-svn-300x141.gif') }}" alt="" width="300" height="141"> class="img-fluid rounded my-2"></a>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

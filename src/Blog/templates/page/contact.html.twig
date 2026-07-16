@@ -14,61 +14,95 @@
 {% block content %}
     <div class="wrap post-body-wrap">
         <div class="post-layout">
-
             {{ include('@partial/left-menu.html.twig') }}
 
             <main class="article">
-
-                <div class="contact-grid">
-                    <div class="card contact-card">
-                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <div class="pb-5">
+                    <div class="wrap">
+                        <div class="section-head">
+                            <span class="eyebrow">Community</span>
+                            <h2>Contributing and Support</h2>
+                            <p>Everything you need to get help, report issues, or contribute to the project.</p>
+                        </div>
+                        <ul class="feature-list">
+                            <li>
+                                If you need support with the project, read
+                                <a href="https://github.com/dotkernel/.github/blob/main/SUPPORT.md" target="_blank" rel="noopener" style="color:var(--teal);">the support documentation</a>.
+                            </li>
+                            <li>
+                                For open discussions, please use
+                                <a href="https://github.com/orgs/dotkernel/discussions" target="_blank" rel="noopener" style="color:var(--teal);">github discussion</a>.
+                            </li>
+                            <li>
+                                For reporting security issues, please review our
+                                <a href="https://github.com/dotkernel/.github/blob/main/SECURITY.md" target="_blank" rel="noopener" style="color:var(--teal);">security policy</a>.
+                            </li>
+                            <li>
+                                If you wish to contribute to the project, read the
+                                <a href="https://github.com/dotkernel/.github/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener" style="color:var(--teal);">contributing guidelines</a>.
+                            </li>
+                            <li>
+                                Learn about
+                                <a href="https://github.com/dotkernel/.github/blob/main/GIT_ATTRIBUTES.md" target="_blank" rel="noopener" style="color:var(--teal);">git attributes</a>.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="pb-5">
+                    <div class="wrap">
+                        <div class="section-head">
+                            <span class="eyebrow">About</span>
+                            <h2>A full-fledged Headless Platform</h2>
+                            <p>A headless platform built on top of the Mezzio microframework using Laminas components, with both <a href="https://github.com/dotkernel/admin" target="_blank" rel="noopener" style="color:var(--teal);">backend management</a> and <a href="https://github.com/dotkernel/api" target="_blank" rel="noopener" style="color:var(--teal);">frontend-agnostic capabilities</a>.</p>
+                        </div>
+                        <ul class="feature-list">
+                            <li>Built entirely on PSR-15 middleware</li>
+                            <li>Follows the middleware pipeline pattern offered by Laminas and the PSR standards</li>
+                            <li>
+                                Adhering strictly to
+                                <a href="https://www.php-fig.org/psr/psr-3/" target="_blank" rel="noopener" style="color:var(--teal);">PSR-3</a>
+                                (<a href="https://github.com/php-fig/log" target="_blank" rel="noopener" style="color:var(--teal);">logging</a>),
+                                <a href="https://www.php-fig.org/psr/psr-7/" target="_blank" rel="noopener" style="color:var(--teal);">PSR-7</a>
+                                (<a href="https://github.com/php-fig/http-message" target="_blank" rel="noopener" style="color:var(--teal);">HTTP messages</a>),
+                                <a href="https://www.php-fig.org/psr/psr-11/" target="_blank" rel="noopener" style="color:var(--teal);">PSR-11</a>
+                                (<a href="https://github.com/php-fig/container" target="_blank" rel="noopener" style="color:var(--teal);">containers</a>),
+                                <a href="https://www.php-fig.org/psr/psr-15/" target="_blank" rel="noopener" style="color:var(--teal);">PSR-15</a>
+                                (<a href="https://github.com/php-fig/http-server-handler" target="_blank" rel="noopener" style="color:var(--teal);">middleware</a>).
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="posts-grid">
+                    <a class="post-card" href="https://github.com/dotkernel" target="_blank" rel="noopener noreferrer">
+                        <svg viewBox="0 0 24 24" fill="currentColor"
+                             style="width:20px;height:20px;color:var(--teal);" aria-hidden="true">
                             <path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.1.83-.27.83-.58v-2.17c-3.34.73-4.04-1.42-4.04-1.42-.55-1.4-1.34-1.77-1.34-1.77-1.08-.75.09-.73.09-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.84 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.53.12-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.65.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .31.22.69.83.57A12 12 0 0 0 12 .5z"/>
                         </svg>
-                        <h3>GitHub</h3>
-                        <p class="desc">Browse our repositories, open issues, or contribute to the DotKernel ecosystem.</p>
-                        <div class="card-btns">
-                            <a href="https://github.com/dotkernel" target="_blank" rel="noopener noreferrer"
-                               class="btn btn-primary btn-sm">Visit GitHub</a>
-                        </div>
-                    </div>
-
-                    <div class="card contact-card">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <h4>GitHub</h4>
+                        <p>Browse our repositories, open issues, or contribute to the DotKernel ecosystem.</p>
+                        <span class="read-more">Visit GitHub →</span>
+                    </a>
+                    <a class="post-card" href="https://docs.dotkernel.org/" target="_blank" rel="noopener noreferrer">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                             style="width:20px;height:20px;color:var(--teal);" aria-hidden="true">
                             <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
                             <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
                         </svg>
-                        <h3>Documentation</h3>
-                        <p class="desc">Read the guides, references, and best practices for building with DotKernel.</p>
-                        <div class="card-btns">
-                            <a href="https://docs.dotkernel.org/" target="_blank" rel="noopener noreferrer"
-                               class="btn btn-primary btn-sm">Read the Docs</a>
-                        </div>
-                    </div>
+                        <h4>Documentation</h4>
+                        <p>Read the guides, references, and best practices for building with DotKernel.</p>
+                        <span class="read-more">Read the Docs →</span>
+                    </a>
+                    <a class="post-card" href="https://github.com/orgs/dotkernel/discussions" target="_blank" rel="noopener noreferrer">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                             style="width:20px;height:20px;color:var(--teal);" aria-hidden="true">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                        </svg>
+                        <h4>Discussion</h4>
+                        <p>Ask questions, share ideas, and join the conversation with the DotKernel community.</p>
+                        <span class="read-more">Open Discussions →</span>
+                    </a>
                 </div>
-
-                {% if posts is defined and posts|length > 0 %}
-                    <div class="latest-posts">
-                        <div class="section-head">
-                            <span class="eyebrow">From the blog</span>
-                            <h2>Latest posts</h2>
-                        </div>
-                        <div class="posts-grid">
-                            {% for post in posts %}
-                                <a class="post-card" href="{{ url('page::blog-resource', {categorySlug: post.category.slug, slug: post.slug}) }}">
-                                    <div class="post-date">{{ post.postDate|date('M d, Y') }}</div>
-                                    <h4>{{ post.title }}</h4>
-                                    {% if post.excerpt is defined %}
-                                        <p>{{ post.excerpt }}</p>
-                                    {% endif %}
-                                    <span class="read-more">Read more →</span>
-                                </a>
-                            {% endfor %}
-                        </div>
-                    </div>
-                {% endif %}
-
             </main>
-
         </div>
     </div>
 {% endblock %}

@@ -14,7 +14,7 @@
             <div class="post-meta">
                 <span class="text-muted small">
                     By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
-                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                    &nbsp;.&nbsp; {{ article.postDate|date('M d, Y') }}
                 </span>
             </div>
         </div>
@@ -77,7 +77,7 @@ Barcode::factory(
 <h4>The result</h4>
 Both the examples will render the following barcode if nothing goes wrong:
 
-<a href="/uploads/2016/04/zend.barcode.introduction.example-1.png" rel="attachment wp-att-2948"><img src="{{ asset('uploads/article/' ~ article.id ~ '/zend.barcode.introduction.example-1.png') }}" alt="Resulting barcode. Source: http://framework.zend.com/images/manual/zend.barcode.introduction.example-1.png" width="275" height="61" / class="img-fluid rounded my-2"></a> Resulting barcode.<br />Source: bit.ly/1XbZZ81
+<a href="/uploads/2016/04/zend.barcode.introduction.example-1.png" rel="attachment wp-att-2948"><img src="{{ asset('uploads/article/' ~ article.id ~ '/zend.barcode.introduction.example-1.png') }}" alt="Resulting barcode. Source: http://framework.zend.com/images/manual/zend.barcode.introduction.example-1.png" width="275" height="61"> class="img-fluid rounded my-2"></a> Resulting barcode.<br />Source: bit.ly/1XbZZ81
 <h4>Tip</h4>
 In this case the first example will work for both namespaced an non-namespaced dependencies if we add the the following as the first line at the first example:
 <pre>>use Zend\Barcode\Barcode as Zend_Barcode;</pre>

@@ -14,7 +14,7 @@
             <div class="post-meta">
                 <span class="text-muted small">
                     By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
-                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                    &nbsp;.&nbsp; {{ article.postDate|date('M d, Y') }}
                 </span>
             </div>
         </div>
@@ -37,7 +37,7 @@
 
 <h2 id="user-content-comparing-postman-to-bruno">Comparing Postman to Bruno<a href="#comparing-postman-to-bruno"></a></h2>
 
-<figure><img src="{{ asset('uploads/article/' ~ article.id ~ '/bruno-vs-postman1-1024x683.jpg') }}" alt=""/ class="img-fluid rounded my-2"></figure>
+<figure><img src="{{ asset('uploads/article/' ~ article.id ~ '/bruno-vs-postman1-1024x683.jpg') }}" alt=""> class="img-fluid rounded my-2"></figure>
 
 <h3 id="user-content-architecture">Architecture<a href="#architecture"></a></h3>
 

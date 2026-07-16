@@ -14,7 +14,7 @@
             <div class="post-meta">
                 <span class="text-muted small">
                     By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
-                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                    &nbsp;.&nbsp; {{ article.postDate|date('M d, Y') }}
                 </span>
             </div>
         </div>
@@ -98,7 +98,7 @@ git submodule update</pre>
 <li>Queue + Core</li>
 </ul>
 
-<figure><img src="{{ asset('uploads/article/' ~ article.id ~ '/core-queue2.png') }}" alt=""/ class="img-fluid rounded my-2"></figure>
+<figure><img src="{{ asset('uploads/article/' ~ article.id ~ '/core-queue2.png') }}" alt=""> class="img-fluid rounded my-2"></figure>
 
 <blockquote><p class="mb-3">Each box in the image is a different Git repository.</p>
 </blockquote>
@@ -134,7 +134,7 @@ git submodule update</pre>
 
 <p class="mb-3">As your platform expands, each new application connects to the Dotkernel Headless Platform via the central API which services everything the other applications require. This ensures consistency throughout your platform, while allowing any number of outside connections as requirements arise.</p>
 
-<figure><img src="{{ asset('uploads/article/' ~ article.id ~ '/api-comms4-2.png') }}" alt=""/ class="img-fluid rounded my-2"></figure>
+<figure><img src="{{ asset('uploads/article/' ~ article.id ~ '/api-comms4-2.png') }}" alt=""> class="img-fluid rounded my-2"></figure>
 
 <h2><a href="#additional-resources"></a>Additional Resources</h2>
 

@@ -813,6 +813,11 @@ details.acc {
   gap: 20px;
 }
 
+.posts-grid-2-col {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
 .post-card {
   background: var(--surface);
   border: 1px solid var(--border);

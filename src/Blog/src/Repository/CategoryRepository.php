@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Light\Blog\Repository;
 
+use Doctrine\ORM\Tools\Pagination\Paginator as DoctrinePaginator;
 use Light\App\Repository\AbstractRepository;
 use Light\Blog\Entity\Category;
 use Light\Blog\Entity\Post;
@@ -37,19 +38,22 @@ class CategoryRepository extends AbstractRepository
     }
 
     /**
-     * @return array<Post>
+     * @param array<string, mixed> $params
+     * @return DoctrinePaginator<Post>
      */
-    public function getCategoryPost(Category $category): array
+    public function getCategoryPost(Category $category, array $params): DoctrinePaginator
     {
         $qb = $this->getQueryBuilder()
             ->select('articles')
             ->from(Post::class, 'articles')
             ->where('articles.category = :category')
             ->andWhere('articles.status = :published')
-            ->orderBy('articles.postDate', 'DESC')
+            ->setParameter('category', $category)
             ->setParameter('published', PostStatusEnum::Published)
-            ->setParameter('category', $category);
+            ->orderBy('articles.postDate', $params['dir'])
+            ->setFirstResult($params['offset'])
+            ->setMaxResults($params['limit']);
 
-        return $qb->getQuery()->getResult();
+        return new DoctrinePaginator($qb->getQuery());
     }
 }

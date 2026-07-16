@@ -14,7 +14,7 @@
             <div class="post-meta">
                 <span class="text-muted small">
                     By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
-                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                    &nbsp;.&nbsp; {{ article.postDate|date('M d, Y') }}
                 </span>
             </div>
         </div>
@@ -75,7 +75,7 @@ Copy those .dat files in
 C:\YOUR_LOCATION\Zend\ZendServer\bin\
 
 And now you can use geoip functions on your Zend Server 5.6
-                </div>
+</pre></div>
 
                 {{ include('@partial/post-nav.html.twig') }}
             </article>
