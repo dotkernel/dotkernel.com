@@ -591,10 +591,7 @@ html[data-theme="light"] .theme-toggle {
   padding: 22px 18px;
   text-align: left;
 
-  svg {
-    width: 22px;
-    height: 22px;
-    color: var(--teal);
+  .icon {
     margin-bottom: 12px;
   }
 
@@ -959,12 +956,6 @@ footer {
       color: var(--text-muted);
       border-bottom: 1px solid var(--border);
     }
-
-    .jetbrains-logo {
-      height: 18px;
-      width: auto;
-      max-width: 120px;
-    }
   }
 }
 
@@ -1045,15 +1036,28 @@ footer {
   outline-offset: 2px;
 }
 
-.jetbrains-logo {
-  max-width: 150px;
+.icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
 }
 
-.icon-light { display: none; }
-.icon-dark { display: block; }
+.icon-lg {
+  width: 50px;
+  height: 50px;
+}
 
-html[data-theme="light"] .icon-dark { display: none; }
-html[data-theme="light"] .icon-light { display: block; }
+.icon-jetbrains {
+  min-width: 100px;
+}
+
+[data-theme="light"] .icon {
+  filter: none;
+}
+
+[data-theme="dark"] .icon {
+  filter: invert(1);
+}
 
 .contact-grid {
   display: grid;
