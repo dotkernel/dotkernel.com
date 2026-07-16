@@ -3,40 +3,45 @@
 {% block title %}Floating-Point Arithmetic - Why is (int)((0.7+0.1)*10) = 7 ?{% endblock %}
 
 {% block page_title %}
-    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">PHP Development</div>
-    <h1 class="fw-bold text-dark display-6 mb-0">Floating-Point Arithmetic - Why is (int)((0.7+0.1)*10) = 7 ?</h1>
-    <hr class="mt-4 mb-2 opacity-25">
+    <div class="wrap">
+        <div class="post-hero">
+            <a href="{{ url('page::blog') }}" class="breadcrumb-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                Back to Blog
+            </a>
+            <div><span class="eyebrow">PHP Development</span></div>
+            <h1>{{ article.title }}</h1>
+            <div class="post-meta">
+                <span class="text-muted small">
+                    By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
+                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                </span>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block content %}
-    <div class="container py-4">
-        <div class="row g-4">
+    <div class="wrap post-body-wrap">
+        <div class="post-layout">
 
             {{ include('@partial/left-menu.html.twig') }}
 
-            <main class="col-12 col-md-8 col-lg-9">
-                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
-                    <header class="mb-4">
-                        <h1 class="h2 text-dark fw-bold">Floating-Point Arithmetic - Why is (int)((0.7+0.1)*10) = 7 ?</h1>
-                        <div class="text-muted small">
-                            <i class="bi bi-folder2-open me-1"></i> PHP Development
-                        </div>
-                    </header>
-
-                    <section class="post-content text-secondary lh-lg fs-6">
-                        This article applies to <strong>PHP 5.x</strong> but also to <strong>PHP 7</strong>
+            <article class="article">
+                <div class="entry">
+This article applies to <strong>PHP 5.x</strong> but also to <strong>PHP 7</strong>
 
 While using <strong>floating-point arithmetic</strong> you might have noticed that not all the calculus results are as expected, this can usually be observed when casting values.
 
 <!--more-->
 
 So the output for <strong>(0.7 + 0.1) * 10</strong> is:
-<code lang="php">
+<code>
 var_dump((0.7+0.1)*10); # <strong>float(8)</strong>
 var_dump(intval((0.7+0.1)*10)); # <strong>int(7)</strong></code>
 
 Now let's try it with 0.6 instead of 0.7
-<code lang="php">
+<code>
 var_dump((0.6+0.1)*10); # <strong>float(7)</strong>
 var_dump(intval((0.6+0.1)*10)); # <strong>int(7)</strong></code>
 <h3></h3>
@@ -79,7 +84,7 @@ The other example still shows 7 because <strong>0.6</strong> is actually represe
 <h3>But still ...</h3>
 If we use <strong>echo</strong> and <strong>var_dump</strong> or if applying mathematical operations, PHP automatically adjusts the values, but <strong>intval</strong> and casting to <strong>int</strong> work on their bits before the values were adjusted
 
-<code lang="php">
+<code>
 var_dump((0.7+0.1)*10); # <strong>float(8)</strong>
 var_dump(intval( <strong>((0.7+0.1)*10) </strong> ) );   # <strong>int(7)</strong>
 var_dump(intval( <strong>((0.7+0.1)*10)+1</strong> ) ); # <strong>int(9)</strong></code>
@@ -87,9 +92,10 @@ var_dump(intval( <strong>((0.7+0.1)*10)+1</strong> ) ); # <strong>int(9)</strong
 If these values are very important for your project you can get the correct values we by using the <a href="http://php.net/manual/en/book.bc.php" target="_blank" rel="noopener noreferrer"><strong>BCMath PHP Extension</strong></a>.
 
 For a more technical &amp; mathematical approach read <a href="http://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html" target="_blank" rel="noopener noreferrer">this document</a>.
-                    </section>
-                </article>
-            </main>
+                </div>
+
+                {{ include('@partial/post-nav.html.twig') }}
+            </article>
 
         </div>
     </div>

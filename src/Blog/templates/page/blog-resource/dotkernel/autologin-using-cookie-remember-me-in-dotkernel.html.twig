@@ -3,61 +3,51 @@
 {% block title %}Autologin using Cookie / Remember Me in Dotkernel{% endblock %}
 
 {% block page_title %}
-    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel</div>
-    <h1 class="fw-bold text-dark display-6 mb-0">Autologin using Cookie / Remember Me in Dotkernel</h1>
-    <hr class="mt-4 mb-2 opacity-25">
+    <div class="wrap">
+        <div class="post-hero">
+            <a href="{{ url('page::blog') }}" class="breadcrumb-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                Back to Blog
+            </a>
+            <div><span class="eyebrow">Dotkernel</span></div>
+            <h1>{{ article.title }}</h1>
+            <div class="post-meta">
+                <span class="text-muted small">
+                    By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
+                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                </span>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block content %}
-    <div class="container py-4">
-        <div class="row g-4">
+    <div class="wrap post-body-wrap">
+        <div class="post-layout">
 
             {{ include('@partial/left-menu.html.twig') }}
 
-            <main class="col-12 col-md-8 col-lg-9">
-                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
-                    <header class="mb-4">
-                        <h1 class="h2 text-dark fw-bold">Autologin using Cookie / Remember Me in Dotkernel</h1>
-                        <div class="text-muted small">
-                            <i class="bi bi-folder2-open me-1"></i> Dotkernel
-                        </div>
-                    </header>
-
-                    <section class="post-content text-secondary lh-lg fs-6">
-                        <!-- wp:heading -->
+            <article class="article">
+                <div class="entry">
 <h2>Autologin using Cookie / Remember Me in Dotkernel</h2>
-<!-- /wp:heading -->
 
-<!-- wp:paragraph -->
 <p class="mb-3">This feature is used to automatically log the user who chooses this by checking the remember me box.</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
 <p class="mb-3">Implemented in <a href="https://github.com/dotkernel/frontend" data-type="URL" data-id="https://github.com/dotkernel/frontend" target="_blank" rel="noreferrer noopener">Dotkernel Frontend</a> starting from Release 3.3.0.</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:heading {"fontSize":"large"} -->
-<h2 class="has-large-font-size">Add remember me button to user interface </h2>
-<!-- /wp:heading -->
+<h2>Add remember me button to user interface </h2>
 
-<!-- wp:paragraph -->
 <p class="mb-3">To add remember me button to user interface, navigate to <strong>src/User/templates/user/login.html.twig</strong> and under password element add the following code:</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:code {"fontSize":"small"} -->
-<pre class="wp-block-code has-small-font-size"><code>&lt;div class="checkbox remember-me-checkbox"&gt;
+<pre><code>&lt;div class="checkbox remember-me-checkbox"&gt;
      {% set rememberMe = form.get('rememberMe') %}
      {{ formElement(rememberMe) }}
      &lt;p&gt;Remember me&lt;/p&gt;
 &lt;/div&gt;</code></pre>
-<!-- /wp:code -->
 
-<!-- wp:paragraph -->
 <p class="mb-3">After you've added the button to your template, navigate to <strong>src/User/src/Form/LoginForm.php</strong> and add the following element to your form:</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:code {"fontSize":"small"} -->
-<pre class="wp-block-code has-small-font-size"><code>$this-&gt;add(&#91;
+<pre><code>$this-&gt;add(&#91;
     'name' =&gt; 'rememberMe',
     'type' =&gt; 'checkbox',
     'attributes' =&gt; &#91;
@@ -67,14 +57,10 @@
     ],
 ]);
 </code></pre>
-<!-- /wp:code -->
 
-<!-- wp:paragraph -->
 <p class="mb-3">After you've added the new element navigate <strong>src/User/src/InputFilter/LoginInputFilter.php</strong> and add the following code, this will add a filter to the remember me element added previously.</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:code {"fontSize":"small"} -->
-<pre class="wp-block-code has-small-font-size"><code>$this-&gt;add(&#91;
+<pre><code>$this-&gt;add(&#91;
             'name' =&gt; 'rememberMe',
             'filters' =&gt; &#91;
                 &#91;'name' =&gt; 'StringTrim']
@@ -86,14 +72,10 @@
                 ]
             ]
         ]);</code></pre>
-<!-- /wp:code -->
 
-<!-- wp:paragraph -->
 <p class="mb-3">To add style to your remember me button navigate to <strong>src/App/assets/scss/components/_profile.scss</strong> and add the following css:  </p>
-<!-- /wp:paragraph -->
 
-<!-- wp:code {"fontSize":"small"} -->
-<pre class="wp-block-code has-small-font-size"><code>.remember-me-checkbox {
+<pre><code>.remember-me-checkbox {
   input {
     display: block;
     float: left;
@@ -102,58 +84,32 @@
     height: auto;
   }
 }</code></pre>
-<!-- /wp:code -->
 
-<!-- wp:paragraph -->
 <p class="mb-3">After you have made all the changes it's time to compile the css in order to implement the button in interface, to do that run the following command:</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:code -->
-<pre class="wp-block-code"><code>npm run prod</code></pre>
-<!-- /wp:code -->
+<pre><code>npm run prod</code></pre>
 
-<!-- wp:heading {"fontSize":"large"} -->
-<h2 class="has-large-font-size"><strong>Add functionality to remember me button</strong></h2>
-<!-- /wp:heading -->
+<h2><strong>Add functionality to remember me button</strong></h2>
 
-<!-- wp:paragraph -->
 <p class="mb-3">Now that you've added the button let's move on to its functionality, first you have to navigate to src/User/src/Entity, create a new entity named UserRememberMe.php and modifiy it as in <a href="https://github.com/dotkernel/frontend/blob/3.0/src/User/src/Entity/UserRememberMe.php" target="_blank" rel="noreferrer noopener">UserRememberMe</a></p>
-<!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
 <p class="mb-3">After you've created the entity, you have to create migration file for the new table using the following command: </p>
-<!-- /wp:paragraph -->
 
-<!-- wp:code {"fontSize":"small"} -->
-<pre class="wp-block-code has-small-font-size"><code>vendor/bin/phinx create --configuration=config/migrations.php  RememberUserSchema</code></pre>
-<!-- /wp:code -->
+<pre><code>vendor/bin/phinx create --configuration=config/migrations.php  RememberUserSchema</code></pre>
 
-<!-- wp:paragraph -->
 <p class="mb-3">After the migration file is created modify it as in <a rel="noreferrer noopener" href="https://github.com/dotkernel/frontend/blob/3.0/data/database/migrations/20220621062142_remember_user_schema.php" target="_blank">user_remember_schema</a> and run the following command to add it to you database:</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:code {"fontSize":"small"} -->
-<pre class="wp-block-code has-small-font-size"><code>vendor/bin/phinx migrate --configuration=config/migrations.php</code></pre>
-<!-- /wp:code -->
+<pre><code>vendor/bin/phinx migrate --configuration=config/migrations.php</code></pre>
 
-<!-- wp:paragraph -->
 <p class="mb-3">The table generated by migration is used to store data from coockie. The stored data will help to login the user utomatically.</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
 <p class="mb-3">The next step is to create a new middleware, navigate to <strong>src/App/src/Middleware</strong> and create a new file named <strong>RememberMeMiddleware.php</strong> and modify it as in <a href="https://github.com/dotkernel/frontend/blob/3.0/src/App/src/Middleware/RememberMeMiddleware.php" target="_blank" rel="noreferrer noopener">RememberMeMiddleware</a>.</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
 <p class="mb-3">After you've created the new middleware navigate to <strong>config/pipeline.php</strong> and add it as in <a rel="noreferrer noopener" href="https://github.com/dotkernel/frontend/blob/3.0/config/pipeline.php" target="_blank">pipeline</a>.</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
 <p class="mb-3">In order to generate the cookie in the next steps you have to add a new key to your local.php, to do that navigate to <strong>config/autoload/local.php</strong> and add the following code:</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:code {"fontSize":"small"} -->
-<pre class="wp-block-code has-small-font-size"><code>'rememberMe' =&gt; &#91;
+<pre><code>'rememberMe' =&gt; &#91;
             'cookie' =&gt; &#91;
                 'name' =&gt; 'rememberMe',
                 'lifetime' =&gt; 3600 * 24 * 30,
@@ -162,26 +118,18 @@
                 'httponly' =&gt; true
             ]
         ],</code></pre>
-<!-- /wp:code -->
 
-<!-- wp:paragraph -->
 <p class="mb-3">In the following step you have to edit your <strong>src/User/src/Service/UserService.php</strong>. First you have to add 2 new properties, <strong>$defaultSessionManager</strong> used to get config and <strong>$repository</strong> used to get repository. After you have added those properties add the following methods: <strong>getRepository(), addRememberMeToken(), deleteRememberMeCookie()</strong>. as in <a rel="noreferrer noopener" href="https://github.com/dotkernel/frontend/blob/3.0/src/User/src/Service/UserService.php" target="_blank">UserService</a>.</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
 <p class="mb-3">(don't forget to add all new methods to interface if needed)</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
 <p class="mb-3">Now, let's move to <strong>src/User/src/Repository/UserRepository.php</strong> and add the following methods: <strong>saveRememberUser(), getRememberUser(), findRememberMeUser(), deleteExpiredCookies(), removeRememberUser()</strong> as in <a rel="noreferrer noopener" href="https://github.com/dotkernel/frontend/blob/3.0/src/User/src/Repository/UserRepository.php" target="_blank">UserRepository</a>.</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
 <p class="mb-3">The last step is to go to  <strong>src/User/src/Controller/UserController.php</strong>, add a new property called <strong>$config</strong> and edit your <strong>loginAction()</strong> and <strong>logoutAction()</strong> as in <a rel="noreferrer noopener" href="https://github.com/dotkernel/frontend/blob/3.0/src/User/src/Controller/UserController.php" target="_blank">UserController</a>.</p>
-<!-- /wp:paragraph -->
-                    </section>
-                </article>
-            </main>
+                </div>
+
+                {{ include('@partial/post-nav.html.twig') }}
+            </article>
 
         </div>
     </div>

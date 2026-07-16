@@ -51,4 +51,4 @@ package-lock.json
 # Ignore the file .DS_Store in all directories
 **/.DS_Store
 
-/.github
+public/uploads/

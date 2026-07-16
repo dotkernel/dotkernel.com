@@ -3,28 +3,33 @@
 {% block title %}DotBoost Technologies : Products and Services North American Relaunch{% endblock %}
 
 {% block page_title %}
-    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel</div>
-    <h1 class="fw-bold text-dark display-6 mb-0">DotBoost Technologies : Products and Services North American Relaunch</h1>
-    <hr class="mt-4 mb-2 opacity-25">
+    <div class="wrap">
+        <div class="post-hero">
+            <a href="{{ url('page::blog') }}" class="breadcrumb-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                Back to Blog
+            </a>
+            <div><span class="eyebrow">Dotkernel</span></div>
+            <h1>{{ article.title }}</h1>
+            <div class="post-meta">
+                <span class="text-muted small">
+                    By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
+                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                </span>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block content %}
-    <div class="container py-4">
-        <div class="row g-4">
+    <div class="wrap post-body-wrap">
+        <div class="post-layout">
 
             {{ include('@partial/left-menu.html.twig') }}
 
-            <main class="col-12 col-md-8 col-lg-9">
-                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
-                    <header class="mb-4">
-                        <h1 class="h2 text-dark fw-bold">DotBoost Technologies : Products and Services North American Relaunch</h1>
-                        <div class="text-muted small">
-                            <i class="bi bi-folder2-open me-1"></i> Dotkernel
-                        </div>
-                    </header>
-
-                    <section class="post-content text-secondary lh-lg fs-6">
-                        <strong>A new style and advanced approach to accompany the Dotkernel source release</strong>
+            <article class="article">
+                <div class="entry">
+<strong>A new style and advanced approach to accompany the Dotkernel source release</strong>
 
 Dotboost is pleased to announce our North American Relaunch. This new phase comes as a result of dedicated research and analysis on how to best serve clients in Canada and the US.
 
@@ -34,9 +39,10 @@ At the heart of our relaunch is the source release for our exclusive inhouse dev
 We're not your average IT organization; we view our customers as strategic partners. This paradigm allows us to take a comprehensive approach towards creating solutions and gain the competitive advantage.
 
 Founded in 2005, the Dotboost process can incorporate anywhere into your project's life-cycle including concept development, architecture and design, development and integration, and implementation and support. We use time and distance to our advantage, pushing competitive boundaries and staking our place as a globally efficient organization.
-                    </section>
-                </article>
-            </main>
+                </div>
+
+                {{ include('@partial/post-nav.html.twig') }}
+            </article>
 
         </div>
     </div>

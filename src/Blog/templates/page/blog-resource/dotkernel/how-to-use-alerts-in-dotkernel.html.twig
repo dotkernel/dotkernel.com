@@ -3,28 +3,33 @@
 {% block title %}How to use Alerts in DotKernel{% endblock %}
 
 {% block page_title %}
-    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel</div>
-    <h1 class="fw-bold text-dark display-6 mb-0">How to use Alerts in DotKernel</h1>
-    <hr class="mt-4 mb-2 opacity-25">
+    <div class="wrap">
+        <div class="post-hero">
+            <a href="{{ url('page::blog') }}" class="breadcrumb-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                Back to Blog
+            </a>
+            <div><span class="eyebrow">Dotkernel</span></div>
+            <h1>{{ article.title }}</h1>
+            <div class="post-meta">
+                <span class="text-muted small">
+                    By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
+                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                </span>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block content %}
-    <div class="container py-4">
-        <div class="row g-4">
+    <div class="wrap post-body-wrap">
+        <div class="post-layout">
 
             {{ include('@partial/left-menu.html.twig') }}
 
-            <main class="col-12 col-md-8 col-lg-9">
-                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
-                    <header class="mb-4">
-                        <h1 class="h2 text-dark fw-bold">How to use Alerts in DotKernel</h1>
-                        <div class="text-muted small">
-                            <i class="bi bi-folder2-open me-1"></i> Dotkernel
-                        </div>
-                    </header>
-
-                    <section class="post-content text-secondary lh-lg fs-6">
-                        Alerts (or Dot_Alert's) are e-mails usually sent to the site developers, these messages are sent with <strong>mail()</strong> therefore you shouldn't use them to send regular mail. Alerts should only notify you as a developer: "<em><strong>Hey, something's wrong here, you might want to know this!</strong></em>"
+            <article class="article">
+                <div class="entry">
+Alerts (or Dot_Alert's) are e-mails usually sent to the site developers, these messages are sent with <strong>mail()</strong> therefore you shouldn't use them to send regular mail. Alerts should only notify you as a developer: "<em><strong>Hey, something's wrong here, you might want to know this!</strong></em>"
 
 In this article you will find out how to use the Alerts system in DotKernel, we will also go through an existing example so this can be understood easier.
 
@@ -35,7 +40,7 @@ The Dot_Alert class resembles with Dot_Email, the alerts, like a mail message, h
 In DotKernel we use the Alerts for notifying the developer that an email was not sent successfully.
 
 In this case we kept the message in the dots.xml file
-<pre class="bg-light border rounded p-3 overflow-auto">>
+<pre>>
 <variable option="global">
     <alertMessages>
         <email>
@@ -58,16 +63,16 @@ Date: {DATE_NOW}
 If you're not familiar  with the dots.xml, you should see <a href="http://www.dotkernel.com/docs/dots-xml/" target="_blank" rel="noopener noreferrer">this article</a>.
 
 First the message will be fetched from the xml file, we already have it in $this->option
-<pre class="bg-light border rounded p-3 overflow-auto">>
+<pre>>
 $subject = $this->option->alertMessages->email->subject;
 $message = $this->option->alertMessages->email->message;</pre>
 Second, we get the destination recipient (in this case the developers e-mail addresses)
-<pre class="bg-light border rounded p-3 overflow-auto">>
+<pre>>
 $devEmails = explode(',', $this->settings->devEmails);
 
 </pre>
 As you can see the Alert messages contains <strong>{VARIABLES}</strong> called details in the Alert system. Now we will prepare the details:
-<pre class="bg-light border rounded p-3 overflow-auto">>$details = array(
+<pre>>$details = array(
     'e_class' => get_class($e),
     'site_name' => $this->seoOption->siteName,
     'site_url' => $registry->configuration->website->params->url,
@@ -78,21 +83,22 @@ As you can see the Alert messages contains <strong>{VARIABLES}</strong> called d
 );</pre>
 Note that $e is a caught exception, this exception is thrown when the e-mail send process fails.
 Now that we have it all, let's create an alert:
-<pre class="bg-light border rounded p-3 overflow-auto">>$alert = new Dot_Alert();</pre>
+<pre>>$alert = new Dot_Alert();</pre>
 This is just an empty alert, we will now set the sender, the subject and the message, the sender is set on sending
-<pre class="bg-light border rounded p-3 overflow-auto">>$alert->addHeader( "From: " . $this->settings->siteEmail);
+<pre>>$alert->addHeader( "From: " . $this->settings->siteEmail);
 $alert->addHeader( "Reply-To:" . $this->settings->siteEmail );
 $alert->addHeader( "X-Mailer: PHP/" . phpversion() ) ;</pre>
-<pre class="bg-light border rounded p-3 overflow-auto">>$alert->setTo($devEmails);
+<pre>>$alert->setTo($devEmails);
 $alert->setSubject($subject);
 $alert->setContent($message);</pre>
 Our message doesn't look that good, the setDetails method will replace our <strong>{VARIABLES}</strong> within subject and message with actual data
-<pre class="bg-light border rounded p-3 overflow-auto">>$alert->setDetails($details);</pre>
+<pre>>$alert->setDetails($details);</pre>
 Everything is great, we can now send our alert:
-<pre class="bg-light border rounded p-3 overflow-auto">>$alert->send();</pre>
-                    </section>
-                </article>
-            </main>
+<pre>>$alert->send();</pre>
+                </div>
+
+                {{ include('@partial/post-nav.html.twig') }}
+            </article>
 
         </div>
     </div>

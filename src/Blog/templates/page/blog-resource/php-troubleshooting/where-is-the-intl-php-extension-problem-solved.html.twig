@@ -3,28 +3,33 @@
 {% block title %}Where is the intl PHP extension? Problem solved!{% endblock %}
 
 {% block page_title %}
-    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">PHP Troubleshooting</div>
-    <h1 class="fw-bold text-dark display-6 mb-0">Where is the intl PHP extension? Problem solved!</h1>
-    <hr class="mt-4 mb-2 opacity-25">
+    <div class="wrap">
+        <div class="post-hero">
+            <a href="{{ url('page::blog') }}" class="breadcrumb-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                Back to Blog
+            </a>
+            <div><span class="eyebrow">PHP Troubleshooting</span></div>
+            <h1>{{ article.title }}</h1>
+            <div class="post-meta">
+                <span class="text-muted small">
+                    By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
+                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                </span>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block content %}
-    <div class="container py-4">
-        <div class="row g-4">
+    <div class="wrap post-body-wrap">
+        <div class="post-layout">
 
             {{ include('@partial/left-menu.html.twig') }}
 
-            <main class="col-12 col-md-8 col-lg-9">
-                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
-                    <header class="mb-4">
-                        <h1 class="h2 text-dark fw-bold">Where is the intl PHP extension? Problem solved!</h1>
-                        <div class="text-muted small">
-                            <i class="bi bi-folder2-open me-1"></i> PHP Troubleshooting
-                        </div>
-                    </header>
-
-                    <section class="post-content text-secondary lh-lg fs-6">
-                        <h2>Problem</h2>
+            <article class="article">
+                <div class="entry">
+<h2>Problem</h2>
 PHP packages/frameworks/libraries/scripts we work with might require different PHP extensions. In this case the Intl extension is needed to work with using Internationalization Functions.
 
 <a href="https://www.gala-global.org/language-industry/intro-language-industry/what-internationalization" target="_blank" rel="noopener noreferrer">What is Internationalization?</a>
@@ -122,9 +127,10 @@ For projects hosted on a shared hosting platform you must ask your hosting provi
 </li>
 </ul>
 Edit: changed <strong>php7.0 </strong>occurrences with <strong>php7.x</strong> as the version may vary.
-                    </section>
-                </article>
-            </main>
+                </div>
+
+                {{ include('@partial/post-nav.html.twig') }}
+            </article>
 
         </div>
     </div>

@@ -3,33 +3,38 @@
 {% block title %}Subqueries with Zend_Db{% endblock %}
 
 {% block page_title %}
-    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Best Practice</div>
-    <h1 class="fw-bold text-dark display-6 mb-0">Subqueries with Zend_Db</h1>
-    <hr class="mt-4 mb-2 opacity-25">
+    <div class="wrap">
+        <div class="post-hero">
+            <a href="{{ url('page::blog') }}" class="breadcrumb-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                Back to Blog
+            </a>
+            <div><span class="eyebrow">Best Practice</span></div>
+            <h1>{{ article.title }}</h1>
+            <div class="post-meta">
+                <span class="text-muted small">
+                    By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
+                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                </span>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block content %}
-    <div class="container py-4">
-        <div class="row g-4">
+    <div class="wrap post-body-wrap">
+        <div class="post-layout">
 
             {{ include('@partial/left-menu.html.twig') }}
 
-            <main class="col-12 col-md-8 col-lg-9">
-                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
-                    <header class="mb-4">
-                        <h1 class="h2 text-dark fw-bold">Subqueries with Zend_Db</h1>
-                        <div class="text-muted small">
-                            <i class="bi bi-folder2-open me-1"></i> Best Practice
-                        </div>
-                    </header>
-
-                    <section class="post-content text-secondary lh-lg fs-6">
-                        Continuing the Zend_DB article <a href="http://www.dotkernel.com/dotkernel/sql-select-zend-db/" target="_blank" rel="noopener noreferrer">series</a>, we are stopping now at subqueries.
+            <article class="article">
+                <div class="entry">
+Continuing the Zend_DB article <a href="http://www.dotkernel.com/dotkernel/sql-select-zend-db/" target="_blank" rel="noopener noreferrer">series</a>, we are stopping now at subqueries.
 </br>
 As you note, the below is a complicate query, with <i>COUNT()</i>, <i>LEFT JOIN()</i>, <i>GROUP BY</i>
  - select from 3 tables, and make a count from 2 different tables:
 <!--more-->
-<pre class="bg-light border rounded p-3 overflow-auto">>
+<pre>>
 SELECT a.id,
        a.title,
        (SELECT COUNT(c.track_id)
@@ -43,11 +48,11 @@ GROUP BY a.id
 </pre>
 </br>
 Initialize the connection to our MySql database:
-<pre class="bg-light border rounded p-3 overflow-auto">>
+<pre>>
 $db = Zend_Db::factory('Pdo_Mysql', $dbConnect);
 </pre>
 </br>
-<pre class="bg-light border rounded p-3 overflow-auto">>
+<pre>>
 $db->select()
    ->from(array('a'=>'tracks'),
          array('id',
@@ -65,9 +70,10 @@ $db->select()
          )
    ->group('a.id');
 </pre>
-                    </section>
-                </article>
-            </main>
+                </div>
+
+                {{ include('@partial/post-nav.html.twig') }}
+            </article>
 
         </div>
     </div>

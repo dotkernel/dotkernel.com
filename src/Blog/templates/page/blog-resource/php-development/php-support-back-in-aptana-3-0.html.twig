@@ -3,28 +3,33 @@
 {% block title %}PHP support back in Aptana 3.0{% endblock %}
 
 {% block page_title %}
-    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">PHP Development</div>
-    <h1 class="fw-bold text-dark display-6 mb-0">PHP support back in Aptana 3.0</h1>
-    <hr class="mt-4 mb-2 opacity-25">
+    <div class="wrap">
+        <div class="post-hero">
+            <a href="{{ url('page::blog') }}" class="breadcrumb-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                Back to Blog
+            </a>
+            <div><span class="eyebrow">PHP Development</span></div>
+            <h1>{{ article.title }}</h1>
+            <div class="post-meta">
+                <span class="text-muted small">
+                    By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
+                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                </span>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block content %}
-    <div class="container py-4">
-        <div class="row g-4">
+    <div class="wrap post-body-wrap">
+        <div class="post-layout">
 
             {{ include('@partial/left-menu.html.twig') }}
 
-            <main class="col-12 col-md-8 col-lg-9">
-                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
-                    <header class="mb-4">
-                        <h1 class="h2 text-dark fw-bold">PHP support back in Aptana 3.0</h1>
-                        <div class="text-muted small">
-                            <i class="bi bi-folder2-open me-1"></i> PHP Development
-                        </div>
-                    </header>
-
-                    <section class="post-content text-secondary lh-lg fs-6">
-                        Aptana 3.0 is in beta stage, can be downloaded from the <a title="Aptana " href="http://www.aptana.com/products/studio3" target="_blank" rel="noopener noreferrer">official site</a> .
+            <article class="article">
+                <div class="entry">
+Aptana 3.0 is in beta stage, can be downloaded from the <a title="Aptana " href="http://www.aptana.com/products/studio3" target="_blank" rel="noopener noreferrer">official site</a> .
 
 The very super good news is that Aptana PHP Support is back , based on an annoucement from their <a href="https://aptanastudio.tenderapp.com/discussions/questions/419-php-in-studio-3" target="_blank" rel="noopener noreferrer">forum</a>. And even more,  will be integrated in Studio 3 core, not as a separate plugin.
 <blockquote class="blockquote border-start border-4 ps-3 text-muted my-3">Aptana PHP is coming back. We are in the process of developing and integrating it into the Studio 3.
@@ -37,9 +42,10 @@ Cheers,
 -Shalom G
 
 p.s. You can follow us on twitter for any major announcements, or follow me 'sgibly' for more frequent progress updates.</blockquote>
-                    </section>
-                </article>
-            </main>
+                </div>
+
+                {{ include('@partial/post-nav.html.twig') }}
+            </article>
 
         </div>
     </div>

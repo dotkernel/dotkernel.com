@@ -6,5 +6,6 @@ $icon-font-path: "../../../../node_modules/bootstrap-sass/assets/fonts/bootstrap
 @import "../../../../node_modules/toastr/toastr";
 @import "../../../../node_modules/bootstrap-slider/src/sass/bootstrap-slider";
 // Base
-@import "components/general";
-@import "components/pages";
+@import "components/custom";
+@import "components/left_menu";
+@import "components/blog";

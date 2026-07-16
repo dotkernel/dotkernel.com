@@ -3,28 +3,33 @@
 {% block title %}DotKernel Reserved Variable Names for Caching{% endblock %}
 
 {% block page_title %}
-    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel</div>
-    <h1 class="fw-bold text-dark display-6 mb-0">DotKernel Reserved Variable Names for Caching</h1>
-    <hr class="mt-4 mb-2 opacity-25">
+    <div class="wrap">
+        <div class="post-hero">
+            <a href="{{ url('page::blog') }}" class="breadcrumb-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                Back to Blog
+            </a>
+            <div><span class="eyebrow">Dotkernel</span></div>
+            <h1>{{ article.title }}</h1>
+            <div class="post-meta">
+                <span class="text-muted small">
+                    By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
+                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                </span>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block content %}
-    <div class="container py-4">
-        <div class="row g-4">
+    <div class="wrap post-body-wrap">
+        <div class="post-layout">
 
             {{ include('@partial/left-menu.html.twig') }}
 
-            <main class="col-12 col-md-8 col-lg-9">
-                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
-                    <header class="mb-4">
-                        <h1 class="h2 text-dark fw-bold">DotKernel Reserved Variable Names for Caching</h1>
-                        <div class="text-muted small">
-                            <i class="bi bi-folder2-open me-1"></i> Dotkernel
-                        </div>
-                    </header>
-
-                    <section class="post-content text-secondary lh-lg fs-6">
-                        This article is related to: <a title="DotKernel - Caching in DotKernel Using Zend Framework" href="http://www.dotkernel.com/dotkernel/caching-in-dotkernel-using-zend-framework" target="_blank" rel="noopener noreferrer">Caching in DotKernel with Zend Framework Cache</a>
+            <article class="article">
+                <div class="entry">
+This article is related to: <a title="DotKernel - Caching in DotKernel Using Zend Framework" href="http://www.dotkernel.com/dotkernel/caching-in-dotkernel-using-zend-framework" target="_blank" rel="noopener noreferrer">Caching in DotKernel with Zend Framework Cache</a>
 
 The variables that DotKernel cache are below:
 <h3>Router</h3>
@@ -56,9 +61,10 @@ The browser.xml and os.xml are used to identify the Browser and OS name, icon, a
 Browser &amp; OS are cached as <em><strong>browser_xml </strong>and <strong>os_xml.</strong></em>
 
 <strong><span style="color: #ff0000;">Note: Be careful when changing the xml files / values to be cached as they remain cached. If there is no effect that means you must clear the cache or rewrite that value in cache.</span></strong>
-                    </section>
-                </article>
-            </main>
+                </div>
+
+                {{ include('@partial/post-nav.html.twig') }}
+            </article>
 
         </div>
     </div>

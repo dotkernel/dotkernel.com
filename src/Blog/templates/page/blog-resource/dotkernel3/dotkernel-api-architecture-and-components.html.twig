@@ -3,38 +3,43 @@
 {% block title %}Dotkernel API: architecture and components{% endblock %}
 
 {% block page_title %}
-    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel 3</div>
-    <h1 class="fw-bold text-dark display-6 mb-0">Dotkernel API: architecture and components</h1>
-    <hr class="mt-4 mb-2 opacity-25">
+    <div class="wrap">
+        <div class="post-hero">
+            <a href="{{ url('page::blog') }}" class="breadcrumb-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                Back to Blog
+            </a>
+            <div><span class="eyebrow">Dotkernel 3</span></div>
+            <h1>{{ article.title }}</h1>
+            <div class="post-meta">
+                <span class="text-muted small">
+                    By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
+                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                </span>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block content %}
-    <div class="container py-4">
-        <div class="row g-4">
+    <div class="wrap post-body-wrap">
+        <div class="post-layout">
 
             {{ include('@partial/left-menu.html.twig') }}
 
-            <main class="col-12 col-md-8 col-lg-9">
-                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
-                    <header class="mb-4">
-                        <h1 class="h2 text-dark fw-bold">Dotkernel API: architecture and components</h1>
-                        <div class="text-muted small">
-                            <i class="bi bi-folder2-open me-1"></i> Dotkernel 3
-                        </div>
-                    </header>
-
-                    <section class="post-content text-secondary lh-lg fs-6">
-                        <blockquote style="font-size: 16px;
+            <article class="article">
+                <div class="entry">
+<blockquote style="font-size: 16px;
   font-weight: 400;">This article refers to Dotkernel API v5. Checkout out the new additions for <a href="https://www.dotkernel.com/headless-platform/dotkernel-api-v6-the-root-of-dotkernel-headless-platform/">Dotkernel API v6</a> to stay up-to-date.</blockquote>
 <p class="mb-3">Based on Enrico Zimuel's <a href="https://github.com/ezimuel/zend-expressive-api" target="_blank" rel="noreferrer noopener">Zend Expressive API - Skeleton example</a>, Dotkernel API runs on <a href="https://github.com/mezzio" target="_blank" rel="noreferrer noopener">Mezzio</a> microframework   and<a href="https://github.com/laminas" target="_blank" rel="noreferrer noopener">Laminas</a> components and implements standards like PSR-3, PSR-4, PSR-7, PSR-11 and PSR-15.</p>
-<p class="mb-3"><!-- /wp:paragraph --></p>
-<p class="mb-3"><!-- wp:paragraph --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <p class="mb-3">Here is a list of the core components:</p>
-<p class="mb-3"><!-- /wp:paragraph --></p>
-<p class="mb-3"><!-- wp:list --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <ul>
 <li style="list-style-type: none;">
-<ul><!-- wp:list-item --></ul>
+<ul></ul>
 </li>
 </ul>
 <ul>
@@ -44,8 +49,8 @@
 </ul>
 </li>
 </ul>
-<p class="mb-3"><!-- /wp:list-item --></p>
-<p class="mb-3"><!-- wp:list-item --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <ul>
 <li style="list-style-type: none;">
 <ul>
@@ -53,8 +58,8 @@
 </ul>
 </li>
 </ul>
-<p class="mb-3"><!-- /wp:list-item --></p>
-<p class="mb-3"><!-- wp:list-item --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <ul>
 <li style="list-style-type: none;">
 <ul>
@@ -62,8 +67,8 @@
 </ul>
 </li>
 </ul>
-<p class="mb-3"><!-- /wp:list-item --></p>
-<p class="mb-3"><!-- wp:list-item --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <ul>
 <li style="list-style-type: none;">
 <ul>
@@ -71,8 +76,8 @@
 </ul>
 </li>
 </ul>
-<p class="mb-3"><!-- /wp:list-item --></p>
-<p class="mb-3"><!-- wp:list-item --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <ul>
 <li style="list-style-type: none;">
 <ul>
@@ -80,8 +85,8 @@
 </ul>
 </li>
 </ul>
-<p class="mb-3"><!-- /wp:list-item --></p>
-<p class="mb-3"><!-- wp:list-item --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <ul>
 <li style="list-style-type: none;">
 <ul>
@@ -89,8 +94,8 @@
 </ul>
 </li>
 </ul>
-<p class="mb-3"><!-- /wp:list-item --></p>
-<p class="mb-3"><!-- wp:list-item --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <ul>
 <li style="list-style-type: none;">
 <ul>
@@ -98,8 +103,8 @@
 </ul>
 </li>
 </ul>
-<p class="mb-3"><!-- /wp:list-item --></p>
-<p class="mb-3"><!-- wp:list-item --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <ul>
 <li style="list-style-type: none;">
 <ul>
@@ -107,8 +112,8 @@
 </ul>
 </li>
 </ul>
-<p class="mb-3"><!-- /wp:list-item --></p>
-<p class="mb-3"><!-- wp:list-item --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <ul>
 <li style="list-style-type: none;">
 <ul>
@@ -116,8 +121,8 @@
 </ul>
 </li>
 </ul>
-<p class="mb-3"><!-- /wp:list-item --></p>
-<p class="mb-3"><!-- wp:list-item --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <ul>
 <li style="list-style-type: none;">
 <ul>
@@ -125,8 +130,8 @@
 </ul>
 </li>
 </ul>
-<p class="mb-3"><!-- /wp:list-item --></p>
-<p class="mb-3"><!-- wp:list-item --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <ul>
 <li style="list-style-type: none;">
 <ul>
@@ -134,8 +139,8 @@
 </ul>
 </li>
 </ul>
-<p class="mb-3"><!-- /wp:list-item --></p>
-<p class="mb-3"><!-- wp:list-item --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <ul>
 <li style="list-style-type: none;">
 <ul>
@@ -143,8 +148,8 @@
 </ul>
 </li>
 </ul>
-<p class="mb-3"><!-- /wp:list-item --></p>
-<p class="mb-3"><!-- wp:list-item --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <ul>
 <li style="list-style-type: none;">
 <ul>
@@ -152,8 +157,8 @@
 </ul>
 </li>
 </ul>
-<p class="mb-3"><!-- /wp:list-item --></p>
-<p class="mb-3"><!-- wp:list-item --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <ul>
 <li style="list-style-type: none;">
 <ul>
@@ -161,8 +166,8 @@
 </ul>
 </li>
 </ul>
-<p class="mb-3"><!-- /wp:list-item --></p>
-<p class="mb-3"><!-- wp:list-item --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <ul>
 <li style="list-style-type: none;">
 <ul>
@@ -170,8 +175,8 @@
 </ul>
 </li>
 </ul>
-<p class="mb-3"><!-- /wp:list-item --></p>
-<p class="mb-3"><!-- wp:list-item --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <ul>
 <li style="list-style-type: none;">
 <ul>
@@ -179,8 +184,8 @@
 </ul>
 </li>
 </ul>
-<p class="mb-3"><!-- /wp:list-item --></p>
-<p class="mb-3"><!-- wp:list-item --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <ul>
 <li style="list-style-type: none;">
 <ul>
@@ -188,8 +193,8 @@
 </ul>
 </li>
 </ul>
-<p class="mb-3"><!-- /wp:list-item --></p>
-<p class="mb-3"><!-- wp:list-item --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <ul>
 <li style="list-style-type: none;">
 <ul>
@@ -197,8 +202,8 @@
 </ul>
 </li>
 </ul>
-<p class="mb-3"><!-- /wp:list-item --></p>
-<p class="mb-3"><!-- wp:list-item --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <ul>
 <li style="list-style-type: none;">
 <ul>
@@ -206,27 +211,27 @@
 </ul>
 </li>
 </ul>
-<p class="mb-3"><!-- /wp:list-item --></p>
-<p class="mb-3"><!-- /wp:list --></p>
-<p class="mb-3"><!-- wp:heading {"level":4} --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <h4>Doctrine 2 ORM</h4>
-<p class="mb-3"><!-- /wp:heading --></p>
-<p class="mb-3"><!-- wp:paragraph --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <p class="mb-3">For the persistence in a relational database management system we chose <a href="https://www.doctrine-project.org/projects/doctrine-orm/en/2.14/index.html" target="_blank" rel="noreferrer noopener" data-type="URL" data-id="https://www.doctrine-project.org/projects/doctrine-orm/en/2.14/index.html">Doctrine ORM</a> (object-relational mapper).</p>
-<p class="mb-3"><!-- /wp:paragraph --></p>
-<p class="mb-3"><!-- wp:paragraph --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <p class="mb-3">The benefit of Doctrine for the programmer is the ability to focus on the object-oriented business logic and worry about persistence only as a secondary priority.</p>
-<p class="mb-3"><!-- /wp:paragraph --></p>
-<p class="mb-3"><!-- wp:heading {"level":4} --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <h4>Documentation</h4>
-<p class="mb-3"><!-- /wp:heading --></p>
-<p class="mb-3"><!-- wp:paragraph --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <p class="mb-3">Our documentation is <a href="https://www.postman.com/" target="_blank" rel="noreferrer noopener" data-type="URL" data-id="https://www.postman.com/">Postman</a> based. We use the following files in which we store information about every available endpoint ready to be tested:</p>
-<p class="mb-3"><!-- /wp:paragraph --></p>
-<p class="mb-3"><!-- wp:list --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <ul>
 <li style="list-style-type: none;">
-<ul><!-- wp:list-item --></ul>
+<ul></ul>
 </li>
 </ul>
 <ul>
@@ -236,8 +241,8 @@
 </ul>
 </li>
 </ul>
-<p class="mb-3"><!-- /wp:list-item --></p>
-<p class="mb-3"><!-- wp:list-item --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <ul>
 <li style="list-style-type: none;">
 <ul>
@@ -245,78 +250,78 @@
 </ul>
 </li>
 </ul>
-<p class="mb-3"><!-- /wp:list-item --></p>
-<p class="mb-3"><!-- /wp:list --></p>
-<p class="mb-3"><!-- wp:heading {"level":4} --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <h4>Hypertext Application Language</h4>
-<p class="mb-3"><!-- /wp:heading --></p>
-<p class="mb-3"><!-- wp:paragraph --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <p class="mb-3">For our API payloads (a value object for describing the API resource, its relational links and any embedded/child resources related to it) we chose <a href="https://docs.mezzio.dev/mezzio-hal/" target="_blank" rel="noreferrer noopener" data-type="URL" data-id="https://docs.mezzio.dev/mezzio-hal/">mezzio-hal</a>.</p>
-<p class="mb-3"><!-- /wp:paragraph --></p>
-<p class="mb-3"><!-- wp:heading {"level":4} --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <h4>CORS</h4>
-<p class="mb-3"><!-- /wp:heading --></p>
-<p class="mb-3"><!-- wp:paragraph --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <p class="mb-3">By using <code>MezzioCorsMiddlewareCorsMiddleware</code>, the <strong>CORS preflight</strong> will be recognized and the middleware will start to detect the proper <strong>CORS configuration</strong>. The <strong>Router</strong> is used to detect every allowed request method by executing a route match with all possible request methods. Therefore, for every preflight request, there is at least one Router request.</p>
-<p class="mb-3"><!-- /wp:paragraph --></p>
-<p class="mb-3"><!-- wp:heading {"level":4} --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <h4>OAuth 2.0</h4>
-<p class="mb-3"><!-- /wp:heading --></p>
-<p class="mb-3"><!-- wp:paragraph --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <p class="mb-3">OAuth 2.0 is an authorization framework that enables applications to obtain limited access to user accounts on your <strong>Dotkernel API</strong>. We are using <a href="https://docs.mezzio.dev/mezzio-authentication-oauth2/" target="_blank" rel="noreferrer noopener" data-type="URL" data-id="https://docs.mezzio.dev/mezzio-authentication-oauth2/">mezzio/mezzio-authentication-oauth2</a> which provides <strong>OAuth 2.0</strong> authentication for Mezzio and PSR-7/PSR-15 applications by using <a href="https://oauth2.thephpleague.com/" target="_blank" rel="noreferrer noopener" data-type="URL" data-id="https://oauth2.thephpleague.com/">league/oauth2-server</a> package.</p>
-<p class="mb-3"><!-- /wp:paragraph --></p>
-<p class="mb-3"><!-- wp:heading {"level":4} --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <h4>Email</h4>
-<p class="mb-3"><!-- /wp:heading --></p>
-<p class="mb-3"><!-- wp:paragraph --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <p class="mb-3">It is not unlikely for an API to send emails depending on the use case. Here is another area where <strong>Dotkernel API</strong> shines. Using <code>DotMailServiceMailService</code> provided by <a href="https://packagist.org/packages/dotkernel/dot-mail" target="_blank" rel="noreferrer noopener" data-type="URL" data-id="https://packagist.org/packages/dotkernel/dot-mail">dotkernel/dot-mail</a> you can easily send custom email templates.</p>
-<p class="mb-3"><!-- /wp:paragraph --></p>
-<p class="mb-3"><!-- wp:heading {"level":4} --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <h4>Configuration</h4>
-<p class="mb-3"><!-- /wp:heading --></p>
-<p class="mb-3"><!-- wp:paragraph --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <p class="mb-3">From authorization at request route level to API keys for your application, you can find every configuration variable in the <strong>config</strong> directory.</p>
-<p class="mb-3"><!-- /wp:paragraph --></p>
-<p class="mb-3"><!-- wp:paragraph --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <p class="mb-3"><strong>Registering</strong> a <strong>new module</strong> can be done by including its <code>ConfigProvider.php</code> in <code>config.php</code>.</p>
-<p class="mb-3"><!-- /wp:paragraph --></p>
-<p class="mb-3"><!-- wp:paragraph --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <p class="mb-3">Brand new <strong>middleware</strong>s should go into <code>pipeline.php</code>. Here you can edit the order in which they run and find more info about the currently included ones.</p>
-<p class="mb-3"><!-- /wp:paragraph --></p>
-<p class="mb-3"><!-- wp:paragraph --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <p class="mb-3">You can further customize your api within the <strong>autoload</strong> directory where each configuration category has its own file.</p>
-<p class="mb-3"><!-- /wp:paragraph --></p>
-<p class="mb-3"><!-- wp:heading {"level":4} --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <h4>Routing</h4>
-<p class="mb-3"><!-- /wp:heading --></p>
-<p class="mb-3"><!-- wp:paragraph --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <p class="mb-3">Each module has a <code>RoutesDelegator.php</code> file for managing existing routes inside that specific module. It also allows an quick way of adding new routes by providing the route path, Middlewares that the route will use and the route name.</p>
-<p class="mb-3"><!-- /wp:paragraph --></p>
-<p class="mb-3"><!-- wp:paragraph --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <p class="mb-3">You can allocate <strong>permissions</strong> per <strong>route name</strong> in order to restrict access for a user role to a specific route in <code>config/autoload/authorization.global.php</code>.</p>
-<p class="mb-3"><!-- /wp:paragraph --></p>
-<p class="mb-3"><!-- wp:heading {"level":4} --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <h4>Commands</h4>
-<p class="mb-3"><!-- /wp:heading --></p>
-<p class="mb-3"><!-- wp:paragraph --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <p class="mb-3">For registering new commands first make sure your command class extends <code>SymfonyComponentConsoleCommandCommand</code>. Then you can enable it by registering it in <code>config/autoload/cli.global.php</code>.</p>
-<p class="mb-3"><!-- /wp:paragraph --></p>
-<p class="mb-3"><!-- wp:heading {"level":4} --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <h4>File locker</h4>
-<p class="mb-3"><!-- /wp:heading --></p>
-<p class="mb-3"><!-- wp:paragraph --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <p class="mb-3">Here you will also find our brand new <strong>file locker</strong> configuration so you can easily turn it on or off ( by default: <code>'enabled' =&gt; true</code> )</p>
-<p class="mb-3"><!-- /wp:paragraph --></p>
-<p class="mb-3"><!-- wp:paragraph --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <p class="mb-3">Note: The <strong>File Locker System</strong> will create a <code>command-{command-default-name}.lock</code> file which will not let another instance of the same command to run until the previous one has finished.</p>
-<p class="mb-3"><!-- /wp:paragraph --></p>
-<p class="mb-3"><!-- wp:heading {"level":4} --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <h4>PSR Standards</h4>
-<p class="mb-3"><!-- /wp:heading --></p>
-<p class="mb-3"><!-- wp:list --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <ul>
 <li style="list-style-type: none;">
-<ul><!-- wp:list-item --></ul>
+<ul></ul>
 </li>
 </ul>
 <ul>
@@ -326,8 +331,8 @@
 </ul>
 </li>
 </ul>
-<p class="mb-3"><!-- /wp:list-item --></p>
-<p class="mb-3"><!-- wp:list-item --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <ul>
 <li style="list-style-type: none;">
 <ul>
@@ -335,8 +340,8 @@
 </ul>
 </li>
 </ul>
-<p class="mb-3"><!-- /wp:list-item --></p>
-<p class="mb-3"><!-- wp:list-item --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <ul>
 <li style="list-style-type: none;">
 <ul>
@@ -344,8 +349,8 @@
 </ul>
 </li>
 </ul>
-<p class="mb-3"><!-- /wp:list-item --></p>
-<p class="mb-3"><!-- wp:list-item --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <ul>
 <li style="list-style-type: none;">
 <ul>
@@ -353,8 +358,8 @@
 </ul>
 </li>
 </ul>
-<p class="mb-3"><!-- /wp:list-item --></p>
-<p class="mb-3"><!-- wp:list-item --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <ul>
 <li style="list-style-type: none;">
 <ul>
@@ -362,17 +367,18 @@
 </ul>
 </li>
 </ul>
-<p class="mb-3"><!-- /wp:list-item --></p>
-<p class="mb-3"><!-- /wp:list --></p>
-<p class="mb-3"><!-- wp:heading {"level":4} --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <h4>Tests</h4>
-<p class="mb-3"><!-- /wp:heading --></p>
-<p class="mb-3"><!-- wp:paragraph --></p>
+<p class="mb-3"></p>
+<p class="mb-3"></p>
 <p class="mb-3">One of the best ways to ensure the quality of your product is to create and run functional and unit tests. You can find factory-made tests in the <code>tests/AppTest/</code> folder, and you can also register your own.</p>
-<p class="mb-3"><!-- /wp:paragraph --></p>
-                    </section>
-                </article>
-            </main>
+<p class="mb-3"></p>
+                </div>
+
+                {{ include('@partial/post-nav.html.twig') }}
+            </article>
 
         </div>
     </div>

@@ -3,29 +3,34 @@
 {% block title %}What are returning the FETCH functions from Zend_Db{% endblock %}
 
 {% block page_title %}
-    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Best Practice</div>
-    <h1 class="fw-bold text-dark display-6 mb-0">What are returning the FETCH functions from Zend_Db</h1>
-    <hr class="mt-4 mb-2 opacity-25">
+    <div class="wrap">
+        <div class="post-hero">
+            <a href="{{ url('page::blog') }}" class="breadcrumb-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                Back to Blog
+            </a>
+            <div><span class="eyebrow">Best Practice</span></div>
+            <h1>{{ article.title }}</h1>
+            <div class="post-meta">
+                <span class="text-muted small">
+                    By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
+                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                </span>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block content %}
-    <div class="container py-4">
-        <div class="row g-4">
+    <div class="wrap post-body-wrap">
+        <div class="post-layout">
 
             {{ include('@partial/left-menu.html.twig') }}
 
-            <main class="col-12 col-md-8 col-lg-9">
-                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
-                    <header class="mb-4">
-                        <h1 class="h2 text-dark fw-bold">What are returning the FETCH functions from Zend_Db</h1>
-                        <div class="text-muted small">
-                            <i class="bi bi-folder2-open me-1"></i> Best Practice
-                        </div>
-                    </header>
-
-                    <section class="post-content text-secondary lh-lg fs-6">
-                        Continuing the Zend_DB article <a href="http://www.dotkernel.com/dotkernel/sql-select-zend-db/" target="_blank" rel="noopener noreferrer">series</a>, we are stopping now at <i>FETCH</i> methods that are in <a href="http://framework.zend.com/apidoc/core/Zend_Db/Adapter/Zend_Db_Adapter_Abstract.html#sec-method-summary" target="_blank" rel="noopener noreferrer">Zend_Db_Adapter_Abstract</a>:
-<pre class="bg-light border rounded p-3 overflow-auto">>
+            <article class="article">
+                <div class="entry">
+Continuing the Zend_DB article <a href="http://www.dotkernel.com/dotkernel/sql-select-zend-db/" target="_blank" rel="noopener noreferrer">series</a>, we are stopping now at <i>FETCH</i> methods that are in <a href="http://framework.zend.com/apidoc/core/Zend_Db/Adapter/Zend_Db_Adapter_Abstract.html#sec-method-summary" target="_blank" rel="noopener noreferrer">Zend_Db_Adapter_Abstract</a>:
+<pre>>
 array  fetchAll  (string|Zend_Db_Select $sql, , )
 array fetchAssoc (string|Zend_Db_Select $sql, )
 array fetchCol (string|Zend_Db_Select $sql, )
@@ -38,17 +43,17 @@ To be more easily to follow, in <span style="background-color: #B5DFC1">green</s
 <!--more-->
 Lets start.
 Initialize the connection to our MySql database:
-<pre class="bg-light border rounded p-3 overflow-auto"> style="background-color: #9FCFFF">
+<pre> style="background-color: #9FCFFF">
 $db = Zend_Db::factory('Pdo_Mysql', $dbConnect);
 </pre>
 Here is a SQL query, that we want to fetch:
 </br>
-<pre class="bg-light border rounded p-3 overflow-auto"> style="background-color: #B5DFC1">
+<pre> style="background-color: #B5DFC1">
 $sql = "SELECT id, title FROM files";
 $db->query($sql)
 </pre>
 </br>
-<pre class="bg-light border rounded p-3 overflow-auto"> style="background-color: #9FCFFF">
+<pre> style="background-color: #9FCFFF">
 $select = $db->select()
              ->from('files', array('id', 'title'))
 </pre>
@@ -59,7 +64,7 @@ $select = $db->select()
 </br>
 <b>fetchAll</b>
 </br>
-<pre class="bg-light border rounded p-3 overflow-auto"> style="background-color: #B5DFC1">
+<pre> style="background-color: #B5DFC1">
 while($db->next_record())
 {
     $a[] = array(
@@ -69,13 +74,13 @@ while($db->next_record())
 }
 </pre>
 </br>
-<pre class="bg-light border rounded p-3 overflow-auto"> style="background-color: #9FCFFF">
+<pre> style="background-color: #9FCFFF">
 $a = $db->fetchAll($select);
 </pre>
 </br>
 <b>fetchAssoc</b>
 </br>
-<pre class="bg-light border rounded p-3 overflow-auto"> style="background-color: #B5DFC1">
+<pre> style="background-color: #B5DFC1">
 while($db->next_record())
 {
     $a = array(
@@ -85,50 +90,50 @@ while($db->next_record())
 }
 </pre>
 </br>
-<pre class="bg-light border rounded p-3 overflow-auto"> style="background-color: #9FCFFF">
+<pre> style="background-color: #9FCFFF">
 $a = $db->fetchAssoc($select);
 </pre>
 </br>
 <b>fetchCol</b>
 </br>
-<pre class="bg-light border rounded p-3 overflow-auto"> style="background-color: #B5DFC1">
+<pre> style="background-color: #B5DFC1">
 while($db->next_record())
 {
     $a[] = $db->f('id');
 }
 </pre>
 </br>
-<pre class="bg-light border rounded p-3 overflow-auto"> style="background-color: #9FCFFF">
+<pre> style="background-color: #9FCFFF">
 $a = $db->fetchCol($select);
 </pre>
 </br>
 <b>fetchOne</b>
 </br>
-<pre class="bg-light border rounded p-3 overflow-auto"> style="background-color: #B5DFC1">
+<pre> style="background-color: #B5DFC1">
 $db->next_record();
 $a = $db->f('id');
 </pre>
 </br>
-<pre class="bg-light border rounded p-3 overflow-auto"> style="background-color: #9FCFFF">
+<pre> style="background-color: #9FCFFF">
 $a = $db->fetchOne($select);
 </pre>
 </br>
 <b>fetchPairs</b>
 </br>
-<pre class="bg-light border rounded p-3 overflow-auto"> style="background-color: #B5DFC1">
+<pre> style="background-color: #B5DFC1">
 while($db->next_record())
 {
     $a = $db->f('title');
 }
 </pre>
 </br>
-<pre class="bg-light border rounded p-3 overflow-auto"> style="background-color: #9FCFFF">
+<pre> style="background-color: #9FCFFF">
 $a = $db->fetchPairs($select);
 </pre>
 </br>
 <b>fetchRow</b>
 </br>
-<pre class="bg-light border rounded p-3 overflow-auto"> style="background-color: #B5DFC1">
+<pre> style="background-color: #B5DFC1">
 $db->next_record();
 $a = array(
            'id' => $db->f('id'),
@@ -136,12 +141,13 @@ $a = array(
           );
 </pre>
 </br>
-<pre class="bg-light border rounded p-3 overflow-auto"> style="background-color: #9FCFFF">
+<pre> style="background-color: #9FCFFF">
 $a = $db->fetchRow($select);
 </pre>
-                    </section>
-                </article>
-            </main>
+                </div>
+
+                {{ include('@partial/post-nav.html.twig') }}
+            </article>
 
         </div>
     </div>

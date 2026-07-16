@@ -1,116 +1,74 @@
 {% extends '@layout/default.html.twig' %}
 
-{% block page_title %}<h1>Contact Us</h1>{% endblock %}
+{% block title %}Contact{% endblock %}
+
+{% block page_title %}
+    <div class="wrap">
+        <div class="post-hero">
+            <div><span class="eyebrow">Get in touch</span></div>
+            <h1>Contact Us</h1>
+        </div>
+    </div>
+{% endblock %}
 
 {% block content %}
-    <div class="row g-4 py-3">
+    <div class="wrap post-body-wrap">
+        <div class="post-layout">
 
-        {{ include('@partial/left-menu.html.twig') }}
+            {{ include('@partial/left-menu.html.twig') }}
 
-        <main class="col-lg-9 col-md-8">
+            <main class="article">
 
-            <div class="row g-4">
-                <div class="col-12 col-md-6">
-                    <div class="card h-100 border-0 shadow-sm text-center p-4">
-                        <div class="mb-3">
-                            <i class="fab fa-github fa-3x text-primary"></i>
+                <div class="contact-grid">
+                    <div class="card contact-card">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.1.83-.27.83-.58v-2.17c-3.34.73-4.04-1.42-4.04-1.42-.55-1.4-1.34-1.77-1.34-1.77-1.08-.75.09-.73.09-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.84 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.53.12-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.65.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .31.22.69.83.57A12 12 0 0 0 12 .5z"/>
+                        </svg>
+                        <h3>GitHub</h3>
+                        <p class="desc">Browse our repositories, open issues, or contribute to the DotKernel ecosystem.</p>
+                        <div class="card-btns">
+                            <a href="https://github.com/dotkernel" target="_blank" rel="noopener noreferrer"
+                               class="btn btn-primary btn-sm">Visit GitHub</a>
                         </div>
-                        <h2 class="h4 fw-semibold mb-2">GitHub</h2>
-                        <p class="text-muted mb-4">
-                            Browse our repositories, open issues, or contribute to the DotKernel ecosystem.
-                        </p>
-                        <a href="https://github.com/dotkernel"
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           class="btn btn-primary rounded-pill px-4 mt-auto">
-                            Visit GitHub
-                        </a>
                     </div>
-                </div>
 
-                <div class="col-12 col-md-6">
-                    <div class="card h-100 border-0 shadow-sm text-center p-4">
-                        <div class="mb-3">
-                            <i class="fas fa-book fa-3x text-primary"></i>
-                        </div>
-                        <h2 class="h4 fw-semibold mb-2">Documentation</h2>
-                        <p class="text-muted mb-4">
-                            Read the guides, references, and best practices for building with DotKernel.
-                        </p>
-                        <a href="https://docs.dotkernel.org/"
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           class="btn btn-primary rounded-pill px-4 mt-auto">
-                            Read the Docs
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card border-0 shadow-sm mt-4">
-                <div class="card-body p-4">
-                    <h3 class="h5 fw-bold mb-3">Our Approach</h3>
-                    <p class="text-muted mb-0">
-                        Dotkernel is a Headless Platform for building modern web applications.
-                        The Dotkernel Headless Platform is made up of Open Source components aimed at businesses that need custom solutions.
-                    </p>
-                </div>
-            </div>
-
-            {% if posts is defined and posts|length > 0 %}
-                <div class="card border-0 shadow-sm mt-4">
-                    <div class="card-body p-4">
-                        <h3 class="h5 fw-bold mb-3">Latest posts</h3>
-
-                        <div id="postsCarousel" class="carousel slide" data-bs-ride="carousel">
-                            <div class="carousel-inner">
-                                {% for post in posts %}
-                                    <div class="carousel-item {% if loop.first %}active{% endif %}">
-                                        <span class="text-muted small">
-                                            <i class="bi bi-calendar3 me-1"></i>{{ post.postDate|date('M d, Y') }}
-                                        </span>
-                                        <h4 class="h5 fw-semibold mt-2 mb-2">{{ post.title }}</h4>
-                                        {% if post.excerpt is defined %}
-                                            <p class="text-muted mb-3">{{ post.excerpt }}</p>
-                                        {% endif %}
-                                        <a href="{{ url('page::blog-resource', {categorySlug: post.category.slug, slug: post.slug}) }}"
-                                           class="btn btn-primary btn-sm rounded-pill px-3">
-                                            Read more
-                                        </a>
-                                    </div>
-                                {% endfor %}
-                            </div>
-
-                            {% if posts|length > 1 %}
-                                <div class="d-flex justify-content-between align-items-center mt-4">
-                                    <button class="btn btn-outline-secondary btn-sm rounded-circle" type="button"
-                                            data-bs-target="#postsCarousel" data-bs-slide="prev">
-                                        <i class="fas fa-chevron-left"></i>
-                                        <span class="visually-hidden">Previous</span>
-                                    </button>
-
-                                    <div class="carousel-indicators position-relative m-0">
-                                        {% for post in posts %}
-                                            <button type="button" data-bs-target="#postsCarousel" data-bs-slide-to="{{ loop.index0 }}"
-                                                    class="{% if loop.first %}active{% endif %} bg-primary rounded-circle"
-                                                    style="width: 8px; height: 8px;"
-                                                    aria-current="{% if loop.first %}true{% endif %}"
-                                                    aria-label="Slide {{ loop.index }}"></button>
-                                        {% endfor %}
-                                    </div>
-
-                                    <button class="btn btn-outline-secondary btn-sm rounded-circle" type="button"
-                                            data-bs-target="#postsCarousel" data-bs-slide="next">
-                                        <i class="fas fa-chevron-right"></i>
-                                        <span class="visually-hidden">Next</span>
-                                    </button>
-                                </div>
-                            {% endif %}
+                    <div class="card contact-card">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                        </svg>
+                        <h3>Documentation</h3>
+                        <p class="desc">Read the guides, references, and best practices for building with DotKernel.</p>
+                        <div class="card-btns">
+                            <a href="https://docs.dotkernel.org/" target="_blank" rel="noopener noreferrer"
+                               class="btn btn-primary btn-sm">Read the Docs</a>
                         </div>
                     </div>
                 </div>
-            {% endif %}
 
-        </main>
+                {% if posts is defined and posts|length > 0 %}
+                    <div class="latest-posts">
+                        <div class="section-head">
+                            <span class="eyebrow">From the blog</span>
+                            <h2>Latest posts</h2>
+                        </div>
+                        <div class="posts-grid">
+                            {% for post in posts %}
+                                <a class="post-card" href="{{ url('page::blog-resource', {categorySlug: post.category.slug, slug: post.slug}) }}">
+                                    <div class="post-date">{{ post.postDate|date('M d, Y') }}</div>
+                                    <h4>{{ post.title }}</h4>
+                                    {% if post.excerpt is defined %}
+                                        <p>{{ post.excerpt }}</p>
+                                    {% endif %}
+                                    <span class="read-more">Read more →</span>
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+
+            </main>
+
+        </div>
     </div>
 {% endblock %}

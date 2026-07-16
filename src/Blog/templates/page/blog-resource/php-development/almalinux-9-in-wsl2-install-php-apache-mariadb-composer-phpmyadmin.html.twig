@@ -3,199 +3,123 @@
 {% block title %}AlmaLinux 9 in WSL2 : install PHP, Apache, MariaDB, Composer, PhpMyadmin{% endblock %}
 
 {% block page_title %}
-    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">PHP Development</div>
-    <h1 class="fw-bold text-dark display-6 mb-0">AlmaLinux 9 in WSL2 : install PHP, Apache, MariaDB, Composer, PhpMyadmin</h1>
-    <hr class="mt-4 mb-2 opacity-25">
+    <div class="wrap">
+        <div class="post-hero">
+            <a href="{{ url('page::blog') }}" class="breadcrumb-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                Back to Blog
+            </a>
+            <div><span class="eyebrow">PHP Development</span></div>
+            <h1>{{ article.title }}</h1>
+            <div class="post-meta">
+                <span class="text-muted small">
+                    By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
+                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                </span>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block content %}
-    <div class="container py-4">
-        <div class="row g-4">
+    <div class="wrap post-body-wrap">
+        <div class="post-layout">
 
             {{ include('@partial/left-menu.html.twig') }}
 
-            <main class="col-12 col-md-8 col-lg-9">
-                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
-                    <header class="mb-4">
-                        <h1 class="h2 text-dark fw-bold">AlmaLinux 9 in WSL2 : install PHP, Apache, MariaDB, Composer, PhpMyadmin</h1>
-                        <div class="text-muted small">
-                            <i class="bi bi-folder2-open me-1"></i> PHP Development
-                        </div>
-                    </header>
-
-                    <section class="post-content text-secondary lh-lg fs-6">
-                        <!-- wp:paragraph -->
+            <article class="article">
+                <div class="entry">
 <p class="mb-3">In this article we will demonstrate how we install AlmaLinux 9 using Windows Subsystem for Linux  (WSL2).</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
 <p class="mb-3">First, you need to check if your machine is ready for using WSL2. Open Windows Terminal and execute the following command:</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:code -->
-<pre class="wp-block-code"><code>wsl -v</code></pre>
-<!-- /wp:code -->
+<pre><code>wsl -v</code></pre>
 
-<!-- wp:paragraph -->
 <p class="mb-3">The output should look similar to this:</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:code -->
-<pre class="wp-block-code"><code><strong>WSL version: 2.2.4.0</strong>
+<pre><code><strong>WSL version: 2.2.4.0</strong>
 Kernel version: 5.15.153.1-2
 WSLg version: 1.0.61
 MSRDC version: 1.2.5326
 Direct3D version: 1.611.1-81528511
 DXCore version: 10.0.26091.1-240325-1447.ge-release
 Windows version: 10.0.22631.3737</code></pre>
-<!-- /wp:code -->
 
-<!-- wp:paragraph -->
 <p class="mb-3">If instead of the above output, you get an error, it means that WSL is not (completely) installed on your machine. In this case, please follow the instructions found in <a href="https://docs.dotkernel.org/development/v1/setup/installation/" data-type="URL" data-id="https://github.com/dotkernel/development/blob/main/wsl/README.md" target="_blank" rel="noreferrer noopener">this guide</a>, then return to this page and continue with the next step.</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:heading -->
-<h2 class="wp-block-heading">Download and install AlmaLinux 9</h2>
-<!-- /wp:heading -->
+<h2>Download and install AlmaLinux 9</h2>
 
-<!-- wp:paragraph -->
 <p class="mb-3">Open Microsoft Store and search for <code>AlmaLinux</code>. From the results, select <code>AlmaLinux 9</code> and install it. Once installed, clicking on <em>Open</em> will open it in Windows Terminal.</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
 <p class="mb-3">The installer will prompt you for your <em>username</em>, your <em>password</em> and <em>password confirmation</em>.</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:heading -->
-<h2 class="wp-block-heading">Setup AlmaLinux 9</h2>
-<!-- /wp:heading -->
+<h2>Setup AlmaLinux 9</h2>
 
-<!-- wp:paragraph -->
 <p class="mb-3">While still in the AlmaLinux 9 terminal, start executing the following commands.</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
 <p class="mb-3">Install required packages:</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:code -->
-<pre class="wp-block-code"><code>sudo dnf install epel-release dnf-utils http://rpms.remirepo.net/enterprise/remi-release-9.rpm -y</code></pre>
-<!-- /wp:code -->
+<pre><code>sudo dnf install epel-release dnf-utils http://rpms.remirepo.net/enterprise/remi-release-9.rpm -y</code></pre>
 
-<!-- wp:paragraph -->
 <p class="mb-3">Update installed packages:</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:code -->
-<pre class="wp-block-code"><code>sudo dnf upgrade -y</code></pre>
-<!-- /wp:code -->
+<pre><code>sudo dnf upgrade -y</code></pre>
 
-<!-- wp:paragraph -->
 <p class="mb-3">Install Ansible:</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:code -->
-<pre class="wp-block-code"><code>sudo dnf install ansible -y</code></pre>
-<!-- /wp:code -->
+<pre><code>sudo dnf install ansible -y</code></pre>
 
-<!-- wp:paragraph -->
 <p class="mb-3">Clone our development environment setup package:</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:code -->
-<pre class="wp-block-code"><code>git clone https://github.com/dotkernel/development.git</code></pre>
-<!-- /wp:code -->
+<pre><code>git clone https://github.com/dotkernel/development.git</code></pre>
 
-<!-- wp:paragraph -->
 <p class="mb-3">Navigate to the directory with the Ansible recipes:</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:code -->
-<pre class="wp-block-code"><code>cd ~/development/wsl/</code></pre>
-<!-- /wp:code -->
+<pre><code>cd ~/development/wsl/</code></pre>
 
-<!-- wp:paragraph -->
 <p class="mb-3">Using your preferred text editor, open <strong>config.yml</strong> where you must fill in the empty fields. Save and close the file.</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
 <p class="mb-3">Run Step 1 of the installer script (it will prompt you for the password you entered during the installation process):</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:code -->
-<pre class="wp-block-code"><code>ansible-playbook -i hosts install.yml --ask-become-pass</code></pre>
-<!-- /wp:code -->
+<pre><code>ansible-playbook -i hosts install.yml --ask-become-pass</code></pre>
 
-<!-- wp:paragraph -->
 <p class="mb-3">Restart AlmaLinux 9:</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:list -->
-<ul class="wp-block-list"><!-- wp:list-item -->
-<li>press <code>Control</code> + <code>d</code></li>
-<!-- /wp:list-item -->
+<ul><li>press <code>Control</code> + <code>d</code></li>
 
-<!-- wp:list-item -->
 <li>Open Windows Terminal</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>stop AlmaLinux 9 by executing <code>wsl -t AlmaLinux9</code></li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>start AlmaLinux 9 by executing <code>wsl -d AlmaLinux9</code></li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list -->
+</ul>
 
-<!-- wp:paragraph -->
 <p class="mb-3">Navigate back to the directory with the Ansible recipes:</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:code -->
-<pre class="wp-block-code"><code>cd ~/development/wsl/</code></pre>
-<!-- /wp:code -->
+<pre><code>cd ~/development/wsl/</code></pre>
 
-<!-- wp:paragraph -->
 <p class="mb-3">Run Step 2 of the installer script (once again, it will prompt you for the password you entered during the installation process):</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:code -->
-<pre class="wp-block-code"><code>ansible-playbook -i hosts install.yml --ask-become-pass</code></pre>
-<!-- /wp:code -->
+<pre><code>ansible-playbook -i hosts install.yml --ask-become-pass</code></pre>
 
-<!-- wp:paragraph -->
 <p class="mb-3">Once finished, the installation is complete, your AlmaLinux 9 development environment is ready to use.</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:heading -->
-<h2 class="wp-block-heading">Test AlmaLinux 9</h2>
-<!-- /wp:heading -->
+<h2>Test AlmaLinux 9</h2>
 
-<!-- wp:paragraph -->
 <p class="mb-3">Check if everything works by opening in your browser:</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:list -->
-<ul class="wp-block-list"><!-- wp:list-item -->
-<li>http://localhost/ - Apache's default home page</li>
-<!-- /wp:list-item -->
+<ul><li>http://localhost/ - Apache's default home page</li>
 
-<!-- wp:list-item -->
 <li>http://localhost/info.php - PHP info page</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>http://localhost/phpmyadmin/ - PhpMyAdmin (login with username <strong>root</strong> + the root password you configured in <strong>config.yml</strong> under mariadb -&gt; <em>root_password</em>)</li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list -->
+</ul>
 
-<!-- wp:paragraph -->
 <p class="mb-3">The complete guide with additional features is available <a href="https://docs.dotkernel.org/development/" target="_blank" rel="noreferrer noopener">here</a>.</p>
-<!-- /wp:paragraph -->
-                    </section>
-                </article>
-            </main>
+                </div>
+
+                {{ include('@partial/post-nav.html.twig') }}
+            </article>
 
         </div>
     </div>

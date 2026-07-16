@@ -3,35 +3,41 @@
 {% block title %}PHP 5.3.6 released. No upgrade possible for WampServer.{% endblock %}
 
 {% block page_title %}
-    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">PHP Development</div>
-    <h1 class="fw-bold text-dark display-6 mb-0">PHP 5.3.6 released. No upgrade possible for WampServer.</h1>
-    <hr class="mt-4 mb-2 opacity-25">
+    <div class="wrap">
+        <div class="post-hero">
+            <a href="{{ url('page::blog') }}" class="breadcrumb-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                Back to Blog
+            </a>
+            <div><span class="eyebrow">PHP Development</span></div>
+            <h1>{{ article.title }}</h1>
+            <div class="post-meta">
+                <span class="text-muted small">
+                    By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
+                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                </span>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block content %}
-    <div class="container py-4">
-        <div class="row g-4">
+    <div class="wrap post-body-wrap">
+        <div class="post-layout">
 
             {{ include('@partial/left-menu.html.twig') }}
 
-            <main class="col-12 col-md-8 col-lg-9">
-                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
-                    <header class="mb-4">
-                        <h1 class="h2 text-dark fw-bold">PHP 5.3.6 released. No upgrade possible for WampServer.</h1>
-                        <div class="text-muted small">
-                            <i class="bi bi-folder2-open me-1"></i> PHP Development
-                        </div>
-                    </header>
-
-                    <section class="post-content text-secondary lh-lg fs-6">
-                        PHP 5.3.6 was released, but it come with a bad news for WampServer users:
+            <article class="article">
+                <div class="entry">
+PHP 5.3.6 was released, but it come with a bad news for WampServer users:
 <blockquote class="blockquote border-start border-4 ps-3 text-muted my-3">"Windows users: please mind that we do no longer provide builds created with Visual Studio C++ 6"</blockquote>
 Since WampServer is built using VC++ 6,  is not possible an upgrade , without a rewrite from scratch of entire WampServer package.
 
 More details on WampServer forum  <strong><a href="http://www.wampserver.com/phorum/read.php?2,72243" target="_blank" rel="noopener noreferrer">here </a></strong>
-                    </section>
-                </article>
-            </main>
+                </div>
+
+                {{ include('@partial/post-nav.html.twig') }}
+            </article>
 
         </div>
     </div>

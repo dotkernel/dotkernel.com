@@ -3,113 +3,77 @@
 {% block title %}Version 7 adds PostgreSQL, Native UUID and PHP 8.5{% endblock %}
 
 {% block page_title %}
-    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Headless Platform</div>
-    <h1 class="fw-bold text-dark display-6 mb-0">Version 7 adds PostgreSQL, Native UUID and PHP 8.5</h1>
-    <hr class="mt-4 mb-2 opacity-25">
+    <div class="wrap">
+        <div class="post-hero">
+            <a href="{{ url('page::blog') }}" class="breadcrumb-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                Back to Blog
+            </a>
+            <div><span class="eyebrow">Headless Platform</span></div>
+            <h1>{{ article.title }}</h1>
+            <div class="post-meta">
+                <span class="text-muted small">
+                    By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
+                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                </span>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block content %}
-    <div class="container py-4">
-        <div class="row g-4">
+    <div class="wrap post-body-wrap">
+        <div class="post-layout">
 
             {{ include('@partial/left-menu.html.twig') }}
 
-            <main class="col-12 col-md-8 col-lg-9">
-                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
-                    <header class="mb-4">
-                        <h1 class="h2 text-dark fw-bold">Version 7 adds PostgreSQL, Native UUID and PHP 8.5</h1>
-                        <div class="text-muted small">
-                            <i class="bi bi-folder2-open me-1"></i> Headless Platform
-                        </div>
-                    </header>
-
-                    <section class="post-content text-secondary lh-lg fs-6">
-                        <!-- wp:paragraph -->
+            <article class="article">
+                <div class="entry">
 <p class="mb-3">The Dotkernel Headless Platform has seen new releases for both API and Admin. The Admin codebase has received an overall facelift, as well as updates to retain compatibility with API v7. The release for Dotkernel API v7 has several added features, as well as a few that are removed.</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
 <p class="mb-3">New features are:</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:list -->
-<ul class="wp-block-list"><!-- wp:list-item -->
-<li>Support for <code>UUID</code> v7 using the native <code>UUID</code> data type.</li>
-<!-- /wp:list-item -->
+<ul><li>Support for <code>UUID</code> v7 using the native <code>UUID</code> data type.</li>
 
-<!-- wp:list-item -->
 <li>Support for PostgreSQL.</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>Support for PHP 8.5 for API and 8.4 for Admin.</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>Support for database table prefix (string prepended to the name of every table in a database).</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>Improved database configuration.</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>The replacement of the <code>binary</code> data type for <code>id</code> (index) columns, in favor of <code>uuid</code>.</li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list -->
+</ul>
 
-<!-- wp:paragraph -->
 <p class="mb-3">And these are the features that have been removed:</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:list -->
-<ul class="wp-block-list"><!-- wp:list-item -->
-<li>Evolution pattern: Support for Method Deprecation.</li>
-<!-- /wp:list-item -->
+<ul><li>Evolution pattern: Support for Method Deprecation.</li>
 
-<!-- wp:list-item -->
 <li>Support for MySQL, primarily because it doesn't support UUID as a data type.</li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list -->
+</ul>
 
-<!-- wp:heading -->
-<h2 class="wp-block-heading"><a href="#support-for-uuid-v7"></a>Support for UUID v7</h2>
-<!-- /wp:heading -->
+<h2><a href="#support-for-uuid-v7"></a>Support for UUID v7</h2>
 
-<!-- wp:paragraph -->
 <p class="mb-3">The most important change in v7 is the introduction of support for native UUID. We use the package <a href="https://github.com/ramsey/uuid" rel="noreferrer noopener" target="_blank">ramsey/uuid</a> to generate the uuid and then store it in the database. In this way we have full control over the UUID version in use. This solution means you don't depend on extensions or a particular version of the database.</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:quote -->
-<blockquote class="wp-block-quote"><!-- wp:paragraph -->
-<p class="mb-3">To ensure you have support for the <code>UUID</code> data type, you must use PostgreSQL or MariaDB v10.7 or later.</p>
-<!-- /wp:paragraph --></blockquote>
-<!-- /wp:quote -->
+<blockquote><p class="mb-3">To ensure you have support for the <code>UUID</code> data type, you must use PostgreSQL or MariaDB v10.7 or later.</p>
+</blockquote>
 
-<!-- wp:paragraph -->
 <p class="mb-3">This also brings along a less-impactful change that still deserves mentioning: the table columns named <code>uuid</code> have been renamed to <code>id</code>.</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:heading -->
-<h2 class="wp-block-heading"><a href="#database-configuration"></a>Database Configuration</h2>
-<!-- /wp:heading -->
+<h2><a href="#database-configuration"></a>Database Configuration</h2>
 
-<!-- wp:paragraph -->
 <p class="mb-3">Based on new scenarios in our own projects, we decided to clarify the instructions regarding multiple database connections. With this update, these aspects should become more obvious:</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:list -->
-<ul class="wp-block-list"><!-- wp:list-item -->
-<li>Which database connection is the default.</li>
-<!-- /wp:list-item -->
+<ul><li>Which database connection is the default.</li>
 
-<!-- wp:list-item -->
 <li>How to switch to another database connection.</li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list -->
-                    </section>
-                </article>
-            </main>
+</ul>
+                </div>
+
+                {{ include('@partial/post-nav.html.twig') }}
+            </article>
 
         </div>
     </div>

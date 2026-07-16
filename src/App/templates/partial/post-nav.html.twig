@@ -1,0 +1,16 @@
+{% if previousPost or nextPost %}
+    <div class="post-nav">
+        {% if previousPost %}
+            <a href="{{ url('page::blog-resource', {categorySlug: previousPost.category.slug, slug: previousPost.slug}) }}" class="prev-post">
+                <span class="direction">← Older post</span>
+                <span class="title">{{ previousPost.title }}</span>
+            </a>
+        {% endif %}
+        {% if nextPost %}
+            <a href="{{ url('page::blog-resource', {categorySlug: nextPost.category.slug, slug: nextPost.slug}) }}" class="next-post">
+                <span class="direction">Newer post →</span>
+                <span class="title">{{ nextPost.title }}</span>
+            </a>
+        {% endif %}
+    </div>
+{% endif %}

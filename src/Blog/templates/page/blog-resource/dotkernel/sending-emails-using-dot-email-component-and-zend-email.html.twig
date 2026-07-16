@@ -3,28 +3,33 @@
 {% block title %}Sending emails using Dot_Email component and Zend_Email{% endblock %}
 
 {% block page_title %}
-    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel</div>
-    <h1 class="fw-bold text-dark display-6 mb-0">Sending emails using Dot_Email component and Zend_Email</h1>
-    <hr class="mt-4 mb-2 opacity-25">
+    <div class="wrap">
+        <div class="post-hero">
+            <a href="{{ url('page::blog') }}" class="breadcrumb-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                Back to Blog
+            </a>
+            <div><span class="eyebrow">Dotkernel</span></div>
+            <h1>{{ article.title }}</h1>
+            <div class="post-meta">
+                <span class="text-muted small">
+                    By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
+                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                </span>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block content %}
-    <div class="container py-4">
-        <div class="row g-4">
+    <div class="wrap post-body-wrap">
+        <div class="post-layout">
 
             {{ include('@partial/left-menu.html.twig') }}
 
-            <main class="col-12 col-md-8 col-lg-9">
-                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
-                    <header class="mb-4">
-                        <h1 class="h2 text-dark fw-bold">Sending emails using Dot_Email component and Zend_Email</h1>
-                        <div class="text-muted small">
-                            <i class="bi bi-folder2-open me-1"></i> Dotkernel
-                        </div>
-                    </header>
-
-                    <section class="post-content text-secondary lh-lg fs-6">
-                        <strong>Dot_Email</strong> class extends Zend_Mail, so all the methods from Zend_Mail are available  in Dot_Email.
+            <article class="article">
+                <div class="entry">
+<strong>Dot_Email</strong> class extends Zend_Mail, so all the methods from Zend_Mail are available  in Dot_Email.
 
 <strong>Dot_Email</strong> is a simple class composed only from 2 methods, except constructor, all  other methods beeing inherited  from Zend_Mail.
 <!--more-->
@@ -35,7 +40,7 @@ Note the declaration of this method: setContent ($content, $format = 'text/plain
 2.  <strong>send()</strong>, set the transporter and is calling parent::send() method for sending the email
 
 For sending the email you MUST use this methods in the code above:
-<pre class="bg-light border rounded p-3 overflow-auto">>$dotEmail = new Dot_Email();
+<pre>>$dotEmail = new Dot_Email();
 $dotEmail->addTo($email);
 $dotEmail->setSubject('Forgot Password');
 $dotEmail->setBodyText('Your password is '.$password);
@@ -49,7 +54,7 @@ else
     echo "Message failed, not sent!";
 }</pre>
 Only if you want to overwrite the default Email and Name, add the below lines:
-<pre class="bg-light border rounded p-3 overflow-auto">>$dotEmail->setFrom($fromEmail, $fromName);
+<pre>>$dotEmail->setFrom($fromEmail, $fromName);
 $dotEmail->setReplyTo($fromEmail, $fromName);</pre>
 <strong>NOTE*:</strong> you always have to use  <strong>addTo()</strong>,  <strong>setSubject()</strong>,<strong> setBodyText()</strong> or<strong> setBodyHtml()</strong> or <strong>setContent()</strong>, and finally send() method.
 
@@ -66,9 +71,10 @@ Methods inherited  from Zend_Mail and that can be used in your code are:
     <li> setSubject($subject)</li>
     <li> addHeader($name, $value, $append = false)</li>
 </ol>
-                    </section>
-                </article>
-            </main>
+                </div>
+
+                {{ include('@partial/post-nav.html.twig') }}
+            </article>
 
         </div>
     </div>

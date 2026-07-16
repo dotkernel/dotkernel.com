@@ -3,195 +3,118 @@
 {% block title %}Installing AlmaLinux 10 in WSL2: PHP, MariaDB, Composer, PhpMyadmin{% endblock %}
 
 {% block page_title %}
-    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">How to's</div>
-    <h1 class="fw-bold text-dark display-6 mb-0">Installing AlmaLinux 10 in WSL2: PHP, MariaDB, Composer, PhpMyadmin</h1>
-    <hr class="mt-4 mb-2 opacity-25">
+    <div class="wrap">
+        <div class="post-hero">
+            <a href="{{ url('page::blog') }}" class="breadcrumb-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                Back to Blog
+            </a>
+            <div><span class="eyebrow">How to's</span></div>
+            <h1>{{ article.title }}</h1>
+            <div class="post-meta">
+                <span class="text-muted small">
+                    By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
+                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                </span>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block content %}
-    <div class="container py-4">
-        <div class="row g-4">
+    <div class="wrap post-body-wrap">
+        <div class="post-layout">
 
             {{ include('@partial/left-menu.html.twig') }}
 
-            <main class="col-12 col-md-8 col-lg-9">
-                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
-                    <header class="mb-4">
-                        <h1 class="h2 text-dark fw-bold">Installing AlmaLinux 10 in WSL2: PHP, MariaDB, Composer, PhpMyadmin</h1>
-                        <div class="text-muted small">
-                            <i class="bi bi-folder2-open me-1"></i> How to's
-                        </div>
-                    </header>
-
-                    <section class="post-content text-secondary lh-lg fs-6">
-                        <!-- wp:paragraph -->
+            <article class="article">
+                <div class="entry">
 <p class="mb-3">With the recent release of <a href="https://almalinux.org/blog/2025-05-27-welcoming-almalinux-10/" target="_blank" rel="noreferrer noopener">AlmaLinux OS 10</a>, we have created a new recipe for our WSL development environment. Compared to its predecessor, AlmaLinux 10 provides performance enhancements, security updates and improved hardware support.</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:heading -->
-<h2 class="wp-block-heading">What You Get</h2>
-<!-- /wp:heading -->
+<h2>What You Get</h2>
 
-<!-- wp:paragraph -->
 <p class="mb-3">Like for <a href="https://www.dotkernel.com/php-development/almalinux-9-in-wsl2-install-php-apache-mariadb-composer-phpmyadmin/" data-type="link" data-id="https://www.dotkernel.com/php-development/almalinux-9-in-wsl2-install-php-apache-mariadb-composer-phpmyadmin/" target="_blank" rel="noreferrer noopener">AlmaLinux 9</a>, the WSL recipe sets up the development environment with all the components a regular PHP developer needs:</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:list -->
-<ul class="wp-block-list"><!-- wp:list-item -->
-<li>WSL2 - Windows Subsystem for Linux.</li>
-<!-- /wp:list-item -->
+<ul><li>WSL2 - Windows Subsystem for Linux.</li>
 
-<!-- wp:list-item -->
 <li>AlmaLinux 10 - Free and open source Linux distribution.</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>PHP - General-purpose scripting language geared towards web development.</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>Apache - Free and open-source cross-platform web server software.</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>MariaDB - Community-developed, commercially supported fork of the MySQL relational database management system.</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>Git - Distributed version control system.</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>Composer - Application-level dependency manager.</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>Node.js - JavaScript runtime environment.</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>PhpMyAdmin - Open source administration tool for MySQL and MariaDB.</li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list -->
+</ul>
 
-<!-- wp:heading -->
-<h2 class="wp-block-heading">Requirements</h2>
-<!-- /wp:heading -->
+<h2>Requirements</h2>
 
-<!-- wp:paragraph -->
 <p class="mb-3">Make sure that you have the <a href="https://learn.microsoft.com/en-us/windows/wsl/install#prerequisites" target="_blank" rel="noreferrer noopener">minimum requirements for running WSL2</a>.</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
 <p class="mb-3">OS-wise you must be running:</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:list -->
-<ul class="wp-block-list"><!-- wp:list-item -->
-<li>Windows 10:<!-- wp:list -->
-<ul class="wp-block-list"><!-- wp:list-item -->
-<li>For x64 systems: Version 1903 or later with Build 18362.1049 or later.</li>
-<!-- /wp:list-item -->
+<ul><li>Windows 10:<ul><li>For x64 systems: Version 1903 or later with Build 18362.1049 or later.</li>
 
-<!-- wp:list-item -->
 <li>For ARM64 systems: Version 2004 or later with Build 19041 or later.</li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list --></li>
-<!-- /wp:list-item -->
+</ul>
+</li>
 
-<!-- wp:list-item -->
 <li>or Windows 11.</li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list -->
+</ul>
 
-<!-- wp:paragraph -->
 <p class="mb-3">Hardware-wise, you need virtualization support. On some older hardware that supports this feature, it may be disabled from the BIOS.</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
 <p class="mb-3">WSL2 needs Virtual Machine Platform feature enabled. You can enable it via the PowerShell running as an Administrator:</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:enlighter/codeblock -->
-<pre class="EnlighterJSRAW" data-enlighter-language="generic" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart</pre>
-<!-- /wp:enlighter/codeblock -->
+<pre>dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart</pre>
 
-<!-- wp:heading -->
-<h2 class="wp-block-heading">Installing the distro</h2>
-<!-- /wp:heading -->
+<h2>Installing the distro</h2>
 
-<!-- wp:paragraph -->
 <p class="mb-3">Start by downloading and installing the Linux distro with this command:</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:enlighter/codeblock -->
-<pre class="EnlighterJSRAW" data-enlighter-language="generic" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">wsl --install -d AlmaLinux-10</pre>
-<!-- /wp:enlighter/codeblock -->
+<pre>wsl --install -d AlmaLinux-10</pre>
 
-<!-- wp:paragraph -->
 <p class="mb-3">If everything ran ok, you are asked to enter a password at the end.</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
 <p class="mb-3">Next run each of the <a href="https://docs.dotkernel.org/development/v2/setup/setup-packages/" target="_blank" rel="noreferrer noopener">ansible playbook commands</a> to install the development components.</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:heading -->
-<h2 class="wp-block-heading">Using WSL2 with AlmaLinux 10</h2>
-<!-- /wp:heading -->
+<h2>Using WSL2 with AlmaLinux 10</h2>
 
-<!-- wp:paragraph -->
 <p class="mb-3">You can start AlmaLinux10 by executing this coomand in the Windows Terminal:</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:enlighter/codeblock -->
-<pre class="EnlighterJSRAW" data-enlighter-language="generic" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">wsl -d AlmaLinux-10</pre>
-<!-- /wp:enlighter/codeblock -->
+<pre>wsl -d AlmaLinux-10</pre>
 
-<!-- wp:paragraph -->
 <p class="mb-3">Our PHP projects can be run by navigating into the root project folder and running this command:</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:enlighter/codeblock -->
-<pre class="EnlighterJSRAW" data-enlighter-language="generic" data-enlighter-theme="" data-enlighter-highlight="" data-enlighter-linenumbers="" data-enlighter-lineoffset="" data-enlighter-title="" data-enlighter-group="">php -S 0.0.0.0:8080 -t public</pre>
-<!-- /wp:enlighter/codeblock -->
+<pre>php -S 0.0.0.0:8080 -t public</pre>
 
-<!-- wp:paragraph -->
 <p class="mb-3">Then you need to navigate to <code>http://localhost:8080</code> in your preferred browser.</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">Running the Application Via Virtual Hosts</h3>
-<!-- /wp:heading -->
+<h3>Running the Application Via Virtual Hosts</h3>
 
-<!-- wp:paragraph -->
 <p class="mb-3">An <strong>easier way</strong> to run your applications is via virtual hosts. The full instructions to set up your virtual hosts are in the <a href="https://docs.dotkernel.org/development/v2/virtualhosts/create-virtualhost/" target="_blank" rel="noreferrer noopener">Create virtualhosts page</a>.</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
 <p class="mb-3">After you set up your virtual hosts and install your project in e.g. the <code>/var/www/example.localhost/html</code> folder, you can run the application in the browser by accessing <code>example.localhost</code>.</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
 <p class="mb-3">If you run into any issues, make sure to first check our <a href="https://docs.dotkernel.org/development/v2/faq/" target="_blank" rel="noreferrer noopener">FAQ page</a>. If all else fails, <a href="https://github.com/dotkernel/development/issues" target="_blank" rel="noreferrer noopener">create an issue</a> with details and we can talk.</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:heading -->
-<h2 class="wp-block-heading">Additional Resources</h2>
-<!-- /wp:heading -->
+<h2>Additional Resources</h2>
 
-<!-- wp:list -->
-<ul class="wp-block-list"><!-- wp:list-item -->
-<li><a href="https://docs.dotkernel.org/development/v2/setup/installation/" target="_blank" rel="noreferrer noopener">Full AlmaLinux 10 Installation Instructions</a></li>
-<!-- /wp:list-item -->
+<ul><li><a href="https://docs.dotkernel.org/development/v2/setup/installation/" target="_blank" rel="noreferrer noopener">Full AlmaLinux 10 Installation Instructions</a></li>
 
-<!-- wp:list-item -->
 <li><a href="https://www.dotkernel.com/php-development/almalinux-9-in-wsl2-install-php-apache-mariadb-composer-phpmyadmin/" target="_blank" rel="noreferrer noopener">AlmaLinux 9 in WSL2 with PHP, Mariadb, Composer, PhpMyadmin instructions</a></li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list -->
-                    </section>
-                </article>
-            </main>
+</ul>
+                </div>
+
+                {{ include('@partial/post-nav.html.twig') }}
+            </article>
 
         </div>
     </div>

@@ -3,46 +3,41 @@
 {% block title %}Request Lifecycle for a Mezzio-Based Application{% endblock %}
 
 {% block page_title %}
-    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Architecture</div>
-    <h1 class="fw-bold text-dark display-6 mb-0">Request Lifecycle for a Mezzio-Based Application</h1>
-    <hr class="mt-4 mb-2 opacity-25">
+    <div class="wrap">
+        <div class="post-hero">
+            <a href="{{ url('page::blog') }}" class="breadcrumb-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                Back to Blog
+            </a>
+            <div><span class="eyebrow">Architecture</span></div>
+            <h1>{{ article.title }}</h1>
+            <div class="post-meta">
+                <span class="text-muted small">
+                    By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
+                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                </span>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block content %}
-    <div class="container py-4">
-        <div class="row g-4">
+    <div class="wrap post-body-wrap">
+        <div class="post-layout">
 
             {{ include('@partial/left-menu.html.twig') }}
 
-            <main class="col-12 col-md-8 col-lg-9">
-                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
-                    <header class="mb-4">
-                        <h1 class="h2 text-dark fw-bold">Request Lifecycle for a Mezzio-Based Application</h1>
-                        <div class="text-muted small">
-                            <i class="bi bi-folder2-open me-1"></i> Architecture
-                        </div>
-                    </header>
+            <article class="article">
+                <div class="entry">
+<h3>Seamlessly Interconnected Middleware for Enterprise-Level Solutions</h3>
 
-                    <section class="post-content text-secondary lh-lg fs-6">
-                        <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">Seamlessly Interconnected Middleware for Enterprise-Level Solutions</h3>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
 <p class="mb-3">The request lifecycle is the sequence of steps that happen from the moment a user makes an HTTP request until the server sends back a response. </p>
-<!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
 <p class="mb-3">The graph below shows how the request is handled by <strong>Dotkernel Light</strong> (<a href="https://github.com/dotkernel/light" data-type="link" data-id="https://github.com/dotkernel/light" target="_blank" rel="noreferrer noopener">GitHub</a>, <a href="https://docs.dotkernel.org/light-documentation/" data-type="link" data-id="https://docs.dotkernel.org/light-documentation/" target="_blank" rel="noreferrer noopener">documentation</a>), one of the applications in the <a href="https://github.com/dotkernel" data-type="link" data-id="https://github.com/dotkernel" target="_blank" rel="noreferrer noopener">Dotkernel Headless Platform suite</a>.</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:quote -->
-<blockquote class="wp-block-quote"><!-- wp:paragraph -->
-<p class="mb-3">Hover over items for description</p>
-<!-- /wp:paragraph --></blockquote>
-<!-- /wp:quote -->
+<blockquote><p class="mb-3">Hover over items for description</p>
+</blockquote>
 
-<!-- wp:html -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 <style>
@@ -567,14 +562,12 @@ $('.hasTooltip').hover(
     }
 );
 </script>
-<!-- /wp:html -->
 
-<!-- wp:paragraph -->
 <p class="mb-3"></p>
-<!-- /wp:paragraph -->
-                    </section>
-                </article>
-            </main>
+                </div>
+
+                {{ include('@partial/post-nav.html.twig') }}
+            </article>
 
         </div>
     </div>

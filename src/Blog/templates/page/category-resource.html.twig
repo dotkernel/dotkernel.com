@@ -2,45 +2,56 @@
 
 {% block title %}{{ category.name }}{% endblock %}
 
+{% block page_title %}
+    <div class="wrap">
+        <div class="post-hero">
+            <a href="{{ url('page::categories') }}" class="breadcrumb-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                All Categories
+            </a>
+            <div><span class="eyebrow">Category</span></div>
+            <h1>{{ category.name }}</h1>
+        </div>
+    </div>
+{% endblock %}
+
 {% block content %}
-    <div class="row g-4 z-0">
-        <header class="mb-4 pb-3 border-bottom">
-            <span class="text-uppercase text-muted small fw-bold d-block mb-1">Category</span>
-            <h1 class="display-6 fw-bold text-dark mb-0">{{ category.name }}</h1>
-        </header>
-        {{ include('@partial/left-menu.html.twig') }}
+    <div class="wrap post-body-wrap">
+        <div class="post-layout">
 
-        <main class="col-lg-9 col-md-8">
+            {{ include('@partial/left-menu.html.twig') }}
 
-            <div class="posts d-flex flex-column gap-3">
-                {% for article in categoryArticles %}
-                    <article class="card border-0 shadow-sm rounded-3 card-hover transition">
-                        <div class="card-body p-4">
-                            <h3 class="h5 mb-0">
-                                <a href="{{ url('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}"
-                                   class="text-decoration-none text-dark link-primary fw-semibold stretched-link">
+            <main class="article">
+                <div class="posts-list">
+                    {% for article in categoryArticles %}
+                        <article class="card my-3">
+                            <h3>
+                                <a href="{{ url('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}">
                                     {{ article.title }}
                                 </a>
                             </h3>
-                            <p class="text-muted mb-0 mt-1">{{ article.excerpt }}</p>
-                            <p class="text-muted small mt-2">
-                                <i class="far fa-clock me-1"></i>
-                                {{ article.postDate|date('d M Y') }}
-                            </p>
-                            <p class="text-muted small mb-0">
-                                By: <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}"
-                                       style="position: relative; z-index: 1;">{{ article.author.name }}</a>
-                            </p>
-                        </div>
-                    </article>
-                {% else %}
-                    <div class="text-center py-5 bg-white rounded-3 border shadow-sm">
-                        <i class="far fa-folder-open fa-2x text-muted mb-3"></i>
-                        <p class="text-muted mb-0">No posts in this category yet.</p>
-                    </div>
-                {% endfor %}
-            </div>
-        </main>
 
+                            <p class="desc">{{ article.excerpt }}</p>
+
+                            <div class="d-flex flex-column align-items-start gap-2 pt-3 border-top">
+                                <span class="post-date">
+                                    By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}">{{ article.author.name }}</a>
+                                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                                </span>
+                                <a href="{{ url('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}"
+                                   class="btn btn-ghost btn-sm">
+                                    Read more →
+                                </a>
+                            </div>
+                        </article>
+                    {% else %}
+                        <div class="card posts-empty">
+                            <p class="desc">No posts in this category yet.</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </main>
+
+        </div>
     </div>
 {% endblock %}

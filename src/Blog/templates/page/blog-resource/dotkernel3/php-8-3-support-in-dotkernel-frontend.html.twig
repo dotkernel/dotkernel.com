@@ -3,243 +3,142 @@
 {% block title %}PHP 8.3 support in Dotkernel Frontend{% endblock %}
 
 {% block page_title %}
-    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel 3</div>
-    <h1 class="fw-bold text-dark display-6 mb-0">PHP 8.3 support in Dotkernel Frontend</h1>
-    <hr class="mt-4 mb-2 opacity-25">
+    <div class="wrap">
+        <div class="post-hero">
+            <a href="{{ url('page::blog') }}" class="breadcrumb-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                Back to Blog
+            </a>
+            <div><span class="eyebrow">Dotkernel 3</span></div>
+            <h1>{{ article.title }}</h1>
+            <div class="post-meta">
+                <span class="text-muted small">
+                    By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
+                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                </span>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block content %}
-    <div class="container py-4">
-        <div class="row g-4">
+    <div class="wrap post-body-wrap">
+        <div class="post-layout">
 
             {{ include('@partial/left-menu.html.twig') }}
 
-            <main class="col-12 col-md-8 col-lg-9">
-                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
-                    <header class="mb-4">
-                        <h1 class="h2 text-dark fw-bold">PHP 8.3 support in Dotkernel Frontend</h1>
-                        <div class="text-muted small">
-                            <i class="bi bi-folder2-open me-1"></i> Dotkernel 3
-                        </div>
-                    </header>
-
-                    <section class="post-content text-secondary lh-lg fs-6">
-                        <!-- wp:paragraph -->
+            <article class="article">
+                <div class="entry">
 <p class="mb-3">To be able to take advantage of the support for <strong>PHP 8.3</strong> in the newest packages, the DotKernel team has updated the <a href="https://github.com/dotkernel/frontend" data-type="link" data-id="https://github.com/dotkernel/frontend" target="_blank" rel="noreferrer noopener">Frontend</a> Application to version <strong>4.2.0</strong>. Very much like for the Admin update before it, the Frontend must also remove support for PHP 8.1 and the no-longer-available PhpFileCache class until a replacement is implemented.</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
 <p class="mb-3">The full list of file changes is <a href="https://github.com/dotkernel/frontend/pull/417" data-type="link" data-id="https://github.com/dotkernel/admin/pull/218/files" target="_blank" rel="noreferrer noopener">here</a>.</p>
-<!-- /wp:paragraph -->
 
-<!-- wp:list -->
-<ul><!-- wp:list-item -->
-<li><strong>Supports only PHP 8.2 and PHP 8.3</strong><!-- wp:list -->
-<ul><!-- wp:list-item -->
-<li>Removed support for PHP 8.1</li>
-<!-- /wp:list-item -->
+<ul><li><strong>Supports only PHP 8.2 and PHP 8.3</strong><ul><li>Removed support for PHP 8.1</li>
 
-<!-- wp:list-item -->
 <li>Updated workflows - removed PHP 8.1</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>Commit <a href="https://github.com/dotkernel/frontend/commit/e6c3e6495d50e181cfe4ff6a4edec7af12120abf" data-type="link" data-id="https://github.com/dotkernel/frontend/commit/e6c3e6495d50e181cfe4ff6a4edec7af12120abf" target="_blank" rel="noreferrer noopener">#1</a></li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list --></li>
-<!-- /wp:list-item -->
+</ul>
+</li>
 
-<!-- wp:list-item -->
-<li><strong>Updated </strong>dependencies<!-- wp:list -->
-<ul><!-- wp:list-item -->
-<li>Commit <a href="https://github.com/dotkernel/frontend/commit/e6c3e6495d50e181cfe4ff6a4edec7af12120abf" data-type="link" data-id="https://github.com/dotkernel/frontend/commit/e6c3e6495d50e181cfe4ff6a4edec7af12120abf" target="_blank" rel="noreferrer noopener">#1</a></li>
-<!-- /wp:list-item -->
+<li><strong>Updated </strong>dependencies<ul><li>Commit <a href="https://github.com/dotkernel/frontend/commit/e6c3e6495d50e181cfe4ff6a4edec7af12120abf" data-type="link" data-id="https://github.com/dotkernel/frontend/commit/e6c3e6495d50e181cfe4ff6a4edec7af12120abf" target="_blank" rel="noreferrer noopener">#1</a></li>
 
-<!-- wp:list-item -->
-<li><strong>require</strong><!-- wp:list -->
-<ul><!-- wp:list-item -->
-<li>"dotkernel/dot-annotated-services": "^4.1.6",</li>
-<!-- /wp:list-item -->
+<li><strong>require</strong><ul><li>"dotkernel/dot-annotated-services": "^4.1.6",</li>
 
-<!-- wp:list-item -->
 <li>"dotkernel/dot-authorization": "^3.4.1",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"dotkernel/dot-controller": "^3.4.3",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"dotkernel/dot-data-fixtures": "^1.1.3",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"dotkernel/dot-debugbar": "^1.1.5",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"dotkernel/dot-errorhandler": "^3.3.2",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"dotkernel/dot-flashmessenger": "^3.4.2",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"dotkernel/dot-mail": "~3.4 || ^4.1.1",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"dotkernel/dot-navigation": "^3.4.2",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"dotkernel/dot-rbac-guard": "^3.4.3",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"dotkernel/dot-response-header": "^3.2.3",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"dotkernel/dot-session": "^5.4.2",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"dotkernel/dot-twigrenderer": "^3.4.3",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"friendsofphp/proxy-manager-lts": "^1.0.16",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"laminas/laminas-component-installer": "^3.4.0",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"laminas/laminas-config-aggregator": "^1.14.0",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"laminas/laminas-form": "^3.19.1",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"laminas/laminas-i18n": "^2.26.0",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"mezzio/mezzio": "^3.18.0",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"mezzio/mezzio-authorization-rbac": "^1.7.0",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"mezzio/mezzio-cors": "^1.11.1",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"mezzio/mezzio-fastroute": "^3.11.0",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"ramsey/uuid-doctrine": "^2.0.0",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"roave/psr-container-doctrine": "^4.1.0"</li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list --></li>
-<!-- /wp:list-item -->
+</ul>
+</li>
 
-<!-- wp:list-item -->
-<li><strong>require-dev</strong><!-- wp:list -->
-<ul><!-- wp:list-item -->
-<li>"filp/whoops": "^2.15.4",</li>
-<!-- /wp:list-item -->
+<li><strong>require-dev</strong><ul><li>"filp/whoops": "^2.15.4",</li>
 
-<!-- wp:list-item -->
 <li>"laminas/laminas-development-mode": "^3.12.0",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"mezzio/mezzio-tooling": "^2.9.0",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"phpunit/phpunit": "^10.5",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"rector/rector": "^1.0.0",</li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>"vimeo/psalm": "^5.21.1"</li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list --></li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list --></li>
-<!-- /wp:list-item -->
+</ul>
+</li>
+</ul>
+</li>
 
-<!-- wp:list-item -->
-<li><strong>Updated </strong>npm dependencies in <em>packagist.json</em><!-- wp:list -->
-<ul><!-- wp:list-item -->
-<li>Recommended to use npm v10.0.4 and Node.js v20.11.0</li>
-<!-- /wp:list-item -->
+<li><strong>Updated </strong>npm dependencies in <em>packagist.json</em><ul><li>Recommended to use npm v10.0.4 and Node.js v20.11.0</li>
 
-<!-- wp:list-item -->
 <li>Commit <a href="https://github.com/dotkernel/frontend/commit/d4d0309c95ba7a572afc82965fdf0e0904a4e0c9" data-type="link" data-id="https://github.com/dotkernel/frontend/commit/d4d0309c95ba7a572afc82965fdf0e0904a4e0c9" target="_blank" rel="noreferrer noopener">#1</a> and <a href="https://github.com/dotkernel/frontend/commit/99d8a1fcbebf5d124c9f96cd948b9e28732cfec8" data-type="link" data-id="https://github.com/dotkernel/frontend/commit/99d8a1fcbebf5d124c9f96cd948b9e28732cfec8" target="_blank" rel="noreferrer noopener">#2</a></li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list --></li>
-<!-- /wp:list-item -->
+</ul>
+</li>
 
-<!-- wp:list-item -->
-<li><strong>Removed</strong> parameter from configuration files and uses for class <em>PhpFileCache</em> (required by cache)<!-- wp:list -->
-<ul><!-- wp:list-item -->
-<li>Updated <em>doctrine.global.php</em><!-- wp:list -->
-<ul><!-- wp:list-item -->
-<li>Removed <em>use Doctrine\Common\Cache\PhpFileCache;</em></li>
-<!-- /wp:list-item -->
+<li><strong>Removed</strong> parameter from configuration files and uses for class <em>PhpFileCache</em> (required by cache)<ul><li>Updated <em>doctrine.global.php</em><ul><li>Removed <em>use Doctrine\Common\Cache\PhpFileCache;</em></li>
 
-<!-- wp:list-item -->
 <li>Removed the parameters used by cache <em>configuration</em> and <em>cache</em></li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list --></li>
-<!-- /wp:list-item -->
+</ul>
+</li>
 
-<!-- wp:list-item -->
 <li>Commit <a href="https://github.com/dotkernel/frontend/commit/e6c3e6495d50e181cfe4ff6a4edec7af12120abf" target="_blank" rel="noreferrer noopener">#1</a></li>
-<!-- /wp:list-item -->
 
-<!-- wp:list-item -->
 <li>Make sure to keep the lines from the more recent commit <a href="https://github.com/dotkernel/frontend/commit/f693750602b8c0e5d6582826604ef65a4f0f6b02" data-type="link" data-id="https://github.com/dotkernel/frontend/commit/f693750602b8c0e5d6582826604ef65a4f0f6b02">#2</a></li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list --></li>
-<!-- /wp:list-item -->
+</ul>
+</li>
 
-<!-- wp:list-item -->
-<li><strong>Fixed </strong>psalm and phpcs issues<!-- wp:list -->
-<ul><!-- wp:list-item -->
-<li>Updated type hints and indentations</li>
-<!-- /wp:list-item -->
+<li><strong>Fixed </strong>psalm and phpcs issues<ul><li>Updated type hints and indentations</li>
 
-<!-- wp:list-item -->
 <li>Commits <a href="https://github.com/dotkernel/frontend/commit/2a3e831208aa342220077ee2fd497b3ac4cc823f" data-type="link" data-id="https://github.com/dotkernel/frontend/commit/2a3e831208aa342220077ee2fd497b3ac4cc823f" target="_blank" rel="noreferrer noopener">#1</a> and <a href="https://github.com/dotkernel/frontend/commit/a24a3426725417713109f8318bd9b0d53c250945" data-type="link" data-id="https://github.com/dotkernel/frontend/commit/a24a3426725417713109f8318bd9b0d53c250945" target="_blank" rel="noreferrer noopener">#2</a></li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list --></li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list -->
+</ul>
+</li>
+</ul>
 
-<!-- wp:paragraph -->
 <p class="mb-3">Next on the menu is to implement these changes in the DotKernel Frontend live projects and process the feedback.</p>
-<!-- /wp:paragraph -->
-                    </section>
-                </article>
-            </main>
+                </div>
+
+                {{ include('@partial/post-nav.html.twig') }}
+            </article>
 
         </div>
     </div>

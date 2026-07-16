@@ -3,28 +3,33 @@
 {% block title %}GeoIP: Ip Address Location In DotKernel{% endblock %}
 
 {% block page_title %}
-    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Dotkernel</div>
-    <h1 class="fw-bold text-dark display-6 mb-0">GeoIP: Ip Address Location In DotKernel</h1>
-    <hr class="mt-4 mb-2 opacity-25">
+    <div class="wrap">
+        <div class="post-hero">
+            <a href="{{ url('page::blog') }}" class="breadcrumb-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                Back to Blog
+            </a>
+            <div><span class="eyebrow">Dotkernel</span></div>
+            <h1>{{ article.title }}</h1>
+            <div class="post-meta">
+                <span class="text-muted small">
+                    By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
+                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                </span>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block content %}
-    <div class="container py-4">
-        <div class="row g-4">
+    <div class="wrap post-body-wrap">
+        <div class="post-layout">
 
             {{ include('@partial/left-menu.html.twig') }}
 
-            <main class="col-12 col-md-8 col-lg-9">
-                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
-                    <header class="mb-4">
-                        <h1 class="h2 text-dark fw-bold">GeoIP: Ip Address Location In DotKernel</h1>
-                        <div class="text-muted small">
-                            <i class="bi bi-folder2-open me-1"></i> Dotkernel
-                        </div>
-                    </header>
-
-                    <section class="post-content text-secondary lh-lg fs-6">
-                        <em><strong>GeoIP</strong> </em>is the proprietary technology that drives <a href="http://www.maxmind.com/app/ip-location" target="_blank" rel="noopener noreferrer">MaxMind's</a> IP geolocation data and services. It is a non-invasive way to determine geographical and other information about Internet visitors in real-time. When a person visits your website, <strong><em>GeoIP </em></strong>can determine which country, region, city, postal code, area code the visitor is coming from.
+            <article class="article">
+                <div class="entry">
+<em><strong>GeoIP</strong> </em>is the proprietary technology that drives <a href="http://www.maxmind.com/app/ip-location" target="_blank" rel="noopener noreferrer">MaxMind's</a> IP geolocation data and services. It is a non-invasive way to determine geographical and other information about Internet visitors in real-time. When a person visits your website, <strong><em>GeoIP </em></strong>can determine which country, region, city, postal code, area code the visitor is coming from.
 
 DotKernel uses <em><strong>GeoIP </strong></em>to get user statistics by country. The main file for <em><strong>GeoIP </strong></em>is <a href="http://websvn.dotkernel.net/filedetails.php?repname=DotKernel&amp;path=%2Ftrunk%2Flibrary%2FDot%2FGeoip.php" target="_blank" rel="noopener noreferrer">library/Dot/Geoip.php</a>
 <!--more-->
@@ -51,7 +56,7 @@ Next there are 4 <strong><em>if/else</em></strong> statements:
 <ul>
     <li>This has the same behavior like item <a name="#1"></a>#1<a> in this list –  it uses <strong><em>externals/geoip/GeoIP.dat</em></strong> from the DotKernel framework</a></li>
 </ul>
-<pre class="bg-light border rounded p-3 overflow-auto"> line="32">/**
+<pre> line="32">/**
  * Get the country by IP
  * Return an array with : short name, like 'us' and long name, like 'United States'
  * @access public
@@ -112,9 +117,10 @@ public function getCountryByIp($ip)
 }
 }
 </pre>
-                    </section>
-                </article>
-            </main>
+                </div>
+
+                {{ include('@partial/post-nav.html.twig') }}
+            </article>
 
         </div>
     </div>

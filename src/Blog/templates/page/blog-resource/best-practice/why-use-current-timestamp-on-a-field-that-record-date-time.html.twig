@@ -3,34 +3,39 @@
 {% block title %}Why use CURRENT_TIMESTAMP on a field that record date/time?{% endblock %}
 
 {% block page_title %}
-    <div class="mb-2 text-uppercase small fw-bold text-primary tracking-wider">Best Practice</div>
-    <h1 class="fw-bold text-dark display-6 mb-0">Why use CURRENT_TIMESTAMP on a field that record date/time?</h1>
-    <hr class="mt-4 mb-2 opacity-25">
+    <div class="wrap">
+        <div class="post-hero">
+            <a href="{{ url('page::blog') }}" class="breadcrumb-back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                Back to Blog
+            </a>
+            <div><span class="eyebrow">Best Practice</span></div>
+            <h1>{{ article.title }}</h1>
+            <div class="post-meta">
+                <span class="text-muted small">
+                    By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
+                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                </span>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block content %}
-    <div class="container py-4">
-        <div class="row g-4">
+    <div class="wrap post-body-wrap">
+        <div class="post-layout">
 
             {{ include('@partial/left-menu.html.twig') }}
 
-            <main class="col-12 col-md-8 col-lg-9">
-                <article class="card border-0 shadow-sm p-4 p-md-5 h-100">
-                    <header class="mb-4">
-                        <h1 class="h2 text-dark fw-bold">Why use CURRENT_TIMESTAMP on a field that record date/time?</h1>
-                        <div class="text-muted small">
-                            <i class="bi bi-folder2-open me-1"></i> Best Practice
-                        </div>
-                    </header>
-
-                    <section class="post-content text-secondary lh-lg fs-6">
-                        On a <em>TIMESTAMP field</em> that records date and time when <em>inserting </em>a new record, it is encouraged to use as a <em>DEFAULT </em>value, the <strong>CURRENT_TIMESTAMP</strong> constant.
+            <article class="article">
+                <div class="entry">
+On a <em>TIMESTAMP field</em> that records date and time when <em>inserting </em>a new record, it is encouraged to use as a <em>DEFAULT </em>value, the <strong>CURRENT_TIMESTAMP</strong> constant.
 <!--more-->
 <strong>Why? </strong>
 Because when inserting a new row in the table for the date and time field there is no need to specifically add its value, either by creating it from PHP code with the <a href="http://www.php.net/manual/en/ref.datetime.php">Date/ Time functions</a> or with MySQL function <a href="http://dev.mysql.com/doc/refman/5.0/en/date-and-time-functions.html#function_now">NOW()</a>
-<pre class="bg-light border rounded p-3 overflow-auto">>ALTER TABLE `user` CHANGE `dateCreated` `dateCreated` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;</pre>
+<pre>>ALTER TABLE `user` CHANGE `dateCreated` `dateCreated` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;</pre>
 CURRENT_TIMESTAMP is also a solution for  <em>updating </em>date and time fields. Use <em><code>ON UPDATE CURRENT_TIMESTAMP</code></em> clause, if you want the value of the field to be changed automatically each time the row is updated.
-<pre class="bg-light border rounded p-3 overflow-auto">>ALTER TABLE `user` CHANGE `dateLogin` `dateLogin` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;</pre>
+<pre>>ALTER TABLE `user` CHANGE `dateLogin` `dateLogin` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;</pre>
 <em>DEFAULT </em>and <em>ON UPDATE</em> clauses can be used together or separately, depending on your needs:
 <ul>
     <li>With both <code>DEFAULT CURRENT_TIMESTAMP</code> and <code>ON UPDATE CURRENT_TIMESTAMP</code> clauses, the column has the current timestamp for its default value and is automatically updated.</li>
@@ -42,9 +47,10 @@ CURRENT_TIMESTAMP is also a solution for  <em>updating </em>date and time field
 For more details check out <a href="http://dev.mysql.com/doc/refman/5.0/en/timestamp.html">MySQL Manual</a>
 
 <strong>Note*:</strong> Only one timestamp field can be <code>DEFAULT CURRENT_TIMESTAMP</code> in a table.
-                    </section>
-                </article>
-            </main>
+                </div>
+
+                {{ include('@partial/post-nav.html.twig') }}
+            </article>
 
         </div>
     </div>
