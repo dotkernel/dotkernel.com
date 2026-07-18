@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/author-resource.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/author-resource.jsonld.twig') }} {% endblock %}
 
 {% block title %}{{ author.name }}{% endblock %}
 

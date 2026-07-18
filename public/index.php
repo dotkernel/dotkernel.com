@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 use Mezzio\Application;
 use Psr\Container\ContainerInterface;
 
