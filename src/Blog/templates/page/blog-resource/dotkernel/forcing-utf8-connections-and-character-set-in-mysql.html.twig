@@ -1,4 +1,5 @@
 {% extends '@layout/default.html.twig' %}
+{% block json_ld %} {% include '@jsonld/dotkernel/forcing-utf8-connections-and-character-set-in-mysql.jsonld.twig'%} {% endblock %}
 
 {% block title %}Forcing UTF8 connections and character set in MySQL{% endblock %}
 

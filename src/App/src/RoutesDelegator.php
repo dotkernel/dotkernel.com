@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Light\App;
 
 use Laminas\Diactoros\Response\RedirectResponse;
+use Light\App\Handler\GetIndexMarkdownHandler;
 use Light\App\Handler\GetIndexViewHandler;
 use Mezzio\Application;
 use Psr\Container\ContainerInterface;
@@ -23,6 +24,7 @@ class RoutesDelegator
             $uri = $request->getUri();
             return new RedirectResponse((string) $uri . '/', 301);
         });
+
         $app->get('/{first}/{second}', function ($request) {
             $uri = $request->getUri();
             return new RedirectResponse((string) $uri . '/', 301);

@@ -1,4 +1,5 @@
 {% extends '@layout/default.html.twig' %}
+{% block json_ld %} {% include '@jsonld/dotkernel/avoid-routing-through-bootstrap-of-non-existent-files.jsonld.twig'%} {% endblock %}
 
 {% block title %}Avoid routing through bootstrap of non existent files{% endblock %}
 

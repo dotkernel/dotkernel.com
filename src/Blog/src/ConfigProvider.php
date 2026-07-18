@@ -99,6 +99,7 @@ class ConfigProvider
      * @return array{
      *     paths: array{
      *          page: array{literal-string&non-falsy-string},
+     *          jsonld: array{literal-string&non-falsy-string},
      *     }
      * }
      */
@@ -106,7 +107,8 @@ class ConfigProvider
     {
         return [
             'paths' => [
-                'page' => [__DIR__ . '/../templates/page'],
+                'page'   => [__DIR__ . '/../templates/page'],
+                'jsonld' => [__DIR__ . '/../templates/page/jsonld'],
             ],
         ];
     }

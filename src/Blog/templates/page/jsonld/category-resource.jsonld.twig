@@ -1,0 +1,23 @@
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "@id": "{{ absolute_url(path('page::category-resource', {slug: category.slug})) }}#webpage",
+        "url": "{{ absolute_url(path('page::category-resource', {slug: category.slug})) }}",
+        "name": "{{ category.name }}",
+        "isPartOf": { "@id": "{{ absolute_url('/') }}#website" },
+        "mainEntity": {
+            "@type": "ItemList",
+            "itemListElement": [
+                {% for article in data.items %}{% if not loop.first %},{% endif %}
+                {
+                    "@type": "ListItem",
+                    "position": {{ loop.index }},
+                    "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                    "name": "{{ article.title }}"
+                }
+                {% endfor %}
+            ]
+        }
+    }
+</script>

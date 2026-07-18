@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-
+{% block json_ld %} {% include '@jsonld/index.jsonld.twig'%} {% endblock %}
 {% block title %}A PSR-15 compliant application{% endblock %}
 
 {% block content %}
