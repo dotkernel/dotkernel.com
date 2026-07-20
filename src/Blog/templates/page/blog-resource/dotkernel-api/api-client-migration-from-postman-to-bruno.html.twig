@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/dotkernel-api/api-client-migration-from-postman-to-bruno.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/dotkernel-api/api-client-migration-from-postman-to-bruno.jsonld.twig') }} {% endblock %}
 
 {% block title %}API Client Migration: From Postman to Bruno{% endblock %}
 
@@ -38,7 +38,7 @@
 
 <h2 id="user-content-comparing-postman-to-bruno">Comparing Postman to Bruno<a href="#comparing-postman-to-bruno"></a></h2>
 
-<figure><img src="{{ asset('uploads/article/' ~ article.id ~ '/bruno-vs-postman1-1024x683.jpg') }}" alt=""> class="img-fluid rounded my-2"></figure>
+<figure><img src="{{ asset('uploads/article/' ~ article.id ~ '/bruno-vs-postman1-1024x683.jpg') }}" alt=""> </figure>
 
 <h3 id="user-content-architecture">Architecture<a href="#architecture"></a></h3>
 

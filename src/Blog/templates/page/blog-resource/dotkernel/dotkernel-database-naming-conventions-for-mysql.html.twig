@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/dotkernel/dotkernel-database-naming-conventions-for-mysql.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/dotkernel/dotkernel-database-naming-conventions-for-mysql.jsonld.twig') }} {% endblock %}
 
 {% block title %}DotKernel Database Naming Conventions for MySQL{% endblock %}
 

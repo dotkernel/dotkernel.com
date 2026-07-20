@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/android/multiple-broadcast-receivers-in-the-same-app-for-the-same-action.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/android/multiple-broadcast-receivers-in-the-same-app-for-the-same-action.jsonld.twig') }} {% endblock %}
 
 {% block title %}Multiple broadcast receivers in the same app, for the same action{% endblock %}
 

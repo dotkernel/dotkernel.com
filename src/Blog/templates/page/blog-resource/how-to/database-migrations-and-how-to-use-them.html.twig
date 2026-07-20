@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/how-to/database-migrations-and-how-to-use-them.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/how-to/database-migrations-and-how-to-use-them.jsonld.twig') }} {% endblock %}
 
 {% block title %}Database migrations and how to use them{% endblock %}
 

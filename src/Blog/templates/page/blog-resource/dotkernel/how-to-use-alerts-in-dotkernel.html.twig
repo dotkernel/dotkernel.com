@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/dotkernel/how-to-use-alerts-in-dotkernel.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/dotkernel/how-to-use-alerts-in-dotkernel.jsonld.twig') }} {% endblock %}
 
 {% block title %}How to use Alerts in DotKernel{% endblock %}
 

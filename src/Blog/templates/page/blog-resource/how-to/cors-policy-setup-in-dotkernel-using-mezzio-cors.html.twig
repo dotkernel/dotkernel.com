@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/how-to/cors-policy-setup-in-dotkernel-using-mezzio-cors.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/how-to/cors-policy-setup-in-dotkernel-using-mezzio-cors.jsonld.twig') }} {% endblock %}
 
 {% block title %}CORS policy setup in Dotkernel using mezzio-cors{% endblock %}
 

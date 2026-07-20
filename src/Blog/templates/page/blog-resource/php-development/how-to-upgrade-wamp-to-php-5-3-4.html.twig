@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/php-development/how-to-upgrade-wamp-to-php-5-3-4.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/php-development/how-to-upgrade-wamp-to-php-5-3-4.jsonld.twig') }} {% endblock %}
 
 {% block title %}How To Upgrade Wamp to PHP 5.3.4{% endblock %}
 

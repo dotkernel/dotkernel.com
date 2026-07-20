@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/php-development/welcome-to-the-10th-zend-certified-engineer-in-dotboost-team.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/php-development/welcome-to-the-10th-zend-certified-engineer-in-dotboost-team.jsonld.twig') }} {% endblock %}
 
 {% block title %}Welcome to the 10th Zend Certified Engineer in Dotboost Team{% endblock %}
 

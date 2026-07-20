@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/how-to/list-available-endpoints-in-dotkernel-api-using-dot-cli.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/how-to/list-available-endpoints-in-dotkernel-api-using-dot-cli.jsonld.twig') }} {% endblock %}
 
 {% block title %}List available endpoints in  DotKernel API using dot-cli{% endblock %}
 

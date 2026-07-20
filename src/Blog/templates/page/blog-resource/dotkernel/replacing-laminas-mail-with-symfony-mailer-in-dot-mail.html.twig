@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/dotkernel/replacing-laminas-mail-with-symfony-mailer-in-dot-mail.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/dotkernel/replacing-laminas-mail-with-symfony-mailer-in-dot-mail.jsonld.twig') }} {% endblock %}
 
 {% block title %}Replacing laminas-mail with Symfony mailer in dot-mail{% endblock %}
 

@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/zend-framework/zend-framework-as-pear-accessible-repository-on-plesk-server.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/zend-framework/zend-framework-as-pear-accessible-repository-on-plesk-server.jsonld.twig') }} {% endblock %}
 
 {% block title %}Zend Framework as PEAR accessible repository on Plesk server{% endblock %}
 

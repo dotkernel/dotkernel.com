@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/dotkernel/adding-windows-10-os-and-browser-detection-in-dotkernel-projects.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/dotkernel/adding-windows-10-os-and-browser-detection-in-dotkernel-projects.jsonld.twig') }} {% endblock %}
 
 {% block title %}Adding Windows 10 OS and Browser detection in DotKernel projects{% endblock %}
 
@@ -34,7 +34,7 @@ Recently we have added the Windows 8, 8.1 and 10 OS icon and Microsoft's Edge br
 
 In this article we will have the icon upgrade guide.
 
-<a href="/uploads/2015/09/icons.png"><img src="{{ asset('uploads/article/' ~ article.id ~ '/icons.png') }}" alt="Icons Patch" width="232" height="162"> class="img-fluid rounded my-2"></a> The new Icons listed in User and Admin Logins
+<a href="/uploads/2015/09/icons.png"><img src="{{ asset('uploads/article/' ~ article.id ~ '/icons.png') }}" alt="Icons Patch" width="232" height="162"> </a> The new Icons listed in User and Admin Logins
 
 <!--more-->
 

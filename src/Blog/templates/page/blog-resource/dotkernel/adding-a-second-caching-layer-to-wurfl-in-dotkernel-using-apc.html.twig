@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/dotkernel/adding-a-second-caching-layer-to-wurfl-in-dotkernel-using-apc.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/dotkernel/adding-a-second-caching-layer-to-wurfl-in-dotkernel-using-apc.jsonld.twig') }} {% endblock %}
 
 {% block title %}Adding a second caching layer to WURFL in Dotkernel using APC{% endblock %}
 

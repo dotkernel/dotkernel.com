@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/dotkernel/protecting-admin-folder-with-htaccess-in-plesk.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/dotkernel/protecting-admin-folder-with-htaccess-in-plesk.jsonld.twig') }} {% endblock %}
 
 {% block title %}Protecting admin folder with .htaccess in Plesk{% endblock %}
 

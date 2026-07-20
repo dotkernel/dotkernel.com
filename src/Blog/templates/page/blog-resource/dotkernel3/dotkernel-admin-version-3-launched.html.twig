@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/dotkernel3/dotkernel-admin-version-3-launched.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/dotkernel3/dotkernel-admin-version-3-launched.jsonld.twig') }} {% endblock %}
 
 {% block title %}Dotkernel Admin version 3  launched{% endblock %}
 

@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/best-practice/basic-security-in-dotkernel-headless-platform.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/best-practice/basic-security-in-dotkernel-headless-platform.jsonld.twig') }} {% endblock %}
 
 {% block title %}Basic Security in Dotkernel Headless Platform{% endblock %}
 

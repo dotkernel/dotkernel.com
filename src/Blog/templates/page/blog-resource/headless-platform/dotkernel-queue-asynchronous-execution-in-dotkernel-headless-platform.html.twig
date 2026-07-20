@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/headless-platform/dotkernel-queue-asynchronous-execution-in-dotkernel-headless-platform.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/headless-platform/dotkernel-queue-asynchronous-execution-in-dotkernel-headless-platform.jsonld.twig') }} {% endblock %}
 
 {% block title %}Dotkernel Queue - Asynchronous Execution in Dotkernel Headless Platform{% endblock %}
 
@@ -97,7 +97,7 @@
 
 <p class="mb-3">The queue system has an active <strong>daemon</strong> that listens for TPC connections on a specific port and <strong>stores incoming messages</strong> into Redis. This method supports a large number of requests per second without overloading. Operations are then scheduled for execution when resources are available. The order of the execution uses the <strong>FIFO</strong> (First-In, First-Out) method where the oldest request is processed first, followed by newer requests.</p>
 
-<figure><img src="{{ asset('uploads/article/' ~ article.id ~ '/Queue-process2.png') }}" alt=""> class="img-fluid rounded my-2"></figure>
+<figure><img src="{{ asset('uploads/article/' ~ article.id ~ '/Queue-process2.png') }}" alt=""> </figure>
 
 <h2><a href="#main-features"></a>Main Features</h2>
 

@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/dotkernel/dotkernel-template-engine.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/dotkernel/dotkernel-template-engine.jsonld.twig') }} {% endblock %}
 
 {% block title %}DotKernel Template Engine{% endblock %}
 

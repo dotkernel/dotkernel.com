@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/dotkernel/wurfl-php-api-license-incompatible-with-dotkernel.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/dotkernel/wurfl-php-api-license-incompatible-with-dotkernel.jsonld.twig') }} {% endblock %}
 
 {% block title %}WURFL PHP API license incompatible with DotKernel{% endblock %}
 

@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/best-practice/zf-is-retired-laminas-mvc-is-retiring-consider-it-solved.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/best-practice/zf-is-retired-laminas-mvc-is-retiring-consider-it-solved.jsonld.twig') }} {% endblock %}
 
 {% block title %}ZF Is Retired. Laminas MVC Is Retiring. Consider It Solved{% endblock %}
 

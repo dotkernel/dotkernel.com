@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/best-practice/htaccess-301-redirect-non-www-to-www.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/best-practice/htaccess-301-redirect-non-www-to-www.jsonld.twig') }} {% endblock %}
 
 {% block title %}htaccess 301 redirect non-www to www{% endblock %}
 

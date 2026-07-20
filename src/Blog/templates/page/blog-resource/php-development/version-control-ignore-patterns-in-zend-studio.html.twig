@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/php-development/version-control-ignore-patterns-in-zend-studio.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/php-development/version-control-ignore-patterns-in-zend-studio.jsonld.twig') }} {% endblock %}
 
 {% block title %}Version Control Ignore Patterns in Zend Studio{% endblock %}
 
@@ -44,7 +44,7 @@ Also, on each project, you can use either global ignored  patterns, or use spec
 
 &nbsp;
 
-<a href="/uploads/2013/04/ignore-patterns.png"><img alt="ignore-patterns" src="{{ asset('uploads/article/' ~ article.id ~ '/ignore-patterns.png') }}" width="635" height="594" > class="img-fluid rounded my-2"></a>
+<a href="/uploads/2013/04/ignore-patterns.png"><img alt="ignore-patterns" src="{{ asset('uploads/article/' ~ article.id ~ '/ignore-patterns.png') }}" width="635" height="594" ></a>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/how-to/doctrine-cache-in-mezzio-and-dotkernel.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/how-to/doctrine-cache-in-mezzio-and-dotkernel.jsonld.twig') }} {% endblock %}
 
 {% block title %}Doctrine Cache in Mezzio and Dotkernel{% endblock %}
 

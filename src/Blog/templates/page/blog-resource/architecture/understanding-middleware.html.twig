@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/architecture/understanding-middleware.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/architecture/understanding-middleware.jsonld.twig') }} {% endblock %}
 
 {% block title %}Understanding Middleware{% endblock %}
 

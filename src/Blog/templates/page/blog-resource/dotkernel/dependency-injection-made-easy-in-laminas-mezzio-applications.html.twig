@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/dotkernel/dependency-injection-made-easy-in-laminas-mezzio-applications.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/dotkernel/dependency-injection-made-easy-in-laminas-mezzio-applications.jsonld.twig') }} {% endblock %}
 
 {% block title %}Dependency Injection made easy in Laminas/Mezzio applications{% endblock %}
 

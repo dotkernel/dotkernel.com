@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/javascript/intro-to-jquery.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/javascript/intro-to-jquery.jsonld.twig') }} {% endblock %}
 
 {% block title %}Intro to jQuery{% endblock %}
 

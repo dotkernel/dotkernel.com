@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/php-development/protection-against-sql-injection-using-pdo-and-zend-framework-part-2.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/php-development/protection-against-sql-injection-using-pdo-and-zend-framework-part-2.jsonld.twig') }} {% endblock %}
 
 {% block title %}Protection against SQL Injection using PDO and Zend Framework - part 2{% endblock %}
 

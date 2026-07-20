@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/dotkernel/highcharts-integration-in-dotkernel-1-6-0.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/dotkernel/highcharts-integration-in-dotkernel-1-6-0.jsonld.twig') }} {% endblock %}
 
 {% block title %}Highcharts Integration in DotKernel 1.6.0{% endblock %}
 
@@ -35,7 +35,7 @@ Integrating a new charting library in the latest version of DotKernel (1.6.0) we
 <!--more-->
 
 Also in admin we made some samples using highcharts. These samples includes an pie chart (with a small custom feature), an column chart and the last one is an line chart.
-<p style="text-align: center;"><a href="/uploads/2012/05/highcharts.png"><img title="Highcharts" src="{{ asset('uploads/article/' ~ article.id ~ '/highcharts-1024x651.png') }}" alt="" width="704" height="447"> class="img-fluid rounded my-2"></a></p>
+<p style="text-align: center;"><a href="/uploads/2012/05/highcharts.png"><img title="Highcharts" src="{{ asset('uploads/article/' ~ article.id ~ '/highcharts-1024x651.png') }}" alt="" width="704" height="447"> </a></p>
 You can find highcharts library in the <strong>externals </strong>directory.
 
 Take a quick view on the code to see how highcharts are working.

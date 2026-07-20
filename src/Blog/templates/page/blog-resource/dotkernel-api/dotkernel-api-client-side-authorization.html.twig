@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/dotkernel-api/dotkernel-api-client-side-authorization.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/dotkernel-api/dotkernel-api-client-side-authorization.jsonld.twig') }} {% endblock %}
 
 {% block title %}DotKernel API Client Side  Authorization{% endblock %}
 

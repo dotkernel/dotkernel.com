@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/how-to/installing-almalinux-10-in-wsl2-php-mariadb-composer-phpmyadmin.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/how-to/installing-almalinux-10-in-wsl2-php-mariadb-composer-phpmyadmin.jsonld.twig') }} {% endblock %}
 
 {% block title %}Installing AlmaLinux 10 in WSL2: PHP, MariaDB, Composer, PhpMyadmin{% endblock %}
 

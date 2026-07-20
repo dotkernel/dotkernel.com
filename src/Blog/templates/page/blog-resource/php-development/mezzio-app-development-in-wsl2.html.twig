@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/php-development/mezzio-app-development-in-wsl2.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/php-development/mezzio-app-development-in-wsl2.jsonld.twig') }} {% endblock %}
 
 {% block title %}Mezzio app development in WSL2{% endblock %}
 

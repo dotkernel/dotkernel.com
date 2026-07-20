@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/dotkernel/handling-and-logging-errors-with-dot-errorhandler-and-dot-log.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/dotkernel/handling-and-logging-errors-with-dot-errorhandler-and-dot-log.jsonld.twig') }} {% endblock %}
 
 {% block title %}Handling and Logging errors with dot-errorhandler and dot-log{% endblock %}
 

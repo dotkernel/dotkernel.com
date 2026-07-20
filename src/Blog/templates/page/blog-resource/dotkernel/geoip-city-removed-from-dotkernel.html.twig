@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/dotkernel/geoip-city-removed-from-dotkernel.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/dotkernel/geoip-city-removed-from-dotkernel.jsonld.twig') }} {% endblock %}
 
 {% block title %}GeoIP City Removed From DotKernel{% endblock %}
 

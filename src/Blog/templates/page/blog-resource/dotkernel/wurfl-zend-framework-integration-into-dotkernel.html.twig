@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/dotkernel/wurfl-zend-framework-integration-into-dotkernel.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/dotkernel/wurfl-zend-framework-integration-into-dotkernel.jsonld.twig') }} {% endblock %}
 
 {% block title %}WURFL Zend Framework Integration into DotKernel{% endblock %}
 

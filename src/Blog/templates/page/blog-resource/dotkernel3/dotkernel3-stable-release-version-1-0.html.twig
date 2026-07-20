@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/dotkernel3/dotkernel3-stable-release-version-1-0.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/dotkernel3/dotkernel3-stable-release-version-1-0.jsonld.twig') }} {% endblock %}
 
 {% block title %}DotKernel3 - Stable Release version 1.0{% endblock %}
 

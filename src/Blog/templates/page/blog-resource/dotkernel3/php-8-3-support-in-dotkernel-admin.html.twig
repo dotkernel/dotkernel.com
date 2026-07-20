@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/dotkernel3/php-8-3-support-in-dotkernel-admin.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/dotkernel3/php-8-3-support-in-dotkernel-admin.jsonld.twig') }} {% endblock %}
 
 {% block title %}PHP 8.3 support in Dotkernel Admin{% endblock %}
 

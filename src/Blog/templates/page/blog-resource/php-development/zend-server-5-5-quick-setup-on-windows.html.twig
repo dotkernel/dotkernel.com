@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/php-development/zend-server-5-5-quick-setup-on-windows.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/php-development/zend-server-5-5-quick-setup-on-windows.jsonld.twig') }} {% endblock %}
 
 {% block title %}Zend Server 5.5 Quick Setup on Windows{% endblock %}
 

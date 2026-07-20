@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/dotkernel/php-formatter-and-templates-for-zend-studio-10-1.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/dotkernel/php-formatter-and-templates-for-zend-studio-10-1.jsonld.twig') }} {% endblock %}
 
 {% block title %}PHP Formatter and Templates for Zend Studio 10.1{% endblock %}
 

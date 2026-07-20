@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/php-development/floating-point-arithmetic-why-is-int-0-7-0-1-10-7.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/php-development/floating-point-arithmetic-why-is-int-0-7-0-1-10-7.jsonld.twig') }} {% endblock %}
 
 {% block title %}Floating-Point Arithmetic - Why is (int)((0.7+0.1)*10) = 7 ?{% endblock %}
 

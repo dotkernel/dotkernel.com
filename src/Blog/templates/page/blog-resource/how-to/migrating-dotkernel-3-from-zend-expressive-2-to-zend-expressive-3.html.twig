@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/how-to/migrating-dotkernel-3-from-zend-expressive-2-to-zend-expressive-3.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/how-to/migrating-dotkernel-3-from-zend-expressive-2-to-zend-expressive-3.jsonld.twig') }} {% endblock %}
 
 {% block title %}Migrating DotKernel 3 from Zend Expressive 2 to Zend Expressive 3{% endblock %}
 

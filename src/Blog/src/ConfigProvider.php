@@ -108,7 +108,7 @@ class ConfigProvider
         return [
             'paths' => [
                 'page'   => [__DIR__ . '/../templates/page'],
-                'jsonld' => [__DIR__ . '/../templates/page/jsonld'],
+                'jsonld' => [__DIR__ . '/../templates/page/JSON-LD'],
             ],
         ];
     }

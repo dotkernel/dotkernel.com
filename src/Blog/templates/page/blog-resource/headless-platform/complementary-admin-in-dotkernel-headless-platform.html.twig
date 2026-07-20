@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/headless-platform/complementary-admin-in-dotkernel-headless-platform.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/headless-platform/complementary-admin-in-dotkernel-headless-platform.jsonld.twig') }} {% endblock %}
 
 {% block title %}Complementary Admin in Dotkernel Headless Platform{% endblock %}
 

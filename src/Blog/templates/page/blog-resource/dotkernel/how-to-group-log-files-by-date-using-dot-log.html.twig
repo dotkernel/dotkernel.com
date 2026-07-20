@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/dotkernel/how-to-group-log-files-by-date-using-dot-log.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/dotkernel/how-to-group-log-files-by-date-using-dot-log.jsonld.twig') }} {% endblock %}
 
 {% block title %}How to group log files by date using dot-log{% endblock %}
 

@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/dotkernel/adding-composer-support-in-your-dotkernel-project.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/dotkernel/adding-composer-support-in-your-dotkernel-project.jsonld.twig') }} {% endblock %}
 
 {% block title %}Adding Composer support in your DotKernel project{% endblock %}
 

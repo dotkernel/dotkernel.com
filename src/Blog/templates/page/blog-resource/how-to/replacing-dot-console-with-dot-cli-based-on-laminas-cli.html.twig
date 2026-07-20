@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/how-to/replacing-dot-console-with-dot-cli-based-on-laminas-cli.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/how-to/replacing-dot-console-with-dot-cli-based-on-laminas-cli.jsonld.twig') }} {% endblock %}
 
 {% block title %}Replacing dot-console with dot-cli based on laminas-cli{% endblock %}
 

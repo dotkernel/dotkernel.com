@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/android/listen-for-android-install-referrer.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/android/listen-for-android-install-referrer.jsonld.twig') }} {% endblock %}
 
 {% block title %}Listen for Android install referrer{% endblock %}
 

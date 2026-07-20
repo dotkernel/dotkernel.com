@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/dotkernel/doctrine-enum-implementation-in-dotkernel.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/dotkernel/doctrine-enum-implementation-in-dotkernel.jsonld.twig') }} {% endblock %}
 
 {% block title %}Doctrine enum implementation in Dotkernel{% endblock %}
 

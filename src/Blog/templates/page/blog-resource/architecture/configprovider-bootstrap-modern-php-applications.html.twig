@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/architecture/configprovider-bootstrap-modern-php-applications.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/architecture/configprovider-bootstrap-modern-php-applications.jsonld.twig') }} {% endblock %}
 
 {% block title %}ConfigProvider - Bootstrap Modern PHP Applications{% endblock %}
 
@@ -116,7 +116,7 @@
 
 <p class="mb-3">Below you can see how Mezzio and Dotkernel merge and use ConfigProviders to build the middleware pipeline and dependencies.</p>
 
-<figure><img src="{{ asset('uploads/article/' ~ article.id ~ '/ConfigProvider2.png') }}" alt=""> class="img-fluid rounded my-2"></figure>
+<figure><img src="{{ asset('uploads/article/' ~ article.id ~ '/ConfigProvider2.png') }}" alt=""> </figure>
 
 <h2><a href="#benefits"></a>Benefits</h2>
 

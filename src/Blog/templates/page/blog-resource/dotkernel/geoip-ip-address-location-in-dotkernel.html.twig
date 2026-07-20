@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/dotkernel/geoip-ip-address-location-in-dotkernel.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/dotkernel/geoip-ip-address-location-in-dotkernel.jsonld.twig') }} {% endblock %}
 
 {% block title %}GeoIP: Ip Address Location In DotKernel{% endblock %}
 

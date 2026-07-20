@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-{% block json_ld %} {% include '@jsonld/best-practice/svn-keywords-setup-in-php-ide-zend-studio.jsonld.twig'%} {% endblock %}
+{% block json_ld %} {{ include('@jsonld/best-practice/svn-keywords-setup-in-php-ide-zend-studio.jsonld.twig') }} {% endblock %}
 
 {% block title %}SVN keywords setup in  PHP IDE ( Zend  Studio){% endblock %}
 
@@ -69,7 +69,7 @@ Check the <strong>Apply property recursively to:</strong>
 Select <strong>All resources</strong>
 Check the <strong>Use filtration by the resource name </strong> and add <strong>Mask: </strong>*.php
 
-<a href="/uploads/2013/02/svn-add.jpg"><img alt="svn-add" src="{{ asset('uploads/article/' ~ article.id ~ '/svn-add.jpg') }}" width="589" height="668" > class="img-fluid rounded my-2"></a>
+<a href="/uploads/2013/02/svn-add.jpg"><img alt="svn-add" src="{{ asset('uploads/article/' ~ article.id ~ '/svn-add.jpg') }}" width="589" height="668" > </a>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}
