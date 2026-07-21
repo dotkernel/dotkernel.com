@@ -93,6 +93,41 @@ use DrewM\MailChimp\MailChimp;
 &nbsp;
 
 After this, you can start using the library by <strong>@Inject</strong>ing <strong>MailChimp::class</strong> where it's needed.
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>Which library does this tutorial use to add MailChimp to Dotkernel API? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">The tutorial uses drewm/mailchimp-api, installed with the command composer require drewm/mailchimp-api.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Where do you place the MailChimp configuration file? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">In config/autoload/mailchimp.global.php, a new configuration file created as part of Step 2.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What does the MailChimpFactory class do? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">It's a factory, created at src/App/src/MailChimp/Factory/MailChimpFactory.php, that reads the config from the container and returns an instance of DrewM\MailChimp\MailChimp.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Where do you register the MailChimp factory so the application can use it? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">In src/App/src/ConfigProvider.php, inside the getDependencies() method's factories array, by mapping MailChimp::class to MailChimpFactory::class, plus adding the corresponding use statements for MailChimp and MailChimpFactory.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How do you use MailChimp once it's wired up? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">By injecting MailChimp::class wherever it's needed, using @Inject.</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

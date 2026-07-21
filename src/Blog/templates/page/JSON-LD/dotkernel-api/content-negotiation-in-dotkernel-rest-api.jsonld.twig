@@ -1,27 +1,96 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
-        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-        "headline": "{{ article.title }}",
-        "description": "{{ article.excerpt }}",
-        "datePublished": "{{ article.postDate|date('c') }}",
-        "dateModified": "{{ article.postDate|date('c') }}",
-        "articleSection": "{{ article.category.name }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ article.author.name }}",
-            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ absolute_url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ absolute_url('/') }}" },
+                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}" },
+                    { "@type": "ListItem", "position": 3, "name": {{ article.title|json_encode|raw }} }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "What is content negotiation?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "It's the act of a client and server agreeing on the format and language of the data they exchange, which is important for RESTful APIs since resources can support multiple representations."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "What does content negotiation ensure?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "It ensures support for diverse clients (e.g. Accept: application/json or Accept: application/xml), data format flexibility for smaller responses (e.g. Accept: application/msgpack, a binary serialization), and language localization via headers like Accept-Language: en-US."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Who decides the data format, the client or the server?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Either side technically can. In server-side negotiation, the server decides based on various factors, which can introduce erroneous assumptions and more complex implementation, forcing the client to adhere to server rules. In client-side negotiation, the client tells the server what format it prefers, which is more versatile and makes more sense."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "How can the preferred data format be communicated?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Via HTTP request headers (Content-Type and Accept) or via resource URI patterns, such as a file extension in the URL (e.g. /record/47.json) or an extra query parameter (e.g. /record/47?format=json). If the Accept header is not present, the server decides the response format."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "How does the quality factor (q) work in the Accept header?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "The Accept header can list multiple accepted formats with a q value between 0 and 1 to express preference, e.g. Accept: application/json,application/xml;q=0.9,*/*;q=0.8. The server responds with the most preferred format it can satisfy, falling back further down the list if needed."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "How does Dotkernel API handle content negotiation?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Out of the box, Dotkernel API uses the Content-Type and Accept HTTP request headers to handle client-side content negotiation, supporting both application/json and application/hal+json. These can be changed as needed, and per-route content negotiation is also supported."
+                        }
+                    }
+                ]
             }
-        }
+        ]
     }
 </script>

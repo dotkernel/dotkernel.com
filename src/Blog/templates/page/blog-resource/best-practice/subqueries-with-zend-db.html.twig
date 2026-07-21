@@ -71,6 +71,29 @@ $db->select()
          )
    ->group('a.id');
 </pre>
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>What SQL techniques does this subquery example combine? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">The example combines COUNT(), LEFT JOIN, and GROUP BY, selecting from 3 tables and counting rows from 2 different tables.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How do you embed a subquery as a selected column in a Zend_Db select? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Wrap a nested $db->select() call inside a Zend_Db_Expr, building the subquery string with the outer table's correlated WHERE condition (e.g. c.track_id = a.id), as shown for the count_files column.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How is the LEFT JOIN with a COUNT expressed in Zend_Db? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Use ->joinLeft(array('b'=>'track_courses'), 'a.id = b.track_id', array('count_courses' => 'COUNT(b.track_id)')) followed by ->group('a.id').</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

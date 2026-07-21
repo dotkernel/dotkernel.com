@@ -1,27 +1,52 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
-        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-        "headline": "{{ article.title }}",
-        "description": "{{ article.excerpt }}",
-        "datePublished": "{{ article.postDate|date('c') }}",
-        "dateModified": "{{ article.postDate|date('c') }}",
-        "articleSection": "{{ article.category.name }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ article.author.name }}",
-            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ absolute_url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ absolute_url('/') }}" },
+                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}" },
+                    { "@type": "ListItem", "position": 3, "name": {{ article.title|json_encode|raw }} }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "mainEntity": [
+                    { "@type": "Question", "name": "Why does doctrine-migrations diff try to drop custom tables?", "acceptedAnswer": { "@type": "Answer", "text": "Because those tables are unmapped (there's no Doctrine entity describing them), so diff generates queries that drop them when it creates a new migration file." } },
+                    { "@type": "Question", "name": "How do I avoid dropping unmapped tables when generating a migration?", "acceptedAnswer": { "@type": "Answer", "text": "Delete the migration containing the DROP queries, then re-run the diff command with a filter-expression parameter, e.g. vendor/bin/doctrine-migrations diff --filter-expression='/^(?!oauth_)/' on Linux/macOS (single quotes) or with double quotes on Windows." } },
+                    { "@type": "Question", "name": "How do I filter multiple unmapped table prefixes at once?", "acceptedAnswer": { "@type": "Answer", "text": "Concatenate the table prefixes in the filter-expression pattern with a pipe character, for example --filter-expression='/^(?!foo_|bar_)/' to exclude tables prefixed with foo_ and bar_." } },
+                    { "@type": "Question", "name": "Why might Windows PowerShell still drop the tables even with a filter expression?", "acceptedAnswer": { "@type": "Answer", "text": "PowerShell treats the caret (^) as a special character and strips it, turning \"/^(?!oauth_)/\" into \"/(?!oauth_)/\" by the time it reaches the command, and escaping it doesn't help. The recommended workaround is to run the command from your IDE, a Linux shell, or the Command Prompt instead." } }
+                ]
             }
-        }
+        ]
     }
 </script>

@@ -47,6 +47,41 @@ It has eliminated the complexity of Zend Framework by using a different approach
     <li><strong>Zend_Validate</strong> - The Zend_Validate component provides a set of commonly needed validators. It also provides a simple validator chaining mechanism by which multiple validators may be applied to a single datum in a user-defined order.</li>
 </ul>
 </div>
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>Who developed DotKernel and what is it built on? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">DotKernel is DotBoost's in-house developed framework, built on top of Zend Framework. At the time of this article it was at version 1.0, released under the Open Software License (OSL 3.0).</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What architecture does DotKernel use? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">A simplified MVC (Model-View-Controller) architecture that's easy to learn for beginner and intermediate level programmers, achieved by eliminating much of Zend Framework's complexity through a different approach to handling web requests.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What does Zend_Config provide in DotKernel? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">It provides multiple backends for configuration storage and a simple, intuitive, object-oriented interface for accessing it. DotKernel stores configuration as simple PHP arrays, which are then wrapped by Zend_Config.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What role do Zend_Db and Zend_Db_Table play? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Zend_Db_Table is a classic implementation of the Table Data Gateway and Row Data Gateway design patterns, allowing easy and intuitive access to database tables and rows, as well as an entry point for custom business logic surrounding the data.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What are Zend_Mail and Zend_Registry used for? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Zend_Mail composes and sends both text and MIME-compliant multipart e-mail, via the default Zend_Mail_Transport_Sendmail transport or via Zend_Mail_Transport_Smtp. Zend_Registry is a container for storing objects and values in the application space, so the same object is always available throughout the application, as an alternative to using global storage.</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

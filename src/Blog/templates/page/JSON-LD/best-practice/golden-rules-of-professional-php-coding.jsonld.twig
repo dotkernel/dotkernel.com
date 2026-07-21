@@ -1,27 +1,88 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
-        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-        "headline": "{{ article.title }}",
-        "description": "{{ article.excerpt }}",
-        "datePublished": "{{ article.postDate|date('c') }}",
-        "dateModified": "{{ article.postDate|date('c') }}",
-        "articleSection": "{{ article.category.name }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ article.author.name }}",
-            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ absolute_url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ absolute_url('/') }}" },
+                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}" },
+                    { "@type": "ListItem", "position": 3, "name": {{ article.title|json_encode|raw }} }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "What error reporting settings should be used in development and staging?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Always use the highest error reporting level and turn display_errors ON, for example with error_reporting(-1); and ini_set('display_errors', 1);."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "What should you do about warnings and notices?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Fix every warning or notice that occurs, and regularly check the server's error_log for notices and warnings."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "How should temporary hacks or quick fixes be marked in code?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Identify any temporary hack with a special mark, such as a #@TODO comment noting who added it and why."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "What is the rule about what a function should do?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Each function must do a single task. For example, if you're logging in a user and also recording that login in a stats table, create a separate function (or even a distinct class) for the stats recording, rather than combining both tasks in one function."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "What tools does the article recommend for professional PHP development?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "It recommends using a version control system (noting that SVN is not dead) and using an IDE such as Aptana 2, Aptana 3, Eclipse, or Zend Studio, and knowing your IDE's code snippets, code assist, Zend Framework integration, SVN integration, and bug tracker integration."
+                        }
+                    }
+                ]
             }
-        }
+        ]
     }
 </script>

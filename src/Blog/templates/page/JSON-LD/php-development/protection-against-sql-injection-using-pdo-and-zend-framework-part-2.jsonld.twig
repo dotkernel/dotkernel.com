@@ -1,27 +1,54 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
-        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-        "headline": "{{ article.title }}",
-        "description": "{{ article.excerpt }}",
-        "datePublished": "{{ article.postDate|date('c') }}",
-        "dateModified": "{{ article.postDate|date('c') }}",
-        "articleSection": "{{ article.category.name }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ article.author.name }}",
-            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ absolute_url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ absolute_url('/') }}" },
+                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}" },
+                    { "@type": "ListItem", "position": 3, "name": {{ article.title|json_encode|raw }} }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "mainEntity": [
+                    { "@type": "Question", "name": "What is the focus of this article?", "acceptedAnswer": { "@type": "Answer", "text": "Following the earlier article about SQL Injection, this article makes a stronger argument for using Zend Framework to handle database access. Zend_Db is the primary class used for accessing the database, but there is more to it: Zend_Db_Statement, Zend_Db_Select, and Zend_Db_Tables." } },
+                    { "@type": "Question", "name": "Does Zend_Db's query() method protect against SQL injection?", "acceptedAnswer": { "@type": "Answer", "text": "query() uses prepared statements internally, but SQL Injection is still possible if the $sql parameter passed to it is dynamically created." } },
+                    { "@type": "Question", "name": "What about fetchAll() and the other fetch methods?", "acceptedAnswer": { "@type": "Answer", "text": "All of the fetch methods use prepared statements internally, but SQL Injection is still possible if the $sql is dynamically created." } },
+                    { "@type": "Question", "name": "Is insert() safe from SQL injection?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. insert() uses prepared statements internally, so SQL Injection is not possible with it." } },
+                    { "@type": "Question", "name": "What about update() and delete()?", "acceptedAnswer": { "@type": "Answer", "text": "update() uses prepared statements internally, but SQL Injection may be possible if the $where clause is created dynamically. Likewise, with delete(), SQL Injection may be possible if $where is created dynamically." } },
+                    { "@type": "Question", "name": "Even with prepared statements, when can SQL injection still happen, and what tip helps avoid it in WHERE clauses?", "acceptedAnswer": { "@type": "Answer", "text": "Even when using prepared statements via Zend_Db methods, SQL Injection is still possible if the WHERE and ORDER BY clauses are wrongly written, so these deserve special attention. A short tip mentioned is to use type casting to avoid SQL Injection in a WHERE clause where possible, for example: $sql = 'SELECT * FROM table WHERE id = ' . (int)$_POST;" } }
+                ]
             }
-        }
+        ]
     }
 </script>

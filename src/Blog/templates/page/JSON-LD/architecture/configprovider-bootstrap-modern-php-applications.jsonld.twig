@@ -1,27 +1,96 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
-        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-        "headline": "{{ article.title }}",
-        "description": "{{ article.excerpt }}",
-        "datePublished": "{{ article.postDate|date('c') }}",
-        "dateModified": "{{ article.postDate|date('c') }}",
-        "articleSection": "{{ article.category.name }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ article.author.name }}",
-            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ absolute_url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ absolute_url('/') }}" },
+                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}" },
+                    { "@type": "ListItem", "position": 3, "name": {{ article.title|json_encode|raw }} }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "What is a ConfigProvider in PHP?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "It is a class that is part of an application's bootstrap process: a class or callable that returns configuration data telling the platform which middleware should run, in what order, and sometimes under what conditions."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "What does the ConfigProvider return in the Laminas/Mezzio ecosystem?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "In the Laminas/Mezzio ecosystem, it's literally an array of configuration, settings, or anything else the application needs, and each module or package may contain its own ConfigProvider returning middleware pipeline configuration, dependency injection mappings, and request handlers."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "What is the difference between 'factories' and 'invokables' in the dependencies array?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "factories will have the factory build the service, while invokables will use new directly. You can also use aliases to redirect to another service name and delegators to wrap the original service."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "How does the ConfigProvider get used during application bootstrap?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "It is automatically picked up by the framework during bootstrap: all ConfigProviders are merged into one array, the configuration array is read (similar to $config = $container->get('config') ?? [];), each item is resolved via $app->pipe(), the error-handling middleware is placed last in the pipeline, and at runtime Laminas Stratigility iterates over the pipeline in the order it was registered."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Are new ConfigProviders auto-discovered in Dotkernel?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Dotkernel is an exception to the usual auto-discovery rule: new ConfigProviders have to be added manually in config/config.php, because all the initial ConfigProviders required to install the applications are already injected."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "What are the benefits of using a ConfigProvider?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Benefits include centralized setup instead of hardcoded bootstrap code, modularity so each package can ship its own config, container-friendliness with DI containers like Laminas ServiceManager, PHP-DI or Pimple, standardized service definitions, environment-agnostic configuration for dev/test/prod, and better testability of the pipeline setup."
+                        }
+                    }
+                ]
             }
-        }
+        ]
     }
 </script>

@@ -1,27 +1,53 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
-        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-        "headline": "{{ article.title }}",
-        "description": "{{ article.excerpt }}",
-        "datePublished": "{{ article.postDate|date('c') }}",
-        "dateModified": "{{ article.postDate|date('c') }}",
-        "articleSection": "{{ article.category.name }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ article.author.name }}",
-            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ absolute_url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ absolute_url('/') }}" },
+                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}" },
+                    { "@type": "ListItem", "position": 3, "name": {{ article.title|json_encode|raw }} }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "mainEntity": [
+                    { "@type": "Question", "name": "Why does (int)((0.7+0.1)*10) return 7 instead of 8?", "acceptedAnswer": { "@type": "Answer", "text": "Because 0.7 is actually represented internally as 0.699999988079071 and 0.1 as 0.10000000149011612. Adding them gives 0.7999999895691871, and multiplying by 10 gives 7.999999895691871, which truncates to 7 when cast to int." } },
+                    { "@type": "Question", "name": "Does the same rounding issue happen with 0.6 instead of 0.7?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. 0.6 is represented as 0.6000000238418579, and (0.6000000238418579 + 0.10000000149011612) * 10 equals about 7.00000025331974, which also truncates to int(7)." } },
+                    { "@type": "Question", "name": "Why do var_dump and echo show the expected value while intval/int casting does not?", "acceptedAnswer": { "@type": "Answer", "text": "When using echo, var_dump, or mathematical operations, PHP automatically adjusts the displayed values. However, intval and casting to int operate on the underlying bits before those values were adjusted, which is why they can produce a different (truncated) result." } },
+                    { "@type": "Question", "name": "How are floating-point numbers represented at the CPU level?", "acceptedAnswer": { "@type": "Answer", "text": "The CPU performs calculations in binary. IEEE Short Real (single precision) uses 32 bits: 1 sign bit, 8 exponent bits, and 23 mantissa bits. IEEE Long Real (double precision) uses 64 bits: 1 sign bit, 11 exponent bits, and 52 mantissa bits. A number can only be represented exactly if it can be expressed as exponent * mantissa; numbers like 0.99999999 cannot be represented exactly." } },
+                    { "@type": "Question", "name": "Is there a way to get accurate results for calculations like this in PHP?", "acceptedAnswer": { "@type": "Answer", "text": "If precise values matter for your project, the article recommends using the BCMath PHP Extension to get correct results." } }
+                ]
             }
-        }
+        ]
     }
 </script>

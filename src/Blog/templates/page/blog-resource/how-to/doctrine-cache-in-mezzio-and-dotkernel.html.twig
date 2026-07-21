@@ -158,6 +158,41 @@ class MyCollection extends Paginator
 {
 }</pre>
 
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>Is this article still current? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">The article notes that following version 2 of doctrine/cache, an updated version of this article covering Doctrine cache using Symfony Cache was published in 2024.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Which three Doctrine cache types does this configure? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">query_cache, metadata_cache and result_cache, configured through psr/container using PhpFileCache as the cache type.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What is the default result cache lifetime? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">A lifetime of 3600 seconds, set via <code>resultCacheLifetime</code> in <code>config/autoload/doctrine.global.php</code>.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How do I enable query cache and result cache in code? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Call <code>$query->useQueryCache(true)</code> and <code>$query->enableResultCache()</code> on the query object. <code>enableResultCache()</code> can also take a lifetime as its first argument and a custom cache ID as an argument, otherwise one is auto-generated.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How should caching be enabled for a Doctrine Paginator-based collection? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Enable result and/or query cache on the query builder's query before passing the query builder into the collection (a class extending <code>Doctrine\ORM\Tools\Pagination\Paginator</code>).</p>
+        </div>
+    </details>
+</div>
+
 <h2>References</h2>
 
 <ul><li><a rel="noreferrer noopener" href="https://www.doctrine-project.org/projects/doctrine-orm/en/2.7/reference/advanced-configuration.html" data-type="URL" data-id="https://www.doctrine-project.org/projects/doctrine-orm/en/2.7/reference/advanced-configuration.html" target="_blank">Doctrine Advanced Configuration</a></li>

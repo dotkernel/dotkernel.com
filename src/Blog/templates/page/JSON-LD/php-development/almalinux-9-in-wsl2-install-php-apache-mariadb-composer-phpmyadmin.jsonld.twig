@@ -1,27 +1,53 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
-        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-        "headline": "{{ article.title }}",
-        "description": "{{ article.excerpt }}",
-        "datePublished": "{{ article.postDate|date('c') }}",
-        "dateModified": "{{ article.postDate|date('c') }}",
-        "articleSection": "{{ article.category.name }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ article.author.name }}",
-            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ absolute_url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ absolute_url('/') }}" },
+                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}" },
+                    { "@type": "ListItem", "position": 3, "name": {{ article.title|json_encode|raw }} }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "mainEntity": [
+                    { "@type": "Question", "name": "How do I check if my machine is ready for WSL2?", "acceptedAnswer": { "@type": "Answer", "text": "Open Windows Terminal and run wsl -v. If it returns version information, WSL2 is installed. If you get an error instead, WSL is not completely installed and you need to follow the linked setup guide first." } },
+                    { "@type": "Question", "name": "How do I download and install AlmaLinux 9?", "acceptedAnswer": { "@type": "Answer", "text": "Open Microsoft Store, search for AlmaLinux, select AlmaLinux 9, and install it. Clicking Open launches it in Windows Terminal, where the installer prompts for your username, password, and password confirmation." } },
+                    { "@type": "Question", "name": "What are the main setup steps inside AlmaLinux 9?", "acceptedAnswer": { "@type": "Answer", "text": "Install epel-release, dnf-utils and the Remi repository RPM, upgrade installed packages, install Ansible, clone the dotkernel/development Git repository, navigate to its wsl directory, fill in config.yml, then run the installer script's Step 1 with ansible-playbook -i hosts install.yml --ask-become-pass." } },
+                    { "@type": "Question", "name": "Why do I need to restart AlmaLinux 9 partway through setup?", "acceptedAnswer": { "@type": "Answer", "text": "After Step 1, you stop AlmaLinux 9 with wsl -t AlmaLinux9 and restart it with wsl -d AlmaLinux9, then run Step 2 of the installer script the same way. Once Step 2 finishes, the development environment is ready." } },
+                    { "@type": "Question", "name": "How do I verify the installation worked?", "acceptedAnswer": { "@type": "Answer", "text": "Check http://localhost/ for Apache's default home page, http://localhost/info.php for the PHP info page, and http://localhost/phpmyadmin/ for PhpMyAdmin, logging in with username root and the root password configured in config.yml." } }
+                ]
             }
-        }
+        ]
     }
 </script>

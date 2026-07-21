@@ -79,6 +79,41 @@
 <h2><a href="#tweaked-configuration-and-testing"></a>Tweaked configuration and testing</h2>
 
 <p class="mb-3">Alongside some smaller changes related to cache configuration for doctrine and route grouping, the <strong>test suite</strong> has been revised. <a href="https://psalm.dev/" rel="noreferrer noopener" target="_blank">Psalm</a> has been replaced with <a href="https://phpstan.org/" rel="noreferrer noopener" target="_blank">PHPStan</a>. This decision was made to remain in line with developers from popular projects like Doctrine and Composer who have also made the switch recently. A separate upgrade was dedicated to increasing the <strong>rule level to 8</strong> which enables stricter static analysis and reveales more potential errors.</p>
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>What are the main new features in Dotkernel API v6? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Dotkernel API v6 adds Content Negotiation for smoother communication between client and server, standardized error codes via mezzio-problem-details, a new Core module that centralizes common logic for easier sharing across Dotkernel applications, a custom templating solution that replaces Twig/mezzio-twigrenderer, and refactored handle delegators and injected InputFilters that reduce the number of dependencies in handlers.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Why was common logic moved into a Core module? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Moving the shared logic into a Core module makes it easier to reuse that functionality across other Dotkernel applications. The Core module can be saved as a separate Git repository and then added as a submodule to any Dotkernel application.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Why did Dotkernel API replace Twig with a custom templating solution? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Twig was replaced to avoid depending on mezzio-twigrenderer. The custom solution offers more reliable template handling, at the small cost of some features that are normally not used in APIs anyway.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What is planned for Dotkernel API v6.1? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Dotkernel API currently supports Service Manager version 3, restricted because of constraints from some dependencies, and PHP 8.3. The next version on the roadmap, v6.1, is planned to add support for Service Manager 4 as well as PHP 8.4 and 8.5.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Why was Psalm replaced with PHPStan in the test suite? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Psalm was replaced with PHPStan to remain in line with developers from popular projects like Doctrine and Composer, who have also made the switch. A separate upgrade also increased the rule level to 8, enabling stricter static analysis and revealing more potential errors.</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

@@ -152,6 +152,47 @@
 
 <p class="mb-3"><strong>Execution</strong> is made for each task, <strong>one at a time</strong>. We are investigating <strong>parallel execution</strong> of operations via multiple workers, where applicable. For example, preprocessing a report may be executed in parallel with sending emails because they are separate systems (email processing is external, while the report uses data from the internal database).</p>
 
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>What is Dotkernel Queue? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Dotkernel Queue is a component based on Symfony Messenger used to queue asynchronous tasks. It uses the netglue/laminas-messenger adapter to integrate Symfony Messenger with the Laminas Service Manager container for Mezzio/Laminas applications.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Why use Dotkernel Queue instead of using Symfony Messenger directly? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Dotkernel Queue builds on Symfony Messenger's mechanisms so it stays updated as Symfony Messenger evolves, uses netglue/laminas-messenger to work as Mezzio/Laminas-compatible middleware, shares the same file structure and Core submodule as the Dotkernel Headless Platform for seamless compatibility, works as a standalone application that can be added to an existing platform, and includes features already tried and tested in the team's own live projects.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Why should long-running operations be decoupled from the HTTP request-response cycle? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">By default, PHP imposes a maximum execution time of 30 seconds via the <code>max_execution_time</code> parameter, which is too long for a typical request. Instead of extending that limit, the solution is to delegate such tasks to an outside system designed for this purpose, so the main platform can return a response quickly and stay responsive to new requests.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How does the Dotkernel Queue process messages? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">An active daemon listens for TCP connections on a specific port and stores incoming messages into Redis, which supports a large number of requests per second without overloading. Messages are then scheduled for execution using the FIFO (First-In, First-Out) method, so the oldest request is processed first.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What happens when a queued message fails to process? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">A configurable retry mechanism retries failing tasks a set number of times, while logging the cause, before giving up and reporting a failure. Messages that ultimately fail can be moved into a Dead Letter Queue, a separate store for failed messages, where troubleshooters can identify the cause, apply a fix, and either push the message back into the main queue or delete it.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What features is Dotkernel Queue planning to add in the future? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Two features are being investigated: Priorities, which would let tasks begin execution sooner or later instead of strictly following FIFO order, and Parallel Execution, which would let independent operations run at the same time via multiple workers, such as preprocessing a report in parallel with sending emails.</p>
+        </div>
+    </details>
+</div>
+
 <h2><a href="#additional-resources"></a>Additional Resources</h2>
 
 <ul><li><a href="https://docs.dotkernel.org/queue-documentation/v1/overview/" target="_blank" rel="noreferrer noopener">Dotkernel Queue Documentation</a></li>

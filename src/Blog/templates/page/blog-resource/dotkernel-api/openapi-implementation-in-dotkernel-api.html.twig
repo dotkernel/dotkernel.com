@@ -131,6 +131,47 @@
 <p class="mb-3">Most endpoints for your API should be protected, so to access them you are required to generate an <strong>authentication token</strong> (AuthToken). The token is related to the user type, so make sure to check the <strong>privileges required for the endpoint</strong> you are testing. After you submit the token, you can test the endpoints as an authenticated user. Clicking on the 'Try it out' button will activate the required parameter input fields and the textarea for the request body. The 'Execute' button will send the request and return the response. along with its HTTP status code. You can read more details <a href="https://docs.dotkernel.org/api-documentation/v5/openapi/use-documentation/" data-type="page" data-id="149" target="_blank" rel="noreferrer noopener">here</a>.</p>
 
 <p class="mb-3"></p>
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>What is the OpenAPI Specification? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">A consistent way to develop and interact with an API. It defines API structure and syntax in a universal way, regardless of the programming language used, typically described in YAML or JSON so users can quickly discover endpoints, request/response formats, security mechanisms and more.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How does OpenAPI compare to Postman? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">OpenAPI standardizes how endpoints and request/response models are described, automatically generates machine-readable documentation, lets you define the API specification before development starts, and improves collaboration across teams. Postman, by contrast, is used mainly to test an already-completed endpoint and has no real focus on standardized documentation or upfront design.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Where do you document endpoints in Dotkernel API? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Each module (Admin, App, User) contains an OpenAPI.php file, where all endpoints from that module's RoutesDelegator.php must be documented, primarily describing the method, request and response.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What core components does every OpenAPI description need? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">OA\Info (basic project info like version and name), OA\Server (one or more target host URLs), OA\SecurityScheme (endpoint protection), OA\ExternalDocumentation (link and description for extended docs), and OA\Schema (describing an object or collection of objects).</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What generates the documentation file from the OpenAPI.php descriptions? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">zircote/swagger-php, which uses the descriptions added in the OpenAPI.php files to build the documentation. The result can be listed in the command line or saved to a file in YAML or JSON format.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How is the generated documentation rendered, and how do you test protected endpoints? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">It can be rendered with Swagger UI, which lets you visualize and interact with the API's resources, or with Redoc, which lists the documentation in read-only mode. Because most endpoints are protected, testing them in Swagger UI requires generating an authentication token (AuthToken) matching the required privileges, then using the 'Try it out' button to fill in parameters/body and 'Execute' to send the request and see the response with its HTTP status code.</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

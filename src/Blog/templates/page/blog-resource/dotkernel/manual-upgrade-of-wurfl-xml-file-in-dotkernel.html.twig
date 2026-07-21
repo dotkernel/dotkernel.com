@@ -45,6 +45,35 @@ You need to manually upgrade the xml file, if you still want to use it , and of 
 Again, please pay attention to WURFL license changes.
 
 &nbsp;
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>Why does the WURFL xml file need to be manually upgraded in DotKernel? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">DotKernel bundles an old WURFL XML file (the latest GPL version, from June 2011). Because of a license change to that WURFL file, the bundled file will no longer be upgraded by DotKernel, so it must be upgraded manually if you still want to use it.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What are the main steps to manually upgrade the WURFL file? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Download the wurfl-2.3.xml.zip file, rename it to wurfl.zip, rename the file inside the archive to wurfl.xml, and replace /externals/wurfl/wurfl.zip with this new wurfl.zip file.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Is there anything else to replace besides wurfl.zip? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Yes. Download the web_browsers_patch.xml file and replace the /externals/wurfl/web_browsers_patch.xml file with the new one.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What's the last step after replacing the files? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Go to the Admin panel, click on the "empty" wurfl cache link, then rebuild the cache.</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

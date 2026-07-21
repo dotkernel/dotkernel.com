@@ -1,27 +1,53 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
-        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-        "headline": "{{ article.title }}",
-        "description": "{{ article.excerpt }}",
-        "datePublished": "{{ article.postDate|date('c') }}",
-        "dateModified": "{{ article.postDate|date('c') }}",
-        "articleSection": "{{ article.category.name }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ article.author.name }}",
-            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ absolute_url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ absolute_url('/') }}" },
+                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}" },
+                    { "@type": "ListItem", "position": 3, "name": {{ article.title|json_encode|raw }} }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "mainEntity": [
+                    { "@type": "Question", "name": "What is a Dot_Alert used for?", "acceptedAnswer": { "@type": "Answer", "text": "Alerts (Dot_Alert's) are e-mails usually sent to the site developers using PHP's mail() function. They shouldn't be used to send regular mail - they only notify the developer that something is wrong." } },
+                    { "@type": "Question", "name": "What does the Dot_Alert class resemble, and what does an alert contain?", "acceptedAnswer": { "@type": "Answer", "text": "Dot_Alert resembles Dot_Email. Like a mail message, an alert has at least a sender, a subject, a destination and a message, and it can be sent." } },
+                    { "@type": "Question", "name": "What's an example use of Alerts in DotKernel?", "acceptedAnswer": { "@type": "Answer", "text": "DotKernel uses Alerts to notify the developer when an email was not sent successfully, with the message kept in the dots.xml file under the alertMessages section." } },
+                    { "@type": "Question", "name": "How are the {VARIABLES} in an alert message replaced with real data?", "acceptedAnswer": { "@type": "Answer", "text": "A $details array is prepared (e.g. e_class, site_name, site_url, e_message, to_email, from_email, date_now), and the alert's setDetails() method replaces the {VARIABLES} placeholders in the subject and message with that data." } },
+                    { "@type": "Question", "name": "What are the steps to build and send an alert?", "acceptedAnswer": { "@type": "Answer", "text": "Create a new Dot_Alert(), add headers such as From, Reply-To and X-Mailer, then call setTo(), setSubject() and setContent(), then setDetails() to fill in the placeholders, and finally call send()." } }
+                ]
             }
-        }
+        ]
     }
 </script>

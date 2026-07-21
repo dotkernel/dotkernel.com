@@ -1,27 +1,53 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
-        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-        "headline": "{{ article.title }}",
-        "description": "{{ article.excerpt }}",
-        "datePublished": "{{ article.postDate|date('c') }}",
-        "dateModified": "{{ article.postDate|date('c') }}",
-        "articleSection": "{{ article.category.name }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ article.author.name }}",
-            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ absolute_url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ absolute_url('/') }}" },
+                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}" },
+                    { "@type": "ListItem", "position": 3, "name": {{ article.title|json_encode|raw }} }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "mainEntity": [
+                    { "@type": "Question", "name": "Which Zend Framework class is used to integrate WURFL into DotKernel?", "acceptedAnswer": { "@type": "Answer", "text": "WURFL is integrated using the Zend_Http_UserAgent class from Zend Framework 1.11.0rc1 (the beta release at the time of the post)." } },
+                    { "@type": "Question", "name": "What is the first step to integrate WURFL into DotKernel?", "acceptedAnswer": { "@type": "Answer", "text": "Download the WURFL PHP API and unzip it into a folder named wurfl-php-1.1." } },
+                    { "@type": "Question", "name": "Which folders need to be created and made writable?", "acceptedAnswer": { "@type": "Answer", "text": "Two folders must be created and made writable by the web server: cache/wurfl/FILE_CACHE_PROVIDER and cache/wurfl/FILE_PERSISTENCE_PROVIDER." } },
+                    { "@type": "Question", "name": "What needs to be added to application.ini?", "acceptedAnswer": { "@type": "Answer", "text": "Three lines need to be added: resources.useragent.wurflapi.wurfl_api_version = 1.1, resources.useragent.wurflapi.wurfl_lib_dir pointing to APPLICATION_PATH /library/Wurfl/, and resources.useragent.wurflapi.wurfl_config_file pointing to APPLICATION_PATH /configs/wurfl.xml." } },
+                    { "@type": "Question", "name": "How do you access WURFL configuration in code?", "acceptedAnswer": { "@type": "Answer", "text": "Instantiate a Zend_Http_UserAgent with the useragent config, then call getDevice() on it. getDevice() returns all the relevant information about the current user agent." } }
+                ]
             }
-        }
+        ]
     }
 </script>

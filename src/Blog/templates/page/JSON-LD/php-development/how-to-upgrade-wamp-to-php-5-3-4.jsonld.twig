@@ -1,27 +1,53 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
-        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-        "headline": "{{ article.title }}",
-        "description": "{{ article.excerpt }}",
-        "datePublished": "{{ article.postDate|date('c') }}",
-        "dateModified": "{{ article.postDate|date('c') }}",
-        "articleSection": "{{ article.category.name }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ article.author.name }}",
-            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ absolute_url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ absolute_url('/') }}" },
+                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}" },
+                    { "@type": "ListItem", "position": 3, "name": {{ article.title|json_encode|raw }} }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "mainEntity": [
+                    { "@type": "Question", "name": "Where do I download the PHP 5.3.4 package for WAMP?", "acceptedAnswer": { "@type": "Answer", "text": "Download the latest ZIPPED package for PHP 5.3.4 from windows.php.net. Make sure it is the VC6 Thread Safe build, and do not download the installer." } },
+                    { "@type": "Question", "name": "Where should the downloaded PHP 5.3.4 files be extracted?", "acceptedAnswer": { "@type": "Answer", "text": "Create a folder named php5.3.4 inside wamp/bin/php, then extract the downloaded zip into that newly created folder." } },
+                    { "@type": "Question", "name": "Which configuration files need to be copied and edited when upgrading?", "acceptedAnswer": { "@type": "Answer", "text": "Copy php.ini, phpForApache.ini, and wampserver.conf from the existing php5.3 folder (e.g. wamp/bin/php/php5.3.3) into the new php5.3.4 folder. Then, in php.ini and phpForApache.ini, search and replace the string 5.3.3 with 5.3.4." } },
+                    { "@type": "Question", "name": "Is there anything to remove from the Apache folder before restarting WAMP?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Go to wamp/bin/apache/apache/apache2.2.11/bin and delete the file called php.ini, then restart the WAMP server." } },
+                    { "@type": "Question", "name": "How do I actually switch WAMP to the new PHP version after restarting?", "acceptedAnswer": { "@type": "Answer", "text": "After restarting WAMP, choose PHP version 5.3.0, restart WAMP server again, and then choose PHP version 5.3.4. Also check that the PEAR path is correct in php.ini and modify it accordingly, then restart WAMP server once more." } }
+                ]
             }
-        }
+        ]
     }
 </script>

@@ -60,6 +60,35 @@ Now you can remotely connect to that server, using the user: <strong>someuser</s
 &nbsp;
 
 NOTE: if you browse the table mysql.user , you will note that the password field contain many more characters for the user <strong>someuser</strong> compared to the others.
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>Why can't I connect remotely to MySQL on a Plesk-based server? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">By default, MySQL servers on Linux machines with Plesk installed have the old_passwords flag set to 1 (ON). Even on MySQL 5.5+, this means the old, pre-4.1 password storage style is still used, which causes a PDOException error when connecting remotely.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What error message indicates this old-passwords problem? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">You get a fatal error mentioning "cannot connect to MySQL 4.1+ using the old insecure authentication," suggesting you reset the password using SET PASSWORD = PASSWORD('your_existing_password') to store a newer, more secure hash.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How do you fix the old-passwords issue? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Create a new database user (e.g. someuser) from the command line, grant it privileges on the target database, then run: SET old_passwords = 0; UPDATE mysql.user SET Password = PASSWORD('somepassword') WHERE User = 'someuser' limit 1; SELECT LENGTH(Password) FROM mysql.user WHERE User = 'someuser'; FLUSH PRIVILEGES;. You can then connect remotely using that user and password.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How can you tell the fix worked by looking at the mysql.user table? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">If you browse the mysql.user table, you'll notice the password field for the fixed user (someuser) contains many more characters than the password fields for the other, unfixed users.</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

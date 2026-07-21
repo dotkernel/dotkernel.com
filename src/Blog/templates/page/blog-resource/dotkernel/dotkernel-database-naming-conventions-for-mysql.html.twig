@@ -70,6 +70,41 @@ DotKernel borrows the database naming conventions from <a href="http://fazend.co
 </pre>
 <strong>Conclusion:</strong>
 The names of database tables and columns must follow <em>camelLetter</em> as naming conventions.s
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>Where do DotKernel's database naming conventions come from? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">They are borrowed from FaZend's "Rules of naming of database tables and columns," an open-source PHP framework based on Zend Framework.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Should table names be singular or plural? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Singular table names only, for example user, category, product, order, orderProduct.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How should foreign key columns be named? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">A foreign key column takes the name of the referenced table plus the name of the referenced column. For example, referencing table admin's Id column produces a column named adminId.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What naming pattern is used for CONSTRAINT names? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">The pattern is FK_referencedTableName_tableName, for example CONSTRAINT `FK_admin_adminLogin`.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What casing convention applies to table/column names and to SQL keywords? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Table and column names must follow camelLetter naming conventions, while SQL keywords such as SELECT and INT are capitalized.</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

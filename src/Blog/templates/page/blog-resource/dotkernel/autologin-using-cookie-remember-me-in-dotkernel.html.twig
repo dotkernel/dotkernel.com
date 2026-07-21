@@ -127,6 +127,47 @@
 <p class="mb-3">Now, let's move to <strong>src/User/src/Repository/UserRepository.php</strong> and add the following methods: <strong>saveRememberUser(), getRememberUser(), findRememberMeUser(), deleteExpiredCookies(), removeRememberUser()</strong> as in <a rel="noreferrer noopener" href="https://github.com/dotkernel/frontend/blob/3.0/src/User/src/Repository/UserRepository.php" target="_blank">UserRepository</a>.</p>
 
 <p class="mb-3">The last step is to go to  <strong>src/User/src/Controller/UserController.php</strong>, add a new property called <strong>$config</strong> and edit your <strong>loginAction()</strong> and <strong>logoutAction()</strong> as in <a rel="noreferrer noopener" href="https://github.com/dotkernel/frontend/blob/3.0/src/User/src/Controller/UserController.php" target="_blank">UserController</a>.</p>
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>Since which release is Remember Me implemented in Dotkernel? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">It's implemented in Dotkernel Frontend starting from Release 3.3.0.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How do you add the Remember Me checkbox to the login UI? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">In src/User/templates/user/login.html.twig, under the password element, render the rememberMe element retrieved via <code>form.get('rememberMe')</code> with formElement().</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What form and validation changes are needed? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">A 'rememberMe' checkbox element must be added to src/User/src/Form/LoginForm.php, and a StringTrim filter plus a NotEmpty validator must be added for it in src/User/src/InputFilter/LoginInputFilter.php.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What backend pieces implement the actual remember-me functionality? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">A new UserRememberMe entity, a database migration (created and run with phinx) for its table, a new RememberMeMiddleware registered in config/pipeline.php, a rememberMe cookie configuration block added to config/autoload/local.php, and new methods added to UserService, UserRepository, and UserController (including loginAction() and logoutAction()).</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What does the UserRememberMe table store? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">It's used to store data from the cookie, which helps log the user in automatically.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How do you apply the new remember-me button styles? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Add the CSS to src/App/assets/scss/components/_profile.scss, then run <code>npm run prod</code> to compile the CSS so the button styling takes effect.</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

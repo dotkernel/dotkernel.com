@@ -123,6 +123,47 @@ return ,
 </ul>
 
 <p class="mb-3">At this moment, <code>mime</code> and <code>imap</code> related functionality is removed.</p>
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>Why was laminas/laminas-mail replaced? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">The Laminas Technical Steering Committee decided on 2023-12-04 that laminas/laminas-mail would be abandoned because there was nobody to maintain it, and several alternatives were already available in the ecosystem.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What alternatives were identified for the abandoned laminas-mail package? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">The alternatives mentioned are ddeboer/imap for interacting with IMAP, zbateson/mail-mime-parser for parsing MIME messages, and symfony/mailer for sending mail.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How did Dotkernel handle the removal of laminas-mail in dot-mail? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">The Dotkernel team replaced laminas/laminas-mail with symfony/mailer inside the dotkernel/dot-mail package, revising the code and configuration files while aiming for minimal impact on existing projects, so the calls used to send mail stay the same, even though some lesser-used functionality like mime and imap is lost.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Which mail transport does dot-mail use by default? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">The revised mail.global.php configuration defaults the transport to sendmail. You should use ONE of the transporters, either 'transport' => 'sendmail' or 'transport' => 'esmtp', based on your server configuration; Sendmail was set as the default.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How do I update dotkernel/dot-mail from version 3 or 4 to version 5? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Download the new mail.global.php.dist configuration file, add the values you configured for your project (focusing on transport, message_options and smtp_options) to replace your old configuration file, then update "dotkernel/dot-mail" to "^5.0.0" in composer.json and run composer update.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What functionality is lost after switching to symfony/mailer? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">At the time of the article, mime and imap related functionality is removed from dot-mail as a result of the switch.</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

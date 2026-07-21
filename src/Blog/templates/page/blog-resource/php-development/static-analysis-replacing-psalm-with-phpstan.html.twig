@@ -191,6 +191,41 @@ parameters:
 <h2><a href="#summary"></a>Summary</h2>
 
 <p class="mb-3">In this article we revisited the theoretical meaning of static analysis and focused on the change from psalm to PHPStan. It's highly recommended to use a static analysis tool in your project and, while both psalm and PHPStan perform similar functions, the latter has recently stepped ahead of the former.</p>
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>What is static analysis and why is it used? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Static analysis (or source code analysis) applies coding rules to debug source code before a program is run. It's used to catch and fix type-related errors, confirm coding standards, identify code that needs refactoring, and enhance security by detecting issues like code injection, XSS, and open redirect vulnerabilities.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Why did Dotkernel switch from Psalm to PHPStan? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Dotkernel had used Psalm with positive results, but much of the PHP community, including projects like Doctrine and Composer, moved to PHPStan instead. Since the two tools have largely identical findings, using both wasn't justified, and PHPStan has a faster growing ecosystem, better social media presence, a fulltime contributor (@ondrejmirtes), PHP stubs from PHPStorm, and better quality and depth of detection.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What are the main steps to migrate a project from Psalm to PHPStan? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Remove vimeo/psalm from composer.json and add phpstan/phpstan, phpstan/phpstan-doctrine and phpstan/phpstan-phpunit, replace the "static-analysis" composer script with "phpstan analyse --memory-limit 1G", run composer update, delete psalm-baseline.xml and psalm.xml, then add a .github/workflows/static-analysis.yml workflow and a phpstan.neon configuration file.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What does the phpstan.neon configuration file do in this setup? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">It includes the phpstan-doctrine and phpstan-phpunit extensions, sets the analysis rule level (level 5 in the example), specifies the paths to scan (src and test), sets treatPhpDocTypesAsCertain to false, and can list ignoreErrors patterns to suppress specific known findings.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How do you run the PHPStan checks, and what if you hit a memory error? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Run composer static-analysis, which is configured to call vendor/bin/phpstan analyse --memory-limit 1G (higher than PHP's default 128M). If you still see "PHPStan process crashed because it reached configured PHP memory limit," try increasing the memory limit further, e.g. to 2G or 4G.</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

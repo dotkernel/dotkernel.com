@@ -1,27 +1,53 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
-        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-        "headline": "{{ article.title }}",
-        "description": "{{ article.excerpt }}",
-        "datePublished": "{{ article.postDate|date('c') }}",
-        "dateModified": "{{ article.postDate|date('c') }}",
-        "articleSection": "{{ article.category.name }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ article.author.name }}",
-            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ absolute_url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ absolute_url('/') }}" },
+                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}" },
+                    { "@type": "ListItem", "position": 3, "name": {{ article.title|json_encode|raw }} }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "mainEntity": [
+                    { "@type": "Question", "name": "Why did DotKernel jump from 1.3 straight to 1.5.0?", "acceptedAnswer": { "@type": "Answer", "text": "Because of the large amount of changes and the long time spent in development, the team chose to skip version 1.4 and go straight to 1.5.0." } },
+                    { "@type": "Question", "name": "Did DotKernel switch from Dojo to jQuery in 1.5.0?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Starting with 1.5.0, DotKernel switched from Dojo to jQuery for its own distribution, though Dojo can still be used in your own projects." } },
+                    { "@type": "Question", "name": "What is Dot_Model and why was it introduced?", "acceptedAnswer": { "@type": "Answer", "text": "Dot_Model is a base class introduced to reduce code duplication between admin and frontend models. Both admin- and frontend-specific model classes (such as User) inherit from a shared Dot_Model_User class that holds the common code." } },
+                    { "@type": "Question", "name": "How does the \"dashed controllers\" feature work?", "acceptedAnswer": { "@type": "Answer", "text": "The controller name parsing was changed so a URL like www.example.com/search-article correctly calls SearchArticleController.php, allowing multi-word controller names split with dashes without breaking the coding standard." } },
+                    { "@type": "Question", "name": "How much changed in the 1.5.0 release?", "acceptedAnswer": { "@type": "Answer", "text": "About 250 commits went into the SVN repository since the previous release, so the blog post only covers the highlights - the full DotKernel 1.5.0 download is available to try out." } }
+                ]
             }
-        }
+        ]
     }
 </script>

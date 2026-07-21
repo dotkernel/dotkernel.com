@@ -120,6 +120,47 @@ foreach ($routes as $prefix => $moduleRoutes) {
 
 <p class="mb-3">Do you need a dynamic parameter? Edit the route entry from <code>'about' =&gt; 'about',</code> to <code>'about/{id}' =&gt; 'about',</code>. This expands the matched url to support something like <code>/page/about/us</code>, <code>/page/about/company</code>, <code>/page/about/123</code> which will allow you to customize each url with different content in the handler. All you need is to use <code>$request-&gt;getAttribute('id')</code> to tell what page you are on.</p>
 
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>What is the goal of this dynamic routing update? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">The goal is to replace the static way of creating routes with a more dynamic implementation, resulting in a cleaner approach that is easier to set up and review at a glance.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How were routes configured in the old, static approach? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Each module had its own RoutesDelegator.php file in the src folder, with hard-coded route entries such as <code>$app->get('/page', , 'page');</code>. Each route needed a method (e.g. get), a path used to direct execution to a handler, a handler like GetPageViewHandler, and a unique route name. In a live application the route list can grow to many entries grouped across modules, meaning multiple RoutesDelegators had to be checked when a routing error occurred.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How does the new approach centralize route configuration? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">The update centralizes the route configuration in the config/autoload/local.php file, moving the relevant items for each route into a routes array. RoutesDelegator.php then reads this configuration and generates the routes automatically, so it doesn't need to be touched most of the time.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What do the entries under the routes array represent? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">For a module like page, the module name is the top-level key, the array key (e.g. about) is used to build the page's path, and its value (e.g. about) is the template file. This supports urls like /page/about and /page/who-we-are.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Can routes still be customized beyond the default setup? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Yes. You can change the template used by editing the handler's template attribute, change a URL for SEO purposes by removing the module name parameter from the generated path, change the URL segment by editing the key in local.php (e.g. turning 'about' into 'about-us' while keeping the same template), or add a dynamic parameter (e.g. 'about/{id}') and read it in the handler via $request->getAttribute('id').</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Does this update support methods other than GET? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">No - this is the first in a series of articles for switching from controllers to PSR-15 compliant handlers, and it is aimed at static pages alone, so any other method like post, put or delete will return a 405 status code.</p>
+        </div>
+    </details>
+</div>
+
 <h2>Additional resources</h2>
 
 <p class="mb-3"><a href="https://github.com/dotkernel/light" target="_blank" rel="noreferrer noopener">Dotkernel Light</a></p>

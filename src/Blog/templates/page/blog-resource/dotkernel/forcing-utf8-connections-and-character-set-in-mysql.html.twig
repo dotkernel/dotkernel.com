@@ -41,6 +41,29 @@ If you are interested in better performance, add the below line:
 <pre>>collation_server=utf8_general_ci</pre>
 If you are interested in better sorting order, add the below line instead:
 <pre>>collation_server=utf8_unicode_ci</pre>
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>Why force UTF8 at the MySQL server level instead of relying on each client? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Because you can't control all the scripts that connect to your database (for instance the mysql command line or mysqldump), so forcing the server's collation and character set to UTF8 in my.cnf guarantees it regardless of the connecting client.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What two lines enable UTF8 for all connections in my.cnf? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">character_set_server=utf8 and skip-character-set-client-handshake.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What's the difference between the two suggested collation settings? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">collation_server=utf8_general_ci is recommended for better performance, while collation_server=utf8_unicode_ci is recommended instead if better sorting order matters more.</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

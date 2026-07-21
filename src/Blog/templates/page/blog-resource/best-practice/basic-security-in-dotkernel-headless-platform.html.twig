@@ -192,6 +192,47 @@
 
 <p class="mb-3">The GitHub Action <a href="https://github.com/laminas/laminas-continuous-integration-action" rel="noreferrer noopener" target="_blank">Laminas Continuous Integration</a> is an integral component of Dotkernel API. It ensures code quality by streamlining the execution of PHP quality assurance (QA) tasks within continuous integration (CI) workflows. Most often triggered by commits to the repository, it builds a matrix of tests: static analysis, coding standards checks, and unit tests.</p>
 
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>What are the main facets of software security to consider? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Software security spans many areas: authentication and access control, data protection, input validation and injection, web and API security, dependency and supply chain risks, configuration and deployment, network and infrastructure security, logging/monitoring and incident response, secure software development lifecycle, and human and organizational factors.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How does Dotkernel handle form input validation? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Dotkernel API uses laminas/laminas-inputfilter to ensure a field is present and of the correct type. Dotkernel Admin additionally uses laminas/laminas-form, which provides form element objects, an InputFilter for each input (or custom validators), and methods for binding data to and from the form, integrating with laminas-escaper, laminas-validator, laminas-session, and laminas-filter.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How does Dotkernel API handle content negotiation? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Content negotiation is handled via a middleware configured in the config/autoload/content-negotiation.global.php file. It uses the Content-Type and Accept HTTP request headers to negotiate with the client, returning application/json or application/hal+json data formats.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How is CORS handled and configured in Dotkernel API? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">CORS is handled by mezzio/mezzio-cors and configured in the config/autoload/cors.local.php file, validating calls using configuration items like origins, headers, max age, and credentials. When configuring the pipeline, the CorsMiddleware must be added before the RouteMiddleware.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What should be done with the demo credentials before going to production? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Demo credentials are provided for convenience during installation testing, but it is important to update or remove these accounts in your production environment.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What are the security recommendations around OpenAPI documentation? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">You should not include sensitive information for your endpoints in the OpenAPI documentation, and you should not enable the documentation in a production environment.</p>
+        </div>
+    </details>
+</div>
+
 <h2><a href="#additional-resources"></a>Additional Resources</h2>
 
 <ul><li><a href="https://docs.dotkernel.org/admin-documentation/v6/security/basic-security/" target="_blank" rel="noreferrer noopener">Basic Security in Dotkernel Admin</a></li>

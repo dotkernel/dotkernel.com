@@ -1,27 +1,96 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
-        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-        "headline": "{{ article.title }}",
-        "description": "{{ article.excerpt }}",
-        "datePublished": "{{ article.postDate|date('c') }}",
-        "dateModified": "{{ article.postDate|date('c') }}",
-        "articleSection": "{{ article.category.name }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ article.author.name }}",
-            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ absolute_url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ absolute_url('/') }}" },
+                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}" },
+                    { "@type": "ListItem", "position": 3, "name": {{ article.title|json_encode|raw }} }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "What is the request lifecycle?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "The request lifecycle is the sequence of steps that happen from the moment a user makes an HTTP request until the server sends back a response."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "What happens at the entry point of a request?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "The application bootstraps and loads configuration to create the Mezzio application instance, registers factories, aliases and delegators in the service container, reads all available routes with their allowed request methods and registers them (managed by FastRoute), and loads the predefined order of middleware in the pipeline."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "How does routing work in a Mezzio-based application?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "FastRoute matches the incoming URL and method against the registered routes, for example matching a GET request to /page/about against the GetPageViewHandler handler under the route name page::about."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "What happens during handler invocation?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "The matched route name is extracted from the request attribute and passed to the renderer, using code similar to $template = $request->getAttribute(RouteResult::class)->getMatchedRouteName();, after which the handler executes the custom business logic."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "What happens during template rendering?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Twig loads the matched template file, applies the layout it extends, renders its blocks, and includes any partials, producing the final HTML output."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "How is the response created and returned to the browser?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "An HtmlResponse is created with a status code, headers, and the rendered HTML body. It then flows back through the middleware stack in reverse (the response pipeline), where middleware can modify headers, cookies, or compress content, before the response emitter sends the final response back to the browser as HTTP 20x/30x, 40x, or 50x."
+                        }
+                    }
+                ]
             }
-        }
+        ]
     }
 </script>

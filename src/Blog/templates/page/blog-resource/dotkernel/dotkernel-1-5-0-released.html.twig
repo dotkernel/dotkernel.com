@@ -53,6 +53,41 @@ We've changed the structure of the registry, for more about this, please check <
 There have been about 250 commits in our SVN repository since the latest release, so we can't cover all changes in this blog post. Please <a title="DotKernel 1.5.0" href="http://www.dotkernel.com/download/?did=33">download DotKernel 1.5.0</a> try it out yourself and tell us what you think.
 
 &nbsp;
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>Why did DotKernel jump from 1.3 straight to 1.5.0? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Because of the large amount of changes and the long time spent in development, the team chose to skip version 1.4 and go straight to 1.5.0.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Did DotKernel switch from Dojo to jQuery in 1.5.0? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Yes. Starting with 1.5.0, DotKernel switched from Dojo to jQuery for its own distribution, though Dojo can still be used in your own projects.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What is Dot_Model and why was it introduced? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Dot_Model is a base class introduced to reduce code duplication between admin and frontend models. Both admin- and frontend-specific model classes (such as User) inherit from a shared Dot_Model_User class that holds the common code.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How does the "dashed controllers" feature work? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">The controller name parsing was changed so a URL like www.example.com/search-article correctly calls SearchArticleController.php, allowing multi-word controller names split with dashes without breaking the coding standard.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How much changed in the 1.5.0 release? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">About 250 commits went into the SVN repository since the previous release, so the blog post only covers the highlights - the full DotKernel 1.5.0 download is available to try out.</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

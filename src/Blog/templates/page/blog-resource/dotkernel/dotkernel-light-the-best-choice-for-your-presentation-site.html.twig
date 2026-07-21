@@ -185,6 +185,47 @@
 
 <p class="mb-3">Now you should have a basic idea on how to work on a presentation site. You know how to expand the site with more pages, where to place the assets and how to promote the site.</p>
 
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>What is Dotkernel Light designed for? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">It's a good starting point for a project when you want full control over its functionality, and it easily grows into something more complex by integrating packages based on your requirements.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What functionality does Dotkernel Light include out of the box? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Routing, Templating, Error handling, and Tests and code quality checks.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What features are removed from Dotkernel Light compared to Dotkernel Frontend? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Everything related to the database, Sessions/Cookies/Flash messages, Authentication/Authorization, Dependency Injection, Mail related stuff, Navigation, CORS, Forms/Validators/InputFilters, the User module, the Contact module, and the Plugin module.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How do you add a new page to a Dotkernel Light site? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Add an Action function for the page (e.g. examplePageAction()) in src/Page/src/Controller/PageController.php that renders a template, then create the matching template file in src/Page/templates/page/ (e.g. example-template.html.twig), with the page copy placed in its content block.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Where should new page assets like fonts, images, JS, and CSS be placed? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Under src/App/assets/, in its default folders: src/App/assets/fonts, src/App/assets/images, src/App/assets/js, and src/App/assets/scss. Run npm run watch during edits, or npm run prod once the edits are completed.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Where do you edit the top menu and footer that appear on every page? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Both live in src/App/templates/layout/default.html.twig: the top menu items are under id="navbarHeader", and the footer content is inside the footer element with class "app-footer".</p>
+        </div>
+    </details>
+</div>
+
 <h2>Useful links</h2>
 
 <ul><li>See a working example <a href="https://www.dotkernel.org" target="_blank" rel="noreferrer noopener">dotkernel.org</a></li>

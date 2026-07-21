@@ -1,27 +1,53 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
-        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-        "headline": "{{ article.title }}",
-        "description": "{{ article.excerpt }}",
-        "datePublished": "{{ article.postDate|date('c') }}",
-        "dateModified": "{{ article.postDate|date('c') }}",
-        "articleSection": "{{ article.category.name }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ article.author.name }}",
-            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ absolute_url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ absolute_url('/') }}" },
+                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}" },
+                    { "@type": "ListItem", "position": 3, "name": {{ article.title|json_encode|raw }} }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "mainEntity": [
+                    { "@type": "Question", "name": "What problem does dot-dependency-injection solve?", "acceptedAnswer": { "@type": "Answer", "text": "In Laminas/Mezzio applications, developers normally have to build, update, and maintain a factory class for every class that needs dependencies. dot-dependency-injection autowires those dependencies instead, so you don't need a factory for every class." } },
+                    { "@type": "Question", "name": "Does dot-dependency-injection require Doctrine ORM?", "acceptedAnswer": { "@type": "Answer", "text": "The package requires Doctrine ORM, but the article notes it can still be used in applications that don't integrate Doctrine." } },
+                    { "@type": "Question", "name": "How do you mark a class's constructor dependencies for injection?", "acceptedAnswer": { "@type": "Answer", "text": "Import Dot\\DependencyInjection\\Attribute\\Inject in the class, then add the attribute to the constructor definition to specify which dependencies should be injected." } },
+                    { "@type": "Question", "name": "What do you need to add to the ConfigProvider to use this package?", "acceptedAnswer": { "@type": "Answer", "text": "Only the Dot\\DependencyInjection\\Factory\\AttributedServiceFactory class needs to be added to your config's dependencies. It builds the factory for you and handles the logic for dependencies missing from the container, with appropriate exceptions and messages." } },
+                    { "@type": "Question", "name": "Can this package be used with the Doctrine repository pattern?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. If you don't want to fetch a repository from the EntityManager and instead want to inject it directly into your service, the article says this package covers that too, following the same principle, with more details in the package documentation." } }
+                ]
             }
-        }
+        ]
     }
 </script>

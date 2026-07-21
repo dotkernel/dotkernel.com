@@ -1,27 +1,53 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
-        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-        "headline": "{{ article.title }}",
-        "description": "{{ article.excerpt }}",
-        "datePublished": "{{ article.postDate|date('c') }}",
-        "dateModified": "{{ article.postDate|date('c') }}",
-        "articleSection": "{{ article.category.name }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ article.author.name }}",
-            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ absolute_url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ absolute_url('/') }}" },
+                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}" },
+                    { "@type": "ListItem", "position": 3, "name": {{ article.title|json_encode|raw }} }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "mainEntity": [
+                    { "@type": "Question", "name": "What is Dotkernel Admin?", "acceptedAnswer": { "@type": "Answer", "text": "Dotkernel Admin is a fully-functional, independent application that lives in its own separate repository. It's built on the same Mezzio + Laminas foundation as Dotkernel API and includes a built-in UI with authentication, user management and a web interface." } },
+                    { "@type": "Question", "name": "How do I install Dotkernel Admin?", "acceptedAnswer": { "@type": "Answer", "text": "Install it via Git into the folder of your choice with git clone https://github.com/dotkernel/admin.git ., then follow the step-by-step installation guide to configure the database credentials and run the migrations and fixtures that create and populate the database. Be sure to change the default credentials before going to production." } },
+                    { "@type": "Question", "name": "What features does Dotkernel Admin include out of the box?", "acceptedAnswer": { "@type": "Answer", "text": "It ships with Role-Based Access Control powered by dot-rbac and dot-rbac-guard to manage permissions, routes and handler-level security; OpenAPI annotations in each module for documented and testable admin endpoints; and frontend tooling built on Twig and NodeJS/NPM, including build and watch scripts for JavaScript/CSS bundling." } },
+                    { "@type": "Question", "name": "What modules make up Dotkernel Admin's architecture?", "acceptedAnswer": { "@type": "Answer", "text": "The file architecture is modular, featuring an Admin module that manages administrator users, an App module that houses core functions like authentication and error reporting, and a Setting module that stores and manages display or application settings for various report pages." } },
+                    { "@type": "Question", "name": "How do Dotkernel API and Admin work together?", "acceptedAnswer": { "@type": "Answer", "text": "The REST API serves JSON endpoints for clients, services and mobile apps, while the Admin UI is a web-based interface that communicates with the database via its own endpoints to manage data, users and settings. Both share a unified tech stack - Mezzio, Laminas components, Doctrine ORM and PHP FIG's PSR standards - plus shared modules like authentication and dot-rbac, which keeps backend and admin tooling consistent and lets fewer developers manage both codebases." } }
+                ]
             }
-        }
+        ]
     }
 </script>

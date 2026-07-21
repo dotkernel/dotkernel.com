@@ -68,6 +68,35 @@ This will update your Archive Tar PEAR package.
 And to install the code sniffer run:
 <pre>pear install PHP_CodeSniffer</pre>
 &nbsp;
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>What error occurs when installing PEAR packages with PHP 7.2? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Running a command like pear install PHP_CodeSniffer produces the fatal error "Cannot use result of built-in function in write context" in Archive/Tar.php on line 639, because the function is called by reference.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How do you fix the "Cannot use result of built-in function in write context" error? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Go to the line indicated in the error (line 639) and replace "$v_att_list = &amp;func_get_args();" with "$v_att_list = func_get_args();", so func_get_args() is no longer called by reference.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Does running pear install Archive_Tar directly fix the problem? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">No, running pear install Archive_Tar on its own results in the same error, since the underlying Archive_Tar.php file still has the by-reference function call.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What is the recommended full fix sequence? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">After manually fixing the func_get_args() line, it's recommended to run pear install Archive_Tar again to get the latest working version of the package, and then run pear install PHP_CodeSniffer to install the code sniffer.</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

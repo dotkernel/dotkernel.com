@@ -1,27 +1,96 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
-        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-        "headline": "{{ article.title }}",
-        "description": "{{ article.excerpt }}",
-        "datePublished": "{{ article.postDate|date('c') }}",
-        "dateModified": "{{ article.postDate|date('c') }}",
-        "articleSection": "{{ article.category.name }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ article.author.name }}",
-            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ absolute_url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ absolute_url('/') }}" },
+                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}" },
+                    { "@type": "ListItem", "position": 3, "name": {{ article.title|json_encode|raw }} }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "What is middleware?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Middleware is code that exists between the request and response, and which can take the incoming request, perform actions based on it, and either complete the response or pass delegation on to the next middleware in the queue."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "What is the purpose of middleware?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Middleware makes it easier for software developers to implement communication and input/output, so they can focus on the specific purpose of their application. In web services, the Input represents the Request received, and Output represents the Response to be sent."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "What can middleware be used for?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Middleware can be used for purposes such as A/B testing, debugging, caching, CORS, authentication (HTTP Basic Auth, OAuth 2.0, OpenID), CSRF protection, rate limiting, referrals, and IP restriction."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "What interface must PHP middleware implement to be PSR-15 compliant?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "According to PSR-15, a compliant middleware must implement Psr\\Http\\Server\\MiddlewareInterface, which requires a process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface method."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "How does middleware get called within the application pipeline?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "The application pipeline defines the execution flow: the request passes through the middleware one by one, in the order they are placed. If control passes through all middleware successfully, execution is passed to your custom code, which generates a response, and execution then passes back through the middleware in reverse order. If execution is terminated before reaching your custom code (e.g. via an exception), the response is generated by the last middleware reached."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "What is a practical, real-world example of middleware?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "A simple example is enhancing a request with the user's IP for logging purposes or geographical reporting. The request first passes through the IP middleware, which enhances the request with the user's IP and other relevant data, then control passes to the custom handler that processes the request and returns a response. The flow continues in reverse, back through the IP middleware, which can change the output before it's returned to the user."
+                        }
+                    }
+                ]
             }
-        }
+        ]
     }
 </script>

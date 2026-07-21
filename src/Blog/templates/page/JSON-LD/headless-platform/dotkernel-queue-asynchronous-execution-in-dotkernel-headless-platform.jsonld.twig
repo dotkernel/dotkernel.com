@@ -1,27 +1,110 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
-        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-        "headline": "{{ article.title }}",
-        "description": "{{ article.excerpt }}",
-        "datePublished": "{{ article.postDate|date('c') }}",
-        "dateModified": "{{ article.postDate|date('c') }}",
-        "articleSection": "{{ article.category.name }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ article.author.name }}",
-            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ absolute_url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "{{ absolute_url('/') }}"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": {{ article.category.name|json_encode|raw }},
+                        "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 3,
+                        "name": {{ article.title|json_encode|raw }}
+                    }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "What is Dotkernel Queue?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Dotkernel Queue is a component based on Symfony Messenger used to queue asynchronous tasks. It uses the netglue/laminas-messenger adapter to integrate Symfony Messenger with the Laminas Service Manager container for Mezzio/Laminas applications."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Why use Dotkernel Queue instead of using Symfony Messenger directly?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Dotkernel Queue builds on Symfony Messenger's mechanisms so it stays updated as Symfony Messenger evolves, uses netglue/laminas-messenger to work as Mezzio/Laminas-compatible middleware, shares the same file structure and Core submodule as the Dotkernel Headless Platform for seamless compatibility, works as a standalone application that can be added to an existing platform, and includes features already tried and tested in the team's own live projects."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Why should long-running operations be decoupled from the HTTP request-response cycle?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "By default, PHP imposes a maximum execution time of 30 seconds via the max_execution_time parameter, which is too long for a typical request. Instead of extending that limit, the solution is to delegate such tasks to an outside system designed for this purpose, so the main platform can return a response quickly and stay responsive to new requests."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "How does the Dotkernel Queue process messages?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "An active daemon listens for TCP connections on a specific port and stores incoming messages into Redis, which supports a large number of requests per second without overloading. Messages are then scheduled for execution using the FIFO (First-In, First-Out) method, so the oldest request is processed first."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "What happens when a queued message fails to process?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "A configurable retry mechanism retries failing tasks a set number of times, while logging the cause, before giving up and reporting a failure. Messages that ultimately fail can be moved into a Dead Letter Queue, a separate store for failed messages, where troubleshooters can identify the cause, apply a fix, and either push the message back into the main queue or delete it."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "What features is Dotkernel Queue planning to add in the future?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Two features are being investigated: Priorities, which would let tasks begin execution sooner or later instead of strictly following FIFO order, and Parallel Execution, which would let independent operations run at the same time via multiple workers, such as preprocessing a report in parallel with sending emails."
+                        }
+                    }
+                ]
             }
-        }
+        ]
     }
 </script>

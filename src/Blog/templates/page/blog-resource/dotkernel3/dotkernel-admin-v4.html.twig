@@ -222,6 +222,47 @@
 <p class="mb-3">Note: You`ll find in the <code>#tableToolbar</code> buttons that toggle a <strong>modal</strong> for adding/editing/deleting admins.</p>
 
 <h3></h3>
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>When was Dotkernel Admin V4 released, and what is it built on? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Dotkernel Admin V4 was officially released on 19 July 2022. It's DotKernel's PSR-7 Admin, an application based on Mezzio, mainly for managing and displaying tabular data from one or more database components.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What are the demo credentials for trying out Dotkernel Admin V4? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Username admin and password dotadmin, on the demo at https://admin4.dotkernel.net/.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What PHP version does Dotkernel Admin V4 support? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Full support for PHP 8.1, with a minimum requirement of PHP 7.4.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How do you register a new module or middleware? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Register a module by adding its ConfigProvider.php in config.php. New middleware goes into pipeline.php, where you can also edit the order in which middleware runs.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What packages provide the authorization guards? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">dot-rbac-guard and dot-rbac work together to restrict access based on user role. authorization.global.php defines roles and their permissions, while authorization-guards.global.php restricts specific actions to those permissions.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What frontend toolkit does Dotkernel Admin V4 use for displaying tables? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Bootstrap 4.5.0 combined with Fontawesome 5.0.6 for the overall design, and Bootstrap Table specifically for listing raw data because it's easy to implement and configurable in many ways.</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

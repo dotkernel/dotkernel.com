@@ -1,27 +1,53 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
-        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-        "headline": "{{ article.title }}",
-        "description": "{{ article.excerpt }}",
-        "datePublished": "{{ article.postDate|date('c') }}",
-        "dateModified": "{{ article.postDate|date('c') }}",
-        "articleSection": "{{ article.category.name }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ article.author.name }}",
-            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ absolute_url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ absolute_url('/') }}" },
+                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}" },
+                    { "@type": "ListItem", "position": 3, "name": {{ article.title|json_encode|raw }} }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "mainEntity": [
+                    { "@type": "Question", "name": "What is the Core submodule in Dotkernel's Headless Platform?", "acceptedAnswer": { "@type": "Answer", "text": "The Core submodule is a common codebase shared by the applications in your project (for example API, Admin and Queue). It ensures each application uses entities and services in the same way, so rather than updating each application separately, you update the relevant service in Core once and sync it across applications." } },
+                    { "@type": "Question", "name": "What is the golden rule for the Core codebase?", "acceptedAnswer": { "@type": "Answer", "text": "The Core codebase is the only place which manages the database entities. As much as possible, all Doctrine entities must reside in Core, whose current location is src/Core." } },
+                    { "@type": "Question", "name": "How do I create a Core submodule?", "acceptedAnswer": { "@type": "Answer", "text": "First create a new Git repository to hold the Core code. Then, in the main application repository, run 'git submodule add <url>' using that new repository's URL. This generates the .gitmodules file, which maps the submodule to a local directory such as src/Core. From then on, changes to Core must be committed from within the Core folder like any other Git repository." } },
+                    { "@type": "Question", "name": "How do I get the Core submodule when cloning a project?", "acceptedAnswer": { "@type": "Answer", "text": "Run 'git submodule init' followed by 'git submodule update'. Remember to delete the existing Core module before adding the submodule to other applications." } },
+                    { "@type": "Question", "name": "Which entities live in Admin and API versus the shared Core?", "acceptedAnswer": { "@type": "Answer", "text": "The admin application includes admins, admin logins and settings entities, while the API includes both users and admins, as well as authentication entities. Entities that are identical across applications should instead be kept in the shared Core submodule and synced whenever they change." } }
+                ]
             }
-        }
+        ]
     }
 </script>

@@ -120,6 +120,47 @@
 
 <p class="mb-3">We fully expect Bruno to eventually restrict developers with paid plans, just like Postman did, but we'll cross that bridge when we get to it. Hopefully, we won't have to develop our own API client (fingers crossed). For now, <strong>Bruno becomes our de facto API client </strong>and will encourage our whole team to adopt it as soon as possible.</p>
 
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>Why is the team considering a switch from Postman to Bruno? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">They want a reliable API testing client that is free, stores and shares endpoint collections easily with the team, and is fast and secure. This reflects a broader trend in the PHP community toward local-first, Git-native developer tools.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What is the main architectural difference between Postman and Bruno? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Postman's free plan now only allows one user account, while Bruno offers a fully-offline experience based on shared <code>.bru</code> files, so there is no restriction on the number of developers using them.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How does version control differ between the two tools? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Postman stores collections and handles version control in the cloud, forcing developers to stay online (though collections can be exported/imported via its UI). Bruno's <code>.bru</code> files can be saved directly in a Git repository and are version-controlled through Git like any other project file.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How does performance compare between Postman and Bruno? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Bruno is the clear winner on performance: it uses much less RAM and is generally faster. Postman needs to regularly synchronize with the cloud and store its advanced features in RAM, which can introduce delays.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Is Bruno more secure than Postman? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Postman offers Single Sign-On (SSO) and Role-Based Access Control (RBAC), which the team doesn't find useful for its workflow. Bruno's local files never leave the dev environment, which the article argues makes it more secure, especially for avoiding sharing client files with online tools.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What's the overall conclusion on Postman versus Bruno? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Postman is currently a better fit for larger teams willing to allocate a budget for a more feature-rich platform. Bruno stores collections in Git so everything works offline, which the team considers more secure while also being generally faster, and it has become their de facto API client.</p>
+        </div>
+    </details>
+</div>
+
 <h2 id="user-content-additional-resources">Additional Resources<a href="#additional-resources"></a></h2>
 
 <p class="mb-3"><a href="https://www.usebruno.com/" rel="noreferrer noopener" target="_blank">Bruno homepage</a></p>

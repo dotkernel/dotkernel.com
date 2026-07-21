@@ -1,27 +1,53 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
-        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-        "headline": "{{ article.title }}",
-        "description": "{{ article.excerpt }}",
-        "datePublished": "{{ article.postDate|date('c') }}",
-        "dateModified": "{{ article.postDate|date('c') }}",
-        "articleSection": "{{ article.category.name }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ article.author.name }}",
-            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ absolute_url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ absolute_url('/') }}" },
+                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}" },
+                    { "@type": "ListItem", "position": 3, "name": {{ article.title|json_encode|raw }} }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "mainEntity": [
+                    { "@type": "Question", "name": "What does this WSL recipe set up?", "acceptedAnswer": { "@type": "Answer", "text": "It sets up a full PHP development environment: WSL2, AlmaLinux 10, PHP, Apache, MariaDB, Git, Composer, Node.js and PhpMyAdmin." } },
+                    { "@type": "Question", "name": "What are the OS and hardware requirements?", "acceptedAnswer": { "@type": "Answer", "text": "Windows 10 (Version 1903+ / Build 18362.1049+ for x64, or Version 2004+ / Build 19041+ for ARM64) or Windows 11, plus hardware virtualization support. If needed, enable the Virtual Machine Platform feature via dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart in an administrator PowerShell." } },
+                    { "@type": "Question", "name": "How do I install AlmaLinux 10 via WSL2?", "acceptedAnswer": { "@type": "Answer", "text": "Run wsl --install -d AlmaLinux-10, set a password when prompted, then run each of the Ansible playbook commands from the Dotkernel docs to install the development components." } },
+                    { "@type": "Question", "name": "How do I run a PHP project after setup?", "acceptedAnswer": { "@type": "Answer", "text": "Either run php -S 0.0.0.0:8080 -t public from the project root and browse to http://localhost:8080, or, more easily, set up virtual hosts per the Dotkernel docs and access the project at its configured hostname (e.g. example.localhost)." } },
+                    { "@type": "Question", "name": "What should I do if I run into issues during setup?", "acceptedAnswer": { "@type": "Answer", "text": "First check the Dotkernel FAQ page. If that doesn't resolve it, create an issue on the dotkernel/development GitHub repository with details." } }
+                ]
             }
-        }
+        ]
     }
 </script>

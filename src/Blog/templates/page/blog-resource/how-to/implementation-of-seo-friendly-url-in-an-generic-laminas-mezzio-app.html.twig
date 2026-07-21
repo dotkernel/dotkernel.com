@@ -98,6 +98,35 @@ protected string $slug;</code></pre>
 <p class="mb-3">Now you can create a new user and see that the slug column was autocompleted.</p>
 
 <p class="mb-3">To wrap things up, human-readable URL's are a must nowadays, thanks to its swift implementation and multiple benefits.</p>
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>What are the benefits of human-readable slugs cited in this article? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Readability and a more user-friendly experience, better search engine optimization (SEO), and improved shareability and trustworthiness of the URL.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What package is used to generate slugs in this example? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">gedmo/doctrine-extensions, installed by running <code>composer require gedmo/doctrine-extensions</code>.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How is the slug listener registered with Doctrine? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">By adding <code>Gedmo\Sluggable\SluggableListener::class</code> under the <code>doctrine.event_manager.orm_default.subscribers</code> configuration, e.g. in <code>doctrine.global.php</code>.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How is the slug field configured on the entity in this example? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">A new slug column is added (e.g. to <code>src/User/src/Entity/User.php</code>) annotated with <code>@Gedmo\Slug(fields={"identity"})</code>, so the slug is generated automatically from the identity field, for example when a new user is created.</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

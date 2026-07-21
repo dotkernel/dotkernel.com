@@ -1,27 +1,102 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
-        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-        "headline": "{{ article.title }}",
-        "description": "{{ article.excerpt }}",
-        "datePublished": "{{ article.postDate|date('c') }}",
-        "dateModified": "{{ article.postDate|date('c') }}",
-        "articleSection": "{{ article.category.name }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ article.author.name }}",
-            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ absolute_url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "{{ absolute_url('/') }}"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": {{ article.category.name|json_encode|raw }},
+                        "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 3,
+                        "name": {{ article.title|json_encode|raw }}
+                    }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "What PHP versions does Dotkernel API support after this update?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Dotkernel API, now at v4.2.1, supports only PHP 8.2 and PHP 8.3. Support for PHP 8.1 was removed, including from the project's workflows."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "What changed with caching in Dotkernel API?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "The PhpFileCache class and its related parameters were removed from config/autoload/doctrine.global.php, which previously required it for cache configuration. The dot-cache package was added instead, with corresponding updates to composer.json, config/autoload/doctrine.global.php, and config/config.php."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Do I need to update my Doctrine queries after this update?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Yes. Wherever useQueryCache() is used in your queries, it should be replaced with setCacheable()."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "What should I do when upgrading an older Dotkernel API installation to this version?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "When upgrading from a version of Dotkernel API older than the PHP 8.3 support, you may need to run composer update and/or install Sodium, for example by running sudo dnf install php-sodium.x86_64."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Where can I find the full list of changes for this update?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "The full list of file changes is available in the linked pull request on GitHub for the dotkernel/api repository, and the steps taken mirror those used for the PHP 8.3 update of the Dotkernel Frontend."
+                        }
+                    }
+                ]
             }
-        }
+        ]
     }
 </script>

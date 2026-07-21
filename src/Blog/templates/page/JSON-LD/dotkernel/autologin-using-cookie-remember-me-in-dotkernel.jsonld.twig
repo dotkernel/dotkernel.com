@@ -1,27 +1,54 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
-        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-        "headline": "{{ article.title }}",
-        "description": "{{ article.excerpt }}",
-        "datePublished": "{{ article.postDate|date('c') }}",
-        "dateModified": "{{ article.postDate|date('c') }}",
-        "articleSection": "{{ article.category.name }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ article.author.name }}",
-            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ absolute_url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ absolute_url('/') }}" },
+                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}" },
+                    { "@type": "ListItem", "position": 3, "name": {{ article.title|json_encode|raw }} }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "mainEntity": [
+                    { "@type": "Question", "name": "Since which release is Remember Me implemented in Dotkernel?", "acceptedAnswer": { "@type": "Answer", "text": "It's implemented in Dotkernel Frontend starting from Release 3.3.0." } },
+                    { "@type": "Question", "name": "How do you add the Remember Me checkbox to the login UI?", "acceptedAnswer": { "@type": "Answer", "text": "In src/User/templates/user/login.html.twig, under the password element, render the rememberMe element retrieved via form.get('rememberMe') with formElement()." } },
+                    { "@type": "Question", "name": "What form and validation changes are needed?", "acceptedAnswer": { "@type": "Answer", "text": "A 'rememberMe' checkbox element must be added to src/User/src/Form/LoginForm.php, and a StringTrim filter plus a NotEmpty validator must be added for it in src/User/src/InputFilter/LoginInputFilter.php." } },
+                    { "@type": "Question", "name": "What backend pieces implement the actual remember-me functionality?", "acceptedAnswer": { "@type": "Answer", "text": "A new UserRememberMe entity, a database migration (created and run with phinx) for its table, a new RememberMeMiddleware registered in config/pipeline.php, a rememberMe cookie configuration block added to config/autoload/local.php, and new methods added to UserService, UserRepository, and UserController (including loginAction() and logoutAction())." } },
+                    { "@type": "Question", "name": "What does the UserRememberMe table store?", "acceptedAnswer": { "@type": "Answer", "text": "It's used to store data from the cookie, which helps log the user in automatically." } },
+                    { "@type": "Question", "name": "How do you apply the new remember-me button styles?", "acceptedAnswer": { "@type": "Answer", "text": "Add the CSS to src/App/assets/scss/components/_profile.scss, then run npm run prod to compile the CSS so the button styling takes effect." } }
+                ]
             }
-        }
+        ]
     }
 </script>

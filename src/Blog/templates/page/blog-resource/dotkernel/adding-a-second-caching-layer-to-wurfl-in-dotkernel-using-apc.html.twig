@@ -49,6 +49,41 @@ We realized that we had the wrong approach, especially for use. The WURFL entry 
 Our solution involved adding a <strong>second cache layer</strong>, on top of WURFL's, that only cached the fields we were interested in.  This second cache layer make use of <strong>APC</strong>, storing arrays of data in  <strong>User Cache Entries</strong>.
 
 This small change (under 10 lines of code), decreased our response time by an <strong>order of magnitude</strong>, to 20-30ms.
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>Why was WURFL's default caching too slow for this project? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Profiling revealed that WURFL's default filesystem cache was taking up to a few hundred milliseconds of response time, which was too slow for a relatively high-traffic application.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How does WURFL's caching work by default? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Device data is stored in a large zipped XML file. On first use, WURFL unzips the file, serializes each device's data, and writes it to cache using an MD5 signature of the user agent as the key. Because devices are stored as a tree inheriting properties from parent nodes, each lookup requires reading and merging several files.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Did WURFL's built-in APC or memcache cache providers solve the problem? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">No. The team tried WURFL's existing cache providers for APC and memcache, but the results weren't impressive.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What was the actual solution? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Adding a second cache layer on top of WURFL's own cache, using APC and storing arrays of only the specific fields they actually needed in User Cache Entries. The change was under 10 lines of code.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What performance improvement did this bring? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Response time decreased by an order of magnitude, down to about 20-30ms.</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

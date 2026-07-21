@@ -57,6 +57,29 @@ If the credentials are correct, the <strong>API</strong> will return a <strong>J
 </pre>
 
 When sending <strong>API</strong> requests to an endpoint which requires authorization, an <em>Authorization</em> header must be present containing the following data: <code> "Bearer {access_token}"</code>, where {access_token} represents the content of the key with the same name found in the above response.
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>What does a client send to request authorization? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">The client application sends a POST request to the backend with a JSON object containing <code>grant_type</code> (set to "password"), <code>client_id</code>, <code>client_secret</code>, <code>scope</code>, <code>username</code>/email, and <code>password</code>.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What does the API return when authorization succeeds? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">If the credentials are correct, the API returns a JSON object containing <code>token_type</code> ("Bearer"), <code>expires_in</code> (86400 seconds), an <code>access_token</code>, and a <code>refresh_token</code>.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How do I use the access token in subsequent requests? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">When sending API requests to an endpoint that requires authorization, include an Authorization header containing "Bearer {access_token}", where {access_token} is the value returned in the authorization response.</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

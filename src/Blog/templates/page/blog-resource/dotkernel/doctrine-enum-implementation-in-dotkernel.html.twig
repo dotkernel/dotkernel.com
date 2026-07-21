@@ -234,6 +234,47 @@ new setup: status ENUM(\'active\', \'pending\') DEFAULT \'pending\' NOT NULL</pr
 
 <p class="mb-3">The new setup solves both issues, ensuring more consistent flag management for your classes.</p>
 
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>What update triggered this change to Dotkernel's enum handling? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">The update of doctrine/orm to version 3.2.0 introduced EnumType columns, building on the enum type introduced in PHP 8.1. Dotkernel implemented this new data type on both the PHP side and the database side.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What was the limitation of Dotkernel's old approach to columns like User-&gt;Status? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">The old setup used a simple string type, so the value set couldn't be definitively enforced. A typo in a PHP value would still be accepted, and the database was independent of any values the PHP code allowed, so manually editing a value in the database would accept any string.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What was the one advantage of the old string-based setup? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">It made it easy to add more values to the value set, though the article notes this ease also invites bugs in the execution.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What do you need to create to add a new custom enum type? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">A PHP enum class (like UserStatusEnum) plus a DBAL type class extending AbstractEnumType, which must define a NAME constant and a getEnumClass() method; the new type is then registered under the types key in config/autoload/doctrine.global.php.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Does Types::ENUM still fall back to a string or integer database column? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">The article notes that Doctrine still defaults to Types::STRING or Types::INTEGER for columns backed by a PHP enum, as this is considered the more portable and safer default; Types::ENUM is required if you want an actual enum column in MySQL/MariaDB.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What must happen when the value set of an enum changes under the new setup? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Any update to the value set must be made on both the PHP code and the database, since the new setup creates an explicit, enforced link between them.</p>
+        </div>
+    </details>
+</div>
+
 <h2><a href="#relevant-links"></a>Relevant links</h2>
 
 <ul><li><a href="https://github.com/dotkernel/api/pull/339/files" target="_blank" rel="noreferrer noopener">Dotkernel API Pull Request</a></li>

@@ -115,6 +115,47 @@ The tests we have made were the following:
 </li>
 </ul>
 &nbsp;
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>What two kinds of error handlers does dot-errorhandler provide? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">A plain ErrorHandler, which is a copy of Zend Expressive's Zend\Stratigility\Middleware\ErrorHandler (copied because that class is final), and a logging LogErrorHandler, which is the same but with added logging support via the container. Both have factories registered for easier use with the Container.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How do you install dot-errorhandler? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Run composer require dotkernel/dot-errorhandler.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Which error handler is used by default? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">The plain error handler is selected by default as a fallback, and this can be overwritten through the config file, which also registers factories for both handlers plus an alias to switch between them.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What must already be in place before configuring the logging error handler? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">A configured logger as described in the "Logging with dot-log in Zend Expressive and DotKernel" article, with the logger named default_logger as used in the package's config example.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Why might whoops interfere when testing dot-errorhandler? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">dot-errorhandler is meant to be a silent logger for staging and production environments. To actually test it, development mode should be disabled, otherwise whoops will catch the errors and show them to the developer instead.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How were errors triggered to test the error handlers? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">By throwing Exceptions, the most common case, and by raising warnings/errors such as dividing a number by zero (e.g. 16/0) or casting an array to a string.</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

@@ -1,27 +1,110 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
-        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-        "headline": "{{ article.title }}",
-        "description": "{{ article.excerpt }}",
-        "datePublished": "{{ article.postDate|date('c') }}",
-        "dateModified": "{{ article.postDate|date('c') }}",
-        "articleSection": "{{ article.category.name }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ article.author.name }}",
-            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ absolute_url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "{{ absolute_url('/') }}"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": {{ article.category.name|json_encode|raw }},
+                        "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 3,
+                        "name": {{ article.title|json_encode|raw }}
+                    }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "What does the DotMaker library do?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "DotMaker (dotkernel/dot-maker) programmatically generates project files and directories that match the Dotkernel file structure inspired by Mezzio, giving a productivity boost and promoting consistency and standardization compared to creating everything manually."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "What inspired DotMaker and how is it different from Mezzio's own CLI tooling?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "DotMaker is inspired by the Symfony Maker Bundle in terms of functionality. Mezzio has its own CLI Tooling that performs similar actions, but DotMaker uses a more opinionated naming pattern and is designed specifically for Dotkernel applications."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "How do I create a new module with DotMaker?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Run ./vendor/bin/dot-maker module and follow the prompts that walk you through creating each relevant item, from entities and repositories to handlers and services. DotMaker also automatically creates the module's ConfigProvider.php, tells you how to register it in config/config.php and composer.json, generates documentation in an OpenApi.php file, and tells you what command to run to generate migrations."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Does DotMaker configure authorization for the new module?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "No, authorization must be configured manually after the files are created, and the location differs between Dotkernel applications: Dotkernel Api uses config/autoload/authorization.global.php, while Dotkernel Admin and Dotkernel Frontend use config/autoload/authorization-guards.global.php."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Can DotMaker generate individual items instead of a whole module?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Yes. DotMaker provides individual commands to create items such as a collection, command, entity, form, handler, input, input-filter, middleware, repository, service, or service-interface for an existing module. For example, ./vendor/bin/dot-maker entity creates an Entity and its associated Repository, skipping the Repository if it already exists."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Do the composer make shortcuts work right away?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "No, commands like composer make entity only work after the basic command has been added to composer.json; the equivalent ./vendor/bin/dot-maker form is available regardless."
+                        }
+                    }
+                ]
             }
-        }
+        ]
     }
 </script>

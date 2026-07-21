@@ -1,27 +1,88 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
-        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-        "headline": "{{ article.title }}",
-        "description": "{{ article.excerpt }}",
-        "datePublished": "{{ article.postDate|date('c') }}",
-        "dateModified": "{{ article.postDate|date('c') }}",
-        "articleSection": "{{ article.category.name }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ article.author.name }}",
-            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ absolute_url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ absolute_url('/') }}" },
+                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}" },
+                    { "@type": "ListItem", "position": 3, "name": {{ article.title|json_encode|raw }} }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "What are the three access levels for protecting an endpoint?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "no-auth, where the resource can be accessed without authentication/authorization; authentication, where only authenticated users can access the resource; and authorization, where only authenticated AND authorized users can access it."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Where do I configure access to the endpoints?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "In config/autoload/authorization.local.php. If that file is missing from your application, locate its dist file config/autoload/authorization.local.php.dist and copy it as config/autoload/authorization.local.php, then look for the array under the zend-expressive-authorization-rbac config key."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "How does role inheritance work under the roles key?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "In the article's example, admin inherits from no other role, member inherits from admin, and guest inherits from member. The article warns this exact setup is just a model and should not be used in live projects, because guests would end up having the same rights as admins."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "How do I control which routes a role can access?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Under the permissions key you define which routes are accessible to a role. In the article's example, a member has access to the routes named avatar, users, and user."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "What response codes are returned for authentication and authorization endpoints?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Endpoints requiring authentication return a 401 Unauthorized response if a valid Bearer token isn't present in the request headers. Endpoints requiring authorization return a 403 Forbidden response instead under the same condition."
+                        }
+                    }
+                ]
             }
-        }
+        ]
     }
 </script>

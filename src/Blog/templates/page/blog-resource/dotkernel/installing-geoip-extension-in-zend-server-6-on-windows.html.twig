@@ -39,6 +39,35 @@ As an update to the post <a title="Installing GeoIP extension in Zend Server" hr
     <li>Save the file and "Restart PHP" :-))  from Zend Server GUI</li>
     <li>follow the step from the previous article in order to test GeoIP integration , and download the Geoip*.dat files</li>
 </ol>
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>Which php_geoip file should be downloaded for Zend Server 6.1? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Download the php_geoip-1.0.8-5.4-nts-vc9-x86.zip file from http://windows.php.net/downloads/pecl/releases/geoip/1.0.8/.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Where does the php_geoip.dll go on Zend Server 6.1? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Copy the php_geoip.dll file from the archive to ZEND_PATH\Zend\ZendServer\lib\phpext\.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How is the extension enabled on Zend Server 6.1? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Open the php.ini file at ZEND_PATH\Zend\ZendServer\etc\php.ini, add the line <code>extension=php_geoip.dll</code> at the end of the file, save it, and click "Restart PHP" from the Zend Server GUI.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How do you verify GeoIP is working after this setup? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Follow the same steps described in the previous article (Installing GeoIP extension in Zend Server 5.6 on Windows) to test the GeoIP integration and download the Geoip*.dat files.</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

@@ -117,6 +117,41 @@ Windows version: 10.0.22631.3737</code></pre>
 </ul>
 
 <p class="mb-3">The complete guide with additional features is available <a href="https://docs.dotkernel.org/development/" target="_blank" rel="noreferrer noopener">here</a>.</p>
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>How do I check if my machine is ready for WSL2? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Open Windows Terminal and run <code>wsl -v</code>. If it returns version information (WSL, Kernel, WSLg, MSRDC, Direct3D, DXCore, Windows versions), WSL2 is installed. If you get an error instead, WSL is not completely installed and you need to follow the linked setup guide first.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How do I download and install AlmaLinux 9? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Open Microsoft Store, search for AlmaLinux, select AlmaLinux 9 from the results, and install it. Once installed, clicking Open launches it in Windows Terminal, where the installer prompts for your username, password, and password confirmation.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What are the main setup steps inside AlmaLinux 9? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Install epel-release, dnf-utils and the Remi repository RPM, upgrade installed packages, install Ansible, clone the dotkernel/development Git repository, navigate to its wsl directory, fill in the empty fields in config.yml, then run the installer script's Step 1 with <code>ansible-playbook -i hosts install.yml --ask-become-pass</code> (it will prompt for the password set during installation).</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Why do I need to restart AlmaLinux 9 partway through setup? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">After Step 1 of the installer script, you press Control+D, open Windows Terminal, stop AlmaLinux 9 with <code>wsl -t AlmaLinux9</code>, and start it again with <code>wsl -d AlmaLinux9</code>. Then you navigate back to the Ansible recipes directory and run Step 2 of the installer script (again with <code>ansible-playbook -i hosts install.yml --ask-become-pass</code>), which prompts for the password again. Once Step 2 finishes, the AlmaLinux 9 development environment is ready.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How do I verify the installation worked? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Check three URLs in your browser: http://localhost/ for Apache's default home page, http://localhost/info.php for the PHP info page, and http://localhost/phpmyadmin/ for PhpMyAdmin, logging in with username root and the root password configured in config.yml under mariadb -&gt; root_password.</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

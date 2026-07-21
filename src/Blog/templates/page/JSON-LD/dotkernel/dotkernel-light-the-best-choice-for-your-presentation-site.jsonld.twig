@@ -1,27 +1,54 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
-        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-        "headline": "{{ article.title }}",
-        "description": "{{ article.excerpt }}",
-        "datePublished": "{{ article.postDate|date('c') }}",
-        "dateModified": "{{ article.postDate|date('c') }}",
-        "articleSection": "{{ article.category.name }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ article.author.name }}",
-            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ absolute_url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ absolute_url('/') }}" },
+                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}" },
+                    { "@type": "ListItem", "position": 3, "name": {{ article.title|json_encode|raw }} }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "mainEntity": [
+                    { "@type": "Question", "name": "What is Dotkernel Light designed for?", "acceptedAnswer": { "@type": "Answer", "text": "It's a good starting point for a project when you want full control over its functionality, and it easily grows into something more complex by integrating packages based on your requirements." } },
+                    { "@type": "Question", "name": "What functionality does Dotkernel Light include out of the box?", "acceptedAnswer": { "@type": "Answer", "text": "Routing, Templating, Error handling, and Tests and code quality checks." } },
+                    { "@type": "Question", "name": "What features are removed from Dotkernel Light compared to Dotkernel Frontend?", "acceptedAnswer": { "@type": "Answer", "text": "Everything related to the database, Sessions/Cookies/Flash messages, Authentication/Authorization, Dependency Injection, Mail related stuff, Navigation, CORS, Forms/Validators/InputFilters, the User module, the Contact module, and the Plugin module." } },
+                    { "@type": "Question", "name": "How do you add a new page to a Dotkernel Light site?", "acceptedAnswer": { "@type": "Answer", "text": "Add an Action function for the page (e.g. examplePageAction()) in src/Page/src/Controller/PageController.php that renders a template, then create the matching template file in src/Page/templates/page/ (e.g. example-template.html.twig), with the page copy placed in its content block." } },
+                    { "@type": "Question", "name": "Where should new page assets like fonts, images, JS, and CSS be placed?", "acceptedAnswer": { "@type": "Answer", "text": "Under src/App/assets/, in its default folders: src/App/assets/fonts, src/App/assets/images, src/App/assets/js, and src/App/assets/scss. Run npm run watch during edits, or npm run prod once the edits are completed." } },
+                    { "@type": "Question", "name": "Where do you edit the top menu and footer that appear on every page?", "acceptedAnswer": { "@type": "Answer", "text": "Both live in src/App/templates/layout/default.html.twig: the top menu items are under id=\"navbarHeader\", and the footer content is inside the footer element with class \"app-footer\"." } }
+                ]
             }
-        }
+        ]
     }
 </script>

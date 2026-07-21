@@ -64,6 +64,35 @@ The setting pattern and sample are below:
 <pre>>cache.BACKEND_NAME.SETTING = "VALUE"
 ; example:
 cache.file.file_name_prefix = "DotKernel"</pre>
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>What is DotKernel's caching layer based on? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">It's based on Zend Framework Cache, configured through settings in application.ini, with more configuration options available at the Zend Framework Cache Frontends and Backends documentation links given in the article.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What does the cache.enable setting do? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">It can be used to disable caching, which is mostly useful during the development stage.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What values can cache.factory take? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">The cache.factory value is the cache service to use, and the article lists two options: file or apc.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Why bother setting the individual/backend cache settings like cache.file.cache_dir? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">These settings are optional, but the article highly recommends setting them, otherwise other projects might end up using the same cache.</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

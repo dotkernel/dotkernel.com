@@ -80,6 +80,35 @@ After the analysis was done, you should see the <strong>PHP 7 Express </strong>v
 The result should look like this:
 
 <a href="/uploads/2015/12/php7errors.png" rel="attachment wp-att-2904"><img src="{{ asset('uploads/article/' ~ article.id ~ '/php7errors.png') }}" alt="Zend Framework 1 compatibility issues with PHP7 " width="1006" height="647" class="img-fluid rounded my-2"></a> Zend Framework 1 compatibility issues with PHP7
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>What is PHP 7 Express in Zend Studio? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">PHP 7 Express is a feature added in Zend Studio starting with version 13. It's useful for checking whether pre-PHP7 code will work correctly on a PHP7 server.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What PHP version should you select when creating a test project? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Use the exact PHP version your project actually uses (e.g. PHP 5.6), not PHP 7. Choosing PHP 7 at project creation hides the PHP 7 Express feature, because Zend Studio assumes a PHP 7 project doesn't need compatibility checks.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What should you check if the PHP 7 Express feature doesn't show up? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Check the PHP Interpreter selected for the project: right click the project, type "interpreter" to find the PHP -> Interpreter option, and optionally enable "Enable Project specific settings" so the change only affects that project.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How do you run PHP 7 Express once it's available? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Right-click the project itself (not a folder or file, or the feature won't show up), click "Run PHP 7 Express...", and confirm the prompt. After the analysis finishes, results appear in the PHP 7 Express view/tab in the bottom pane.</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

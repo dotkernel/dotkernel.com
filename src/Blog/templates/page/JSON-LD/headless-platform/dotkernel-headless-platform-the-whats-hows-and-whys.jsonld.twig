@@ -1,27 +1,102 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
-        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-        "headline": "{{ article.title }}",
-        "description": "{{ article.excerpt }}",
-        "datePublished": "{{ article.postDate|date('c') }}",
-        "dateModified": "{{ article.postDate|date('c') }}",
-        "articleSection": "{{ article.category.name }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ article.author.name }}",
-            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ absolute_url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "{{ absolute_url('/') }}"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": {{ article.category.name|json_encode|raw }},
+                        "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 3,
+                        "name": {{ article.title|json_encode|raw }}
+                    }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "What is a Headless Platform?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "A Headless Platform decouples the User Interface (frontend) from the backend services. The responses from the platform are then used by another system, such as a website or mobile app."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "What are the two main components of the Dotkernel Headless Platform?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "The Dotkernel Headless Platform contains two major components: Dotkernel API, a REST API based on the Mezzio skeleton, and Dotkernel Admin, a complementary component aimed at quickly setting up a backend. The Admin is not bundled by default but is available as a first-party, installable application designed to work alongside the API."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Can Dotkernel API and Admin be installed separately?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Yes. They can be installed separately or together, based on your business requirements. You can start with Dotkernel Admin to populate your database and later add Dotkernel API to present the data to other frontends, or start with Dotkernel API and integrate it into your existing platform, adding Admin later for its table-based approach, reports, and graphs."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "What benefits come from using both API and Admin together?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Using both together lets you share a common Core module containing the same entities and queries between the two applications, implement only the handlers you actually need, and benefit from a shared file structure that makes onboarding easy and can be maintained by fewer developers. This setup can also satisfy any application size, from microservices to enterprise-grade APIs."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "What architectural patterns does the Dotkernel Headless Platform follow?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "The architecture is designed to be versatile, following Clean Architecture (concentric layers with dependencies flowing from outer to inner layers), Domain-Driven Design (implementing only the specific components needed for your business logic rather than generic reusable services), and Hexagonal Architecture (dividing the system into loosely-coupled, interchangeable components)."
+                        }
+                    }
+                ]
             }
-        }
+        ]
     }
 </script>

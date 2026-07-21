@@ -128,6 +128,41 @@ For projects hosted on a shared hosting platform you must ask your hosting provi
 </li>
 </ul>
 Edit: changed <strong>php7.0 </strong>occurrences with <strong>php7.x</strong> as the version may vary.
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>What errors indicate the PHP Intl extension is missing? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Typical errors include "Zend InputFilter requires intl PHP extension" and "The requested PHP extension intl is missing from your system." These happen because the PHP Intl extension isn't installed or enabled.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What is the PHP Intl extension used for? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Intl (Internationalization extension) is a wrapper for the ICU library that lets PHP programmers perform locale-aware operations, including formatting, transliteration, encoding conversion, and calendar operations. It can be installed bundled since PHP 5.3.0, or as a separate PECL extension since PHP 5.2.0.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How do you find your PHP extensions directory? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">You can find the extension_dir either by calling phpinfo() or by running the command php -r "echo ini_get('extension_dir');" — both read the value straight from the PHP runtime configuration.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How do you enable the Intl extension on a Linux server if the file already exists? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Confirm php_intl.so exists in your extensions directory, open the php.ini config file (usually /etc/php.ini), make sure the line "extension=php_intl.so" exists and isn't commented out, restart the web server (e.g. sudo service httpd restart), and verify with phpinfo().</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What if the php_intl.so or php_intl.dll file doesn't exist at all? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">On Linux, check your PHP version with php -v, then install the php-intl package (PHP 5) or php7.x-intl package (PHP 7) via your package manager, e.g. apt-get install php-intl on Ubuntu-based systems or yum install php-intl on CentOS; on shared hosting, ask your provider to install/enable it. On Windows, download the matching PHP version (checking TS/NTS and x86/x64, with thread safety found via php -i | findstr "Thread") from the PHP Downloads page and copy php_intl.dll from its ext folder into your php\ext folder.</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

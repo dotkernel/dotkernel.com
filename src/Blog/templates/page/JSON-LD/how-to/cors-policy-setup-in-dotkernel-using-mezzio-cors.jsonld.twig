@@ -1,27 +1,53 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
-        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-        "headline": "{{ article.title }}",
-        "description": "{{ article.excerpt }}",
-        "datePublished": "{{ article.postDate|date('c') }}",
-        "dateModified": "{{ article.postDate|date('c') }}",
-        "articleSection": "{{ article.category.name }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ article.author.name }}",
-            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ absolute_url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ absolute_url('/') }}" },
+                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}" },
+                    { "@type": "ListItem", "position": 3, "name": {{ article.title|json_encode|raw }} }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "mainEntity": [
+                    { "@type": "Question", "name": "What causes the CORS error described in this article?", "acceptedAnswer": { "@type": "Answer", "text": "It appears when a browser blocks access to a resource on another origin because the server's response doesn't include an 'Access-Control-Allow-Origin' header, per the browser's CORS (Cross-Origin Resource Sharing) policy." } },
+                    { "@type": "Question", "name": "What package solves CORS handling in Dotkernel?", "acceptedAnswer": { "@type": "Answer", "text": "Mezzio CORS, installed by running 'composer require mezzio/mezzio-cors' in the application's root directory." } },
+                    { "@type": "Question", "name": "What are the setup steps needed to enable CORS?", "acceptedAnswer": { "@type": "Answer", "text": "Register both Laminas\\Diactoros\\ConfigProvider::class and Mezzio\\Cors\\ConfigProvider::class in config/config.php, add $app->pipe(CorsMiddleware::class); to config/pipeline.php (preferably between the error handler and the handler/middleware returning your response), and create a config/autoload/cors.local.php file with your CORS configuration." } },
+                    { "@type": "Question", "name": "What's the difference between permissive and restrictive mode?", "acceptedAnswer": { "@type": "Answer", "text": "In permissive mode, allowed_origins is set to ConfigurationInterface::ANY_ORIGIN, making the application accessible from any origin. In restrictive mode, you replace that value with a list of the specific origins that should have access." } },
+                    { "@type": "Question", "name": "How do you test whether CORS is configured correctly?", "acceptedAnswer": { "@type": "Answer", "text": "Make sure your application sends the Origin header set to the correct value. In permissive mode you should see the expected response from the resource; in restrictive mode, if the request origin isn't listed under allowed_origins, you should see a 403 Not authorized response." } }
+                ]
             }
-        }
+        ]
     }
 </script>

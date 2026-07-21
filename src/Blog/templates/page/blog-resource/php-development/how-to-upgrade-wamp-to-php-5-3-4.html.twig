@@ -54,6 +54,41 @@
 <div id="_mcePaste">12.   Check if PEAR path is correct in php.ini , and modify accordingly.</div>
 <div id="_mcePaste">13.   Restart WAMP server.</div>
 <div id="_mcePaste">14.   Enjoy.</div>
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>Where do I download the PHP 5.3.4 package for WAMP? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Download the latest ZIPPED package for PHP 5.3.4 from windows.php.net. Make sure it is the VC6 Thread Safe build, and do not download the installer.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Where should the downloaded PHP 5.3.4 files be extracted? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Create a folder named php5.3.4 inside wamp/bin/php, then extract the downloaded zip into that newly created folder.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Which configuration files need to be copied and edited when upgrading? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Copy php.ini, phpForApache.ini, and wampserver.conf from the existing php5.3 folder (e.g. wamp/bin/php/php5.3.3) into the new php5.3.4 folder. Then, in php.ini and phpForApache.ini, search and replace the string 5.3.3 with 5.3.4.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Is there anything to remove from the Apache folder before restarting WAMP? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Yes. Go to wamp/bin/apache/apache/apache2.2.11/bin and delete the file called php.ini, then restart the WAMP server.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How do I actually switch WAMP to the new PHP version after restarting? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">After restarting WAMP, choose PHP version 5.3.0, restart WAMP server again, and then choose PHP version 5.3.4. Also check that the PEAR path is correct in php.ini and modify it accordingly, then restart WAMP server once more.</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

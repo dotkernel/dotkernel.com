@@ -85,6 +85,35 @@
 <pre>vendor/bin/doctrine-migrations help diff</pre>
 
 <p class="mb-3"></p>
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>Why does doctrine-migrations diff try to drop custom tables? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Because those tables are unmapped (there's no Doctrine entity describing them), so diff generates queries that drop them when it creates a new migration file.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How do I avoid dropping unmapped tables when generating a migration? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Delete the migration containing the DROP queries, then re-run the diff command with a filter-expression parameter, e.g. <code>vendor/bin/doctrine-migrations diff --filter-expression='/^(?!oauth_)/'</code> on Linux/macOS (single quotes) or with double quotes on Windows.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How do I filter multiple unmapped table prefixes at once? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Concatenate the table prefixes in the filter-expression pattern with a pipe character, for example <code>--filter-expression='/^(?!foo_|bar_)/'</code> to exclude tables prefixed with foo_ and bar_.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Why might Windows PowerShell still drop the tables even with a filter expression? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">PowerShell treats the caret (^) as a special character and strips it, turning "/^(?!oauth_)/" into "/(?!oauth_)/" by the time it reaches the command, and escaping it doesn't help. The recommended workaround is to run the command from your IDE, a Linux shell, or the Command Prompt instead.</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}
