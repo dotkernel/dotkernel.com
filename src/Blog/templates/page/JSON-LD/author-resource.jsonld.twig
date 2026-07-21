@@ -1,0 +1,28 @@
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ProfilePage",
+        "@id": "{{ absolute_url(path('page::author-resource', {slug: author.slug})) }}#webpage",
+        "url": "{{ absolute_url(path('page::author-resource', {slug: author.slug})) }}",
+        "isPartOf": { "@id": "{{ absolute_url('/') }}#website" },
+        "mainEntity": {
+            "@type": "Person",
+            "name": "{{ author.name }}",
+            "email": "{{ author.email }}",
+            "url": "{{ absolute_url(path('page::author-resource', {slug: author.slug})) }}"
+        },
+        "hasPart": {
+            "@type": "ItemList",
+            "itemListElement": [
+                {% for post in data.items %}{% if not loop.first %},{% endif %}
+                {
+                    "@type": "ListItem",
+                    "position": {{ loop.index }},
+                    "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: post.category.slug, slug: post.slug})) }}",
+                    "name": "{{ post.title }}"
+                }
+                {% endfor %}
+            ]
+        }
+    }
+</script>

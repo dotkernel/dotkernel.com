@@ -1,4 +1,5 @@
 {% extends '@layout/default.html.twig' %}
+{% block json_ld %} {{ include('@jsonld/how-to/using-postman-for-documentation-in-dotkernel-api-3.jsonld.twig') }} {% endblock %}
 
 {% block title %}Using Postman for documentation  in DotKernel API 3{% endblock %}
 
@@ -14,7 +15,7 @@
             <div class="post-meta">
                 <span class="text-muted small">
                     By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
-                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                    &nbsp;.&nbsp; {{ article.postDate|date('M d, Y') }}
                 </span>
             </div>
         </div>
@@ -59,7 +60,7 @@
 
 <ul><li>open the import modal by clicking <code>File</code> -&gt; <code>Import</code> (or <code>Ctrl + O</code>)</li><li>inside the modal, make sure you're on the <code>File</code> tab, then click <code>Upload files</code></li><li>navigate to <code>documentation</code> directory of your DotKernel API 3 application and select both of the following files:<ul><li><strong>DotKernel_API.postman_collection.json</strong></li><li><strong>DotKernel_API.postman_environment.json</strong></li></ul></li><li>after clicking <code>Open</code> the modal should show the following:</li></ul>
 
-<pre>Select files to import · 2/2 selected
+<pre>Select files to import . 2/2 selected
 NAME                 FORMAT                         IMPORT AS
 <span class="has-inline-color has-vivid-red-color">DotKernel_API</span>        Postman Collection v2.1        Collection
 <span class="has-inline-color has-vivid-red-color">DotKernel_API</span>        Postman Environment            Environment</pre>

@@ -1,5 +1,5 @@
 {% extends '@layout/default.html.twig' %}
-
+{% block json_ld %} {{ include('@jsonld/index.jsonld.twig') }} {% endblock %}
 {% block title %}A PSR-15 compliant application{% endblock %}
 
 {% block content %}
@@ -7,9 +7,9 @@
     <section class="hero">
         <div class="wrap hero-grid">
             <div>
-                <span class="eyebrow">PSR-15 · middleware-first architecture</span>
+                <span class="eyebrow">PSR-15 . middleware-first architecture</span>
                 <h1>A headless platform for building modern web applications</h1>
-                <p class="sub">Dotkernel is a collection of open-source application skeletons built on Mezzio and Laminas — pre-configured and ready for anything from a presentation site to an enterprise-grade API.</p>
+                <p class="sub">Dotkernel is a collection of open-source application skeletons built on Mezzio and Laminas - pre-configured and ready for anything from a presentation site to an enterprise-grade API.</p>
                 <div class="hero-ctas">
                     <a class="btn btn-primary" href="https://docs.dotkernel.org" target="_blank" rel="noopener">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
@@ -22,7 +22,7 @@
                 </div>
                 <div class="hero-stack-note">
                     <div><span>Runtime</span> Mezzio + Laminas</div>
-                    <div><span>Standards</span> PSR-7 · PSR-11 · PSR-15</div>
+                    <div><span>Standards</span> PSR-7 . PSR-11 . PSR-15</div>
                     <div><span>License</span> BSD-3-Clause</div>
                 </div>
             </div>
@@ -87,7 +87,7 @@
             <div class="section-head">
                 <span class="eyebrow">Headless Platform</span>
                 <h2>Three applications, one platform</h2>
-                <p>API, Admin, and Queue are designed to integrate into a single, unified headless platform — better together than the sum of their parts.</p>
+                <p>API, Admin, and Queue are designed to integrate into a single, unified headless platform - better together than the sum of their parts.</p>
             </div>
 
             <div class="products-grid">
@@ -110,17 +110,17 @@
                     </div>
                 </div>
 
-                <div class="card" style="--accent:var(--periwinkle)">
+                <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
                         <div><span class="kicker">Skeleton</span><h3>Admin</h3></div>
                     </div>
                     <div class="badges">
-                        <img alt="PHP" src="https://img.shields.io/packagist/dependency-v/dotkernel/admin/php?style=flat&label=php&color=D6D2CC">
-                        <img alt="Packagist" src="https://img.shields.io/packagist/v/dotkernel/admin?style=flat&label=&color=D6D2CC">
-                        <img alt="License" src="https://img.shields.io/github/license/dotkernel/admin?style=flat&label=&color=D6D2CC">
-                        <img alt="Stars" src="https://img.shields.io/github/stars/dotkernel/admin?style=flat&label=%E2%98%85&color=D6D2CC">
+                        <img alt="PHP" src="https://img.shields.io/packagist/dependency-v/dotkernel/admin/php?style=flat&label=php&color=F2ABB6">
+                        <img alt="Packagist" src="https://img.shields.io/packagist/v/dotkernel/admin?style=flat&label=&color=F2ABB6">
+                        <img alt="License" src="https://img.shields.io/github/license/dotkernel/admin?style=flat&label=&color=F2ABB6">
+                        <img alt="Stars" src="https://img.shields.io/github/stars/dotkernel/admin?style=flat&label=%E2%98%85&color=F2ABB6">
                     </div>
-                    <p class="desc">A ready-to-go admin skeleton for managing your platform's records with a simple, table-based approach — plus the tools to build reports and dashboards.</p>
+                    <p class="desc">A ready-to-go admin skeleton for managing your platform's records with a simple, table-based approach - plus the tools to build reports and dashboards.</p>
                     <div class="card-btns">
                         <a class="btn btn-ghost btn-sm" href="https://github.com/dotkernel/admin" target="_blank" rel="noopener">GitHub</a>
                         <a class="btn btn-ghost btn-sm" href="https://admin7.dotkernel.net/" target="_blank" rel="noopener">Demo</a>
@@ -128,15 +128,15 @@
                     </div>
                 </div>
 
-                <div class="card" style="--accent:var(--teal)">
+                <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
                         <div><span class="kicker">Skeleton</span><h3>Queue</h3></div>
                     </div>
                     <div class="badges">
-                        <img alt="PHP" src="https://img.shields.io/packagist/php-v/dotkernel/queue?style=flat&label=php&color=E8B3BE">
-                        <img alt="Packagist" src="https://img.shields.io/packagist/v/dotkernel/queue?style=flat&label=&color=E8B3BE">
-                        <img alt="License" src="https://img.shields.io/github/license/dotkernel/queue?style=flat&label=&color=E8B3BE">
-                        <img alt="Stars" src="https://img.shields.io/github/stars/dotkernel/queue?style=flat&label=%E2%98%85&color=E8B3BE">
+                        <img alt="PHP" src="https://img.shields.io/packagist/php-v/dotkernel/queue?style=flat&label=php&color=F2ABB6">
+                        <img alt="Packagist" src="https://img.shields.io/packagist/v/dotkernel/queue?style=flat&label=&color=F2ABB6">
+                        <img alt="License" src="https://img.shields.io/github/license/dotkernel/queue?style=flat&label=&color=F2ABB6">
+                        <img alt="Stars" src="https://img.shields.io/github/stars/dotkernel/queue?style=flat&label=%E2%98%85&color=F2ABB6">
                     </div>
                     <p class="desc">Asynchronous task queuing built on Symfony Messenger, wired into the Laminas Service Manager container via netglue/laminas-messenger.</p>
                     <div class="card-btns">
@@ -159,17 +159,17 @@
 
             <div class="products-grid other-skeletons-grid">
 
-                <div class="card" style="--accent:var(--rose)">
+                <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Skeleton · Didactic</span><h3>Light</h3></div>
+                        <div><span class="kicker">Skeleton . Didactic</span><h3>Light</h3></div>
                     </div>
                     <div class="badges">
-                        <img alt="PHP" src="https://img.shields.io/packagist/php-v/dotkernel/light?style=flat&label=php&color=F6D6DA">
-                        <img alt="Packagist" src="https://img.shields.io/packagist/v/dotkernel/light?style=flat&label=&color=F6D6DA">
-                        <img alt="License" src="https://img.shields.io/github/license/dotkernel/light?style=flat&label=&color=F6D6DA">
-                        <img alt="Stars" src="https://img.shields.io/github/stars/dotkernel/light?style=flat&label=%E2%98%85&color=F6D6DA">
+                        <img alt="PHP" src="https://img.shields.io/packagist/php-v/dotkernel/light?style=flat&label=php&color=F2ABB6">
+                        <img alt="Packagist" src="https://img.shields.io/packagist/v/dotkernel/light?style=flat&label=&color=F2ABB6">
+                        <img alt="License" src="https://img.shields.io/github/license/dotkernel/light?style=flat&label=&color=F2ABB6">
+                        <img alt="Stars" src="https://img.shields.io/github/stars/dotkernel/light?style=flat&label=%E2%98%85&color=F2ABB6">
                     </div>
-                    <p class="desc">A minimal, PSR-15 compliant skeleton built for learning purposes — a simple, didactic example of how to put together a basic website, not a Headless Platform component.</p>
+                    <p class="desc">A minimal, PSR-15 compliant skeleton built for learning purposes - a simple, didactic example of how to put together a basic website, not a Headless Platform component.</p>
                     <div class="card-btns">
                         <a class="btn btn-ghost btn-sm" href="https://github.com/dotkernel/light" target="_blank" rel="noopener">GitHub</a>
                         <a class="btn btn-ghost btn-sm" href="https://light.dotkernel.net/" target="_blank" rel="noopener">Demo</a>
@@ -177,17 +177,17 @@
                     </div>
                 </div>
 
-                <div class="card" style="--accent:var(--sage)">
+                <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Skeleton · Standalone</span><h3>Frontend</h3></div>
+                        <div><span class="kicker">Skeleton . Standalone</span><h3>Frontend</h3></div>
                     </div>
                     <div class="badges">
-                        <img alt="PHP" src="https://img.shields.io/packagist/php-v/dotkernel/frontend?style=flat&label=php&color=E39AA8">
-                        <img alt="Packagist" src="https://img.shields.io/packagist/v/dotkernel/frontend?style=flat&label=&color=E39AA8">
-                        <img alt="License" src="https://img.shields.io/github/license/dotkernel/frontend?style=flat&label=&color=E39AA8">
-                        <img alt="Stars" src="https://img.shields.io/github/stars/dotkernel/frontend?style=flat&label=%E2%98%85&color=E39AA8">
+                        <img alt="PHP" class="badge-fetch" src="https://img.shields.io/packagist/php-v/dotkernel/frontend?style=flat&label=php&color=F2ABB6">
+                        <img alt="Packagist" class="badge-fetch" src="https://img.shields.io/packagist/v/dotkernel/frontend?style=flat&label=&color=F2ABB6">
+                        <img alt="License" class="badge-fetch" src="https://img.shields.io/github/license/dotkernel/frontend?style=flat&label=&color=F2ABB6">
+                        <img alt="Stars" class="badge-fetch" src="https://img.shields.io/github/stars/dotkernel/frontend?style=flat&label=%E2%98%85&color=F2ABB6">
                     </div>
-                    <p class="desc">A web starter skeleton for building frontend applications on Mezzio and Laminas — a standalone alternative, separate from the Headless Platform.</p>
+                    <p class="desc">A web starter skeleton for building frontend applications on Mezzio and Laminas - a standalone alternative, separate from the Headless Platform.</p>
                     <div class="card-btns">
                         <a class="btn btn-ghost btn-sm" href="https://github.com/dotkernel/frontend" target="_blank" rel="noopener">GitHub</a>
                         <a class="btn btn-ghost btn-sm" href="https://v5.dotkernel.net/" target="_blank" rel="noopener">Demo</a>
@@ -204,7 +204,7 @@
             <div class="section-head">
                 <span class="eyebrow">Components</span>
                 <h2>Every layer, on its own</h2>
-                <p>Small, independent dot-* packages — pull in what you need. Lifecycle status for each lives on the <a href="https://www.dotkernel.com/dotkernel-packages-oss-lifecycle/" style="color:var(--teal);">Packages Lifecycle</a> page.</p>
+                <p>Small, independent dot-* packages - pull in what you need. Lifecycle status for each lives on the <a href="https://www.dotkernel.com/dotkernel-packages-oss-lifecycle/" style="color:var(--teal);">Packages Lifecycle</a> page.</p>
             </div>
             <div class="components-grid">
                 <div>
@@ -331,7 +331,7 @@
                 <h2>Control, scalability &amp; performance you can build on.</h2>
             </div>
             <div>
-                <p class="about-text">Dotkernel is an open-source project created and led by the dev team at Apidemia — built first as an internal tool for handling complex architectures, now freely shared as our way of giving back to the community.</p>
+                <p class="about-text">Dotkernel is an open-source project created and led by the dev team at Apidemia - built first as an internal tool for handling complex architectures, now freely shared as our way of giving back to the community.</p>
                 <div class="about-cta">
                     <a class="btn btn-ghost" href="{{ url('page::contact') }}">See more about us →</a>
                 </div>

@@ -1,0 +1,101 @@
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "WebSite",
+            "@id": "{{ absolute_url('/') }}#website",
+            "url": "{{ absolute_url('/') }}",
+            "name": "Dotkernel",
+            "description": "Dotkernel is a collection of open-source application skeletons built on Mezzio and Laminas - pre-configured and ready for anything from a presentation site to an enterprise-grade API.",
+            "publisher": { "@id": "{{ absolute_url('/') }}#organization" }
+        },
+        {
+            "@type": "Organization",
+            "@id": "{{ absolute_url('/') }}#organization",
+            "name": "Dotkernel",
+            "url": "{{ absolute_url('/') }}",
+            "logo": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}",
+            "sameAs": [
+                "https://github.com/dotkernel",
+                "https://www.dotkernel.com"
+            ],
+            "parentOrganization": {
+                "@type": "Organization",
+                "name": "Apidemia",
+                "url": "https://www.apidemia.com"
+            }
+        },
+        {
+            "@type": "SoftwareApplication",
+            "name": "Dotkernel API",
+            "applicationCategory": "DeveloperApplication",
+            "operatingSystem": "Cross-platform",
+            "description": "A framework-less, opinionated toolkit for intermediate-to-advanced developers who want to ship REST APIs quickly and efficiently. An alternative to legacy Laminas API Tools (Apigility).",
+            "url": "https://github.com/dotkernel/api",
+            "license": "https://opensource.org/licenses/BSD-3-Clause",
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+            }
+        },
+        {
+            "@type": "SoftwareApplication",
+            "name": "Dotkernel Admin",
+            "applicationCategory": "DeveloperApplication",
+            "operatingSystem": "Cross-platform",
+            "description": "A ready-to-go admin skeleton for managing your platform's records with a simple, table-based approach - plus the tools to build reports and dashboards.",
+            "url": "https://github.com/dotkernel/admin",
+            "license": "https://opensource.org/licenses/BSD-3-Clause",
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+            }
+        },
+        {
+            "@type": "SoftwareApplication",
+            "name": "Dotkernel Queue",
+            "applicationCategory": "DeveloperApplication",
+            "operatingSystem": "Cross-platform",
+            "description": "Asynchronous task queuing built on Symfony Messenger, wired into the Laminas Service Manager container via netglue/laminas-messenger.",
+            "url": "https://github.com/dotkernel/queue",
+            "license": "https://opensource.org/licenses/BSD-3-Clause",
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+            }
+        },
+        {
+            "@type": "SoftwareApplication",
+            "name": "Dotkernel Light",
+            "applicationCategory": "DeveloperApplication",
+            "operatingSystem": "Cross-platform",
+            "description": "A minimal, PSR-15 compliant skeleton built for learning purposes - a simple, didactic example of how to put together a basic website.",
+            "url": "https://github.com/dotkernel/light",
+            "license": "https://opensource.org/licenses/BSD-3-Clause",
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+            }
+        },
+        {
+            "@type": "SoftwareApplication",
+            "name": "Dotkernel Frontend",
+            "applicationCategory": "DeveloperApplication",
+            "operatingSystem": "Cross-platform",
+            "description": "A web starter skeleton for building frontend applications on Mezzio and Laminas - a standalone alternative, separate from the Headless Platform.",
+            "url": "https://github.com/dotkernel/frontend",
+            "license": "https://opensource.org/licenses/BSD-3-Clause",
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+            }
+        }
+    ]
+}
+</script>

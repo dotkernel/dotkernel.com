@@ -122,6 +122,7 @@ class ConfigProvider
      *     paths: array{
      *          app: array{literal-string&non-falsy-string},
      *          error: array{literal-string&non-falsy-string},
+     *          jsonld: array{literal-string&non-falsy-string},
      *          layout: array{literal-string&non-falsy-string},
      *          partial: array{literal-string&non-falsy-string},
      *     }
@@ -133,6 +134,7 @@ class ConfigProvider
             'paths' => [
                 'app'     => [__DIR__ . '/../templates/app'],
                 'error'   => [__DIR__ . '/../templates/error'],
+                'jsonld'  => [__DIR__ . '/../templates/JSON-LD'],
                 'layout'  => [__DIR__ . '/../templates/layout'],
                 'partial' => [__DIR__ . '/../templates/partial'],
             ],

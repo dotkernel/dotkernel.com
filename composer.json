@@ -29,7 +29,7 @@
         "php": "~8.5.0",
         "doctrine/data-fixtures": "^2.2",
         "doctrine/doctrine-fixtures-bundle": "^4.3",
-        "dotkernel/dot-errorhandler": "^4.4.0",
+        "dotkernel/dot-errorhandler": "^5.0.0",
         "dotkernel/dot-cache": "^4.0",
         "ramsey/uuid": "^4.5.0",
         "ramsey/uuid-doctrine": "^2.1.0",

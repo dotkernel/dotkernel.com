@@ -17,9 +17,10 @@
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet"/>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
-    {% block stylesheets %}
-    {% endblock %}
+    {% block json_ld %}{% endblock %}
+    {% block stylesheets %}{% endblock %}
 </head>
 <body class="app d-flex flex-column min-vh-100 {% block body_class %}{% endblock %}">
 <header class="sticky-top">
@@ -96,7 +97,7 @@
                         <img class="icon icon-jetbrains mt-1" src="{{ asset('images/app/icon/jetbrains-mono.svg') }}" alt="JetBrains">
                     </a>
                 </span>
-            <span class="sponsor">Built with Mezzio, Laminas &amp; Doctrine — for PHP developers, by PHP developers.</span>
+            <span class="sponsor">Built with Mezzio, Laminas &amp; Doctrine - for PHP developers, by PHP developers.</span>
         </div>
     </div>
 </footer>

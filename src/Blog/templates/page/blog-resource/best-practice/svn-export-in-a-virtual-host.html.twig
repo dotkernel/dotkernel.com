@@ -1,4 +1,5 @@
 {% extends '@layout/default.html.twig' %}
+{% block json_ld %} {{ include('@jsonld/best-practice/svn-export-in-a-virtual-host.jsonld.twig') }} {% endblock %}
 
 {% block title %}SVN Export in a virtual host{% endblock %}
 
@@ -14,7 +15,7 @@
             <div class="post-meta">
                 <span class="text-muted small">
                     By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
-                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                    &nbsp;.&nbsp; {{ article.postDate|date('M d, Y') }}
                 </span>
             </div>
         </div>
@@ -30,7 +31,6 @@
             <article class="article">
                 <div class="entry">
 The following commands should be run in the terminal (for example, using Putty in Windows) on the host where you want to export the repository). It's recommended that you run them using the domain's user, not root.
-<!--more-->
 
 First make sure that Subversion is installed on the host. To check if it is installed, run:
 <pre>svn --version</pre>
@@ -38,10 +38,8 @@ If you don't get a "command not found" message, subversion is installed. Otherwi
 
 The next step is to go to where you want to export the contents of the repository (eg.: "<em>cd /var/www/vhosts/example.com/httpdocs</em>" or "<em>cd /home/sitename/public_html</em>").
 
-The command looks like this:
-<pre>>svn export   <repositoryUrl> <targetDirectory></pre>
-
-where:
+The command looks like this:<pre>svn export repositoryUrl repositoryUrl</pre>
+                    where:
 <ul>
     <li><strong>-r revisionNumber</strong> - <em>optional</em> - export a specific revision. By default, the latest revision will be used</li>
     <li><strong>repositoryUrl</strong> - the repository URL (eg: <em>http://example.com/repos/project-name/trunk/</em>). Remember to add /trunk/, or change it appropriately if you need to export a certain branch or tag</li>

@@ -1,0 +1,24 @@
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "@id": "{{ absolute_url(path('page::categories')) }}#webpage",
+        "url": "{{ absolute_url(path('page::categories')) }}",
+        "name": "Categories",
+        "description": "Browse Dotkernel blog posts by category.",
+        "isPartOf": { "@id": "{{ absolute_url('/') }}#website" },
+        "mainEntity": {
+            "@type": "ItemList",
+            "itemListElement": [
+                {% for category in categories %}{% if not loop.first %},{% endif %}
+                {
+                    "@type": "ListItem",
+                    "position": {{ loop.index }},
+                    "url": "{{ absolute_url(path('page::category-resource', {slug: category.slug})) }}",
+                    "name": "{{ category.name }}"
+                }
+                {% endfor %}
+            ]
+        }
+    }
+</script>

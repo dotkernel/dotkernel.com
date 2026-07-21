@@ -23,6 +23,7 @@ class RoutesDelegator
             $uri = $request->getUri();
             return new RedirectResponse((string) $uri . '/', 301);
         });
+
         $app->get('/{first}/{second}', function ($request) {
             $uri = $request->getUri();
             return new RedirectResponse((string) $uri . '/', 301);

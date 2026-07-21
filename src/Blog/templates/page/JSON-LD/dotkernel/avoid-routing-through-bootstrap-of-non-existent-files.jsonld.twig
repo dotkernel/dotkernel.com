@@ -1,0 +1,27 @@
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+        "headline": "{{ article.title }}",
+        "description": "{{ article.excerpt }}",
+        "datePublished": "{{ article.postDate|date('c') }}",
+        "dateModified": "{{ article.postDate|date('c') }}",
+        "articleSection": "{{ article.category.name }}",
+        "author": {
+            "@type": "Person",
+            "name": "{{ article.author.name }}",
+            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Dotkernel",
+            "url": "{{ absolute_url('/') }}",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+            }
+        }
+    }
+</script>

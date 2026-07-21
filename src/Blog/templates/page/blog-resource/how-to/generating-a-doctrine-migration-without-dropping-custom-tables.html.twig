@@ -1,4 +1,5 @@
 {% extends '@layout/default.html.twig' %}
+{% block json_ld %} {{ include('@jsonld/how-to/generating-a-doctrine-migration-without-dropping-custom-tables.jsonld.twig') }} {% endblock %}
 
 {% block title %}Generating a doctrine migration without dropping custom tables{% endblock %}
 
@@ -14,7 +15,7 @@
             <div class="post-meta">
                 <span class="text-muted small">
                     By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
-                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                    &nbsp;.&nbsp; {{ article.postDate|date('M d, Y') }}
                 </span>
             </div>
         </div>
@@ -41,7 +42,11 @@
 
 <pre>vendor/bin/doctrine-migrations diff</pre>
 
-<p class="mb-3">If you have mapping modifications, this will create a new migration file under<strong> data/doctrine/migrations/</strong> directory. Opening the migration file, you will notice that it contains some queries that will drop your <code>oauth_*</code> tables because they are unmapped (there is no doctrine entity describing them). You should delete your latest migration with the <strong>DROP </strong>queries in it as we will create another one, without the <strong>DROP </strong>queries in it. In order to avoid dropping these tables, you need to add a parameter called filter-expression.</p>
+<p class="mb-3">If you have mapping modifications, this will create a new migration file under<strong> data/doctrine/migrations/</strong> directory.
+    Opening the migration file, you will notice that it contains some queries that will drop your <code>oauth_*</code> tables because they are unmapped (there is no doctrine entity describing them).
+    You should delete your latest migration with the <strong>DROP </strong>queries in it as we will create another one, without the <strong>DROP </strong>queries in it.
+    In order to avoid dropping these tables, you need to add a parameter called filter-expression.
+</p>
 
 <p class="mb-3">The command to be executed without dropping these tables looks like this:</p>
 
@@ -55,7 +60,9 @@
 
 <h2>Filtering multiple unmapped table patterns</h2>
 
-<p class="mb-3">If your database contains multiple unmapped table groups, then the pattern in <code>filter-expression</code> should hold all table prefixes concatenated by pipe character (<code>|</code>). For example, if you need to filter tables prefixed with <code>foo_</code> and <code>bar_</code>, then the command should look like this:</p>
+<p class="mb-3">If your database contains multiple unmapped table groups, then the pattern in <code>filter-expression</code> should hold all table prefixes concatenated by pipe character (<code>|</code>).
+    For example, if you need to filter tables prefixed with <code>foo_</code> and <code>bar_</code>, then the command should look like this:
+</p>
 
 <p class="mb-3">On Windows:</p>
 

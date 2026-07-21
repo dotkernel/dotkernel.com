@@ -1,4 +1,5 @@
 {% extends '@layout/default.html.twig' %}
+{% block json_ld %} {{ include('@jsonld/dotkernel/how-to-set-a-persistent-connection-to-database-with-zend-framework-zend-db-adapter.jsonld.twig') }} {% endblock %}
 
 {% block title %}How to Set a Persistent Connection to Database with Zend Framework Zend_Db adapter{% endblock %}
 
@@ -14,7 +15,7 @@
             <div class="post-meta">
                 <span class="text-muted small">
                     By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
-                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                    &nbsp;.&nbsp; {{ article.postDate|date('M d, Y') }}
                 </span>
             </div>
         </div>

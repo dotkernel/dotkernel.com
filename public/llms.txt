@@ -1,0 +1,41 @@
+# Dotkernel Light
+
+> Dotkernel Light is the technical blog for the Dotkernel headless PHP platform — a PSR-15 compliant application built on Mezzio and Laminas components. It publishes architecture write-ups, how-tos, and release notes for Dotkernel Admin, API, Frontend, and Light.
+
+Content spans foundational PHP/middleware architecture (PSR-7, PSR-15, request lifecycle, dependency injection), practical how-tos (Doctrine migrations, CORS, authentication, caching), and the history/release notes of the Dotkernel ecosystem going back to 2008. Posts are organized by category and attributed to an author; URLs follow the pattern `/{category-slug}/{post-slug}/`.
+
+## Docs
+
+- [Blog](https://new.dotkernel.com/blog/): full list of posts, most recent first, paginated
+- [Categories](https://new.dotkernel.com/categories/): all categories with post counts
+- [About](https://new.dotkernel.com/about/): what Dotkernel Light is
+- [Who We Are](https://new.dotkernel.com/who-we-are/): team/company background
+- [OSS Package Lifecycle](https://new.dotkernel.com/dotkernel-packages-oss-lifecycle/): support/maintenance status of Dotkernel's open-source packages
+- [Contact](https://new.dotkernel.com/contact/)
+
+## Categories
+
+- [Dotkernel](https://new.dotkernel.com/category/dotkernel/): the core framework — releases, caching, sessions, auth, WURFL/device detection (64 posts)
+- [PHP Development](https://new.dotkernel.com/category/php-development/): general PHP tooling, environments, IDEs, security (20 posts)
+- [How to's](https://new.dotkernel.com/category/how-to/): practical guides — migrations, CORS, PSR-7, routing (14 posts)
+- [Best Practice](https://new.dotkernel.com/category/best-practice/): coding standards and database access patterns (13 posts)
+- [Dotkernel API](https://new.dotkernel.com/category/dotkernel-api/): REST API package — auth, content negotiation, OpenAPI (10 posts)
+- [Dotkernel 3](https://new.dotkernel.com/category/dotkernel3/): the v3 rewrite on Zend Expressive/Mezzio (9 posts)
+- [Headless Platform](https://new.dotkernel.com/category/headless-platform/): the current Dotkernel headless architecture (9 posts)
+- [Zend Framework](https://new.dotkernel.com/category/zend-framework/): Zend Framework 1 history and end-of-life notes (8 posts)
+- [Javascript](https://new.dotkernel.com/category/javascript/): frontend/JS topics (3 posts)
+- [Middleware](https://new.dotkernel.com/category/middleware/): PSR-15 middleware and routing internals (3 posts)
+- [Architecture](https://new.dotkernel.com/category/architecture/): request lifecycle and application bootstrapping (3 posts)
+- [PHP Troubleshooting](https://new.dotkernel.com/category/php-troubleshooting/): fixes for common PHP setup issues (2 posts)
+- [Android](https://new.dotkernel.com/category/android/): Android install-referrer and broadcast receivers (2 posts)
+- [PHPStorm](https://new.dotkernel.com/category/phpstorm/): IDE setup (1 post)
+- [Licensing](https://new.dotkernel.com/category/licensing/): open-source license comparisons (1 post)
+
+## Optional
+
+- [Dotkernel Headless Platform: The What's, How's and Why's](https://new.dotkernel.com/headless-platform/dotkernel-headless-platform-the-whats-hows-and-whys/): best starting point for understanding the current platform
+- [Understanding Middleware](https://new.dotkernel.com/architecture/understanding-middleware/)
+- [Request Lifecycle for a Mezzio Based Application](https://new.dotkernel.com/architecture/request-lifecycle-for-a-mezzio-based-application/)
+- [ConfigProvider: Bootstrap Modern PHP Applications](https://new.dotkernel.com/architecture/configprovider-bootstrap-modern-php-applications/)
+- [What is PSR-7 and How to Use It](https://new.dotkernel.com/how-to/what-is-psr-7-and-how-to-use-it/)
+- [Dependency Injection Made Easy in Laminas/Mezzio Applications](https://new.dotkernel.com/dotkernel/dependency-injection-made-easy-in-laminas-mezzio-applications/)

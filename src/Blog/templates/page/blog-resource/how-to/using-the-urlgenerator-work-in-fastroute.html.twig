@@ -1,4 +1,5 @@
 {% extends '@layout/default.html.twig' %}
+{% block json_ld %} {{ include('@jsonld/how-to/using-the-urlgenerator-work-in-fastroute.jsonld.twig') }} {% endblock %}
 
 {% block title %}Using the URLGenerator work in FastRoute{% endblock %}
 
@@ -14,7 +15,7 @@
             <div class="post-meta">
                 <span class="text-muted small">
                     By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
-                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                    &nbsp;.&nbsp; {{ article.postDate|date('M d, Y') }}
                 </span>
             </div>
         </div>

@@ -1,4 +1,5 @@
 {% extends '@layout/default.html.twig' %}
+{% block json_ld %} {{ include('@jsonld/headless-platform/dotkernel-headless-platform-the-whats-hows-and-whys.jsonld.twig') }} {% endblock %}
 
 {% block title %}Dotkernel Headless Platform - The Whats, Hows and Whys{% endblock %}
 
@@ -14,7 +15,7 @@
             <div class="post-meta">
                 <span class="text-muted small">
                     By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
-                    &nbsp;·&nbsp; {{ article.postDate|date('M d, Y') }}
+                    &nbsp;.&nbsp; {{ article.postDate|date('M d, Y') }}
                 </span>
             </div>
         </div>
@@ -80,7 +81,7 @@
 
 <p class="mb-3">You can configure the file structure to use a <strong>Core</strong> module. The Core then becomes the common code repository between API and Admin, ensuring that the entities and queries are the same. The <strong>entities</strong> for your platform, whether they be products, articles or something else are the building blocks of your application. The <strong>queries</strong> interact with the entities for CRUD purposes. By having these components in a single repository used in both API and Admin, you ensure consistency when interacting with them.</p>
 
-<figure><img src="{{ asset('uploads/article/' ~ article.id ~ '/Core2.png') }}" alt=""/ class="img-fluid rounded my-2"></figure>
+<figure><img src="{{ asset('uploads/article/' ~ article.id ~ '/Core2.png') }}" alt=""> </figure>
 
 <h3>Implement only the handlers you need</h3>
 
@@ -90,10 +91,10 @@
 
 <p class="mb-3">Another advantage is the fact that the API and Admin <strong>share a file structure</strong>. When you become familiar with one, you're good to go with the other as well. This means that <strong>onboarding is easy</strong> and can be <strong>maintained by fewer developers</strong>, maybe even a single developer, at least in the beginning. Conversely, working with an API+Angular approach means you often need 2 developers working in concert to implement any new feature.</p>
 
-<div><div><figure><img src="{{ asset('uploads/article/' ~ article.id ~ '/files-api.jpg') }}" alt=""/ class="img-fluid rounded my-2"></figure>
+<div><div><figure><img src="{{ asset('uploads/article/' ~ article.id ~ '/files-api.jpg') }}" alt=""> </figure>
 </div>
 
-<div><figure><img src="{{ asset('uploads/article/' ~ article.id ~ '/files-admin-1.jpg') }}" alt=""/ class="img-fluid rounded my-2"></figure>
+<div><figure><img src="{{ asset('uploads/article/' ~ article.id ~ '/files-admin-1.jpg') }}" alt=""> </figure>
 </div>
 </div>
 
@@ -109,7 +110,7 @@
 
 <p class="mb-3">The software components are organized into concentric layers. Code dependencies go from the outer to the inner layers which results in improved testability and independence from components like libraries, user interfaces and databases.</p>
 
-<figure><img src="{{ asset('uploads/article/' ~ article.id ~ '/Flow2.png') }}" alt=""/ class="img-fluid rounded my-2"></figure>
+<figure><img src="{{ asset('uploads/article/' ~ article.id ~ '/Flow2.png') }}" alt=""> </figure>
 
 <h4>Domain-Driven Design (DDD)</h4>
 
