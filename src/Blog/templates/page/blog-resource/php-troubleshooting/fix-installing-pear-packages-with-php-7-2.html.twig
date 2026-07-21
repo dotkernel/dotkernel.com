@@ -31,7 +31,7 @@
             <article class="article">
                 <div class="entry">
 This article will cover the solution to the PEAR "<em>Cannot use result of built-in function in write context</em>" issue.
-<h1>The Issue</h1>
+<h2>The Issue</h2>
 If installing a pear package (for instance PHP Code Sniffer), when running:
 <pre>pear install PHP_CodeSniffer</pre>
 This error is shown
@@ -42,7 +42,7 @@ This error is shown because the function is called by reference.
 More details about this issue can be found in <a href="https://github.com/pear/Archive_Tar/pull/18">this Pull Request</a>.
 
 &nbsp;
-<h1>The solution</h1>
+<h2>The solution</h2>
 You might be tempted to execute the following
 <pre>pear install Archive_Tar</pre>
 which will result in the same error.
@@ -54,7 +54,7 @@ Go to the line indicated in the error (639 in this case) and replace:
 with
 <pre> $v_att_list = func_get_args();</pre>
 The above means the <strong>func_get_args()&nbsp;</strong>isn't called by reference anymore.
-<h1>Our recommendation</h1>
+<h2>Our recommendation</h2>
 The above does fix the problem,&nbsp;<strong>but we recommend installing&nbsp;</strong>the Archive_Tar again so you have the latest working version.
 
 &nbsp;

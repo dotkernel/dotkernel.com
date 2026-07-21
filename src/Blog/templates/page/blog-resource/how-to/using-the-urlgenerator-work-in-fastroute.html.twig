@@ -35,14 +35,14 @@ DotKernel 3 uses <code>FastRoute</code> under the hood, which is an excellent an
 A wrong setup can lead to many headaches, as it's not prominent that the error you're experiencing is from FastRoute, and you may not know where exactly to look for the cause.
 
 To save you some time, here's a how-to for creating and using routes in <code>DotKernel 3</code>.
-<h3>Declaring routes</h3>
+<h2>Declaring routes</h2>
 When defining routes in the <em>routes.php</em> file, they need to follow a specific pattern, a usual route would look like this:
 <pre>>$app-&gt;route('/page', , , 'page');</pre>
 <blockquote class="blockquote border-start border-4 ps-3 text-muted my-3">Notice the <em>'</em><strong>/page</strong><em>'</em> part, as this is crucial. FastRoute cannot handle a <em>slash-suffix</em>, which means that <strong>/page</strong> will give you the indexAction, whereas <strong>/page/</strong> will give you a 404.</blockquote>
 To prevent the URLGenerator from adding a slash-suffix, we need to make sure that the optional slash is included in the optional block. <strong>The above example is correct</strong>, if we instead wrote it like this, it'd be woefully bad.
 <pre>>$app-&gt;route('/page/', , , 'page');</pre>
 <blockquote class="blockquote border-start border-4 ps-3 text-muted my-3">Notice that the slash has changed places and is now outside the optional block. This would generate a <strong>/page/</strong> route for the index action, which is bad, so always include any optional parts, even slashes, in the optional block.</blockquote>
-<h3>Referencing routes</h3>
+<h2>Referencing routes</h2>
 Developers are used to hand-write and hard-code URLs into anchor tags, but this is a bad idea, as a URL may change and then you'd have to go through the entire app to find every single reference for it. Instead, every route we define has a name that can be used to reference it in the URLGenerator.
 <pre>>$app-&gt;route('/page', , , 'page');</pre>
 <blockquote class="blockquote border-start border-4 ps-3 text-muted my-3">That very last part there, that's the route name, which can be referenced in any view or controller to generate a route to a specific route in the app.</blockquote>

@@ -37,7 +37,7 @@ This article will cover the needed steps to add composer support to your DotKern
 Assuming that you know how to use composer (if not you should consider reading <a href="https://www.codementor.io/php/tutorial/composer-install-php-dependency-manager" target="_blank" rel="noopener noreferrer">this article</a>) we wil move on to your DotKernel project "composification".
 
 &nbsp;
-<h3>First things first</h3>
+<h2>First things first</h2>
 The DotKernel project must have a <strong>composer.json</strong> file so that composer can work.
 
 Our <strong>composer.json</strong> file should look like this:
@@ -73,7 +73,7 @@ If the <em>vendor</em> folder does not exist composer will create a vendor folde
 Composer will create an autoload file, which will be use to load our dependencies/packages.
 
 &nbsp;
-<h3>Adding Composer Support to DotKernel</h3>
+<h2>Adding Composer Support to DotKernel</h2>
 The autoload file created by composer will be used to load our packages.
 <pre>>$composerAutoLoaderPath = <a href="http://php.net/manual/en/function.realpath.php" target="_blank" rel="noopener noreferrer">realpath</a>(APPLICATION_PATH.'/vendor/autoload.php');
 require_once($composerAutoLoaderPath);</pre>

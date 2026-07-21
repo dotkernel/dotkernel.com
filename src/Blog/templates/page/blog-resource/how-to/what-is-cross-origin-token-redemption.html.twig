@@ -30,13 +30,13 @@
 
             <article class="article">
                 <div class="entry">
-<h1>What is cross origin token redemption?</h1>
+<h2>What is cross origin token redemption?</h2>
 
 <p class="mb-3">Cross-origin token redemption is a technique used to ensure the security and authenticity of a token that is issued by one website or domain, but intended for use on a different website or domain. This process is commonly used in situations where a user needs to access resources from multiple domains, such as when a user is logged in to one website and needs to access resources from another website.</p>
 
 <p class="mb-3">When a token is issued from one domain, it is typically encrypted and signed to prevent tampering and ensure that it can only be used by the intended recipient. When the token is redeemed on a different domain, the receiving domain must first verify the authenticity of the token by checking the signature and decrypting the token.</p>
 
-<h4><strong>JSON Web Token (JWT)</strong></h4>
+<h3><strong>JSON Web Token (JWT)</strong></h3>
 
 <p class="mb-3">One common method of cross-origin token redemption is to use the JWT standard. JWTs are a compact, URL-safe means of representing claims to be transferred between two parties. They consist of three parts:</p>
 
@@ -49,7 +49,7 @@
 
 <p class="mb-3">In order to redeem a JWT on a different domain, the receiving domain must first verify the signature using the algorithm specified in the header and the secret key that was used to sign the token. Once the signature is verified, the domain can then read the claims from the payload to determine if the user is authorized to access the requested resources.</p>
 
-<h4><strong>OAuth 2.0</strong></h4>
+<h3><strong>OAuth 2.0</strong></h3>
 
 <p class="mb-3">Another method of cross-origin token redemption is to use the OAuth 2.0 standard. OAuth 2.0 is an open standard for authorization that enables a third-party application to obtain limited access to an HTTP service. In this method, when a user is logged in to one website and wants to access resources from another website, the first website will redirect the user to the second website and pass a token. The second website will then validate the token and provide the user with access to the requested resources.</p>
 

@@ -215,7 +215,7 @@
 <p class="mb-3"></p>
 <p class="mb-3"></p>
 <p class="mb-3"></p>
-<h4>Doctrine 2 ORM</h4>
+<h2>Doctrine 2 ORM</h2>
 <p class="mb-3"></p>
 <p class="mb-3"></p>
 <p class="mb-3">For the persistence in a relational database management system we chose <a href="https://www.doctrine-project.org/projects/doctrine-orm/en/2.14/index.html" target="_blank" rel="noreferrer noopener" data-type="URL" data-id="https://www.doctrine-project.org/projects/doctrine-orm/en/2.14/index.html">Doctrine ORM</a> (object-relational mapper).</p>
@@ -224,7 +224,7 @@
 <p class="mb-3">The benefit of Doctrine for the programmer is the ability to focus on the object-oriented business logic and worry about persistence only as a secondary priority.</p>
 <p class="mb-3"></p>
 <p class="mb-3"></p>
-<h4>Documentation</h4>
+<h2>Documentation</h2>
 <p class="mb-3"></p>
 <p class="mb-3"></p>
 <p class="mb-3">Our documentation is <a href="https://www.postman.com/" target="_blank" rel="noreferrer noopener" data-type="URL" data-id="https://www.postman.com/">Postman</a> based. We use the following files in which we store information about every available endpoint ready to be tested:</p>
@@ -254,31 +254,31 @@
 <p class="mb-3"></p>
 <p class="mb-3"></p>
 <p class="mb-3"></p>
-<h4>Hypertext Application Language</h4>
+<h2>Hypertext Application Language</h2>
 <p class="mb-3"></p>
 <p class="mb-3"></p>
 <p class="mb-3">For our API payloads (a value object for describing the API resource, its relational links and any embedded/child resources related to it) we chose <a href="https://docs.mezzio.dev/mezzio-hal/" target="_blank" rel="noreferrer noopener" data-type="URL" data-id="https://docs.mezzio.dev/mezzio-hal/">mezzio-hal</a>.</p>
 <p class="mb-3"></p>
 <p class="mb-3"></p>
-<h4>CORS</h4>
+<h2>CORS</h2>
 <p class="mb-3"></p>
 <p class="mb-3"></p>
 <p class="mb-3">By using <code>MezzioCorsMiddlewareCorsMiddleware</code>, the <strong>CORS preflight</strong> will be recognized and the middleware will start to detect the proper <strong>CORS configuration</strong>. The <strong>Router</strong> is used to detect every allowed request method by executing a route match with all possible request methods. Therefore, for every preflight request, there is at least one Router request.</p>
 <p class="mb-3"></p>
 <p class="mb-3"></p>
-<h4>OAuth 2.0</h4>
+<h2>OAuth 2.0</h2>
 <p class="mb-3"></p>
 <p class="mb-3"></p>
 <p class="mb-3">OAuth 2.0 is an authorization framework that enables applications to obtain limited access to user accounts on your <strong>Dotkernel API</strong>. We are using <a href="https://docs.mezzio.dev/mezzio-authentication-oauth2/" target="_blank" rel="noreferrer noopener" data-type="URL" data-id="https://docs.mezzio.dev/mezzio-authentication-oauth2/">mezzio/mezzio-authentication-oauth2</a> which provides <strong>OAuth 2.0</strong> authentication for Mezzio and PSR-7/PSR-15 applications by using <a href="https://oauth2.thephpleague.com/" target="_blank" rel="noreferrer noopener" data-type="URL" data-id="https://oauth2.thephpleague.com/">league/oauth2-server</a> package.</p>
 <p class="mb-3"></p>
 <p class="mb-3"></p>
-<h4>Email</h4>
+<h2>Email</h2>
 <p class="mb-3"></p>
 <p class="mb-3"></p>
 <p class="mb-3">It is not unlikely for an API to send emails depending on the use case. Here is another area where <strong>Dotkernel API</strong> shines. Using <code>DotMailServiceMailService</code> provided by <a href="https://packagist.org/packages/dotkernel/dot-mail" target="_blank" rel="noreferrer noopener" data-type="URL" data-id="https://packagist.org/packages/dotkernel/dot-mail">dotkernel/dot-mail</a> you can easily send custom email templates.</p>
 <p class="mb-3"></p>
 <p class="mb-3"></p>
-<h4>Configuration</h4>
+<h2>Configuration</h2>
 <p class="mb-3"></p>
 <p class="mb-3"></p>
 <p class="mb-3">From authorization at request route level to API keys for your application, you can find every configuration variable in the <strong>config</strong> directory.</p>
@@ -293,7 +293,7 @@
 <p class="mb-3">You can further customize your api within the <strong>autoload</strong> directory where each configuration category has its own file.</p>
 <p class="mb-3"></p>
 <p class="mb-3"></p>
-<h4>Routing</h4>
+<h2>Routing</h2>
 <p class="mb-3"></p>
 <p class="mb-3"></p>
 <p class="mb-3">Each module has a <code>RoutesDelegator.php</code> file for managing existing routes inside that specific module. It also allows an quick way of adding new routes by providing the route path, Middlewares that the route will use and the route name.</p>
@@ -302,13 +302,13 @@
 <p class="mb-3">You can allocate <strong>permissions</strong> per <strong>route name</strong> in order to restrict access for a user role to a specific route in <code>config/autoload/authorization.global.php</code>.</p>
 <p class="mb-3"></p>
 <p class="mb-3"></p>
-<h4>Commands</h4>
+<h2>Commands</h2>
 <p class="mb-3"></p>
 <p class="mb-3"></p>
 <p class="mb-3">For registering new commands first make sure your command class extends <code>SymfonyComponentConsoleCommandCommand</code>. Then you can enable it by registering it in <code>config/autoload/cli.global.php</code>.</p>
 <p class="mb-3"></p>
 <p class="mb-3"></p>
-<h4>File locker</h4>
+<h2>File locker</h2>
 <p class="mb-3"></p>
 <p class="mb-3"></p>
 <p class="mb-3">Here you will also find our brand new <strong>file locker</strong> configuration so you can easily turn it on or off ( by default: <code>'enabled' =&gt; true</code> )</p>
@@ -317,7 +317,7 @@
 <p class="mb-3">Note: The <strong>File Locker System</strong> will create a <code>command-{command-default-name}.lock</code> file which will not let another instance of the same command to run until the previous one has finished.</p>
 <p class="mb-3"></p>
 <p class="mb-3"></p>
-<h4>PSR Standards</h4>
+<h2>PSR Standards</h2>
 <p class="mb-3"></p>
 <p class="mb-3"></p>
 <ul>
@@ -371,7 +371,7 @@
 <p class="mb-3"></p>
 <p class="mb-3"></p>
 <p class="mb-3"></p>
-<h4>Tests</h4>
+<h2>Tests</h2>
 <p class="mb-3"></p>
 <p class="mb-3"></p>
 <p class="mb-3">One of the best ways to ensure the quality of your product is to create and run functional and unit tests. You can find factory-made tests in the <code>tests/AppTest/</code> folder, and you can also register your own.</p>

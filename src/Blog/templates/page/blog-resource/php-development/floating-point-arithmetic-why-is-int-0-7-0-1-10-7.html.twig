@@ -45,8 +45,8 @@ Now let's try it with 0.6 instead of 0.7
 <code>
 var_dump((0.6+0.1)*10); # <strong>float(7)</strong>
 var_dump(intval((0.6+0.1)*10)); # <strong>int(7)</strong></code>
-<h3></h3>
-<h3>How does the CPU understand these numbers?</h3>
+<h2></h2>
+<h2>How does the CPU understand these numbers?</h2>
 The CPU makes the calculations binary, the floating point numbers are represented as follows:
 
 IEEE Short Real: <strong>32 bits</strong>     1 bit for the sign, 8 bits for the exponent, and 23 bits for the mantissa. Also called single precision.
@@ -67,7 +67,7 @@ The float numbers are <strong>sign</strong> * <strong>exponent</strong> * <stron
 Some numbers cannot be represented exactly (such as  0.99999999)
 
 To learn more about how IEEE Real numbers are formed follow <a href="http://kipirvine.com/asm/workbook/floating_tut.htm" target="_blank" rel="noopener noreferrer">this link</a>.
-<h3>Why does this happen?</h3>
+<h2>Why does this happen?</h2>
 Using this <a href="http://www.h-schmidt.net/FloatConverter/IEEE754.html" target="_blank" rel="noopener noreferrer">IEEE 754 converter</a> we have found out that:
 
 <strong>0.7</strong> is actually represented as <strong>0.699999988079071</strong>
@@ -82,7 +82,7 @@ The other example still shows 7 because <strong>0.6</strong> is actually represe
 </strong>
 
 &nbsp;
-<h3>But still ...</h3>
+<h2>But still ...</h2>
 If we use <strong>echo</strong> and <strong>var_dump</strong> or if applying mathematical operations, PHP automatically adjusts the values, but <strong>intval</strong> and casting to <strong>int</strong> work on their bits before the values were adjusted
 
 <code>

@@ -312,7 +312,7 @@
                     {% for post in posts %}
                         <a class="post-card" href="{{ url('page::blog-resource', {categorySlug: post.category.slug, slug: post.slug}) }}">
                             <div class="post-date">{{ post.postDate|date('M d, Y') }}</div>
-                            <h4>{{ post.title }}</h4>
+                            <h3>{{ post.title }}</h3>
                             <p>{{ post.excerpt }}</p>
                             <span class="read-more">Read more →</span>
                         </a>

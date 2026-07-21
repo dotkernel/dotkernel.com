@@ -46,13 +46,13 @@
 
 <h2>Setup</h2>
 
-<h4>Install package Mezzio CORS</h4>
+<h3>Install package Mezzio CORS</h3>
 
 <p class="mb-3">Run the following command in your application’s root directory:</p>
 
 <pre>composer require mezzio/mezzio-cors</pre>
 
-<h4>Register ConfigProvider</h4>
+<h3>Register ConfigProvider</h3>
 
 <p class="mb-3">Open your application’s&nbsp;<strong>config/config.php</strong>&nbsp;file and add the following lines to the <code>$aggregator</code> variable:</p>
 
@@ -60,7 +60,7 @@
 
 <p class="mb-3"><code>Mezzio\Cors\ConfigProvider::class,</code></p>
 
-<h4>Register Middleware</h4>
+<h3>Register Middleware</h3>
 
 <p class="mb-3">Open your application’s&nbsp;<strong>config/pipeline.php</strong>&nbsp;file and add the following line (preferrably between <em>ErrorHandlerInterface::class</em> and the handler/middleware that will return your response):</p>
 
@@ -70,7 +70,7 @@
 
 <p class="mb-3"><code>use Mezzio\Cors\Middleware\CorsMiddleware;</code></p>
 
-<h4>Create config file</h4>
+<h3>Create config file</h3>
 
 <p class="mb-3">Create and open file <strong>config/autoload/cors.local.php</strong> and add the following code inside it:</p>
 

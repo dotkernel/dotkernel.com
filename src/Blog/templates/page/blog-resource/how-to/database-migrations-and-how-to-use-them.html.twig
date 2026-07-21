@@ -30,7 +30,7 @@
 
             <article class="article">
                 <div class="entry">
-<h3>Migrations, the superhero your database deserves</h3>
+<h2>Migrations, the superhero your database deserves</h2>
 Migrations ease the process of working together on projects, as well as deploying the database changes.
 
 &nbsp;
@@ -42,7 +42,7 @@ This article assumes that you're familiar with the basic concepts of migrations,
 <strong>To recap the article above, a database migration in a change in the database schema.</strong>
 
 &nbsp;
-<h3>Benefits</h3>
+<h2>Benefits</h2>
 By using migrations and seeders, you ensure a better workflow for teams, as changes to the database no longer require convoluted messages. It also ensures that all team members use the same types with the same limits on each column, and someone doesn't have <em>VARCHAR(50)</em> while another has <em>VARCHAR(150).</em> <strong>It keeps the database synchronised throughout the team with minimal effort.</strong>
 
 When pushing to production, the deployment script will automatically run the migrations and keep the database schema in sync with the codebase.
@@ -50,13 +50,13 @@ When pushing to production, the deployment script will automatically run the mig
 <strong>It requires no manual SSH'ing into production servers and no risky manual changes to production databases.</strong>
 
 &nbsp;
-<h3>Getting started</h3>
+<h2>Getting started</h2>
 To setup migrations, simply follow the installation instructions in the package provided for DotKernel.
 After the package has been successfully setup, you're ready to go.
 To see the available commands, simply write "<em>php dot</em>" in a console that's located in your project root.
 
 &nbsp;
-<h3>How to use migrations in my project?</h3>
+<h2>How to use migrations in my project?</h2>
 Migrations are very easily adapted to any project.
 <ul>
      <li><em>Existing</em> projects should start by creating a new migration, and mirror the current database design in that file.
@@ -77,7 +77,7 @@ Migrations are very easily adapted to any project.
 Notice; Migrations are stored in version control, so whenever you pull an update, quickly run <em>php dot migrate</em>, as it will only ever migrate new files, and leave out the ones that have been run already.
 
 &nbsp;
-<h3>Seeders</h3>
+<h2>Seeders</h2>
 If you need to add some data to a table, e.g. adding a default admin profile on a fresh installation, this can be done via Seeders.
 
 <em>Migrations manage the database layouts, seeders add data to the database.</em>
@@ -102,7 +102,7 @@ Seeders are created the same way as migrations, and also benefits hugely from be
 </div>
 <div class="section-content">
 <div class="section-inner sectionLayout--insetColumn">
-<h3 class="graf graf--h3">Acknowledgements</h3>
+<h2 class="graf graf--h3">Acknowledgements</h2>
 <p class="graf graf--p">The images in the article shows screenshots from <a class="markup--anchor markup--p-anchor" href="https://www.mysql.com/products/workbench/" target="_blank" rel="noopener noreferrer">MySQL Workbench</a>, and the migration package used is <a class="markup--anchor markup--p-anchor" href="https://phinx.org/" target="_blank" rel="noopener noreferrer">Phinx</a></p>
 
 </div>

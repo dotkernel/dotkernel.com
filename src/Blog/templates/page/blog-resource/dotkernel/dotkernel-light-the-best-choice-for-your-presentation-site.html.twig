@@ -30,7 +30,7 @@
 
             <article class="article">
                 <div class="entry">
-<h1></h1>
+<h2></h2>
 
 <p class="mb-3"><strong>Dotkernel Light </strong>is a good starting point for a project if you want to have <strong>full control over the functionality </strong>it contains. It <strong>easily grows </strong>into something more complex with the integration of packages based on your requirements.</p>
 
@@ -74,7 +74,7 @@
 
 <p class="mb-3">In this article we explore how to use Dotkernel Light for a simple presentation site. We will mention what files to focus on to teach you how to add more pages of content to your site and how to manage their assets.</p>
 
-<h4>Adding new pages</h4>
+<h3>Adding new pages</h3>
 
 <p class="mb-3">The first step is to add the new pages in <code>src/Page/src/Controller/PageController.php</code>. This means adding an <code>Action</code> function for each page, as seen below.</p>
 
@@ -126,7 +126,7 @@
 
 <h2>Optional items</h2>
 
-<h4>Twitter and OpenGraph cards</h4>
+<h3>Twitter and OpenGraph cards</h3>
 
 <p class="mb-3">If you want to promote the pages on other platforms, a helpful item is the header section in the <code>src/App/templates/layout/default.html.twig</code> file. This is where the Twitter (X) and OpenGraph cards should be placed.</p>
 
@@ -157,7 +157,7 @@
 &lt;meta property="og:image" content="{{ url('home') }}images/app/My-image.png"/>
 &lt;meta property="og:description" content="Basic description"/></pre>
 
-<h4>Top menu</h4>
+<h3>Top menu</h3>
 
 <p class="mb-3">This menu is displayed on all of the pages, in the header. To edit it, go to <code>src/App/templates/layout/default.html.twig</code> and update the items under <code>id="navbarHeader"</code>. You can use the below as an example.</p>
 
@@ -175,7 +175,7 @@
 <blockquote><p class="mb-3">You can also replace the <code>nav-item</code> class for the <code>li</code> elements with <code>button-border</code> for a link that looks more like a button.</p>
 </blockquote>
 
-<h4>Footer</h4>
+<h3>Footer</h3>
 
 <p class="mb-3">To edit the footer on all of the pages, search for <code>&lt;footer class="app-footer"&gt;</code> in the <code>src/App/templates/layout/default.html.twig</code> template. We won't include an example here, since the content is usually basic <code>HTML</code> and <code>CSS</code> with <code>twig</code> elements already covered in this article.</p>
 

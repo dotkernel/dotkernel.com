@@ -9,7 +9,7 @@
     <meta property="og:image"        content="{{ meta.image ?? app.meta.image }}"/>
     <meta property="og:type"         content="{{ meta.type ?? app.meta.type }}"/>
     <meta property="og:site_name"    content="{{ app.meta.siteName }}"/>
-    <meta property="og:url"          content="{{ meta.url ?? app.meta.url }}"/>
+    <meta property="og:url"          content="{{ meta.url ?? url(routeName ?? null) }}"/>
     <meta property="og:locale"       content="{{ app.meta.locale }}"/>
 
     <meta name="twitter:card"        content="{{ app.meta.twitterCard }}"/>

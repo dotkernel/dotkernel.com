@@ -33,7 +33,7 @@
                                 <path d="M14 4v6h6"/>
                             </svg>
                             <span class="post-card-kicker">{{ article.category.name }}</span>
-                            <h4>{{ article.title }}</h4>
+                            <h2>{{ article.title }}</h2>
                             <p>{{ article.excerpt|length > 200 ? article.excerpt|slice(0, 200)|trim ~ '…' : article.excerpt }}</p>
                             <span class="post-card-meta">{{ article.author.name }} · {{ article.postDate|date('M d, Y') }}</span>
                             <span class="read-more">Read more →</span>

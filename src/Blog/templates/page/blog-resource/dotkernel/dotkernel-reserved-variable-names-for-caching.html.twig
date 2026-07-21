@@ -33,21 +33,21 @@
 This article is related to: <a title="DotKernel - Caching in DotKernel Using Zend Framework" href="http://www.dotkernel.com/dotkernel/caching-in-dotkernel-using-zend-framework" target="_blank" rel="noopener noreferrer">Caching in DotKernel with Zend Framework Cache</a>
 
 The variables that DotKernel cache are below:
-<h3>Router</h3>
+<h2>Router</h2>
 Router is the object that load routes (modules, controllers, actions) settings from router.xml file. More info about router: <a title="DotKernel - router.xml" href="http://www.dotkernel.com/docs/router-xml/" target="_blank" rel="noopener noreferrer">http://www.dotkernel.com/docs/router-xml/</a>
 
 The router is cached as <em><strong>router.</strong></em><!--more-->
-<h3>Auth / ACL Role<strong>
-</strong></h3>
+<h2>Auth / ACL Role<strong>
+</strong></h2>
 The object which authorizes user methods (aka Dot_Auth), used in all DotKernel Applications, Dot_Auth uses <em>/configs/acl/role.xml</em> to define the users rights.
 
 The <em>role.xml</em> file is cached as <em><strong>acl_role</strong>.</em>
-<h3>Menu</h3>
+<h2>Menu</h2>
 The menu.xml from current <em><strong>module</strong>(<a title="DotKernel - Module Structure" href="http://www.dotkernel.com/docs/module-structure/" target="_blank" rel="noopener noreferrer">what is a module?</a>)</em>
 More about menu.xml : <em><a title="DotKernel - Menu Xml" href="http://www.dotkernel.com/docs/menu-xml/" target="_blank" rel="noopener noreferrer">http://www.dotkernel.com/docs/menu-xml/</a></em>
 
 The menu is cached as <em><strong>admin_menu</strong></em>, <em><strong>frontend_menu</strong></em><strong>.</strong>
-<h3>Options</h3>
+<h2>Options</h2>
 The options are the ones found in /configs/dots/ and have the following naming format: <strong>option_MODULE_CONTROLLER</strong>.
 
 MODULE is the current module and CONTROLLER is the current controller or "seo", so the options cache entries will look like:
@@ -56,7 +56,7 @@ MODULE is the current module and CONTROLLER is the current controller or "seo", 
     <li>option_frontend_Page</li>
     <li>option_admin_seo (yes, seo is lowercase)</li>
 </ul>
-<h3>Browser &amp; OS</h3>
+<h2>Browser &amp; OS</h2>
 The browser.xml and os.xml are used to identify the Browser and OS name, icon, and type. Theese XML files are located in /configs/useragent/.
 
 Browser &amp; OS are cached as <em><strong>browser_xml </strong>and <strong>os_xml.</strong></em>

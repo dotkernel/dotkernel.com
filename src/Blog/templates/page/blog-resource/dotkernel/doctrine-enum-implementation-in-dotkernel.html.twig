@@ -38,7 +38,7 @@
 
 <p class="mb-3">The update introduces the detection of <code>enumType</code> and <code>options.values</code> from a property with <code>type: Types::ENUM</code>. <a rel="noreferrer noopener" href="https://github.com/doctrine/orm/pull/11666" target="_blank">This PR</a> discusses the update and links to several older relevant issues.</p>
 
-<h4><a href="#old-setup"></a>Old setup</h4>
+<h3><a href="#old-setup"></a>Old setup</h3>
 
 <pre>#
 class Card
@@ -53,7 +53,7 @@ class Card
     public Suit $suit;
 }</pre>
 
-<h4><a href="#new-setup"></a>New setup</h4>
+<h3><a href="#new-setup"></a>New setup</h3>
 
 <pre>#
 class Card
@@ -72,7 +72,7 @@ class Card
 
 <h2><a href="#dotkernels-approach"></a>Dotkernel's approach</h2>
 
-<h4><a href="#old-setup-1"></a>Old setup</h4>
+<h3><a href="#old-setup-1"></a>Old setup</h3>
 
 <p class="mb-3">Dotkernel uses flags for columns like <code>User-&gt;Status</code>, but we resorted to the simpler <code>string</code> type. The obvious disadvantage is that you can't definitively enforce a set of values for a given column. Sure, the PHP can be set up to only use the agrred upon set of values, but the database is independent from it. If you edit a value manually in the database, any string is accepted.</p>
 
@@ -103,7 +103,7 @@ public function setStatus(string $status): self
     $this->status = $status;
 }</pre>
 
-<h4><a href="#new-setup-1"></a>New setup</h4>
+<h3><a href="#new-setup-1"></a>New setup</h3>
 
 <p class="mb-3">Thanks to the update of <code>doctrine/orm</code> to version 3.2.0, Dotkernel can now have a proper link between the PHP code and database values. Now the link between the PHP code and the database is explicit and enforced.</p>
 

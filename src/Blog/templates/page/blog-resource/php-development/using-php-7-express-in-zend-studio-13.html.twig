@@ -35,9 +35,9 @@ This article will cover the steps needed in order to check the PHP7 compatibilit
 This article will also contain a compatibility issue check on the latest Zend Framework 1 version.
 
 <!--more-->
-<h3>What is PHP 7 Express?</h3>
+<h2>What is PHP 7 Express?</h2>
 PHP 7 Express is the newest feature added in Zend Studio (from version 13). This feature is very useful for checking if your pre-PHP7 code will work on a PHP7 server.
-<h3>The project creation</h3>
+<h2>The project creation</h2>
 If you already have the project backup and you are sure you can modify your project you can skip this step.
 
 If you want to create a new project for testing instead of modifying the original project make sure the PHP Version is set to PHP 5.6 or the PHP Version you use in the project. Choosing the PHP 7 option will hide the PHP 7 Express feature because Zend Studio assumes a PHP 7 project doesn't need compatibility checks, but if the project is using a different version of PHP compatibility issues might apper.
@@ -45,7 +45,7 @@ If you want to create a new project for testing instead of modifying the origina
 Long story short: Use the exact PHP version your project is using at the project creation.
 
 <a href="/uploads/2015/12/Screenshot-2015-12-22-16.21.56.png" rel="attachment wp-att-2900"><img src="{{ asset('uploads/article/' ~ article.id ~ '/Screenshot-2015-12-22-16.21.56.png') }}" alt="The New Local PHP Project dialog in Zend Studio 13 " width="613" height="548" class="img-fluid rounded my-2"></a> The "New Local PHP Project" dialog in Zend Studio 13 and the PHP version selection
-<h3>The 'PHP Interpreter' selection</h3>
+<h2>The 'PHP Interpreter' selection</h2>
 If the <strong>PHP 7 Express </strong>feature is won't show up the issue might be the <strong>PHP Interpreter </strong>selected.
 
 To check and modify the PHP Interpreter:
@@ -58,7 +58,7 @@ To check and modify the PHP Interpreter:
 <a href="/uploads/2015/12/zftest.png" rel="attachment wp-att-2902"><img src="{{ asset('uploads/article/' ~ article.id ~ '/zftest.png') }}" alt="Zend Studio PHP Interpreter Dialog" width="801" height="555" class="img-fluid rounded my-2"></a> Zend Studio PHP Interpreter Dialog
 
 The <strong>PHP 7 Express</strong> feature should now show up.
-<h3>Project preparation</h3>
+<h2>Project preparation</h2>
 As we created a local project named <strong>zend-framework-test</strong> we will add the latest Zend Framework 1 version in our project.
 <ul>
      <li>right click on the project</li>
@@ -68,7 +68,7 @@ As we created a local project named <strong>zend-framework-test</strong> we will
      <li>copy the <strong>Zend</strong> folder in your project's <strong>library</strong> folder</li>
      <li>if the Drag and Drop didn't work and you had to manually copy the folder in your project you can click the project folder in Zend Studio and just press <strong>F5</strong> (Refresh)</li>
 </ul>
-<h3>Using PHP 7 Express - Testing Zend Framework 1</h3>
+<h2>Using PHP 7 Express - Testing Zend Framework 1</h2>
 Now let's see <strong>PHP 7 Express</strong> in action. Using PHP 7 Express is very easy:
 <ul>
      <li>right-click the <strong>project,</strong> not a folder or a file because the feature won't show up</li>

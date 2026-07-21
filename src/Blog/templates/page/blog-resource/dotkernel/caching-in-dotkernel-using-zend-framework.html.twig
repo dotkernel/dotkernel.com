@@ -40,11 +40,11 @@ Because of that , we implemented in upcoming 1.8 version of DotKernel a cache la
 <!--more-->
 
 We are implementing 2 different cache factories to choose from: <strong>apc</strong> (or <strong>apcu</strong> for newest PHP installations) and <strong>file</strong>.
-<h3>1. Configuring the cache</h3>
+<h2>1. Configuring the cache</h2>
 The configuration can be set from /configs/application.ini, you can choose if you use the caching system, how long your cache stays valid, the cache namespace, and the storage provider (<strong>File</strong> or <strong>APC</strong>). I would disable the cache in development mode if I were you.
 
 For more info about the configuration and help configuring the cache see: <a title="DotKernel - Configuring the Cache in DotKernel" href="http://www.dotkernel.com/dotkernel/configuring-the-cache-in-dotkernel/" target="_blank" rel="noopener noreferrer">Configuring the Cache in DotKernel</a>.
-<h3>2. Using the Cache</h3>
+<h2>2. Using the Cache</h2>
 The cache is automatically loaded in the initialization and stored in the Registry.
 
 Loading the caching engine is not needed because it is already loaded on kernel initialization (<em>see <strong>Dot_Kernel</strong>::<strong>initialize</strong>($startTime)</em>)<em>,</em> but if you would like to use caching for other purposes (where you are not initializing the kernel), the loading syntax is the following:

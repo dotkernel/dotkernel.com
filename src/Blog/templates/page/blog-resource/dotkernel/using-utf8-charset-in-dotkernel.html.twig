@@ -33,13 +33,13 @@
 In order to use UTF8 encoding in your DotKernel based system, is needed to make some changes in both database structure and in the application.ini file.
 <blockquote class="blockquote border-start border-4 ps-3 text-muted my-3">Those changes are commited into <strong>DotKernel 1.6.0 dev</strong> codebase, which will be released in next days.</blockquote>
 <!--more-->
-<h3>Database</h3>
+<h2>Database</h2>
 set for all tables and columns proper collation , either <strong>utf8_general_ci</strong> or <strong>utf8_bin</strong>
-<h3>Application.ini</h3>
+<h2>Application.ini</h2>
 add the line
 <pre>>database.params.charset = utf8</pre>
 to your application.ini file, in the <strong></strong> area.
-<h3>Differences between utf8_general_ci and utf8_bin</h3>
+<h2>Differences between utf8_general_ci and utf8_bin</h2>
 <strong>utf8_bin</strong>: compare strings by the binary value of each character in the string
 <strong>utf8_general_ci</strong>: compare strings using general language rules and using case-insensitive comparisons
 

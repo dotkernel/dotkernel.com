@@ -54,7 +54,7 @@
 
 <p class="mb-3">There are more terms to cover, like <em>Mock servers</em>, <em>Monitors</em> etc but they are not relevant yet in our case.</p>
 
-<h4>Importing documentation files</h4>
+<h3>Importing documentation files</h3>
 
 <p class="mb-3">Open Postman (and log in if you have an account), then follow the below steps:</p>
 
@@ -73,7 +73,7 @@ NAME                 FORMAT                         IMPORT AS
 
 <p class="mb-3">For more information on importing files into Postman, please consult their <a rel="noreferrer noopener" href="https://learning.postman.com/docs/getting-started/importing-and-exporting-data/" data-type="URL" data-id="https://learning.postman.com/docs/getting-started/importing-and-exporting-data/" target="_blank">docs</a>.</p>
 
-<h4>Interacting with the environment</h4>
+<h3>Interacting with the environment</h3>
 
 <p class="mb-3">On the top right corner of Postman, you'll see the <strong>Environment quick look</strong> button (it looks like an eye). On it's left side, there's a dropdown with all available environments, one of the being called <code>DotKernel_API</code> - click on it to set it as the active environment.</p>
 
@@ -89,13 +89,13 @@ VARIABLE               INITIAL VALUE                CURRENT_VALUE
 
 <h2>Usage</h2>
 
-<h4>Creating a new request</h4>
+<h3>Creating a new request</h3>
 
 <p class="mb-3">Inside the collection, right-click on any folder and click <code>Add Request</code>. The new request is automatically opened in a new tab, where you will:</p>
 
 <ul><li>enter request name by replacing <em>New Request</em> with a short and descriptive name</li><li>enter request description (first button under the <strong>Environment quick look</strong> button)</li><li>enter request URL - you should use the already existing variable <code>APPLICATION_URL</code> by wrapping it in double curly braces, then append the request path. Example: <code>{{ APPLICATION_URL }}/test</code> becomes <code>http://localhost:8080/test</code> when you send the request.</li><li>select request method</li><li>(optionally) inspect tabs:<ul><li><strong>Params</strong>: manage query parameters</li><li><strong>Authorization</strong>: select authorization type</li><li><strong>Headers</strong>: manage request headers</li><li><strong>Body</strong>: manage request body</li><li><strong>Pre-request script</strong>: provide <em>JavaScript</em> that Postman should run before sending the request</li><li><strong>Tests</strong>: provide <em>JavaScript</em> that Postman should run after receiving the response</li><li><strong>Settings</strong>: manage miscellaneous request settings</li></ul></li><li>save the request using the <strong>Save</strong> button (or <code>Ctrl + S</code>)</li></ul>
 
-<h4>Sending a request</h4>
+<h3>Sending a request</h3>
 
 <p class="mb-3">Once opened, you can immediately send a request by clicking the <strong>Send</strong> button.</p>
 
@@ -105,7 +105,7 @@ VARIABLE               INITIAL VALUE                CURRENT_VALUE
 
 <p class="mb-3">The collection provided by DotKernel API 3 comes with some built-in security features. </p>
 
-<h4>Global security</h4>
+<h3>Global security</h3>
 
 <p class="mb-3">Due to the hierarchy of the Collection, all requests are children of the Collection's root folder, so they automatically inherit it's Authorization settings. If you edit the Collection's root folder, you will find the following tabs:</p>
 
@@ -115,7 +115,7 @@ VARIABLE               INITIAL VALUE                CURRENT_VALUE
 
 <p class="mb-3">To disable this feature at folder/request level, edit the folder/request and set <strong>Type</strong> to <code>No Auth</code> under the Authorization tab.</p>
 
-<h4>Automatic Token storage</h4>
+<h3>Automatic Token storage</h3>
 
 <p class="mb-3">Once an authorization token is re/generated, two environment variables are set/updated:</p>
 
@@ -129,11 +129,11 @@ VARIABLE               INITIAL VALUE                CURRENT_VALUE
 
 <p class="mb-3"><strong>TIP</strong>: You can inspect your application's documentation at any moment by clicking on the <em>three horizontal dots</em> (you will find them on hover next to your collection's name) then click on <strong>View documentation</strong>.</p>
 
-<h4>Exporting collection</h4>
+<h3>Exporting collection</h3>
 
 <p class="mb-3">Click on the same <em>three horizontal dots</em>, then select <strong>Export</strong>. You will be presented an <em>Export collection</em> modal asking you to choose the format of the export. Unless specified, choose the recommended version, then click <strong>Export</strong>. When asked to save the exported file, choose to overwrite your application's collection file (<em>documentaion/DotKernel_API.postman_collection.json</em>).</p>
 
-<h4>Export environment</h4>
+<h3>Export environment</h3>
 
 <p class="mb-3">This step is optional. It is needed only if you made modifications to the environment, else you can skip it.</p>
 

@@ -77,7 +77,7 @@
 
 <p class="mb-3">Each <strong>module </strong>(Admin, App, User) in DotKernel API contains a file named <strong>OpenAPI.php</strong>. In this file you must document <strong>all of the endpoints from RoutesDelegator.php</strong>. The entries in OpenAPI.php have several descriptive items, the most important being method, request and response. These are used to generate a documentation file from the command line. The static documentation file is rendered using Swagger UI or Redoc in a user-friendly way. You can read more about this <a href="https://docs.dotkernel.org/api-documentation/v5/openapi/introduction/" data-type="link" data-id="https://docs.dotkernel.org/api-documentation/v5/openapi/introduction/" target="_blank" rel="noreferrer noopener">starting here</a> and its subsequent pages.</p>
 
-<h4>Describing OpenAPI components</h4>
+<h3>Describing OpenAPI components</h3>
 
 <p class="mb-3">All OpenAPI components require a handful of components that are universally valid for a given project. These are below:</p>
 
@@ -113,11 +113,11 @@
 
 <p class="mb-3">Wherever it's appropriate, schemas should be used to ensure consistency. The optional 'tags' item can be used to group operations together. Read more <a href="https://docs.dotkernel.org/api-documentation/v5/openapi/initialized-components/" data-type="link" data-id="https://docs.dotkernel.org/api-documentation/v5/openapi/initialized-components/" target="_blank" rel="noreferrer noopener">here</a>.</p>
 
-<h4>Generating the documentation</h4>
+<h3>Generating the documentation</h3>
 
 <p class="mb-3">The documentation is generated using <a href="https://github.com/zircote/swagger-php" data-type="link" data-id="https://github.com/zircote/swagger-php" target="_blank" rel="noreferrer noopener">zircote/swagger-php</a>. It uses the descriptions you added in the OpenAPI.php files to build the documentation file. The documentation contents can be <strong>listed in the command line </strong>or <strong>saved to a file </strong>in yaml of json format. You can read more <a href="https://docs.dotkernel.org/api-documentation/v5/openapi/generate-documentation/" data-type="link" data-id="https://docs.dotkernel.org/api-documentation/v5/openapi/generate-documentation/" target="_blank" rel="noreferrer noopener">here</a>.</p>
 
-<h4>Alternatives for rendering the documentation</h4>
+<h3>Alternatives for rendering the documentation</h3>
 
 <p class="mb-3">Once you have the documentation generated, it can be rendered in two ways:</p>
 
@@ -126,7 +126,7 @@
 <li><strong>Redoc</strong> lists the documentation in read-only mode, detailing example requests and responses.</li>
 </ul>
 
-<h4>Handling authentication for Swagger UI</h4>
+<h3>Handling authentication for Swagger UI</h3>
 
 <p class="mb-3">Most endpoints for your API should be protected, so to access them you are required to generate an <strong>authentication token</strong> (AuthToken). The token is related to the user type, so make sure to check the <strong>privileges required for the endpoint</strong> you are testing. After you submit the token, you can test the endpoints as an authenticated user. Clicking on the 'Try it out' button will activate the required parameter input fields and the textarea for the request body. The 'Execute' button will send the request and return the response. along with its HTTP status code. You can read more details <a href="https://docs.dotkernel.org/api-documentation/v5/openapi/use-documentation/" data-type="page" data-id="149" target="_blank" rel="noreferrer noopener">here</a>.</p>
 
