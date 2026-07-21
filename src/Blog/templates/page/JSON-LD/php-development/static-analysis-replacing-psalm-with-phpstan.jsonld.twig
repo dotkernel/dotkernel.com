@@ -1,27 +1,53 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
-        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-        "headline": "{{ article.title }}",
-        "description": "{{ article.excerpt }}",
-        "datePublished": "{{ article.postDate|date('c') }}",
-        "dateModified": "{{ article.postDate|date('c') }}",
-        "articleSection": "{{ article.category.name }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ article.author.name }}",
-            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ absolute_url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ absolute_url('/') }}" },
+                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}" },
+                    { "@type": "ListItem", "position": 3, "name": {{ article.title|json_encode|raw }} }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "mainEntity": [
+                    { "@type": "Question", "name": "What is static analysis and why is it used?", "acceptedAnswer": { "@type": "Answer", "text": "Static analysis (or source code analysis) applies coding rules to debug source code before a program is run. It's used to catch and fix type-related errors, confirm coding standards, identify code that needs refactoring, and enhance security by detecting issues like code injection, XSS, and open redirect vulnerabilities." } },
+                    { "@type": "Question", "name": "Why did Dotkernel switch from Psalm to PHPStan?", "acceptedAnswer": { "@type": "Answer", "text": "Dotkernel had used Psalm with positive results, but much of the PHP community, including projects like Doctrine and Composer, moved to PHPStan instead. Since the two tools have largely identical findings, using both wasn't justified, and PHPStan has a faster growing ecosystem, better social media presence, a fulltime contributor (@ondrejmirtes), PHP stubs from PHPStorm, and better quality and depth of detection." } },
+                    { "@type": "Question", "name": "What are the main steps to migrate a project from Psalm to PHPStan?", "acceptedAnswer": { "@type": "Answer", "text": "Remove vimeo/psalm from composer.json and add phpstan/phpstan, phpstan/phpstan-doctrine and phpstan/phpstan-phpunit, replace the \"static-analysis\" composer script with \"phpstan analyse --memory-limit 1G\", run composer update, delete psalm-baseline.xml and psalm.xml, then add a .github/workflows/static-analysis.yml workflow and a phpstan.neon configuration file." } },
+                    { "@type": "Question", "name": "What does the phpstan.neon configuration file do in this setup?", "acceptedAnswer": { "@type": "Answer", "text": "It includes the phpstan-doctrine and phpstan-phpunit extensions, sets the analysis rule level (level 5 in the example), specifies the paths to scan (src and test), sets treatPhpDocTypesAsCertain to false, and can list ignoreErrors patterns to suppress specific known findings." } },
+                    { "@type": "Question", "name": "How do you run the PHPStan checks, and what if you hit a memory error?", "acceptedAnswer": { "@type": "Answer", "text": "Run composer static-analysis, which is configured to call vendor/bin/phpstan analyse --memory-limit 1G (higher than PHP's default 128M). If you still see \"PHPStan process crashed because it reached configured PHP memory limit,\" try increasing the memory limit further, e.g. to 2G or 4G." } }
+                ]
             }
-        }
+        ]
     }
 </script>

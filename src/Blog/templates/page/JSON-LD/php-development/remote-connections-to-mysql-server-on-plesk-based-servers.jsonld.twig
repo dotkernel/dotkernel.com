@@ -1,27 +1,52 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
-        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-        "headline": "{{ article.title }}",
-        "description": "{{ article.excerpt }}",
-        "datePublished": "{{ article.postDate|date('c') }}",
-        "dateModified": "{{ article.postDate|date('c') }}",
-        "articleSection": "{{ article.category.name }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ article.author.name }}",
-            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ absolute_url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ absolute_url('/') }}" },
+                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}" },
+                    { "@type": "ListItem", "position": 3, "name": {{ article.title|json_encode|raw }} }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "mainEntity": [
+                    { "@type": "Question", "name": "Why can't I connect remotely to MySQL on a Plesk-based server?", "acceptedAnswer": { "@type": "Answer", "text": "By default, MySQL servers on Linux machines with Plesk installed have the old_passwords flag set to 1 (ON). Even on MySQL 5.5+, this means the old, pre-4.1 password storage style is still used, which causes a PDOException error when connecting remotely." } },
+                    { "@type": "Question", "name": "What error message indicates this old-passwords problem?", "acceptedAnswer": { "@type": "Answer", "text": "You get a fatal error mentioning \"cannot connect to MySQL 4.1+ using the old insecure authentication,\" suggesting you reset the password using SET PASSWORD = PASSWORD('your_existing_password') to store a newer, more secure hash." } },
+                    { "@type": "Question", "name": "How do you fix the old-passwords issue?", "acceptedAnswer": { "@type": "Answer", "text": "Create a new database user (e.g. someuser) from the command line, grant it privileges on the target database, then run: SET old_passwords = 0; UPDATE mysql.user SET Password = PASSWORD('somepassword') WHERE User = 'someuser' limit 1; SELECT LENGTH(Password) FROM mysql.user WHERE User = 'someuser'; FLUSH PRIVILEGES;. You can then connect remotely using that user and password." } },
+                    { "@type": "Question", "name": "How can you tell the fix worked by looking at the mysql.user table?", "acceptedAnswer": { "@type": "Answer", "text": "If you browse the mysql.user table, you'll notice the password field for the fixed user (someuser) contains many more characters than the password fields for the other, unfixed users." } }
+                ]
             }
-        }
+        ]
     }
 </script>

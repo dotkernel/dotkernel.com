@@ -1,27 +1,53 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
-        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-        "headline": "{{ article.title }}",
-        "description": "{{ article.excerpt }}",
-        "datePublished": "{{ article.postDate|date('c') }}",
-        "dateModified": "{{ article.postDate|date('c') }}",
-        "articleSection": "{{ article.category.name }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ article.author.name }}",
-            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ absolute_url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ absolute_url('/') }}" },
+                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}" },
+                    { "@type": "ListItem", "position": 3, "name": {{ article.title|json_encode|raw }} }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "mainEntity": [
+                    { "@type": "Question", "name": "Why did mobile detection change in DotKernel 1.6.0?", "acceptedAnswer": { "@type": "Answer", "text": "Because of the new Wurfl Cloud integration. This version no longer ships with a working built-in method for mobile detection, so it must be configured first." } },
+                    { "@type": "Question", "name": "What are the steps to configure Wurfl Cloud detection?", "acceptedAnswer": { "@type": "Answer", "text": "Go to the scientiamobile website and register for a Wurfl Cloud account, choose the device_os and mobile_browser capabilities for the account and save, then go to API Keys and copy the key into application.ini." } },
+                    { "@type": "Question", "name": "Why choose the device_os and mobile_browser capabilities specifically?", "acceptedAnswer": { "@type": "Answer", "text": "With these two capabilities, DotKernel's built-in methods can also derive extra capabilities such as isMobile, isSmartPhone, isIphone, isAndroid, isBlackberry, isSymbian, and isWindowsMobile. Choosing other capabilities from scientiamobile results in wrong detection of these extra capabilities." } },
+                    { "@type": "Question", "name": "What happened to the old Dot_UserAgent_Wurfl class?", "acceptedAnswer": { "@type": "Answer", "text": "It was removed and replaced with the new Dot_UserAgent_WurflCloud class, which uses the Wurfl Cloud API adapter." } },
+                    { "@type": "Question", "name": "What does the redirect setting in application.ini control?", "acceptedAnswer": { "@type": "Answer", "text": "When resources.useragent.wurflcloud.redirect is TRUE (the default), visitors from the frontend are redirected to the mobile module the first time a mobile device is detected." } }
+                ]
             }
-        }
+        ]
     }
 </script>
