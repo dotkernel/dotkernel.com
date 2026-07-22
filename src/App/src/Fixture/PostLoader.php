@@ -117,7 +117,7 @@ class PostLoader extends Fixture implements DependentFixtureInterface
                         $changed = true;
                     }
 
-                    echo ($changed ? "UPDATE: {$title}\n" : "UNCHANGED: {$title}\n");
+                    echo $changed ? "UPDATE: {$title}\n" : "UNCHANGED: {$title}\n";
                 }
             }
         }

@@ -68,7 +68,7 @@ class AuthorLoader extends Fixture
                         $changed = true;
                     }
 
-                    echo ($changed ? "UPDATE: {$name}\n" : "UNCHANGED: {$name}\n");
+                    echo $changed ? "UPDATE: {$name}\n" : "UNCHANGED: {$name}\n";
                 }
 
                 $this->addReference('author_' . $wpAuthorId, $author);
