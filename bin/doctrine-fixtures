@@ -33,6 +33,6 @@ $executor = new ORMExecutor($entityManager, $purger);
 
 echo "Loading fixtures from: {$fixturesPath}\n";
 
-$executor->execute($loader->getFixtures());
+$executor->execute($loader->getFixtures(), true);
 
 echo "Fixtures loaded successfully!\n";
