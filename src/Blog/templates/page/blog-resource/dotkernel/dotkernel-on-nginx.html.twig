@@ -76,6 +76,35 @@ location ~ ^/configs/ {
     <li>And walla, site is running on Nginx       <a title="Nginx DotKernel" href="http://nginx.dotkernel.net/" target="_blank" rel="noopener noreferrer">http://nginx.dotkernel.net/</a>
 <em>Admin login is disabled due to security reason.</em></li>
 </ol>
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>What server stack was used to test Dotkernel on Nginx? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">A clean CentOS 6.3 VPS running Nginx 1.4.1, PHP 5.4.16, and PHP-FPM, with the APC and GeoIP PHP modules installed.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What is the Nginx equivalent of the main .htaccess file? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">The directive try_files $uri $uri/ /index.php;, which sends all requests to the index.php file.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How is the configs folder protected from web access in Nginx? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">By adding a location block matching ^/configs/ that returns deny all;.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How was the DotKernel codebase deployed onto the server? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">It was exported directly from SVN using svn export --force http://v1.dotkernel.net/svn/trunk/ /var/www/html.</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

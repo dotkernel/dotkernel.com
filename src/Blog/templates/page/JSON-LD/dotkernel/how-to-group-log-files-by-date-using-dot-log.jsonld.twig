@@ -1,27 +1,54 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
-        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-        "headline": "{{ article.title }}",
-        "description": "{{ article.excerpt }}",
-        "datePublished": "{{ article.postDate|date('c') }}",
-        "dateModified": "{{ article.postDate|date('c') }}",
-        "articleSection": "{{ article.category.name }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ article.author.name }}",
-            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ absolute_url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ absolute_url('/') }}" },
+                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}" },
+                    { "@type": "ListItem", "position": 3, "name": {{ article.title|json_encode|raw }} }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "mainEntity": [
+                    { "@type": "Question", "name": "What does dot-log Version 3.1.1 add?", "acceptedAnswer": { "@type": "Answer", "text": "Version 3.1.1 adds the ability to use datetime formatter strings directly in the stream option of your log writer, and it fixes an issue where caching dot-log configs caused logs to be written to the same file instead of being grouped by date." } },
+                    { "@type": "Question", "name": "How do I make sure I'm using the fix in Version 3.1.1?", "acceptedAnswer": { "@type": "Answer", "text": "Make sure you're using the latest version of dot-log by running composer update dotkernel/dot-log." } },
+                    { "@type": "Question", "name": "Do I need to change anything if my logs are already written to a single static file?", "acceptedAnswer": { "@type": "Answer", "text": "No. If your application logs messages in a single file with a static name (e.g. log/dk.log), you can skip the rest of the article - logging will work as before." } },
+                    { "@type": "Question", "name": "How do I group log files by date when using DotKernel?", "acceptedAnswer": { "@type": "Answer", "text": "In config/autoload/error-handling.global.php, locate every log writer by navigating to dot_log->loggers->default_logger->writers and replace a stream value like sprintf('%s/../../log/error-log-%s.log', __DIR__, date('Y-m-d')) with __DIR__ . '/../../log/error-log-{Y}-{m}-{d}.log'." } },
+                    { "@type": "Question", "name": "How do I group log files by date without DotKernel?", "acceptedAnswer": { "@type": "Answer", "text": "In your dot-log config (e.g. /config/autoload/log.global.php), locate every writer under dot_log->loggers->my_logger->writers and replace a dynamic stream value such as sprintf('%s/../../log/dk-%s.log', __DIR__, date('Y-m-d')) with a formatter string like __DIR__ . '/../../log/error-log-{Y}-{m}-{d}.log'." } },
+                    { "@type": "Question", "name": "What must I do after changing the stream configuration?", "acceptedAnswer": { "@type": "Answer", "text": "Clear the config cache. In a DotKernel application, run php bin/clear-config-cache.php; in a non-DotKernel setup, make sure you clear your application's config before usage." } }
+                ]
             }
-        }
+        ]
     }
 </script>

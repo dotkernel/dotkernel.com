@@ -53,6 +53,41 @@ For more details, see  <a title=http://www.dotkernel.com/changelog/1-2-0/" href
 
 <em>
 </em>
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>What is a "dots" in DotKernel, a term introduced in this release? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">A term for a submodule and all its component files. For example, "user" is a dots of the frontend module, and one dots can belong to multiple modules, such as "user" belonging to both frontend and admin.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Where are dots configuration values stored, compared to earlier versions? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">They're stored in XML files inside the configs/dots folder. In previous versions, these values were hard-coded in the PHP files.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What dots does the admin module include by default? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">admin, user, and system, to make it easier to start an application from DotKernel.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What library classes were added or updated in 1.2.0? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Dot_Geoip and Dot_Seo were newly implemented, while Dot_Curl and Dot_Session were updated, with each module now having its own session.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How are SQL queries written in DotKernel? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">All SQL queries are written as prepared statements, a practice the article strongly encourages.</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

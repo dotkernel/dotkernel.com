@@ -136,6 +136,41 @@
 </ul>
 
 <p class="mb-3">Next on the menu is to implement these changes in the DotKernel Frontend live projects and process the feedback.</p>
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>What update adds PHP 8.3 support to Dotkernel Frontend? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">The DotKernel team updated the Frontend application to version 4.2.0 so it can take advantage of PHP 8.3 support in the newest packages.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Which PHP versions does Dotkernel Frontend 4.2.0 support? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Version 4.2.0 supports only PHP 8.2 and PHP 8.3. Support for PHP 8.1 was removed, similar to the earlier Admin update.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What changed with caching in this update? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">The no-longer-available PhpFileCache class is no longer supported until a replacement is implemented. The related parameters were removed from configuration files, including removing the use Doctrine\Common\Cache\PhpFileCache; statement and the configuration and cache parameters in doctrine.global.php.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What npm and Node.js versions are recommended for this update? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Alongside updated npm dependencies in packagist.json, it is recommended to use npm v10.0.4 and Node.js v20.11.0.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Where can I find the full list of file changes for this update? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">The full list of file changes is linked in the article, pointing to the corresponding pull request on the Dotkernel Frontend GitHub repository.</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

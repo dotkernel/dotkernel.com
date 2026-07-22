@@ -54,6 +54,47 @@ For more details see:
 <a href="http://ezinearticles.com/?SQL-Injection-Protection-in-PHP-With-PDO&amp;id=1815110" target="_blank" rel="noopener noreferrer">http://ezinearticles.com/?SQL-Injection-Protection-in-PHP-With-PDO&amp;id=1815110</a>
 
 <a href="http://www.zend.com/webinar/Framework/70170000000bEs9-webinar-secure-application-development-with-the-ZF-20100505.flv" target="_blank" rel="noopener noreferrer">http://www.zend.com/webinar/Framework/70170000000bEs9-webinar-secure-application-development-with-the-ZF-20100505.flv</a>
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>What is SQL injection? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">SQL injection is a technique that exploits a security vulnerability occurring in the database layer of an application. Usually, user input is not filtered by the script and is passed directly into a SQL statement.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What is PDO and what kind of abstraction does it provide? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">PDO (PHP Data Objects) is a database access layer providing a standardized method of access to multiple databases. It provides a data-access abstraction layer, meaning you apply the same functions to issue queries and fetch data regardless of which database you're using. However, PDO does not provide a database abstraction - it doesn't rewrite SQL or emulate missing database features.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What are the benefits of using PDO? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Among the benefits are: access methods that allow complete control over how attributes are read and written, validation on a per-record and per-attribute level, easier fetching of objects from related tables, reusable logic that makes the codebase easier to maintain, cleaner code through object-oriented programming, fewer errors from SQL query generation, and protection against SQL injection.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Does using prepared statements in Zend Framework fully protect against SQL injection? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Not entirely. Zend Framework's database access methods usually support prepared statements, which are encouraged because they handle escaping parameters for you, but dynamic SQL queries are still allowed and any parameters must be escaped manually or SQL injection becomes possible. Many people believe prepared statements offer 100% protection, but this isn't true - input data should always be validated and sanitized, with PDO treated as another line of defense. PDO also does not protect against other vulnerabilities such as XSS (cross-site scripting).</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Why can PDO_MySQL be riskier than traditional MySQL usage, and how can this be avoided? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Traditional MySQL allows only a single SQL query at a time, but PDO_MySQL has no such limitation, meaning there is more risk of being injected with multiple queries. To avoid this, you should use the correct prepared statements from Zend Framework, and pay particular attention to WHERE IN and ORDER BY clauses, since they aren't normally handled correctly by prepared statements - in these cases you should escape the data yourself.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What escaping methods does Zend_Db provide? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Zend_Db has two escaping methods that can be used: quote() and quoteIdentifier(). Both of these methods handle strings by putting them between single quotes.</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

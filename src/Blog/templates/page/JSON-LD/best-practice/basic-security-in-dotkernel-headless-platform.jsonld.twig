@@ -1,27 +1,96 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
-        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-        "headline": "{{ article.title }}",
-        "description": "{{ article.excerpt }}",
-        "datePublished": "{{ article.postDate|date('c') }}",
-        "dateModified": "{{ article.postDate|date('c') }}",
-        "articleSection": "{{ article.category.name }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ article.author.name }}",
-            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ absolute_url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ absolute_url('/') }}" },
+                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}" },
+                    { "@type": "ListItem", "position": 3, "name": {{ article.title|json_encode|raw }} }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "What are the main facets of software security to consider?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Software security spans many areas: authentication and access control, data protection, input validation and injection, web and API security, dependency and supply chain risks, configuration and deployment, network and infrastructure security, logging/monitoring and incident response, secure software development lifecycle, and human and organizational factors."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "How does Dotkernel handle form input validation?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Dotkernel API uses laminas/laminas-inputfilter to ensure a field is present and of the correct type. Dotkernel Admin additionally uses laminas/laminas-form, which provides form element objects, an InputFilter for each input (or custom validators), and methods for binding data to and from the form, integrating with laminas-escaper, laminas-validator, laminas-session, and laminas-filter."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "How does Dotkernel API handle content negotiation?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Content negotiation is handled via a middleware configured in the config/autoload/content-negotiation.global.php file. It uses the Content-Type and Accept HTTP request headers to negotiate with the client, returning application/json or application/hal+json data formats."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "How is CORS handled and configured in Dotkernel API?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "CORS is handled by mezzio/mezzio-cors and configured in the config/autoload/cors.local.php file, validating calls using configuration items like origins, headers, max age, and credentials. When configuring the pipeline, the CorsMiddleware must be added before the RouteMiddleware."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "What should be done with the demo credentials before going to production?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Demo credentials are provided for convenience during installation testing, but it is important to update or remove these accounts in your production environment."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "What are the security recommendations around OpenAPI documentation?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "You should not include sensitive information for your endpoints in the OpenAPI documentation, and you should not enable the documentation in a production environment."
+                        }
+                    }
+                ]
             }
-        }
+        ]
     }
 </script>

@@ -1,27 +1,53 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
-        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-        "headline": "{{ article.title }}",
-        "description": "{{ article.excerpt }}",
-        "datePublished": "{{ article.postDate|date('c') }}",
-        "dateModified": "{{ article.postDate|date('c') }}",
-        "articleSection": "{{ article.category.name }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ article.author.name }}",
-            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ absolute_url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ absolute_url('/') }}" },
+                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}" },
+                    { "@type": "ListItem", "position": 3, "name": {{ article.title|json_encode|raw }} }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "mainEntity": [
+                    { "@type": "Question", "name": "Why did Dotkernel Light switch from controllers to handlers?", "acceptedAnswer": { "@type": "Answer", "text": "Dotkernel Light switched to PSR-15 handlers instead of dotkernel/dot-controller (which isn't going away, but is no longer used here). Since the request can be filtered or augmented by the time it reaches custom code in a middleware architecture, handlers split the code into more manageable chunks and a cleaner file structure, and make an application's functionality easier to figure out." } },
+                    { "@type": "Question", "name": "What naming pattern is used for the new PSR-15 handlers?", "acceptedAnswer": { "@type": "Answer", "text": "A naming pattern was devised that highlights the method, resource, and action for each handler file, so file names reflect their functionality at a glance, making navigation and onboarding easier." } },
+                    { "@type": "Question", "name": "Why was Vite adopted instead of webpack?", "acceptedAnswer": { "@type": "Answer", "text": "Vite replaces webpack as the static modules bundler, concatenating and compressing .css and .js files and preprocessing .scss files into .css. It was configured to work similarly to webpack for developers using Light, and was chosen for its easier dependency management, execution speed, and its recommendation by the PHP community." } },
+                    { "@type": "Question", "name": "Why was Psalm replaced with PHPStan?", "acceptedAnswer": { "@type": "Answer", "text": "Both Psalm and PHPStan are respected, widely-used static analysis tools with similar functionality, but growing interest and improved detection quality led Dotkernel to follow other big names in the PHP ecosystem and switch to PHPStan, which is configured to run at rule level 8 to help prevent bugs and write better code." } },
+                    { "@type": "Question", "name": "What other smaller updates were made to Dotkernel Light?", "acceptedAnswer": { "@type": "Answer", "text": "Other updates include adding support for PHP 8.4, enabling PHPStan and Qodana to run for PHP 8.4, cleaning up the error configuration file, updating laminas/laminas-coding-standard to its latest major version, updating composer.json dependencies and removing obsolete items, implementing a more reliable and efficient post-install script, and removing dotkernel/dot-twigrenderer in favor of a direct implementation of mezzio/mezzio-twigrenderer." } }
+                ]
             }
-        }
+        ]
     }
 </script>

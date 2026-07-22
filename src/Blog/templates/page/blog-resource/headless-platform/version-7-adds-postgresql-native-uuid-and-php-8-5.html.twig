@@ -71,6 +71,41 @@
 
 <li>How to switch to another database connection.</li>
 </ul>
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>What new features does Dotkernel API v7 introduce? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">v7 adds support for UUID v7 using the native UUID data type, support for PostgreSQL, support for PHP 8.5 (API) and 8.4 (Admin), support for a database table prefix, improved database configuration, and replaces the binary data type for id (index) columns in favor of uuid.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What features were removed in v7? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">v7 removes the Evolution pattern's support for Method Deprecation, and drops support for MySQL, primarily because MySQL doesn't support UUID as a data type.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What package generates the UUIDs, and why? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Dotkernel uses the ramsey/uuid package to generate the UUID before storing it in the database. This gives full control over the UUID version in use, so the application doesn't depend on extensions or a particular database version.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Which databases support the UUID data type required by v7? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">You must use PostgreSQL or MariaDB v10.7 or later to have support for the UUID data type.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What else changed alongside the move to native UUID? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Table columns previously named <code>uuid</code> have been renamed to <code>id</code>. The database configuration was also clarified so it's more obvious which connection is the default and how to switch to another database connection.</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

@@ -1,27 +1,54 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
-        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-        "headline": "{{ article.title }}",
-        "description": "{{ article.excerpt }}",
-        "datePublished": "{{ article.postDate|date('c') }}",
-        "dateModified": "{{ article.postDate|date('c') }}",
-        "articleSection": "{{ article.category.name }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ article.author.name }}",
-            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ absolute_url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ absolute_url('/') }}" },
+                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}" },
+                    { "@type": "ListItem", "position": 3, "name": {{ article.title|json_encode|raw }} }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "mainEntity": [
+                    { "@type": "Question", "name": "Do I need to manually include or require Composer dependencies in DotKernel?", "acceptedAnswer": { "@type": "Answer", "text": "No. Composer automatically loads dependencies, so there is no need to include or require them yourself." } },
+                    { "@type": "Question", "name": "What example does the article use to demonstrate Composer dependencies?", "acceptedAnswer": { "@type": "Answer", "text": "The article renders a Barcode using Zend Framework 1 as the Non-Namespaced dependency (installed with composer require 'zendframework/zendframework1') and Zend Framework 2 as the Namespaced dependency (installed with composer require 'zendframework/zend-barcode')." } },
+                    { "@type": "Question", "name": "When can these Composer dependencies be used in the application?", "acceptedAnswer": { "@type": "Answer", "text": "These dependencies can be used anywhere after the Dot_Kernel::initialize() function has been called." } },
+                    { "@type": "Question", "name": "How are non-namespaced (Zend Framework 1) classes loaded compared to namespaced (Zend Framework 2) classes?", "acceptedAnswer": { "@type": "Answer", "text": "Non-namespaced ZF1 classes are loaded PSR-0 style, meaning the class name looks like VendorName_PackageName_ClassName (e.g. Zend_Barcode). Namespaced ZF2 classes are loaded PSR-4 style, meaning the class name looks like \\VendorName\\PackageName\\ClassName (e.g. Zend\\Barcode\\Barcode)." } },
+                    { "@type": "Question", "name": "Can the same code work for both namespaced and non-namespaced barcode dependencies?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. If you add \"use Zend\\Barcode\\Barcode as Zend_Barcode;\" as the first line, the ZF1-style example will work for both, and you can then reference the module as Zend\\Barcode\\Barcode, Barcode, or Zend_Barcode." } },
+                    { "@type": "Question", "name": "What DotKernel and PHP versions does this article apply to?", "acceptedAnswer": { "@type": "Answer", "text": "This article works for any DotKernel 1.x version if your server is running PHP greater than 5.4.0." } }
+                ]
             }
-        }
+        ]
     }
 </script>

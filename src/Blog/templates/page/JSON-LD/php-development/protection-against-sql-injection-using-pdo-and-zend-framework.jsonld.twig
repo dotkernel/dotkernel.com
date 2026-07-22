@@ -1,27 +1,54 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
-        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-        "headline": "{{ article.title }}",
-        "description": "{{ article.excerpt }}",
-        "datePublished": "{{ article.postDate|date('c') }}",
-        "dateModified": "{{ article.postDate|date('c') }}",
-        "articleSection": "{{ article.category.name }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ article.author.name }}",
-            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ absolute_url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ absolute_url('/') }}" },
+                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}" },
+                    { "@type": "ListItem", "position": 3, "name": {{ article.title|json_encode|raw }} }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "mainEntity": [
+                    { "@type": "Question", "name": "What is SQL injection?", "acceptedAnswer": { "@type": "Answer", "text": "SQL injection is a technique that exploits a security vulnerability occurring in the database layer of an application. Usually, user input is not filtered by the script and is passed directly into a SQL statement." } },
+                    { "@type": "Question", "name": "What is PDO and what kind of abstraction does it provide?", "acceptedAnswer": { "@type": "Answer", "text": "PDO (PHP Data Objects) is a database access layer providing a standardized method of access to multiple databases. It provides a data-access abstraction layer, meaning you apply the same functions to issue queries and fetch data regardless of which database you're using. However, PDO does not provide a database abstraction - it doesn't rewrite SQL or emulate missing database features." } },
+                    { "@type": "Question", "name": "What are the benefits of using PDO?", "acceptedAnswer": { "@type": "Answer", "text": "Among the benefits are: access methods that allow complete control over how attributes are read and written, validation on a per-record and per-attribute level, easier fetching of objects from related tables, reusable logic that makes the codebase easier to maintain, cleaner code through object-oriented programming, fewer errors from SQL query generation, and protection against SQL injection." } },
+                    { "@type": "Question", "name": "Does using prepared statements in Zend Framework fully protect against SQL injection?", "acceptedAnswer": { "@type": "Answer", "text": "Not entirely. Zend Framework's database access methods usually support prepared statements, which are encouraged because they handle escaping parameters for you, but dynamic SQL queries are still allowed and any parameters must be escaped manually or SQL injection becomes possible. Many people believe prepared statements offer 100% protection, but this isn't true - input data should always be validated and sanitized, with PDO treated as another line of defense. PDO also does not protect against other vulnerabilities such as XSS (cross-site scripting)." } },
+                    { "@type": "Question", "name": "Why can PDO_MySQL be riskier than traditional MySQL usage, and how can this be avoided?", "acceptedAnswer": { "@type": "Answer", "text": "Traditional MySQL allows only a single SQL query at a time, but PDO_MySQL has no such limitation, meaning there is more risk of being injected with multiple queries. To avoid this, you should use the correct prepared statements from Zend Framework, and pay particular attention to WHERE IN and ORDER BY clauses, since they aren't normally handled correctly by prepared statements - in these cases you should escape the data yourself." } },
+                    { "@type": "Question", "name": "What escaping methods does Zend_Db provide?", "acceptedAnswer": { "@type": "Answer", "text": "Zend_Db has two escaping methods that can be used: quote() and quoteIdentifier(). Both of these methods handle strings by putting them between single quotes." } }
+                ]
             }
-        }
+        ]
     }
 </script>

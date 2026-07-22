@@ -95,6 +95,41 @@
 <li>They guarantee a future-proof system using the best practices recommended by the PHP community.</li>
 </ul>
 
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>What is Dotkernel Admin? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Dotkernel Admin is a fully-functional, independent application that lives in its own separate repository. It's built on the same Mezzio + Laminas foundation as Dotkernel API and includes a built-in UI with authentication, user management and a web interface.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How do I install Dotkernel Admin? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Install it via Git into the folder of your choice with <code>git clone https://github.com/dotkernel/admin.git .</code>, then follow the step-by-step installation guide to configure the database credentials and run the migrations and fixtures that create and populate the database. Be sure to change the default credentials before going to production.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What features does Dotkernel Admin include out of the box? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">It ships with Role-Based Access Control powered by <code>dot-rbac</code> and <code>dot-rbac-guard</code> to manage permissions, routes and handler-level security; OpenAPI annotations in each module for documented and testable admin endpoints; and frontend tooling built on Twig and NodeJS/NPM, including build and watch scripts for JavaScript/CSS bundling.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What modules make up Dotkernel Admin's architecture? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">The file architecture is modular, featuring an Admin module that manages administrator users, an App module that houses core functions like authentication and error reporting, and a Setting module that stores and manages display or application settings for various report pages.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How do Dotkernel API and Admin work together? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">The REST API serves JSON endpoints for clients, services and mobile apps, while the Admin UI is a web-based interface that communicates with the database via its own endpoints to manage data, users and settings. Both share a unified tech stack - Mezzio, Laminas components, Doctrine ORM and PHP FIG's PSR standards - plus shared modules like authentication and <code>dot-rbac</code>, which keeps backend and admin tooling consistent and lets fewer developers manage both codebases.</p>
+        </div>
+    </details>
+</div>
+
 <h2><a href="#additional-resources"></a>Additional Resources</h2>
 
 <ul><li><a href="https://docs.dotkernel.org/admin-documentation/" target="_blank" rel="noreferrer noopener">Dotkernel Admin full documentation</a></li>

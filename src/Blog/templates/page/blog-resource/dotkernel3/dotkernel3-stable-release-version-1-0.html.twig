@@ -43,23 +43,21 @@ admin -&gt; <a target="_blank" href="https://packagist.org/packages/dotkernel/ad
 <!--more-->
 
 If your project is a DotKernel 3 instance (based on expressive 2), you can migrate your project to Zend Expressive 3 by following <a href="https://www.dotkernel.com/dotkernel3/migrating-dotkernel-3-from-zend-expressive-2-to-zend-expressive-3/" target="_blank" rel="noopener noreferrer">this guide</a>.
-
-&nbsp;
-<h4>What's new</h4>
+<h2>What's new</h2>
 <ul>
      <li>Runs on Zend Stratigility / Zend Expressive 3.0</li>
      <li>Middleware is now PSR-15 compliant</li>
      <li>PHP &gt;=7.1 Support</li>
 </ul>
 &nbsp;
-<h4>Changes</h4>
+<h2>Changes</h2>
 <ul>
      <li>No functional changes were made in the core code</li>
      <li>If your middleware code is based on the <strong>dotkernel</strong>/<strong>dot-controller</strong> package no middleware migration is needed</li>
      <li>If your middleware code is based on the <strong>http-interop/http-middleware</strong> migration must be made to implement interfaces in <strong>psr/http-server-middleware</strong></li>
 </ul>
 &nbsp;
-<h4>Packages Updated</h4>
+<h2>Packages Updated</h2>
 <ul>
      <li>dotkernel/dot-authentication-service:^1.0</li>
      <li>dotkernel/dot-authentication-web:^1.0.1</li>
@@ -83,7 +81,7 @@ If your project is a DotKernel 3 instance (based on expressive 2), you can migra
      <li>dotkernel/dot-twigrenderer:^1.1</li>
      <li>dotkernel/dot-user:^1.0</li>
 </ul>
-<h4>Zend Packages (support) Updated</h4>
+<h2>Zend Packages (support) Updated</h2>
 <ul>
      <li>psr/http-server-middleware:^1.0</li>
      <li>psr/http-server-handler:^1.0</li>
@@ -98,11 +96,46 @@ If your project is a DotKernel 3 instance (based on expressive 2), you can migra
      <li>zendframework/zend-component-installer:^2.0</li>
 </ul>
 &nbsp;
-<h4>Packages Removed</h4>
+<h2>Packages Removed</h2>
 <ul>
      <li>http-interop/http-middleware</li>
      <li>webimpress/http-middleware-compatibility</li>
 </ul>
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>What is the headline change in this stable release? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">DotKernel was updated to support Zend Expressive 3 alongside PSR-15 middleware, with the core packages updated to support PSR-15 Middleware, making both frontend and admin easier to migrate.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What are the new component versions in this release? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">frontend 1.0.0 and admin 1.0.1.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What PHP version does this release require? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">PHP &gt;= 7.1.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Do you need to migrate your middleware code for this release? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">If your middleware code is based on the dotkernel/dot-controller package, no migration is needed. If it's based on http-interop/http-middleware, you must migrate it to implement the interfaces in psr/http-server-middleware.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What packages were removed in this release? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">http-interop/http-middleware and webimpress/http-middleware-compatibility.</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

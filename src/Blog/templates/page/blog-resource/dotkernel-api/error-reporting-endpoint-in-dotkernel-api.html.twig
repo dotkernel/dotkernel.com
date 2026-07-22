@@ -30,13 +30,13 @@
 
             <article class="article">
                 <div class="entry">
-<h1></h1>
+<h2></h2>
 
 <p class="mb-3">Dotkernel API has received a lot of love from our developers, with regular updates to the platform for years. We use Dotkernel API in our projects, so any bugs and issues are addressed as soon as they are found. Still, it's not unlikely that some hidden issues remain in fringe use cases that we simply haven't explored. The occurrence of bugs increases when the API is used in a complex frontend project.</p>
 
 <p class="mb-3">Fatal errors are easily found in the API logs, but it's another matter altogether to deal with incorrect data processing that doesn't generate errors in the frontend that interfaces with the API. The error reporting endpoint was designed to allow the <strong>frontend developers</strong> of your API to report any bugs they encounter in a secure way that is fully under your control.</p>
 
-<h4>Example case usage</h4>
+<h2>Example case usage</h2>
 
 <ul><li>Frontend developed in Angular.</li>
 
@@ -47,7 +47,7 @@
 
 <p class="mb-3">Error reporting is done by sending a <strong>POST</strong> request to the <code>/error-report</code> endpoint, together with a <strong>token</strong> in the header. In the sections below we will detail how to configure error reporting in your API and how the endpoint is used by the frontend developers.</p>
 
-<h4>Generating a token and adding it to your API config</h4>
+<h3>Generating a token and adding it to your API config</h3>
 
 <p class="mb-3">First you need to generate a token for your request. This is done by using the below command.</p>
 
@@ -62,7 +62,7 @@
     ]
 ]</pre>
 
-<h4>Validation mechanism</h4>
+<h3>Validation mechanism</h3>
 
 <p class="mb-3">Behind the scenes, the API validates your configuration and lets you know if any config items prevent the submission of the error report. Below are the requirements for an application to be able to send error messages to Dotkernel API.</p>
 
@@ -97,7 +97,7 @@
 
 <p class="mb-3">If your request passes all the checks, the message is saved in the log file specified in <code>ErrorReportServiceInterface::class</code> . <code>path</code>.</p>
 
-<h5>Tips and tricks</h5>
+<h3>Tips and tricks</h3>
 
 <p class="mb-3">If there are multiple applications that report errors to your API, you can <strong>assign a different error reporting token</strong> for each. The tokens support key-value pairs where:</p>
 

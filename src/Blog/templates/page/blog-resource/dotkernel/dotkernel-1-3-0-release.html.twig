@@ -67,6 +67,35 @@ Some xml files from configs folder have been changed to encompass the current ne
 For more details see <a href="../changelog/1-3-0/">ChangeLog 1.3.0</a>.
 
 <strong>Note*</strong>: because of the bug <span style="text-decoration: line-through;"><a title=" reorganization of XMl files" href="http://www.dotkernel.net/view.php?id=69">69</a></span>, this release is not compatible with the previous versions. To see what else has changed, check <a href="http://www.dotkernel.net/">DotKernel Tracker</a> or <a href="http://websvn.dotkernel.net/listing.php?repname=DotKernel">DotKernel WebSVN</a>.
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>What is new in the admin interface in DotKernel 1.3.0? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">1.3.0 adds a skin switcher for the admin, with several ready-made skins (blue, brown, gray, green) that can be set via the settings.admin.skin configuration value.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How do I protect a page so only logged-in members can access it? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Add the line Dot_Auth::checkIdentity(); in the controller file above the code you want to protect - everything below that line requires the visitor to be logged in.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What happened to resource.xml in this release? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">resource.xml was deleted and its content split between two new files, route.xml and dots.xml.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Is DotKernel 1.3.0 backward compatible with earlier versions? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">No. Because of the XML file reorganization (bug 69), 1.3.0 is not compatible with previous versions.</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

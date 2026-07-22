@@ -152,6 +152,41 @@
 <p class="mb-3"></p>
 
 <p class="mb-3">The DotKernel team is focused on the cache that has been removed in the current version because <em>doctrine/cache </em>deleted their cache implementation classes. We are also updating our existing projects to PHP 8.3 and testing the changes on live environments to iron out any other issues.</p>
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>Which Dotkernel Admin release added PHP 8.3 support? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Release 4.3.1.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Which PHP versions does this release support? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Only PHP 8.2 and PHP 8.3 - support for PHP 8.1 was removed, including from the workflows.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Did the logAdminVisit function change? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Yes. src/Admin/src/Service/AdminService.php's logAdminVisit function was updated and no longer returns AddressNotFoundException.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Why were cache-related parameters removed from the configuration files? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">The PhpFileCache class and its related parameters were removed from local.php.dist (local.php) and doctrine.global.php because doctrine/cache deleted their cache implementation classes.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Are there side effects from updating the dot-twigrenderer dependencies? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Yes. doctrine/doctrine-module was removed because of a conflict, which means other packages that depended on it - such as doctrine/doctrine-laminas-hydrator, laminas-cache-storage-adapter-filesystem, laminas-cache-storage-adapter-memory, laminas-mvc and laminas-paginator - may no longer get installed, so you should check whether your project actually relies on them.</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

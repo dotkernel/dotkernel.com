@@ -1,27 +1,53 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
-        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-        "headline": "{{ article.title }}",
-        "description": "{{ article.excerpt }}",
-        "datePublished": "{{ article.postDate|date('c') }}",
-        "dateModified": "{{ article.postDate|date('c') }}",
-        "articleSection": "{{ article.category.name }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ article.author.name }}",
-            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ absolute_url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ absolute_url('/') }}" },
+                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}" },
+                    { "@type": "ListItem", "position": 3, "name": {{ article.title|json_encode|raw }} }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "mainEntity": [
+                    { "@type": "Question", "name": "What is GeoIP and what does it let DotKernel do?", "acceptedAnswer": { "@type": "Answer", "text": "GeoIP is MaxMind's proprietary technology for IP geolocation data. DotKernel uses it to get user statistics by country, determining a visitor's country, region, city, postal code, or area code in real time." } },
+                    { "@type": "Question", "name": "Where does the GeoIP logic live in DotKernel?", "acceptedAnswer": { "@type": "Answer", "text": "In library/Dot/Geoip.php, inside the getCountryByIp function." } },
+                    { "@type": "Question", "name": "What does getCountryByIp do when the mod_geoip PECL extension isn't installed?", "acceptedAnswer": { "@type": "Answer", "text": "It falls back to the existing externals/geoip/GeoIP.dat file bundled with DotKernel (downloadable from MaxMind if not present)." } },
+                    { "@type": "Question", "name": "What happens when mod_geoip is installed and GeoIP.dat exists?", "acceptedAnswer": { "@type": "Answer", "text": "It uses the built-in PHP functions geoip_country_code_by_name and geoip_country_name_by_name to get the country code and name." } },
+                    { "@type": "Question", "name": "What if GeoIP.dat is missing but GeoIPCity.dat exists, or neither file exists?", "acceptedAnswer": { "@type": "Answer", "text": "If GeoIPCity.dat exists, it uses the PHP function geoip_record_by_name to get the country code and name. If neither .dat file exists, it behaves the same as when mod_geoip isn't installed, falling back to externals/geoip/GeoIP.dat." } }
+                ]
             }
-        }
+        ]
     }
 </script>

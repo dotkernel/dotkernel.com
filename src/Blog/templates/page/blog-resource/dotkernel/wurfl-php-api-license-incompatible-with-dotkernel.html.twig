@@ -48,6 +48,29 @@ But we must keep <a href="http://www.dotkernel.com" target="_blank" rel="noopene
 &nbsp;
 
 <em>later edit: the correct link to announcement is <strong><a href="http://tech.groups.yahoo.com/group/wmlprogramming/message/34031" target="_blank" rel="noopener noreferrer">here </a></strong></em>
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>Why did the WURFL PHP API license become incompatible with DotKernel? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">The WURFL PHP API used to be licensed under GNU/GPL, compatible with both Zend Framework's new BSD license and DotKernel's OSL 3.0 license. On June 6th, 2011, version 1.3.0 of the library changed its license to AGPL, turning it into a "trial only" library for product evaluation, which is incompatible with keeping DotKernel free.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Which version introduced the license change, and when? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Version 1.3.0 of the WURFL PHP API, released June 6th, 2011, changed the license from GNU/GPL to AGPL. DotKernel had updated to this version in its 1.5.0 release candidate without noticing the license change.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What did DotKernel do in response to the license change? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">DotKernel planned to remove WURFL PHP API version 1.3.0 from its codebase and reintegrate version 1.2.1, which was still GNU/GPL. It also intended to keep contributing to the free WURFL XML data, and considered forking the 1.2.1 library and renaming it to avoid trademark issues.</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

@@ -1,27 +1,53 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
-        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-        "headline": "{{ article.title }}",
-        "description": "{{ article.excerpt }}",
-        "datePublished": "{{ article.postDate|date('c') }}",
-        "dateModified": "{{ article.postDate|date('c') }}",
-        "articleSection": "{{ article.category.name }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ article.author.name }}",
-            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ absolute_url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ absolute_url('/') }}" },
+                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}" },
+                    { "@type": "ListItem", "position": 3, "name": {{ article.title|json_encode|raw }} }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "mainEntity": [
+                    { "@type": "Question", "name": "Why did DotKernel need a workaround for this package?", "acceptedAnswer": { "@type": "Answer", "text": "An analysis found that an upstream package, matomo/device-detector, was licensed under LGPL v3, which requires developers to share their derivative code publicly. Since DotKernel's own projects use the MIT license, and the more restrictive license would have to apply to the whole application, this conflicted with contractual obligations to keep client code business and enterprise friendly." } },
+                    { "@type": "Question", "name": "Where was the LGPL v3 package being used?", "acceptedAnswer": { "@type": "Answer", "text": "The matomo/device-detector package was used in DotKernel's dot-user-agent-sniffer package to identify the user agent and use the results in internal reports." } },
+                    { "@type": "Question", "name": "What solution did DotKernel adopt?", "acceptedAnswer": { "@type": "Answer", "text": "DotKernel decided to discard the use of third-party packages licensed under LGPL v3. All of DotKernel's own packages are licensed under MIT, which has no restrictions on the source code other than keeping the license and copyright notice in a file within each package. Other non-restrictive licenses considered acceptable include Apache-2.0, BSD-2-Clause, BSD-3-Clause, ISC, MPL-2.0 and OSL-3.0." } },
+                    { "@type": "Question", "name": "What changed in dot-user-agent-sniffer as a result?", "acceptedAnswer": { "@type": "Answer", "text": "Starting with version 3.4.0, the dotkernel/dot-user-agent-sniffer package must follow the LGPL v3 license. The admin application will not use the features from matomo/device-detector, but will contain instructions for developers who intend to add the package themselves." } },
+                    { "@type": "Question", "name": "Is it still risky to use an older version of dot-user-agent-sniffer?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Any application using dotkernel/dot-user-agent-sniffer with a version lower than 3.4.0 is still a legal liability. DotKernel will not include dot-user-agent-sniffer in any of its applications by default for now, while it looks into bringing back the device detector functionality under a less restrictive license in the future." } }
+                ]
             }
-        }
+        ]
     }
 </script>

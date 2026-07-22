@@ -1,27 +1,96 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
-        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-        "headline": "{{ article.title }}",
-        "description": "{{ article.excerpt }}",
-        "datePublished": "{{ article.postDate|date('c') }}",
-        "dateModified": "{{ article.postDate|date('c') }}",
-        "articleSection": "{{ article.category.name }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ article.author.name }}",
-            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ absolute_url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ absolute_url('/') }}" },
+                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}" },
+                    { "@type": "ListItem", "position": 3, "name": {{ article.title|json_encode|raw }} }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "Why is the team considering a switch from Postman to Bruno?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "They want a reliable API testing client that is free, stores and shares endpoint collections easily with the team, and is fast and secure. This reflects a broader trend in the PHP community toward local-first, Git-native developer tools."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "What is the main architectural difference between Postman and Bruno?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Postman's free plan now only allows one user account, while Bruno offers a fully-offline experience based on shared .bru files, so there is no restriction on the number of developers using them."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "How does version control differ between the two tools?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Postman stores collections and handles version control in the cloud, forcing developers to stay online (though collections can be exported/imported via its UI). Bruno's .bru files can be saved directly in a Git repository and are version-controlled through Git like any other project file."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "How does performance compare between Postman and Bruno?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Bruno is the clear winner on performance: it uses much less RAM and is generally faster. Postman needs to regularly synchronize with the cloud and store its advanced features in RAM, which can introduce delays."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Is Bruno more secure than Postman?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Postman offers Single Sign-On (SSO) and Role-Based Access Control (RBAC), which the team doesn't find useful for its workflow. Bruno's local files never leave the dev environment, which the article argues makes it more secure, especially for avoiding sharing client files with online tools."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "What's the overall conclusion on Postman versus Bruno?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Postman is currently a better fit for larger teams willing to allocate a budget for a more feature-rich platform. Bruno stores collections in Git so everything works offline, which the team considers more secure while also being generally faster, and it has become their de facto API client."
+                        }
+                    }
+                ]
             }
-        }
+        ]
     }
 </script>

@@ -30,13 +30,13 @@
 
             <article class="article">
                 <div class="entry">
-<h1>What is cross origin token redemption?</h1>
+<h2>What is cross origin token redemption?</h2>
 
 <p class="mb-3">Cross-origin token redemption is a technique used to ensure the security and authenticity of a token that is issued by one website or domain, but intended for use on a different website or domain. This process is commonly used in situations where a user needs to access resources from multiple domains, such as when a user is logged in to one website and needs to access resources from another website.</p>
 
 <p class="mb-3">When a token is issued from one domain, it is typically encrypted and signed to prevent tampering and ensure that it can only be used by the intended recipient. When the token is redeemed on a different domain, the receiving domain must first verify the authenticity of the token by checking the signature and decrypting the token.</p>
 
-<h4><strong>JSON Web Token (JWT)</strong></h4>
+<h3><strong>JSON Web Token (JWT)</strong></h3>
 
 <p class="mb-3">One common method of cross-origin token redemption is to use the JWT standard. JWTs are a compact, URL-safe means of representing claims to be transferred between two parties. They consist of three parts:</p>
 
@@ -49,11 +49,40 @@
 
 <p class="mb-3">In order to redeem a JWT on a different domain, the receiving domain must first verify the signature using the algorithm specified in the header and the secret key that was used to sign the token. Once the signature is verified, the domain can then read the claims from the payload to determine if the user is authorized to access the requested resources.</p>
 
-<h4><strong>OAuth 2.0</strong></h4>
+<h3><strong>OAuth 2.0</strong></h3>
 
 <p class="mb-3">Another method of cross-origin token redemption is to use the OAuth 2.0 standard. OAuth 2.0 is an open standard for authorization that enables a third-party application to obtain limited access to an HTTP service. In this method, when a user is logged in to one website and wants to access resources from another website, the first website will redirect the user to the second website and pass a token. The second website will then validate the token and provide the user with access to the requested resources.</p>
 
 <p class="mb-3">In summary, cross-origin token redemption is a technique used to ensure the security and authenticity of a token that is issued by one website or domain, but intended for use on a different website or domain. This is achieved by verifying the signature of the token and decrypting it and by using standards like JWT or OAuth 2.0.</p>
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>What is cross-origin token redemption? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">It is a technique used to ensure the security and authenticity of a token that is issued by one website or domain but intended for use on a different website or domain, commonly used when a user needs to access resources from multiple domains.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What are the three parts of a JSON Web Token (JWT)? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">A JWT consists of a header (information about the token, including the signing algorithm), a payload (the claims, i.e. the pieces of information the token conveys), and a signature (used to verify the token has not been tampered with).</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How does a receiving domain verify a JWT? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">The receiving domain first verifies the signature using the algorithm specified in the header and the secret key used to sign the token, then reads the claims from the payload to determine if the user is authorized to access the requested resources.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How does OAuth 2.0 handle cross-origin token redemption? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">OAuth 2.0 is an open standard for authorization enabling a third-party application limited access to an HTTP service. When a user logged in to one website wants to access resources on another, the first website redirects the user to the second and passes a token, which the second website validates before granting access.</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

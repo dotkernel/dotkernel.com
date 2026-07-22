@@ -32,7 +32,7 @@
                 <div class="entry">
                     <p>This article is a guide on how to add a CORS implementation on an existing DotKernel3 project.</p>
 
-                    <h3>The issue</h3>
+                    <h2>The issue</h2>
                     <p>If you're facing this message:</p>
                     <p>"Access to XMLHttpRequest at 'url' has been blocked by cors policy. No 'Access-Control-Allow-Origin header is present on the requested resource."</p>
                     <p>It means the server didn't sent the header that lets you access its data through a local client (eg.: browser).</p>
@@ -47,13 +47,13 @@
                     <p>A simple implementation would be using <a rel="noreferrer noopener" href="https://packagist.org/packages/tuupola/cors-middleware" target="_blank">Tuupola's Cors Middleware</a> package.</p>
                     <p>This article was inspired by: <a href="https://akrabat.com/implementing-tuupola-cors-in-expressive/" target="_blank" rel="noreferrer noopener">akrabat.com/implementing-tuupola-cors-in-expressive</a></p>
 
-                    <h4>Adding the package to your project</h4>
+                    <h3>Adding the package to your project</h3>
                     <p>Run the following command in your project:</p>
                     <pre><code>composer require tuupola/cors-middleware</code></pre>
                     <p>At the time writing this article the current package version is: 0.9.4.</p>
                     <p>Follow the next steps to get your Zend Expressive or DotKernel3 project <strong>CORS friendly</strong>.</p>
 
-                    <h4>Create the CORS config file</h4>
+                    <h3>Create the CORS config file</h3>
                     <p>Create a <strong>cors.global.php</strong> file in the config/autoload directory.</p>
                     <pre><code>return [
     'cors' => [
@@ -68,7 +68,7 @@
 ];</code></pre>
                     <p>We'll come back at this file to register the CORS middleware.</p>
 
-                    <h4>Creating a factory for the middleware</h4>
+                    <h3>Creating a factory for the middleware</h3>
                     <p>The factory should look like the one below.</p>
                     <p>The code below extracts de config from the <strong>cors</strong> key if provided or initializes an empty array and instantiates the <strong>Tuupola CORS middleware</strong>.</p>
                     <pre><code>&lt;?php
@@ -86,7 +86,7 @@ class CorsMiddlewareFactory
     }
 }</code></pre>
 
-                    <h4>Registering the CORS middleware</h4>
+                    <h3>Registering the CORS middleware</h3>
                     <p>Back at <strong>cors.global.php</strong> we will register the cors middleware so our custom implemented factory will be used to create the middleware. (basic config example below)</p>
                     <pre><code>&lt;?php
 
@@ -109,7 +109,7 @@ return [
     ]
 ];</code></pre>
 
-                    <h4>Final step: Adding (registering) the CorsMiddleware in the pipeline</h4>
+                    <h3>Final step: Adding (registering) the CorsMiddleware in the pipeline</h3>
                     <p>In this last step we only need to add the CorsMiddleware in config/pipelines.php</p>
                     <pre><code>// don't forget the use statement
 use Tuupola\Middleware\CorsMiddleware;
@@ -121,6 +121,41 @@ return function (Application $app, MiddlewareFactory $factory, ContainerInterfac
 };</code></pre>
                     <p>Add the cors middleware <strong>after</strong> the Error handler and <strong>before</strong> the middleware providing the data you want to access to make sure everything runs smoothly.</p>
                     <p>This should get your project working with CORS.</p>
+
+                    <h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+                    <div class="faq-list">
+                        <details class="acc" open>
+                            <summary>What causes the "No 'Access-Control-Allow-Origin' header" error? <span class="chev">+</span></summary>
+                            <div class="acc-body">
+                                <p class="mb-0">It means the server didn't send the header that lets a local client, such as a browser, access its data. This is most common when trying to fetch data (usually JSON) that you want to process using JavaScript.</p>
+                            </div>
+                        </details>
+                        <details class="acc">
+                            <summary>What package does the article use to add CORS support? <span class="chev">+</span></summary>
+                            <div class="acc-body">
+                                <p class="mb-0">Tuupola's Cors Middleware package, installed by running <code>composer require tuupola/cors-middleware</code> in the project.</p>
+                            </div>
+                        </details>
+                        <details class="acc">
+                            <summary>Where does the CORS configuration live? <span class="chev">+</span></summary>
+                            <div class="acc-body">
+                                <p class="mb-0">In a <strong>cors.global.php</strong> file created in the config/autoload directory, containing a "cors" key with settings like origin, methods, headers.allow, headers.expose, credentials, and cache.</p>
+                            </div>
+                        </details>
+                        <details class="acc">
+                            <summary>How is the CorsMiddleware wired into the container? <span class="chev">+</span></summary>
+                            <div class="acc-body">
+                                <p class="mb-0">A CorsMiddlewareFactory extracts the "cors" config array (or an empty array if it's not provided) and instantiates Tuupola's CorsMiddleware with it. That factory is then registered under the "dependencies" > "factories" section of cors.global.php.</p>
+                            </div>
+                        </details>
+                        <details class="acc">
+                            <summary>Where should the CORS middleware be added in the pipeline? <span class="chev">+</span></summary>
+                            <div class="acc-body">
+                                <p class="mb-0">In config/pipelines.php via <code>$app-&gt;pipe(CorsMiddleware::class)</code>, placed after the Error handler and before the middleware that provides the data you want to access.</p>
+                            </div>
+                        </details>
+                    </div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

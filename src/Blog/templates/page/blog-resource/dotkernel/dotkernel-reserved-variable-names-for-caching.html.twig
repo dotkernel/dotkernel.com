@@ -33,21 +33,21 @@
 This article is related to: <a title="DotKernel - Caching in DotKernel Using Zend Framework" href="http://www.dotkernel.com/dotkernel/caching-in-dotkernel-using-zend-framework" target="_blank" rel="noopener noreferrer">Caching in DotKernel with Zend Framework Cache</a>
 
 The variables that DotKernel cache are below:
-<h3>Router</h3>
+<h2>Router</h2>
 Router is the object that load routes (modules, controllers, actions) settings from router.xml file. More info about router: <a title="DotKernel - router.xml" href="http://www.dotkernel.com/docs/router-xml/" target="_blank" rel="noopener noreferrer">http://www.dotkernel.com/docs/router-xml/</a>
 
 The router is cached as <em><strong>router.</strong></em><!--more-->
-<h3>Auth / ACL Role<strong>
-</strong></h3>
+<h2>Auth / ACL Role<strong>
+</strong></h2>
 The object which authorizes user methods (aka Dot_Auth), used in all DotKernel Applications, Dot_Auth uses <em>/configs/acl/role.xml</em> to define the users rights.
 
 The <em>role.xml</em> file is cached as <em><strong>acl_role</strong>.</em>
-<h3>Menu</h3>
+<h2>Menu</h2>
 The menu.xml from current <em><strong>module</strong>(<a title="DotKernel - Module Structure" href="http://www.dotkernel.com/docs/module-structure/" target="_blank" rel="noopener noreferrer">what is a module?</a>)</em>
 More about menu.xml : <em><a title="DotKernel - Menu Xml" href="http://www.dotkernel.com/docs/menu-xml/" target="_blank" rel="noopener noreferrer">http://www.dotkernel.com/docs/menu-xml/</a></em>
 
 The menu is cached as <em><strong>admin_menu</strong></em>, <em><strong>frontend_menu</strong></em><strong>.</strong>
-<h3>Options</h3>
+<h2>Options</h2>
 The options are the ones found in /configs/dots/ and have the following naming format: <strong>option_MODULE_CONTROLLER</strong>.
 
 MODULE is the current module and CONTROLLER is the current controller or "seo", so the options cache entries will look like:
@@ -56,12 +56,47 @@ MODULE is the current module and CONTROLLER is the current controller or "seo", 
     <li>option_frontend_Page</li>
     <li>option_admin_seo (yes, seo is lowercase)</li>
 </ul>
-<h3>Browser &amp; OS</h3>
+<h2>Browser &amp; OS</h2>
 The browser.xml and os.xml are used to identify the Browser and OS name, icon, and type. Theese XML files are located in /configs/useragent/.
 
 Browser &amp; OS are cached as <em><strong>browser_xml </strong>and <strong>os_xml.</strong></em>
 
 <strong><span style="color: #ff0000;">Note: Be careful when changing the xml files / values to be cached as they remain cached. If there is no effect that means you must clear the cache or rewrite that value in cache.</span></strong>
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>What cache key is used for the router? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">The router, which loads routes settings from router.xml, is cached as router.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What cache key stores the ACL role definitions? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">The role.xml file (used by Dot_Auth, from /configs/acl/role.xml, to define user rights) is cached as acl_role.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How is the menu cached? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">The menu.xml from the current module is cached as admin_menu and frontend_menu.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What naming pattern do cached options use? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">option_MODULE_CONTROLLER, where MODULE is the current module and CONTROLLER is the current controller or "seo" — for example option_admin_Admin, option_frontend_Page, and option_admin_seo (seo is lowercase).</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What happens if you change browser.xml, os.xml, or other cached config files? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">The change won't take effect on its own, since values like browser_xml and os_xml remain cached — you must clear the cache or rewrite that value in cache to see the change take effect.</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

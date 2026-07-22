@@ -47,6 +47,29 @@
 <p class="mb-3"></p>
 
 <p class="mb-3"></p>
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>When was the PEAR channel for Zend Framework 1 created? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">The unofficial PEAR channel for Zend Framework 1 (pear.dotkernel.com) was created in 2016, at a time when PEAR was still used a lot.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Why is the PEAR channel for Zend Framework 1 being sunset? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Because it's a pain to upgrade PEAR to work with PHP 8, the channel had to be sunset.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What other reason is given for sunsetting the channel? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">The channel was running on an LXC container with CentOS 7, which doesn't work on the latest Proxmox version, and upgrading to AlmaLinux was too much of a pain.</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

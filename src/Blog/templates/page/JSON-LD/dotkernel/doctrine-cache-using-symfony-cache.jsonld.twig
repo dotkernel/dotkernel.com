@@ -1,27 +1,54 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
-        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-        "headline": "{{ article.title }}",
-        "description": "{{ article.excerpt }}",
-        "datePublished": "{{ article.postDate|date('c') }}",
-        "dateModified": "{{ article.postDate|date('c') }}",
-        "articleSection": "{{ article.category.name }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ article.author.name }}",
-            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ absolute_url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ absolute_url('/') }}" },
+                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}" },
+                    { "@type": "ListItem", "position": 3, "name": {{ article.title|json_encode|raw }} }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "mainEntity": [
+                    { "@type": "Question", "name": "What component does this article use for caching Doctrine data?", "acceptedAnswer": { "@type": "Answer", "text": "The dotkernel/dot-cache component, a wrapper that sits on top of symfony/cache. It's installed with composer require dotkernel/dot-cache and registered by adding DotCacheConfigProvider::class to the configuration aggregate." } },
+                    { "@type": "Question", "name": "What storage adapters does dot-cache currently support?", "acceptedAnswer": { "@type": "Answer", "text": "Two: array, which stores data in-memory and is the fastest option but uses more RAM, and filesystem, which stores data in local disk files and is slightly slower but more persistent." } },
+                    { "@type": "Question", "name": "What are the four types of Doctrine cache covered?", "acceptedAnswer": { "@type": "Answer", "text": "result_cache, metadata_cache, query_cache, and hydration_cache, each configured under the doctrine.configuration.orm_default key." } },
+                    { "@type": "Question", "name": "What does the result cache do?", "acceptedAnswer": { "@type": "Answer", "text": "It stores the results of queries, letting Doctrine avoid querying the database or hydrating the data again after the initial retrieval." } },
+                    { "@type": "Question", "name": "Why cache class metadata?", "acceptedAnswer": { "@type": "Answer", "text": "Because parsing class metadata on every request is inefficient, so it's advisable to cache it using one of the available cache adapters." } },
+                    { "@type": "Question", "name": "How do you mark an entity or a query as cacheable?", "acceptedAnswer": { "@type": "Answer", "text": "To enable caching for entities you add a caching attribute to the entity class; to cache an individual query, call setCacheable(true) on the query builder before getResult()." } }
+                ]
             }
-        }
+        ]
     }
 </script>

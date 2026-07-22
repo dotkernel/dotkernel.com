@@ -1,27 +1,53 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
-        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-        "headline": "{{ article.title }}",
-        "description": "{{ article.excerpt }}",
-        "datePublished": "{{ article.postDate|date('c') }}",
-        "dateModified": "{{ article.postDate|date('c') }}",
-        "articleSection": "{{ article.category.name }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ article.author.name }}",
-            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ absolute_url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ absolute_url('/') }}" },
+                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}" },
+                    { "@type": "ListItem", "position": 3, "name": {{ article.title|json_encode|raw }} }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "mainEntity": [
+                    { "@type": "Question", "name": "What causes the \"No 'Access-Control-Allow-Origin' header\" error?", "acceptedAnswer": { "@type": "Answer", "text": "It means the server didn't send the header that lets a local client, such as a browser, access its data. This is most common when trying to fetch data (usually JSON) that you want to process using JavaScript." } },
+                    { "@type": "Question", "name": "What package does the article use to add CORS support?", "acceptedAnswer": { "@type": "Answer", "text": "Tuupola's Cors Middleware package, installed by running composer require tuupola/cors-middleware in the project." } },
+                    { "@type": "Question", "name": "Where does the CORS configuration live?", "acceptedAnswer": { "@type": "Answer", "text": "In a cors.global.php file created in the config/autoload directory, containing a \"cors\" key with settings like origin, methods, headers.allow, headers.expose, credentials, and cache." } },
+                    { "@type": "Question", "name": "How is the CorsMiddleware wired into the container?", "acceptedAnswer": { "@type": "Answer", "text": "A CorsMiddlewareFactory extracts the \"cors\" config array (or an empty array if it's not provided) and instantiates Tuupola's CorsMiddleware with it. That factory is then registered under the \"dependencies\" > \"factories\" section of cors.global.php." } },
+                    { "@type": "Question", "name": "Where should the CORS middleware be added in the pipeline?", "acceptedAnswer": { "@type": "Answer", "text": "In config/pipelines.php via $app->pipe(CorsMiddleware::class), placed after the Error handler and before the middleware that provides the data you want to access." } }
+                ]
             }
-        }
+        ]
     }
 </script>

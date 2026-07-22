@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-$baseUrl = 'https://new.dotkernel.com/';
+$baseUrl = 'https://www.dotkernel.com/';
 $app     = [
     'baseUrl' => $baseUrl,
     'name'    => 'Dotkernel Light | PSR-15 compliant application',

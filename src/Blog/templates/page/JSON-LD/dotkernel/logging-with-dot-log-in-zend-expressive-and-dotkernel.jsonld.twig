@@ -1,27 +1,54 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
-        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-        "headline": "{{ article.title }}",
-        "description": "{{ article.excerpt }}",
-        "datePublished": "{{ article.postDate|date('c') }}",
-        "dateModified": "{{ article.postDate|date('c') }}",
-        "articleSection": "{{ article.category.name }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ article.author.name }}",
-            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ absolute_url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ absolute_url('/') }}" },
+                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}" },
+                    { "@type": "ListItem", "position": 3, "name": {{ article.title|json_encode|raw }} }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "mainEntity": [
+                    { "@type": "Question", "name": "How do I register dot-log's config provider?", "acceptedAnswer": { "@type": "Answer", "text": "In config/config.php, add \\Dot\\Log\\ConfigProvider::class if it's not already there, making sure it is added before application-specific components such as Frontend\\App\\ConfigProvider or Admin\\App\\ConfigProvider." } },
+                    { "@type": "Question", "name": "How is a logger retrieved from the container instead of using the plain class name?", "acceptedAnswer": { "@type": "Answer", "text": "Dot\\Log\\ConfigProvider registers an abstract factory, LoggerAbstractServiceFactory, that responds to \"selectors\" instead of class names. Instead of requesting Zend\\Log\\Logger::class from the container, you request dot-log.my_logger (or just my_logger if using zend-log)." } },
+                    { "@type": "Question", "name": "What is a writer, and how many does a logger need?", "acceptedAnswer": { "@type": "Answer", "text": "A writer is an object that inherits from Zend\\Log\\Writer\\AbstractWriter and is responsible for recording log data to a storage backend. Loggers must have at least one writer, and the writer's \"name\" key is mandatory while its \"priority\" key is optional and only used to organize writers, not to affect which errors get written." } },
+                    { "@type": "Question", "name": "What does a filter do, and how are log levels ordered?", "acceptedAnswer": { "@type": "Answer", "text": "A filter prevents a message from being written to the log. Per PSR-3, the log levels in order of priority/importance are emergency (0), alert (1), critical (2), error (3), warn (4), notice (5), info (6), and debug (7) - the operator for \"more important\" messages is <= because a smaller number represents a more important message." } },
+                    { "@type": "Question", "name": "What does the formatter configuration control?", "acceptedAnswer": { "@type": "Answer", "text": "The formatter accepts a \"name\" (a class implementing Zend\\Log\\Formatter\\FormatterInterface) and \"options\" to pass to that formatter's constructor. Zend Log provides String, XML, JSON and FirePHP formatting, and arrays can be serialized this way for better readability." } },
+                    { "@type": "Question", "name": "How do you actually write log messages once the logger is configured?", "acceptedAnswer": { "@type": "Answer", "text": "Fetch the logger from the container, e.g. $logger = $container->get('dot-log.my_logger');, then call methods such as emerg(), alert(), crit(), err(), warn(), notice(), info(), debug(), or the generic log(Logger::NOTICE, 'message')." } }
+                ]
             }
-        }
+        ]
     }
 </script>

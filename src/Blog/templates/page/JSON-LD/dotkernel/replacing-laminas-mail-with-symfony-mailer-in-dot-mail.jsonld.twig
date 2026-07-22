@@ -1,27 +1,54 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
-        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-        "headline": "{{ article.title }}",
-        "description": "{{ article.excerpt }}",
-        "datePublished": "{{ article.postDate|date('c') }}",
-        "dateModified": "{{ article.postDate|date('c') }}",
-        "articleSection": "{{ article.category.name }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ article.author.name }}",
-            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ absolute_url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ absolute_url('/') }}" },
+                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}" },
+                    { "@type": "ListItem", "position": 3, "name": {{ article.title|json_encode|raw }} }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "mainEntity": [
+                    { "@type": "Question", "name": "Why was laminas/laminas-mail replaced?", "acceptedAnswer": { "@type": "Answer", "text": "The Laminas Technical Steering Committee decided on 2023-12-04 that laminas/laminas-mail would be abandoned because there was nobody to maintain it, and several alternatives were already available in the ecosystem." } },
+                    { "@type": "Question", "name": "What alternatives were identified for the abandoned laminas-mail package?", "acceptedAnswer": { "@type": "Answer", "text": "The alternatives mentioned are ddeboer/imap for interacting with IMAP, zbateson/mail-mime-parser for parsing MIME messages, and symfony/mailer for sending mail." } },
+                    { "@type": "Question", "name": "How did Dotkernel handle the removal of laminas-mail in dot-mail?", "acceptedAnswer": { "@type": "Answer", "text": "The Dotkernel team replaced laminas/laminas-mail with symfony/mailer inside the dotkernel/dot-mail package, revising the code and configuration files while aiming for minimal impact on existing projects, so the calls used to send mail stay the same, even though some lesser-used functionality like mime and imap is lost." } },
+                    { "@type": "Question", "name": "Which mail transport does dot-mail use by default?", "acceptedAnswer": { "@type": "Answer", "text": "The revised mail.global.php configuration defaults the transport to sendmail. You should use ONE of the transporters, either 'transport' => 'sendmail' or 'transport' => 'esmtp', based on your server configuration; Sendmail was set as the default." } },
+                    { "@type": "Question", "name": "How do I update dotkernel/dot-mail from version 3 or 4 to version 5?", "acceptedAnswer": { "@type": "Answer", "text": "Download the new mail.global.php.dist configuration file, add the values you configured for your project (focusing on transport, message_options and smtp_options) to replace your old configuration file, then update \"dotkernel/dot-mail\" to \"^5.0.0\" in composer.json and run composer update." } },
+                    { "@type": "Question", "name": "What functionality is lost after switching to symfony/mailer?", "acceptedAnswer": { "@type": "Answer", "text": "At the time of the article, mime and imap related functionality is removed from dot-mail as a result of the switch." } }
+                ]
             }
-        }
+        ]
     }
 </script>

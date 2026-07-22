@@ -69,6 +69,41 @@ resources.useragent.wurflapi.wurfl_config_file = APPLICATION_PATH "/configs/wurf
 <pre>>$userAgent = new Zend_Http_UserAgent($config-&gt;resources-&gt;useragent);
 $device = $userAgent-&gt;getDevice();</pre>
 <em>$userAgent-&gt;getDevice()</em> returns all the relevant information about the current user agent <em>($_SERVER)</em>
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>Which Zend Framework class is used to integrate WURFL into DotKernel? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">WURFL is integrated using the Zend_Http_UserAgent class from Zend Framework 1.11.0rc1 (the beta release at the time of the post).</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What is the first step to integrate WURFL into DotKernel? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Download the WURFL PHP API and unzip it into a folder named wurfl-php-1.1.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Which folders need to be created and made writable? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Two folders must be created and made writable by the web server: cache/wurfl/FILE_CACHE_PROVIDER and cache/wurfl/FILE_PERSISTENCE_PROVIDER.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What needs to be added to application.ini? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Three lines need to be added: resources.useragent.wurflapi.wurfl_api_version = "1.1", resources.useragent.wurflapi.wurfl_lib_dir pointing to APPLICATION_PATH "/library/Wurfl/", and resources.useragent.wurflapi.wurfl_config_file pointing to APPLICATION_PATH "/configs/wurfl.xml".</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How do you access WURFL configuration in code? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Instantiate a Zend_Http_UserAgent with the useragent config, then call getDevice() on it, for example <code>$userAgent = new Zend_Http_UserAgent($config-&gt;resources-&gt;useragent); $device = $userAgent-&gt;getDevice();</code>. getDevice() returns all the relevant information about the current user agent.</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

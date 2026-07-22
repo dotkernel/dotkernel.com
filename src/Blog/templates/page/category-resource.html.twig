@@ -35,7 +35,7 @@
                             <span class="post-card-kicker">{{ article.category.name }}</span>
                             <h4>{{ article.title }}</h4>
                             <p>{{ article.excerpt|length > 200 ? article.excerpt|slice(0, 200)|trim ~ '…' : article.excerpt }}</p>
-                            <span class="post-card-meta">{{ article.author.name }} · {{ article.postDate|date('M d, Y') }}</span>
+                            <span class="post-date">{{ article.author.name }} · {{ article.postDate|date('M d, Y') }}</span>
                             <span class="read-more">Read more →</span>
                         </a>
                     {% else %}

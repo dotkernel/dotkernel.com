@@ -124,7 +124,42 @@
 
 <p class="mb-3">The Dotkernel development team is actively working on investigating and implementing recommended design patterns. All Dotkernel applications and a large number of packages are still receiving updates that implement bugfixes, improvements and recommendations from the PHP community. Some updates may brake BC (backward compatibility), but this is often highlighted in companion articles that may also contain step-by-step tutorials. The Dotkernel team is available to help you with any issues related to the Dotkernel and Laminas apps and components.</p>
 
-<h1>Additional Resources</h1>
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>What is a Headless Platform? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">A Headless Platform decouples the User Interface (frontend) from the backend services. The responses from the platform are then used by another system, such as a website or mobile app.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What are the two main components of the Dotkernel Headless Platform? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">The Dotkernel Headless Platform contains two major components: Dotkernel API, a REST API based on the Mezzio skeleton, and Dotkernel Admin, a complementary component aimed at quickly setting up a backend. The Admin is not bundled by default but is available as a first-party, installable application designed to work alongside the API.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Can Dotkernel API and Admin be installed separately? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Yes. They can be installed separately or together, based on your business requirements. You can start with Dotkernel Admin to populate your database and later add Dotkernel API to present the data to other frontends, or start with Dotkernel API and integrate it into your existing platform, adding Admin later for its table-based approach, reports, and graphs.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What benefits come from using both API and Admin together? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Using both together lets you share a common Core module containing the same entities and queries between the two applications, implement only the handlers you actually need, and benefit from a shared file structure that makes onboarding easy and can be maintained by fewer developers. This setup can also satisfy any application size, from microservices to enterprise-grade APIs.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What architectural patterns does the Dotkernel Headless Platform follow? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">The architecture is designed to be versatile, following Clean Architecture (concentric layers with dependencies flowing from outer to inner layers), Domain-Driven Design (implementing only the specific components needed for your business logic rather than generic reusable services), and Hexagonal Architecture (dividing the system into loosely-coupled, interchangeable components).</p>
+        </div>
+    </details>
+</div>
+
+<h2>Additional Resources</h2>
 
 <ul><li><a href="https://github.com/dotkernel/api" target="_blank" rel="noreferrer noopener">Dotkernel API</a></li>
 

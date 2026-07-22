@@ -1,27 +1,53 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
-        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-        "headline": "{{ article.title }}",
-        "description": "{{ article.excerpt }}",
-        "datePublished": "{{ article.postDate|date('c') }}",
-        "dateModified": "{{ article.postDate|date('c') }}",
-        "articleSection": "{{ article.category.name }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ article.author.name }}",
-            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ absolute_url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ absolute_url('/') }}" },
+                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}" },
+                    { "@type": "ListItem", "position": 3, "name": {{ article.title|json_encode|raw }} }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "mainEntity": [
+                    { "@type": "Question", "name": "What is Laminas MVC being replaced by?", "acceptedAnswer": { "@type": "Answer", "text": "Mezzio microframework, built using Laminas components. It has gone through rigorous development and testing since being released in 2015, when it was known as Zend Expressive, before being renamed Mezzio." } },
+                    { "@type": "Question", "name": "Why is maintaining legacy platforms a problem?", "acceptedAnswer": { "@type": "Answer", "text": "Maintaining legacy platforms over the long term is often costly and time-consuming, so every few years platform owners must consider migrating to a newer platform that offers modern architecture, an active community, easier development/expansion/maintenance, security improvements, and more reliable dependencies." } },
+                    { "@type": "Question", "name": "What is the core architectural pain point with legacy MVC platforms?", "acceptedAnswer": { "@type": "Answer", "text": "The MVC architecture is obsolete, fit for monolithic websites. Today's and tomorrow's architecture is based on middleware, building headless platforms, websites, and microservices following the same coding approach." } },
+                    { "@type": "Question", "name": "What steps does Apidemia's migration process involve?", "acceptedAnswer": { "@type": "Answer", "text": "A simplified task list: code audit & migration strategy; partial or full migration to Laminas or PSR-compliant frameworks like Mezzio or Symfony; refactoring and decoupling legacy modules; unit testing and CI/CD pipeline setup; and post-migration support and team training." } },
+                    { "@type": "Question", "name": "Who offers this migration guidance?", "acceptedAnswer": { "@type": "Answer", "text": "Apidemia, who has used Zend Framework, Laminas MVC, and Mezzio for years and can analyze and perform the transfer of a legacy platform to Mezzio, offering faster execution times, increased security, faster development, and long-term reliability." } }
+                ]
             }
-        }
+        ]
     }
 </script>

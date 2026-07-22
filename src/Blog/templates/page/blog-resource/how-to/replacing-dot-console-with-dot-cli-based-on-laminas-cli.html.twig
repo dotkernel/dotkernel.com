@@ -40,23 +40,23 @@
 
 <h2>Setup</h2>
 
-<h4>Install package</h4>
+<h3>Install package</h3>
 
 <p class="mb-3">Run the following command in your application's root directory:</p>
 
 <pre>composer require dotkernel/dot-cli</pre>
 
-<h4>Register ConfigProvider</h4>
+<h3>Register ConfigProvider</h3>
 
 <p class="mb-3">Open your application's <strong>config/config.php</strong> file and add <code>Dot\Cli\ConfigProvider::class,</code> under the <em>DK packages</em> comment.</p>
 
-<h4>Create bootstrap file</h4>
+<h3>Create bootstrap file</h3>
 
 <p class="mb-3">Locate the provided <strong>vendor/dotkernel/dot-cli/bin/cli.php</strong> and copy it into your application's <strong>bin</strong> directory.</p>
 
 <p class="mb-3">This is the file you will execute your commands through.</p>
 
-<h4>Create config file</h4>
+<h3>Create config file</h3>
 
 <p class="mb-3">Locate the provided <strong>vendor/dotkernel/dot-cli/config/autoload/cli.global.php</strong> and copy it into your application's <strong>config/autoload</strong> directory.</p>
 
@@ -87,6 +87,41 @@
 <p class="mb-3">dot-cli has a built-in locking system, called FileLocker, enabled by default. This feature prevents multiple calls to the same command overlapping eachother by making sure the latter calls won't run until the former one is finished.</p>
 
 <p class="mb-3">You can toggle this modifying in the previously created <strong>config/autoload/cli.global.php</strong> under <code>FileLockerInterface::class -&gt; enabled</code></p>
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>Why was dot-console replaced by dot-cli? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">dot-console was abandoned after Laminas abandoned its laminas-console package, which dot-console was based on, so dot-cli was created as its replacement.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How do you install dot-cli in an application? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Run <code>composer require dotkernel/dot-cli</code> in the application's root directory, then register <code>Dot\Cli\ConfigProvider::class,</code> in <strong>config/config.php</strong>, and copy the provided <strong>bin/cli.php</strong> bootstrap file and <strong>config/autoload/cli.global.php</strong> config file into the application.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What does the provided cli.global.php config file contain? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">It already contains a sample command (<strong>demo:command</strong>) that serves as an example on how to create and register new commands.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How do you run a dot-cli command as a cronjob? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Add a line to your crontab such as <code>* * * * {PATH_TO_PHP_EXECUTABLE} {PATH_TO_APPLICATION}/bin/cli.php demo:command</code>, replacing the placeholders with the full path to the PHP executable and the full path to the application's root directory.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What is FileLocker? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">FileLocker is a built-in locking system in dot-cli, enabled by default, that prevents multiple calls to the same command from overlapping by making sure later calls won't run until the earlier one finishes. It can be toggled in <strong>config/autoload/cli.global.php</strong> under <code>FileLockerInterface::class -&gt; enabled</code>.</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

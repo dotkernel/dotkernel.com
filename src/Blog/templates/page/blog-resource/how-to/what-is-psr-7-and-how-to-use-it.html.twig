@@ -92,6 +92,41 @@ $body-&gt;write($contents); // stream contains "efabcd"
 $body-&gt;rewind(); // or $body-&gt;seek(0);
 $bodyText = $body-&gt;getContends();
 </pre><p class="mb-3">More information can be found in the <a href="https://docs.dotkernel.com/Prerequisites/PSR-7.html">PSR-7 article</a> in<a href="https://docs.dotkernel.com/"> DotKernel3 documentation portal</a>.</p><p class="mb-3">Sources: <a href="http://www.php-fig.org/psr/psr-7/">PSR-7: HTTP messages</a> <a href="https://zendframework.github.io/zend-diactoros/">zend-diactoros</a></p>
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>What is PSR-7? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">PSR-7 is a set of common interfaces defined by the PHP Framework Interop Group, representing HTTP messages and URIs for use when communicating through HTTP. Any web application using this set of interfaces is a PSR-7 application.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What interfaces does PSR-7 define? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">PSR-7 defines MessageInterface (representation of an HTTP message), RequestInterface (an outgoing, client-side request), ServerRequestInterface (an incoming, server-side HTTP request), ResponseInterface (an outgoing, server-side response), StreamInterface (a data stream), UriInterface (a URI value object), and UploadedFileInterface (a file uploaded through an HTTP request).</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What implementation is used to illustrate the PSR-7 examples? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Zend Diactoros is used as the PSR-7 implementation for the examples, though the article notes that all other PSR-7 implementations should have the same behaviour.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How do you add or check headers on a response? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Use <code>$response-&gt;withHeader('My-Custom-Header', 'My Custom Message')</code> to add a header, <code>$response-&gt;withAddedHeader(...)</code> to append another value to it, and <code>$response-&gt;hasHeader('My-Custom-Header')</code> to check whether it exists.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Why must a stream be rewound before reading its contents? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">If content was written into a stream, calling <code>getContents()</code> without first calling <code>$body-&gt;rewind()</code> (or <code>$body-&gt;seek(0)</code>) will return nothing, because the stream pointer is left at the end of the stream after writing.</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

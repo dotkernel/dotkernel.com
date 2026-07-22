@@ -33,13 +33,13 @@
 In order to use UTF8 encoding in your DotKernel based system, is needed to make some changes in both database structure and in the application.ini file.
 <blockquote class="blockquote border-start border-4 ps-3 text-muted my-3">Those changes are commited into <strong>DotKernel 1.6.0 dev</strong> codebase, which will be released in next days.</blockquote>
 <!--more-->
-<h3>Database</h3>
+<h2>Database</h2>
 set for all tables and columns proper collation , either <strong>utf8_general_ci</strong> or <strong>utf8_bin</strong>
-<h3>Application.ini</h3>
+<h2>Application.ini</h2>
 add the line
 <pre>>database.params.charset = utf8</pre>
 to your application.ini file, in the <strong></strong> area.
-<h3>Differences between utf8_general_ci and utf8_bin</h3>
+<h2>Differences between utf8_general_ci and utf8_bin</h2>
 <strong>utf8_bin</strong>: compare strings by the binary value of each character in the string
 <strong>utf8_general_ci</strong>: compare strings using general language rules and using case-insensitive comparisons
 
@@ -50,6 +50,35 @@ For example, the following will evaluate at true with  utf8_general_ci collatio
 Ü = U
 
 Those differences happens only on <strong>MySQL</strong> level ( for instance in queries using LIKE operator) and <strong>not</strong> at <strong>PHP</strong> level ( for instance, in str_replace() calls )
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>What needs to change to use UTF8 encoding in a DotKernel-based system? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Both the database structure and the application.ini file need changes: all tables and columns must have a proper UTF8 collation (utf8_general_ci or utf8_bin), and application.ini must load the utf8 charset.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What line should I add to application.ini to enable UTF8? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Add the line <code>database.params.charset = utf8</code> to your application.ini file.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What is the difference between utf8_general_ci and utf8_bin collation? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">utf8_bin compares strings by the binary value of each character, while utf8_general_ci compares strings using general language rules with case-insensitive comparisons. For example, Ä = A, Ö = O, and Ü = U evaluate as true under utf8_general_ci but not under utf8_bin.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Does the collation choice affect PHP string functions too? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">No. These collation differences only happen at the MySQL level, for instance in queries using the LIKE operator, and not at the PHP level, for instance in str_replace() calls.</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

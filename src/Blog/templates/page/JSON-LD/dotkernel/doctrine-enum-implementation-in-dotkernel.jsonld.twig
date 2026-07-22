@@ -1,27 +1,54 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
-        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-        "headline": "{{ article.title }}",
-        "description": "{{ article.excerpt }}",
-        "datePublished": "{{ article.postDate|date('c') }}",
-        "dateModified": "{{ article.postDate|date('c') }}",
-        "articleSection": "{{ article.category.name }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ article.author.name }}",
-            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ absolute_url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ absolute_url('/') }}" },
+                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}" },
+                    { "@type": "ListItem", "position": 3, "name": {{ article.title|json_encode|raw }} }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "mainEntity": [
+                    { "@type": "Question", "name": "What update triggered this change to Dotkernel's enum handling?", "acceptedAnswer": { "@type": "Answer", "text": "The update of doctrine/orm to version 3.2.0 introduced EnumType columns, building on the enum type introduced in PHP 8.1. Dotkernel implemented this new data type on both the PHP side and the database side." } },
+                    { "@type": "Question", "name": "What was the limitation of Dotkernel's old approach to columns like User->Status?", "acceptedAnswer": { "@type": "Answer", "text": "The old setup used a simple string type, so the value set couldn't be definitively enforced. A typo in a PHP value would still be accepted, and the database was independent of any values the PHP code allowed, so manually editing a value in the database would accept any string." } },
+                    { "@type": "Question", "name": "What was the one advantage of the old string-based setup?", "acceptedAnswer": { "@type": "Answer", "text": "It made it easy to add more values to the value set, though the article notes this ease also invites bugs in the execution." } },
+                    { "@type": "Question", "name": "What do you need to create to add a new custom enum type?", "acceptedAnswer": { "@type": "Answer", "text": "A PHP enum class (like UserStatusEnum) plus a DBAL type class extending AbstractEnumType, which must define a NAME constant and a getEnumClass() method; the new type is then registered under the types key in config/autoload/doctrine.global.php." } },
+                    { "@type": "Question", "name": "Does Types::ENUM still fall back to a string or integer database column?", "acceptedAnswer": { "@type": "Answer", "text": "The article notes that Doctrine still defaults to Types::STRING or Types::INTEGER for columns backed by a PHP enum, as this is considered the more portable and safer default; Types::ENUM is required if you want an actual enum column in MySQL/MariaDB." } },
+                    { "@type": "Question", "name": "What must happen when the value set of an enum changes under the new setup?", "acceptedAnswer": { "@type": "Answer", "text": "Any update to the value set must be made on both the PHP code and the database, since the new setup creates an explicit, enforced link between them." } }
+                ]
             }
-        }
+        ]
     }
 </script>

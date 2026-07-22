@@ -34,19 +34,19 @@
 
 <p class="mb-3">This article will run you through the steps of installing a Mezzio application (DotKernel API) in <strong>WSL2 </strong>and run it on <strong>Ubuntu 20.04 LTS</strong>.</p>
 
-<h4>Step 1:</h4>
+<h3>Step 1:</h3>
 
 <p class="mb-3">Make sure you have WSL2 installed on your machine by following <a href="https://github.com/dotkernel/development/blob/main/wsl/README.md" target="_blank" rel="noreferrer noopener">this guide</a>.</p>
 
-<h4>Step 2:</h4>
+<h3>Step 2:</h3>
 
 <p class="mb-3">Install <strong>Ubuntu 20.0 LTS</strong> inside <strong>WLS2</strong> as described <a rel="noreferrer noopener" href="https://github.com/dotkernel/development/blob/main/wsl/os/ubuntu20/README.md" target="_blank">here</a>.</p>
 
-<h4>Step 3:</h4>
+<h3>Step 3:</h3>
 
 <p class="mb-3">Create a virtualhost for your project using <a href="https://github.com/dotkernel/development/blob/main/wsl/os/ubuntu20/README.md#create-virtual-hosts" target="_blank" rel="noreferrer noopener">this guide</a>.</p>
 
-<h4>Step 4:</h4>
+<h3>Step 4:</h3>
 
 <p class="mb-3">Using your terminal, move into the virtualhost directory that you just created:</p>
 
@@ -56,7 +56,7 @@
 
 <p class="mb-3">Make sure your <code>data</code> and <code>log</code> directories are writable by changing their permissions, as described <a rel="noreferrer noopener" href="https://github.com/dotkernel/development/blob/main/wsl/HELP.md#fix-common-permission-issues" target="_blank">here</a>.</p>
 
-<h4>Step 5:</h4>
+<h3>Step 5:</h3>
 
 <p class="mb-3">Setup PHPStorm to work with WSL2 files like in <a href="https://www.jetbrains.com/help/phpstorm/how-to-use-wsl-development-environment-in-product.html" data-type="URL" data-id="https://www.jetbrains.com/help/phpstorm/how-to-use-wsl-development-environment-in-product.html" target="_blank" rel="noreferrer noopener">this article</a></p>
 
@@ -65,6 +65,47 @@
 <p class="mb-3"><strong>Note:</strong></p>
 
 <blockquote><p class="mb-3">There is a guide for <strong>AlmaLinux 8</strong> as well, but that's not fully functional because of a well-known issue regarding running <em>systemd </em>inside <strong>WSL2</strong>.</p></blockquote>
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>What does this guide help you accomplish? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">It walks you through installing a Mezzio application (DotKernel API) using WSL2 and running it on Ubuntu 20.04 LTS.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What do you need before installing Ubuntu inside WSL2? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">You first need WSL2 installed on your machine, which you can set up by following the linked WSL2 installation guide, before installing Ubuntu inside it.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How do you set up a virtual host for the project? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">After Ubuntu is installed inside WSL2, you create a virtual host for your project by following the linked virtual-host creation guide.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How do you install DotKernel API once the virtual host is ready? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Using your terminal, move into the virtual host directory you created (for example, <code>cd /home/your-username/projects/your-virtualhost</code>), then install DotKernel API by following its guide. Afterward, make sure the <code>data</code> and <code>log</code> directories are writable by changing their permissions, as described in the linked permission-fix guide.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How do you get PHPStorm to work with the WSL2 project files? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">You set up PHPStorm to work with WSL2 files by following the linked JetBrains article on using a WSL development environment in the product.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Does this guide also work for AlmaLinux instead of Ubuntu? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">There is a guide for AlmaLinux 8 as well, but it is not fully functional because of a well-known issue regarding running systemd inside WSL2.</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

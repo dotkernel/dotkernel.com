@@ -45,8 +45,8 @@ Now let's try it with 0.6 instead of 0.7
 <code>
 var_dump((0.6+0.1)*10); # <strong>float(7)</strong>
 var_dump(intval((0.6+0.1)*10)); # <strong>int(7)</strong></code>
-<h3></h3>
-<h3>How does the CPU understand these numbers?</h3>
+<h2></h2>
+<h2>How does the CPU understand these numbers?</h2>
 The CPU makes the calculations binary, the floating point numbers are represented as follows:
 
 IEEE Short Real: <strong>32 bits</strong>     1 bit for the sign, 8 bits for the exponent, and 23 bits for the mantissa. Also called single precision.
@@ -67,7 +67,7 @@ The float numbers are <strong>sign</strong> * <strong>exponent</strong> * <stron
 Some numbers cannot be represented exactly (such as  0.99999999)
 
 To learn more about how IEEE Real numbers are formed follow <a href="http://kipirvine.com/asm/workbook/floating_tut.htm" target="_blank" rel="noopener noreferrer">this link</a>.
-<h3>Why does this happen?</h3>
+<h2>Why does this happen?</h2>
 Using this <a href="http://www.h-schmidt.net/FloatConverter/IEEE754.html" target="_blank" rel="noopener noreferrer">IEEE 754 converter</a> we have found out that:
 
 <strong>0.7</strong> is actually represented as <strong>0.699999988079071</strong>
@@ -82,7 +82,7 @@ The other example still shows 7 because <strong>0.6</strong> is actually represe
 </strong>
 
 &nbsp;
-<h3>But still ...</h3>
+<h2>But still ...</h2>
 If we use <strong>echo</strong> and <strong>var_dump</strong> or if applying mathematical operations, PHP automatically adjusts the values, but <strong>intval</strong> and casting to <strong>int</strong> work on their bits before the values were adjusted
 
 <code>
@@ -93,6 +93,41 @@ var_dump(intval( <strong>((0.7+0.1)*10)+1</strong> ) ); # <strong>int(9)</strong
 If these values are very important for your project you can get the correct values we by using the <a href="http://php.net/manual/en/book.bc.php" target="_blank" rel="noopener noreferrer"><strong>BCMath PHP Extension</strong></a>.
 
 For a more technical &amp; mathematical approach read <a href="http://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html" target="_blank" rel="noopener noreferrer">this document</a>.
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>Why does (int)((0.7+0.1)*10) return 7 instead of 8? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Because 0.7 is actually represented internally as 0.699999988079071 and 0.1 as 0.10000000149011612. Adding them gives 0.7999999895691871, and multiplying by 10 gives 7.999999895691871, which truncates to 7 when cast to int.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Does the same rounding issue happen with 0.6 instead of 0.7? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Yes. 0.6 is represented as 0.6000000238418579, and (0.6000000238418579 + 0.10000000149011612) * 10 equals about 7.00000025331974, which also truncates to int(7).</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Why do var_dump and echo show the expected value while intval/int casting does not? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">When using echo, var_dump, or mathematical operations, PHP automatically adjusts the displayed values. However, intval and casting to int operate on the underlying bits before those values were adjusted, which is why they can produce a different (truncated) result.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How are floating-point numbers represented at the CPU level? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">The CPU performs calculations in binary. IEEE Short Real (single precision) uses 32 bits: 1 sign bit, 8 exponent bits, and 23 mantissa bits. IEEE Long Real (double precision) uses 64 bits: 1 sign bit, 11 exponent bits, and 52 mantissa bits. A number can only be represented exactly if it can be expressed as exponent * mantissa; numbers like 0.99999999 cannot be represented exactly.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Is there a way to get accurate results for calculations like this in PHP? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">If precise values matter for your project, the article recommends using the BCMath PHP Extension to get correct results.</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

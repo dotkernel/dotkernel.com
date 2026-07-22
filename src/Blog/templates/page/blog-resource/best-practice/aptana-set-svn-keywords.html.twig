@@ -50,6 +50,29 @@ For example if you want to set the svn keyword property <em><strong>Id</strong><
 When you make the SVN commit of the file, the <em>$Id$</em> keyword will be replaced with text in the format shown below:
 
 <a href="/uploads/2011/04/id-file-svn.gif"><img title="Id keyword after commit" src="{{ asset('uploads/article/' ~ article.id ~ '/id-file-svn-300x141.gif') }}" alt="" width="300" height="141"> </a>
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>How do you set the svn:keywords property for a file in Aptana? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Write the keyword marker (for example <strong>$Id$</strong>) in the file, then right click the file and follow Team -&gt; Set Property..., select <strong>svn:keywords</strong>, and write <strong>Id</strong> in the text field.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Why is "Set Property..." not active when I right click the file? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Set Property... will not be active if the file hasn't first been added to SVN. Use Team -&gt; Add to Version Controller before trying to set the property.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What happens to the $Id$ keyword after an SVN commit? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">After the SVN commit of the file, the $Id$ keyword is replaced with text containing the file's SVN metadata, in a specific format.</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

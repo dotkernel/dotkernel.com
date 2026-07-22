@@ -1,27 +1,53 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
-        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-        "headline": "{{ article.title }}",
-        "description": "{{ article.excerpt }}",
-        "datePublished": "{{ article.postDate|date('c') }}",
-        "dateModified": "{{ article.postDate|date('c') }}",
-        "articleSection": "{{ article.category.name }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ article.author.name }}",
-            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ absolute_url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ absolute_url('/') }}" },
+                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}" },
+                    { "@type": "ListItem", "position": 3, "name": {{ article.title|json_encode|raw }} }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "mainEntity": [
+                    { "@type": "Question", "name": "What errors indicate the PHP Intl extension is missing?", "acceptedAnswer": { "@type": "Answer", "text": "Typical errors include \"Zend InputFilter requires intl PHP extension\" and \"The requested PHP extension intl is missing from your system.\" These happen because the PHP Intl extension isn't installed or enabled." } },
+                    { "@type": "Question", "name": "What is the PHP Intl extension used for?", "acceptedAnswer": { "@type": "Answer", "text": "Intl (Internationalization extension) is a wrapper for the ICU library that lets PHP programmers perform locale-aware operations, including formatting, transliteration, encoding conversion, and calendar operations. It can be installed bundled since PHP 5.3.0, or as a separate PECL extension since PHP 5.2.0." } },
+                    { "@type": "Question", "name": "How do you find your PHP extensions directory?", "acceptedAnswer": { "@type": "Answer", "text": "You can find the extension_dir either by calling phpinfo() or by running the command php -r \"echo ini_get('extension_dir');\" - both read the value straight from the PHP runtime configuration." } },
+                    { "@type": "Question", "name": "How do you enable the Intl extension on a Linux server if the file already exists?", "acceptedAnswer": { "@type": "Answer", "text": "Confirm php_intl.so exists in your extensions directory, open the php.ini config file (usually /etc/php.ini), make sure the line \"extension=php_intl.so\" exists and isn't commented out, restart the web server (e.g. sudo service httpd restart), and verify with phpinfo()." } },
+                    { "@type": "Question", "name": "What if the php_intl.so or php_intl.dll file doesn't exist at all?", "acceptedAnswer": { "@type": "Answer", "text": "On Linux, check your PHP version with php -v, then install the php-intl package (PHP 5) or php7.x-intl package (PHP 7) via your package manager, e.g. apt-get install php-intl on Ubuntu-based systems or yum install php-intl on CentOS; on shared hosting, ask your provider to install/enable it. On Windows, download the matching PHP version (checking TS/NTS and x86/x64, with thread safety found via php -i | findstr \"Thread\") from the PHP Downloads page and copy php_intl.dll from its ext folder into your php\\ext folder." } }
+                ]
             }
-        }
+        ]
     }
 </script>

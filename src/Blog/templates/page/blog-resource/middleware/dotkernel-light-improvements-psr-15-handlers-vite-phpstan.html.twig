@@ -73,6 +73,41 @@
 <li>Removing <a href="https://github.com/dotkernel/dot-twigrenderer" target="_blank" rel="noreferrer noopener">dotkernel/dot-twigrenderer</a> in favor of a direct implementation of <a href="https://github.com/mezzio/mezzio-twigrenderer" target="_blank" rel="noreferrer noopener">mezzio/mezzio-twigrenderer</a>.</li>
 </ul>
 
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>Why did Dotkernel Light switch from controllers to handlers? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Dotkernel Light switched to PSR-15 handlers instead of dotkernel/dot-controller (which isn't going away, but is no longer used here). Since the request can be filtered or augmented by the time it reaches custom code in a middleware architecture, handlers split the code into more manageable chunks and a cleaner file structure, and make an application's functionality easier to figure out.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What naming pattern is used for the new PSR-15 handlers? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">A naming pattern was devised that highlights the method, resource, and action for each handler file, so file names reflect their functionality at a glance, making navigation and onboarding easier.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Why was Vite adopted instead of webpack? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Vite replaces webpack as the static modules bundler, concatenating and compressing .css and .js files and preprocessing .scss files into .css. It was configured to work similarly to webpack for developers using Light, and was chosen for its easier dependency management, execution speed, and its recommendation by the PHP community.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Why was Psalm replaced with PHPStan? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Both Psalm and PHPStan are respected, widely-used static analysis tools with similar functionality, but growing interest and improved detection quality led Dotkernel to follow other big names in the PHP ecosystem and switch to PHPStan, which is configured to run at rule level 8 to help prevent bugs and write better code.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What other smaller updates were made to Dotkernel Light? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Other updates include adding support for PHP 8.4, enabling PHPStan and Qodana to run for PHP 8.4, cleaning up the error configuration file, updating laminas/laminas-coding-standard to its latest major version, updating composer.json dependencies and removing obsolete items, implementing a more reliable and efficient post-install script, and removing dotkernel/dot-twigrenderer in favor of a direct implementation of mezzio/mezzio-twigrenderer.</p>
+        </div>
+    </details>
+</div>
+
 <h2>Additional resources</h2>
 
 <p class="mb-3"><a href="https://github.com/dotkernel/light" target="_blank" rel="noreferrer noopener">Dotkernel Light Git</a></p>

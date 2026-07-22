@@ -1,27 +1,54 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
-        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-        "headline": "{{ article.title }}",
-        "description": "{{ article.excerpt }}",
-        "datePublished": "{{ article.postDate|date('c') }}",
-        "dateModified": "{{ article.postDate|date('c') }}",
-        "articleSection": "{{ article.category.name }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ article.author.name }}",
-            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ absolute_url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ absolute_url('/') }}" },
+                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}" },
+                    { "@type": "ListItem", "position": 3, "name": {{ article.title|json_encode|raw }} }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "mainEntity": [
+                    { "@type": "Question", "name": "What is the OpenAPI Specification?", "acceptedAnswer": { "@type": "Answer", "text": "A consistent way to develop and interact with an API. It defines API structure and syntax in a universal way, regardless of the programming language used, typically described in YAML or JSON so users can quickly discover endpoints, request/response formats, security mechanisms and more." } },
+                    { "@type": "Question", "name": "How does OpenAPI compare to Postman?", "acceptedAnswer": { "@type": "Answer", "text": "OpenAPI standardizes how endpoints and request/response models are described, automatically generates machine-readable documentation, lets you define the API specification before development starts, and improves collaboration across teams. Postman, by contrast, is used mainly to test an already-completed endpoint and has no real focus on standardized documentation or upfront design." } },
+                    { "@type": "Question", "name": "Where do you document endpoints in Dotkernel API?", "acceptedAnswer": { "@type": "Answer", "text": "Each module (Admin, App, User) contains an OpenAPI.php file, where all endpoints from that module's RoutesDelegator.php must be documented, primarily describing the method, request and response." } },
+                    { "@type": "Question", "name": "What core components does every OpenAPI description need?", "acceptedAnswer": { "@type": "Answer", "text": "OA\\Info (basic project info like version and name), OA\\Server (one or more target host URLs), OA\\SecurityScheme (endpoint protection), OA\\ExternalDocumentation (link and description for extended docs), and OA\\Schema (describing an object or collection of objects)." } },
+                    { "@type": "Question", "name": "What generates the documentation file from the OpenAPI.php descriptions?", "acceptedAnswer": { "@type": "Answer", "text": "zircote/swagger-php, which uses the descriptions added in the OpenAPI.php files to build the documentation. The result can be listed in the command line or saved to a file in YAML or JSON format." } },
+                    { "@type": "Question", "name": "How is the generated documentation rendered, and how do you test protected endpoints?", "acceptedAnswer": { "@type": "Answer", "text": "It can be rendered with Swagger UI, which lets you visualize and interact with the API's resources, or with Redoc, which lists the documentation in read-only mode. Because most endpoints are protected, testing them in Swagger UI requires generating an authentication token (AuthToken) matching the required privileges, then using the 'Try it out' button to fill in parameters/body and 'Execute' to send the request and see the response with its HTTP status code." } }
+                ]
             }
-        }
+        ]
     }
 </script>

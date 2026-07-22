@@ -1,27 +1,102 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
-        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-        "headline": "{{ article.title }}",
-        "description": "{{ article.excerpt }}",
-        "datePublished": "{{ article.postDate|date('c') }}",
-        "dateModified": "{{ article.postDate|date('c') }}",
-        "articleSection": "{{ article.category.name }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ article.author.name }}",
-            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ absolute_url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "{{ absolute_url('/') }}"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": {{ article.category.name|json_encode|raw }},
+                        "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 3,
+                        "name": {{ article.title|json_encode|raw }}
+                    }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "What are the main new features in Dotkernel API v6?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Dotkernel API v6 adds Content Negotiation for smoother communication between client and server, standardized error codes via mezzio-problem-details, a new Core module that centralizes common logic for easier sharing across Dotkernel applications, a custom templating solution that replaces Twig/mezzio-twigrenderer, and refactored handle delegators and injected InputFilters that reduce the number of dependencies in handlers."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Why was common logic moved into a Core module?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Moving the shared logic into a Core module makes it easier to reuse that functionality across other Dotkernel applications. The Core module can be saved as a separate Git repository and then added as a submodule to any Dotkernel application."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Why did Dotkernel API replace Twig with a custom templating solution?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Twig was replaced to avoid depending on mezzio-twigrenderer. The custom solution offers more reliable template handling, at the small cost of some features that are normally not used in APIs anyway."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "What is planned for Dotkernel API v6.1?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Dotkernel API currently supports Service Manager version 3, restricted because of constraints from some dependencies, and PHP 8.3. The next version on the roadmap, v6.1, is planned to add support for Service Manager 4 as well as PHP 8.4 and 8.5."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Why was Psalm replaced with PHPStan in the test suite?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Psalm was replaced with PHPStan to remain in line with developers from popular projects like Doctrine and Composer, who have also made the switch. A separate upgrade also increased the rule level to 8, enabling stricter static analysis and revealing more potential errors."
+                        }
+                    }
+                ]
             }
-        }
+        ]
     }
 </script>

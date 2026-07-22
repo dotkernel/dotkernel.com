@@ -1,27 +1,94 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
-        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-        "headline": "{{ article.title }}",
-        "description": "{{ article.excerpt }}",
-        "datePublished": "{{ article.postDate|date('c') }}",
-        "dateModified": "{{ article.postDate|date('c') }}",
-        "articleSection": "{{ article.category.name }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ article.author.name }}",
-            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ absolute_url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "{{ absolute_url('/') }}"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": {{ article.category.name|json_encode|raw }},
+                        "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 3,
+                        "name": {{ article.title|json_encode|raw }}
+                    }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "What is the difference between an Evolution Pattern and API versioning?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "An Evolution Pattern is a reusable, high-level strategy for modifying or evolving existing software systems over time while keeping the same codebase, often using mechanisms like sunsetting. API versioning instead maintains multiple versions of an API so that changes do not affect clients relying on older versions. The two concepts are not in conflict, and a platform can use both strategies if it suits its needs."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "When should you use an evolution pattern instead of versioning?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Small changes, like fixing a typo in a parameter name or adding a new optional parameter, are best handled with an evolution pattern, since versioning would be overkill. Backward-compatible-breaking updates should be announced in time via an evolution pattern. A major update to a single endpoint can combine an evolution pattern with versioning, for example by adding a v2 for just that endpoint. Only when responses need to be returned in a totally different format, such as GraphQL versus REST, is versioning the better fit."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "How does Dotkernel API announce endpoint deprecations?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Dotkernel API distinguishes calls based on payload (for example, an older response for a request with only an email, versus an enhanced response when both email and name are supplied). Deprecation is announced by including an updated response header via handler attributes, with customizable values for sunset, link, and deprecationReason. These updates are also communicated through documentation pages and public portal channels like blog articles and newsletters."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "What happens once an endpoint's sunset date is reached?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "The old functionality is removed and only the new functionality remains in production. In practice this means an endpoint may start returning 404 Not Found, or a property may be removed from the response."
+                        }
+                    }
+                ]
             }
-        }
+        ]
     }
 </script>

@@ -52,11 +52,11 @@
 
 <h2>Dotkernel Admin V4 Features</h2>
 
-<h4>PHP 8.1</h4>
+<h3>PHP 8.1</h3>
 
 <p class="mb-3"><strong>Dotkernel Admin V4</strong> fully supports <strong>PHP 8.1</strong> with a minimum requirement of <strong>PHP 7.4</strong>.</p>
 
-<h4>Configurability</h4>
+<h3>Configurability</h3>
 
 <p class="mb-3">From managing middleware order to simply adding an API key to you application the&nbsp;<strong>config</strong>&nbsp;directory is the way to go.</p>
 
@@ -102,7 +102,7 @@
     ]
 ]</code></pre>
 
-<h4>Authorization Guards</h4>
+<h3>Authorization Guards</h3>
 
 <p class="mb-3">The packages responsible for restricting access to certain parts of the application are <a rel="noreferrer noopener" href="https://github.com/dotkernel/dot-rbac-guard" target="_blank">dot-rbac-guard</a> and <a href="https://github.com/dotkernel/dot-rbac" target="_blank" rel="noreferrer noopener">dot-rba</a><a href="https://github.com/dotkernel/dot-rbac">c</a>. These packages work together to create an infrastructure that is customizable and diversified to manage user access to the platform by specifying the type of role the user has.</p>
 
@@ -155,7 +155,7 @@
     ]
 ]</code></pre>
 
-<h4>CLI</h4>
+<h3>CLI</h3>
 
 <p class="mb-3">For registering new command first make sure your command class extends&nbsp;<code>Symfony\Component\Console\Command\Command</code>, then you can enable the command by registering it in&nbsp;<code>config/autoload/cli.global.php</code>.</p>
 
@@ -169,7 +169,7 @@
 
 <p class="mb-3">Note: You can take as example&nbsp;<code>Dot\Cli\Command\DemoCommand</code></p>
 
-<h4>Routing</h4>
+<h3>Routing</h3>
 
 <p class="mb-3">Providing each Module with a&nbsp;<code>RoutesDelegator.php</code>&nbsp;file for managing existing routes inside that specific module and an easy way of adding new ones providing the route path, Middleware that the route will use, an array of accepted methods and the route name.</p>
 
@@ -185,7 +185,7 @@
 
 <p class="mb-3">Note: The optional attributes on the route path are marked between&nbsp;<strong>[]</strong>&nbsp;like&nbsp;<strong></strong></p>
 
-<h4>Frontend</h4>
+<h3>Frontend</h3>
 
 <p class="mb-3">As for the frontend toolkit we chose to use <strong>Bootstrap</strong> <strong>4.5.0</strong> in combination with <strong>Fontawesome 5.0.6</strong> for a minimalist but efficient design.</p>
 
@@ -221,7 +221,48 @@
 
 <p class="mb-3">Note: You`ll find in the <code>#tableToolbar</code> buttons that toggle a <strong>modal</strong> for adding/editing/deleting admins.</p>
 
-<h4></h4>
+<h3></h3>
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>When was Dotkernel Admin V4 released, and what is it built on? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Dotkernel Admin V4 was officially released on 19 July 2022. It's DotKernel's PSR-7 Admin, an application based on Mezzio, mainly for managing and displaying tabular data from one or more database components.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What are the demo credentials for trying out Dotkernel Admin V4? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Username admin and password dotadmin, on the demo at https://admin4.dotkernel.net/.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What PHP version does Dotkernel Admin V4 support? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Full support for PHP 8.1, with a minimum requirement of PHP 7.4.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How do you register a new module or middleware? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Register a module by adding its ConfigProvider.php in config.php. New middleware goes into pipeline.php, where you can also edit the order in which middleware runs.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What packages provide the authorization guards? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">dot-rbac-guard and dot-rbac work together to restrict access based on user role. authorization.global.php defines roles and their permissions, while authorization-guards.global.php restricts specific actions to those permissions.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What frontend toolkit does Dotkernel Admin V4 use for displaying tables? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Bootstrap 4.5.0 combined with Fontawesome 5.0.6 for the overall design, and Bootstrap Table specifically for listing raw data because it's easy to implement and configurable in many ways.</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

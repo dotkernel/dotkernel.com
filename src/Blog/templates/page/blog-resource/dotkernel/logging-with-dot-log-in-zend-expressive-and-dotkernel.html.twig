@@ -249,7 +249,49 @@ $logger-&gt;notice('5 NOTICE');
 $logger-&gt;info('6 INF');
 $logger-&gt;debug('7 debug');
 $logger-&gt;log(Logger::NOTICE, 'NOTICE from log()');</pre>
-<h6>Sources:</h6>
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>How do I register dot-log's config provider? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">In config/config.php, add <code>\Dot\Log\ConfigProvider::class</code> if it's not already there, making sure it is added before application-specific components such as Frontend\App\ConfigProvider or Admin\App\ConfigProvider.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How is a logger retrieved from the container instead of using the plain class name? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Dot\Log\ConfigProvider registers an abstract factory, LoggerAbstractServiceFactory, that responds to "selectors" instead of class names. Instead of requesting Zend\Log\Logger::class from the container, you request dot-log.my_logger (or just my_logger if using zend-log).</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What is a writer, and how many does a logger need? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">A writer is an object that inherits from Zend\Log\Writer\AbstractWriter and is responsible for recording log data to a storage backend. Loggers must have at least one writer, and the writer's "name" key is mandatory while its "priority" key is optional and only used to organize writers, not to affect which errors get written.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What does a filter do, and how are log levels ordered? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">A filter prevents a message from being written to the log. Per PSR-3, the log levels in order of priority/importance are emergency (0), alert (1), critical (2), error (3), warn (4), notice (5), info (6), and debug (7) - the operator for "more important" messages is <= because a smaller number represents a more important message.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What does the formatter configuration control? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">The formatter accepts a "name" (a class implementing Zend\Log\Formatter\FormatterInterface) and "options" to pass to that formatter's constructor. Zend Log provides String, XML, JSON and FirePHP formatting, and arrays can be serialized this way for better readability.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How do you actually write log messages once the logger is configured? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Fetch the logger from the container, e.g. <code>$logger = $container-&gt;get('dot-log.my_logger');</code>, then call methods such as emerg(), alert(), crit(), err(), warn(), notice(), info(), debug(), or the generic log(Logger::NOTICE, 'message').</p>
+        </div>
+    </details>
+</div>
+
+<h2>Sources:</h2>
 <ul>
      <li>https://zendframework.github.io/zend-log/</li>
      <li>https://zendframework.github.io/zend-log/writers/</li>

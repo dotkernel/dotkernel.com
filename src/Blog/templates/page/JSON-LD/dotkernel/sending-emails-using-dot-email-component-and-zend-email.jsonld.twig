@@ -1,27 +1,53 @@
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
-        "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-        "headline": "{{ article.title }}",
-        "description": "{{ article.excerpt }}",
-        "datePublished": "{{ article.postDate|date('c') }}",
-        "dateModified": "{{ article.postDate|date('c') }}",
-        "articleSection": "{{ article.category.name }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ article.author.name }}",
-            "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ absolute_url('/') }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ absolute_url('/') }}" },
+                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}" },
+                    { "@type": "ListItem", "position": 3, "name": {{ article.title|json_encode|raw }} }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "mainEntity": [
+                    { "@type": "Question", "name": "What is Dot_Email?", "acceptedAnswer": { "@type": "Answer", "text": "Dot_Email is a class that extends Zend_Mail, so all methods from Zend_Mail are available in it. Aside from its constructor, Dot_Email itself is composed of only two methods, with everything else inherited from Zend_Mail." } },
+                    { "@type": "Question", "name": "What are the two methods that Dot_Email adds on top of Zend_Mail?", "acceptedAnswer": { "@type": "Answer", "text": "setContent($content, $format = 'text/plain') sets the body of the email by calling setBodyText() when the format is \"text/plain\" or setBodyHtml() when the format is \"text/html\". send() sets the transporter and calls the parent::send() method to send the email." } },
+                    { "@type": "Question", "name": "What is the minimal sequence of calls needed to send an email with Dot_Email?", "acceptedAnswer": { "@type": "Answer", "text": "You must always use addTo(), setSubject(), and setBodyText() or setBodyHtml() or setContent(), and finally call send(), as shown in the article's example that creates a new Dot_Email, adds a recipient, sets the subject and body text, then sends it and checks the returned success value." } },
+                    { "@type": "Question", "name": "How do I override the default From and Reply-To addresses?", "acceptedAnswer": { "@type": "Answer", "text": "Only if you want to overwrite the default Email and Name, add calls to setFrom($fromEmail, $fromName) and setReplyTo($fromEmail, $fromName)." } },
+                    { "@type": "Question", "name": "Which Zend_Mail methods are inherited and usable through Dot_Email?", "acceptedAnswer": { "@type": "Answer", "text": "Inherited methods listed in the article include setBodyText(), setBodyHtml(), addTo(), addCc(), addBcc(), setFrom(), setReplyTo(), setReturnPath(), setSubject(), and addHeader()." } }
+                ]
             }
-        }
+        ]
     }
 </script>

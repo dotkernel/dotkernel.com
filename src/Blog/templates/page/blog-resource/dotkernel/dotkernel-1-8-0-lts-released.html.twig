@@ -31,30 +31,30 @@
             <article class="article">
                 <div class="entry">
 DotKernel 1.8.0 (LTS) was just released.
-<h4><strong>What is LTS?
-</strong></h4>
+<h2><strong>What is LTS?
+</strong></h2>
 Long-term support (LTS) is a type of special versions or editions of software designed to be supported for a longer than normal period. It is particularly applicable to open-source software projects. It contains many bug fixes, some refactoring and a few minor features. Find more details read <a href="http://www.dotkernel.com/long-term-support" target="_blank" rel="noopener noreferrer">this article</a>.
 
 &nbsp;
 
 Here are a few of the many changes to DotKernel in the latest release:
-<h3><!--more--></h3>
-<h3>Highlights of 1.8.0 (LTS)</h3>
+<h2><!--more--></h2>
+<h2>Highlights of 1.8.0 (LTS)</h2>
 &nbsp;
-<h4>Plugin Architecture</h4>
+<h3>Plugin Architecture</h3>
 Starting with 1.8.0 we will start using Plugins to make the DotKernel extending easier. We'll keep you up to date about how you create and use a plugin.
-<h4>New design</h4>
+<h3>New design</h3>
 We've redesigned the admin module and the frontend module is now mobile-friendly, but you can still use the mobile module.
-<h4>Loads Faster</h4>
+<h3>Loads Faster</h3>
 The DotKernel framework just got a big boost because it supports APC &amp; File Caching within the framework, all the XML's and config files are cached in order to maximize response speed for more information about caching and how to cache your data see <a href="http://www.dotkernel.com/dotkernel/caching-in-dotkernel-using-zend-framework/" target="_blank" rel="noopener noreferrer">this article</a>.
-<h4>Easier Request Handling</h4>
+<h3>Easier Request Handling</h3>
 We've added a new class, Dot_Request, which lets you have control over the request data before you use it, for example the variables $_SERVER, $_GET and $_POST are only used within controllers.
-<h4>Features added</h4>
+<h3>Features added</h3>
 <ul>
     <li>API with Rate Limit - we've added a simple API with a single key authentification and a simple implementation of a rate limit (see /configs/application.ini - section params.api)</li>
     <li>Cache System - Built on the Zend_Cache backends, provides caching within DotKernel, but also in library, more details about this and how it works can be found <a href="http://www.dotkernel.com/dotkernel/dotkernel-reserved-variable-names-for-caching/" target="_blank" rel="noopener noreferrer">here</a>.</li>
 </ul>
-<h4>Other changes</h4>
+<h3>Other changes</h3>
 <ul>
     <li>Removed WURFL integration, DotKernel can detect wether you use a mobile device separately now, the WURFL Library can be added as a Plugin from now on</li>
     <li>Removed multiple SMTP Transporter, it can be added as a plugin</li>
@@ -62,7 +62,7 @@ We've added a new class, Dot_Request, which lets you have control over the reque
     <li>Admin fail logins are no longer sent to the first admin, they are sent to all developers found in <em>devEmails</em> within <em>settings</em> table in the database</li>
     <li>Alert System - Alerts can be sent to all the developers to notify them if something goes wrong, for more information about alerts read <a href="http://www.dotkernel.com/dotkernel/how-to-use-alerts-in-dotkernel/" target="_blank" rel="noopener noreferrer">this article</a>.</li>
 </ul>
-<h4>Bug Fixes</h4>
+<h3>Bug Fixes</h3>
 <ul>
     <li><tt><span style="text-decoration: line-through;"><a class="resolved" title=" seo.xml will cause error on same varname for two modules instead of overwriting" href="http://dotkernel.net/view.php?id=289">0000289</a>: <b></b> seo.xml will cause error on same varname for two modules instead of overwriting</span></tt></li>
     <li><tt><span style="text-decoration: line-through;"><a class="resolved" title=" email sent twice" href="http://dotkernel.net/view.php?id=249">0000249</a>: <b></b> email sent twice</span></tt></li>
@@ -75,6 +75,47 @@ We've added a new class, Dot_Request, which lets you have control over the reque
 There have been a lot of commits in our SVN repository since the latest release, so we can't cover all changes in this blog post. Please <a title="DotKernel 1.5.0" href="http://www.dotkernel.com/download/?did=41" target="_blank" rel="noopener noreferrer">download DotKernel 1.8.0 (LTS)</a> try it out yourself and tell us what you think.
 
 &nbsp;
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>What does LTS mean for DotKernel 1.8.0? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">LTS stands for Long-term support, a type of special version designed to be supported for longer than normal, which is particularly common for open-source software projects.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What is the Plugin Architecture introduced in 1.8.0? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Starting with 1.8.0, DotKernel uses Plugins to make extending the framework easier.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How does 1.8.0 load faster than previous versions? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">It supports APC and File Caching within the framework, so XML files and config files are cached to maximize response speed.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What is Dot_Request? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Dot_Request is a new class that gives you control over the request data before you use it, so that the variables $_SERVER, $_GET and $_POST are only accessed within controllers.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What was removed from DotKernel in 1.8.0? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">WURFL integration was removed (mobile device detection is now handled separately, and WURFL can be added as a plugin), and support for multiple SMTP transporters was removed (it can also be added as a plugin).</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What security-related additions does 1.8.0 include? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">A security scan in the Admin Dashboard shows recommended settings, admin failed-login notifications are sent to all developers listed in devEmails (not just the first admin), and a new Alert System can notify developers if something goes wrong.</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}

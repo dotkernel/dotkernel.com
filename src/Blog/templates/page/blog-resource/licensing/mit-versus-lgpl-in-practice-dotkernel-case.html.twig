@@ -32,25 +32,60 @@
                 <div class="entry">
 <p class="mb-3">After a recent analysis, we discovered that <strong>one of the upstream packages</strong> we use is <strong>licensed under <a href="https://www.gnu.org/licenses/lgpl-3.0.en.html" data-type="link" data-id="https://www.gnu.org/licenses/lgpl-3.0.en.html" target="_blank" rel="noreferrer noopener">LGPL v3</a></strong>. Even though we at <strong>DotKernel </strong>use the <strong><a href="https://opensource.org/license/mit" data-type="link" data-id="https://opensource.org/license/mit" target="_blank" rel="noreferrer noopener">MIT</a></strong> license for our open source projects, the more restrictive license must be applied to the whole application. We implemented a workaround detailed below.</p>
 
-<h4>Detailing the problem</h4>
+<h2>Detailing the problem</h2>
 
 <p class="mb-3">The package in question is <a href="https://github.com/matomo-org/device-detector" data-type="link" data-id="https://github.com/matomo-org/device-detector" target="_blank" rel="noreferrer noopener"><strong>matomo/device-detector</strong></a> which requires the developers to <strong>share their derivative code publicly</strong>. This goes against our contractual obligations to the client to keep their custom code business and enterprise friendly. The conflict that results in this scenario may cause <strong>legal issues</strong> in the future.</p>
 
-<h4>The solution</h4>
+<h2>The solution</h2>
 
 <p class="mb-3">Some companies explicitly steer clear of scenarios of this nature and DotKernel has decided to do the same. Our <strong>solution </strong>for DotKernel applications and libraries is to <strong>discard the use of 3rd party packages with LGPL v3</strong>. In this particular case we used the <strong>matomo/device-detector</strong> package in our <a href="https://github.com/dotkernel/dot-user-agent-sniffer" data-type="link" data-id="https://github.com/dotkernel/dot-user-agent-sniffer" target="_blank" rel="noreferrer noopener"><strong>dotkernel/dot-user-agent-sniffer</strong></a> package for the purpose of identifying the user agent and using the results in internal reports.</p>
 
 <p class="mb-3">ALL of <strong><a href="https://github.com/dotkernel" data-type="link" data-id="https://github.com/dotkernel" target="_blank" rel="noreferrer noopener">DotKernel's</a> </strong>packages are licensed under <strong>MIT </strong>which <strong>has no restrictions</strong> regarding the <strong>source code</strong>, other than keeping the license and copyright notice in a file within each package. Other non-restrictive licenses include Apache-2.0, BSD-2-Clause, BSD-3-Clause, ISC, MPL-2.0 and OSL-3.0. Some of them are used by the dependencies in DotKernel’s packages instead of MIT, but are still deemed acceptable.</p>
 
-<h4>The resolution</h4>
+<h2>The resolution</h2>
 
 <p class="mb-3">The <strong>dotkernel/dot-user-agent-sniffer</strong> package <strong>must follow the LGPL v3 license</strong>, beginning with version 3.4.0. Our <a href="https://github.com/dotkernel/admin" data-type="link" data-id="https://github.com/dotkernel/admin" target="_blank" rel="noreferrer noopener">admin application</a> will not use the features from matomo/device-detector, but will contain instructions on how to add the package, if other developers intend to use it.</p>
 
-<h4>Important note</h4>
+<h2>Important note</h2>
 
 <p class="mb-3"><strong>Warning: Any application using dotkernel/dot-user-agent-sniffer with a version lower than 3.4.0 is still a legal liability</strong>. We at DotKernel will not abandon the issue as is, but are looking into a solution to bring back the device detector functionality in the future under a less restrictive license. For now we will not include dotkernel/dot-user-agent-sniffer in any of our applications by default.</p>
 
 <p class="mb-3">Rob Allen has created an automation to check the licenses of installed packages. You can follow his article <a href="https://akrabat.com/check-licenses-of-composer-dependencies/" data-type="link" data-id="https://akrabat.com/check-licenses-of-composer-dependencies/" target="_blank" rel="noreferrer noopener">here</a>.</p>
+
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
+
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>Why did DotKernel need a workaround for this package? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">An analysis found that an upstream package, matomo/device-detector, was licensed under LGPL v3, which requires developers to share their derivative code publicly. Since DotKernel's own projects use the MIT license, and the more restrictive license would have to apply to the whole application, this conflicted with contractual obligations to keep client code business and enterprise friendly.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Where was the LGPL v3 package being used? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">The matomo/device-detector package was used in DotKernel's dot-user-agent-sniffer package to identify the user agent and use the results in internal reports.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What solution did DotKernel adopt? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">DotKernel decided to discard the use of third-party packages licensed under LGPL v3. All of DotKernel's own packages are licensed under MIT, which has no restrictions on the source code other than keeping the license and copyright notice in a file within each package. Other non-restrictive licenses considered acceptable include Apache-2.0, BSD-2-Clause, BSD-3-Clause, ISC, MPL-2.0 and OSL-3.0.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What changed in dot-user-agent-sniffer as a result? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Starting with version 3.4.0, the dotkernel/dot-user-agent-sniffer package must follow the LGPL v3 license. The admin application will not use the features from matomo/device-detector, but will contain instructions for developers who intend to add the package themselves.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>Is it still risky to use an older version of dot-user-agent-sniffer? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Yes. Any application using dotkernel/dot-user-agent-sniffer with a version lower than 3.4.0 is still a legal liability. DotKernel states it will not include dotkernel/dot-user-agent-sniffer in any of its applications by default for now, while it looks into bringing back the device detector functionality under a less restrictive license in the future.</p>
+        </div>
+    </details>
+</div>
                 </div>
 
                 {{ include('@partial/post-nav.html.twig') }}
