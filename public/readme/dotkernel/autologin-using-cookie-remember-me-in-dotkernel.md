@@ -3,7 +3,7 @@ title: "Autologin using Cookie / Remember Me in Dotkernel"
 description: "A step-by-step guide to implementing a Remember Me / autologin feature in Dotkernel Frontend."
 author: "SergiuB"
 date_published: "2022-07-18"
-canonical_url: "https://new.dotkernel.com/dotkernel/autologin-using-cookie-remember-me-in-dotkernel/"
+canonical_url: "https://www.dotkernel.com/dotkernel/autologin-using-cookie-remember-me-in-dotkernel/"
 category: "Dotkernel"
 language: "en"
 ---

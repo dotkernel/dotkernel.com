@@ -3,7 +3,7 @@ title: "GeoIP City Removed From DotKernel"
 description: "Why the GeoIP City integration was removed from DotKernel due to a segmentation fault with GeoIP extension 1.1.0+, and how to remove the affected code if you don't need GeoIP City."
 author: "Gabi DJ"
 date_published: "2015-02-25"
-canonical_url: "https://new.dotkernel.com/dotkernel/geoip-city-removed-from-dotkernel/"
+canonical_url: "https://www.dotkernel.com/dotkernel/geoip-city-removed-from-dotkernel/"
 category: "Dotkernel"
 language: "en"
 ---

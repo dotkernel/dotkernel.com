@@ -3,7 +3,7 @@ title: "Using DotKernel with Composer Dependencies"
 description: "How to use external Composer dependencies in DotKernel, demonstrated by rendering a barcode with both the non-namespaced Zend Framework 1 and the namespaced Zend Framework 2."
 author: "Gabi DJ"
 date_published: "2016-04-04"
-canonical_url: "https://new.dotkernel.com/dotkernel/using-dotkernel-with-composer-dependencies/"
+canonical_url: "https://www.dotkernel.com/dotkernel/using-dotkernel-with-composer-dependencies/"
 category: "Dotkernel"
 language: "en"
 ---

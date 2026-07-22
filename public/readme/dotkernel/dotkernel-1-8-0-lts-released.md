@@ -3,7 +3,7 @@ title: "DotKernel 1.8.0 LTS Released"
 description: "DotKernel 1.8.0 (LTS) introduces a plugin architecture, a redesigned mobile-friendly admin and frontend, APC/File caching for speed, a new Dot_Request class, and several security and alerting improvements."
 author: "Gabi DJ"
 date_published: "2015-06-08"
-canonical_url: "https://new.dotkernel.com/dotkernel/dotkernel-1-8-0-lts-released/"
+canonical_url: "https://www.dotkernel.com/dotkernel/dotkernel-1-8-0-lts-released/"
 category: "Dotkernel"
 language: "en"
 ---

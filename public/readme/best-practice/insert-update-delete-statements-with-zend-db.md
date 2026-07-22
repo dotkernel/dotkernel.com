@@ -3,7 +3,7 @@ title: "INSERT, UPDATE, DELETE statements with Zend_Db"
 description: "How to write INSERT, UPDATE, and DELETE (DML) statements using Zend_Db, alongside their equivalent raw SQL."
 author: "Teo"
 date_published: "2010-06-16"
-canonical_url: "https://new.dotkernel.com/best-practice/insert-update-delete-statements-with-zend-db/"
+canonical_url: "https://www.dotkernel.com/best-practice/insert-update-delete-statements-with-zend-db/"
 category: "Best Practice"
 language: "en"
 ---

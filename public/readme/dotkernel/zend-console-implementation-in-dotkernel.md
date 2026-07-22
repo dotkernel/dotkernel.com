@@ -3,7 +3,7 @@ title: "Zend_Console implementation in DotKernel"
 description: "How DotKernel's Console bootstrap lets you run PHP scripts from the command line, including its arguments and bundled example actions."
 author: "Adrian"
 date_published: "2011-10-13"
-canonical_url: "https://new.dotkernel.com/dotkernel/zend-console-implementation-in-dotkernel/"
+canonical_url: "https://www.dotkernel.com/dotkernel/zend-console-implementation-in-dotkernel/"
 category: "Dotkernel"
 language: "en"
 ---

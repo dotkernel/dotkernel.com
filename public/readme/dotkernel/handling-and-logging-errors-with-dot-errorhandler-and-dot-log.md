@@ -3,7 +3,7 @@ title: "Handling and Logging errors with dot-errorhandler and dot-log"
 description: "A guide to using dotkernel/dot-errorhandler alongside dot-log (or zend-log) to log errors in Zend Expressive applications, covering its two handler types, configuration, and how it was tested."
 author: "Gabi DJ"
 date_published: "2018-11-27"
-canonical_url: "https://new.dotkernel.com/dotkernel/handling-and-logging-errors-with-dot-errorhandler-and-dot-log/"
+canonical_url: "https://www.dotkernel.com/dotkernel/handling-and-logging-errors-with-dot-errorhandler-and-dot-log/"
 category: "Dotkernel"
 language: "en"
 ---

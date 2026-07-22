@@ -3,7 +3,7 @@ title: "Caching in DotKernel using Zend Framework"
 description: "How DotKernel's upcoming 1.8 cache layer stores router, ACL, menu and other data between requests, using APC/APCU or file storage."
 author: "Gabi DJ"
 date_published: "2015-01-29"
-canonical_url: "https://new.dotkernel.com/dotkernel/caching-in-dotkernel-using-zend-framework/"
+canonical_url: "https://www.dotkernel.com/dotkernel/caching-in-dotkernel-using-zend-framework/"
 category: "Dotkernel"
 language: "en"
 ---

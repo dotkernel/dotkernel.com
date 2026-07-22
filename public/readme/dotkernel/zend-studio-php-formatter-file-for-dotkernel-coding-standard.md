@@ -3,7 +3,7 @@ title: "Zend Studio PHP Formatter file for DotKernel coding standard."
 description: "A downloadable XML file for Zend Studio 9.x that configures the PHP code formatter to follow DotKernel's coding standard."
 author: "admin"
 date_published: "2012-03-02"
-canonical_url: "https://new.dotkernel.com/dotkernel/zend-studio-php-formatter-file-for-dotkernel-coding-standard/"
+canonical_url: "https://www.dotkernel.com/dotkernel/zend-studio-php-formatter-file-for-dotkernel-coding-standard/"
 category: "Dotkernel"
 language: "en"
 ---

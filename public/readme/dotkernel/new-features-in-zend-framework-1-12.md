@@ -3,7 +3,7 @@ title: "New Features in Zend Framework 1.12"
 description: "Overview of Zend Framework 1.12.0RC1, covering new components back ported from ZF2, the removal of the WurflApi adapter, and over 200 bug fixes."
 author: "admin"
 date_published: "2012-06-18"
-canonical_url: "https://new.dotkernel.com/dotkernel/new-features-in-zend-framework-1-12/"
+canonical_url: "https://www.dotkernel.com/dotkernel/new-features-in-zend-framework-1-12/"
 category: "Dotkernel"
 language: "en"
 ---

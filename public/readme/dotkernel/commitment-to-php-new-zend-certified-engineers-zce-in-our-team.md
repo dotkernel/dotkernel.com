@@ -3,7 +3,7 @@ title: "Commitment to PHP - new Zend Certified Engineers - ZCE - in our team"
 description: "Two more team members passed the ZCE exam, bringing the team's total to 5 Zend Certified Engineers."
 author: "admin"
 date_published: "2012-04-20"
-canonical_url: "https://new.dotkernel.com/dotkernel/commitment-to-php-new-zend-certified-engineers-zce-in-our-team/"
+canonical_url: "https://www.dotkernel.com/dotkernel/commitment-to-php-new-zend-certified-engineers-zce-in-our-team/"
 category: "Dotkernel"
 language: "en"
 ---

@@ -3,7 +3,7 @@ title: "WURFL Zend Framework Integration into DotKernel"
 description: "Step-by-step tutorial on integrating WURFL into DotKernel using the Zend_Http_UserAgent class from Zend Framework 1.11.0rc1."
 author: "Teo"
 date_published: "2010-10-27"
-canonical_url: "https://new.dotkernel.com/dotkernel/wurfl-zend-framework-integration-into-dotkernel/"
+canonical_url: "https://www.dotkernel.com/dotkernel/wurfl-zend-framework-integration-into-dotkernel/"
 category: "Dotkernel"
 language: "en"
 ---

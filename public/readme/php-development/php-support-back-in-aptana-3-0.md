@@ -3,7 +3,7 @@ title: "PHP support back in Aptana 3.0"
 description: "Aptana PHP support is coming back and will be integrated directly into the Studio 3 core rather than as a separate plugin."
 author: "admin"
 date_published: "2010-06-11"
-canonical_url: "https://new.dotkernel.com/php-development/php-support-back-in-aptana-3-0/"
+canonical_url: "https://www.dotkernel.com/php-development/php-support-back-in-aptana-3-0/"
 category: "PHP Development"
 language: "en"
 ---

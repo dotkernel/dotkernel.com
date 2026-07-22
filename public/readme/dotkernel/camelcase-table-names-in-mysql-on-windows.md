@@ -3,7 +3,7 @@ title: "camelCase Table Names in MySQL on Windows"
 description: "How to fix MySQL on WAMP/XAMPP lowercasing camelCase table names by setting lower_case_table_names=2 in my.cnf."
 author: "admin"
 date_published: "2010-03-12"
-canonical_url: "https://new.dotkernel.com/dotkernel/camelcase-table-names-in-mysql-on-windows/"
+canonical_url: "https://www.dotkernel.com/dotkernel/camelcase-table-names-in-mysql-on-windows/"
 category: "Dotkernel"
 language: "en"
 ---

@@ -3,7 +3,7 @@ title: "ConfigProvider - Bootstrap Modern PHP Applications"
 description: "An overview of the ConfigProvider pattern used in Laminas/Mezzio-based applications, including Dotkernel, to bootstrap middleware pipelines and dependency injection."
 author: "Florin Bidirean"
 date_published: "2025-08-20"
-canonical_url: "https://new.dotkernel.com/architecture/configprovider-bootstrap-modern-php-applications/"
+canonical_url: "https://www.dotkernel.com/architecture/configprovider-bootstrap-modern-php-applications/"
 category: "Architecture"
 language: "en"
 ---

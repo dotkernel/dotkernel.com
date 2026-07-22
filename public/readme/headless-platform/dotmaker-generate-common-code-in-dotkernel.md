@@ -3,7 +3,7 @@ title: "DotMaker - Generate common code in Dotkernel"
 description: "Overview of dotkernel/dot-maker, the CLI tool that generates project files and directories matching the Dotkernel file structure, and how to use it to scaffold modules and individual code items."
 author: "Florin Bidirean"
 date_published: "2025-09-12"
-canonical_url: "https://new.dotkernel.com/headless-platform/dotmaker-generate-common-code-in-dotkernel/"
+canonical_url: "https://www.dotkernel.com/headless-platform/dotmaker-generate-common-code-in-dotkernel/"
 category: "Headless Platform"
 language: "en"
 ---

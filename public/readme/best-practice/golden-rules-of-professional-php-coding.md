@@ -3,7 +3,7 @@ title: "Golden Rules of Professional PHP Coding"
 description: "A short list of practical rules for professional PHP development: error reporting settings, fixing warnings, marking hacks, single-responsibility functions, version control, and IDE usage."
 author: "admin"
 date_published: "2011-06-12"
-canonical_url: "https://new.dotkernel.com/best-practice/golden-rules-of-professional-php-coding/"
+canonical_url: "https://www.dotkernel.com/best-practice/golden-rules-of-professional-php-coding/"
 category: "Best Practice"
 language: "en"
 ---

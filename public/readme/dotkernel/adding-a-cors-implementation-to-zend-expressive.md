@@ -3,7 +3,7 @@ title: "Adding a CORS implementation to Zend Expressive"
 description: "A guide on how to add a CORS implementation to an existing DotKernel3 project using Tuupola's Cors Middleware package."
 author: "Gabi DJ"
 date_published: "2019-04-08"
-canonical_url: "https://new.dotkernel.com/dotkernel/adding-a-cors-implementation-to-zend-expressive/"
+canonical_url: "https://www.dotkernel.com/dotkernel/adding-a-cors-implementation-to-zend-expressive/"
 category: "Dotkernel"
 language: "en"
 ---

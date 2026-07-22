@@ -3,7 +3,7 @@ title: "API Endpoint to Collect Client Errors"
 description: "How Dotkernel API's error-report endpoint lets frontend clients submit and log errors that occur on the user's machine."
 author: "kakapiciu"
 date_published: "2022-11-07"
-canonical_url: "https://new.dotkernel.com/dotkernel-api/api-endpoint-to-collect-client-errors/"
+canonical_url: "https://www.dotkernel.com/dotkernel-api/api-endpoint-to-collect-client-errors/"
 category: "Dotkernel API"
 language: "en"
 ---

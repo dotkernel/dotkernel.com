@@ -3,7 +3,7 @@ title: "Dotkernel API v6: The root of Dotkernel Headless Platform"
 description: "Overview of what changed in Dotkernel API v6 since the original architecture and components article, covering new features, the Core module, composer updates, and testing/configuration changes."
 author: "Florin Bidirean"
 date_published: "2025-07-22"
-canonical_url: "https://new.dotkernel.com/headless-platform/dotkernel-api-v6-the-root-of-dotkernel-headless-platform/"
+canonical_url: "https://www.dotkernel.com/headless-platform/dotkernel-api-v6-the-root-of-dotkernel-headless-platform/"
 category: "Headless Platform"
 language: "en"
 ---

@@ -3,7 +3,7 @@ title: "Basic Security in Dotkernel Headless Platform"
 description: "A practical overview of software security practices implemented across the Dotkernel Headless Platform, covering input validation, content negotiation, CORS, RBAC, OAuth2, sessions, dependencies, and more."
 author: "Florin Bidirean"
 date_published: "2025-10-14"
-canonical_url: "https://new.dotkernel.com/best-practice/basic-security-in-dotkernel-headless-platform/"
+canonical_url: "https://www.dotkernel.com/best-practice/basic-security-in-dotkernel-headless-platform/"
 category: "Best Practice"
 language: "en"
 ---

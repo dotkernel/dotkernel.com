@@ -3,7 +3,7 @@ title: "DotKernel Reserved Variable Names for Caching"
 description: "A reference of the variables DotKernel caches — router, ACL role, menu, options, and browser/OS data — and the cache keys they use."
 author: "Gabi DJ"
 date_published: "2015-01-29"
-canonical_url: "https://new.dotkernel.com/dotkernel/dotkernel-reserved-variable-names-for-caching/"
+canonical_url: "https://www.dotkernel.com/dotkernel/dotkernel-reserved-variable-names-for-caching/"
 category: "Dotkernel"
 language: "en"
 ---

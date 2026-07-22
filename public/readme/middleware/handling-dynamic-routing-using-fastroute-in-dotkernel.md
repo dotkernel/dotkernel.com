@@ -3,7 +3,7 @@ title: "Handling dynamic routing using FastRoute in Dotkernel"
 description: "How Dotkernel moved from static, hard-coded route declarations to a dynamic, centralized routing configuration."
 author: "Florin Bidirean"
 date_published: "2025-02-26"
-canonical_url: "https://new.dotkernel.com/middleware/handling-dynamic-routing-using-fastroute-in-dotkernel/"
+canonical_url: "https://www.dotkernel.com/middleware/handling-dynamic-routing-using-fastroute-in-dotkernel/"
 category: "Middleware"
 language: "en"
 ---

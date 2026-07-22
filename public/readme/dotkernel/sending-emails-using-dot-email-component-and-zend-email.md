@@ -3,7 +3,7 @@ title: "Sending emails using Dot_Email component and Zend_Email"
 description: "Dot_Email extends Zend_Mail with two additional methods, setContent() and send(), and this article covers how to use it and which Zend_Mail methods are inherited."
 author: "admin"
 date_published: "2010-04-28"
-canonical_url: "https://new.dotkernel.com/dotkernel/sending-emails-using-dot-email-component-and-zend-email/"
+canonical_url: "https://www.dotkernel.com/dotkernel/sending-emails-using-dot-email-component-and-zend-email/"
 category: "Dotkernel"
 language: "en"
 ---

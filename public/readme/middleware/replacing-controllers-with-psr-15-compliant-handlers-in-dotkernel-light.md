@@ -3,7 +3,7 @@ title: "Replacing controllers with PSR-15 compliant handlers in Dotkernel Light"
 description: "Why and how Dotkernel Light replaced its controllers with PSR-15 compliant handlers, including a worked GetPageViewHandler example."
 author: "Florin Bidirean"
 date_published: "2025-03-03"
-canonical_url: "https://new.dotkernel.com/middleware/replacing-controllers-with-psr-15-compliant-handlers-in-dotkernel-light/"
+canonical_url: "https://www.dotkernel.com/middleware/replacing-controllers-with-psr-15-compliant-handlers-in-dotkernel-light/"
 category: "Middleware"
 language: "en"
 ---

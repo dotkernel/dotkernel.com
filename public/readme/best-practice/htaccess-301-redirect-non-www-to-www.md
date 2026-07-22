@@ -3,7 +3,7 @@ title: "htaccess 301 redirect non-www to www"
 description: "How to configure .htaccess RewriteCond/RewriteRule directives to redirect a non-www domain to its www version, or vice versa."
 author: "admin"
 date_published: "2011-03-14"
-canonical_url: "https://new.dotkernel.com/best-practice/htaccess-301-redirect-non-www-to-www/"
+canonical_url: "https://www.dotkernel.com/best-practice/htaccess-301-redirect-non-www-to-www/"
 category: "Best Practice"
 language: "en"
 ---

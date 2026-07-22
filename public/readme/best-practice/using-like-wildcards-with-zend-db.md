@@ -3,7 +3,7 @@ title: "Using LIKE wildcards with Zend_Db"
 description: "How to use the SQL LIKE condition and its _ and % wildcards, including NOT LIKE, with Zend_Db's quoteInto and quoteIdentifier methods."
 author: "Teo"
 date_published: "2010-09-10"
-canonical_url: "https://new.dotkernel.com/best-practice/using-like-wildcards-with-zend-db/"
+canonical_url: "https://www.dotkernel.com/best-practice/using-like-wildcards-with-zend-db/"
 category: "Best Practice"
 language: "en"
 ---

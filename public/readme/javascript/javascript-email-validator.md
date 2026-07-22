@@ -3,7 +3,7 @@ title: "Javascript: Email Validator"
 description: "A regex-based fix for email validation that allows the plus (+) and dash (-) characters in the appropriate parts of an email address."
 author: "admin"
 date_published: "2008-10-03"
-canonical_url: "https://new.dotkernel.com/javascript/javascript-email-validator/"
+canonical_url: "https://www.dotkernel.com/javascript/javascript-email-validator/"
 category: "Javascript"
 language: "en"
 ---

@@ -3,7 +3,7 @@ title: "Protecting admin folder with .htaccess in Plesk"
 description: "How to protect the /admin folder with HTTP Basic Auth in a Plesk vhost.conf file, and how to apply the change and finish setup with .htpasswd."
 author: "admin"
 date_published: "2011-06-15"
-canonical_url: "https://new.dotkernel.com/dotkernel/protecting-admin-folder-with-htaccess-in-plesk/"
+canonical_url: "https://www.dotkernel.com/dotkernel/protecting-admin-folder-with-htaccess-in-plesk/"
 category: "Dotkernel"
 language: "en"
 ---

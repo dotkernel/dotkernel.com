@@ -3,7 +3,7 @@ title: "Adding Windows 10 OS and Browser detection in DotKernel projects"
 description: "A guide to installing the patch that adds Windows 8, 8.1 and 10 OS icons and the Microsoft Edge browser icon in DotKernel."
 author: "Gabi DJ"
 date_published: "2015-09-08"
-canonical_url: "https://new.dotkernel.com/dotkernel/adding-windows-10-os-and-browser-detection-in-dotkernel-projects/"
+canonical_url: "https://www.dotkernel.com/dotkernel/adding-windows-10-os-and-browser-detection-in-dotkernel-projects/"
 category: "Dotkernel"
 language: "en"
 ---

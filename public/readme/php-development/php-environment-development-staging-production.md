@@ -3,7 +3,7 @@ title: "PHP Environment : Development Staging Production"
 description: "An overview of the development, staging and production server environments used to improve the development, testing and release process of client-server applications."
 author: "Teo"
 date_published: "2010-07-30"
-canonical_url: "https://new.dotkernel.com/php-development/php-environment-development-staging-production/"
+canonical_url: "https://www.dotkernel.com/php-development/php-environment-development-staging-production/"
 category: "PHP Development"
 language: "en"
 ---

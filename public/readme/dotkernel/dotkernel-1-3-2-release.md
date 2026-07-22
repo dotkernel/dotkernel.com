@@ -3,7 +3,7 @@ title: "DotKernel 1.3.2 release"
 description: "DotKernel 1.3.2 is a maintenance release with many bug fixes, a couple of minor features, and some refactoring, released just before the winter holidays."
 author: "Teo"
 date_published: "2010-12-23"
-canonical_url: "https://new.dotkernel.com/dotkernel/dotkernel-1-3-2-release/"
+canonical_url: "https://www.dotkernel.com/dotkernel/dotkernel-1-3-2-release/"
 category: "Dotkernel"
 language: "en"
 ---

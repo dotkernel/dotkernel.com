@@ -3,7 +3,7 @@ title: "Floating-Point Arithmetic - Why is (int)((0.7+0.1)*10) = 7 ?"
 description: "An explanation of why PHP's floating-point arithmetic and int casting can produce unexpected results like (int)((0.7+0.1)*10) = 7 instead of 8."
 author: "Gabi DJ"
 date_published: "2016-01-26"
-canonical_url: "https://new.dotkernel.com/php-development/floating-point-arithmetic-why-is-int-0-7-0-1-10-7/"
+canonical_url: "https://www.dotkernel.com/php-development/floating-point-arithmetic-why-is-int-0-7-0-1-10-7/"
 category: "PHP Development"
 language: "en"
 ---

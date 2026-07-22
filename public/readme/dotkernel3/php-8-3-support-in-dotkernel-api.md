@@ -3,7 +3,7 @@ title: "PHP 8.3 support in Dotkernel API"
 description: "Dotkernel API (now v4.2.1) was updated to support PHP 8.2 and PHP 8.3, dropping PHP 8.1, updating dependencies, and replacing the removed PhpFileCache with the new dot-cache package."
 author: "Florin Bidirean"
 date_published: "2024-04-03"
-canonical_url: "https://new.dotkernel.com/dotkernel3/php-8-3-support-in-dotkernel-api/"
+canonical_url: "https://www.dotkernel.com/dotkernel3/php-8-3-support-in-dotkernel-api/"
 category: "Dotkernel 3"
 language: "en"
 ---

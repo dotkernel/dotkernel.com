@@ -3,7 +3,7 @@ title: "Protection against SQL Injection using PDO and Zend Framework - part 2"
 description: "A closer look at Zend_Db's query, fetchAll, insert, update, and delete methods, and where SQL injection can still slip through even with prepared statements."
 author: "Teo"
 date_published: "2010-06-18"
-canonical_url: "https://new.dotkernel.com/php-development/protection-against-sql-injection-using-pdo-and-zend-framework-part-2/"
+canonical_url: "https://www.dotkernel.com/php-development/protection-against-sql-injection-using-pdo-and-zend-framework-part-2/"
 category: "PHP Development"
 language: "en"
 ---

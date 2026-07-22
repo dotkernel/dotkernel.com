@@ -3,7 +3,7 @@ title: "DotKernel 1.3.0 release"
 description: "DotKernel 1.3.0 adds an admin skin switcher, a way to protect member-only links, and reorganizes resource.xml into route.xml and dots.xml, at the cost of backward compatibility."
 author: "Teo"
 date_published: "2010-10-15"
-canonical_url: "https://new.dotkernel.com/dotkernel/dotkernel-1-3-0-release/"
+canonical_url: "https://www.dotkernel.com/dotkernel/dotkernel-1-3-0-release/"
 category: "Dotkernel"
 language: "en"
 ---

@@ -3,7 +3,7 @@ title: "Mezzio app development in WSL2"
 description: "A step-by-step guide to installing a Mezzio application (DotKernel API) inside WSL2, running it on Ubuntu 20.04 LTS."
 author: "Alex Karajos"
 date_published: "2022-09-08"
-canonical_url: "https://new.dotkernel.com/php-development/mezzio-app-development-in-wsl2/"
+canonical_url: "https://www.dotkernel.com/php-development/mezzio-app-development-in-wsl2/"
 category: "PHP Development"
 language: "en"
 ---

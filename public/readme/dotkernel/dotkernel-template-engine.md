@@ -3,7 +3,7 @@ title: "DotKernel Template Engine"
 description: "DotKernel Template Engine is an implementation of the PHPLib Template engine for PHP5, separating application code from the presentation layer."
 author: "admin"
 date_published: "2009-10-02"
-canonical_url: "https://new.dotkernel.com/dotkernel/dotkernel-template-engine/"
+canonical_url: "https://www.dotkernel.com/dotkernel/dotkernel-template-engine/"
 category: "Dotkernel"
 language: "en"
 ---

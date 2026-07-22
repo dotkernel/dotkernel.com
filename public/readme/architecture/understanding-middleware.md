@@ -3,7 +3,7 @@ title: "Understanding Middleware"
 description: "An introduction to middleware in PHP web applications: what it is, what it's used for, how PSR-15 defines it, and how it's called within an application's pipeline."
 author: "Florin Bidirean"
 date_published: "2025-05-22"
-canonical_url: "https://new.dotkernel.com/architecture/understanding-middleware/"
+canonical_url: "https://www.dotkernel.com/architecture/understanding-middleware/"
 category: "Architecture"
 language: "en"
 ---

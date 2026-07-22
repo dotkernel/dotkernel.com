@@ -3,7 +3,7 @@ title: "Zend Framework dropped integration of WURFL adapter"
 description: "Zend Framework 1.12.0 drops the WURFL adapter from Zend_Http_UserAgent due to WURFL's licensing change to AGPL; DotKernel is unaffected since it uses its own WURFL adapter."
 author: "admin"
 date_published: "2012-03-22"
-canonical_url: "https://new.dotkernel.com/dotkernel/zend-framework-dropped-integration-of-wurfl-adapter/"
+canonical_url: "https://www.dotkernel.com/dotkernel/zend-framework-dropped-integration-of-wurfl-adapter/"
 category: "Dotkernel"
 language: "en"
 ---

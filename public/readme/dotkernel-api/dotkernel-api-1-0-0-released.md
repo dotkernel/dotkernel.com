@@ -3,7 +3,7 @@ title: "DotKernel API 1.0.0 Released"
 description: "Announcement of the DotKernel API 1.0.0 release, a Zend Expressive 3 application for quickly building APIs, including the libraries it uses and the features it offers out of the box."
 author: "Alex Karajos"
 date_published: "2019-12-15"
-canonical_url: "https://new.dotkernel.com/dotkernel-api/dotkernel-api-1-0-0-released/"
+canonical_url: "https://www.dotkernel.com/dotkernel-api/dotkernel-api-1-0-0-released/"
 category: "Dotkernel API"
 language: "en"
 ---

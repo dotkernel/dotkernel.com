@@ -3,7 +3,7 @@ title: "Content Negotiation in Dotkernel REST API"
 description: "How content negotiation works in RESTful APIs, who decides the data format, and how Dotkernel API implements it."
 author: "Florin Bidirean"
 date_published: "2024-11-27"
-canonical_url: "https://new.dotkernel.com/dotkernel-api/content-negotiation-in-dotkernel-rest-api/"
+canonical_url: "https://www.dotkernel.com/dotkernel-api/content-negotiation-in-dotkernel-rest-api/"
 category: "Dotkernel API"
 language: "en"
 ---

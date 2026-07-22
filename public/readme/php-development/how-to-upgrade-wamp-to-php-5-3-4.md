@@ -3,7 +3,7 @@ title: "How To Upgrade Wamp to PHP 5.3.4"
 description: "Step-by-step instructions for upgrading a WAMP server's PHP version to 5.3.4."
 author: "admin"
 date_published: "2010-12-13"
-canonical_url: "https://new.dotkernel.com/php-development/how-to-upgrade-wamp-to-php-5-3-4/"
+canonical_url: "https://www.dotkernel.com/php-development/how-to-upgrade-wamp-to-php-5-3-4/"
 category: "PHP Development"
 language: "en"
 ---

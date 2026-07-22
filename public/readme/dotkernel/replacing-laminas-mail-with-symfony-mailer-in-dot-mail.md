@@ -3,7 +3,7 @@ title: "Replacing laminas-mail with Symfony mailer in dot-mail"
 description: "Why and how Dotkernel replaced the abandoned laminas/laminas-mail package with symfony/mailer inside dotkernel/dot-mail, including configuration changes and the upgrade path to version 5."
 author: "Florin Bidirean"
 date_published: "2025-01-08"
-canonical_url: "https://new.dotkernel.com/dotkernel/replacing-laminas-mail-with-symfony-mailer-in-dot-mail/"
+canonical_url: "https://www.dotkernel.com/dotkernel/replacing-laminas-mail-with-symfony-mailer-in-dot-mail/"
 category: "Dotkernel"
 language: "en"
 ---

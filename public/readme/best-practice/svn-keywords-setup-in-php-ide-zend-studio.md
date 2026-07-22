@@ -3,7 +3,7 @@ title: "SVN keywords setup in PHP IDE ( Zend Studio)"
 description: "How to set SVN ignore, bug tracker, and svn:keywords properties per project in the Zend Studio PHP IDE."
 author: "admin"
 date_published: "2013-02-21"
-canonical_url: "https://new.dotkernel.com/best-practice/svn-keywords-setup-in-php-ide-zend-studio/"
+canonical_url: "https://www.dotkernel.com/best-practice/svn-keywords-setup-in-php-ide-zend-studio/"
 category: "Best Practice"
 language: "en"
 ---

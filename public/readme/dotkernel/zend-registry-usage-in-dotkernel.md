@@ -3,7 +3,7 @@ title: "Zend Registry usage in DotKernel"
 description: "The variables stored in Zend_Registry in DotKernel and how to read them, either as a full instance or one value at a time."
 author: "Adrian"
 date_published: "2011-06-01"
-canonical_url: "https://new.dotkernel.com/dotkernel/zend-registry-usage-in-dotkernel/"
+canonical_url: "https://www.dotkernel.com/dotkernel/zend-registry-usage-in-dotkernel/"
 category: "Dotkernel"
 language: "en"
 ---

@@ -3,7 +3,7 @@ title: "Aptana - set SVN keywords"
 description: "How to set the svn:keywords property (e.g. Id) for a file in Aptana, so SVN replaces the keyword marker with commit metadata."
 author: "Teo"
 date_published: "2011-04-04"
-canonical_url: "https://new.dotkernel.com/best-practice/aptana-set-svn-keywords/"
+canonical_url: "https://www.dotkernel.com/best-practice/aptana-set-svn-keywords/"
 category: "Best Practice"
 language: "en"
 ---

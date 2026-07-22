@@ -3,7 +3,7 @@ title: "PHP 5.3.6 released. No upgrade possible for WampServer."
 description: "PHP 5.3.6 dropped Visual Studio C++ 6 Windows builds, making an in-place WampServer upgrade impossible since WampServer itself is built with VC++ 6."
 author: "admin"
 date_published: "2011-03-18"
-canonical_url: "https://new.dotkernel.com/php-development/php-5-3-6-released-no-upgrade-possible-for-wampserver/"
+canonical_url: "https://www.dotkernel.com/php-development/php-5-3-6-released-no-upgrade-possible-for-wampserver/"
 category: "PHP Development"
 language: "en"
 ---

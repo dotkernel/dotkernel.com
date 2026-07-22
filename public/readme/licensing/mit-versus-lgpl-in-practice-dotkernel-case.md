@@ -3,7 +3,7 @@ title: "MIT versus LGPL in practice: Dotkernel case"
 description: "How DotKernel handled discovering an LGPL v3 dependency in one of its MIT-licensed packages."
 author: "Florin Bidirean"
 date_published: "2024-04-15"
-canonical_url: "https://new.dotkernel.com/licensing/mit-versus-lgpl-in-practice-dotkernel-case/"
+canonical_url: "https://www.dotkernel.com/licensing/mit-versus-lgpl-in-practice-dotkernel-case/"
 category: "Licensing"
 language: "en"
 ---

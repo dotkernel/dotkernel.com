@@ -3,7 +3,7 @@ title: "Forcing UTF8 connections and character set in MySQL"
 description: "How to force the MySQL server's character set and collation to UTF8 via my.cnf, so every connecting script uses it regardless of client."
 author: "admin"
 date_published: "2012-05-09"
-canonical_url: "https://new.dotkernel.com/dotkernel/forcing-utf8-connections-and-character-set-in-mysql/"
+canonical_url: "https://www.dotkernel.com/dotkernel/forcing-utf8-connections-and-character-set-in-mysql/"
 category: "Dotkernel"
 language: "en"
 ---

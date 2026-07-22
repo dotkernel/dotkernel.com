@@ -3,7 +3,7 @@ title: "Wurfl Cloud Integration in DotKernel 1.6.0"
 description: "How WURFL Cloud, WURFL's cloud-based device detection service, was integrated as the default mobile detection method in DotKernel 1.6.0."
 author: "deddu"
 date_published: "2012-05-18"
-canonical_url: "https://new.dotkernel.com/dotkernel/wurfl-cloud-integration-in-dotkernel-1-6-0/"
+canonical_url: "https://www.dotkernel.com/dotkernel/wurfl-cloud-integration-in-dotkernel-1-6-0/"
 category: "Dotkernel"
 language: "en"
 ---

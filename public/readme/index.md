@@ -1,7 +1,7 @@
 ---
 title: "Dotkernel — A Headless Platform for Modern Web Applications"
 description: "Dotkernel is a collection of open-source PHP application skeletons built on Mezzio and Laminas, ranging from a minimal presentation-site skeleton to a full headless platform (API, Admin, Queue) for enterprise-grade applications."
-url: "http://light-blog.localhost/"
+url: "https://www.dotkernel.com/"
 language: "en"
 entities:
   - name: "Dotkernel API"
@@ -70,7 +70,7 @@ Not every project needs a headless platform - these two stand on their own.
 
 Small, independent packages - pull in what you need. Grouped by concern: authentication (dot-authentication, dot-auth-social), authorization (dot-authorization, dot-rbac, dot-rbac-guard), controllers (dot-controller), forms (laminas-form), session (dot-session, dot-flashmessenger, dot-cache), logging & error handling (dot-log, dot-errorhandler), emailing (dot-mail), backend/database abstraction (doctrine/orm, doctrine/dbal, dot-data-fixtures), navigation (dot-navigation), templating (dot-twigrenderer), and supporting tools (dot-annotated-services, dot-event, dot-helpers, dot-cli, dot-doctrine-metadata, dot-response-header, dot-user-agent-sniffer, dot-debugbar, dot-geoip).
 
-Full package list and lifecycle/support status: https://new.dotkernel.com/dotkernel-packages-oss-lifecycle/
+Full package list and lifecycle/support status: https://www.dotkernel.com/dotkernel-packages-oss-lifecycle/
 
 ## About
 
@@ -80,6 +80,6 @@ Dotkernel is an open-source project created and led by the dev team at Apidemia 
 
 - Documentation: https://docs.dotkernel.org
 - GitHub organization: https://github.com/dotkernel
-- Blog: https://new.dotkernel.com/blog/
-- Categories: https://new.dotkernel.com/categories/
-- Contact: https://new.dotkernel.com/contact/
+- Blog: https://www.dotkernel.com/blog/
+- Categories: https://www.dotkernel.com/categories/
+- Contact: https://www.dotkernel.com/contact/

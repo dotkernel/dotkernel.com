@@ -3,7 +3,7 @@ title: "Zend_Session usage in DotKernel - Refactor of Dot_Session class"
 description: "A session cookie bug found in IE8/IE9 on DotKernel 1.5.0, traced to redundant regenerateID()/rememberMe() calls in Dot_Session, and the fix shipped in 1.5.1."
 author: "admin"
 date_published: "2011-07-28"
-canonical_url: "https://new.dotkernel.com/dotkernel/zend-session-usage-in-dotkernel-refactor-of-dot-session-class/"
+canonical_url: "https://www.dotkernel.com/dotkernel/zend-session-usage-in-dotkernel-refactor-of-dot-session-class/"
 category: "Dotkernel"
 language: "en"
 ---

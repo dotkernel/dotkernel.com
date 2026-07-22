@@ -3,7 +3,7 @@ title: "Evolution Pattern versus API Versioning"
 description: "How Dotkernel weighs an evolution pattern against API versioning when changing an API, and the sunsetting mechanism used in Dotkernel API to announce breaking changes."
 author: "Florin Bidirean"
 date_published: "2025-12-09"
-canonical_url: "https://new.dotkernel.com/headless-platform/evolution-pattern-versus-api-versioning/"
+canonical_url: "https://www.dotkernel.com/headless-platform/evolution-pattern-versus-api-versioning/"
 category: "Headless Platform"
 language: "en"
 ---

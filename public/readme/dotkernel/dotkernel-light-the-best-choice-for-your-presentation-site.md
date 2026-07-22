@@ -3,7 +3,7 @@ title: "Dotkernel Light: the best choice for your presentation site"
 description: "A walkthrough of using Dotkernel Light to build a simple presentation site: adding new pages, managing assets, and configuring Twitter/OpenGraph cards, the top menu, and the footer."
 author: "Florin Bidirean"
 date_published: "2024-10-14"
-canonical_url: "https://new.dotkernel.com/dotkernel/dotkernel-light-the-best-choice-for-your-presentation-site/"
+canonical_url: "https://www.dotkernel.com/dotkernel/dotkernel-light-the-best-choice-for-your-presentation-site/"
 category: "Dotkernel"
 language: "en"
 ---

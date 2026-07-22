@@ -3,7 +3,7 @@ title: "Listen for Android install referrer"
 description: "Android market broadcasts an intent containing referrer information at install time, before the app is opened, which can be used for install tracking."
 author: "n3vrax"
 date_published: "2011-07-24"
-canonical_url: "https://new.dotkernel.com/android/listen-for-android-install-referrer/"
+canonical_url: "https://www.dotkernel.com/android/listen-for-android-install-referrer/"
 category: "Android"
 language: "en"
 ---

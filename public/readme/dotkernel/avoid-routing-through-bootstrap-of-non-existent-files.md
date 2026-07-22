@@ -3,7 +3,7 @@ title: "Avoid routing through bootstrap of non existent files"
 description: "How to stop missing static files from being routed through the bootstrap and logging out users whose session regenerates on each request."
 author: "admin"
 date_published: "2013-11-29"
-canonical_url: "https://new.dotkernel.com/dotkernel/avoid-routing-through-bootstrap-of-non-existent-files/"
+canonical_url: "https://www.dotkernel.com/dotkernel/avoid-routing-through-bootstrap-of-non-existent-files/"
 category: "Dotkernel"
 language: "en"
 ---

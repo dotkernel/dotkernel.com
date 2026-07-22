@@ -3,7 +3,7 @@ title: "Using UTF8 charset in DotKernel"
 description: "How to enable UTF8 encoding in a DotKernel-based system, covering both database collation and the application.ini charset setting."
 author: "admin"
 date_published: "2012-04-07"
-canonical_url: "https://new.dotkernel.com/dotkernel/using-utf8-charset-in-dotkernel/"
+canonical_url: "https://www.dotkernel.com/dotkernel/using-utf8-charset-in-dotkernel/"
 category: "Dotkernel"
 language: "en"
 ---

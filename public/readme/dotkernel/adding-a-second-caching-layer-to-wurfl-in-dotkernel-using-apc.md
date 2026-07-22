@@ -3,7 +3,7 @@ title: "Adding a second caching layer to WURFL in Dotkernel using APC"
 description: "How adding a small, custom APC-based caching layer on top of WURFL's own cache cut response time by an order of magnitude."
 author: "Adrian"
 date_published: "2011-10-14"
-canonical_url: "https://new.dotkernel.com/dotkernel/adding-a-second-caching-layer-to-wurfl-in-dotkernel-using-apc/"
+canonical_url: "https://www.dotkernel.com/dotkernel/adding-a-second-caching-layer-to-wurfl-in-dotkernel-using-apc/"
 category: "Dotkernel"
 language: "en"
 ---

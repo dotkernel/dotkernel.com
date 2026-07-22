@@ -3,7 +3,7 @@ title: "Dotkernel Light improvements: PSR-15 Handlers, Vite, PHPStan"
 description: "An overview of recent improvements to Dotkernel Light: migrating to PSR-15 handlers, adopting Vite, switching to PHPStan, and other smaller updates."
 author: "Florin Bidirean"
 date_published: "2025-05-02"
-canonical_url: "https://new.dotkernel.com/middleware/dotkernel-light-improvements-psr-15-handlers-vite-phpstan/"
+canonical_url: "https://www.dotkernel.com/middleware/dotkernel-light-improvements-psr-15-handlers-vite-phpstan/"
 category: "Middleware"
 language: "en"
 ---

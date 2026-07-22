@@ -3,7 +3,7 @@ title: "PHP Formatter and Templates for Zend Studio 10.1"
 description: "An updated PHP Formatter plugin and a DotKernel coding standard templates file for Zend Studio 10.1, along with the required Formatter plugin change."
 author: "admin"
 date_published: "2013-07-02"
-canonical_url: "https://new.dotkernel.com/dotkernel/php-formatter-and-templates-for-zend-studio-10-1/"
+canonical_url: "https://www.dotkernel.com/dotkernel/php-formatter-and-templates-for-zend-studio-10-1/"
 category: "Dotkernel"
 language: "en"
 ---

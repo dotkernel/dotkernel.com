@@ -3,7 +3,7 @@ title: "WURFL PHP API license incompatible with DotKernel"
 description: "The WURFL PHP API's license changed from GNU/GPL to AGPL in version 1.3.0, making it a trial-only library incompatible with keeping DotKernel free."
 author: "admin"
 date_published: "2011-06-08"
-canonical_url: "https://new.dotkernel.com/dotkernel/wurfl-php-api-license-incompatible-with-dotkernel/"
+canonical_url: "https://www.dotkernel.com/dotkernel/wurfl-php-api-license-incompatible-with-dotkernel/"
 category: "Dotkernel"
 language: "en"
 ---

@@ -3,7 +3,7 @@ title: "Multiple broadcast receivers in the same app, for the same action"
 description: "Using multiple broadcast receivers to listen separately for the same intent in the same Android app can lead to unexpected results, since one receiver may consume the broadcast and leave the others with nothing."
 author: "n3vrax"
 date_published: "2011-07-22"
-canonical_url: "https://new.dotkernel.com/android/multiple-broadcast-receivers-in-the-same-app-for-the-same-action/"
+canonical_url: "https://www.dotkernel.com/android/multiple-broadcast-receivers-in-the-same-app-for-the-same-action/"
 category: "Android"
 language: "en"
 ---

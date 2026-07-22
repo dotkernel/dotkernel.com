@@ -3,7 +3,7 @@ title: "Dotkernel Light - Starting with Mezzio microframework and Laminas compon
 description: "Dotkernel Light is a stripped-down version of Dotkernel Frontend built on Mezzio and Laminas components, keeping only routing, templating, error handling, and tests, for a gentler learning curve."
 author: "Florin Bidirean"
 date_published: "2024-10-03"
-canonical_url: "https://new.dotkernel.com/dotkernel/dotkernel-light-starting-with-mezzio-microframework-and-laminas-components/"
+canonical_url: "https://www.dotkernel.com/dotkernel/dotkernel-light-starting-with-mezzio-microframework-and-laminas-components/"
 category: "Dotkernel"
 language: "en"
 ---

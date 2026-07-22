@@ -3,7 +3,7 @@ title: "Migration of Zend Framework 1 PEAR channel"
 description: "The unofficial PEAR channel for Zend Framework 1 moved from Google Code to a new dedicated server, with instructions on how to switch to the new channel."
 author: "admin"
 date_published: "2016-05-11"
-canonical_url: "https://new.dotkernel.com/dotkernel/migration-of-zend-framework-1-pear-channel/"
+canonical_url: "https://www.dotkernel.com/dotkernel/migration-of-zend-framework-1-pear-channel/"
 category: "Dotkernel"
 language: "en"
 ---

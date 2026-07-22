@@ -3,7 +3,7 @@ title: "DotKernel 1.5.0 Released"
 description: "DotKernel 1.5.0 skips version 1.4 entirely and brings a switch from Dojo to jQuery, redesigned admin and frontend, model inheritance via Dot_Model, dashed controller support, and a reorganized Zend Registry."
 author: "Adrian"
 date_published: "2011-06-15"
-canonical_url: "https://new.dotkernel.com/dotkernel/dotkernel-1-5-0-released/"
+canonical_url: "https://www.dotkernel.com/dotkernel/dotkernel-1-5-0-released/"
 category: "Dotkernel"
 language: "en"
 ---

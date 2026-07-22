@@ -3,7 +3,7 @@ title: "Zend_Auth and Zend_Acl integrated in DotKernel"
 description: "How Zend_Auth and Zend_Acl were integrated into DotKernel 1.5.0 through the Dot_Auth and Dot_Acl classes for user authentication and access control."
 author: "Teo"
 date_published: "2011-06-16"
-canonical_url: "https://new.dotkernel.com/dotkernel/zend-auth-and-zend-acl-integrated-in-dotkernel/"
+canonical_url: "https://www.dotkernel.com/dotkernel/zend-auth-and-zend-acl-integrated-in-dotkernel/"
 category: "Dotkernel"
 language: "en"
 ---

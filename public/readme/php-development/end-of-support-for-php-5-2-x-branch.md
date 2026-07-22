@@ -3,7 +3,7 @@ title: "End of Support for PHP 5.2.x Branch"
 description: "PHP 5.2.14 marks the end of active support for the PHP 5.2 branch, with PHP 5.3.3 released and ready for upgrade."
 author: "admin"
 date_published: "2010-07-22"
-canonical_url: "https://new.dotkernel.com/php-development/end-of-support-for-php-5-2-x-branch/"
+canonical_url: "https://www.dotkernel.com/php-development/end-of-support-for-php-5-2-x-branch/"
 category: "PHP Development"
 language: "en"
 ---

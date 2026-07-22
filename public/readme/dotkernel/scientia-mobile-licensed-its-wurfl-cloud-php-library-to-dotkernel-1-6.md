@@ -3,7 +3,7 @@ title: "Scientia Mobile licensed its Wurfl Cloud PHP library to DotKernel 1.6"
 description: "DotKernel 1.6.0 removed the obsolete GPL'ed WURFL PHP library and replaced it with Scientia Mobile's WURFL Cloud PHP library, under a special license limited to use with the Dotkernel framework."
 author: "admin"
 date_published: "2012-05-25"
-canonical_url: "https://new.dotkernel.com/dotkernel/scientia-mobile-licensed-its-wurfl-cloud-php-library-to-dotkernel-1-6/"
+canonical_url: "https://www.dotkernel.com/dotkernel/scientia-mobile-licensed-its-wurfl-cloud-php-library-to-dotkernel-1-6/"
 category: "Dotkernel"
 language: "en"
 ---

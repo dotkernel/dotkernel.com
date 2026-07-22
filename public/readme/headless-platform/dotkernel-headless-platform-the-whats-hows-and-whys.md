@@ -3,7 +3,7 @@ title: "Dotkernel Headless Platform - The Whats, Hows and Whys"
 description: "Overview of the Dotkernel Headless Platform architecture, its two main components (Dotkernel API and Dotkernel Admin), how to use them together or separately, and the benefits of the combined setup."
 author: "Florin Bidirean"
 date_published: "2025-06-13"
-canonical_url: "https://new.dotkernel.com/headless-platform/dotkernel-headless-platform-the-whats-hows-and-whys/"
+canonical_url: "https://www.dotkernel.com/headless-platform/dotkernel-headless-platform-the-whats-hows-and-whys/"
 category: "Headless Platform"
 language: "en"
 ---

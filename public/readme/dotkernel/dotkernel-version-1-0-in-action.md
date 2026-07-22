@@ -3,7 +3,7 @@ title: "DotKernel version 1.0 in action"
 description: "An overview of DotKernel 1.0, DotBoost's in-house framework built on Zend Framework, its simplified MVC architecture, and the specific Zend Framework classes it relies on."
 author: "admin"
 date_published: "2009-10-02"
-canonical_url: "https://new.dotkernel.com/dotkernel/dotkernel-version-1-0-in-action/"
+canonical_url: "https://www.dotkernel.com/dotkernel/dotkernel-version-1-0-in-action/"
 category: "Dotkernel"
 language: "en"
 ---

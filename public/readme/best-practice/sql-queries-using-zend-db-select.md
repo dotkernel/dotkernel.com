@@ -3,7 +3,7 @@ title: "SQL queries using Zend_Db – SELECT"
 description: "How to write SELECT queries with JOINs and WHERE IN clauses using Zend_Db, alongside their equivalent raw SQL."
 author: "Teo"
 date_published: "2010-06-15"
-canonical_url: "https://new.dotkernel.com/best-practice/sql-queries-using-zend-db-select/"
+canonical_url: "https://www.dotkernel.com/best-practice/sql-queries-using-zend-db-select/"
 category: "Best Practice"
 language: "en"
 ---

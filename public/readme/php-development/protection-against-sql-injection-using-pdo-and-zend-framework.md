@@ -3,7 +3,7 @@ title: "Protection against SQL Injection using PDO and Zend Framework"
 description: "An overview of what SQL injection is, what PDO provides, and how prepared statements in Zend Framework help - but don't fully guarantee - protection against SQL injection."
 author: "admin"
 date_published: "2010-06-16"
-canonical_url: "https://new.dotkernel.com/php-development/protection-against-sql-injection-using-pdo-and-zend-framework/"
+canonical_url: "https://www.dotkernel.com/php-development/protection-against-sql-injection-using-pdo-and-zend-framework/"
 category: "PHP Development"
 language: "en"
 ---

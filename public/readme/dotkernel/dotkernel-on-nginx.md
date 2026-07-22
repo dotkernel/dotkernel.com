@@ -3,7 +3,7 @@ title: "DotKernel on Nginx"
 description: "A walkthrough of testing whether DotKernel runs out of the box on Nginx, and how the Nginx configuration was set up as a substitute for Apache's .htaccess."
 author: "admin"
 date_published: "2013-06-25"
-canonical_url: "https://new.dotkernel.com/dotkernel/dotkernel-on-nginx/"
+canonical_url: "https://www.dotkernel.com/dotkernel/dotkernel-on-nginx/"
 category: "Dotkernel"
 language: "en"
 ---

@@ -3,7 +3,7 @@ title: "PHP 8.3 support in Dotkernel Frontend"
 description: "The DotKernel team updated the Frontend application to version 4.2.0 to support PHP 8.3, dropping PHP 8.1 and the PhpFileCache class along the way."
 author: "Florin Bidirean"
 date_published: "2024-02-14"
-canonical_url: "https://new.dotkernel.com/dotkernel3/php-8-3-support-in-dotkernel-frontend/"
+canonical_url: "https://www.dotkernel.com/dotkernel3/php-8-3-support-in-dotkernel-frontend/"
 category: "Dotkernel 3"
 language: "en"
 ---

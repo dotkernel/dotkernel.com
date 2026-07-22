@@ -3,7 +3,7 @@ title: "DotKernel API Client Side Authorization"
 description: "How a client application authorizes against a backend built with DotKernel API, from the authorization request to using the access token."
 author: "admin"
 date_published: "2019-08-05"
-canonical_url: "https://new.dotkernel.com/dotkernel-api/dotkernel-api-client-side-authorization/"
+canonical_url: "https://www.dotkernel.com/dotkernel-api/dotkernel-api-client-side-authorization/"
 category: "Dotkernel API"
 language: "en"
 ---

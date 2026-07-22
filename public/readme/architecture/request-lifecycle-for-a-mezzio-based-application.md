@@ -3,7 +3,7 @@ title: "Request Lifecycle for a Mezzio-Based Application"
 description: "A step-by-step walkthrough of how Dotkernel Light, a Mezzio-based application, handles an HTTP request from bootstrap through to the emitted response."
 author: "Florin Bidirean"
 date_published: "2026-05-26"
-canonical_url: "https://new.dotkernel.com/architecture/request-lifecycle-for-a-mezzio-based-application/"
+canonical_url: "https://www.dotkernel.com/architecture/request-lifecycle-for-a-mezzio-based-application/"
 category: "Architecture"
 language: "en"
 ---

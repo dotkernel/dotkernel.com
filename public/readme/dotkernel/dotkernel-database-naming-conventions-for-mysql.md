@@ -3,7 +3,7 @@ title: "DotKernel Database Naming Conventions for MySQL"
 description: "DotKernel borrows its database naming conventions from FaZend, covering singular table names, auto-incrementing id columns, foreign key and constraint naming patterns, and camelLetter casing."
 author: "admin"
 date_published: "2010-03-10"
-canonical_url: "https://new.dotkernel.com/dotkernel/dotkernel-database-naming-conventions-for-mysql/"
+canonical_url: "https://www.dotkernel.com/dotkernel/dotkernel-database-naming-conventions-for-mysql/"
 category: "Dotkernel"
 language: "en"
 ---

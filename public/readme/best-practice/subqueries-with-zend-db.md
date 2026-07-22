@@ -3,7 +3,7 @@ title: "Subqueries with Zend_Db"
 description: "How to build a query combining COUNT, LEFT JOIN, and GROUP BY across multiple tables using Zend_Db, including a subquery embedded as a column."
 author: "Teo"
 date_published: "2010-06-15"
-canonical_url: "https://new.dotkernel.com/best-practice/subqueries-with-zend-db/"
+canonical_url: "https://www.dotkernel.com/best-practice/subqueries-with-zend-db/"
 category: "Best Practice"
 language: "en"
 ---

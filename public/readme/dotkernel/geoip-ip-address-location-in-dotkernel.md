@@ -3,7 +3,7 @@ title: "GeoIP: Ip Address Location In DotKernel"
 description: "How DotKernel's getCountryByIp function in library/Dot/Geoip.php uses MaxMind's GeoIP technology and its .dat files to determine a visitor's country."
 author: "Teo"
 date_published: "2010-10-19"
-canonical_url: "https://new.dotkernel.com/dotkernel/geoip-ip-address-location-in-dotkernel/"
+canonical_url: "https://www.dotkernel.com/dotkernel/geoip-ip-address-location-in-dotkernel/"
 category: "Dotkernel"
 language: "en"
 ---

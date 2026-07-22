@@ -3,7 +3,7 @@ title: "API Client Migration: From Postman to Bruno"
 description: "Why the Dotkernel team is considering switching their API testing client from Postman to the offline-focused, Git-native Bruno."
 author: "Florin Bidirean"
 date_published: "2026-03-25"
-canonical_url: "https://new.dotkernel.com/dotkernel-api/api-client-migration-from-postman-to-bruno/"
+canonical_url: "https://www.dotkernel.com/dotkernel-api/api-client-migration-from-postman-to-bruno/"
 category: "Dotkernel API"
 language: "en"
 ---

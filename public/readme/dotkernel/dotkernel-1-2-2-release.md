@@ -3,7 +3,7 @@ title: "DotKernel 1.2.2 release"
 description: "DotKernel 1.2.2 is a bug-fix release closing five issues, including captcha error handling, a pagination bug, and a copyright line update that touched every PHP file."
 author: "Teo"
 date_published: "2010-07-30"
-canonical_url: "https://new.dotkernel.com/dotkernel/dotkernel-1-2-2-release/"
+canonical_url: "https://www.dotkernel.com/dotkernel/dotkernel-1-2-2-release/"
 category: "Dotkernel"
 language: "en"
 ---

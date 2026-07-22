@@ -3,7 +3,7 @@ title: "DotKernel 1.8.1 + Upgrade from 1.8.0 Released"
 description: "DotKernel 1.8.1 adds Enhanced Cache Support with cache tagging, and ships with a dedicated upgrade package for users coming from 1.8.0."
 author: "Gabi DJ"
 date_published: "2015-06-11"
-canonical_url: "https://new.dotkernel.com/dotkernel/dotkernel-1-8-1-upgrade-from-1-8-0-released/"
+canonical_url: "https://www.dotkernel.com/dotkernel/dotkernel-1-8-1-upgrade-from-1-8-0-released/"
 category: "Dotkernel"
 language: "en"
 ---

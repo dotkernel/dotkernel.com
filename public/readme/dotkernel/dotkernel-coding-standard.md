@@ -3,7 +3,7 @@ title: "DotKernel Coding Standard"
 description: "DotKernel borrows the Zend Framework coding standard with a few exceptions, covering indentation, class/interface/file naming, and curly brace placement for control statements."
 author: "admin"
 date_published: "2008-03-28"
-canonical_url: "https://new.dotkernel.com/dotkernel/dotkernel-coding-standard/"
+canonical_url: "https://www.dotkernel.com/dotkernel/dotkernel-coding-standard/"
 category: "Dotkernel"
 language: "en"
 ---

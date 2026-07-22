@@ -3,7 +3,7 @@ title: "Adding Composer support in your DotKernel project"
 description: "The steps needed to add Composer support to a DotKernel 1.x project, or 'composify' it."
 author: "Gabi DJ"
 date_published: "2016-04-04"
-canonical_url: "https://new.dotkernel.com/dotkernel/adding-composer-support-in-your-dotkernel-project/"
+canonical_url: "https://www.dotkernel.com/dotkernel/adding-composer-support-in-your-dotkernel-project/"
 category: "Dotkernel"
 language: "en"
 ---

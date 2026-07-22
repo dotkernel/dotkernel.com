@@ -3,7 +3,7 @@ title: "SVN Export in a virtual host"
 description: "How to export the contents of an SVN repository into a virtual host directory using the svn export command."
 author: "Adrian"
 date_published: "2011-05-30"
-canonical_url: "https://new.dotkernel.com/best-practice/svn-export-in-a-virtual-host/"
+canonical_url: "https://www.dotkernel.com/best-practice/svn-export-in-a-virtual-host/"
 category: "Best Practice"
 language: "en"
 ---

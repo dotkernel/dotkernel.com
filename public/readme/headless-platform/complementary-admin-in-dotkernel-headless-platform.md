@@ -3,7 +3,7 @@ title: "Complementary Admin in Dotkernel Headless Platform"
 description: "Overview of Dotkernel Admin, the independent, first-party admin application designed to pair seamlessly with Dotkernel API in the Dotkernel Headless Platform."
 author: "Florin Bidirean"
 date_published: "2025-08-06"
-canonical_url: "https://new.dotkernel.com/headless-platform/complementary-admin-in-dotkernel-headless-platform/"
+canonical_url: "https://www.dotkernel.com/headless-platform/complementary-admin-in-dotkernel-headless-platform/"
 category: "Headless Platform"
 language: "en"
 ---

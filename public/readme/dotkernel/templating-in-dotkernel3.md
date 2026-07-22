@@ -3,7 +3,7 @@ title: "Templating in DotKernel3"
 description: "DotKernel3 replaces its 10-year-old templating engine with Twig, gaining layouts, loops, variables, and escaping while keeping the familiarity of HTML."
 author: "Jesper"
 date_published: "2017-12-20"
-canonical_url: "https://new.dotkernel.com/dotkernel/templating-in-dotkernel3/"
+canonical_url: "https://www.dotkernel.com/dotkernel/templating-in-dotkernel3/"
 category: "Dotkernel"
 language: "en"
 ---

@@ -3,7 +3,7 @@ title: "Dotkernel Queue - Asynchronous Execution in Dotkernel Headless Platform"
 description: "Overview of Dotkernel Queue, a Symfony Messenger based component for running time-consuming or resource-intensive operations asynchronously via background workers in the Dotkernel Headless Platform."
 author: "Florin Bidirean"
 date_published: "2025-09-04"
-canonical_url: "https://new.dotkernel.com/headless-platform/dotkernel-queue-asynchronous-execution-in-dotkernel-headless-platform/"
+canonical_url: "https://www.dotkernel.com/headless-platform/dotkernel-queue-asynchronous-execution-in-dotkernel-headless-platform/"
 category: "Headless Platform"
 language: "en"
 ---
