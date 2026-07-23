@@ -19,7 +19,7 @@ class Author extends AbstractEntity
     #[ORM\Column(name: 'slug', type: 'text', unique: true)]
     private string $slug;
 
-    #[ORM\Column(name: 'github', type: 'text', unique: true, nullable: true)]
+    #[ORM\Column(name: 'github', type: 'string', length: 191, unique: true, nullable: true)]
     private ?string $github = null;
 
     public function getName(): string
