@@ -89,175 +89,6 @@ $bp-tablet: 900px;
   }
 }
 
-// ---------- Sidebar & widgets ----------
-.sidebar {
-  display: flex;
-  flex-direction: column;
-  gap: 34px;
-
-  @media (max-width: $bp-tablet) {
-    order: 2;
-  }
-}
-
-.widget {
-  border-bottom: 1px solid var(--border-soft);
-  padding-bottom: 28px;
-
-  &:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-  }
-
-  ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-}
-
-.widget-title {
-  font-family: var(--mono);
-  font-size: 11.5px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-dim);
-  margin-bottom: 16px;
-}
-
-.search-form {
-  display: flex;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  overflow: hidden;
-
-  input {
-    flex: 1;
-    min-width: 0;
-    background: none;
-    border: none;
-    padding: 10px 12px;
-    color: var(--text);
-    font-family: var(--sans);
-    font-size: 14px;
-
-    &:focus {
-      outline: none;
-    }
-  }
-
-  button {
-    background: var(--surface-2);
-    border: none;
-    padding: 0 14px;
-    color: var(--text-muted);
-    cursor: pointer;
-    font-family: var(--mono);
-    font-size: 12px;
-
-    &:hover {
-      color: var(--amber);
-    }
-  }
-}
-
-.widget-recent {
-  ul {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
-
-  li {
-    a {
-      font-size: 14px;
-      color: var(--text);
-      display: block;
-      line-height: 1.4;
-
-      &:hover {
-        color: var(--amber);
-      }
-    }
-
-    .post-date {
-      display: block;
-      font-family: var(--mono);
-      font-size: 11px;
-      color: var(--text-dim);
-      margin-top: 4px;
-    }
-  }
-}
-
-.widget-categories {
-  li {
-    border-bottom: 1px solid var(--border-soft);
-
-    &:last-child {
-      border-bottom: none;
-    }
-
-    a {
-      display: block;
-      padding: 9px 0;
-      font-size: 14px;
-      color: var(--text-muted);
-
-      &:hover {
-        color: var(--text);
-      }
-    }
-
-    &.current a {
-      color: var(--amber);
-      font-weight: 600;
-    }
-  }
-}
-
-.widget-connect {
-  ul {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  li {
-    a {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 14px;
-      color: var(--text-muted);
-
-      &:hover {
-        color: var(--text);
-      }
-    }
-
-    svg {
-      width: 17px;
-      height: 17px;
-      flex-shrink: 0;
-      color: var(--teal);
-    }
-  }
-}
-
-.widget-approach {
-  p {
-    font-size: 13.5px;
-    line-height: 1.7;
-    margin-bottom: 12px;
-    color: var(--text-muted);
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-}
-
 // ---------- Article entry ----------
 .entry {
   max-width: 720px;
@@ -548,5 +379,93 @@ $bp-tablet: 900px;
   textarea {
     resize: vertical;
     min-height: 120px;
+  }
+}
+
+// ---------- Post hero v2 (experimental redesign, single page for now) ----------
+.post-hero-v2 {
+  padding: 20px 0 16px;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--amber), var(--teal), transparent 85%);
+  }
+
+  h1 {
+    font-size: 38px;
+    line-height: 1.2;
+    margin: 12px 0 0;
+    max-width: none;
+
+    @media (max-width: $bp-tablet) {
+      font-size: 28px;
+    }
+  }
+}
+
+.hero-top-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 18px;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px 6px 10px;
+  border-radius: 999px;
+  background: var(--teal-dim);
+  border: 1px solid var(--teal);
+  color: var(--teal);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+  }
+}
+
+.post-meta-v2 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--text-dim);
+
+  a {
+    color: var(--text-muted);
+
+    &:hover {
+      color: var(--amber);
+    }
+  }
+}
+
+.meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  svg {
+    width: 14px;
+    height: 14px;
+    color: var(--text-dim);
+    flex-shrink: 0;
   }
 }
