@@ -28,6 +28,7 @@ class AuthorLoader extends Fixture
 
         $categories = json_decode($contents, true);
 
+        $repository    = $manager->getRepository(Author::class);
         $seenAuthorIds = [];
 
         foreach ($categories as $cat) {
@@ -37,23 +38,39 @@ class AuthorLoader extends Fixture
                     continue;
                 }
 
-                $wpAuthorId = $authorData['user_email'];
+                $wpAuthorId = $authorData['github'];
                 if (isset($seenAuthorIds[$wpAuthorId])) {
                     continue;
                 }
                 $seenAuthorIds[$wpAuthorId] = true;
 
-                $name  = $authorData['display_name'];
-                $email = $authorData['user_email'];
-                $slug  = $this->slugify($name);
+                $name   = $authorData['display_name'];
+                $github = $authorData['github'];
+                $slug   = $this->slugify($name);
 
-                $author = new Author();
-                $author->setName($name);
-                $author->setSlug($slug);
-                $author->setEmail($email);
-                $author->setBio(null);
+                $author = $repository->findOneBy(['name' => $name]);
 
-                $manager->persist($author);
+                if ($author === null) {
+                    $author = new Author();
+                    $author->setName($name);
+                    $author->setSlug($slug);
+                    $author->setGithub($github);
+                    $manager->persist($author);
+                    echo "CREATE: {$name}\n";
+                } else {
+                    $changed = false;
+                    if ($author->getSlug() !== $slug) {
+                        $author->setSlug($slug);
+                        $changed = true;
+                    }
+                    if ($author->getGithub() !== $github) {
+                        $author->setGithub($github);
+                        $changed = true;
+                    }
+
+                    echo $changed ? "UPDATE: {$name}\n" : "UNCHANGED: {$name}\n";
+                }
+
                 $this->addReference('author_' . $wpAuthorId, $author);
             }
         }

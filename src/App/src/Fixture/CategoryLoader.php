@@ -25,13 +25,23 @@ class CategoryLoader extends Fixture
 
         $categories = json_decode($contents, true);
 
+        $repository = $manager->getRepository(Category::class);
+
         foreach ($categories as $cat) {
-            $category = new Category();
+            $category = $repository->findOneBy(['slug' => $cat['slug']]);
+
+            if ($category === null) {
+                $category = new Category();
+                $category->setSlug($cat['slug']);
+                $manager->persist($category);
+                echo "CREATE: {$cat['name']}\n";
+            } else {
+                echo "UNCHANGED: {$cat['name']}\n";
+            }
+
             $category->setName($cat['name']);
-            $category->setSlug($cat['slug']);
             $category->setVisibility($cat['isVisible'] ?? true);
 
-            $manager->persist($category);
             $this->addReference('category_' . $cat['slug'], $category);
         }
 

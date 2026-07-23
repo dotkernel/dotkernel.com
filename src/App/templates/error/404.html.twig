@@ -4,17 +4,22 @@
 {% block canonical %}{% endblock %}
 
 {% block content %}
-    <div class="page-intro home-intro error-messages">
-        <div class="container">
+    <section class="hero">
+        <div class="wrap">
             <span class="eyebrow">Oops! This is awkward.</span>
             <h1>404</h1>
-            <p class="text-dark">
-                You are looking for something that doesn't exist or may have moved. Check out one of the links on this page
-                or head back to <a class="text-dark" href="{{ path('app::index') }}">Home</a>.
+            <p class="sub">
+                You are looking for something that doesn't exist or may have moved.
+                Check out one of the categories below, or head back home.
             </p>
 
+            <div class="hero-ctas">
+                <a class="btn btn-primary" href="{{ path('app::index') }}">Back to Home</a>
+                <a class="btn btn-ghost" href="{{ url('page::blog') }}">Browse new posts</a>
+            </div>
+
             {% if categories is defined and categories|length > 0 %}
-                <div class="d-flex flex-wrap gap-2">
+                <div class="d-flex flex-wrap gap-2 mt-4">
                     {% for category in categories %}
                         <a href="{{ url('page::category-resource', {slug: category.slug}) }}"
                            class="badge bg-primary-subtle text-primary text-uppercase fw-bold text-decoration-none px-3 py-2 rounded-pill">
@@ -24,5 +29,5 @@
                 </div>
             {% endif %}
         </div>
-    </div>
+    </section>
 {% endblock %}

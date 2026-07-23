@@ -15,27 +15,239 @@ Content spans foundational PHP/middleware architecture (PSR-7, PSR-15, request l
 
 ## Categories
 
-- [Dotkernel](https://www.dotkernel.com/category/dotkernel/): the core framework — releases, caching, sessions, auth, WURFL/device detection (64 posts)
-- [PHP Development](https://www.dotkernel.com/category/php-development/): general PHP tooling, environments, IDEs, security (20 posts)
-- [How to's](https://www.dotkernel.com/category/how-to/): practical guides — migrations, CORS, PSR-7, routing (14 posts)
-- [Best Practice](https://www.dotkernel.com/category/best-practice/): coding standards and database access patterns (13 posts)
-- [Dotkernel API](https://www.dotkernel.com/category/dotkernel-api/): REST API package — auth, content negotiation, OpenAPI (10 posts)
-- [Dotkernel 3](https://www.dotkernel.com/category/dotkernel3/): the v3 rewrite on Zend Expressive/Mezzio (9 posts)
-- [Headless Platform](https://www.dotkernel.com/category/headless-platform/): the current Dotkernel headless architecture (9 posts)
-- [Zend Framework](https://www.dotkernel.com/category/zend-framework/): Zend Framework 1 history and end-of-life notes (8 posts)
-- [Javascript](https://www.dotkernel.com/category/javascript/): frontend/JS topics (3 posts)
-- [Middleware](https://www.dotkernel.com/category/middleware/): PSR-15 middleware and routing internals (3 posts)
-- [Architecture](https://www.dotkernel.com/category/architecture/): request lifecycle and application bootstrapping (3 posts)
-- [PHP Troubleshooting](https://www.dotkernel.com/category/php-troubleshooting/): fixes for common PHP setup issues (2 posts)
-- [Android](https://www.dotkernel.com/category/android/): Android install-referrer and broadcast receivers (2 posts)
-- [PHPStorm](https://www.dotkernel.com/category/phpstorm/): IDE setup (1 post)
-- [Licensing](https://www.dotkernel.com/category/licensing/): open-source license comparisons (1 post)
+## Dotkernel (64 posts)
 
-## Optional
+*the core framework — releases, caching, sessions, auth, WURFL/device detection*
 
-- [Dotkernel Headless Platform: The What's, How's and Why's](https://www.dotkernel.com/headless-platform/dotkernel-headless-platform-the-whats-hows-and-whys/): best starting point for understanding the current platform
-- [Understanding Middleware](https://www.dotkernel.com/architecture/understanding-middleware/)
-- [Request Lifecycle for a Mezzio Based Application](https://www.dotkernel.com/architecture/request-lifecycle-for-a-mezzio-based-application/)
-- [ConfigProvider: Bootstrap Modern PHP Applications](https://www.dotkernel.com/architecture/configprovider-bootstrap-modern-php-applications/)
-- [What is PSR-7 and How to Use It](https://www.dotkernel.com/how-to/what-is-psr-7-and-how-to-use-it/)
-- [Dependency Injection Made Easy in Laminas/Mezzio Applications](https://www.dotkernel.com/dotkernel/dependency-injection-made-easy-in-laminas-mezzio-applications/)
+- [Adding a CORS implementation to Zend Expressive](https://www.dotkernel.com/dotkernel/adding-a-cors-implementation-to-zend-expressive/): A guide on how to add a CORS implementation to an existing DotKernel3 project using Tuupola's Cors Middleware package.
+- [Adding a second caching layer to WURFL in Dotkernel using APC](https://www.dotkernel.com/dotkernel/adding-a-second-caching-layer-to-wurfl-in-dotkernel-using-apc/): How adding a small, custom APC-based caching layer on top of WURFL's own cache cut response time by an order of magnitude.
+- [Adding Composer support in your DotKernel project](https://www.dotkernel.com/dotkernel/adding-composer-support-in-your-dotkernel-project/): The steps needed to add Composer support to a DotKernel 1.x project, or 'composify' it.
+- [Adding Windows 10 OS and Browser detection in DotKernel projects](https://www.dotkernel.com/dotkernel/adding-windows-10-os-and-browser-detection-in-dotkernel-projects/): A guide to installing the patch that adds Windows 8, 8.1 and 10 OS icons and the Microsoft Edge browser icon in DotKernel.
+- [Autologin using Cookie / Remember Me in Dotkernel](https://www.dotkernel.com/dotkernel/autologin-using-cookie-remember-me-in-dotkernel/): A step-by-step guide to implementing a Remember Me / autologin feature in Dotkernel Frontend.
+- [Avoid routing through bootstrap of non existent files](https://www.dotkernel.com/dotkernel/avoid-routing-through-bootstrap-of-non-existent-files/): How to stop missing static files from being routed through the bootstrap and logging out users whose session regenerates on each request.
+- [Caching in DotKernel using Zend Framework](https://www.dotkernel.com/dotkernel/caching-in-dotkernel-using-zend-framework/): How DotKernel's upcoming 1.8 cache layer stores router, ACL, menu and other data between requests, using APC/APCU or file storage.
+- [camelCase Table Names in MySQL on Windows](https://www.dotkernel.com/dotkernel/camelcase-table-names-in-mysql-on-windows/): How to fix MySQL on WAMP/XAMPP lowercasing camelCase table names by setting lower_case_table_names=2 in my.cnf.
+- [Commitment to PHP - new Zend Certified Engineers - ZCE - in our team](https://www.dotkernel.com/dotkernel/commitment-to-php-new-zend-certified-engineers-zce-in-our-team/): Two more team members passed the ZCE exam, bringing the team's total to 5 Zend Certified Engineers.
+- [Configuring the Cache in DotKernel](https://www.dotkernel.com/dotkernel/configuring-the-cache-in-dotkernel/): A configuration guide for DotKernel's Zend Framework Cache-based caching layer, covering the main frontend settings and the optional per-backend settings.
+- [Dependency Injection made easy in Laminas/Mezzio applications](https://www.dotkernel.com/dotkernel/dependency-injection-made-easy-in-laminas-mezzio-applications/): Introduces DotKernel's dot-dependency-injection package, which autowires constructor dependencies in Laminas/Mezzio applications via a PHP attribute instead of a hand-written factory per class.
+- [Detecting Mobile Devices in DotKernel 1.6.0](https://www.dotkernel.com/dotkernel/detecting-mobile-devices-in-dotkernel-1-6-0/): Explains how mobile device detection changed in DotKernel 1.6.0 with the move to Wurfl Cloud, including the required application.ini settings and sample Dot_UserAgent usage code.
+- [Disable Wurfl redirect for mobile browsers](https://www.dotkernel.com/dotkernel/disable-wurfl-redirect-for-mobile-browsers/): Shows the application.ini setting introduced in revision 408 to control DotKernel's automatic Wurfl-based redirect of mobile visitors to the mobile site, and the code that checks it.
+- [Disambiguation: DotKernel 1 and DotKernel 3](https://www.dotkernel.com/dotkernel/disambiguation-dotkernel-1-and-dotkernel-3/): Clarifies what DotKernel 1 and DotKernel 3 are, how they differ architecturally, and which version is meant when someone simply says 'DotKernel'.
+- [Doctrine cache using symfony/cache](https://www.dotkernel.com/dotkernel/doctrine-cache-using-symfony-cache/): How to enable and configure the dotkernel/dot-cache component, a wrapper around symfony/cache, to cache Doctrine's result, metadata, query, and hydration data in DotKernel Admin.
+- [Doctrine enum implementation in Dotkernel](https://www.dotkernel.com/dotkernel/doctrine-enum-implementation-in-dotkernel/): How Dotkernel adopted Doctrine ORM 3.2's EnumType support to replace loosely-enforced string-based status columns with PHP enums backed by a custom DBAL type.
+- [DotBoost Technologies : Products and Services North American Relaunch](https://www.dotkernel.com/dotkernel/dotboost-technologies-products-and-services-north-american-relaunch/): Dotboost Technologies announces its North American relaunch, centered on the source release of its in-house DotKernel framework alongside expanded IT integration and consulting services.
+- [DotKernel 1.2.0 release](https://www.dotkernel.com/dotkernel/dotkernel-1-2-0-release/): Release notes for DotKernel 1.2.0, covering database naming convention changes, the new 'dots' submodule concept, new and updated library classes, and the use of prepared statements for all SQL queries.
+- [DotKernel 1.2.2 release](https://www.dotkernel.com/dotkernel/dotkernel-1-2-2-release/): DotKernel 1.2.2 is a bug-fix release closing five issues, including captcha error handling, a pagination bug, and a copyright line update that touched every PHP file.
+- [DotKernel 1.3.0 release](https://www.dotkernel.com/dotkernel/dotkernel-1-3-0-release/): DotKernel 1.3.0 adds an admin skin switcher, a way to protect member-only links, and reorganizes resource.xml into route.xml and dots.xml, at the cost of backward compatibility.
+- [DotKernel 1.3.2 release](https://www.dotkernel.com/dotkernel/dotkernel-1-3-2-release/): DotKernel 1.3.2 is a maintenance release with many bug fixes, a couple of minor features, and some refactoring, released just before the winter holidays.
+- [DotKernel 1.5.0 Released](https://www.dotkernel.com/dotkernel/dotkernel-1-5-0-released/): DotKernel 1.5.0 skips version 1.4 entirely and brings a switch from Dojo to jQuery, redesigned admin and frontend, model inheritance via Dot_Model, dashed controller support, and a reorganized Zend Registry.
+- [DotKernel 1.8.0 LTS Released](https://www.dotkernel.com/dotkernel/dotkernel-1-8-0-lts-released/): DotKernel 1.8.0 (LTS) introduces a plugin architecture, a redesigned mobile-friendly admin and frontend, APC/File caching for speed, a new Dot_Request class, and several security and alerting improvements.
+- [DotKernel 1.8.1 + Upgrade from 1.8.0 Released](https://www.dotkernel.com/dotkernel/dotkernel-1-8-1-upgrade-from-1-8-0-released/): DotKernel 1.8.1 adds Enhanced Cache Support with cache tagging, and ships with a dedicated upgrade package for users coming from 1.8.0.
+- [DotKernel Coding Standard](https://www.dotkernel.com/dotkernel/dotkernel-coding-standard/): DotKernel borrows the Zend Framework coding standard with a few exceptions, covering indentation, class/interface/file naming, and curly brace placement for control statements.
+- [DotKernel Database Naming Conventions for MySQL](https://www.dotkernel.com/dotkernel/dotkernel-database-naming-conventions-for-mysql/): DotKernel borrows its database naming conventions from FaZend, covering singular table names, auto-incrementing id columns, foreign key and constraint naming patterns, and camelLetter casing.
+- [Dotkernel Light - Starting with Mezzio microframework and Laminas components](https://www.dotkernel.com/dotkernel/dotkernel-light-starting-with-mezzio-microframework-and-laminas-components/): Dotkernel Light is a stripped-down version of Dotkernel Frontend built on Mezzio and Laminas components, keeping only routing, templating, error handling, and tests, for a gentler learning curve.
+- [Dotkernel Light: the best choice for your presentation site](https://www.dotkernel.com/dotkernel/dotkernel-light-the-best-choice-for-your-presentation-site/): A walkthrough of using Dotkernel Light to build a simple presentation site: adding new pages, managing assets, and configuring Twitter/OpenGraph cards, the top menu, and the footer.
+- [DotKernel on Nginx](https://www.dotkernel.com/dotkernel/dotkernel-on-nginx/): A walkthrough of testing whether DotKernel runs out of the box on Nginx, and how the Nginx configuration was set up as a substitute for Apache's .htaccess.
+- [DotKernel Reserved Variable Names for Caching](https://www.dotkernel.com/dotkernel/dotkernel-reserved-variable-names-for-caching/): A reference of the variables DotKernel caches — router, ACL role, menu, options, and browser/OS data — and the cache keys they use.
+- [DotKernel Template Engine](https://www.dotkernel.com/dotkernel/dotkernel-template-engine/): DotKernel Template Engine is an implementation of the PHPLib Template engine for PHP5, separating application code from the presentation layer.
+- [DotKernel version 1.0 in action](https://www.dotkernel.com/dotkernel/dotkernel-version-1-0-in-action/): An overview of DotKernel 1.0, DotBoost's in-house framework built on Zend Framework, its simplified MVC architecture, and the specific Zend Framework classes it relies on.
+- [Forcing UTF8 connections and character set in MySQL](https://www.dotkernel.com/dotkernel/forcing-utf8-connections-and-character-set-in-mysql/): How to force the MySQL server's character set and collation to UTF8 via my.cnf, so every connecting script uses it regardless of client.
+- [GeoIP City Removed From DotKernel](https://www.dotkernel.com/dotkernel/geoip-city-removed-from-dotkernel/): Why the GeoIP City integration was removed from DotKernel due to a segmentation fault with GeoIP extension 1.1.0+, and how to remove the affected code if you don't need GeoIP City.
+- [GeoIP: Ip Address Location In DotKernel](https://www.dotkernel.com/dotkernel/geoip-ip-address-location-in-dotkernel/): How DotKernel's getCountryByIp function in library/Dot/Geoip.php uses MaxMind's GeoIP technology and its .dat files to determine a visitor's country.
+- [Handling and Logging errors with dot-errorhandler and dot-log](https://www.dotkernel.com/dotkernel/handling-and-logging-errors-with-dot-errorhandler-and-dot-log/): A guide to using dotkernel/dot-errorhandler alongside dot-log (or zend-log) to log errors in Zend Expressive applications, covering its two handler types, configuration, and how it was tested.
+- [Highcharts Integration in DotKernel 1.6.0](https://www.dotkernel.com/dotkernel/highcharts-integration-in-dotkernel-1-6-0/): DotKernel 1.6.0 integrates the Highcharts charting library, adding interactive pie, column and line chart samples to the admin.
+- [How to group log files by date using dot-log](https://www.dotkernel.com/dotkernel/how-to-group-log-files-by-date-using-dot-log/): How dot-log Version 3.1.1 lets you use datetime formatter strings in the stream option of a log writer, so log files get grouped by date.
+- [How to Set a Persistent Connection to Database with Zend Framework Zend_Db adapter](https://www.dotkernel.com/dotkernel/how-to-set-a-persistent-connection-to-database-with-zend-framework-zend-db-adapter/): How to configure a persistent database connection in application.ini using the Zend_Db adapter, and the option that will not work.
+- [How to use Alerts in DotKernel](https://www.dotkernel.com/dotkernel/how-to-use-alerts-in-dotkernel/): How the Dot_Alert system works in DotKernel, used to e-mail developers when something goes wrong, illustrated with the failed-email-send use case.
+- [Implementing the new Password Hashing API from PHP 5.5 in DotKernel](https://www.dotkernel.com/dotkernel/implementing-the-new-password-hashing-api-from-php-5-5-in-dotkernel/): DotKernel 1.8.0 refactors password handling to use PHP 5.5's Password Hashing API, using the Password Compat library for older PHP, with steps to upgrade existing systems.
+- [Installing GeoIP extension in Zend Server 5.6 on Windows](https://www.dotkernel.com/dotkernel/installing-geoip-extension-in-zend-server-5-6-on-windows/): Step-by-step guide to testing, downloading, installing and enabling the php_geoip extension and MaxMind databases on Zend Server 5.6 for Windows.
+- [Installing GeoIP extension in Zend Server 6 on Windows](https://www.dotkernel.com/dotkernel/installing-geoip-extension-in-zend-server-6-on-windows/): Update to the Zend Server 5.6 GeoIP guide, covering how to install and enable php_geoip on Zend Server 6.1 on Windows.
+- [Logging with dot-log in Zend Expressive and DotKernel](https://www.dotkernel.com/dotkernel/logging-with-dot-log-in-zend-expressive-and-dotkernel/): How to wire up, configure and use the dot-log component (compatible with zend-log) within DotKernel, Zend Expressive, or any project using Zend Service Manager.
+- [Manual upgrade of WURFL xml file in DotKernel](https://www.dotkernel.com/dotkernel/manual-upgrade-of-wurfl-xml-file-in-dotkernel/): How to manually upgrade the bundled WURFL XML file in DotKernel now that its license has changed and DotKernel no longer updates it.
+- [Migration of Zend Framework 1 PEAR channel](https://www.dotkernel.com/dotkernel/migration-of-zend-framework-1-pear-channel/): The unofficial PEAR channel for Zend Framework 1 moved from Google Code to a new dedicated server, with instructions on how to switch to the new channel.
+- [New Features in Zend Framework 1.12](https://www.dotkernel.com/dotkernel/new-features-in-zend-framework-1-12/): Overview of Zend Framework 1.12.0RC1, covering new components back ported from ZF2, the removal of the WurflApi adapter, and over 200 bug fixes.
+- [PHP Formatter and Templates for Zend Studio 10.1](https://www.dotkernel.com/dotkernel/php-formatter-and-templates-for-zend-studio-10-1/): An updated PHP Formatter plugin and a DotKernel coding standard templates file for Zend Studio 10.1, along with the required Formatter plugin change.
+- [Protecting admin folder with .htaccess in Plesk](https://www.dotkernel.com/dotkernel/protecting-admin-folder-with-htaccess-in-plesk/): How to protect the /admin folder with HTTP Basic Auth in a Plesk vhost.conf file, and how to apply the change and finish setup with .htpasswd.
+- [Replacing laminas-mail with Symfony mailer in dot-mail](https://www.dotkernel.com/dotkernel/replacing-laminas-mail-with-symfony-mailer-in-dot-mail/): Why and how Dotkernel replaced the abandoned laminas/laminas-mail package with symfony/mailer inside dotkernel/dot-mail, including configuration changes and the upgrade path to version 5.
+- [Scientia Mobile licensed its Wurfl Cloud PHP library to DotKernel 1.6](https://www.dotkernel.com/dotkernel/scientia-mobile-licensed-its-wurfl-cloud-php-library-to-dotkernel-1-6/): DotKernel 1.6.0 removed the obsolete GPL'ed WURFL PHP library and replaced it with Scientia Mobile's WURFL Cloud PHP library, under a special license limited to use with the Dotkernel framework.
+- [Sending emails using Dot_Email component and Zend_Email](https://www.dotkernel.com/dotkernel/sending-emails-using-dot-email-component-and-zend-email/): Dot_Email extends Zend_Mail with two additional methods, setContent() and send(), and this article covers how to use it and which Zend_Mail methods are inherited.
+- [Templating in DotKernel3](https://www.dotkernel.com/dotkernel/templating-in-dotkernel3/): DotKernel3 replaces its 10-year-old templating engine with Twig, gaining layouts, loops, variables, and escaping while keeping the familiarity of HTML.
+- [Using DotKernel with Composer Dependencies](https://www.dotkernel.com/dotkernel/using-dotkernel-with-composer-dependencies/): How to use external Composer dependencies in DotKernel, demonstrated by rendering a barcode with both the non-namespaced Zend Framework 1 and the namespaced Zend Framework 2.
+- [Using UTF8 charset in DotKernel](https://www.dotkernel.com/dotkernel/using-utf8-charset-in-dotkernel/): How to enable UTF8 encoding in a DotKernel-based system, covering both database collation and the application.ini charset setting.
+- [Wurfl Cloud Integration in DotKernel 1.6.0](https://www.dotkernel.com/dotkernel/wurfl-cloud-integration-in-dotkernel-1-6-0/): How WURFL Cloud, WURFL's cloud-based device detection service, was integrated as the default mobile detection method in DotKernel 1.6.0.
+- [WURFL PHP API license incompatible with DotKernel](https://www.dotkernel.com/dotkernel/wurfl-php-api-license-incompatible-with-dotkernel/): The WURFL PHP API's license changed from GNU/GPL to AGPL in version 1.3.0, making it a trial-only library incompatible with keeping DotKernel free.
+- [WURFL Zend Framework Integration into DotKernel](https://www.dotkernel.com/dotkernel/wurfl-zend-framework-integration-into-dotkernel/): Step-by-step tutorial on integrating WURFL into DotKernel using the Zend_Http_UserAgent class from Zend Framework 1.11.0rc1.
+- [Zend Framework dropped integration of WURFL adapter](https://www.dotkernel.com/dotkernel/zend-framework-dropped-integration-of-wurfl-adapter/): Zend Framework 1.12.0 drops the WURFL adapter from Zend_Http_UserAgent due to WURFL's licensing change to AGPL; DotKernel is unaffected since it uses its own WURFL adapter.
+- [Zend Registry usage in DotKernel](https://www.dotkernel.com/dotkernel/zend-registry-usage-in-dotkernel/): The variables stored in Zend_Registry in DotKernel and how to read them, either as a full instance or one value at a time.
+- [Zend Studio PHP Formatter file for DotKernel coding standard.](https://www.dotkernel.com/dotkernel/zend-studio-php-formatter-file-for-dotkernel-coding-standard/): A downloadable XML file for Zend Studio 9.x that configures the PHP code formatter to follow DotKernel's coding standard.
+- [Zend_Auth and Zend_Acl integrated in DotKernel](https://www.dotkernel.com/dotkernel/zend-auth-and-zend-acl-integrated-in-dotkernel/): How Zend_Auth and Zend_Acl were integrated into DotKernel 1.5.0 through the Dot_Auth and Dot_Acl classes for user authentication and access control.
+- [Zend_Console implementation in DotKernel](https://www.dotkernel.com/dotkernel/zend-console-implementation-in-dotkernel/): How DotKernel's Console bootstrap lets you run PHP scripts from the command line, including its arguments and bundled example actions.
+- [Zend_Session usage in DotKernel - Refactor of Dot_Session class](https://www.dotkernel.com/dotkernel/zend-session-usage-in-dotkernel-refactor-of-dot-session-class/): A session cookie bug found in IE8/IE9 on DotKernel 1.5.0, traced to redundant regenerateID()/rememberMe() calls in Dot_Session, and the fix shipped in 1.5.1.
+
+## PHP Development (20 posts)
+
+*general PHP tooling, environments, IDEs, security*
+
+- [AlmaLinux 9 in WSL2 : install PHP, Apache, MariaDB, Composer, PhpMyadmin](https://www.dotkernel.com/php-development/almalinux-9-in-wsl2-install-php-apache-mariadb-composer-phpmyadmin/): A step-by-step guide to installing AlmaLinux 9 under Windows Subsystem for Linux (WSL2) and provisioning it with Ansible to run PHP, Apache, MariaDB, Composer, and phpMyAdmin.
+- [Aptana PHP installation in Aptana 2.x](https://www.dotkernel.com/php-development/aptana-php-installation-in-aptana-2-x/): A quick fix for restoring PHP support in Aptana 2.x after the bundled Aptana PHP plugin was discontinued in favor of PDT, plus adding SVN support via Subclipse.
+- [Better Unicode Support in MySQL 5.5 UTF8MB4](https://www.dotkernel.com/php-development/better-unicode-support-in-mysql-5-5-utf8mb4/): How DotKernel adopted MySQL 5.5's utf8mb4 character set for fuller Unicode support, and the config and column-length changes that switch requires.
+- [Database seeding: Doctrine data fixtures vs Phinx](https://www.dotkernel.com/php-development/database-seeding-doctrine-data-fixtures-vs-phinx/): Why DotKernel moved database seeding from Phinx to doctrine/data-fixtures, the CLI package built to fill Doctrine's missing command-line interface, and how to install, use, and order fixtures.
+- [End of Support for PHP 5.2.x Branch](https://www.dotkernel.com/php-development/end-of-support-for-php-5-2-x-branch/): PHP 5.2.14 marks the end of active support for the PHP 5.2 branch, with PHP 5.3.3 released and ready for upgrade.
+- [Floating-Point Arithmetic - Why is (int)((0.7+0.1)*10) = 7 ?](https://www.dotkernel.com/php-development/floating-point-arithmetic-why-is-int-0-7-0-1-10-7/): An explanation of why PHP's floating-point arithmetic and int casting can produce unexpected results like (int)((0.7+0.1)*10) = 7 instead of 8.
+- [How To Upgrade Wamp to PHP 5.3.4](https://www.dotkernel.com/php-development/how-to-upgrade-wamp-to-php-5-3-4/): Step-by-step instructions for upgrading a WAMP server's PHP version to 5.3.4.
+- [Mezzio app development in WSL2](https://www.dotkernel.com/php-development/mezzio-app-development-in-wsl2/): A step-by-step guide to installing a Mezzio application (DotKernel API) inside WSL2, running it on Ubuntu 20.04 LTS.
+- [PHP 5.3.6 released. No upgrade possible for WampServer.](https://www.dotkernel.com/php-development/php-5-3-6-released-no-upgrade-possible-for-wampserver/): PHP 5.3.6 dropped Visual Studio C++ 6 Windows builds, making an in-place WampServer upgrade impossible since WampServer itself is built with VC++ 6.
+- [PHP Environment : Development Staging Production](https://www.dotkernel.com/php-development/php-environment-development-staging-production/): An overview of the development, staging and production server environments used to improve the development, testing and release process of client-server applications.
+- [PHP support back in Aptana 3.0](https://www.dotkernel.com/php-development/php-support-back-in-aptana-3-0/): Aptana PHP support is coming back and will be integrated directly into the Studio 3 core rather than as a separate plugin.
+- [Protection against SQL Injection using PDO and Zend Framework](https://www.dotkernel.com/php-development/protection-against-sql-injection-using-pdo-and-zend-framework/): An overview of what SQL injection is, what PDO provides, and how prepared statements in Zend Framework help - but don't fully guarantee - protection against SQL injection.
+- [Protection against SQL Injection using PDO and Zend Framework - part 2](https://www.dotkernel.com/php-development/protection-against-sql-injection-using-pdo-and-zend-framework-part-2/): A closer look at Zend_Db's query, fetchAll, insert, update, and delete methods, and where SQL injection can still slip through even with prepared statements.
+- [Remote connections to MySQL server on Plesk based servers](https://www.dotkernel.com/php-development/remote-connections-to-mysql-server-on-plesk-based-servers/): How to fix remote MySQL connection failures on Plesk-based Linux servers caused by the default old_passwords flag, by creating a user with a modern password hash.
+- [Static Analysis - Replacing Psalm with PHPStan](https://www.dotkernel.com/php-development/static-analysis-replacing-psalm-with-phpstan/): Why Dotkernel replaced Psalm with PHPStan for static analysis, and a walkthrough of updating composer.json, CI, and configuration files to run PHPStan checks.
+- [Using Aptana to connect to DotKernel tracker (Mantis)](https://www.dotkernel.com/php-development/using-aptana-to-connect-to-dotkernel-tracker-mantis/): A step-by-step guide to integrating the Aptana IDE with DotKernel Tracker, a Mantis-based bug tracker, using the Mylyn plugin's Mantis connector.
+- [Using PHP 7 Express in Zend Studio 13](https://www.dotkernel.com/php-development/using-php-7-express-in-zend-studio-13/): A walkthrough of Zend Studio 13's PHP 7 Express feature, covering test-project setup, PHP interpreter selection, adding Zend Framework 1, and running a PHP7 compatibility check.
+- [Version Control Ignore Patterns in Zend Studio](https://www.dotkernel.com/php-development/version-control-ignore-patterns-in-zend-studio/): How to configure global 'Ignored Resources' patterns in Zend Studio so they apply across all projects, instead of setting them individually per project.
+- [Welcome to the 10th Zend Certified Engineer in Dotboost Team](https://www.dotkernel.com/php-development/welcome-to-the-10th-zend-certified-engineer-in-dotboost-team/): Announcement that the 10th member of the Dotboost Technologies team has passed the Zend Certified Engineer exam, plus the team's next certification goals.
+- [Zend Server 5.5 Quick Setup on Windows](https://www.dotkernel.com/php-development/zend-server-5-5-quick-setup-on-windows/): Three quick configuration steps to make a fresh Zend Server 5.5 install on Windows 7 ready for development: enabling mod_rewrite, tuning PHP directives, and enabling APC.
+
+## How to's (14 posts)
+
+*practical guides — migrations, CORS, PSR-7, routing*
+
+- [CORS policy setup in Dotkernel using mezzio-cors](https://www.dotkernel.com/how-to/cors-policy-setup-in-dotkernel-using-mezzio-cors/): A walkthrough of fixing the classic 'No Access-Control-Allow-Origin header' CORS error in a Dotkernel application by installing and configuring the mezzio-cors package.
+- [Creating admin accounts in DotKernel API](https://www.dotkernel.com/how-to/creating-admin-accounts-in-dotkernel-api/): How to create admin accounts in DotKernel API v3 and later, using either the protected POST /admin endpoint or the admin:create terminal command.
+- [Database migrations and how to use them](https://www.dotkernel.com/how-to/database-migrations-and-how-to-use-them/): An overview of using database migrations and seeders in the DotKernel stack via the 'php dot' command, covering setup, workflow best practices, and the difference between migrations and seeders.
+- [Doctrine Cache in Mezzio and Dotkernel](https://www.dotkernel.com/how-to/doctrine-cache-in-mezzio-and-dotkernel/): How to configure Doctrine's metadata, query, and result caches (via PhpFileCache) in a Mezzio/DotKernel application, with usage examples on a query builder and a Doctrine Paginator-based collection.
+- [Generating a doctrine migration without dropping custom tables](https://www.dotkernel.com/how-to/generating-a-doctrine-migration-without-dropping-custom-tables/): How to run doctrine-migrations diff without generating DROP TABLE statements for unmapped custom tables, using the --filter-expression option.
+- [Implementation of SEO friendly URL in an generic Laminas Mezzio app](https://www.dotkernel.com/how-to/implementation-of-seo-friendly-url-in-an-generic-laminas-mezzio-app/): How to add human-readable, SEO-friendly URL slugs to a Mezzio/Doctrine application using the gedmo/doctrine-extensions package.
+- [Installing AlmaLinux 10 in WSL2: PHP, MariaDB, Composer, PhpMyadmin](https://www.dotkernel.com/how-to/installing-almalinux-10-in-wsl2-php-mariadb-composer-phpmyadmin/): A recipe for setting up a full PHP development environment on AlmaLinux 10 under WSL2, covering installation, requirements, and running applications directly or via virtual hosts.
+- [List available endpoints in DotKernel API using dot-cli](https://www.dotkernel.com/how-to/list-available-endpoints-in-dotkernel-api-using-dot-cli/): How to use dot-cli's route:list command to display, and filter, all available endpoints in a DotKernel API 3 application.
+- [Migrating DotKernel 3 from Zend Expressive 2 to Zend Expressive 3](https://www.dotkernel.com/how-to/migrating-dotkernel-3-from-zend-expressive-2-to-zend-expressive-3/): A walkthrough of migrating a DotKernel 3 application with controller-based middleware from Zend Expressive 2 to Zend Expressive 3, covering dependency, configuration, and pipeline changes.
+- [Replacing dot-console with dot-cli based on laminas-cli](https://www.dotkernel.com/how-to/replacing-dot-console-with-dot-cli-based-on-laminas-cli/): How to install and configure dot-cli, Dotkernel's laminas-cli based replacement for the abandoned dot-console package, including its built-in FileLocker locking system.
+- [Using Postman for documentation in DotKernel API 3](https://www.dotkernel.com/how-to/using-postman-for-documentation-in-dotkernel-api-3/): A walkthrough of using Postman to create, maintain, and export API documentation for DotKernel API 3, including collections, environments, requests, and built-in security features.
+- [Using the URLGenerator work in FastRoute](https://www.dotkernel.com/how-to/using-the-urlgenerator-work-in-fastroute/): A how-to on avoiding FastRoute's slash-suffix quirk when declaring routes in DotKernel 3, and on referencing routes by name via the URLGenerator in controllers and Twig views.
+- [What is cross origin token redemption?](https://www.dotkernel.com/how-to/what-is-cross-origin-token-redemption/): An explanation of cross-origin token redemption, the technique for securely verifying and redeeming a token issued on one domain when it's used on another, including how JWT and OAuth 2.0 implement it.
+- [What is PSR-7 and how to use it](https://www.dotkernel.com/how-to/what-is-psr-7-and-how-to-use-it/): A practical reference to PSR-7's HTTP message interfaces and a cheatsheet-style walkthrough of working with headers and message bodies using Zend Diactoros.
+
+## Best Practice (13 posts)
+
+*coding standards and database access patterns*
+
+- [Aptana - set SVN keywords](https://www.dotkernel.com/best-practice/aptana-set-svn-keywords/): How to set the svn:keywords property (e.g.
+- [Basic Security in Dotkernel Headless Platform](https://www.dotkernel.com/best-practice/basic-security-in-dotkernel-headless-platform/): A practical overview of software security practices implemented across the Dotkernel Headless Platform, covering input validation, content negotiation, CORS, RBAC, OAuth2, sessions, dependencies, and more.
+- [Golden Rules of Professional PHP Coding](https://www.dotkernel.com/best-practice/golden-rules-of-professional-php-coding/): A short list of practical rules for professional PHP development: error reporting settings, fixing warnings, marking hacks, single-responsibility functions, version control, and IDE usage.
+- [htaccess 301 redirect non-www to www](https://www.dotkernel.com/best-practice/htaccess-301-redirect-non-www-to-www/): How to configure .htaccess RewriteCond/RewriteRule directives to redirect a non-www domain to its www version, or vice versa.
+- [INSERT, UPDATE, DELETE statements with Zend_Db](https://www.dotkernel.com/best-practice/insert-update-delete-statements-with-zend-db/): How to write INSERT, UPDATE, and DELETE (DML) statements using Zend_Db, alongside their equivalent raw SQL.
+- [SQL queries using Zend_Db – SELECT](https://www.dotkernel.com/best-practice/sql-queries-using-zend-db-select/): How to write SELECT queries with JOINs and WHERE IN clauses using Zend_Db, alongside their equivalent raw SQL.
+- [Subqueries with Zend_Db](https://www.dotkernel.com/best-practice/subqueries-with-zend-db/): How to build a query combining COUNT, LEFT JOIN, and GROUP BY across multiple tables using Zend_Db, including a subquery embedded as a column.
+- [SVN Export in a virtual host](https://www.dotkernel.com/best-practice/svn-export-in-a-virtual-host/): How to export the contents of an SVN repository into a virtual host directory using the svn export command.
+- [SVN keywords setup in PHP IDE ( Zend Studio)](https://www.dotkernel.com/best-practice/svn-keywords-setup-in-php-ide-zend-studio/): How to set SVN ignore, bug tracker, and svn:keywords properties per project in the Zend Studio PHP IDE.
+- [Using LIKE wildcards with Zend_Db](https://www.dotkernel.com/best-practice/using-like-wildcards-with-zend-db/): How to use the SQL LIKE condition and its _ and % wildcards, including NOT LIKE, with Zend_Db's quoteInto and quoteIdentifier methods.
+- [What are returning the FETCH functions from Zend_Db](https://www.dotkernel.com/best-practice/what-are-returning-the-fetch-functions-from-zend-db/): A side-by-side comparison of the legacy query()/next_record()/f() row-fetching style with the fetchAll, fetchAssoc, fetchCol, fetchOne, fetchPairs, and fetchRow methods of Zend_Db_Adapter_Abstract.
+- [Why use CURRENT_TIMESTAMP on a field that record date/time?](https://www.dotkernel.com/best-practice/why-use-current-timestamp-on-a-field-that-record-date-time/): Why a TIMESTAMP column should default to CURRENT_TIMESTAMP on insert, how ON UPDATE CURRENT_TIMESTAMP keeps it fresh on every update, and how the DEFAULT/ON UPDATE clause combinations behave.
+- [ZF Is Retired. Laminas MVC Is Retiring. Consider It Solved](https://www.dotkernel.com/best-practice/zf-is-retired-laminas-mvc-is-retiring-consider-it-solved/): What the Laminas MVC retirement announcement means, why legacy MVC platforms are a liability, and how Apidemia helps teams migrate to the Mezzio middleware architecture.
+
+## Dotkernel API (10 posts)
+
+*REST API package — auth, content negotiation, OpenAPI*
+
+- [API Client Migration: From Postman to Bruno](https://www.dotkernel.com/dotkernel-api/api-client-migration-from-postman-to-bruno/): Why the Dotkernel team is considering switching their API testing client from Postman to the offline-focused, Git-native Bruno.
+- [API Endpoint to Collect Client Errors](https://www.dotkernel.com/dotkernel-api/api-endpoint-to-collect-client-errors/): How Dotkernel API's error-report endpoint lets frontend clients submit and log errors that occur on the user's machine.
+- [Content Negotiation in Dotkernel REST API](https://www.dotkernel.com/dotkernel-api/content-negotiation-in-dotkernel-rest-api/): How content negotiation works in RESTful APIs, who decides the data format, and how Dotkernel API implements it.
+- [DotKernel API 1.0.0 Released](https://www.dotkernel.com/dotkernel-api/dotkernel-api-1-0-0-released/): Announcement of the DotKernel API 1.0.0 release, a Zend Expressive 3 application for quickly building APIs, including the libraries it uses and the features it offers out of the box.
+- [DotKernel API Client Side Authorization](https://www.dotkernel.com/dotkernel-api/dotkernel-api-client-side-authorization/): How a client application authorizes against a backend built with DotKernel API, from the authorization request to using the access token.
+- [DotKernel API Server Side Authorization](https://www.dotkernel.com/dotkernel-api/dotkernel-api-server-side-authorization/): How to configure server-side authorization in DotKernel API, covering no-auth, authentication and authorization access levels, role inheritance, and route permissions.
+- [DotKernel API versus Laminas API Tools](https://www.dotkernel.com/dotkernel-api/dotkernel-api-versus-laminas-api-tools/): A feature-by-feature comparison of Laminas API Tools and Dotkernel API, showing why Dotkernel API is a solid alternative now that Laminas API Tools is archived.
+- [Error reporting endpoint in Dotkernel API](https://www.dotkernel.com/dotkernel-api/error-reporting-endpoint-in-dotkernel-api/): How the Dotkernel API error reporting endpoint lets frontend applications securely report bugs and data errors back to the API, including server-side and frontend setup.
+- [How to implement MailChimp in DotKernel API](https://www.dotkernel.com/dotkernel-api/how-to-implement-mailchimp-in-dotkernel-api/): A step-by-step guide to integrating MailChimp into a DotKernel API instance using the drewm/mailchimp-api library, from installation to wiring up a factory in the ConfigProvider.
+- [OpenAPI implementation in Dotkernel API](https://www.dotkernel.com/dotkernel-api/openapi-implementation-in-dotkernel-api/): An overview of the OpenAPI Specification, why it complements tools like Postman, and how Dotkernel API implements OpenAPI documentation across its modules.
+
+## Dotkernel 3 (9 posts)
+
+*the v3 rewrite on Zend Expressive/Mezzio*
+
+- [Development Report December 11, 2017](https://www.dotkernel.com/dotkernel3/development-report-december-11-2017/): A short DotKernel3 documentation update covering new release notes, a Webpack tutorial, and revised API endpoint documentation guidelines.
+- [Dotkernel Admin V4](https://www.dotkernel.com/dotkernel3/dotkernel-admin-v4/): An overview of Dotkernel Admin V4, released 19 July 2022 on Mezzio, covering its demo credentials and key features: PHP 8.1 support, configurability, authorization guards, CLI commands, routing, and its Bootstrap-based frontend.
+- [Dotkernel Admin version 3 launched](https://www.dotkernel.com/dotkernel3/dotkernel-admin-version-3-launched/): Announcement of Dotkernel Admin version 3, a Bootstrap and Doctrine based admin panel built on Mezzio, including its GitHub source, live demo, and version 3 changelog requirements.
+- [Dotkernel API: architecture and components](https://www.dotkernel.com/dotkernel3/dotkernel-api-architecture-and-components/): An overview of Dotkernel API's architecture and core components, covering Doctrine ORM, documentation, HAL, CORS, OAuth 2.0, email, configuration, routing, commands, the file locker, PSR standards, and testing.
+- [Dotkernel Frontend version 3 launched](https://www.dotkernel.com/dotkernel3/dotkernel-frontend-version-3-launched/): Announcement of Dotkernel Frontend version 3, a Mezzio-based PHP application, including its GitHub source, live demo, and version 3 changelog requirements.
+- [DotKernel3 - Stable Release version 1.0](https://www.dotkernel.com/dotkernel3/dotkernel3-stable-release-version-1-0/): DotKernel3's stable 1.0 release adds Zend Expressive 3 and PSR-15 middleware support, listing what's new, what changed for existing middleware, and every package updated or removed.
+- [PHP 8.3 support in Dotkernel Admin](https://www.dotkernel.com/dotkernel3/php-8-3-support-in-dotkernel-admin/): A rundown of the backward incompatibilities and dependency updates involved in adding PHP 8.3 support to Dotkernel Admin, released in version 4.3.1.
+- [PHP 8.3 support in Dotkernel API](https://www.dotkernel.com/dotkernel3/php-8-3-support-in-dotkernel-api/): Dotkernel API (now v4.2.1) was updated to support PHP 8.2 and PHP 8.3, dropping PHP 8.1, updating dependencies, and replacing the removed PhpFileCache with the new dot-cache package.
+- [PHP 8.3 support in Dotkernel Frontend](https://www.dotkernel.com/dotkernel3/php-8-3-support-in-dotkernel-frontend/): The DotKernel team updated the Frontend application to version 4.2.0 to support PHP 8.3, dropping PHP 8.1 and the PhpFileCache class along the way.
+
+## Headless Platform (9 posts)
+
+*the current Dotkernel headless architecture*
+
+- [Complementary Admin in Dotkernel Headless Platform](https://www.dotkernel.com/headless-platform/complementary-admin-in-dotkernel-headless-platform/): Overview of Dotkernel Admin, the independent, first-party admin application designed to pair seamlessly with Dotkernel API in the Dotkernel Headless Platform.
+- [Dotkernel API v6: The root of Dotkernel Headless Platform](https://www.dotkernel.com/headless-platform/dotkernel-api-v6-the-root-of-dotkernel-headless-platform/): Overview of what changed in Dotkernel API v6 since the original architecture and components article, covering new features, the Core module, composer updates, and testing/configuration changes.
+- [Dotkernel Headless Platform - The Whats, Hows and Whys](https://www.dotkernel.com/headless-platform/dotkernel-headless-platform-the-whats-hows-and-whys/): Overview of the Dotkernel Headless Platform architecture, its two main components (Dotkernel API and Dotkernel Admin), how to use them together or separately, and the benefits of the combined setup.
+- [Dotkernel Queue - Asynchronous Execution in Dotkernel Headless Platform](https://www.dotkernel.com/headless-platform/dotkernel-queue-asynchronous-execution-in-dotkernel-headless-platform/): Overview of Dotkernel Queue, a Symfony Messenger based component for running time-consuming or resource-intensive operations asynchronously via background workers in the Dotkernel Headless Platform.
+- [DotMaker - Generate common code in Dotkernel](https://www.dotkernel.com/headless-platform/dotmaker-generate-common-code-in-dotkernel/): Overview of dotkernel/dot-maker, the CLI tool that generates project files and directories matching the Dotkernel file structure, and how to use it to scaffold modules and individual code items.
+- [Evolution Pattern versus API Versioning](https://www.dotkernel.com/headless-platform/evolution-pattern-versus-api-versioning/): How Dotkernel weighs an evolution pattern against API versioning when changing an API, and the sunsetting mechanism used in Dotkernel API to announce breaking changes.
+- [Implementing Time-based One-Time Password (TOTP) in Dotkernel](https://www.dotkernel.com/headless-platform/implementing-time-based-one-time-password-totp-in-dotkernel/): Tutorial on installing and using dot-totp to add two-factor authentication (2FA) with time-based one-time passwords to Dotkernel Admin, including required files, database changes, and the resulting user flow.
+- [Shared Core Submodule in Dotkernel Headless Platform](https://www.dotkernel.com/headless-platform/shared-core-submodule-in-dotkernel-headless-platform/): An explanation of the Core submodule pattern in Dotkernel's Headless Platform, and step-by-step instructions for extracting it into a shared Git submodule.
+- [Version 7 adds PostgreSQL, Native UUID and PHP 8.5](https://www.dotkernel.com/headless-platform/version-7-adds-postgresql-native-uuid-and-php-8-5/): Overview of Dotkernel API and Admin's v7 release, which adds native UUID v7 support, PostgreSQL compatibility, PHP 8.5/8.4 support, and drops MySQL support.
+
+## Zend Framework (8 posts)
+
+*Zend Framework 1 history and end-of-life notes*
+
+- [Scienta ZF Debug Bar: A very helpfull ZF debug tool](https://www.dotkernel.com/zend-framework/scienta-zf-debug-bar-a-very-helpfull-zf-debug-tool/): A short note on discovering the Scienta ZF Debug Bar and DotKernel's decision to replace its own basic debug bar with it.
+- [Sunsetting PEAR Channel for Zend Framework 1](https://www.dotkernel.com/zend-framework/sunsetting-pear-channel-for-zend-framework-1/): DotKernel announces the sunsetting of its unofficial PEAR channel for Zend Framework 1, citing PHP 8 compatibility issues and aging server infrastructure.
+- [WURFL PHP API libraries , GPL versions](https://www.dotkernel.com/zend-framework/wurfl-php-api-libraries-gpl-versions/): A brief announcement of GPL-licensed WURFL PHP API library versions, including which one Zend Framework's Zend_Http_UserAgent component uses, with a later edit noting the download's removal.
+- [Zend Framework 1 End-of-Life](https://www.dotkernel.com/zend-framework/zend-framework-1-end-of-life/): Announcement that Zend Framework 1 has reached End-of-Life (EOL) status following the release of Zend Framework 3, with security updates continuing only until 28 September 2016.
+- [Zend Framework 1.12.4 Released with Security Fixes](https://www.dotkernel.com/zend-framework/zend-framework-1-12-4-released-with-security-fixes/): Matthew Weier O'Phinney announces Zend Framework 1.12.4, 2.1.6, and 2.2.6 with security updates, plus a follow-up 1.12.5 release fixing a backward compatibility issue.
+- [Zend Framework 1.7.0 Released](https://www.dotkernel.com/zend-framework/zend-framework-1-7-0-released/): Short announcement of the Zend Framework 1.7.0 release, highlighting its new support for Adobe's Action Message Format (AMF) protocol in PHP 5 applications.
+- [Zend Framework as PEAR accessible repository on Plesk server](https://www.dotkernel.com/zend-framework/zend-framework-as-pear-accessible-repository-on-plesk-server/): How to install Zend Framework as a PEAR-accessible repository on a Plesk server, so it doesn't need to be copied into every project and can be updated centrally.
+- [Zend_Mail and Zend_Http Security Fixes in Zend Framework 1.12.12](https://www.dotkernel.com/zend-framework/zend-mail-and-zend-http-security-fixes-in-zend-framework-1-12-12/): Zend Framework 1.12.12 was released with security fixes for the Zend_Mail and Zend_Http components, and a follow-up 1.12.13 release soon after fixed a regression.
+
+## Javascript (3 posts)
+
+*frontend/JS topics*
+
+- [Codelobster PHP Edition - Free PHP, HTML, CSS, JavaScript editor (IDE)](https://www.dotkernel.com/javascript/codelobster-php-edition-free-php-html-css-javascript-editor-ide/): An overview of Codelobster PHP Edition, a free multi-language code editor with autocompletion, debugging, SQL and FTP tools, and plugins for popular PHP frameworks and CMS platforms.
+- [Intro to jQuery](https://www.dotkernel.com/javascript/intro-to-jquery/): A short introduction to jQuery basics for early DotKernel developers switching from Dojo, covering the jQuery object, selectors, DOM manipulation, events, and Ajax.
+- [Javascript: Email Validator](https://www.dotkernel.com/javascript/javascript-email-validator/): A regex-based fix for email validation that allows the plus (+) and dash (-) characters in the appropriate parts of an email address.
+
+## Middleware (3 posts)
+
+*PSR-15 middleware and routing internals*
+
+- [Dotkernel Light improvements: PSR-15 Handlers, Vite, PHPStan](https://www.dotkernel.com/middleware/dotkernel-light-improvements-psr-15-handlers-vite-phpstan/): An overview of recent improvements to Dotkernel Light: migrating to PSR-15 handlers, adopting Vite, switching to PHPStan, and other smaller updates.
+- [Handling dynamic routing using FastRoute in Dotkernel](https://www.dotkernel.com/middleware/handling-dynamic-routing-using-fastroute-in-dotkernel/): How Dotkernel moved from static, hard-coded route declarations to a dynamic, centralized routing configuration.
+- [Replacing controllers with PSR-15 compliant handlers in Dotkernel Light](https://www.dotkernel.com/middleware/replacing-controllers-with-psr-15-compliant-handlers-in-dotkernel-light/): Why and how Dotkernel Light replaced its controllers with PSR-15 compliant handlers, including a worked GetPageViewHandler example.
+
+## Architecture (3 posts)
+
+*request lifecycle and application bootstrapping*
+
+- [ConfigProvider - Bootstrap Modern PHP Applications](https://www.dotkernel.com/architecture/configprovider-bootstrap-modern-php-applications/): An overview of the ConfigProvider pattern used in Laminas/Mezzio-based applications, including Dotkernel, to bootstrap middleware pipelines and dependency injection.
+- [Request Lifecycle for a Mezzio-Based Application](https://www.dotkernel.com/architecture/request-lifecycle-for-a-mezzio-based-application/): A step-by-step walkthrough of how Dotkernel Light, a Mezzio-based application, handles an HTTP request from bootstrap through to the emitted response.
+- [Understanding Middleware](https://www.dotkernel.com/architecture/understanding-middleware/): An introduction to middleware in PHP web applications: what it is, what it's used for, how PSR-15 defines it, and how it's called within an application's pipeline.
+
+## PHP Troubleshooting (2 posts)
+
+*fixes for common PHP setup issues*
+
+- [[FIX] Installing PEAR packages with PHP 7.2](https://www.dotkernel.com/php-troubleshooting/fix-installing-pear-packages-with-php-7-2/): How to fix the 'Cannot use result of built-in function in write context' PEAR error on PHP 7.2 by patching Archive_Tar's func_get_args() call, and how to reinstall the affected packages afterward.
+- [Where is the intl PHP extension? Problem solved!](https://www.dotkernel.com/php-troubleshooting/where-is-the-intl-php-extension-problem-solved/): Common causes of 'missing intl PHP extension' errors and step-by-step fixes for installing or enabling the Intl extension on Linux and Windows PHP setups.
+
+## Android (2 posts)
+
+*Android install-referrer and broadcast receivers*
+
+- [Listen for Android install referrer](https://www.dotkernel.com/android/listen-for-android-install-referrer/): Android market broadcasts an intent containing referrer information at install time, before the app is opened, which can be used for install tracking.
+- [Multiple broadcast receivers in the same app, for the same action](https://www.dotkernel.com/android/multiple-broadcast-receivers-in-the-same-app-for-the-same-action/): Using multiple broadcast receivers to listen separately for the same intent in the same Android app can lead to unexpected results, since one receiver may consume the broadcast and leave the others with nothing.
+
+## PHPStorm (1 post)
+
+*IDE setup*
+
+- [Code Quality: How to setup phpcs in PHPStorm](https://www.dotkernel.com/phpstorm/code-quality-how-to-setup-phpcs-in-phpstorm/): A step-by-step guide to configuring PHP_CodeSniffer (phpcs) in PHPStorm, both when cloning a new project and when fixing an existing project that isn't yet reporting code quality issues.
+
+## Licensing (1 post)
+
+*open-source license comparisons*
+
+- [MIT versus LGPL in practice: Dotkernel case](https://www.dotkernel.com/licensing/mit-versus-lgpl-in-practice-dotkernel-case/): How DotKernel handled discovering an LGPL v3 dependency in one of its MIT-licensed packages.

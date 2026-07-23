@@ -122,7 +122,7 @@ class Post extends AbstractEntity
      *     excerpt: string,
      *     postDate: string,
      *     category: array{id: non-empty-string, name: string, slug: string},
-     *     author: array{id: non-empty-string, name: string, slug: string, bio: string|null}
+     *     author: array{id: non-empty-string, name: string, slug: string, github: string|null}
      * }
      */
     public function getArrayCopy(): array

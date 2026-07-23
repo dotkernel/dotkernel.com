@@ -19,11 +19,8 @@ class Author extends AbstractEntity
     #[ORM\Column(name: 'slug', type: 'text', unique: true)]
     private string $slug;
 
-    #[ORM\Column(name: 'bio', type: 'text', nullable: true)]
-    private ?string $bio = null;
-
-    #[ORM\Column(name: 'email', type: 'text', unique: true)]
-    private string $email;
+    #[ORM\Column(name: 'github', type: 'string', length: 191, unique: true, nullable: true)]
+    private ?string $github = null;
 
     public function getName(): string
     {
@@ -45,24 +42,14 @@ class Author extends AbstractEntity
         $this->slug = $slug;
     }
 
-    public function getBio(): ?string
+    public function getGithub(): ?string
     {
-        return $this->bio;
+        return $this->github;
     }
 
-    public function setBio(?string $bio): void
+    public function setGithub(?string $github): void
     {
-        $this->bio = $bio;
-    }
-
-    public function getEmail(): string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): void
-    {
-        $this->email = $email;
+        $this->github = $github;
     }
 
     /**
@@ -70,18 +57,16 @@ class Author extends AbstractEntity
      *     id: non-empty-string,
      *     name: string,
      *     slug: string,
-     *     email: string,
-     *     bio: string|null
+     *     github: string|null
      * }
      */
     public function getArrayCopy(): array
     {
         return [
-            'id'    => $this->id->toString(),
-            'name'  => $this->name,
-            'slug'  => $this->slug,
-            'email' => $this->email,
-            'bio'   => $this->bio,
+            'id'     => $this->id->toString(),
+            'name'   => $this->name,
+            'slug'   => $this->slug,
+            'github' => $this->github,
         ];
     }
 }

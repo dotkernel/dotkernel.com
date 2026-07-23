@@ -36,14 +36,15 @@ class PostLoader extends Fixture implements DependentFixtureInterface
 
         $categories = json_decode($contents, true);
 
-        $usedSlugs = [];
+        $repository = $manager->getRepository(Post::class);
+        $usedSlugs  = [];
 
         foreach ($categories as $cat) {
             /** @var Category $category */
             $category = $this->getReference('category_' . $cat['slug'], Category::class);
 
             foreach ($cat['articles'] as $articleData) {
-                $wpAuthorId = $articleData['author']['user_email'] ?? null;
+                $wpAuthorId = $articleData['author']['github'] ?? null;
                 if (! $wpAuthorId || ! $this->hasReference('author_' . $wpAuthorId, Author::class)) {
                     echo "SKIP (no author): {$articleData['post_title']}\n";
                     continue;
@@ -72,16 +73,52 @@ class PostLoader extends Fixture implements DependentFixtureInterface
                     ? new DateTimeImmutable($rawDate)
                     : new DateTimeImmutable();
 
-                $article = new Post();
-                $article->setTitle($title);
-                $article->setSlug($slug);
-                $article->setPostDate($postDate);
-                $article->setStatus($status);
-                $article->setCategory($category);
-                $article->setAuthor($author);
-                $article->setExcerpt($articleData['excerpt'] ?? '');
+                $excerpt = $articleData['excerpt'] ?? '';
 
-                $manager->persist($article);
+                $article = $repository->findOneBy(['slug' => $slug]);
+
+                if ($article === null) {
+                    $article = new Post();
+                    $article->setSlug($slug);
+                    $article->setTitle($title);
+                    $article->setPostDate($postDate);
+                    $article->setStatus($status);
+                    $article->setCategory($category);
+                    $article->setAuthor($author);
+                    $article->setExcerpt($excerpt);
+
+                    $manager->persist($article);
+                    echo "CREATE: {$title}\n";
+                } else {
+                    $changed = false;
+
+                    if ($article->getTitle() !== $title) {
+                        $article->setTitle($title);
+                        $changed = true;
+                    }
+                    if ($article->getPostDate()->format('Y-m-d H:i:s') !== $postDate->format('Y-m-d H:i:s')) {
+                        $article->setPostDate($postDate);
+                        $changed = true;
+                    }
+                    if ($article->getStatus() !== $status) {
+                        $article->setStatus($status);
+                        $changed = true;
+                    }
+                    if ($article->getCategory() !== $category) {
+                        $article->setCategory($category);
+                        $changed = true;
+                    }
+                    if ($article->getAuthor() !== $author) {
+                        $article->setAuthor($author);
+                        $changed = true;
+                    }
+                    if ($article->getExcerpt() !== $excerpt) {
+                        $article->setExcerpt($excerpt);
+                        $changed = true;
+                    }
+
+                    echo $changed ? "UPDATE: {$title}\n" : "UNCHANGED: {$title}\n";
+                }
             }
         }
 
