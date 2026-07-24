@@ -4,30 +4,15 @@
 {% block title %}Aptana - set SVN keywords{% endblock %}
 
 {% block page_title %}
-    <div class="wrap">
-        <div class="post-hero-v2">
-            <div class="hero-top-row">
-                <a href="{{ url('page::blog') }}" class="breadcrumb-back">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-                    Back to Blog
-                </a>
-                <div class="hero-badge">
-                    <span>Best Practice</span>
-                </div>
-            </div>
-            <h1>{{ article.title }}</h1>
-            <div class="post-meta-v2 mt-3">
-                <span class="meta-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-6 8-6s8 2 8 6"/></svg>
-                    By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}">{{ article.author.name }}</a>
-                </span>
-                <span class="meta-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-                    {{ article.postDate|date('M d, Y') }}
-                </span>
-            </div>
-        </div>
-    </div>
+    {{ include('@partial/title-section.html.twig', {
+        back_href: url('page::blog'),
+        back_label: 'Back to Blog',
+        badge: 'Best Practice',
+        title: article.title,
+        author_name: article.author.name,
+        author_slug: article.author.slug,
+        post_date: article.postDate
+    }) }}
 {% endblock %}
 
 {% block content %}
@@ -45,19 +30,19 @@ For example if you want to set the svn keyword property <em><strong>Id</strong><
 <ul>
     <li>In the file where you want to add the svn keyword property write <strong>$Id$</strong></li>
 </ul>
-<a href="/uploads/2011/04/id-file.gif"><img title="Write the ID keyword in the file" src="{{ asset('uploads/article/' ~ article.id ~ '/id-file-300x235.gif') }}" alt="" width="300" height="235"> </a>
+<img title="Write the ID keyword in the file" src="{{ asset('uploads/article/' ~ article.id ~ '/id-file-300x235.gif') }}" alt="" width="300" height="235">
 <ul>
     <li>Right click on the file, then follow Team -&gt; Set Property...<strong> </strong><strong>Note*</strong>: <em>Set Property...</em> will not be active if you haven't first added the file to SVN: <em>Team</em>-&gt;<em>Add to Version Controller</em></li>
 </ul>
-<a href="/uploads/2011/04/set-property.gif"><img title="Select set property..." src="{{ asset('uploads/article/' ~ article.id ~ '/set-property-300x152.gif') }}" alt="" width="300" height="152"> </a>
+<img title="Select set property..." src="{{ asset('uploads/article/' ~ article.id ~ '/set-property-300x152.gif') }}" alt="" width="300" height="152">
 <ul>
     <li>Select <strong>svn:keywords</strong>, and write <strong>Id</strong> in the text field <strong></strong></li>
 </ul>
-<a href="/uploads/2011/04/svn-keywords.gif"><img title="svn-keywords" src="{{ asset('uploads/article/' ~ article.id ~ '/svn-keywords-300x298.gif') }}" alt="" width="300" height="298"> </a>
+<img title="svn-keywords" src="{{ asset('uploads/article/' ~ article.id ~ '/svn-keywords-300x298.gif') }}" alt="" width="300" height="298">
 
 When you make the SVN commit of the file, the <em>$Id$</em> keyword will be replaced with text in the format shown below:
 
-<a href="/uploads/2011/04/id-file-svn.gif"><img title="Id keyword after commit" src="{{ asset('uploads/article/' ~ article.id ~ '/id-file-svn-300x141.gif') }}" alt="" width="300" height="141"> </a>
+<img title="Id keyword after commit" src="{{ asset('uploads/article/' ~ article.id ~ '/id-file-svn-300x141.gif') }}" alt="" width="300" height="141">
 
 <h2 id="user-content-faq">Frequently Asked Questions</h2>
 

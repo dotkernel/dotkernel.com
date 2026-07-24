@@ -4,14 +4,10 @@
 {% block title %}Categories{% endblock %}
 
 {% block page_title %}
-    <div class="wrap">
-        <div class="post-hero-v2">
-            <div class="hero-badge">
-                <span>Explore</span>
-            </div>
-            <h1>Categories</h1>
-        </div>
-    </div>
+    {{ include('@partial/title-section.html.twig', {
+        badge: 'Explore',
+        title: 'Categories'
+    }) }}
 {% endblock %}
 
 {% block content %}

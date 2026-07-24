@@ -4,14 +4,10 @@
 {% block title %}Dotkernel Packages OSS Lifecycle{% endblock %}
 
 {% block page_title %}
-    <div class="wrap">
-        <div class="post-hero-v2">
-            <div class="hero-badge">
-                <span>Open Source</span>
-            </div>
-            <h1>Dotkernel Packages OSS Lifecycle</h1>
-        </div>
-    </div>
+    {{ include('@partial/title-section.html.twig', {
+        badge: 'Open Source',
+        title: 'Dotkernel Packages OSS Lifecycle'
+    }) }}
 {% endblock %}
 
 {% block content %}

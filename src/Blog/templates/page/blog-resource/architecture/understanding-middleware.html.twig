@@ -4,30 +4,15 @@
 {% block title %}Understanding Middleware{% endblock %}
 
 {% block page_title %}
-    <div class="wrap">
-        <div class="post-hero-v2">
-            <div class="hero-top-row">
-                <a href="{{ url('page::blog') }}" class="breadcrumb-back">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-                    Back to Blog
-                </a>
-                <div class="hero-badge">
-                    <span>Architecture</span>
-                </div>
-            </div>
-            <h1>{{ article.title }}</h1>
-            <div class="post-meta-v2 mt-3">
-                <span class="meta-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-6 8-6s8 2 8 6"/></svg>
-                    By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}">{{ article.author.name }}</a>
-                </span>
-                <span class="meta-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-                    {{ article.postDate|date('M d, Y') }}
-                </span>
-            </div>
-        </div>
-    </div>
+    {{ include('@partial/title-section.html.twig', {
+        back_href: url('page::blog'),
+        back_label: 'Back to Blog',
+        badge: 'Architecture',
+        title: article.title,
+        author_name: article.author.name,
+        author_slug: article.author.slug,
+        post_date: article.postDate
+    }) }}
 {% endblock %}
 
 {% block content %}

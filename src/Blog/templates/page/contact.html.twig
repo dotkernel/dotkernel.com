@@ -4,14 +4,10 @@
 {% block title %}Contact{% endblock %}
 
 {% block page_title %}
-    <div class="wrap">
-        <div class="post-hero-v2">
-            <div class="hero-badge">
-                <span>Get in touch</span>
-            </div>
-            <h1>Contact Us</h1>
-        </div>
-    </div>
+    {{ include('@partial/title-section.html.twig', {
+        badge: 'Get in touch',
+        title: 'Contact Us'
+    }) }}
 {% endblock %}
 
 {% block content %}

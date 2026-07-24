@@ -4,14 +4,10 @@
 {% block title %}Posts{% endblock %}
 
 {% block page_title %}
-    <div class="wrap">
-        <div class="post-hero-v2">
-            <div class="hero-badge">
-                <span>Blog</span>
-            </div>
-            <h1>Latest Articles</h1>
-        </div>
-    </div>
+    {{ include('@partial/title-section.html.twig', {
+        badge: 'Blog',
+        title: 'Latest Articles'
+    }) }}
 {% endblock %}
 
 {% block content %}
