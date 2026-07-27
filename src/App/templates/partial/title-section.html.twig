@@ -1,5 +1,5 @@
-{% set page_title = article.title|default(title|default('')) %}
-{% set author_github = article.author.github|default(author_github|default(false)) %}
+{% set page_title = article.title ?? (title ?? '') %}
+{% set author_github = article.author.github ?? (author.github ?? '') %}
 <div class="wrap">
     <div class="post-hero-v2">
         {% if back_href is defined %}
