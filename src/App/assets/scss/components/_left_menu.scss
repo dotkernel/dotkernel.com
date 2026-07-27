@@ -99,16 +99,39 @@
 }
 
 .widget-categories {
+  li {
+    border-bottom: 1px solid var(--border-soft);
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &.current a {
+      color: var(--amber);
+      font-weight: 600;
+    }
+  }
+
   li a {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 10px;
+    padding: 9px 0;
+    font-size: 14px;
+    color: var(--text-muted);
+
+    &:hover {
+      color: var(--text);
+    }
   }
 
   .cat-count {
+    display: inline-block;
+    min-width: 28px;
     font-family: var(--mono);
     font-size: 11px;
+    text-align: center;
     color: var(--text-dim);
     background: var(--surface-2);
     border: 1px solid var(--border-soft);

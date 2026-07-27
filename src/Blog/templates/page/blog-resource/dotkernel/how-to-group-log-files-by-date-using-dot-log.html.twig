@@ -4,22 +4,12 @@
 {% block title %}How to group log files by date using dot-log{% endblock %}
 
 {% block page_title %}
-    <div class="wrap">
-        <div class="post-hero">
-            <a href="{{ url('page::blog') }}" class="breadcrumb-back">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-                Back to Blog
-            </a>
-            <div><span class="eyebrow">Dotkernel</span></div>
-            <h1>{{ article.title }}</h1>
-            <div class="post-meta">
-                <span class="text-muted small">
-                    By <a href="{{ path('page::author-resource', {slug: article.author.slug}) }}" class="fw-bold link-dark text-decoration-none">{{ article.author.name }}</a>
-                    &nbsp;.&nbsp; {{ article.postDate|date('M d, Y') }}
-                </span>
-            </div>
-        </div>
-    </div>
+    {{ include('@partial/title-section.html.twig', {
+        back_href: url('page::blog'),
+        back_label: 'Back to Blog',
+        badge: 'Dotkernel',
+        article: article,
+    }) }}
 {% endblock %}
 
 {% block content %}
