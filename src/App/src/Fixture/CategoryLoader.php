@@ -20,7 +20,7 @@ class CategoryLoader extends Fixture
         $contents = file_get_contents($jsonFile);
 
         if ($contents === false) {
-            throw new RuntimeException("Unable to read file: {$jsonFile}");
+            throw new RuntimeException("Unable to read file: $jsonFile");
         }
 
         $categories = json_decode($contents, true);
@@ -41,7 +41,6 @@ class CategoryLoader extends Fixture
 
             $category->setName($cat['name']);
             $category->setVisibility($cat['isVisible'] ?? true);
-
             $this->addReference('category_' . $cat['slug'], $category);
         }
 

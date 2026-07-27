@@ -43,7 +43,7 @@ A controller redirect may then look like this:
 Using the URLGenerator in views is approximately the same, since you have access to the global <code>path()</code> method.
 
 The path method works the same way as the <code>url()</code> method, and takes the route name as the first parameter, and any optional blocks as its second parameter. This is of course done in <code>Twig</code>, so we need to put curly brackets around it since it's dynamic and not static HTML. It could look like this:
-<pre><code><span class="hljs-template-variable">{{ path(name: 'page', parameters: {action: 'thank-you'}, relative: false) }}</span></code></pre>
+<pre><code><span class="hljs-template-variable">{% verbatim %}{{ path(name: 'page', parameters: {action: 'thank-you'}, relative: false) }}{% endverbatim %}</span></code></pre>
 
 <h2 id="user-content-faq">Frequently Asked Questions</h2>
 
