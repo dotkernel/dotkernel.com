@@ -30,11 +30,11 @@
 
 <p class="mb-3">To add remember me button to user interface, navigate to <strong>src/User/templates/user/login.html.twig</strong> and under password element add the following code:</p>
 
-<pre><code>&lt;div class="checkbox remember-me-checkbox"&gt;
+<pre><code>{% verbatim %}&lt;div class="checkbox remember-me-checkbox"&gt;
      {% set rememberMe = form.get('rememberMe') %}
      {{ formElement(rememberMe) }}
      &lt;p&gt;Remember me&lt;/p&gt;
-&lt;/div&gt;</code></pre>
+&lt;/div&gt;{% endverbatim %}</code></pre>
 
 <p class="mb-3">After you've added the button to your template, navigate to <strong>src/User/src/Form/LoginForm.php</strong> and add the following element to your form:</p>
 

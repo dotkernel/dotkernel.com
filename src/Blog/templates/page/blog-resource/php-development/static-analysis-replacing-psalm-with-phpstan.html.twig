@@ -94,8 +94,10 @@
 <li>create file <code>.github/workflows/static-analysis.yml</code> with the content below to configure the environment and the steps for PHPStan</li>
 </ul>
 
-<pre>on:
-  - push
+<pre>
+{% verbatim %}
+on:
+  - <push></push>
 
 name: Run PHPStan checks
 
@@ -121,7 +123,7 @@ jobs:
       - name: Install PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: "${{ matrix.php }}"
+          php-version: '${{ matrix.php }}'
           coverage: pcov
           ini-values: assert.exception=1, zend.assertions=1, error_reporting=-1, log_errors_max_len=0, display_errors=On
           tools: composer:v2, cs2pr
@@ -145,7 +147,9 @@ jobs:
           mv config/autoload/mail.local.php.dist config/autoload/mail.local.php
           mv config/autoload/local.test.php.dist config/autoload/local.test.php
       - name: Run static analysis with PHPStan
-        run:  vendor/bin/phpstan analyse</pre>
+        run:  vendor/bin/phpstan analyse
+{% endverbatim %}
+</pre>
 
 <ul><li>create the file <code>phpstan.neon</code> with the content below to configure the extensions, the rule level and the ignore rules</li>
 </ul>

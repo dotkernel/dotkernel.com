@@ -40,7 +40,7 @@ class CategoryLoader extends Fixture
             }
 
             $category->setName($cat['name']);
-            $category->setVisibility($cat['isVisible'] ?? true);
+            $category->setVisibility((bool) ($cat['isVisible'] ?? true));
 
             $this->addReference('category_' . $cat['slug'], $category);
         }

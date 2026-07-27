@@ -80,7 +80,9 @@
 
 <p class="mb-3">Each page has its own template, so the next step is to create the template files in the <code>src/Page/templates/page/</code> folder. For the example above, the <code>src/Page/templates/page/example-template.html.twig</code> file was created. We won't include the entire code here, just the basic building blocks. The <code>content</code> block is where your page copy goes.</p>
 
-<pre>{% extends '@layout/default.html.twig' %}
+<pre>
+{% verbatim %}
+{% extends '@layout/default.html.twig' %}
 
 {% block title %}Page Title{% endblock %}
 
@@ -96,7 +98,9 @@
     &lt;div>
     Add cool content here!
     &lt;/div>
-{% endblock %}</pre>
+{% endblock %}
+{% endverbatim %}
+</pre>
 
 <blockquote><p class="mb-3">Make sure to check the header for any fonts your content requires.</p>
 </blockquote>
@@ -124,15 +128,17 @@
 
 <blockquote><p class="mb-3">In the example:</p>
 
-<ul><li><code>{{ url('home') }}</code> is the URL for the homepage, but you can also use this code to generate the url for other pages, just like in the canonical URL <code>{% block canonical %}{{ url(routeName ?? null) }}{% endblock %}</code><ul><li>The <code>block</code> item is present to mitigate for not-found pages, e.g. when the url is typed incorrectly</li>
+<ul><li><code>{% verbatim %}{{ url('home') }}{% endverbatim %}</code> is the URL for the homepage, but you can also use this code to generate the url for other pages, just like in the canonical URL <code>{% verbatim %}{% block canonical %}{{ url(routeName ?? null) }}{% endblock %}{% endverbatim %}</code><ul><li>The <code>block</code> item is present to mitigate for not-found pages, e.g. when the url is typed incorrectly</li>
 </ul>
 </li>
 
-<li>The image from <code>{{ url('home') }}images/app/My-image.png</code> is found in <code>public/images/app/My-image</code><code>.png</code>, but it is copied there by the <code>npm</code> script from <code>src/App/assets/images/PHP-REST-API.png</code>.</li>
+<li>The image from <code>{% verbatim %}{{ url('home') }}{% endverbatim %}images/app/My-image.png</code> is found in <code>public/images/app/My-image</code><code>.png</code>, but it is copied there by the <code>npm</code> script from <code>src/App/assets/images/PHP-REST-API.png</code>.</li>
 </ul>
 </blockquote>
 
-<pre>&lt;!-- Twitter card -->
+<pre>
+{% verbatim %}
+&lt;!-- Twitter card -->
 &lt;meta name="twitter:card" content="summary_large_image">
 &lt;meta name="twitter:site" content="@example">
 &lt;meta name="twitter:title" content="Page title">
@@ -145,7 +151,8 @@
 &lt;meta property="og:type" content="website"/>
 &lt;meta property="og:url" content="{{ url('home') }}"/>
 &lt;meta property="og:image" content="{{ url('home') }}images/app/My-image.png"/>
-&lt;meta property="og:description" content="Basic description"/></pre>
+&lt;meta property="og:description" content="Basic description"/>
+{% endverbatim %}</pre>
 
 <h3>Top menu</h3>
 

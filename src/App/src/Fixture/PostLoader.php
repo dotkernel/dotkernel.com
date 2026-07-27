@@ -44,14 +44,15 @@ class PostLoader extends Fixture implements DependentFixtureInterface
             $category = $this->getReference('category_' . $cat['slug'], Category::class);
 
             foreach ($cat['articles'] as $articleData) {
-                $wpAuthorId = $articleData['author']['github'] ?? null;
-                if (! $wpAuthorId || ! $this->hasReference('author_' . $wpAuthorId, Author::class)) {
+                $authorName = $articleData['author']['display_name'] ?? null;
+                $authorSlug = $authorName ? $this->slugify($authorName) : null;
+                if (! $authorSlug || ! $this->hasReference('author_' . $authorSlug, Author::class)) {
                     echo "SKIP (no author): {$articleData['post_title']}\n";
                     continue;
                 }
 
                 /** @var Author $author */
-                $author = $this->getReference('author_' . $wpAuthorId, Author::class);
+                $author = $this->getReference('author_' . $authorSlug, Author::class);
                 $title  = html_entity_decode($articleData['post_title'], ENT_QUOTES, 'UTF-8');
                 $slug   = $this->slugify($title);
 

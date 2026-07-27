@@ -38,14 +38,13 @@ class AuthorLoader extends Fixture
                     continue;
                 }
 
-                $wpAuthorId = $authorData['github'];
-                if (isset($seenAuthorIds[$wpAuthorId])) {
+                $name = $authorData['display_name'];
+                if (isset($seenAuthorIds[$name])) {
                     continue;
                 }
-                $seenAuthorIds[$wpAuthorId] = true;
+                $seenAuthorIds[$name] = true;
 
-                $name   = $authorData['display_name'];
-                $github = $authorData['github'];
+                $github = $authorData['github'] ?: null;
                 $slug   = $this->slugify($name);
 
                 $author = $repository->findOneBy(['name' => $name]);
@@ -71,7 +70,7 @@ class AuthorLoader extends Fixture
                     echo $changed ? "UPDATE: {$name}\n" : "UNCHANGED: {$name}\n";
                 }
 
-                $this->addReference('author_' . $wpAuthorId, $author);
+                $this->addReference('author_' . $slug, $author);
             }
         }
 
