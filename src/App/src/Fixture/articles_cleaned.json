@@ -2,7 +2,7 @@
     {
         "name": "Dotkernel",
         "slug": "dotkernel",
-        "isVisible": 1,
+        "isVisible": true,
         "articles": [
             {
                 "post_title": "DotKernel Database Naming Conventions for MySQL",
@@ -649,7 +649,7 @@
     {
         "name": "Javascript",
         "slug": "javascript",
-        "isVisible": 0,
+        "isVisible": false,
         "articles": [
             {
                 "post_title": "Intro to jQuery",
@@ -686,7 +686,7 @@
     {
         "name": "Zend Framework",
         "slug": "zend-framework",
-        "isVisible": 0,
+        "isVisible": false,
         "articles": [
             {
                 "post_title": "WURFL PHP API libraries , GPL versions",
@@ -773,7 +773,7 @@
     {
         "name": "PHP Development",
         "slug": "php-development",
-        "isVisible": 1,
+        "isVisible": true,
         "articles": [
             {
                 "post_title": "PHP support back in Aptana 3.0",
@@ -980,7 +980,7 @@
     {
         "name": "How to's",
         "slug": "how-to",
-        "isVisible": 1,
+        "isVisible": true,
         "articles": [
             {
                 "post_title": "What is PSR-7 and how to use it",
@@ -1127,7 +1127,7 @@
     {
         "name": "PHP Troubleshooting",
         "slug": "php-troubleshooting",
-        "isVisible": 0,
+        "isVisible": false,
         "articles": [
             {
                 "post_title": "Where is the intl PHP extension? Problem solved!",
@@ -1154,7 +1154,7 @@
     {
         "name": "Dotkernel 3",
         "slug": "dotkernel3",
-        "isVisible": 0,
+        "isVisible": false,
         "articles": [
             {
                 "post_title": "Development Report December 11, 2017",
@@ -1251,7 +1251,7 @@
     {
         "name": "Middleware",
         "slug": "middleware",
-        "isVisible": 1,
+        "isVisible": true,
         "articles": [
             {
                 "post_title": "Handling dynamic routing using FastRoute in Dotkernel",
@@ -1288,7 +1288,7 @@
     {
         "name": "Best Practice",
         "slug": "best-practice",
-        "isVisible": 1,
+        "isVisible": true,
         "articles": [
             {
                 "post_title": "SQL queries using Zend_Db – SELECT",
@@ -1425,7 +1425,7 @@
     {
         "name": "Android",
         "slug": "android",
-        "isVisible": 0,
+        "isVisible": false,
         "articles": [
             {
                 "post_title": "Multiple broadcast receivers in the same app, for the same action",
@@ -1452,7 +1452,7 @@
     {
         "name": "Dotkernel API",
         "slug": "dotkernel-api",
-        "isVisible": 1,
+        "isVisible": true,
         "articles": [
             {
                 "post_title": "DotKernel API Client Side  Authorization",
@@ -1559,7 +1559,7 @@
     {
         "name": "PHPStorm",
         "slug": "phpstorm",
-        "isVisible": 0,
+        "isVisible": false,
         "articles": [
             {
                 "post_title": "Code Quality: How to setup phpcs in PHPStorm",
@@ -1576,7 +1576,7 @@
     {
         "name": "Licensing",
         "slug": "licensing",
-        "isVisible": 0,
+        "isVisible": false,
         "articles": [
             {
                 "post_title": "MIT versus LGPL in practice: Dotkernel case",
@@ -1593,7 +1593,7 @@
     {
         "name": "Architecture",
         "slug": "architecture",
-        "isVisible": 1,
+        "isVisible": true,
         "articles": [
             {
                 "post_title": "Understanding Middleware",
@@ -1630,7 +1630,7 @@
     {
         "name": "Design Patterns",
         "slug": "design-pattern",
-        "isVisible": 1,
+        "isVisible": true,
         "articles": [
             {
                 "post_title": "Naming pattern for PSR-15 handlers in Dotkernel applications",
@@ -1647,7 +1647,7 @@
     {
         "name": "Headless Platform",
         "slug": "headless-platform",
-        "isVisible": 1,
+        "isVisible": true,
         "articles": [
             {
                 "post_title": "Dotkernel Headless Platform - The Whats, Hows and Whys",
