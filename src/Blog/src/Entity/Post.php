@@ -116,12 +116,12 @@ class Post extends AbstractEntity
         $this->excerpt = $excerpt;
     }
 
-    public function getTldr(): ?string
+    public function getTlDr(): ?string
     {
         return $this->tlDr;
     }
 
-    public function setTldr(?string $tlDr): void
+    public function setTlDr(?string $tlDr): void
     {
         $this->tlDr = $tlDr;
     }

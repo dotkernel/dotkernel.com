@@ -4,11 +4,17 @@ declare(strict_types=1);
 
 namespace Light\App\Handler;
 
+use Fig\Http\Message\StatusCodeInterface;
+use Laminas\Diactoros\Response\HtmlResponse;
 use Laminas\Diactoros\Response\XmlResponse;
 use Light\App\Service\FeedGenerator;
+use Light\Blog\Entity\Category;
+use Light\Blog\Repository\CategoryRepository;
+use Mezzio\Template\TemplateRendererInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use Throwable;
 
 use function file_get_contents;
 use function filesize;
@@ -17,6 +23,8 @@ use function is_file;
 class GetFeedViewHandler implements RequestHandlerInterface
 {
     public function __construct(
+        private readonly TemplateRendererInterface $template,
+        private readonly CategoryRepository $categoryRepository,
         private readonly FeedGenerator $feedGenerator,
     ) {
     }
@@ -26,13 +34,33 @@ class GetFeedViewHandler implements RequestHandlerInterface
         $feedFile = $this->feedGenerator->getFeedFile();
 
         if (! is_file($feedFile) || filesize($feedFile) === 0) {
-            $this->feedGenerator->write();
+            try {
+                $this->feedGenerator->write();
+            } catch (Throwable) {
+            }
+        }
+
+        if (! is_file($feedFile) || filesize($feedFile) === 0) {
+            return $this->notFound($this->categoryRepository->getCategories());
         }
 
         return new XmlResponse(
             (string) file_get_contents($feedFile),
-            200,
-            ['content-type' => FeedGenerator::CONTENT_TYPE]
+            StatusCodeInterface::STATUS_OK,
+            ['Content-Type' => FeedGenerator::CONTENT_TYPE]
+        );
+    }
+
+    /**
+     * @param Category[] $categories
+     */
+    private function notFound(array $categories): HtmlResponse
+    {
+        return new HtmlResponse(
+            $this->template->render('error::404', [
+                'categories' => $categories,
+            ]),
+            StatusCodeInterface::STATUS_NOT_FOUND
         );
     }
 }

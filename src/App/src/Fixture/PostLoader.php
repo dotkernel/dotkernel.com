@@ -119,7 +119,7 @@ class PostLoader extends Fixture implements DependentFixtureInterface
                         $article->setExcerpt($excerpt);
                         $changed = true;
                     }
-                    if ($article->getTldr() !== $tlDr) {
+                    if ($article->getTlDr() !== $tlDr) {
                         $article->setTldr($tlDr);
                         $changed = true;
                     }

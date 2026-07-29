@@ -22,7 +22,7 @@ class FeedGeneratorFactory
 
         return new FeedGenerator(
             $postRepository,
-            $config['feed']['file'],
+            $config['feed']['path'],
             rtrim($config['application']['url'] ?? '', '/') . '/',
             $config['app']['meta']['title'] ?? '',
             $config['app']['meta']['description'] ?? '',

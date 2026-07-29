@@ -62,7 +62,7 @@ class FeedGenerator
 
             $this->appendText($dom, $item, 'title', $post->getTitle());
             $this->appendText($dom, $item, 'link', $link);
-            $this->appendText($dom, $item, 'description', $post->getTldr() ?? $post->getExcerpt());
+            $this->appendText($dom, $item, 'description', $post->getTlDr() ?? $post->getExcerpt());
             $this->appendText($dom, $item, 'pubDate', $post->getPostDate()->format(DateTimeInterface::RSS));
             $this->appendText(
                 $dom,
