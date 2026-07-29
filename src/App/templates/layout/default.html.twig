@@ -14,6 +14,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/app/favicon/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/app/favicon/favicon-16x16.png') }}">
     <link rel="manifest" href="{{ asset('images/app/favicon/site.webmanifest') }}">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="{{ url('app::feed') }}" />
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600" rel="stylesheet">
@@ -86,7 +87,7 @@
                 <a href="https://dotkernel.slack.com/" target="_blank" rel="noopener" aria-label="Slack">
                     <img class="icon" src="{{ asset('images/app/icon/icon_slack.svg') }}" alt="Slack">
                 </a>
-                <a href="https://www.dotkernel.com/feed/" target="_blank" rel="noopener" aria-label="RSS feed">
+                <a href="{{ url('app::feed') }}" target="_blank" rel="noopener" aria-label="RSS feed">
                     <img class="icon" src="{{ asset('images/app/icon/icon_feed.svg') }}" alt="RSS Feed">
                 </a>
             </div>

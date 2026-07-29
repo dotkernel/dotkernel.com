@@ -22,6 +22,9 @@ $app     = [
 
 return [
     'app'  => $app,
+    'feed' => [
+        'path' => realpath(__DIR__ . '/../../public/feed.xml'),
+    ],
     'twig' => [
         'globals' => [
             'app' => $app,

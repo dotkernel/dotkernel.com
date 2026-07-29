@@ -75,6 +75,7 @@ class PostLoader extends Fixture implements DependentFixtureInterface
                     : new DateTimeImmutable();
 
                 $excerpt = $articleData['excerpt'] ?? '';
+                $tlDr    = $articleData['tl_dr'] ?? '';
 
                 $article = $repository->findOneBy(['slug' => $slug]);
 
@@ -87,6 +88,7 @@ class PostLoader extends Fixture implements DependentFixtureInterface
                     $article->setCategory($category);
                     $article->setAuthor($author);
                     $article->setExcerpt($excerpt);
+                    $article->setTldr($tlDr);
 
                     $manager->persist($article);
                     echo "CREATE: {$title}\n";
@@ -115,6 +117,10 @@ class PostLoader extends Fixture implements DependentFixtureInterface
                     }
                     if ($article->getExcerpt() !== $excerpt) {
                         $article->setExcerpt($excerpt);
+                        $changed = true;
+                    }
+                    if ($article->getTlDr() !== $tlDr) {
+                        $article->setTldr($tlDr);
                         $changed = true;
                     }
 
