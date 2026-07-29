@@ -1,6 +1,6 @@
 ---
 title: "PHP 8.3 support in Dotkernel Frontend"
-description: "The DotKernel team updated the Frontend application to version 4.2.0 to support PHP 8.3, dropping PHP 8.1 and the PhpFileCache class along the way."
+description: "The Dotkernel team updated the Frontend application to version 4.2.0 to support PHP 8.3, dropping PHP 8.1 and the PhpFileCache class along the way."
 author: "Florin Bidirean"
 date_published: "2024-02-14"
 canonical_url: "https://www.dotkernel.com/dotkernel3/php-8-3-support-in-dotkernel-frontend/"
@@ -12,7 +12,7 @@ language: "en"
 
 ## TL;DR
 
-To take advantage of PHP 8.3 support in the newest packages, the DotKernel team updated the [Frontend](https://github.com/dotkernel/frontend) application to version 4.2.0.
+To take advantage of PHP 8.3 support in the newest packages, the Dotkernel team updated the [Frontend](https://github.com/dotkernel/frontend) application to version 4.2.0.
 As with the earlier Admin update, this required dropping support for PHP 8.1 and for the no-longer-available `PhpFileCache` class, until a replacement is implemented.
 
 ## What changed
@@ -28,12 +28,12 @@ As with the earlier Admin update, this required dropping support for PHP 8.1 and
   - Removed the parameters used by the `configuration` and `cache` cache settings
 - **Fixed Psalm and PHPCS issues** - updated type hints and indentation.
 
-Next on the roadmap: implementing these changes in the DotKernel Frontend live projects and processing the feedback.
+Next on the roadmap: implementing these changes in the Dotkernel Frontend live projects and processing the feedback.
 
 ## FAQ
 
 **Q: What update adds PHP 8.3 support to Dotkernel Frontend?**
-A: The DotKernel team updated the Frontend application to version 4.2.0 so it can take advantage of PHP 8.3 support in the newest packages.
+A: The Dotkernel team updated the Frontend application to version 4.2.0 so it can take advantage of PHP 8.3 support in the newest packages.
 
 **Q: Which PHP versions does Dotkernel Frontend 4.2.0 support?**
 A: Version 4.2.0 supports only PHP 8.2 and PHP 8.3.

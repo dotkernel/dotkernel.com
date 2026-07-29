@@ -1,6 +1,6 @@
 ---
-title: "How to use Alerts in DotKernel"
-description: "How the Dot_Alert system works in DotKernel, used to e-mail developers when something goes wrong, illustrated with the failed-email-send use case."
+title: "How to use Alerts in Dotkernel"
+description: "How the Dot_Alert system works in Dotkernel, used to e-mail developers when something goes wrong, illustrated with the failed-email-send use case."
 author: "Gabi DJ"
 date_published: "2015-04-29"
 canonical_url: "https://www.dotkernel.com/dotkernel/how-to-use-alerts-in-dotkernel/"
@@ -8,12 +8,12 @@ category: "Dotkernel"
 language: "en"
 ---
 
-# How to use Alerts in DotKernel
+# How to use Alerts in Dotkernel
 
 ## TL;DR
 Alerts (Dot_Alert's) are e-mails usually sent to site developers using PHP's `mail()`, meant only to notify a developer that something is wrong — not for regular mail.
 Dot_Alert resembles Dot_Email: it has a sender, subject, destination and message, and can be sent.
-This guide walks through DotKernel's existing example, where an Alert notifies the developer when an e-mail fails to send.
+This guide walks through Dotkernel's existing example, where an Alert notifies the developer when an e-mail fails to send.
 
 ## What Dot_Alert is for
 
@@ -22,7 +22,7 @@ The Dot_Alert class resembles Dot_Email — like a mail message, an alert has at
 
 ## Example: notifying a developer of a failed e-mail send
 
-In DotKernel, Alerts are used to notify the developer when an e-mail was not sent successfully.
+In Dotkernel, Alerts are used to notify the developer when an e-mail was not sent successfully.
 
 ### 1. The message template (dots.xml)
 
@@ -107,8 +107,8 @@ They shouldn't be used to send regular mail — they only notify the developer t
 A: Dot_Alert resembles Dot_Email.
 Like a mail message, an alert has at least a sender, a subject, a destination and a message, and it can be sent.
 
-**Q: What's an example use of Alerts in DotKernel?**
-A: DotKernel uses Alerts to notify the developer when an email was not sent successfully, with the message kept in the dots.xml file under the alertMessages section.
+**Q: What's an example use of Alerts in Dotkernel?**
+A: Dotkernel uses Alerts to notify the developer when an email was not sent successfully, with the message kept in the dots.xml file under the alertMessages section.
 
 **Q: How are the {VARIABLES} in an alert message replaced with real data?**
 A: A $details array is prepared (e.g. e_class, site_name, site_url, e_message, to_email, from_email, date_now), and the alert's setDetails() method replaces the {VARIABLES} placeholders in the subject and message with that data.

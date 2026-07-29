@@ -20,6 +20,7 @@
 
             <article class="article">
                 <div class="entry">
+                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
 In Aptana it's very simple to set the <a href="http://svnbook.red-bean.com/en/1.4/svn.advanced.props.special.keywords.html">svn:keywords</a> property for a file.
 
 For example if you want to set the svn keyword property <em><strong>Id</strong></em>:

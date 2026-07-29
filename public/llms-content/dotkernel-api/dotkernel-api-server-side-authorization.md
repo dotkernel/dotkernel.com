@@ -1,6 +1,6 @@
 ---
-title: "DotKernel API Server Side Authorization"
-description: "How to configure server-side authorization in DotKernel API, covering no-auth, authentication and authorization access levels, role inheritance, and route permissions."
+title: "Dotkernel API Server Side Authorization"
+description: "How to configure server-side authorization in Dotkernel API, covering no-auth, authentication and authorization access levels, role inheritance, and route permissions."
 author: "Alex Karajos"
 date_published: "2019-09-05"
 canonical_url: "https://www.dotkernel.com/dotkernel-api/dotkernel-api-server-side-authorization/"
@@ -8,15 +8,15 @@ category: "Dotkernel API"
 language: "en"
 ---
 
-# DotKernel API Server Side Authorization
+# Dotkernel API Server Side Authorization
 
 ## TL;DR
 
-DotKernel API endpoints can be protected at three levels: no-auth, authentication, and authorization.
+Dotkernel API endpoints can be protected at three levels: no-auth, authentication, and authorization.
 Access is configured in `config/autoload/authorization.local.php` under the `zend-expressive-authorization-rbac` key, using a `roles` section for role inheritance and a `permissions` section for route access.
 Authentication endpoints require a valid Bearer token and return `401 Unauthorized` if it's missing, while authorization endpoints additionally check role permissions and return `403 Forbidden`.
 
-This article covers the basic authorization of a Server Side application built using [DotKernel API](https://github.com/dotkernel/api).
+This article covers the basic authorization of a Server Side application built using [Dotkernel API](https://github.com/dotkernel/api).
 
 ## Protecting an Endpoint
 

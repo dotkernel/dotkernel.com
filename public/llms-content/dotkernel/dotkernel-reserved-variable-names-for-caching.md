@@ -1,6 +1,6 @@
 ---
-title: "DotKernel Reserved Variable Names for Caching"
-description: "A reference of the variables DotKernel caches — router, ACL role, menu, options, and browser/OS data — and the cache keys they use."
+title: "Dotkernel Reserved Variable Names for Caching"
+description: "A reference of the variables Dotkernel caches — router, ACL role, menu, options, and browser/OS data — and the cache keys they use."
 author: "Gabi DJ"
 date_published: "2015-01-29"
 canonical_url: "https://www.dotkernel.com/dotkernel/dotkernel-reserved-variable-names-for-caching/"
@@ -8,11 +8,11 @@ category: "Dotkernel"
 language: "en"
 ---
 
-# DotKernel Reserved Variable Names for Caching
+# Dotkernel Reserved Variable Names for Caching
 
 ## TL;DR
 
-This article is a follow-up to "Caching in DotKernel Using Zend Framework Cache" and lists the variables DotKernel caches, along with the exact cache key each one uses.
+This article is a follow-up to "Caching in Dotkernel Using Zend Framework Cache" and lists the variables Dotkernel caches, along with the exact cache key each one uses.
 
 ## Cached variables
 
@@ -47,7 +47,7 @@ A: The change won't take effect on its own, since values like browser_xml and os
 
 ## Resources
 
-- [Caching in DotKernel Using Zend Framework Cache](http://www.dotkernel.com/dotkernel/caching-in-dotkernel-using-zend-framework)
+- [Caching in Dotkernel Using Zend Framework Cache](http://www.dotkernel.com/dotkernel/caching-in-dotkernel-using-zend-framework)
 - [router.xml documentation](http://www.dotkernel.com/docs/router-xml/)
 - [Module Structure](http://www.dotkernel.com/docs/module-structure/)
 - [menu.xml documentation](http://www.dotkernel.com/docs/menu-xml/)

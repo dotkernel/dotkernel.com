@@ -20,6 +20,7 @@
 
             <article class="article">
                 <div class="entry">
+                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
 Alerts (or Dot_Alert's) are e-mails usually sent to the site developers, these messages are sent with <strong>mail()</strong> therefore you shouldn't use them to send regular mail. Alerts should only notify you as a developer: "<em><strong>Hey, something's wrong here, you might want to know this!</strong></em>"
 
 In this article you will find out how to use the Alerts system in Dotkernel, we will also go through an existing example so this can be understood easier.

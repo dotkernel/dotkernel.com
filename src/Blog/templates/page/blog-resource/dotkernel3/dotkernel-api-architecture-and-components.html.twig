@@ -20,6 +20,7 @@
 
             <article class="article">
                 <div class="entry">
+                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
 <blockquote style="font-size: 16px;
   font-weight: 400;">This article refers to Dotkernel API v5. Checkout out the new additions for <a href="https://www.dotkernel.com/headless-platform/dotkernel-api-v6-the-root-of-dotkernel-headless-platform/">Dotkernel API v6</a> to stay up-to-date.</blockquote>
 <p class="mb-3">Based on Enrico Zimuel's <a href="https://github.com/ezimuel/zend-expressive-api" target="_blank" rel="noreferrer noopener">Zend Expressive API - Skeleton example</a>, Dotkernel API runs on <a href="https://github.com/mezzio" target="_blank" rel="noreferrer noopener">Mezzio</a> microframework   and<a href="https://github.com/laminas" target="_blank" rel="noreferrer noopener">Laminas</a> components and implements standards like PSR-3, PSR-4, PSR-7, PSR-11 and PSR-15.</p>
@@ -228,7 +229,7 @@
 <ul>
 <li style="list-style-type: none;">
 <ul>
-<li><code>documentation/DotKernel_API.postman_collection.json</code></li>
+<li><code>documentation/Dotkernel_API.postman_collection.json</code></li>
 </ul>
 </li>
 </ul>
@@ -237,7 +238,7 @@
 <ul>
 <li style="list-style-type: none;">
 <ul>
-<li><code>documentation/DotKernel_API.postman_environment.json</code></li>
+<li><code>documentation/Dotkernel_API.postman_environment.json</code></li>
 </ul>
 </li>
 </ul>
@@ -385,7 +386,7 @@
     <details class="acc">
         <summary>How is Dotkernel API documented? <span class="chev">+</span></summary>
         <div class="acc-body">
-            <p class="mb-0">The documentation is Postman-based, using two files that store information about every available endpoint ready to be tested: documentation/DotKernel_API.postman_collection.json and documentation/DotKernel_API.postman_environment.json.</p>
+            <p class="mb-0">The documentation is Postman-based, using two files that store information about every available endpoint ready to be tested: documentation/Dotkernel_API.postman_collection.json and documentation/Dotkernel_API.postman_environment.json.</p>
         </div>
     </details>
     <details class="acc">

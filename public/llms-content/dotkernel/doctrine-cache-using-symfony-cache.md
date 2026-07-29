@@ -1,6 +1,6 @@
 ---
 title: "Doctrine cache using symfony/cache"
-description: "How to enable and configure the dotkernel/dot-cache component, a wrapper around symfony/cache, to cache Doctrine's result, metadata, query, and hydration data in DotKernel Admin."
+description: "How to enable and configure the dotkernel/dot-cache component, a wrapper around symfony/cache, to cache Doctrine's result, metadata, query, and hydration data in Dotkernel Admin."
 author: "MarioRadu"
 date_published: "2024-02-27"
 canonical_url: "https://www.dotkernel.com/dotkernel/doctrine-cache-using-symfony-cache/"
@@ -13,7 +13,7 @@ language: "en"
 ## TL;DR
 
 Caching stores data the first time it's requested so that later requests can be served from the cache instead of the original, slower source, which improves response times.
-This article, a follow-up to an earlier caching article, shows how to enable the dot-cache component, a wrapper around symfony/cache, in DotKernel Admin.
+This article, a follow-up to an earlier caching article, shows how to enable the dot-cache component, a wrapper around symfony/cache, in Dotkernel Admin.
 It covers the array and filesystem storage adapters, configuring Doctrine's four cache types (result, metadata, query, hydration), and marking entities and queries as cacheable.
 
 ## Installation

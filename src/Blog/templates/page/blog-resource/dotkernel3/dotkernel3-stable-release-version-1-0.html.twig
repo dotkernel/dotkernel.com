@@ -20,6 +20,7 @@
 
             <article class="article">
                 <div class="entry">
+                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
 Dotkernel was updated to support <strong><a href="https://docs.zendframework.com/zend-expressive/" target="_blank" rel="noopener noreferrer">Zend Expressive 3</a> </strong>alongside with <strong>PSR-15 </strong>middleware.
 
 We have updated the core packages to support <strong><a href="https://www.php-fig.org/psr/psr-15/" target="_blank" rel="noopener noreferrer">PSR-15 Middleware</a>.</strong>

@@ -20,6 +20,7 @@
 
             <article class="article">
                 <div class="entry">
+                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
 <strong>Dot_Email</strong> class extends Zend_Mail, so all the methods from Zend_Mail are available  in Dot_Email.
 
 <strong>Dot_Email</strong> is a simple class composed only from 2 methods, except constructor, all  other methods beeing inherited  from Zend_Mail.

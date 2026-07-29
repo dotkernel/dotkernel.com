@@ -1,6 +1,6 @@
 ---
-title: "Using UTF8 charset in DotKernel"
-description: "How to enable UTF8 encoding in a DotKernel-based system, covering both database collation and the application.ini charset setting."
+title: "Using UTF8 charset in Dotkernel"
+description: "How to enable UTF8 encoding in a Dotkernel-based system, covering both database collation and the application.ini charset setting."
 author: "admin"
 date_published: "2012-04-07"
 canonical_url: "https://www.dotkernel.com/dotkernel/using-utf8-charset-in-dotkernel/"
@@ -8,12 +8,12 @@ category: "Dotkernel"
 language: "en"
 ---
 
-# Using UTF8 charset in DotKernel
+# Using UTF8 charset in Dotkernel
 
 ## TL;DR
 
-To use UTF8 encoding in a DotKernel-based system, changes are needed in both the database structure and the application.ini file.
-These changes were committed into the DotKernel 1.6.0 dev codebase.
+To use UTF8 encoding in a Dotkernel-based system, changes are needed in both the database structure and the application.ini file.
+These changes were committed into the Dotkernel 1.6.0 dev codebase.
 
 ## Database
 
@@ -44,7 +44,7 @@ These differences only happen at the **MySQL** level (for instance, in queries u
 
 ## FAQ
 
-**Q: What needs to change to use UTF8 encoding in a DotKernel-based system?**
+**Q: What needs to change to use UTF8 encoding in a Dotkernel-based system?**
 A: Both the database structure and the application.ini file need changes: all tables and columns must have a proper UTF8 collation (utf8_general_ci or utf8_bin), and application.ini must load the utf8 charset.
 
 **Q: What line should I add to application.ini to enable UTF8?**

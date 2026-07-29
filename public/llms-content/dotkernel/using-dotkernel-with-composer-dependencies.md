@@ -1,6 +1,6 @@
 ---
-title: "Using DotKernel with Composer Dependencies"
-description: "How to use external Composer dependencies in DotKernel, demonstrated by rendering a barcode with both the non-namespaced Zend Framework 1 and the namespaced Zend Framework 2."
+title: "Using Dotkernel with Composer Dependencies"
+description: "How to use external Composer dependencies in Dotkernel, demonstrated by rendering a barcode with both the non-namespaced Zend Framework 1 and the namespaced Zend Framework 2."
 author: "Gabi DJ"
 date_published: "2016-04-04"
 canonical_url: "https://www.dotkernel.com/dotkernel/using-dotkernel-with-composer-dependencies/"
@@ -8,13 +8,13 @@ category: "Dotkernel"
 language: "en"
 ---
 
-# Using DotKernel with Composer Dependencies
+# Using Dotkernel with Composer Dependencies
 
 ## TL;DR
 
-This article covers using external dependencies via Composer within DotKernel applications.
+This article covers using external dependencies via Composer within Dotkernel applications.
 Composer autoloads dependencies automatically, so there is no need to include/require them.
-The example renders a Barcode using Zend Framework 1 (non-namespaced) and Zend Framework 2 (namespaced), and applies to any DotKernel 1.x version running PHP greater than 5.4.0.
+The example renders a Barcode using Zend Framework 1 (non-namespaced) and Zend Framework 2 (namespaced), and applies to any Dotkernel 1.x version running PHP greater than 5.4.0.
 
 ## The Composer Dependencies
 
@@ -92,11 +92,11 @@ You can then use any of the following to access ZF2's Barcode module:
 
 ## Compatibility
 
-This article works for any DotKernel 1.x version if your server is running PHP greater than 5.4.0.
+This article works for any Dotkernel 1.x version if your server is running PHP greater than 5.4.0.
 
 ## FAQ
 
-**Q: Do I need to manually include or require Composer dependencies in DotKernel?**
+**Q: Do I need to manually include or require Composer dependencies in Dotkernel?**
 A: No. Composer automatically loads dependencies, so there is no need to include or require them yourself.
 
 **Q: What example does the article use to demonstrate Composer dependencies?**
@@ -113,12 +113,12 @@ Namespaced ZF2 classes are loaded PSR-4 style, meaning the class name looks like
 A: Yes.
 If you add "use Zend\Barcode\Barcode as Zend_Barcode;" as the first line, the ZF1-style example will work for both, and you can then reference the module as Zend\Barcode\Barcode, Barcode, or Zend_Barcode.
 
-**Q: What DotKernel and PHP versions does this article apply to?**
-A: This article works for any DotKernel 1.x version if your server is running PHP greater than 5.4.0.
+**Q: What Dotkernel and PHP versions does this article apply to?**
+A: This article works for any Dotkernel 1.x version if your server is running PHP greater than 5.4.0.
 
 ## Resources
 
-- [Adding Composer support in your DotKernel project](http://www.dotkernel.com/dotkernel/adding-composer-support-in-your-dotkernel-project)
+- [Adding Composer support in your Dotkernel project](http://www.dotkernel.com/dotkernel/adding-composer-support-in-your-dotkernel-project)
 - [Zend Framework 1 manual](http://framework.zend.com/manual/1.12/en/manual.html)
 - [Zend Framework 2 manual](http://framework.zend.com/manual/current/en/index.html)
 - [PSR-0](http://www.php-fig.org/psr/psr-0/)

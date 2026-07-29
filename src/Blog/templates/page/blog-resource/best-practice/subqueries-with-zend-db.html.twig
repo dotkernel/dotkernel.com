@@ -20,6 +20,7 @@
 
             <article class="article">
                 <div class="entry">
+                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
 Continuing the Zend_DB article <a href="http://www.dotkernel.com/dotkernel/sql-select-zend-db/" target="_blank" rel="noopener noreferrer">series</a>, we are stopping now at subqueries.
 </br>
 As you note, the below is a complicate query, with <i>COUNT()</i>, <i>LEFT JOIN()</i>, <i>GROUP BY</i>

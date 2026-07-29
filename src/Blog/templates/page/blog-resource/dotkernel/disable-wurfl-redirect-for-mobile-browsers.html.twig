@@ -20,6 +20,7 @@
 
             <article class="article">
                 <div class="entry">
+                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
 Dotkernel has an example mobile site at <a href="http://v1.dotkernel.net/mobile" target="_blank" rel="noopener noreferrer">http://v1.dotkernel.net/mobile</a> that uses <a href="http://jquerymobile.com/">jQuery Mobile</a>.
 
 Wurfl is also used to detect mobile browsers (as discussed in a <a href="http://www.dotkernel.com/dotkernel/wurfl-zend-framework-integration-into-dotkernel/">previous blog post</a>) and automatically redirect them to the mobile site the first time they view the homepage. Sometimes, this behavior isn't desired (for example when you don't have a mobile site, or you don't plan on using Wurfl at all)

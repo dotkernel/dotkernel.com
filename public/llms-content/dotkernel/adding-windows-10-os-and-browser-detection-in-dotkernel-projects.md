@@ -1,6 +1,6 @@
 ---
-title: "Adding Windows 10 OS and Browser detection in DotKernel projects"
-description: "A guide to installing the patch that adds Windows 8, 8.1 and 10 OS icons and the Microsoft Edge browser icon in DotKernel."
+title: "Adding Windows 10 OS and Browser detection in Dotkernel projects"
+description: "A guide to installing the patch that adds Windows 8, 8.1 and 10 OS icons and the Microsoft Edge browser icon in Dotkernel."
 author: "Gabi DJ"
 date_published: "2015-09-08"
 canonical_url: "https://www.dotkernel.com/dotkernel/adding-windows-10-os-and-browser-detection-in-dotkernel-projects/"
@@ -8,10 +8,10 @@ category: "Dotkernel"
 language: "en"
 ---
 
-# Adding Windows 10 OS and Browser detection in DotKernel projects
+# Adding Windows 10 OS and Browser detection in Dotkernel projects
 
 ## TL;DR
-DotKernel added Windows 8, 8.1 and 10 OS icons and a Microsoft Edge browser icon, shown in the User and Admin login icons.
+Dotkernel added Windows 8, 8.1 and 10 OS icons and a Microsoft Edge browser icon, shown in the User and Admin login icons.
 This article is the upgrade guide for applying that icon patch.
 
 ## Upgrade steps
@@ -20,9 +20,9 @@ This article is the upgrade guide for applying that icon patch.
 2. Download the [patch](http://www.dotkernel.com/download/?did=46).
 3. Extract the archive into a folder, e.g. `icons_patch`.
 4. Create a backup of your project before continuing (recommended).
-5. Copy all the files in the `icons_patch` folder into your DotKernel project.
+5. Copy all the files in the `icons_patch` folder into your Dotkernel project.
 6. You will be prompted to replace 2 files — replace them and agree to merge the folders' content (other files will be added, not replaced).
-7. Clear the cache for changes to take effect, since the OS and browser XMLs are cached (see "DotKernel Reserved Variable Names for Caching", the "Browser & OS" section).
+7. Clear the cache for changes to take effect, since the OS and browser XMLs are cached (see "Dotkernel Reserved Variable Names for Caching", the "Browser & OS" section).
 8. You can now delete the `icons_patch` folder, or keep it to patch another project.
 
 ## Affected files
@@ -38,7 +38,7 @@ A /images/os/windows_metro.png
 
 ## FAQ
 
-**Q: What DotKernel version is required before applying this patch?**
+**Q: What Dotkernel version is required before applying this patch?**
 A: Your project must be running version 1.5.0 or newer.
 
 **Q: Which files does the patch modify or add?**
@@ -53,4 +53,4 @@ A: You'll be prompted to replace 2 files (browser.xml and os.xml) and should agr
 ## Resources
 
 - [Icon patch download](http://www.dotkernel.com/download/?did=46)
-- [DotKernel Reserved Variable Names for Caching](http://www.dotkernel.com/dotkernel/dotkernel-reserved-variable-names-for-caching)
+- [Dotkernel Reserved Variable Names for Caching](http://www.dotkernel.com/dotkernel/dotkernel-reserved-variable-names-for-caching)

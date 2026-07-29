@@ -17,7 +17,7 @@ language: "en"
 ## Prerequisites
 
 - dot-log installed and configured inside your application.
-If it's not installed, follow the steps in [Logging with dot-log in Zend Expressive and DotKernel](https://www.dotkernel.com/dotkernel/logging-with-dot-log-in-zend-expressive-and-dotkernel/).
+If it's not installed, follow the steps in [Logging with dot-log in Zend Expressive and Dotkernel](https://www.dotkernel.com/dotkernel/logging-with-dot-log-in-zend-expressive-and-dotkernel/).
 - Otherwise, make sure you're using the latest version by running:
 
 ```shell
@@ -26,7 +26,7 @@ composer update dotkernel/dot-log
 
 If your application logs messages to a single file with a static name (e.g. `log/dk.log`), you can skip the rest of this guide — logging will work as before.
 
-## Configuring the logger with DotKernel
+## Configuring the logger with Dotkernel
 
 Your application should already have a `config/autoload/error-handling.global.php` file similar to:
 
@@ -91,9 +91,9 @@ If it looks like:
 
 If the log path uses other date format specifiers, adapt them accordingly — the full list is in the [PHP date() manual](https://www.php.net/manual/en/datetime.format.php).
 
-## Configuring the logger without DotKernel
+## Configuring the logger without Dotkernel
 
-Locate the dot-log config (probably `/config/autoload/log.global.php`), which should look similar to the DotKernel example but keyed under a custom logger name (e.g. `my_logger`) and may define multiple writers (e.g. a general file writer, a warnings-only writer, and a warnings-or-higher writer).
+Locate the dot-log config (probably `/config/autoload/log.global.php`), which should look similar to the Dotkernel example but keyed under a custom logger name (e.g. `my_logger`) and may define multiple writers (e.g. a general file writer, a warnings-only writer, and a warnings-or-higher writer).
 
 1. Locate every writer by navigating to `dot_log -> loggers -> my_logger -> writers`.
 2. For each writer, find the `stream` option.
@@ -124,19 +124,19 @@ A: Make sure you're using the latest version of dot-log by running `composer upd
 **Q: Do I need to change anything if my logs are already written to a single static file?**
 A: No. If your application logs messages in a single file with a static name (e.g. log/dk.log), you can skip the rest of the article — logging will work as before.
 
-**Q: How do I group log files by date when using DotKernel?**
+**Q: How do I group log files by date when using Dotkernel?**
 A: In `config/autoload/error-handling.global.php`, locate every log writer by navigating to `dot_log->loggers->default_logger->writers` and replace a stream value like `sprintf('%s/../../log/error-log-%s.log', __DIR__, date('Y-m-d'))` with `__DIR__ . '/../../log/error-log-{Y}-{m}-{d}.log'`.
 
-**Q: How do I group log files by date without DotKernel?**
+**Q: How do I group log files by date without Dotkernel?**
 A: In your dot-log config (e.g. `/config/autoload/log.global.php`), locate every writer under `dot_log->loggers->my_logger->writers` and replace a dynamic stream value with a formatter string using `{Y}-{m}-{d}` placeholders.
 
 **Q: What must I do after changing the stream configuration?**
 A: Clear the config cache.
-In a DotKernel application, run `php bin/clear-config-cache.php`; in a non-DotKernel setup, make sure you clear your application's config before usage.
+In a Dotkernel application, run `php bin/clear-config-cache.php`; in a non-Dotkernel setup, make sure you clear your application's config before usage.
 
 ## Resources
 
 - [dot-log on GitHub](https://github.com/dotkernel/dot-log)
 - [dot-log Version 3.1.1 release notes](https://github.com/dotkernel/dot-log/releases/tag/3.1.1)
-- [Logging with dot-log in Zend Expressive and DotKernel](https://www.dotkernel.com/dotkernel/logging-with-dot-log-in-zend-expressive-and-dotkernel/)
+- [Logging with dot-log in Zend Expressive and Dotkernel](https://www.dotkernel.com/dotkernel/logging-with-dot-log-in-zend-expressive-and-dotkernel/)
 - [PHP date() format specifiers](https://www.php.net/manual/en/datetime.format.php)

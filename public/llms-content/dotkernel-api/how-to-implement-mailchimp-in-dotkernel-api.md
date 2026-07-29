@@ -1,6 +1,6 @@
 ---
-title: "How to implement MailChimp in DotKernel API"
-description: "A step-by-step guide to integrating MailChimp into a DotKernel API instance using the drewm/mailchimp-api library, from installation to wiring up a factory in the ConfigProvider."
+title: "How to implement MailChimp in Dotkernel API"
+description: "A step-by-step guide to integrating MailChimp into a Dotkernel API instance using the drewm/mailchimp-api library, from installation to wiring up a factory in the ConfigProvider."
 author: "Alex Karajos"
 date_published: "2020-01-04"
 canonical_url: "https://www.dotkernel.com/dotkernel-api/how-to-implement-mailchimp-in-dotkernel-api/"
@@ -8,14 +8,14 @@ category: "Dotkernel API"
 language: "en"
 ---
 
-# How to implement MailChimp in DotKernel API
+# How to implement MailChimp in Dotkernel API
 
 ## TL;DR
 
-This is a step-by-step guide to adding MailChimp support to a DotKernel API instance using the `drewm/mailchimp-api` library.
+This is a step-by-step guide to adding MailChimp support to a Dotkernel API instance using the `drewm/mailchimp-api` library.
 It covers installing the library, creating a MailChimp config file, building a factory that returns a `DrewM\MailChimp\MailChimp` instance, and registering that factory in `ConfigProvider.php` so it can be injected wherever needed.
 
-This article will walk you through the process of implementing MailChimp into your instance of [DotKernel API](https://github.com/dotkernel/api) using [drewm/mailchimp-api](https://github.com/drewm/mailchimp-api).
+This article will walk you through the process of implementing MailChimp into your instance of [Dotkernel API](https://github.com/dotkernel/api) using [drewm/mailchimp-api](https://github.com/drewm/mailchimp-api).
 
 Step 1: Add the library to your application using the following command:
 

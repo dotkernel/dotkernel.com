@@ -20,6 +20,7 @@
 
             <article class="article">
                 <div class="entry">
+                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
 <a href="http://framework.zend.com/manual/en/zend.auth.html" target="_blank" rel="noopener noreferrer">Zend_Auth</a> and <a href="http://framework.zend.com/manual/en/zend.acl.html" target="_blank" rel="noopener noreferrer">Zend_Acl</a> have been integrated into the Dotkernel, starting with version 1.5.0
 
 With the integration of these two major components for user authorization and access we completely refactored the User and Admin models by using <em>Dot_Auth</em> and <em>Dot_Acl</em> classes.

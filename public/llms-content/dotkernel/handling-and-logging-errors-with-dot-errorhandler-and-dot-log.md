@@ -12,7 +12,7 @@ language: "en"
 
 ## TL;DR
 
-This article is a follow-up to "Logging with dot-log in Zend Expressive and DotKernel" and explains how to use `dotkernel/dot-errorhandler` together with `dotkernel/dot-log` or `zendframework/zend-log` to log errors in Zend Expressive applications.
+This article is a follow-up to "Logging with dot-log in Zend Expressive and Dotkernel" and explains how to use `dotkernel/dot-errorhandler` together with `dotkernel/dot-log` or `zendframework/zend-log` to log errors in Zend Expressive applications.
 It covers how dot-errorhandler was built, how to configure it, and how it was tested.
 
 ## The two error handlers
@@ -37,7 +37,7 @@ As a fallback, the plain error handler is selected by default, and this can be o
 
 Important notes:
 
-- This assumes the project already has a configured logger, as described in the "Logging with dot-log in Zend Expressive and DotKernel" article, with the logger named `default_logger` (as used in the package's config example).
+- This assumes the project already has a configured logger, as described in the "Logging with dot-log in Zend Expressive and Dotkernel" article, with the logger named `default_logger` (as used in the package's config example).
 - Although the config key is `dot_log`, the dot-log abstract factory responds to the `dot-log` selector — the container key to ask for is `dot-log.default_logger`.
 - dot-errorhandler is meant to be a silent logger for staging and production environments.
 To test it, development mode should be disabled, otherwise whoops will catch the errors and show them to the developer instead.
@@ -80,7 +80,7 @@ A: Run `composer require dotkernel/dot-errorhandler`.
 A: The plain error handler is selected by default as a fallback, and this can be overwritten through the config file, which also registers factories for both handlers plus an alias to switch between them.
 
 **Q: What must already be in place before configuring the logging error handler?**
-A: A configured logger as described in the "Logging with dot-log in Zend Expressive and DotKernel" article, with the logger named default_logger as used in the package's config example.
+A: A configured logger as described in the "Logging with dot-log in Zend Expressive and Dotkernel" article, with the logger named default_logger as used in the package's config example.
 
 **Q: Why might whoops interfere when testing dot-errorhandler?**
 A: dot-errorhandler is meant to be a silent logger for staging and production environments.
@@ -91,4 +91,4 @@ A: By throwing Exceptions, the most common case, and by raising warnings/errors 
 
 ## Resources
 
-- [Logging with dot-log in Zend Expressive and DotKernel](https://www.dotkernel.com/dotkernel/logging-with-dot-log-in-zend-expressive-and-dotkernel/)
+- [Logging with dot-log in Zend Expressive and Dotkernel](https://www.dotkernel.com/dotkernel/logging-with-dot-log-in-zend-expressive-and-dotkernel/)

@@ -20,6 +20,7 @@
 
             <article class="article">
                 <div class="entry">
+                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
 To always redirect users to the www site (for example: http://dotboost.com to http://www.dotboost.com), add the following lines to .htaccess, right after <strong>RewriteEngine On</strong>:
 
 <pre>RewriteCond %{HTTP_HOST} ^dotboost.com

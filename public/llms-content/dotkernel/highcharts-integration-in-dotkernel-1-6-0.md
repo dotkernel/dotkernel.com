@@ -1,6 +1,6 @@
 ---
-title: "Highcharts Integration in DotKernel 1.6.0"
-description: "DotKernel 1.6.0 integrates the Highcharts charting library, adding interactive pie, column and line chart samples to the admin."
+title: "Highcharts Integration in Dotkernel 1.6.0"
+description: "Dotkernel 1.6.0 integrates the Highcharts charting library, adding interactive pie, column and line chart samples to the admin."
 author: "deddu"
 date_published: "2012-05-18"
 canonical_url: "https://www.dotkernel.com/dotkernel/highcharts-integration-in-dotkernel-1-6-0/"
@@ -8,10 +8,10 @@ category: "Dotkernel"
 language: "en"
 ---
 
-# Highcharts Integration in DotKernel 1.6.0
+# Highcharts Integration in Dotkernel 1.6.0
 
 ## TL;DR
-DotKernel 1.6.0 integrates the Highcharts charting library, offering a new, intuitive and interactive charting experience.
+Dotkernel 1.6.0 integrates the Highcharts charting library, offering a new, intuitive and interactive charting experience.
 Sample charts (pie, column and line) were added to the admin, and the library ships in the project's externals directory.
 
 ## What was added
@@ -70,11 +70,11 @@ chart = new Highcharts.Chart({
 
 ## FAQ
 
-**Q: What charting library was integrated in DotKernel 1.6.0?**
-A: Highcharts was integrated in DotKernel 1.6.0, offering a new, intuitive and interactive charting experience.
+**Q: What charting library was integrated in Dotkernel 1.6.0?**
+A: Highcharts was integrated in Dotkernel 1.6.0, offering a new, intuitive and interactive charting experience.
 
 **Q: What sample charts were added to the admin?**
 A: The admin includes samples made with Highcharts: a pie chart (with a small custom feature), a column chart, and a line chart.
 
-**Q: Where can the Highcharts library be found in a DotKernel project?**
+**Q: Where can the Highcharts library be found in a Dotkernel project?**
 A: The Highcharts library is located in the externals directory of the project.

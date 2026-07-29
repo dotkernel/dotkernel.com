@@ -20,6 +20,7 @@
 
             <article class="article">
                 <div class="entry">
+                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
 This article contains the Dotkernel cache layer configuration guide.
 
 The Dotkernel Caching Layer is based on Zend Framework Cache, more configuration options can be found at the following links:

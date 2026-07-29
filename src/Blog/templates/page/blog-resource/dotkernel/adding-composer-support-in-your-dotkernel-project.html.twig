@@ -20,6 +20,7 @@
 
             <article class="article">
                 <div class="entry">
+                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
 Composer is an application-level package manager. Composer auto-loads the dependencies on demand and can also auto-load custom classes .
 
 This article will cover the needed steps to add composer support to your Dotkernel project or even "composify" it.

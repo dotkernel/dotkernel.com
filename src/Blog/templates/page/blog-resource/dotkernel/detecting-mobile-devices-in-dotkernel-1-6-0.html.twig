@@ -20,6 +20,7 @@
 
             <article class="article">
                 <div class="entry">
+                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
 The new Dotkernel version 1.6.0 is comming with some changes how we are detecting mobile devices, this changes are because of the new Wurfl Cloud integration.
 
 This version of Dotkernel is not comming anymore with a working built in method for mobile detection, so first we have to configure it.

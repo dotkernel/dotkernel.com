@@ -20,6 +20,7 @@
 
             <article class="article">
                 <div class="entry">
+                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
 <strong>Problem:</strong> email should allow +/- characters in user, - in domain.
 <span class="mediumtext">dash (-) should be allowed anywhere in an email address or domain.
 plus (+) is allowed in the username (many people use this for categorization, especially at gmail)</span>

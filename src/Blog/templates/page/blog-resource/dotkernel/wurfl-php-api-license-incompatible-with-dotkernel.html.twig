@@ -20,6 +20,7 @@
 
             <article class="article">
                 <div class="entry">
+                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
 We integrated long time ago the WURFL PHP API into Dotkernel code base. At that time, the license of that WURFL library was GNU/GPL, which make it perfect compatible with Zend Framework license( <strong>new BSD</strong>) and Dotkernel ( <strong>OSL 3.0</strong>). Everybody was happy, users was able to make web applications for them or for their customers without worry about licensing costs at all.
 
 On June 6th, 2011, the WURFL PHP API library was updated to version 1.3.0. So we updated too the latest Dotkernel 1.5.0 ( now in release candidate stage, soon to be released as stable) , without noticing the change on its license, from GNU/GPL to AGPL which suddenly transform it into a 'trial only' library, for "Product evaluation" only.

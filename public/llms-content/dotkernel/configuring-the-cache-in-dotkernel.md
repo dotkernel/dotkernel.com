@@ -1,6 +1,6 @@
 ---
-title: "Configuring the Cache in DotKernel"
-description: "A configuration guide for DotKernel's Zend Framework Cache-based caching layer, covering the main frontend settings and the optional per-backend settings."
+title: "Configuring the Cache in Dotkernel"
+description: "A configuration guide for Dotkernel's Zend Framework Cache-based caching layer, covering the main frontend settings and the optional per-backend settings."
 author: "Gabi DJ"
 date_published: "2015-01-29"
 canonical_url: "https://www.dotkernel.com/dotkernel/configuring-the-cache-in-dotkernel/"
@@ -8,16 +8,16 @@ category: "Dotkernel"
 language: "en"
 ---
 
-# Configuring the Cache in DotKernel
+# Configuring the Cache in Dotkernel
 
 ## TL;DR
 
-DotKernel's caching layer is built on Zend Framework Cache and is configured through `cache.*` settings in `application.ini`.
+Dotkernel's caching layer is built on Zend Framework Cache and is configured through `cache.*` settings in `application.ini`.
 The main frontend settings control whether caching is enabled, which cache service to use, the namespace prefix, and how long entries live.
 Optional backend-specific settings (like the file cache directory) are recommended so that separate projects don't accidentally share the same cache.
 
-This article contains the DotKernel cache layer configuration guide.
-The DotKernel Caching Layer is based on Zend Framework Cache; more configuration options can be found at the following links:
+This article contains the Dotkernel cache layer configuration guide.
+The Dotkernel Caching Layer is based on Zend Framework Cache; more configuration options can be found at the following links:
 
 - [Zend Framework Cache Frontends](http://framework.zend.com/manual/1.12/en/zend.cache.frontends.html)
 - [Zend Framework Cache Backends](http://framework.zend.com/manual/1.12/en/zend.cache.backends.html)
@@ -53,12 +53,12 @@ The setting pattern and sample are below:
 ```ini
 cache.BACKEND_NAME.SETTING = "VALUE"
 ; example:
-cache.file.file_name_prefix = "DotKernel"
+cache.file.file_name_prefix = "Dotkernel"
 ```
 
 ## FAQ
 
-**Q: What is DotKernel's caching layer based on?**
+**Q: What is Dotkernel's caching layer based on?**
 A: It's based on Zend Framework Cache, configured through settings in application.ini, with more configuration options available at the Zend Framework Cache Frontends and Backends documentation links given in the article.
 
 **Q: What does the cache.enable setting do?**

@@ -20,6 +20,7 @@
 
             <article class="article">
                 <div class="entry">
+                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
 1.  Always use in development and in staging highest <strong>error reporting</strong> level, and <strong>display_errors</strong> ON:
 <pre>>error_reporting(-1);
 ini_set('display_errors', 1);</pre>

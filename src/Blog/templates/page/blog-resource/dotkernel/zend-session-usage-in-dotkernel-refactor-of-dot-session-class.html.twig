@@ -20,6 +20,7 @@
 
             <article class="article">
                 <div class="entry">
+                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
 We found a strange behaviour of sessions in one of our project, running Dotkernel version 1.5.0
 
 Similar to this one described <a href="http://trac.elgg.org/ticket/2677" target="_blank" rel="noopener noreferrer">here</a>

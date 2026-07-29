@@ -20,6 +20,7 @@
 
             <article class="article">
                 <div class="entry">
+                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
 <p class="mb-3">PHP_CodeSniffer or phpcs is a tool that helps developers maintain a specific standard in the way they write code. In order to be able to provide relevant information, phpcs needs to be configured correctly in PHPStorm (see image).</p>
 
 <figure><img src="{{ asset('uploads/article/' ~ article.id ~ '/image.png') }}" alt=""> </figure>

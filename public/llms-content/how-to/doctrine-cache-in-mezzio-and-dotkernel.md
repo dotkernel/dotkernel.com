@@ -1,6 +1,6 @@
 ---
 title: "Doctrine Cache in Mezzio and Dotkernel"
-description: "How to configure Doctrine's metadata, query, and result caches (via PhpFileCache) in a Mezzio/DotKernel application, with usage examples on a query builder and a Doctrine Paginator-based collection."
+description: "How to configure Doctrine's metadata, query, and result caches (via PhpFileCache) in a Mezzio/Dotkernel application, with usage examples on a query builder and a Doctrine Paginator-based collection."
 author: "admin"
 date_published: "2020-09-22"
 canonical_url: "https://www.dotkernel.com/how-to/doctrine-cache-in-mezzio-and-dotkernel/"
@@ -17,7 +17,7 @@ This article configures Doctrine's `metadata_cache`, `query_cache`, and `result_
 It walks through enabling these caches both directly on a query and on a Doctrine Paginator-based collection, with real examples from Dotkernel Admin.
 Note: a 2024 follow-up article covers the same topic using Symfony Cache instead.
 
-## Doctrine Caching in DotKernel
+## Doctrine Caching in Dotkernel
 
 > Following version 2 of doctrine/cache, in 2024 we published an update to this article here: [https://www.dotkernel.com/dotkernel/doctrine-cache-using-symfony-cache/](https://www.dotkernel.com/dotkernel/doctrine-cache-using-symfony-cache/)
 

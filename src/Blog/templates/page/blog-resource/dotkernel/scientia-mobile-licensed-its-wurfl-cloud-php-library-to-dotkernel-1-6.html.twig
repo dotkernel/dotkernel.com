@@ -20,6 +20,7 @@
 
             <article class="article">
                 <div class="entry">
+                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
 In the Dotkernel version 1.6.0 , released on May 16th, 2012 we have removed the GPL'ed WURFL PHP library , as the code it was obsolete anyway and also the structure of the XML file was changed.
 
 Instead , we implemented the <a title="Scientia Mobile" href="http://www.scientiamobile.com/" target="_blank" rel="noopener noreferrer">Scientia Mobile's </a>WURFL Cloud PHP  library .

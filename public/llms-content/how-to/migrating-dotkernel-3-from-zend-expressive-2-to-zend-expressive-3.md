@@ -1,6 +1,6 @@
 ---
-title: "Migrating DotKernel 3 from Zend Expressive 2 to Zend Expressive 3"
-description: "A walkthrough of migrating a DotKernel 3 application with controller-based middleware from Zend Expressive 2 to Zend Expressive 3, covering dependency, configuration, and pipeline changes."
+title: "Migrating Dotkernel 3 from Zend Expressive 2 to Zend Expressive 3"
+description: "A walkthrough of migrating a Dotkernel 3 application with controller-based middleware from Zend Expressive 2 to Zend Expressive 3, covering dependency, configuration, and pipeline changes."
 author: "Gabi DJ"
 date_published: "2018-06-13"
 canonical_url: "https://www.dotkernel.com/how-to/migrating-dotkernel-3-from-zend-expressive-2-to-zend-expressive-3/"
@@ -8,11 +8,11 @@ category: "How to's"
 language: "en"
 ---
 
-# Migrating DotKernel 3 from Zend Expressive 2 to Zend Expressive 3
+# Migrating Dotkernel 3 from Zend Expressive 2 to Zend Expressive 3
 
 ## TL;DR
 
-This guide covers migrating a DotKernel 3 instance from Zend Expressive 2 to Zend Expressive 3, for projects that only contain controller-based middleware.
+This guide covers migrating a Dotkernel 3 instance from Zend Expressive 2 to Zend Expressive 3, for projects that only contain controller-based middleware.
 Old middleware must first be refactored to the `psr/http-server-middleware` interfaces, since Delegates become RequestHandlers.
 The steps then cover updating `composer.json` dependencies, registering new ConfigProviders, wrapping `routes.php` and `pipeline.php` in callables, and replacing the old `pipeRoutingMiddleware()`/`pipeDispatchMiddleware()` calls with their PSR-15 equivalents.
 

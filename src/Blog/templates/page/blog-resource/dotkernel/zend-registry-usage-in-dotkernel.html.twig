@@ -20,6 +20,7 @@
 
             <article class="article">
                 <div class="entry">
+                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
 In Dotkernel, Zend_Registry will contain the following variables:
 <ul>
     <li><strong>startTime</strong> - the result of <a title="microtime" href="http://php.net/manual/en/function.microtime.php" target="_blank" rel="noopener noreferrer">microtime()</a> at the beginning of the request</li>

@@ -20,6 +20,7 @@
 
             <article class="article">
                 <div class="entry">
+                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
 <p class="mb-3"><strong>Middleware </strong>is code that exists <strong>between the request and response</strong>, and which can take the incoming request, perform actions based on it, and either <strong>complete the response or pass delegation </strong>on to the next middleware in the queue.</p>
 
 <h2>The purpose of middleware</h2>

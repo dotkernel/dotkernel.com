@@ -1,6 +1,6 @@
 ---
-title: "DotKernel API Client Side Authorization"
-description: "How a client application authorizes against a backend built with DotKernel API, from the authorization request to using the access token."
+title: "Dotkernel API Client Side Authorization"
+description: "How a client application authorizes against a backend built with Dotkernel API, from the authorization request to using the access token."
 author: "admin"
 date_published: "2019-08-05"
 canonical_url: "https://www.dotkernel.com/dotkernel-api/dotkernel-api-client-side-authorization/"
@@ -8,9 +8,9 @@ category: "Dotkernel API"
 language: "en"
 ---
 
-# DotKernel API Client Side Authorization
+# Dotkernel API Client Side Authorization
 
-This article covers the basic authorization of a Client application which uses a backend built using DotKernel API.
+This article covers the basic authorization of a Client application which uses a backend built using Dotkernel API.
 
 ## Authorization Request
 
@@ -55,4 +55,4 @@ A: When sending API requests to an endpoint that requires authorization, include
 
 ## Resources
 
-- [DotKernel API on GitHub](https://github.com/dotkernel/api)
+- [Dotkernel API on GitHub](https://github.com/dotkernel/api)

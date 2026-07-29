@@ -20,6 +20,7 @@
 
             <article class="article">
                 <div class="entry">
+                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
 In developing <strong>Dotkernel</strong> application framework, we needed a tracking system. <strong><a href="http://www.dotkernel.net/">Dotkernel Tracker</a></strong> is the place where the <em>bugs</em> are reported, new <em>features</em> are announced and other <em>general tickets</em> are added.
 
 <strong><a href="http://www.dotkernel.net/">Dotkernel Tracker</a></strong> is a <strong><a href="http://www.mantisbt.org/">Mantis</a></strong> web-based bugtracking system. To simplify the development of <strong>Dotkernel</strong>, we integrated our web development IDE – <strong><a href="http://www.aptana.com/">Aptana</a></strong> with our bugtracking system – <strong><a href="http://www.dotkernel.net/">Dotkernel Tracker</a></strong>. In the <em><strong>Downloads</strong></em> section, you will find screenshots with the below steps for <strong><a href="../download/?did=24">Using Aptana with the Mylyn connector for Mantis</a></strong>

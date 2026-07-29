@@ -1,6 +1,6 @@
 ---
 title: "Database migrations and how to use them"
-description: "An overview of using database migrations and seeders in the DotKernel stack via the 'php dot' command, covering setup, workflow best practices, and the difference between migrations and seeders."
+description: "An overview of using database migrations and seeders in the Dotkernel stack via the 'php dot' command, covering setup, workflow best practices, and the difference between migrations and seeders."
 author: "Jesper"
 date_published: "2017-08-28"
 canonical_url: "https://www.dotkernel.com/how-to/database-migrations-and-how-to-use-them/"
@@ -13,14 +13,14 @@ language: "en"
 ## TL;DR
 
 Database migrations track schema changes so teams can collaborate without ad hoc, convoluted database change messages and can keep column types consistent across the team.
-A package for the DotKernel stack adds migrations and seeders to the application via a new `php dot` command.
+A package for the Dotkernel stack adds migrations and seeders to the application via a new `php dot` command.
 The article walks through adopting migrations in an existing project, running and naming them, and explains how seeders differ from migrations by adding data rather than changing schema.
 
 ## Migrations, the Superhero Your Database Deserves
 
 Migrations ease the process of working together on projects, as well as deploying the database changes.
-A newly released [package](https://github.com/JapSeyz/Dot-migrations) for the DotKernel stack integrates migrations and seeders into the application.
-This is all done via the newly introduced "php dot" command that's available in the DotKernel stack.
+A newly released [package](https://github.com/JapSeyz/Dot-migrations) for the Dotkernel stack integrates migrations and seeders into the application.
+This is all done via the newly introduced "php dot" command that's available in the Dotkernel stack.
 This article assumes that you're familiar with the basic concepts of migrations.
 If you're not, there's an excellent article available [here](https://medium.com/@JapSeyz/database-migrations-and-why-you-should-use-them-11bfde52d7c2).
 To recap the article above, a database migration is a change in the database schema.
@@ -35,7 +35,7 @@ It requires no manual SSH'ing into production servers and no risky manual change
 
 ## Getting Started
 
-To setup migrations, simply follow the installation instructions in the package provided for DotKernel.
+To setup migrations, simply follow the installation instructions in the package provided for Dotkernel.
 After the package has been successfully setup, you're ready to go.
 To see the available commands, simply write `php dot` in a console that's located in your project root.
 
@@ -70,7 +70,7 @@ Seeders are created the same way as migrations, and also benefit hugely from bei
 
 **Q: What is a database migration?**
 A: A database migration is a change to the database schema.
-The DotKernel stack integrates migrations (and seeders) via a package that adds the "php dot" command to the application.
+The Dotkernel stack integrates migrations (and seeders) via a package that adds the "php dot" command to the application.
 
 **Q: What are the benefits of using migrations and seeders?**
 A: They keep the database synchronised across the team with minimal effort, so column types and limits stay consistent instead of drifting (e.g. one dev using VARCHAR(50) and another VARCHAR(150)).
