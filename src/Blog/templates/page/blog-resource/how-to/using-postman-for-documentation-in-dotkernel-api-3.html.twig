@@ -1,7 +1,7 @@
 {% extends '@layout/default.html.twig' %}
 {% block json_ld %} {{ include('@jsonld/how-to/using-postman-for-documentation-in-dotkernel-api-3.jsonld.twig') }} {% endblock %}
 
-{% block title %}Using Postman for documentation  in DotKernel API 3{% endblock %}
+{% block title %}Using Postman for documentation  in Dotkernel API 3{% endblock %}
 
 {% block page_title %}
     {{ include('@partial/title-section.html.twig', {
@@ -21,9 +21,9 @@
             <article class="article">
                 <div class="entry">
                     {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-<h2>Using Postman documentation in DotKernel API 3</h2>
+<h2>Using Postman documentation in Dotkernel API 3</h2>
 
-<p class="mb-3">Starting from version 3.0 DotKernel API provides it's documentation using <a href="https://www.postman.com/" data-type="URL" data-id="https://www.postman.com/" target="_blank" rel="noreferrer noopener">Postman</a>.</p>
+<p class="mb-3">Starting from version 3.0 Dotkernel API provides it's documentation using <a href="https://www.postman.com/" data-type="URL" data-id="https://www.postman.com/" target="_blank" rel="noreferrer noopener">Postman</a>.</p>
 
 <p class="mb-3">In this article we will go into the details of creating and maintaining your application's documentation.</p>
 
@@ -33,7 +33,7 @@
 
 <p class="mb-3">In order to follow the steps, you will need the following:</p>
 
-<ul><li>a working installation of DotKernel API 3</li><li>download and install Postman from their <a href="https://www.postman.com/downloads/" target="_blank" rel="noreferrer noopener">download page</a>.</li></ul>
+<ul><li>a working installation of Dotkernel API 3</li><li>download and install Postman from their <a href="https://www.postman.com/downloads/" target="_blank" rel="noreferrer noopener">download page</a>.</li></ul>
 
 <p class="mb-3"><strong>TIP:</strong> If you don't have a Postman account, we recommend you to create one. This way Postman is able to backup your workspace in the cloud and synchronize it across multiple devices.</p>
 
@@ -41,7 +41,7 @@
 
 <p class="mb-3">For better understanding on how Postman works, we need to run through the "building blocks" of Postman:</p>
 
-<ul><li><strong>Workspace</strong>: is the main container that holds all your collections, APIs, environments etc</li><li><strong>Collection</strong>: holds all requests and dependencies of a project (for example DotKernel API's collection containing all requests)</li><li><strong>Environment</strong>: holds a set of environment-specific variables (for example DotKernel API's environment file cotaining the application URL specific to the development environment)</li><li><strong>Request</strong>: the definition of an API endpoint, including request method, name, description, URL, body, parameters and an example</li></ul>
+<ul><li><strong>Workspace</strong>: is the main container that holds all your collections, APIs, environments etc</li><li><strong>Collection</strong>: holds all requests and dependencies of a project (for example Dotkernel API's collection containing all requests)</li><li><strong>Environment</strong>: holds a set of environment-specific variables (for example Dotkernel API's environment file cotaining the application URL specific to the development environment)</li><li><strong>Request</strong>: the definition of an API endpoint, including request method, name, description, URL, body, parameters and an example</li></ul>
 
 <p class="mb-3">There are more terms to cover, like <em>Mock servers</em>, <em>Monitors</em> etc but they are not relevant yet in our case.</p>
 
@@ -49,28 +49,28 @@
 
 <p class="mb-3">Open Postman (and log in if you have an account), then follow the below steps:</p>
 
-<ul><li>open the import modal by clicking <code>File</code> -&gt; <code>Import</code> (or <code>Ctrl + O</code>)</li><li>inside the modal, make sure you're on the <code>File</code> tab, then click <code>Upload files</code></li><li>navigate to <code>documentation</code> directory of your DotKernel API 3 application and select both of the following files:<ul><li><strong>DotKernel_API.postman_collection.json</strong></li><li><strong>DotKernel_API.postman_environment.json</strong></li></ul></li><li>after clicking <code>Open</code> the modal should show the following:</li></ul>
+<ul><li>open the import modal by clicking <code>File</code> -&gt; <code>Import</code> (or <code>Ctrl + O</code>)</li><li>inside the modal, make sure you're on the <code>File</code> tab, then click <code>Upload files</code></li><li>navigate to <code>documentation</code> directory of your Dotkernel API 3 application and select both of the following files:<ul><li><strong>Dotkernel_API.postman_collection.json</strong></li><li><strong>Dotkernel_API.postman_environment.json</strong></li></ul></li><li>after clicking <code>Open</code> the modal should show the following:</li></ul>
 
 <pre>Select files to import . 2/2 selected
 NAME                 FORMAT                         IMPORT AS
-<span class="has-inline-color has-vivid-red-color">DotKernel_API</span>        Postman Collection v2.1        Collection
-<span class="has-inline-color has-vivid-red-color">DotKernel_API</span>        Postman Environment            Environment</pre>
+<span class="has-inline-color has-vivid-red-color">Dotkernel_API</span>        Postman Collection v2.1        Collection
+<span class="has-inline-color has-vivid-red-color">Dotkernel_API</span>        Postman Environment            Environment</pre>
 
 <ul><li>at the bottom of the import modal, clicking <code>Import</code> will import the selected files and close the modal.</li></ul>
 
-<p class="mb-3">Under <strong>My Workspace</strong> you should see a tab called <strong>Collections</strong>. Clicking on it should display all your collections, one of them called <code>DotKernel_API</code>. This collection holds all of the provided requests and serves as the documentation of your application.</p>
+<p class="mb-3">Under <strong>My Workspace</strong> you should see a tab called <strong>Collections</strong>. Clicking on it should display all your collections, one of them called <code>Dotkernel_API</code>. This collection holds all of the provided requests and serves as the documentation of your application.</p>
 
-<p class="mb-3">DotKernel API 3 collection and environment files ar now imported and ready to use.</p>
+<p class="mb-3">Dotkernel API 3 collection and environment files ar now imported and ready to use.</p>
 
 <p class="mb-3">For more information on importing files into Postman, please consult their <a rel="noreferrer noopener" href="https://learning.postman.com/docs/getting-started/importing-and-exporting-data/" data-type="URL" data-id="https://learning.postman.com/docs/getting-started/importing-and-exporting-data/" target="_blank">docs</a>.</p>
 
 <h3>Interacting with the environment</h3>
 
-<p class="mb-3">On the top right corner of Postman, you'll see the <strong>Environment quick look</strong> button (it looks like an eye). On it's left side, there's a dropdown with all available environments, one of the being called <code>DotKernel_API</code> - click on it to set it as the active environment.</p>
+<p class="mb-3">On the top right corner of Postman, you'll see the <strong>Environment quick look</strong> button (it looks like an eye). On it's left side, there's a dropdown with all available environments, one of the being called <code>Dotkernel_API</code> - click on it to set it as the active environment.</p>
 
 <p class="mb-3">After this, clicking the <strong>Environment quick look</strong> button will bring up a modal containing all variables found in the environment:</p>
 
-<pre>DotKernel_API                                                                              <strong>Edit</strong>
+<pre>Dotkernel_API                                                                              <strong>Edit</strong>
 VARIABLE               INITIAL VALUE                CURRENT_VALUE
 <span class="has-inline-color has-vivid-red-color">APPLICATION_URL</span>        http://localhost:8080        http://localhost:8080</pre>
 
@@ -94,7 +94,7 @@ VARIABLE               INITIAL VALUE                CURRENT_VALUE
 
 <h2>Features</h2>
 
-<p class="mb-3">The collection provided by DotKernel API 3 comes with some built-in security features. </p>
+<p class="mb-3">The collection provided by Dotkernel API 3 comes with some built-in security features. </p>
 
 <h3>Global security</h3>
 
@@ -122,13 +122,13 @@ VARIABLE               INITIAL VALUE                CURRENT_VALUE
 
 <h3>Exporting collection</h3>
 
-<p class="mb-3">Click on the same <em>three horizontal dots</em>, then select <strong>Export</strong>. You will be presented an <em>Export collection</em> modal asking you to choose the format of the export. Unless specified, choose the recommended version, then click <strong>Export</strong>. When asked to save the exported file, choose to overwrite your application's collection file (<em>documentaion/DotKernel_API.postman_collection.json</em>).</p>
+<p class="mb-3">Click on the same <em>three horizontal dots</em>, then select <strong>Export</strong>. You will be presented an <em>Export collection</em> modal asking you to choose the format of the export. Unless specified, choose the recommended version, then click <strong>Export</strong>. When asked to save the exported file, choose to overwrite your application's collection file (<em>documentaion/Dotkernel_API.postman_collection.json</em>).</p>
 
 <h3>Export environment</h3>
 
 <p class="mb-3">This step is optional. It is needed only if you made modifications to the environment, else you can skip it.</p>
 
-<p class="mb-3">Start by clicking on the <strong>Environment quick look</strong> button, then click <strong>Edit</strong>. Once the edit environment tab opens, locate the <em>three horizontal dots</em> next to the <strong>Share</strong> button on the right of the Postman window. Click them and select <strong>Export</strong>. When asked to save the exported file, choose to overwrite your application's environment file (<em>documentaion/DotKernel_API.postman_environment.json</em>).</p>
+<p class="mb-3">Start by clicking on the <strong>Environment quick look</strong> button, then click <strong>Edit</strong>. Once the edit environment tab opens, locate the <em>three horizontal dots</em> next to the <strong>Share</strong> button on the right of the Postman window. Click them and select <strong>Export</strong>. When asked to save the exported file, choose to overwrite your application's environment file (<em>documentaion/Dotkernel_API.postman_environment.json</em>).</p>
 
 <h2 id="user-content-faq">Frequently Asked Questions</h2>
 
@@ -136,19 +136,19 @@ VARIABLE               INITIAL VALUE                CURRENT_VALUE
     <details class="acc" open>
         <summary>What are Postman's main "building blocks"? <span class="chev">+</span></summary>
         <div class="acc-body">
-            <p class="mb-0">Workspace (the main container holding all collections, APIs and environments), Collection (holds all requests and dependencies of a project, such as DotKernel API's collection), Environment (holds environment-specific variables, like the application URL), and Request (the definition of an API endpoint, including method, name, description, URL, body, parameters and an example).</p>
+            <p class="mb-0">Workspace (the main container holding all collections, APIs and environments), Collection (holds all requests and dependencies of a project, such as Dotkernel API's collection), Environment (holds environment-specific variables, like the application URL), and Request (the definition of an API endpoint, including method, name, description, URL, body, parameters and an example).</p>
         </div>
     </details>
     <details class="acc">
-        <summary>How do you import DotKernel API's documentation files into Postman? <span class="chev">+</span></summary>
+        <summary>How do you import Dotkernel API's documentation files into Postman? <span class="chev">+</span></summary>
         <div class="acc-body">
-            <p class="mb-0">Open the import modal via <code>File -&gt; Import</code> (or <code>Ctrl + O</code>), go to the <code>File</code> tab, click <code>Upload files</code>, then select both <strong>DotKernel_API.postman_collection.json</strong> and <strong>DotKernel_API.postman_environment.json</strong> from the application's <code>documentation</code> directory, and click <code>Import</code>.</p>
+            <p class="mb-0">Open the import modal via <code>File -&gt; Import</code> (or <code>Ctrl + O</code>), go to the <code>File</code> tab, click <code>Upload files</code>, then select both <strong>Dotkernel_API.postman_collection.json</strong> and <strong>Dotkernel_API.postman_environment.json</strong> from the application's <code>documentation</code> directory, and click <code>Import</code>.</p>
         </div>
     </details>
     <details class="acc">
         <summary>What variable controls which host/port the requests target? <span class="chev">+</span></summary>
         <div class="acc-body">
-            <p class="mb-0">The <code>APPLICATION_URL</code> environment variable, found under the <code>DotKernel_API</code> environment, defaults to <code>http://localhost:8080</code> and can be edited via the Environment quick look button if the application runs on a different host/port.</p>
+            <p class="mb-0">The <code>APPLICATION_URL</code> environment variable, found under the <code>Dotkernel_API</code> environment, defaults to <code>http://localhost:8080</code> and can be edited via the Environment quick look button if the application runs on a different host/port.</p>
         </div>
     </details>
     <details class="acc">
@@ -160,7 +160,7 @@ VARIABLE               INITIAL VALUE                CURRENT_VALUE
     <details class="acc">
         <summary>How do you export the collection after making changes? <span class="chev">+</span></summary>
         <div class="acc-body">
-            <p class="mb-0">Click the three horizontal dots next to the collection's name, select <strong>Export</strong>, choose the recommended format, click <strong>Export</strong>, and overwrite the application's collection file (<em>documentation/DotKernel_API.postman_collection.json</em>).</p>
+            <p class="mb-0">Click the three horizontal dots next to the collection's name, select <strong>Export</strong>, choose the recommended format, click <strong>Export</strong>, and overwrite the application's collection file (<em>documentation/Dotkernel_API.postman_collection.json</em>).</p>
         </div>
     </details>
 </div>

@@ -12,13 +12,13 @@ language: "en"
 
 ## TL;DR
 
-DotKernel's dot-cli package replaces dot-console, which was abandoned after Laminas dropped the laminas-console package it was based on.
+Dotkernel's dot-cli package replaces dot-console, which was abandoned after Laminas dropped the laminas-console package it was based on.
 Setting it up involves requiring the package via Composer, registering its ConfigProvider, and copying its bootstrap and config files into the application.
 It also ships with FileLocker, a built-in, enabled-by-default locking system that prevents overlapping calls to the same command.
 
 ## Implementing dot-cli in Your Application
 
-DotKernel's [dot-cli](https://github.com/dotkernel/dot-cli) package comes as a replacement for [dot-console](https://github.com/dotkernel/dot-console), which was abandoned after Laminas abandoned their [laminas-console](https://github.com/laminas/laminas-console) package, that dot-console was based on.
+Dotkernel's [dot-cli](https://github.com/dotkernel/dot-cli) package comes as a replacement for [dot-console](https://github.com/dotkernel/dot-console), which was abandoned after Laminas abandoned their [laminas-console](https://github.com/laminas/laminas-console) package, that dot-console was based on.
 
 ## Setup
 
@@ -56,7 +56,7 @@ php ./bin/cli.php
 The output should look similar to this, containing information on how to start using dot-cli:
 
 ```
-DotKernel CLI 1.0.0
+Dotkernel CLI 1.0.0
 
 Usage:
   command

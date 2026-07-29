@@ -1,6 +1,6 @@
 ---
-title: "Creating admin accounts in DotKernel API"
-description: "How to create admin accounts in DotKernel API v3 and later, using either the protected POST /admin endpoint or the admin:create terminal command."
+title: "Creating admin accounts in Dotkernel API"
+description: "How to create admin accounts in Dotkernel API v3 and later, using either the protected POST /admin endpoint or the admin:create terminal command."
 author: "Alex Karajos"
 date_published: "2021-07-09"
 canonical_url: "https://www.dotkernel.com/how-to/creating-admin-accounts-in-dotkernel-api/"
@@ -8,11 +8,11 @@ category: "How to's"
 language: "en"
 ---
 
-# Creating admin accounts in DotKernel API
+# Creating admin accounts in Dotkernel API
 
 ## TL;DR
 
-Starting with version 3, DotKernel API supports dedicated admin accounts.
+Starting with version 3, Dotkernel API supports dedicated admin accounts.
 They can be created either through a protected API endpoint, which lets you assign one or more admin roles and optional names, or through a terminal command, which is quicker but always assigns the default admin role.
 Both methods leave you with a ready-to-use admin account.
 
@@ -109,7 +109,7 @@ php ./bin/cli.php help admin:create
 
 ## FAQ
 
-**Q: What are the two ways to create an admin account in DotKernel API?**
+**Q: What are the two ways to create an admin account in Dotkernel API?**
 A: You can either call the protected API endpoint `POST /admin` with a JSON body, or run the terminal command `php ./bin/cli.php admin:create`.
 
 **Q: Who can create an admin account via the API endpoint?**

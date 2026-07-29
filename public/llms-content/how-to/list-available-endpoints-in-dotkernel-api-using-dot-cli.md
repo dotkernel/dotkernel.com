@@ -1,6 +1,6 @@
 ---
-title: "List available endpoints in DotKernel API using dot-cli"
-description: "How to use dot-cli's route:list command to display, and filter, all available endpoints in a DotKernel API 3 application."
+title: "List available endpoints in Dotkernel API using dot-cli"
+description: "How to use dot-cli's route:list command to display, and filter, all available endpoints in a Dotkernel API 3 application."
 author: "Alex Karajos"
 date_published: "2021-06-29"
 canonical_url: "https://www.dotkernel.com/how-to/list-available-endpoints-in-dotkernel-api-using-dot-cli/"
@@ -8,16 +8,16 @@ category: "How to's"
 language: "en"
 ---
 
-# List available endpoints in DotKernel API using dot-cli
+# List available endpoints in Dotkernel API using dot-cli
 
 ## TL;DR
 
-Starting from version 3, DotKernel API uses the dot-cli package to list all of its available endpoints via the `route:list` command.
+Starting from version 3, Dotkernel API uses the dot-cli package to list all of its available endpoints via the `route:list` command.
 The command's output can be filtered by route name, path, or HTTP method, and filters are case-insensitive and combinable.
 
-## Displaying DotKernel API Endpoints Using dot-cli
+## Displaying Dotkernel API Endpoints Using dot-cli
 
-Starting from version 3, DotKernel API uses [dot-cli](https://github.com/dotkernel/dot-cli) to display a list of available endpoints.
+Starting from version 3, Dotkernel API uses [dot-cli](https://github.com/dotkernel/dot-cli) to display a list of available endpoints.
 
 ## Usage
 
@@ -111,8 +111,8 @@ php ./bin/cli.php route:list --help
 
 ## FAQ
 
-**Q: What tool does DotKernel API use to list available endpoints?**
-A: Starting from version 3, DotKernel API uses dot-cli to display a list of available endpoints.
+**Q: What tool does Dotkernel API use to list available endpoints?**
+A: Starting from version 3, Dotkernel API uses dot-cli to display a list of available endpoints.
 
 **Q: Which command lists all routes?**
 A: Run `php ./bin/cli.php route:list` in your application's root directory.

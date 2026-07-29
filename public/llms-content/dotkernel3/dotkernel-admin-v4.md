@@ -12,12 +12,12 @@ language: "en"
 
 ## TL;DR
 
-Dotkernel Admin V4, officially released on 19 July 2022, is DotKernel's PSR-7 Admin application built on Mezzio for managing and displaying tabular data from one or more databases.
+Dotkernel Admin V4, officially released on 19 July 2022, is Dotkernel's PSR-7 Admin application built on Mezzio for managing and displaying tabular data from one or more databases.
 It supports PHP 8.1 (minimum PHP 7.4), offers a config-driven module/middleware/route setup, RBAC-based authorization guards, a Symfony Console-based CLI with a file locker, per-module routing via RoutesDelegator, and a Bootstrap 4.5.0 / Fontawesome 5.0.6 frontend using Bootstrap Table for data listing.
 
 ## Getting Started with Dotkernel Admin V4
 
-DotKernel's PSR-7 Admin is an application based on Mezzio, with the main purpose of managing and displaying tabular data from one or more databases components.
+Dotkernel's PSR-7 Admin is an application based on Mezzio, with the main purpose of managing and displaying tabular data from one or more databases components.
 
 On 19 July 2022, Dotkernel Admin V4 has been officially released.
 Dotkernel Admin V4 comes with various interesting features and overall improvement of the core framework.
@@ -223,7 +223,7 @@ Note: you'll find in the `#tableToolbar` buttons that toggle a modal for adding/
 ## FAQ
 
 **Q: When was Dotkernel Admin V4 released, and what is it built on?**
-A: Dotkernel Admin V4 was officially released on 19 July 2022. It's DotKernel's PSR-7 Admin, an application based on Mezzio, mainly for managing and displaying tabular data from one or more database components.
+A: Dotkernel Admin V4 was officially released on 19 July 2022. It's Dotkernel's PSR-7 Admin, an application based on Mezzio, mainly for managing and displaying tabular data from one or more database components.
 
 **Q: What are the demo credentials for trying out Dotkernel Admin V4?**
 A: Username admin and password dotadmin, on the demo at https://admin4.dotkernel.net/.

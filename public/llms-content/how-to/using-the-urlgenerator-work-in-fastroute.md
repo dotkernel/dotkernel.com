@@ -1,6 +1,6 @@
 ---
 title: "Using the URLGenerator work in FastRoute"
-description: "A how-to on avoiding FastRoute's slash-suffix quirk when declaring routes in DotKernel 3, and on referencing routes by name via the URLGenerator in controllers and Twig views."
+description: "A how-to on avoiding FastRoute's slash-suffix quirk when declaring routes in Dotkernel 3, and on referencing routes by name via the URLGenerator in controllers and Twig views."
 author: "Jesper"
 date_published: "2017-09-04"
 canonical_url: "https://www.dotkernel.com/how-to/using-the-urlgenerator-work-in-fastroute/"
@@ -12,7 +12,7 @@ language: "en"
 
 ## TL;DR
 
-DotKernel 3 uses FastRoute under the hood, which is fast but has a quirk around slash-suffixes that a wrong route setup can trigger, leading to hard-to-diagnose errors.
+Dotkernel 3 uses FastRoute under the hood, which is fast but has a quirk around slash-suffixes that a wrong route setup can trigger, leading to hard-to-diagnose errors.
 Optional slashes must be kept inside the optional block of a route definition, or the URLGenerator ends up producing the wrong route.
 Every named route can then be referenced instead of hard-coded, using `$this->url()` in controllers or the `path()` function in Twig views.
 

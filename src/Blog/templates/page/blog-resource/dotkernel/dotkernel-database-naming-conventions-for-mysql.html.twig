@@ -1,7 +1,7 @@
 {% extends '@layout/default.html.twig' %}
 {% block json_ld %} {{ include('@jsonld/dotkernel/dotkernel-database-naming-conventions-for-mysql.jsonld.twig') }} {% endblock %}
 
-{% block title %}DotKernel Database Naming Conventions for MySQL{% endblock %}
+{% block title %}Dotkernel Database Naming Conventions for MySQL{% endblock %}
 
 {% block page_title %}
     {{ include('@partial/title-section.html.twig', {
@@ -21,7 +21,7 @@
             <article class="article">
                 <div class="entry">
                     {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-DotKernel borrows the database naming conventions from <a href="http://fazend.com/a/2009-11-DataNaming.html" target="_blank" rel="noopener noreferrer">FaZend: Rules of naming of database tables and columns</a>. FaZend is an open-source PHP framework based on Zend Framework.
+Dotkernel borrows the database naming conventions from <a href="http://fazend.com/a/2009-11-DataNaming.html" target="_blank" rel="noopener noreferrer">FaZend: Rules of naming of database tables and columns</a>. FaZend is an open-source PHP framework based on Zend Framework.
 <!--more-->
 <strong>Database naming conventions for tables and columns:</strong>
 <ul>
@@ -66,7 +66,7 @@ The names of database tables and columns must follow <em>camelLetter</em> as nam
 
 <div class="faq-list">
     <details class="acc" open>
-        <summary>Where do DotKernel's database naming conventions come from? <span class="chev">+</span></summary>
+        <summary>Where do Dotkernel's database naming conventions come from? <span class="chev">+</span></summary>
         <div class="acc-body">
             <p class="mb-0">They are borrowed from FaZend's "Rules of naming of database tables and columns," an open-source PHP framework based on Zend Framework.</p>
         </div>

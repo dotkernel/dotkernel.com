@@ -1,7 +1,7 @@
 {% extends '@layout/default.html.twig' %}
 {% block json_ld %} {{ include('@jsonld/dotkernel/zend-console-implementation-in-dotkernel.jsonld.twig') }} {% endblock %}
 
-{% block title %}Zend_Console implementation in DotKernel{% endblock %}
+{% block title %}Zend_Console implementation in Dotkernel{% endblock %}
 
 {% block page_title %}
     {{ include('@partial/title-section.html.twig', {
@@ -21,7 +21,7 @@
             <article class="article">
                 <div class="entry">
                     {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-Starting with 1.5, DotKernel has a Console bootstrap to easily run PHP scripts from the command line. The most common use for this is to be able to run cron jobs without using wget and going through Apache.
+Starting with 1.5, Dotkernel has a Console bootstrap to easily run PHP scripts from the command line. The most common use for this is to be able to run cron jobs without using wget and going through Apache.
 
 <!--more-->
 
@@ -34,7 +34,7 @@ Currently there are two command line arguments:
 </ul>
 Any other arguments set when calling the script will be available in the controller in the $registry-&gt;arguments array.
 
-The controller bundled with DotKernel has two example actions, "count-users" which demonstrates how to interact with models, and "send-newsletter" which reads the newsletter from the command line.
+The controller bundled with Dotkernel has two example actions, "count-users" which demonstrates how to interact with models, and "send-newsletter" which reads the newsletter from the command line.
 <h2>Examples</h2>
 <pre>>/var/www/vhosts/example.com/httpdocs/Cron/index.php -e staging -a count-users</pre>
 <pre>>/var/www/vhosts/example.com/httpdocs/Cron/index.php -e staging -a send-newsletter "test newsletter"</pre>
@@ -43,9 +43,9 @@ The controller bundled with DotKernel has two example actions, "count-users" whi
 
 <div class="faq-list">
     <details class="acc" open>
-        <summary>What is the purpose of the Console bootstrap in DotKernel? <span class="chev">+</span></summary>
+        <summary>What is the purpose of the Console bootstrap in Dotkernel? <span class="chev">+</span></summary>
         <div class="acc-body">
-            <p class="mb-0">Starting with version 1.5, DotKernel has a Console bootstrap to easily run PHP scripts from the command line, most commonly used to run cron jobs without using wget or going through Apache.</p>
+            <p class="mb-0">Starting with version 1.5, Dotkernel has a Console bootstrap to easily run PHP scripts from the command line, most commonly used to run cron jobs without using wget or going through Apache.</p>
         </div>
     </details>
     <details class="acc">

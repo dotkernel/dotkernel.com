@@ -1,6 +1,6 @@
 ---
-title: "DotKernel 1.3.2 release"
-description: "DotKernel 1.3.2 is a maintenance release with many bug fixes, a couple of minor features, and some refactoring, released just before the winter holidays."
+title: "Dotkernel 1.3.2 release"
+description: "Dotkernel 1.3.2 is a maintenance release with many bug fixes, a couple of minor features, and some refactoring, released just before the winter holidays."
 author: "Teo"
 date_published: "2010-12-23"
 canonical_url: "https://www.dotkernel.com/dotkernel/dotkernel-1-3-2-release/"
@@ -8,11 +8,11 @@ category: "Dotkernel"
 language: "en"
 ---
 
-# DotKernel 1.3.2 release
+# Dotkernel 1.3.2 release
 
 ## TL;DR
 
-Released just before the winter holidays, DotKernel 1.3.2 is mainly a maintenance release: it contains many bug fixes, some refactoring, and a few minor features.
+Released just before the winter holidays, Dotkernel 1.3.2 is mainly a maintenance release: it contains many bug fixes, some refactoring, and a few minor features.
 
 ## Bug fixes
 
@@ -33,11 +33,11 @@ Released just before the winter holidays, DotKernel 1.3.2 is mainly a maintenanc
 ## Refactoring
 
 - Zend_Paginator refactoring
-- Added a dojo dijit theme to DotKernel
+- Added a dojo dijit theme to Dotkernel
 
 ## FAQ
 
-**Q: What kind of release is DotKernel 1.3.2?**
+**Q: What kind of release is Dotkernel 1.3.2?**
 A: It's mainly a maintenance release, containing many bug fixes, some refactoring, and a few minor features.
 
 **Q: What bugs were fixed in 1.3.2?**
@@ -45,8 +45,8 @@ A: Fixes include a CSS issue on the admin phpinfo page, a warning in the admin d
 
 **Q: What minor features and refactoring were included?**
 A: Minor features include a refactor of validIP in Dot_Kernel and showing the WURFL date and API version in admin.
-Refactoring covered Zend_Paginator and added a dojo dijit theme to DotKernel.
+Refactoring covered Zend_Paginator and added a dojo dijit theme to Dotkernel.
 
 ## Resources
 
-- DotKernel 1.3.2 download: http://www.dotkernel.com/download/?did=27
+- Dotkernel 1.3.2 download: http://www.dotkernel.com/download/?did=27

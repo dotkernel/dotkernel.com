@@ -16,7 +16,7 @@ Dotkernel Admin added PHP 8.3 support in release 4.3.1, dropping PHP 8.1 and now
 The update brought numerous dependency bumps across dotkernel/*, laminas/*, and mezzio/* packages, removed PhpFileCache-related cache configuration because doctrine/cache dropped its implementation classes, and removed doctrine/doctrine-module due to a conflict, which may affect packages that depended on it.
 The `AdminService::logAdminVisit` method was also updated to no longer return `AddressNotFoundException`.
 
-With the release of PHP 8.3, the DotKernel team has been working on updating the dependencies in our packages.
+With the release of PHP 8.3, the Dotkernel team has been working on updating the dependencies in our packages.
 Eventually, this allowed us to update our applications as well, starting with the [Admin](https://github.com/dotkernel/admin), in release 4.3.1.
 There were some issues and backward incompatibilities that we will list below.
 The full list of file changes is [here](https://github.com/dotkernel/admin/pull/218/files).
@@ -78,7 +78,7 @@ The full list of file changes is [here](https://github.com/dotkernel/admin/pull/
     - `laminas/laminas-paginator`
 
 Updating to PHP 8.3 has not been as streamlined as in previous updates, but the advantages of doing so outweigh the extra work on the custom code to remove potential incompatibilities.
-The DotKernel team is focused on the cache that has been removed in the current version because `doctrine/cache` deleted their cache implementation classes.
+The Dotkernel team is focused on the cache that has been removed in the current version because `doctrine/cache` deleted their cache implementation classes.
 We are also updating our existing projects to PHP 8.3 and testing the changes on live environments to iron out any other issues.
 
 ## FAQ

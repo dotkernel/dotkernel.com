@@ -1,6 +1,6 @@
 ---
 title: "Development Report December 11, 2017"
-description: "A short DotKernel3 documentation update covering new release notes, a Webpack tutorial, and revised API endpoint documentation guidelines."
+description: "A short Dotkernel3 documentation update covering new release notes, a Webpack tutorial, and revised API endpoint documentation guidelines."
 author: "Gabi DJ"
 date_published: "2017-12-15"
 canonical_url: "https://www.dotkernel.com/dotkernel3/development-report-december-11-2017/"
@@ -12,14 +12,14 @@ language: "en"
 
 ## TL;DR
 
-This report covers updates to the DotKernel3 documentation: new release notes for the frontend and admin, a Webpack tutorial added to the Prerequisites section, and revisions to the Api Endpoint Documentation Guidelines.
+This report covers updates to the Dotkernel3 documentation: new release notes for the frontend and admin, a Webpack tutorial added to the Prerequisites section, and revisions to the Api Endpoint Documentation Guidelines.
 Contributor JapSeyz is thanked for this round of updates.
 
 ## Documentation Updates
 
-This report contains updates about the DotKernel3 documentation.
+This report contains updates about the Dotkernel3 documentation.
 
-We have added the release notes for DotKernel3 frontend and admin: you can now check the Release Notes page.
+We have added the release notes for Dotkernel3 frontend and admin: you can now check the Release Notes page.
 
 A Webpack tutorial has been added in the Prerequisites section.
 
@@ -34,7 +34,7 @@ Thanks to our contributors:
 ## FAQ
 
 **Q: What documentation updates does this report cover?**
-A: Release notes were added for DotKernel3 frontend and admin, a Webpack tutorial was added to the Prerequisites section, and the Api Endpoint Documentation Guidelines were updated with a slightly different layout and some corrections.
+A: Release notes were added for Dotkernel3 frontend and admin, a Webpack tutorial was added to the Prerequisites section, and the Api Endpoint Documentation Guidelines were updated with a slightly different layout and some corrections.
 
 **Q: Who was credited as a contributor in this report?**
 A: JapSeyz was thanked as a contributor.

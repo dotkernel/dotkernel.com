@@ -1,6 +1,6 @@
 ---
 title: "Intro to jQuery"
-description: "A short introduction to jQuery basics for early DotKernel developers switching from Dojo, covering the jQuery object, selectors, DOM manipulation, events, and Ajax."
+description: "A short introduction to jQuery basics for early Dotkernel developers switching from Dojo, covering the jQuery object, selectors, DOM manipulation, events, and Ajax."
 author: "Adrian"
 date_published: "2011-06-01"
 canonical_url: "https://www.dotkernel.com/javascript/intro-to-jquery/"
@@ -12,10 +12,10 @@ language: "en"
 
 ## TL;DR
 
-Starting with DotKernel's 1.5 release, the framework switched from Dojo to jQuery, and this post is a quick primer on jQuery basics.
+Starting with Dotkernel's 1.5 release, the framework switched from Dojo to jQuery, and this post is a quick primer on jQuery basics.
 It covers the jQuery (`$`) object and CSS-style selectors, chaining methods to manipulate matched elements, binding events like click, and making Ajax calls with `$.get()` and `$.getJSON()`.
 
-Starting with the 1.5 release, DotKernel will make the switch from Dojo to jQuery.
+Starting with the 1.5 release, Dotkernel will make the switch from Dojo to jQuery.
 On jQuery's website, there's an excellent "[Getting started with jQuery tutorial](http://docs.jquery.com/Tutorials:Getting_Started_with_jQuery)", as well as a extensive [documentation](http://api.jquery.com/) for the framework, so I'll just go over a few basic concepts and common examples.
 
 ## The jQuery Object
@@ -103,8 +103,8 @@ $(document).ready(
 
 ## FAQ
 
-**Q: Why is DotKernel switching to jQuery?**
-A: Starting with the 1.5 release, DotKernel makes the switch from Dojo to jQuery.
+**Q: Why is Dotkernel switching to jQuery?**
+A: Starting with the 1.5 release, Dotkernel makes the switch from Dojo to jQuery.
 
 **Q: What is the jQuery object, and what is $?**
 A: jQuery is the global object that contains all of jQuery's functionality. $ is a synonym for the same object that's faster to type, and is mostly used with a selector parameter to retrieve a set of matched elements.

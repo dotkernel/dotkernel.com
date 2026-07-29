@@ -1,6 +1,6 @@
 ---
-title: "DotKernel on Nginx"
-description: "A walkthrough of testing whether DotKernel runs out of the box on Nginx, and how the Nginx configuration was set up as a substitute for Apache's .htaccess."
+title: "Dotkernel on Nginx"
+description: "A walkthrough of testing whether Dotkernel runs out of the box on Nginx, and how the Nginx configuration was set up as a substitute for Apache's .htaccess."
 author: "admin"
 date_published: "2013-06-25"
 canonical_url: "https://www.dotkernel.com/dotkernel/dotkernel-on-nginx/"
@@ -8,11 +8,11 @@ category: "Dotkernel"
 language: "en"
 ---
 
-# DotKernel on Nginx
+# Dotkernel on Nginx
 
 ## TL;DR
 
-Since Nginx was becoming the buzzword instead of Apache, this article tests DotKernel on Nginx and documents the configuration needed: server block settings, a `try_files` directive in place of `.htaccess`, PHP-FPM handling, and protecting the `configs` folder.
+Since Nginx was becoming the buzzword instead of Apache, this article tests Dotkernel on Nginx and documents the configuration needed: server block settings, a `try_files` directive in place of `.htaccess`, PHP-FPM handling, and protecting the `configs` folder.
 
 ## Setup steps
 
@@ -53,7 +53,7 @@ Since Nginx was becoming the buzzword instead of Apache, this article tests DotK
              deny all;
      }
      ```
-7. Exported a DotKernel copy from SVN:
+7. Exported a Dotkernel copy from SVN:
    ```shell
    svn export --force  http://v1.dotkernel.net/svn/trunk/ /var/www/html
    ```
@@ -72,7 +72,7 @@ A: The directive `try_files $uri $uri/ /index.php;`, which sends all requests to
 **Q: How is the configs folder protected from web access in Nginx?**
 A: By adding a location block matching `^/configs/` that returns `deny all;`.
 
-**Q: How was the DotKernel codebase deployed onto the server?**
+**Q: How was the Dotkernel codebase deployed onto the server?**
 A: It was exported directly from SVN using `svn export --force http://v1.dotkernel.net/svn/trunk/ /var/www/html`.
 
 ## Resources

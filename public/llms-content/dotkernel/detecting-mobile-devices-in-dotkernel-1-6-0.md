@@ -1,6 +1,6 @@
 ---
-title: "Detecting Mobile Devices in DotKernel 1.6.0"
-description: "Explains how mobile device detection changed in DotKernel 1.6.0 with the move to Wurfl Cloud, including the required application.ini settings and sample Dot_UserAgent usage code."
+title: "Detecting Mobile Devices in Dotkernel 1.6.0"
+description: "Explains how mobile device detection changed in Dotkernel 1.6.0 with the move to Wurfl Cloud, including the required application.ini settings and sample Dot_UserAgent usage code."
 author: "deddu"
 date_published: "2012-05-18"
 canonical_url: "https://www.dotkernel.com/dotkernel/detecting-mobile-devices-in-dotkernel-1-6-0/"
@@ -8,16 +8,16 @@ category: "Dotkernel"
 language: "en"
 ---
 
-# Detecting Mobile Devices in DotKernel 1.6.0
+# Detecting Mobile Devices in Dotkernel 1.6.0
 
 ## TL;DR
 
-DotKernel 1.6.0 no longer ships with a working built-in mobile detection method, because mobile detection now relies on the new Wurfl Cloud integration and must be configured via a Wurfl Cloud account and API key.
+Dotkernel 1.6.0 no longer ships with a working built-in mobile detection method, because mobile detection now relies on the new Wurfl Cloud integration and must be configured via a Wurfl Cloud account and API key.
 The old Dot_UserAgent_Wurfl class was removed and replaced by Dot_UserAgent_WurflCloud, which uses the Wurfl Cloud API adapter.
 The article walks through the application.ini settings and shows sample code for reading device info and redirecting mobile visitors.
 
-The new DotKernel version 1.6.0 is coming with some changes to how we detect mobile devices; these changes are because of the new Wurfl Cloud integration.
-This version of DotKernel no longer comes with a working built-in method for mobile detection, so first we have to configure it.
+The new Dotkernel version 1.6.0 is coming with some changes to how we detect mobile devices; these changes are because of the new Wurfl Cloud integration.
+This version of Dotkernel no longer comes with a working built-in method for mobile detection, so first we have to configure it.
 
 - Go to the scientiamobile website and register for a Wurfl Cloud account.
 - Choose device_os and mobile_browser for your account and save.
@@ -44,11 +44,11 @@ resources.useragent.wurflcloud.lib_dir = APPLICATION_PATH "/library/WurflCloud/"
 - cache_lifetime - time in seconds to keep the results in cache (default: 3600).
 - cache_namespace - the prefix used for cache keys (default: WURFLCLOUD).
 - api_key - the API key from your WURFL Cloud account (change this to your own key).
-- lib_dir - the Wurfl Cloud library location in DotKernel (don't change this, unless you want to move the library).
+- lib_dir - the Wurfl Cloud library location in Dotkernel (don't change this, unless you want to move the library).
 
 Because of these changes, we removed the old Dot_UserAgent_Wurfl class and added the new Dot_UserAgent_WurflCloud class, which uses the Wurfl Cloud API adapter.
 
-## Example of Dot_UserAgent Usage in DotKernel
+## Example of Dot_UserAgent Usage in Dotkernel
 
 Get Wurfl configuration:
 
@@ -100,14 +100,14 @@ if( (0 < count((array)$deviceInfo)) && $deviceInfo->isMobile)
 
 ## FAQ
 
-**Q: Why did mobile detection change in DotKernel 1.6.0?**
+**Q: Why did mobile detection change in Dotkernel 1.6.0?**
 A: Because of the new Wurfl Cloud integration. This version no longer ships with a working built-in method for mobile detection, so it must be configured first.
 
 **Q: What are the steps to configure Wurfl Cloud detection?**
 A: Go to the scientiamobile website and register for a Wurfl Cloud account, choose the device_os and mobile_browser capabilities for the account and save, then go to API Keys and copy the key into application.ini.
 
 **Q: Why choose the device_os and mobile_browser capabilities specifically?**
-A: With these two capabilities, DotKernel's built-in methods can also derive extra capabilities such as isMobile, isSmartPhone, isIphone, isAndroid, isBlackberry, isSymbian, and isWindowsMobile. Choosing other capabilities from scientiamobile results in wrong detection of these extra capabilities.
+A: With these two capabilities, Dotkernel's built-in methods can also derive extra capabilities such as isMobile, isSmartPhone, isIphone, isAndroid, isBlackberry, isSymbian, and isWindowsMobile. Choosing other capabilities from scientiamobile results in wrong detection of these extra capabilities.
 
 **Q: What happened to the old Dot_UserAgent_Wurfl class?**
 A: It was removed and replaced with the new Dot_UserAgent_WurflCloud class, which uses the Wurfl Cloud API adapter.

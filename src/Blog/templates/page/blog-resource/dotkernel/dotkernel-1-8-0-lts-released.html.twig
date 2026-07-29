@@ -1,7 +1,7 @@
 {% extends '@layout/default.html.twig' %}
 {% block json_ld %} {{ include('@jsonld/dotkernel/dotkernel-1-8-0-lts-released.jsonld.twig') }} {% endblock %}
 
-{% block title %}DotKernel 1.8.0 LTS Released{% endblock %}
+{% block title %}Dotkernel 1.8.0 LTS Released{% endblock %}
 
 {% block page_title %}
     {{ include('@partial/title-section.html.twig', {
@@ -21,35 +21,35 @@
             <article class="article">
                 <div class="entry">
                     {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-DotKernel 1.8.0 (LTS) was just released.
+Dotkernel 1.8.0 (LTS) was just released.
 <h2><strong>What is LTS?
 </strong></h2>
 Long-term support (LTS) is a type of special versions or editions of software designed to be supported for a longer than normal period. It is particularly applicable to open-source software projects. It contains many bug fixes, some refactoring and a few minor features. Find more details read <a href="http://www.dotkernel.com/long-term-support" target="_blank" rel="noopener noreferrer">this article</a>.
 
 &nbsp;
 
-Here are a few of the many changes to DotKernel in the latest release:
+Here are a few of the many changes to Dotkernel in the latest release:
 <h2><!--more--></h2>
 <h2>Highlights of 1.8.0 (LTS)</h2>
 &nbsp;
 <h3>Plugin Architecture</h3>
-Starting with 1.8.0 we will start using Plugins to make the DotKernel extending easier. We'll keep you up to date about how you create and use a plugin.
+Starting with 1.8.0 we will start using Plugins to make the Dotkernel extending easier. We'll keep you up to date about how you create and use a plugin.
 <h3>New design</h3>
 We've redesigned the admin module and the frontend module is now mobile-friendly, but you can still use the mobile module.
 <h3>Loads Faster</h3>
-The DotKernel framework just got a big boost because it supports APC &amp; File Caching within the framework, all the XML's and config files are cached in order to maximize response speed for more information about caching and how to cache your data see <a href="http://www.dotkernel.com/dotkernel/caching-in-dotkernel-using-zend-framework/" target="_blank" rel="noopener noreferrer">this article</a>.
+The Dotkernel framework just got a big boost because it supports APC &amp; File Caching within the framework, all the XML's and config files are cached in order to maximize response speed for more information about caching and how to cache your data see <a href="http://www.dotkernel.com/dotkernel/caching-in-dotkernel-using-zend-framework/" target="_blank" rel="noopener noreferrer">this article</a>.
 <h3>Easier Request Handling</h3>
 We've added a new class, Dot_Request, which lets you have control over the request data before you use it, for example the variables $_SERVER, $_GET and $_POST are only used within controllers.
 <h3>Features added</h3>
 <ul>
     <li>API with Rate Limit - we've added a simple API with a single key authentification and a simple implementation of a rate limit (see /configs/application.ini - section params.api)</li>
-    <li>Cache System - Built on the Zend_Cache backends, provides caching within DotKernel, but also in library, more details about this and how it works can be found <a href="http://www.dotkernel.com/dotkernel/dotkernel-reserved-variable-names-for-caching/" target="_blank" rel="noopener noreferrer">here</a>.</li>
+    <li>Cache System - Built on the Zend_Cache backends, provides caching within Dotkernel, but also in library, more details about this and how it works can be found <a href="http://www.dotkernel.com/dotkernel/dotkernel-reserved-variable-names-for-caching/" target="_blank" rel="noopener noreferrer">here</a>.</li>
 </ul>
 <h3>Other changes</h3>
 <ul>
-    <li>Removed WURFL integration, DotKernel can detect wether you use a mobile device separately now, the WURFL Library can be added as a Plugin from now on</li>
+    <li>Removed WURFL integration, Dotkernel can detect wether you use a mobile device separately now, the WURFL Library can be added as a Plugin from now on</li>
     <li>Removed multiple SMTP Transporter, it can be added as a plugin</li>
-    <li>Security scan in Admin Dashboard - you can now see which are the recommended settings (especially security related) for DotKernel to work at it's best</li>
+    <li>Security scan in Admin Dashboard - you can now see which are the recommended settings (especially security related) for Dotkernel to work at it's best</li>
     <li>Admin fail logins are no longer sent to the first admin, they are sent to all developers found in <em>devEmails</em> within <em>settings</em> table in the database</li>
     <li>Alert System - Alerts can be sent to all the developers to notify them if something goes wrong, for more information about alerts read <a href="http://www.dotkernel.com/dotkernel/how-to-use-alerts-in-dotkernel/" target="_blank" rel="noopener noreferrer">this article</a>.</li>
 </ul>
@@ -63,7 +63,7 @@ We've added a new class, Dot_Request, which lets you have control over the reque
 
 &nbsp;
 
-There have been a lot of commits in our SVN repository since the latest release, so we can't cover all changes in this blog post. Please <a title="DotKernel 1.5.0" href="http://www.dotkernel.com/download/?did=41" target="_blank" rel="noopener noreferrer">download DotKernel 1.8.0 (LTS)</a> try it out yourself and tell us what you think.
+There have been a lot of commits in our SVN repository since the latest release, so we can't cover all changes in this blog post. Please <a title="Dotkernel 1.5.0" href="http://www.dotkernel.com/download/?did=41" target="_blank" rel="noopener noreferrer">download Dotkernel 1.8.0 (LTS)</a> try it out yourself and tell us what you think.
 
 &nbsp;
 
@@ -71,7 +71,7 @@ There have been a lot of commits in our SVN repository since the latest release,
 
 <div class="faq-list">
     <details class="acc" open>
-        <summary>What does LTS mean for DotKernel 1.8.0? <span class="chev">+</span></summary>
+        <summary>What does LTS mean for Dotkernel 1.8.0? <span class="chev">+</span></summary>
         <div class="acc-body">
             <p class="mb-0">LTS stands for Long-term support, a type of special version designed to be supported for longer than normal, which is particularly common for open-source software projects.</p>
         </div>
@@ -79,7 +79,7 @@ There have been a lot of commits in our SVN repository since the latest release,
     <details class="acc">
         <summary>What is the Plugin Architecture introduced in 1.8.0? <span class="chev">+</span></summary>
         <div class="acc-body">
-            <p class="mb-0">Starting with 1.8.0, DotKernel uses Plugins to make extending the framework easier.</p>
+            <p class="mb-0">Starting with 1.8.0, Dotkernel uses Plugins to make extending the framework easier.</p>
         </div>
     </details>
     <details class="acc">
@@ -95,7 +95,7 @@ There have been a lot of commits in our SVN repository since the latest release,
         </div>
     </details>
     <details class="acc">
-        <summary>What was removed from DotKernel in 1.8.0? <span class="chev">+</span></summary>
+        <summary>What was removed from Dotkernel in 1.8.0? <span class="chev">+</span></summary>
         <div class="acc-body">
             <p class="mb-0">WURFL integration was removed (mobile device detection is now handled separately, and WURFL can be added as a plugin), and support for multiple SMTP transporters was removed (it can also be added as a plugin).</p>
         </div>

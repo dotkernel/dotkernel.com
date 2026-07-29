@@ -1,6 +1,6 @@
 ---
-title: "DotKernel 1.3.0 release"
-description: "DotKernel 1.3.0 adds an admin skin switcher, a way to protect member-only links, and reorganizes resource.xml into route.xml and dots.xml, at the cost of backward compatibility."
+title: "Dotkernel 1.3.0 release"
+description: "Dotkernel 1.3.0 adds an admin skin switcher, a way to protect member-only links, and reorganizes resource.xml into route.xml and dots.xml, at the cost of backward compatibility."
 author: "Teo"
 date_published: "2010-10-15"
 canonical_url: "https://www.dotkernel.com/dotkernel/dotkernel-1-3-0-release/"
@@ -8,11 +8,11 @@ category: "Dotkernel"
 language: "en"
 ---
 
-# DotKernel 1.3.0 release
+# Dotkernel 1.3.0 release
 
 ## TL;DR
 
-DotKernel 1.3.0 brings a switchable admin skin, a way to protect member-only pages, a rename of Dot_Sessions, and a reorganization of resource.xml into route.xml and dots.xml.
+Dotkernel 1.3.0 brings a switchable admin skin, a way to protect member-only pages, a rename of Dot_Sessions, and a reorganization of resource.xml into route.xml and dots.xml.
 Because of that XML reorganization, 1.3.0 is not backward compatible with earlier versions.
 
 ## Highlights
@@ -41,11 +41,11 @@ The release also closed a number of other tracked issues, covering: the Dot_Sess
 ## Compatibility note
 
 Because of the XML file reorganization, this release is **not compatible** with previous versions.
-Further details on what changed are available on the DotKernel Tracker or DotKernel WebSVN.
+Further details on what changed are available on the Dotkernel Tracker or Dotkernel WebSVN.
 
 ## FAQ
 
-**Q: What is new in the admin interface in DotKernel 1.3.0?**
+**Q: What is new in the admin interface in Dotkernel 1.3.0?**
 A: 1.3.0 adds a skin switcher for the admin, with several ready-made skins (blue, brown, gray, green) that can be set via the settings.admin.skin configuration value.
 
 **Q: How do I protect a page so only logged-in members can access it?**
@@ -54,14 +54,14 @@ A: Add the line Dot_Auth::checkIdentity(); in the controller file above the code
 **Q: What happened to resource.xml in this release?**
 A: resource.xml was deleted and its content split between two new files, route.xml and dots.xml.
 
-**Q: Is DotKernel 1.3.0 backward compatible with earlier versions?**
+**Q: Is Dotkernel 1.3.0 backward compatible with earlier versions?**
 A: No. Because of the XML file reorganization (bug 69), 1.3.0 is not compatible with previous versions.
 
 ## Resources
 
-- DotKernel 1.3.0 download (linked in the original post as `../download/?did=23`)
+- Dotkernel 1.3.0 download (linked in the original post as `../download/?did=23`)
 - ChangeLog 1.3.0 (linked in the original post as `../changelog/1-3-0/`)
 - route.xml documentation (linked in the original post as `../docs/router-xml/`)
 - dots.xml documentation (linked in the original post as `../docs/dots-xml/`)
-- DotKernel Tracker: http://www.dotkernel.net/
-- DotKernel WebSVN: http://websvn.dotkernel.net/listing.php?repname=DotKernel
+- Dotkernel Tracker: http://www.dotkernel.net/
+- Dotkernel WebSVN: http://websvn.dotkernel.net/listing.php?repname=Dotkernel

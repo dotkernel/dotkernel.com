@@ -1,6 +1,6 @@
 ---
-title: "DotKernel API 1.0.0 Released"
-description: "Announcement of the DotKernel API 1.0.0 release, a Zend Expressive 3 application for quickly building APIs, including the libraries it uses and the features it offers out of the box."
+title: "Dotkernel API 1.0.0 Released"
+description: "Announcement of the Dotkernel API 1.0.0 release, a Zend Expressive 3 application for quickly building APIs, including the libraries it uses and the features it offers out of the box."
 author: "Alex Karajos"
 date_published: "2019-12-15"
 canonical_url: "https://www.dotkernel.com/dotkernel-api/dotkernel-api-1-0-0-released/"
@@ -8,13 +8,13 @@ category: "Dotkernel API"
 language: "en"
 ---
 
-# DotKernel API 1.0.0 Released
+# Dotkernel API 1.0.0 Released
 
 > Note: Dotkernel API has come a long way since this post was created; a newer version is documented separately.
 
-DotKernel API 1.0.0 was just released.
+Dotkernel API 1.0.0 was just released.
 
-## What is DotKernel API?
+## What is Dotkernel API?
 
 It is a Zend Expressive 3 application aiming to help developers quickly and efficiently develop an API.
 
@@ -36,7 +36,7 @@ Under the hood, it uses the following libraries:
 
 ## What Does It Offer?
 
-Out-of-the-box, DotKernel API provides the following features:
+Out-of-the-box, Dotkernel API provides the following features:
 
 - Secure authentication via OAuth2
 - Two user roles: admin and member
@@ -46,18 +46,18 @@ Out-of-the-box, DotKernel API provides the following features:
 
 ## FAQ
 
-**Q: What is DotKernel API?**
+**Q: What is Dotkernel API?**
 A: It is a Zend Expressive 3 application aiming to help developers quickly and efficiently develop an API.
 
-**Q: What key libraries does DotKernel API 1.0.0 use?**
+**Q: What key libraries does Dotkernel API 1.0.0 use?**
 A: Among others, it's built on the `ezimuel/zend-expressive-api` skeleton, and uses `dotkernel/dot-annotated-services` for dependency injection, `dotkernel/dot-console` for console applications, `dotkernel/dot-errorhandler` for error logging, `dotkernel/dot-mail` for SMTP email, `zend-expressive-authentication-oauth2` for OAuth2 authentication, `zend-expressive-authorization-rbac` for role-based permissions, and `swagger-api/swagger-ui` for OpenAPI 3 documentation.
 
-**Q: What features does DotKernel API 1.0.0 offer out of the box?**
+**Q: What features does Dotkernel API 1.0.0 offer out of the box?**
 A: Secure authentication via OAuth2, two user roles (admin and member), where admins can manage any user account and members can manage only their own, plus OpenAPI 3 documentation with an interactive interface developers can use to integrate the API.
 
 ## Resources
 
-- [DotKernel API 1.0.0 release on GitHub](https://github.com/dotkernel/api/releases/tag/v1.0.0)
+- [Dotkernel API 1.0.0 release on GitHub](https://github.com/dotkernel/api/releases/tag/v1.0.0)
 - [ezimuel/zend-expressive-api](https://github.com/ezimuel/zend-expressive-api)
 - [dotkernel/dot-annotated-services](https://github.com/dotkernel/dot-annotated-services)
 - [dotkernel/dot-console](https://github.com/dotkernel/dot-console)

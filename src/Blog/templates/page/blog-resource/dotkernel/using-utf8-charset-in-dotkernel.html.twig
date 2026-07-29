@@ -1,7 +1,7 @@
 {% extends '@layout/default.html.twig' %}
 {% block json_ld %} {{ include('@jsonld/dotkernel/using-utf8-charset-in-dotkernel.jsonld.twig') }} {% endblock %}
 
-{% block title %}Using  UTF8 charset in DotKernel{% endblock %}
+{% block title %}Using  UTF8 charset in Dotkernel{% endblock %}
 
 {% block page_title %}
     {{ include('@partial/title-section.html.twig', {
@@ -21,8 +21,8 @@
             <article class="article">
                 <div class="entry">
                     {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-In order to use UTF8 encoding in your DotKernel based system, is needed to make some changes in both database structure and in the application.ini file.
-<blockquote class="blockquote border-start border-4 ps-3 text-muted my-3">Those changes are commited into <strong>DotKernel 1.6.0 dev</strong> codebase, which will be released in next days.</blockquote>
+In order to use UTF8 encoding in your Dotkernel based system, is needed to make some changes in both database structure and in the application.ini file.
+<blockquote class="blockquote border-start border-4 ps-3 text-muted my-3">Those changes are commited into <strong>Dotkernel 1.6.0 dev</strong> codebase, which will be released in next days.</blockquote>
 <!--more-->
 <h2>Database</h2>
 set for all tables and columns proper collation , either <strong>utf8_general_ci</strong> or <strong>utf8_bin</strong>
@@ -46,7 +46,7 @@ Those differences happens only on <strong>MySQL</strong> level ( for instance in
 
 <div class="faq-list">
     <details class="acc" open>
-        <summary>What needs to change to use UTF8 encoding in a DotKernel-based system? <span class="chev">+</span></summary>
+        <summary>What needs to change to use UTF8 encoding in a Dotkernel-based system? <span class="chev">+</span></summary>
         <div class="acc-body">
             <p class="mb-0">Both the database structure and the application.ini file need changes: all tables and columns must have a proper UTF8 collation (utf8_general_ci or utf8_bin), and application.ini must load the utf8 charset.</p>
         </div>

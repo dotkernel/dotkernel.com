@@ -1,6 +1,6 @@
 ---
-title: "DotKernel Coding Standard"
-description: "DotKernel borrows the Zend Framework coding standard with a few exceptions, covering indentation, class/interface/file naming, and curly brace placement for control statements."
+title: "Dotkernel Coding Standard"
+description: "Dotkernel borrows the Zend Framework coding standard with a few exceptions, covering indentation, class/interface/file naming, and curly brace placement for control statements."
 author: "admin"
 date_published: "2008-03-28"
 canonical_url: "https://www.dotkernel.com/dotkernel/dotkernel-coding-standard/"
@@ -8,11 +8,11 @@ category: "Dotkernel"
 language: "en"
 ---
 
-# DotKernel Coding Standard
+# Dotkernel Coding Standard
 
 ## TL;DR
 
-DotKernel is a "skeleton" of Zend Framework and borrows its coding standard from the ZF Coding Standard, with a small number of exceptions covering indentation, naming conventions, and brace placement.
+Dotkernel is a "skeleton" of Zend Framework and borrows its coding standard from the ZF Coding Standard, with a small number of exceptions covering indentation, naming conventions, and brace placement.
 
 ## Indentation
 
@@ -20,7 +20,7 @@ Indentation is made with tabs, not spaces (per section B.2.2 of the Zend Framewo
 
 ## Naming conventions
 
-DotKernel uses camel naming conventions, with these DotKernel-specific rules:
+Dotkernel uses camel naming conventions, with these Dotkernel-specific rules:
 
 | Element | Convention | Example |
 |---|---|---|
@@ -54,11 +54,11 @@ if ($a != 2)
 
 ## FAQ
 
-**Q: What coding standard does DotKernel follow?**
-A: DotKernel borrows its coding standard from the Zend Framework Coding Standard, with some exceptions described in this article.
+**Q: What coding standard does Dotkernel follow?**
+A: Dotkernel borrows its coding standard from the Zend Framework Coding Standard, with some exceptions described in this article.
 
 **Q: Tabs or spaces for indentation?**
-A: DotKernel indents with tabs, not spaces.
+A: Dotkernel indents with tabs, not spaces.
 
 **Q: How should classes, interfaces, and filenames be named?**
 A: Classes start with the prefix Dot_ (e.g. Dot_Templates), interfaces end with the string "Interface" (e.g. Dot_Db_Interface), and all PHP files use the ".php" extension, with no fancy extensions like ".inc".

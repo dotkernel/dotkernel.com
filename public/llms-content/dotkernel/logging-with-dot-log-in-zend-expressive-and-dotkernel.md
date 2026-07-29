@@ -1,6 +1,6 @@
 ---
-title: "Logging with dot-log in Zend Expressive and DotKernel"
-description: "How to wire up, configure and use the dot-log component (compatible with zend-log) within DotKernel, Zend Expressive, or any project using Zend Service Manager."
+title: "Logging with dot-log in Zend Expressive and Dotkernel"
+description: "How to wire up, configure and use the dot-log component (compatible with zend-log) within Dotkernel, Zend Expressive, or any project using Zend Service Manager."
 author: "Gabi DJ"
 date_published: "2018-11-13"
 canonical_url: "https://www.dotkernel.com/dotkernel/logging-with-dot-log-in-zend-expressive-and-dotkernel/"
@@ -8,10 +8,10 @@ category: "Dotkernel"
 language: "en"
 ---
 
-# Logging with dot-log in Zend Expressive and DotKernel
+# Logging with dot-log in Zend Expressive and Dotkernel
 
 ## TL;DR
-This article explains how to use the [dot-log](https://github.com/dotkernel/dot-log) component within DotKernel, Zend Expressive, or any project that uses Zend Service Manager.
+This article explains how to use the [dot-log](https://github.com/dotkernel/dot-log) component within Dotkernel, Zend Expressive, or any project that uses Zend Service Manager.
 Since dot-log extends `zendframework/zend-log`, the tutorial is mostly compatible with zend-log as well.
 See the [zend-log documentation](https://zendframework.github.io/zend-log/) for more detail.
 

@@ -1,6 +1,6 @@
 ---
 title: "Dependency Injection made easy in Laminas/Mezzio applications"
-description: "Introduces DotKernel's dot-dependency-injection package, which autowires constructor dependencies in Laminas/Mezzio applications via a PHP attribute instead of a hand-written factory per class."
+description: "Introduces Dotkernel's dot-dependency-injection package, which autowires constructor dependencies in Laminas/Mezzio applications via a PHP attribute instead of a hand-written factory per class."
 author: "Claudiu Pintiuta"
 date_published: "2024-06-20"
 canonical_url: "https://www.dotkernel.com/dotkernel/dependency-injection-made-easy-in-laminas-mezzio-applications/"
@@ -12,7 +12,7 @@ language: "en"
 
 ## TL;DR
 
-DotKernel's dot-dependency-injection package autowires constructor dependencies in Laminas/Mezzio (and other PSR-11) applications, removing the need to write and maintain a custom factory class for every service.
+Dotkernel's dot-dependency-injection package autowires constructor dependencies in Laminas/Mezzio (and other PSR-11) applications, removing the need to write and maintain a custom factory class for every service.
 Instead of a bespoke factory, you add an attribute to the class constructor and register a single shared AttributedServiceFactory in your ConfigProvider.
 The package requires Doctrine ORM but can still be used in applications that don't integrate Doctrine, and it also supports injecting Doctrine repositories directly instead of fetching them from the EntityManager.
 
@@ -21,7 +21,7 @@ The package requires Doctrine ORM but can still be used in applications that don
 So, first thing first, the problem.
 You have a Laminas / Mezzio application with a bunch of services that you need to use in a, let's say, controller class or in any other class, and you are tired of building, updating, and maintaining factories every time you add a new dependency to your class.
 
-DotKernel has you covered.
+Dotkernel has you covered.
 We built a tool to autowire those dependencies in your class.
 There is no need for factories for every class you make.
 Just use one "factory" class that you tie to your custom class in the config, and that's it.
@@ -29,7 +29,7 @@ Just use one "factory" class that you tie to your custom class in the config, an
 Sounds easy, right?
 Let's finish with the chat and speak some code, first showing the problem and then the solution.
 
-> The examples below are from the [DotKernel API framework](https://github.com/dotkernel/api), but the pattern applies to all laminas and mezzio applications and to all PSR-11 applications.
+> The examples below are from the [Dotkernel API framework](https://github.com/dotkernel/api), but the pattern applies to all laminas and mezzio applications and to all PSR-11 applications.
 
 ```php
 class UserHandler implements RequestHandlerInterface
@@ -99,7 +99,7 @@ Now consider that we need to build the factory for this and update it when we ad
 We'd also need to build the logic in the factory to handle any dependencies missing from the container.
 Painful, right?
 
-Now let's use DotKernel's [dot-dependency-injection](https://github.com/dotkernel/dot-dependency-injection) package to inject the required dependency into your class.
+Now let's use Dotkernel's [dot-dependency-injection](https://github.com/dotkernel/dot-dependency-injection) package to inject the required dependency into your class.
 
 After you install the package, your class needs to `use Dot\DependencyInjection\Attribute\Inject`, then you need to add the `#` attribute to the constructor definition to specify which dependencies should be injected.
 

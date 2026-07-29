@@ -50,8 +50,8 @@ The benefit of Doctrine for the programmer is the ability to focus on the object
 Our documentation is [Postman](https://www.postman.com/) based.
 We use the following files in which we store information about every available endpoint ready to be tested:
 
-- `documentation/DotKernel_API.postman_collection.json`
-- `documentation/DotKernel_API.postman_environment.json`
+- `documentation/Dotkernel_API.postman_collection.json`
+- `documentation/Dotkernel_API.postman_environment.json`
 
 ## Hypertext Application Language
 
@@ -120,7 +120,7 @@ A: It's based on Enrico Zimuel's Zend Expressive API - Skeleton example, and run
 A: Doctrine ORM (object-relational mapper), chosen because it lets the programmer focus on the object-oriented business logic and treat persistence only as a secondary priority.
 
 **Q: How is Dotkernel API documented?**
-A: The documentation is Postman-based, using two files that store information about every available endpoint ready to be tested: documentation/DotKernel_API.postman_collection.json and documentation/DotKernel_API.postman_environment.json.
+A: The documentation is Postman-based, using two files that store information about every available endpoint ready to be tested: documentation/Dotkernel_API.postman_collection.json and documentation/Dotkernel_API.postman_environment.json.
 
 **Q: How does CORS handling work in Dotkernel API?**
 A: MezzioCorsMiddlewareCorsMiddleware recognizes the CORS preflight request and detects the proper CORS configuration. The Router is used to detect every allowed request method by executing a route match with all possible request methods, so there's at least one Router request for every preflight request.

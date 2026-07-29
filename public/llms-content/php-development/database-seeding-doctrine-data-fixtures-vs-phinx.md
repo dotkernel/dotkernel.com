@@ -1,6 +1,6 @@
 ---
 title: "Database seeding: Doctrine data fixtures vs Phinx"
-description: "Why DotKernel moved database seeding from Phinx to doctrine/data-fixtures, the CLI package built to fill Doctrine's missing command-line interface, and how to install, use, and order fixtures."
+description: "Why Dotkernel moved database seeding from Phinx to doctrine/data-fixtures, the CLI package built to fill Doctrine's missing command-line interface, and how to install, use, and order fixtures."
 author: "MarioRadu"
 date_published: "2022-08-31"
 canonical_url: "https://www.dotkernel.com/php-development/database-seeding-doctrine-data-fixtures-vs-phinx/"
@@ -12,15 +12,15 @@ language: "en"
 
 ## TL;DR
 
-DotKernel 3 previously used cakephp/phinx for seeding the database, but the team wanted more flexibility and switched to doctrine/data-fixtures since Doctrine is already the ORM in use.
-Because doctrine/data-fixtures has no CLI interface, DotKernel built the dotkernel/dot-data-fixtures package to add one, and this article covers installing it, creating and executing fixtures, and ordering them by explicit order or by declared dependencies.
+Dotkernel 3 previously used cakephp/phinx for seeding the database, but the team wanted more flexibility and switched to doctrine/data-fixtures since Doctrine is already the ORM in use.
+Because doctrine/data-fixtures has no CLI interface, Dotkernel built the dotkernel/dot-data-fixtures package to add one, and this article covers installing it, creating and executing fixtures, and ordering them by explicit order or by declared dependencies.
 
 ## Database Seeding: Doctrine Data Fixtures vs Phinx
 
 Seeding the database means populating the database with initial values, it's commonly used for seeding the user roles and user accounts.
 Seeding the database the right way is no easy feat, and we will see why.
 
-Previous versions of DotKernel 3 used [cakephp](https://github.com/cakephp)/[phinx](https://github.com/cakephp/phinx) for seeding the database.
+Previous versions of Dotkernel 3 used [cakephp](https://github.com/cakephp)/[phinx](https://github.com/cakephp/phinx) for seeding the database.
 While the package did a great job at populating the database, we wanted more.
 We wanted more flexibility - so we started to search for alternatives.
 
@@ -34,7 +34,7 @@ While there are alternatives that can achieve this out-of-the-box we wanted some
 
 ### Note
 
-The package [dotkernel/dot-data-fixtures](https://github.com/dotkernel/dot-data-fixtures) does NOT depend on other DotKernel packages.
+The package [dotkernel/dot-data-fixtures](https://github.com/dotkernel/dot-data-fixtures) does NOT depend on other Dotkernel packages.
 The only dependency is Doctrine.
 
 ## Installation
@@ -278,13 +278,13 @@ More details about Fixtures in this blogpost: [https://matthiasnoback.nl/2018/07
 
 ## FAQ
 
-**Q: Why did DotKernel move from Phinx to doctrine/data-fixtures for seeding?**
-A: Previous versions of DotKernel 3 used cakephp/phinx for seeding, but the team wanted more flexibility, so they evaluated doctrine/data-fixtures since Doctrine is already used as the database abstraction layer.
+**Q: Why did Dotkernel move from Phinx to doctrine/data-fixtures for seeding?**
+A: Previous versions of Dotkernel 3 used cakephp/phinx for seeding, but the team wanted more flexibility, so they evaluated doctrine/data-fixtures since Doctrine is already used as the database abstraction layer.
 
 **Q: What's the catch with doctrine/data-fixtures?**
-A: It provides a concrete implementation of data fixtures, but without a CLI interface, so DotKernel built the dotkernel/dot-data-fixtures package to add one.
+A: It provides a concrete implementation of data fixtures, but without a CLI interface, so Dotkernel built the dotkernel/dot-data-fixtures package to add one.
 
-**Q: Does dotkernel/dot-data-fixtures depend on other DotKernel packages?**
+**Q: Does dotkernel/dot-data-fixtures depend on other Dotkernel packages?**
 A: No, its only dependency is Doctrine.
 
 **Q: How do you install dotkernel/dot-data-fixtures?**

@@ -1,6 +1,6 @@
 ---
-title: "DotKernel 1.5.0 Released"
-description: "DotKernel 1.5.0 skips version 1.4 entirely and brings a switch from Dojo to jQuery, redesigned admin and frontend, model inheritance via Dot_Model, dashed controller support, and a reorganized Zend Registry."
+title: "Dotkernel 1.5.0 Released"
+description: "Dotkernel 1.5.0 skips version 1.4 entirely and brings a switch from Dojo to jQuery, redesigned admin and frontend, model inheritance via Dot_Model, dashed controller support, and a reorganized Zend Registry."
 author: "Adrian"
 date_published: "2011-06-15"
 canonical_url: "https://www.dotkernel.com/dotkernel/dotkernel-1-5-0-released/"
@@ -8,11 +8,11 @@ category: "Dotkernel"
 language: "en"
 ---
 
-# DotKernel 1.5.0 Released
+# Dotkernel 1.5.0 Released
 
 ## TL;DR
 
-After a longer wait than usual and around 250 commits, DotKernel 1.5.0 was released, skipping 1.4 entirely due to the scale of changes.
+After a longer wait than usual and around 250 commits, Dotkernel 1.5.0 was released, skipping 1.4 entirely due to the scale of changes.
 Highlights include switching from Dojo to jQuery, a redesigned admin and frontend, model inheritance through a new Dot_Model class, support for dashed controller names, and a reorganized Zend Registry.
 
 ## Why skip straight to 1.5.0?
@@ -23,8 +23,8 @@ Due to the large amount of changes and the long time spent in development, the t
 
 ### Switched from Dojo to jQuery
 
-Starting with 1.5.0, DotKernel switched from using Dojo to jQuery.
-Dojo can still be used in your own projects, but only jQuery is used and maintained in the DotKernel distribution itself.
+Starting with 1.5.0, Dotkernel switched from using Dojo to jQuery.
+Dojo can still be used in your own projects, but only jQuery is used and maintained in the Dotkernel distribution itself.
 
 ### New designs
 
@@ -43,7 +43,7 @@ For example, `www.example.com/search-article` calls `SearchArticleController.php
 
 ### Zend Registry reorganization
 
-The structure of the registry was changed; more details are covered in a separate blog post on Zend Registry usage in DotKernel.
+The structure of the registry was changed; more details are covered in a separate blog post on Zend Registry usage in Dotkernel.
 
 ## Scale of the release
 
@@ -51,12 +51,12 @@ There were about 250 commits in the SVN repository since the previous release, s
 
 ## FAQ
 
-**Q: Why did DotKernel jump from 1.3 straight to 1.5.0?**
+**Q: Why did Dotkernel jump from 1.3 straight to 1.5.0?**
 A: Because of the large amount of changes and the long time spent in development, the team chose to skip version 1.4 and go straight to 1.5.0.
 
-**Q: Did DotKernel switch from Dojo to jQuery in 1.5.0?**
+**Q: Did Dotkernel switch from Dojo to jQuery in 1.5.0?**
 A: Yes.
-Starting with 1.5.0, DotKernel switched from Dojo to jQuery for its own distribution, though Dojo can still be used in your own projects.
+Starting with 1.5.0, Dotkernel switched from Dojo to jQuery for its own distribution, though Dojo can still be used in your own projects.
 
 **Q: What is Dot_Model and why was it introduced?**
 A: Dot_Model is a base class introduced to reduce code duplication between admin and frontend models.
@@ -66,10 +66,10 @@ Both admin- and frontend-specific model classes (such as User) inherit from a sh
 A: The controller name parsing was changed so a URL like www.example.com/search-article correctly calls SearchArticleController.php, allowing multi-word controller names split with dashes without breaking the coding standard.
 
 **Q: How much changed in the 1.5.0 release?**
-A: About 250 commits went into the SVN repository since the previous release, so the blog post only covers the highlights - the full DotKernel 1.5.0 download is available to try out.
+A: About 250 commits went into the SVN repository since the previous release, so the blog post only covers the highlights - the full Dotkernel 1.5.0 download is available to try out.
 
 ## Resources
 
 - Intro to jQuery: http://www.dotkernel.com/javascript/intro-to-jquery/
-- Zend Registry usage in DotKernel: http://www.dotkernel.com/dotkernel/zend-registry-usage-in-dotkernel/
-- DotKernel 1.5.0 download: http://www.dotkernel.com/download/?did=33
+- Zend Registry usage in Dotkernel: http://www.dotkernel.com/dotkernel/zend-registry-usage-in-dotkernel/
+- Dotkernel 1.5.0 download: http://www.dotkernel.com/download/?did=33

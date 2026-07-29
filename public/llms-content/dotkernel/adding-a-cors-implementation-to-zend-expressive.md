@@ -1,6 +1,6 @@
 ---
 title: "Adding a CORS implementation to Zend Expressive"
-description: "A guide on how to add a CORS implementation to an existing DotKernel3 project using Tuupola's Cors Middleware package."
+description: "A guide on how to add a CORS implementation to an existing Dotkernel3 project using Tuupola's Cors Middleware package."
 author: "Gabi DJ"
 date_published: "2019-04-08"
 canonical_url: "https://www.dotkernel.com/dotkernel/adding-a-cors-implementation-to-zend-expressive/"
@@ -12,7 +12,7 @@ language: "en"
 
 ## TL;DR
 When a client-side request is blocked with a "No 'Access-Control-Allow-Origin' header" error, it's because the server isn't sending the header that allows a browser to access its data (most common when fetching JSON to process with JavaScript).
-This guide adds CORS support to a Zend Expressive / DotKernel3 project using Tuupola's Cors Middleware package.
+This guide adds CORS support to a Zend Expressive / Dotkernel3 project using Tuupola's Cors Middleware package.
 
 ## The issue
 

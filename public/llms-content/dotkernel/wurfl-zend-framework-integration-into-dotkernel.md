@@ -1,6 +1,6 @@
 ---
-title: "WURFL Zend Framework Integration into DotKernel"
-description: "Step-by-step tutorial on integrating WURFL into DotKernel using the Zend_Http_UserAgent class from Zend Framework 1.11.0rc1."
+title: "WURFL Zend Framework Integration into Dotkernel"
+description: "Step-by-step tutorial on integrating WURFL into Dotkernel using the Zend_Http_UserAgent class from Zend Framework 1.11.0rc1."
 author: "Teo"
 date_published: "2010-10-27"
 canonical_url: "https://www.dotkernel.com/dotkernel/wurfl-zend-framework-integration-into-dotkernel/"
@@ -8,11 +8,11 @@ category: "Dotkernel"
 language: "en"
 ---
 
-# WURFL Zend Framework Integration into DotKernel
+# WURFL Zend Framework Integration into Dotkernel
 
 ## TL;DR
 
-[WURFL](http://wurfl.sourceforge.net/) is integrated into DotKernel using the [Zend_Http_UserAgent](http://framework.zend.com/manual/1.11/en/zend.http.user-agent.html) class from [ZF 1.11.0rc1](http://framework.zend.com/download/latest) (the beta release at the time of the post).
+[WURFL](http://wurfl.sourceforge.net/) is integrated into Dotkernel using the [Zend_Http_UserAgent](http://framework.zend.com/manual/1.11/en/zend.http.user-agent.html) class from [ZF 1.11.0rc1](http://framework.zend.com/download/latest) (the beta release at the time of the post).
 This post walks through the required folders, config files, and code to wire it up.
 
 ## Installation steps
@@ -37,9 +37,9 @@ resources.useragent.wurflapi.wurfl_config_file = APPLICATION_PATH "/configs/wurf
    - `wurfl-php-1.1\examples\resources\wurfl-regression.zip`, renamed to `wurfl.zip` (or download the [latest wurfl zip](http://sourceforge.net/projects/wurfl/files/WURFL/) database and rename it `wurfl.zip`).
 6. Copy the contents of the folder `wurfl-php-1.1\WURFL` to `library\Wurfl`.
 
-## Using WURFL in DotKernel
+## Using WURFL in Dotkernel
 
-[WURFL](http://wurfl.sourceforge.net/) is integrated into DotKernel in the mobile module.
+[WURFL](http://wurfl.sourceforge.net/) is integrated into Dotkernel in the mobile module.
 To access WURFL configuration:
 
 ```php
@@ -51,10 +51,10 @@ $device = $userAgent->getDevice();
 
 ## FAQ
 
-**Q: Which Zend Framework class is used to integrate WURFL into DotKernel?**
+**Q: Which Zend Framework class is used to integrate WURFL into Dotkernel?**
 A: WURFL is integrated using the Zend_Http_UserAgent class from Zend Framework 1.11.0rc1 (the beta release at the time of the post).
 
-**Q: What is the first step to integrate WURFL into DotKernel?**
+**Q: What is the first step to integrate WURFL into Dotkernel?**
 A: Download the WURFL PHP API and unzip it into a folder named wurfl-php-1.1.
 
 **Q: Which folders need to be created and made writable?**

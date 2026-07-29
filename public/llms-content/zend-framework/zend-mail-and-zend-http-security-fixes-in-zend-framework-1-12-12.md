@@ -13,7 +13,7 @@ language: "en"
 ## TL;DR
 
 Zend Framework 1.12.12 was released with security fixes for the Zend_Mail and Zend_Http components.
-Consumers of these components, including DotKernel which relies heavily on Zend_Mail, were strongly urged to upgrade immediately via PEAR or by applying the patch directly.
+Consumers of these components, including Dotkernel which relies heavily on Zend_Mail, were strongly urged to upgrade immediately via PEAR or by applying the patch directly.
 A follow-up release, 1.12.13, was issued shortly after to fix a regression introduced in 1.12.12.
 
 The release of ZF 1.12.12 was just announced, with security updates especially on the Zend_Mail and Zend_Http components.
@@ -24,7 +24,7 @@ Also, the ZF PEAR channel was updated to the latest 1.12.12 release.
 pear upgrade zend/zend
 
 We strongly recommend that consumers of the Zend_Http and Zend_Mail components upgrade immediately.
-Also, DotKernel Application Framework uses the Zend_Mail component intensively.
+Also, Dotkernel Application Framework uses the Zend_Mail component intensively.
 
 If you cannot, you can download the patch separately and apply it to your ZF install: [ZF2015-04 patch for ZF1](https://packages.zendframework.com/releases/ZendFramework-1.12.12/0001-ZF2015-04-Fix-CRLF-injections-in-HTTP-and-Mail.patch).
 
@@ -41,8 +41,8 @@ A: It fixed security issues in the Zend_Mail and Zend_Http components.
 **Q: How can you get the fixed version?**
 A: By upgrading via the ZF PEAR channel using `pear upgrade zend/zend`, or by downloading and applying the ZF2015-04 patch separately if you cannot upgrade.
 
-**Q: Why was this update particularly important for DotKernel users?**
-A: Because DotKernel Application Framework uses the Zend_Mail component intensively, consumers of Zend_Http and Zend_Mail were strongly urged to upgrade immediately.
+**Q: Why was this update particularly important for Dotkernel users?**
+A: Because Dotkernel Application Framework uses the Zend_Mail component intensively, consumers of Zend_Http and Zend_Mail were strongly urged to upgrade immediately.
 
 **Q: Was there a follow-up release after 1.12.12?**
 A: Yes, Zend Framework 1.12.13 was released on May 20, 2015, to fix a regression issue introduced in the 1.12.12 release.

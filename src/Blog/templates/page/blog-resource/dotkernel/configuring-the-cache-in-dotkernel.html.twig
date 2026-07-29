@@ -1,7 +1,7 @@
 {% extends '@layout/default.html.twig' %}
 {% block json_ld %} {{ include('@jsonld/dotkernel/configuring-the-cache-in-dotkernel.jsonld.twig') }} {% endblock %}
 
-{% block title %}Configuring the Cache in DotKernel{% endblock %}
+{% block title %}Configuring the Cache in Dotkernel{% endblock %}
 
 {% block page_title %}
     {{ include('@partial/title-section.html.twig', {
@@ -21,9 +21,9 @@
             <article class="article">
                 <div class="entry">
                     {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-This article contains the DotKernel cache layer configuration guide.
+This article contains the Dotkernel cache layer configuration guide.
 
-The DotKernel Caching Layer is based on Zend Framework Cache, more configuration options can be found at the following links:
+The Dotkernel Caching Layer is based on Zend Framework Cache, more configuration options can be found at the following links:
 <ul>
     <li><a title="Zend Framework Cache Frontends" href="http://framework.zend.com/manual/1.12/en/zend.cache.frontends.html" target="_blank" rel="noopener noreferrer">Zend Framework Cache Frontends</a></li>
     <li><a title="Zend Framework Cache Backends" href="http://framework.zend.com/manual/1.12/en/zend.cache.backends.html" target="_blank" rel="noopener noreferrer">Zend Framework Cache Backends</a></li>
@@ -54,13 +54,13 @@ For more settings and caching alternatives see the Zend Framework Cache Links at
 The setting pattern and sample are below:
 <pre>>cache.BACKEND_NAME.SETTING = "VALUE"
 ; example:
-cache.file.file_name_prefix = "DotKernel"</pre>
+cache.file.file_name_prefix = "Dotkernel"</pre>
 
 <h2 id="user-content-faq">Frequently Asked Questions</h2>
 
 <div class="faq-list">
     <details class="acc" open>
-        <summary>What is DotKernel's caching layer based on? <span class="chev">+</span></summary>
+        <summary>What is Dotkernel's caching layer based on? <span class="chev">+</span></summary>
         <div class="acc-body">
             <p class="mb-0">It's based on Zend Framework Cache, configured through settings in application.ini, with more configuration options available at the Zend Framework Cache Frontends and Backends documentation links given in the article.</p>
         </div>

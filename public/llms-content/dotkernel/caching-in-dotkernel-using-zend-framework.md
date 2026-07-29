@@ -1,6 +1,6 @@
 ---
-title: "Caching in DotKernel using Zend Framework"
-description: "How DotKernel's upcoming 1.8 cache layer stores router, ACL, menu and other data between requests, using APC/APCU or file storage."
+title: "Caching in Dotkernel using Zend Framework"
+description: "How Dotkernel's upcoming 1.8 cache layer stores router, ACL, menu and other data between requests, using APC/APCU or file storage."
 author: "Gabi DJ"
 date_published: "2015-01-29"
 canonical_url: "https://www.dotkernel.com/dotkernel/caching-in-dotkernel-using-zend-framework/"
@@ -8,17 +8,17 @@ category: "Dotkernel"
 language: "en"
 ---
 
-# Caching in DotKernel using Zend Framework
+# Caching in Dotkernel using Zend Framework
 
 ## TL;DR
 Loading configuration and settings from XML files on every request is expensive, both due to hard-drive latency and XML parsing overhead.
-DotKernel 1.8 implements a cache layer for router, acl_role, menu, options (including seo_xml), browser_xml, os_xml and test data, with a choice of APC/APCU or file-based storage.
+Dotkernel 1.8 implements a cache layer for router, acl_role, menu, options (including seo_xml), browser_xml, os_xml and test data, with a choice of APC/APCU or file-based storage.
 
 ## 1. Configuring the cache
 
 The configuration is set from `/configs/application.ini`: whether caching is enabled, how long the cache stays valid, the cache namespace, and the storage provider (File or APC).
 The article recommends disabling the cache in development mode.
-See [Configuring the Cache in DotKernel](http://www.dotkernel.com/dotkernel/configuring-the-cache-in-dotkernel/) for more details.
+See [Configuring the Cache in Dotkernel](http://www.dotkernel.com/dotkernel/configuring-the-cache-in-dotkernel/) for more details.
 
 ## 2. Using the cache
 
@@ -55,7 +55,7 @@ if ($value !== false) {
 
 ## FAQ
 
-**Q: What data does DotKernel's cache layer store?**
+**Q: What data does Dotkernel's cache layer store?**
 A: Router, acl_role, menu, options (including seo_xml), browser_xml, os_xml, and test data between requests.
 
 **Q: What storage providers are available for the cache?**
@@ -74,5 +74,5 @@ A: Yes, the article shows an example of saving and loading a stdClass object usi
 
 ## Resources
 
-- [DotKernel Reserved Variable Names for Caching](http://www.dotkernel.com/dotkernel/dotkernel-reserved-variable-names-for-caching)
-- [Configuring the Cache in DotKernel](http://www.dotkernel.com/dotkernel/configuring-the-cache-in-dotkernel/)
+- [Dotkernel Reserved Variable Names for Caching](http://www.dotkernel.com/dotkernel/dotkernel-reserved-variable-names-for-caching)
+- [Configuring the Cache in Dotkernel](http://www.dotkernel.com/dotkernel/configuring-the-cache-in-dotkernel/)

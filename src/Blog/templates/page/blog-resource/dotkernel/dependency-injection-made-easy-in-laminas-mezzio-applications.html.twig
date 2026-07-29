@@ -26,11 +26,11 @@
 
 <p class="mb-3">So, first thing first, the problem.<br><br>You have a <strong>Laminas / Mezzio</strong> application with a bunch of services that you need to use in a, let's say, controller class or in any other class, and you are tired of building, updating, and maintaining factories every time you add a new dependency to your class.</p>
 
-<p class="mb-3"><strong>DotKernel </strong>has you covered. We built a <strong>tool to autowire those dependencies in your class</strong>. There is no need for factories for every class you make. Just use one “factory” class that you tie to your custom class in the config, and that's it.</p>
+<p class="mb-3"><strong>Dotkernel </strong>has you covered. We built a <strong>tool to autowire those dependencies in your class</strong>. There is no need for factories for every class you make. Just use one “factory” class that you tie to your custom class in the config, and that's it.</p>
 
 <p class="mb-3">Sounds easy, right? Let’s finish with the chat and speak some code, first showing the problem and then the solution.</p>
 
-<blockquote><p class="mb-3">The examples below are from the <strong><a href="https://github.com/dotkernel/api" data-type="link" data-id="https://github.com/dotkernel/api" target="_blank" rel="noreferrer noopener">DotKernel API framework</a></strong>, but the pattern applies to all <strong>laminas </strong>and <strong>mezzio </strong>applications and to all PSR-11 applications.</p>
+<blockquote><p class="mb-3">The examples below are from the <strong><a href="https://github.com/dotkernel/api" data-type="link" data-id="https://github.com/dotkernel/api" target="_blank" rel="noreferrer noopener">Dotkernel API framework</a></strong>, but the pattern applies to all <strong>laminas </strong>and <strong>mezzio </strong>applications and to all PSR-11 applications.</p>
 </blockquote>
 
 <pre>class UserHandler implements RequestHandlerInterface
@@ -90,7 +90,7 @@
 
 <p class="mb-3">Now consider that we need to build the factory for this and update it when we add a new dependency, and so on. Also to build the logic in the factory to handle any dependencies missing from the container. Painful right?</p>
 
-<p class="mb-3">Now let's use <strong>DotKernel's</strong> <a href="https://github.com/dotkernel/dot-dependency-injection" target="_blank" rel="noreferrer noopener">dot-dependency-injection</a> package to inject the required dependency into your class.</p>
+<p class="mb-3">Now let's use <strong>Dotkernel's</strong> <a href="https://github.com/dotkernel/dot-dependency-injection" target="_blank" rel="noreferrer noopener">dot-dependency-injection</a> package to inject the required dependency into your class.</p>
 
 <p class="mb-3">After you install the package, your class needs to <code>use Dot\DependencyInjection\Attribute\Inject</code> , then you need to add the <code>#[Inject(...)]</code> attribute to the constructor definition to specify which dependencies should be injected.</p>
 

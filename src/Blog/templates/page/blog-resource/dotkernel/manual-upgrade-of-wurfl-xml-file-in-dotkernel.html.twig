@@ -1,7 +1,7 @@
 {% extends '@layout/default.html.twig' %}
 {% block json_ld %} {{ include('@jsonld/dotkernel/manual-upgrade-of-wurfl-xml-file-in-dotkernel.jsonld.twig') }} {% endblock %}
 
-{% block title %}Manual upgrade of WURFL xml file in DotKernel{% endblock %}
+{% block title %}Manual upgrade of WURFL xml file in Dotkernel{% endblock %}
 
 {% block page_title %}
     {{ include('@partial/title-section.html.twig', {
@@ -21,7 +21,7 @@
             <article class="article">
                 <div class="entry">
                     {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-DotKernel Application Framework can be downloaded with WURFL XML file bundled in it, but is quite an old file,  the latest GPL version, from June 2011. Because of license changed of that WURFL file,  this bundled file will not be upgraded anymore by us.
+Dotkernel Application Framework can be downloaded with WURFL XML file bundled in it, but is quite an old file,  the latest GPL version, from June 2011. Because of license changed of that WURFL file,  this bundled file will not be upgraded anymore by us.
 
 You need to manually upgrade the xml file, if you still want to use it , and of course, please pay attention to license changes.
 <ol>
@@ -41,9 +41,9 @@ Again, please pay attention to WURFL license changes.
 
 <div class="faq-list">
     <details class="acc" open>
-        <summary>Why does the WURFL xml file need to be manually upgraded in DotKernel? <span class="chev">+</span></summary>
+        <summary>Why does the WURFL xml file need to be manually upgraded in Dotkernel? <span class="chev">+</span></summary>
         <div class="acc-body">
-            <p class="mb-0">DotKernel bundles an old WURFL XML file (the latest GPL version, from June 2011). Because of a license change to that WURFL file, the bundled file will no longer be upgraded by DotKernel, so it must be upgraded manually if you still want to use it.</p>
+            <p class="mb-0">Dotkernel bundles an old WURFL XML file (the latest GPL version, from June 2011). Because of a license change to that WURFL file, the bundled file will no longer be upgraded by Dotkernel, so it must be upgraded manually if you still want to use it.</p>
         </div>
     </details>
     <details class="acc">

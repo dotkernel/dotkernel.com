@@ -1,6 +1,6 @@
 ---
-title: "DotKernel3 - Stable Release version 1.0"
-description: "DotKernel3's stable 1.0 release adds Zend Expressive 3 and PSR-15 middleware support, listing what's new, what changed for existing middleware, and every package updated or removed."
+title: "Dotkernel3 - Stable Release version 1.0"
+description: "Dotkernel3's stable 1.0 release adds Zend Expressive 3 and PSR-15 middleware support, listing what's new, what changed for existing middleware, and every package updated or removed."
 author: "Gabi DJ"
 date_published: "2018-06-27"
 canonical_url: "https://www.dotkernel.com/dotkernel3/dotkernel3-stable-release-version-1-0/"
@@ -8,17 +8,17 @@ category: "Dotkernel 3"
 language: "en"
 ---
 
-# DotKernel3 - Stable Release version 1.0
+# Dotkernel3 - Stable Release version 1.0
 
 ## TL;DR
 
-DotKernel3 1.0 updates the core packages to support Zend Expressive 3 and PSR-15 middleware, making both frontend (1.0.0) and admin (1.0.1) easier to migrate.
+Dotkernel3 1.0 updates the core packages to support Zend Expressive 3 and PSR-15 middleware, making both frontend (1.0.0) and admin (1.0.1) easier to migrate.
 No functional changes were made to the core code, though projects using the old http-interop/http-middleware package must migrate to the psr/http-server-middleware interfaces.
-Existing DotKernel 3 (Expressive 2) projects can follow a separate guide to move to Zend Expressive 3.
+Existing Dotkernel 3 (Expressive 2) projects can follow a separate guide to move to Zend Expressive 3.
 
 ## Release Overview
 
-DotKernel was updated to support Zend Expressive 3 alongside PSR-15 middleware.
+Dotkernel was updated to support Zend Expressive 3 alongside PSR-15 middleware.
 
 We have updated the core packages to support PSR-15 Middleware.
 
@@ -28,7 +28,7 @@ The new versions are:
 frontend -> 1.0.0
 admin -> 1.0.1
 
-If your project is a DotKernel 3 instance (based on Expressive 2), you can migrate your project to Zend Expressive 3 by following this guide.
+If your project is a Dotkernel 3 instance (based on Expressive 2), you can migrate your project to Zend Expressive 3 by following this guide.
 
 ## What's New
 
@@ -88,7 +88,7 @@ If your project is a DotKernel 3 instance (based on Expressive 2), you can migra
 ## FAQ
 
 **Q: What is the headline change in this stable release?**
-A: DotKernel was updated to support Zend Expressive 3 alongside PSR-15 middleware, with the core packages updated to support PSR-15 Middleware, making both frontend and admin easier to migrate.
+A: Dotkernel was updated to support Zend Expressive 3 alongside PSR-15 middleware, with the core packages updated to support PSR-15 Middleware, making both frontend and admin easier to migrate.
 
 **Q: What are the new component versions in this release?**
 A: frontend 1.0.0 and admin 1.0.1.

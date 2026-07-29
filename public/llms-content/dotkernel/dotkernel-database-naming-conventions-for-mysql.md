@@ -1,6 +1,6 @@
 ---
-title: "DotKernel Database Naming Conventions for MySQL"
-description: "DotKernel borrows its database naming conventions from FaZend, covering singular table names, auto-incrementing id columns, foreign key and constraint naming patterns, and camelLetter casing."
+title: "Dotkernel Database Naming Conventions for MySQL"
+description: "Dotkernel borrows its database naming conventions from FaZend, covering singular table names, auto-incrementing id columns, foreign key and constraint naming patterns, and camelLetter casing."
 author: "admin"
 date_published: "2010-03-10"
 canonical_url: "https://www.dotkernel.com/dotkernel/dotkernel-database-naming-conventions-for-mysql/"
@@ -8,11 +8,11 @@ category: "Dotkernel"
 language: "en"
 ---
 
-# DotKernel Database Naming Conventions for MySQL
+# Dotkernel Database Naming Conventions for MySQL
 
 ## TL;DR
 
-DotKernel's database naming conventions are borrowed from FaZend's "Rules of naming of database tables and columns."
+Dotkernel's database naming conventions are borrowed from FaZend's "Rules of naming of database tables and columns."
 Tables use singular, camelLetter names, every table has an auto-increment id, foreign keys are named after the referenced table and column, and SQL keywords are capitalized.
 
 ## Database naming conventions for tables and columns
@@ -58,7 +58,7 @@ The names of database tables and columns must follow camelLetter naming conventi
 
 ## FAQ
 
-**Q: Where do DotKernel's database naming conventions come from?**
+**Q: Where do Dotkernel's database naming conventions come from?**
 A: They are borrowed from FaZend's "Rules of naming of database tables and columns," an open-source PHP framework based on Zend Framework.
 
 **Q: Should table names be singular or plural?**

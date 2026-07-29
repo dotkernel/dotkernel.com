@@ -1,6 +1,6 @@
 ---
-title: "Zend_Auth and Zend_Acl integrated in DotKernel"
-description: "How Zend_Auth and Zend_Acl were integrated into DotKernel 1.5.0 through the Dot_Auth and Dot_Acl classes for user authentication and access control."
+title: "Zend_Auth and Zend_Acl integrated in Dotkernel"
+description: "How Zend_Auth and Zend_Acl were integrated into Dotkernel 1.5.0 through the Dot_Auth and Dot_Acl classes for user authentication and access control."
 author: "Teo"
 date_published: "2011-06-16"
 canonical_url: "https://www.dotkernel.com/dotkernel/zend-auth-and-zend-acl-integrated-in-dotkernel/"
@@ -8,11 +8,11 @@ category: "Dotkernel"
 language: "en"
 ---
 
-# Zend_Auth and Zend_Acl integrated in DotKernel
+# Zend_Auth and Zend_Acl integrated in Dotkernel
 
 ## TL;DR
 
-[Zend_Auth](http://framework.zend.com/manual/en/zend.auth.html) and [Zend_Acl](http://framework.zend.com/manual/en/zend.acl.html) have been integrated into DotKernel starting with version 1.5.0.
+[Zend_Auth](http://framework.zend.com/manual/en/zend.auth.html) and [Zend_Acl](http://framework.zend.com/manual/en/zend.acl.html) have been integrated into Dotkernel starting with version 1.5.0.
 The User and Admin models were completely refactored using the new `Dot_Auth` and `Dot_Acl` classes for authentication and access control.
 
 ## Dot_Auth
@@ -34,7 +34,7 @@ private function _getAuthAdapter($who)
 ## ACL roles and resources
 
 ACL roles (user types) and permissions are configured in the `configs/acl/role.xml` file.
-In DotKernel there are 3 roles: `guest`, `user`, and `admin`.
+In Dotkernel there are 3 roles: `guest`, `user`, and `admin`.
 The resources for ACL are taken from `configs/router.xml` — see the `controllers` tag.
 
 ## Dot_Acl
@@ -76,14 +76,14 @@ $dotAuth->checkIdentity('user');
 
 ## FAQ
 
-**Q: When were Zend_Auth and Zend_Acl integrated into DotKernel?**
-A: Zend_Auth and Zend_Acl were integrated starting with DotKernel version 1.5.0, as part of a refactor of the User and Admin models using the new Dot_Auth and Dot_Acl classes.
+**Q: When were Zend_Auth and Zend_Acl integrated into Dotkernel?**
+A: Zend_Auth and Zend_Acl were integrated starting with Dotkernel version 1.5.0, as part of a refactor of the User and Admin models using the new Dot_Auth and Dot_Acl classes.
 
 **Q: How does Dot_Auth authenticate a user?**
 A: Dot_Auth authenticates the user by checking the database using Zend_Auth_Adapter_DbTable, setting the table name, the identity column to username, and the credential column to password.
 
-**Q: What roles exist for ACL in DotKernel?**
-A: DotKernel defines 3 ACL roles (user types): guest, user, and admin.
+**Q: What roles exist for ACL in Dotkernel?**
+A: Dotkernel defines 3 ACL roles (user types): guest, user, and admin.
 These roles and their permissions are configured in the configs/acl/role.xml file.
 
 **Q: Where do the ACL resources come from?**

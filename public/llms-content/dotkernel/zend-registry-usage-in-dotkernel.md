@@ -1,6 +1,6 @@
 ---
-title: "Zend Registry usage in DotKernel"
-description: "The variables stored in Zend_Registry in DotKernel and how to read them, either as a full instance or one value at a time."
+title: "Zend Registry usage in Dotkernel"
+description: "The variables stored in Zend_Registry in Dotkernel and how to read them, either as a full instance or one value at a time."
 author: "Adrian"
 date_published: "2011-06-01"
 canonical_url: "https://www.dotkernel.com/dotkernel/zend-registry-usage-in-dotkernel/"
@@ -8,11 +8,11 @@ category: "Dotkernel"
 language: "en"
 ---
 
-# Zend Registry usage in DotKernel
+# Zend Registry usage in Dotkernel
 
 ## TL;DR
 
-In DotKernel, `Zend_Registry` holds a fixed set of request-scoped variables — from timing and configuration to the database adapter and session object — and can be read either as a full instance or one value at a time.
+In Dotkernel, `Zend_Registry` holds a fixed set of request-scoped variables — from timing and configuration to the database adapter and session object — and can be read either as a full instance or one value at a time.
 
 ## Variables stored in Zend_Registry
 
@@ -49,7 +49,7 @@ $action = Zend_Registry::get('requestAction');
 
 ## FAQ
 
-**Q: What variables does Zend_Registry contain in DotKernel?**
+**Q: What variables does Zend_Registry contain in Dotkernel?**
 A: It contains startTime (the result of microtime() at the beginning of the request), configuration (loaded from configs/application.ini), router (loaded from configs/router.xml), database (the database adapter), settings (loaded from the database), requestModule/requestController/requestAction, request (additional request variables), seo (loaded from configs/dots/seo.xml), option (loaded from configs/dots/<moduleName>.xml), and session (the session object).
 
 **Q: How do you get an instance of the registry?**

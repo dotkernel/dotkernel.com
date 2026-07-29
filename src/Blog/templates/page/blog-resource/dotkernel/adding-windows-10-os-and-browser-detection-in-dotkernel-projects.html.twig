@@ -1,7 +1,7 @@
 {% extends '@layout/default.html.twig' %}
 {% block json_ld %} {{ include('@jsonld/dotkernel/adding-windows-10-os-and-browser-detection-in-dotkernel-projects.jsonld.twig') }} {% endblock %}
 
-{% block title %}Adding Windows 10 OS and Browser detection in DotKernel projects{% endblock %}
+{% block title %}Adding Windows 10 OS and Browser detection in Dotkernel projects{% endblock %}
 
 {% block page_title %}
     {{ include('@partial/title-section.html.twig', {
@@ -36,7 +36,7 @@ In this article we will have the icon upgrade guide.
     <li>Extract the archive in a folder, let's name it <strong>icons_patch
 </strong></li>
     <li>We recommend creating a backup of your project before you continue</li>
-    <li>Now copy all the files in the <strong>icons_patch</strong> folder in your DotKernel</li>
+    <li>Now copy all the files in the <strong>icons_patch</strong> folder in your Dotkernel</li>
     <li>You will be prompted to replace 2 files, simply replace the files and agree to merge the folders content (files will be added, not replaced this time)</li>
     <li>You need to clear the cache for changes to take effect, the os and browser xml's are cached. For more information read <a href="http://www.dotkernel.com/dotkernel/dotkernel-reserved-variable-names-for-caching/" target="_blank" rel="noopener noreferrer">this article</a> (look for <strong>Browser &amp; OS</strong>)</li>
     <li>You can now delete the <strong>icons_patch</strong> folder or use it to patch another project</li>
@@ -54,7 +54,7 @@ A /images/os/windows_metro.png</pre>
 
 <div class="faq-list">
     <details class="acc" open>
-        <summary>What DotKernel version is required before applying this patch? <span class="chev">+</span></summary>
+        <summary>What Dotkernel version is required before applying this patch? <span class="chev">+</span></summary>
         <div class="acc-body">
             <p class="mb-0">Your project must be running version 1.5.0 or newer.</p>
         </div>

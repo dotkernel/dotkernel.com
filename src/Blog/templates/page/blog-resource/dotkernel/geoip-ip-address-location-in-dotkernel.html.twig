@@ -1,7 +1,7 @@
 {% extends '@layout/default.html.twig' %}
 {% block json_ld %} {{ include('@jsonld/dotkernel/geoip-ip-address-location-in-dotkernel.jsonld.twig') }} {% endblock %}
 
-{% block title %}GeoIP: Ip Address Location In DotKernel{% endblock %}
+{% block title %}GeoIP: Ip Address Location In Dotkernel{% endblock %}
 
 {% block page_title %}
     {{ include('@partial/title-section.html.twig', {
@@ -23,7 +23,7 @@
                     {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
 <em><strong>GeoIP</strong> </em>is the proprietary technology that drives <a href="http://www.maxmind.com/app/ip-location" target="_blank" rel="noopener noreferrer">MaxMind's</a> IP geolocation data and services. It is a non-invasive way to determine geographical and other information about Internet visitors in real-time. When a person visits your website, <strong><em>GeoIP </em></strong>can determine which country, region, city, postal code, area code the visitor is coming from.
 
-DotKernel uses <em><strong>GeoIP </strong></em>to get user statistics by country. The main file for <em><strong>GeoIP </strong></em>is <a href="http://websvn.dotkernel.net/filedetails.php?repname=DotKernel&amp;path=%2Ftrunk%2Flibrary%2FDot%2FGeoip.php" target="_blank" rel="noopener noreferrer">library/Dot/Geoip.php</a>
+Dotkernel uses <em><strong>GeoIP </strong></em>to get user statistics by country. The main file for <em><strong>GeoIP </strong></em>is <a href="http://websvn.dotkernel.net/filedetails.php?repname=Dotkernel&amp;path=%2Ftrunk%2Flibrary%2FDot%2FGeoip.php" target="_blank" rel="noopener noreferrer">library/Dot/Geoip.php</a>
 <!--more-->
 Let’s explain what function <strong><em>getCountryByIp </em></strong>does:
 <ul>
@@ -34,7 +34,7 @@ Next there are 4 <strong><em>if/else</em></strong> statements:
 <a name="1"></a>
 <strong>1. </strong>Line 43 – 57: <em><strong>mod_geoip </strong></em>PECL extension is not installed</a>
 <ul>
-    <li>In this case we use the already existing file <strong>externals/geoip/GeoIP.dat</strong> from DotKernel (If you don’t have it, download it from <a href="http://www.maxmind.com/app/geolitecountry">here</a>).</li>
+    <li>In this case we use the already existing file <strong>externals/geoip/GeoIP.dat</strong> from Dotkernel (If you don’t have it, download it from <a href="http://www.maxmind.com/app/geolitecountry">here</a>).</li>
 </ul>
 <strong>2. </strong>Line 58 – 63: <em><strong>mod_geoip</strong></em> is installed and <strong><em>GeoIP.dat</em></strong> file exists on the server: <em>geoip_db_avail(GEOIP_COUNTRY_EDITION)</em>
 <ul>
@@ -46,7 +46,7 @@ Next there are 4 <strong><em>if/else</em></strong> statements:
 </ul>
 <strong>4. </strong>Line 74 – 88 : <em><strong>mod_geoip</strong></em> is installed, but neither GeoIP.dat or GeoIPCity.dat exist
 <ul>
-    <li>This has the same behavior like item <a name="#1"></a>#1<a> in this list –  it uses <strong><em>externals/geoip/GeoIP.dat</em></strong> from the DotKernel framework</a></li>
+    <li>This has the same behavior like item <a name="#1"></a>#1<a> in this list –  it uses <strong><em>externals/geoip/GeoIP.dat</em></strong> from the Dotkernel framework</a></li>
 </ul>
 <pre> line="32">/**
  * Get the country by IP
@@ -114,13 +114,13 @@ public function getCountryByIp($ip)
 
 <div class="faq-list">
     <details class="acc" open>
-        <summary>What is GeoIP and what does it let DotKernel do? <span class="chev">+</span></summary>
+        <summary>What is GeoIP and what does it let Dotkernel do? <span class="chev">+</span></summary>
         <div class="acc-body">
-            <p class="mb-0">GeoIP is MaxMind's proprietary technology for IP geolocation data. DotKernel uses it to get user statistics by country, determining a visitor's country, region, city, postal code, or area code in real time.</p>
+            <p class="mb-0">GeoIP is MaxMind's proprietary technology for IP geolocation data. Dotkernel uses it to get user statistics by country, determining a visitor's country, region, city, postal code, or area code in real time.</p>
         </div>
     </details>
     <details class="acc">
-        <summary>Where does the GeoIP logic live in DotKernel? <span class="chev">+</span></summary>
+        <summary>Where does the GeoIP logic live in Dotkernel? <span class="chev">+</span></summary>
         <div class="acc-body">
             <p class="mb-0">In library/Dot/Geoip.php, inside the getCountryByIp function.</p>
         </div>
@@ -128,7 +128,7 @@ public function getCountryByIp($ip)
     <details class="acc">
         <summary>What does getCountryByIp do when the mod_geoip PECL extension isn't installed? <span class="chev">+</span></summary>
         <div class="acc-body">
-            <p class="mb-0">It falls back to the existing externals/geoip/GeoIP.dat file bundled with DotKernel (downloadable from MaxMind if not present).</p>
+            <p class="mb-0">It falls back to the existing externals/geoip/GeoIP.dat file bundled with Dotkernel (downloadable from MaxMind if not present).</p>
         </div>
     </details>
     <details class="acc">

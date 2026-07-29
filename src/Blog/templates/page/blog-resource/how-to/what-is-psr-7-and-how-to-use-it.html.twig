@@ -85,7 +85,7 @@ $body-&gt;write($contents); // stream contains "efabcd"
 </pre><blockquote class="blockquote border-start border-4 ps-3 text-muted my-3"><p class="mb-3">Note: <code>getContents()</code> seeks the stream while reading it, therefore if the second <code>rewind()</code> method call was not present the stream would have resulted in <code>abcdefabcd</code> because the <code>write()</code> method appends to stream if not preceeded by <code>rewind()</code> or <code>seek(0)</code>.</p></blockquote><h4 id="prepending-by-using-contents-as-a-string">Prepending by using contents as a string</h4><pre>>$body = $response-&gt;getBody();
 $body-&gt;rewind(); // or $body-&gt;seek(0);
 $bodyText = $body-&gt;getContends();
-</pre><p class="mb-3">More information can be found in the <a href="https://docs.dotkernel.com/Prerequisites/PSR-7.html">PSR-7 article</a> in<a href="https://docs.dotkernel.com/"> DotKernel3 documentation portal</a>.</p><p class="mb-3">Sources: <a href="http://www.php-fig.org/psr/psr-7/">PSR-7: HTTP messages</a> <a href="https://zendframework.github.io/zend-diactoros/">zend-diactoros</a></p>
+</pre><p class="mb-3">More information can be found in the <a href="https://docs.dotkernel.com/Prerequisites/PSR-7.html">PSR-7 article</a> in<a href="https://docs.dotkernel.com/"> Dotkernel3 documentation portal</a>.</p><p class="mb-3">Sources: <a href="http://www.php-fig.org/psr/psr-7/">PSR-7: HTTP messages</a> <a href="https://zendframework.github.io/zend-diactoros/">zend-diactoros</a></p>
 
 <h2 id="user-content-faq">Frequently Asked Questions</h2>
 

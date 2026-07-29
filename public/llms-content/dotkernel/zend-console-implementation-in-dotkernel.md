@@ -1,6 +1,6 @@
 ---
-title: "Zend_Console implementation in DotKernel"
-description: "How DotKernel's Console bootstrap lets you run PHP scripts from the command line, including its arguments and bundled example actions."
+title: "Zend_Console implementation in Dotkernel"
+description: "How Dotkernel's Console bootstrap lets you run PHP scripts from the command line, including its arguments and bundled example actions."
 author: "Adrian"
 date_published: "2011-10-13"
 canonical_url: "https://www.dotkernel.com/dotkernel/zend-console-implementation-in-dotkernel/"
@@ -8,11 +8,11 @@ category: "Dotkernel"
 language: "en"
 ---
 
-# Zend_Console implementation in DotKernel
+# Zend_Console implementation in Dotkernel
 
 ## TL;DR
 
-Starting with version 1.5, DotKernel has a Console bootstrap to easily run PHP scripts from the command line.
+Starting with version 1.5, Dotkernel has a Console bootstrap to easily run PHP scripts from the command line.
 The most common use for this is running cron jobs without using wget or going through Apache.
 
 ## Where it lives
@@ -30,7 +30,7 @@ There are two command line arguments:
 
 Any other arguments set when calling the script will be available in the controller in the `$registry->arguments` array.
 
-The controller bundled with DotKernel has two example actions: `count-users`, which demonstrates how to interact with models, and `send-newsletter`, which reads the newsletter from the command line.
+The controller bundled with Dotkernel has two example actions: `count-users`, which demonstrates how to interact with models, and `send-newsletter`, which reads the newsletter from the command line.
 
 ## Examples
 
@@ -44,8 +44,8 @@ The controller bundled with DotKernel has two example actions: `count-users`, wh
 
 ## FAQ
 
-**Q: What is the purpose of the Console bootstrap in DotKernel?**
-A: Starting with version 1.5, DotKernel has a Console bootstrap to easily run PHP scripts from the command line, most commonly used to run cron jobs without using wget or going through Apache.
+**Q: What is the purpose of the Console bootstrap in Dotkernel?**
+A: Starting with version 1.5, Dotkernel has a Console bootstrap to easily run PHP scripts from the command line, most commonly used to run cron jobs without using wget or going through Apache.
 
 **Q: Where is the Console bootstrap located?**
 A: The bootstrap is found in Console/index.php, and it has one controller in Controller.php with two example actions.

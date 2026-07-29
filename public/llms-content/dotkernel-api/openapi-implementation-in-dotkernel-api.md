@@ -56,11 +56,11 @@ It's even more beneficial if the documentation is integrated with a developer po
 This helps maintain existing functionality when changes are implemented.
 - Helps troubleshooting: it defines the correct functionality that helps developers and maintainers find and fix bugs more effectively.
 
-## OpenAPI in DotKernel API
+## OpenAPI in Dotkernel API
 
-DotKernel API has full support for OpenAPI, from describing the endpoints and generating the documentation, to rendering and testing the endpoints.
+Dotkernel API has full support for OpenAPI, from describing the endpoints and generating the documentation, to rendering and testing the endpoints.
 
-Each module (Admin, App, User) in DotKernel API contains a file named `OpenAPI.php`.
+Each module (Admin, App, User) in Dotkernel API contains a file named `OpenAPI.php`.
 In this file you must document all of the endpoints from `RoutesDelegator.php`.
 The entries in `OpenAPI.php` have several descriptive items, the most important being method, request and response.
 These are used to generate a documentation file from the command line.
@@ -81,7 +81,7 @@ These are below:
 Read more details about the above [here](https://docs.dotkernel.org/api-documentation/v5/openapi/initialized-components/).
 
 Once you have your basic components defined, you can begin work on the endpoints.
-The endpoints already made available in DotKernel API are documented, so you must do the same for the new endpoints you create in your project.
+The endpoints already made available in Dotkernel API are documented, so you must do the same for the new endpoints you create in your project.
 This is done by defining these items:
 
 - the request object (Get, Post, Patch, Put, Delete)

@@ -1,7 +1,7 @@
 {% extends '@layout/default.html.twig' %}
 {% block json_ld %} {{ include('@jsonld/how-to/migrating-dotkernel-3-from-zend-expressive-2-to-zend-expressive-3.jsonld.twig') }} {% endblock %}
 
-{% block title %}Migrating DotKernel 3 from Zend Expressive 2 to Zend Expressive 3{% endblock %}
+{% block title %}Migrating Dotkernel 3 from Zend Expressive 2 to Zend Expressive 3{% endblock %}
 
 {% block page_title %}
     {{ include('@partial/title-section.html.twig', {
@@ -21,7 +21,7 @@
             <article class="article">
                 <div class="entry">
                     {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-This article covers the steps required to migrate a DotKernel 3 instance to the latest Zend Expressive Version.
+This article covers the steps required to migrate a Dotkernel 3 instance to the latest Zend Expressive Version.
 
 <!--more-->
 
@@ -42,7 +42,7 @@ By updating your middleware the <strong>Delegate</strong>s will become <strong>
 If your project only contains controller-based middleware it can be migrated by following the guides below.
 
 &nbsp;
-<h2>DotKernel3 Migration - Expressive 2.0 -&gt; 3.0</h2>
+<h2>Dotkernel3 Migration - Expressive 2.0 -&gt; 3.0</h2>
 &nbsp;
 <h2><a target="_blank" id="user-content-packages" class="anchor" href="https://github.com/dotkernel/admin/blob/master/docs/Migration.md#packages" aria-hidden="true" rel="noopener noreferrer"></a>Packages</h2>
 In <code>composer.json</code> replace the matching repositories with the following:
