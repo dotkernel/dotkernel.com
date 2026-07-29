@@ -24,7 +24,7 @@ Following the preview article about <a title="Protection against SQL Injection u
 What you should know about their methods is:
 <!--more-->
 <ul>
-    <li><em><a title="details" href="http://framework.zend.com/apidoc/core/Zend_Db/Adapter/Zend_Db_Adapter_Abstract.html#query">query</a> (mixed $sql,  )</em>
+    <li><em><a title="details" href="http://framework.zend.com/apidoc/core/Zend_Db/Adapter/Zend_Db_Adapter_Abstract.html#query">query</a> (mixed $sql,  [mixed $bind  = array()])</em>
 <ul>
     <li>use prepare statements internally</li>
     <li>but SQL Injection is still possible if $sql is dynamically created</li>
@@ -42,7 +42,7 @@ What you should know about their methods is:
     <li>so, SQL Injection is not possible</li>
 </ul>
 </li>
-    <li><em><a title="details" href="http://framework.zend.com/apidoc/core/Zend_Db/Adapter/Zend_Db_Adapter_Abstract.html#update">update</a> (mixed $table,   $bind, )</em>
+    <li><em><a title="details" href="http://framework.zend.com/apidoc/core/Zend_Db/Adapter/Zend_Db_Adapter_Abstract.html#update">update</a> (mixed $table,   $bind, [mixed $where = ''])</em>
 <ul>
     <li>use prepare statements internally</li>
 </ul>
@@ -50,7 +50,7 @@ What you should know about their methods is:
     <li>but SQL Injection may be possible if $where is created dynamically</li>
 </ul>
 </li>
-    <li><em><a title="details" href="http://framework.zend.com/apidoc/core/Zend_Db/Adapter/Zend_Db_Adapter_Abstract.html#delete">delete</a> (mixed $table,  )</em>
+    <li><em><a title="details" href="http://framework.zend.com/apidoc/core/Zend_Db/Adapter/Zend_Db_Adapter_Abstract.html#delete">delete</a> (mixed $table,  [mixed $where  = ''])</em>
 <ul>
     <li>SQL Injection may be possible if $where is created dynamically</li>
 </ul>
@@ -61,7 +61,7 @@ What you should know about their methods is:
 For more details see <a title="Secure Programming with the Zend-Framework" href="http://www.suspekt.org/downloads/DPC_Secure_Programming_With_The_Zend_Framework.pdf" target="_blank" rel="noopener noreferrer">Stefan Esser slides</a>.
 
 PS. A short <a href="http://www.dustinweber.com/main-page/type-casting-in-php-whats-the-point/">tip</a>, you can use cast type to avoid SQL Injection in WHERE clause where is possible.
-<pre>>$sql= 'SELECT * FROM table WHERE id = ' . (int)$_POST;
+<pre>>$sql= 'SELECT * FROM table WHERE id = ' . (int)$_POST['id'];
 </pre>
 
 <h2 id="user-content-faq">Frequently Asked Questions</h2>

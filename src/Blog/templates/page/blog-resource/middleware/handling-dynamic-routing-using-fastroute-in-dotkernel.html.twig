@@ -31,7 +31,7 @@
 
 <p class="mb-3">In the past, declaring routes had a more static, hard-coded approach. All our modules have a <code>RoutesDelegator.php</code> file in the <code>src</code> folder for each module. Each route would have an entry like the one below:</p>
 
-<pre>$app->get('/page', , 'page');</pre>
+<pre>$app->get('/page[/{action}]', [GetPageViewHandler::class], 'page');</pre>
 
 <p class="mb-3">This route would be used for urls like <code>/page/about</code> or <code>/page/who-we-are</code> that we will reference later.</p>
 
@@ -39,7 +39,7 @@
 
 <ul><li>A <strong>method</strong>, in this case <code>get</code> which is aimed at static pages.</li>
 
-<li>A <strong>path</strong> used to direct the execution to a handler, in this case <code>/page</code> which also uses the optional parameter <code>action</code>.</li>
+<li>A <strong>path</strong> used to direct the execution to a handler, in this case <code>/page[/{action}]</code> which also uses the optional parameter <code>action</code>.</li>
 
 <li>A <strong>handler</strong> to be executed, like <code>GetPageViewHandler</code> which is designed to display static pages out of the box, but can be expanded as needed.</li>
 
@@ -69,7 +69,11 @@
 
 <p class="mb-3">The update centralizes the route configuration in the <code>config/autoload/local.php</code> file. Here is how the routing looks out of the box:</p>
 
-<pre>'routes'      => ,
+<pre>'routes'      => [
+    'page' => [
+        'about'      => 'about',
+        'who-we-are' => 'who-we-are',
+    ],
 ],</pre>
 
 <p class="mb-3">This supports the urls <code>/page/about</code> and <code>/page/who-we-are</code>.</p>
@@ -85,7 +89,7 @@
 
 <p class="mb-3">In this setup, the <code>RoutesDelegator</code> file doesn't need to be touched most of the time. This is how it generates the routes for each page:</p>
 
-<pre>$routes = $container->get('config') ?? [];
+<pre>$routes = $container->get('config')['routes'] ?? [];
 foreach ($routes as $prefix => $moduleRoutes) {
     foreach ($moduleRoutes as $routeUri => $templateName) {
     $app->get(

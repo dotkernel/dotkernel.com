@@ -40,8 +40,8 @@ The cache is automatically loaded in the initialization and stored in the Regist
 Loading the caching engine is not needed because it is already loaded on kernel initialization (<em>see <strong>Dot_Kernel</strong>::<strong>initialize</strong>($startTime)</em>)<em>,</em> but if you would like to use caching for other purposes (where you are not initializing the kernel), the loading syntax is the following:
 <pre>>Dot_Cache::loadCache();</pre>
 Below is a simple object caching sample, yes, you can also cache objects.
-
-<span style="color: #ff0000;">Note: The cache key must match the following RegEx pattern: </span><strong>*</strong>
+<br>
+<span style="color: #ff0000;">Note: The cache key must match the following RegEx pattern: </span><strong>[A-Za-z0-9_]*</strong>
 <pre>>$id = 'MyCachedKey';
 $obj = new stdClass();
 $obj->text = 'I am a cached text';

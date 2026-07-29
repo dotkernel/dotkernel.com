@@ -84,7 +84,9 @@ return &#91;
 
 <p class="mb-3">Note the value <code>ConfigurationInterface::ANY_ORIGIN</code> stored under <code>allowed_origins</code>. Leaving this value as is, makes your application accessible by any origin (<em>permissive mode</em>). To restrict access, replace it with a list of origins that should have access to your application (<em>restrictive mode</em>), for example:</p>
 
-<pre>'allowed_origins' =&gt; ,</pre>
+<pre>'allowed_origins' =&gt; [
+    "domain1.com", "domain2.com"
+],</pre>
 
 <p class="mb-3">Don't forget to make a <em>distributable</em> version of you <strong>config/autoload/cors.local.php</strong> and add that to your repository.</p>
 

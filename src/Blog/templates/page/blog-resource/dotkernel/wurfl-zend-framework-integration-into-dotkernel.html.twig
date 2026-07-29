@@ -58,7 +58,7 @@ resources.useragent.wurflapi.wurfl_config_file = APPLICATION_PATH "/configs/wurf
 <a href="http://wurfl.sourceforge.net/" target="_blank" rel="noopener noreferrer">WURFL</a> is integrated into DotKernel in the mobile module, but to access WURFL configuration, use
 <pre>>$userAgent = new Zend_Http_UserAgent($config-&gt;resources-&gt;useragent);
 $device = $userAgent-&gt;getDevice();</pre>
-<em>$userAgent-&gt;getDevice()</em> returns all the relevant information about the current user agent <em>($_SERVER)</em>
+<em>$userAgent-&gt;getDevice()</em> returns all the relevant information about the current user agent <em>($_SERVER['HTTP_USER_AGENT'])</em>
 
 <h2 id="user-content-faq">Frequently Asked Questions</h2>
 
