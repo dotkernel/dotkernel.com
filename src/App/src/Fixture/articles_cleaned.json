@@ -5,15 +5,15 @@
         "isVisible": true,
         "articles": [
             {
-                "post_title": "DotKernel Database Naming Conventions for MySQL",
+                "post_title": "Dotkernel Database Naming Conventions for MySQL",
                 "post_date": "2010-03-10 16:56:24",
                 "post_status": "publish",
                 "author": {
                     "display_name": "admin",
                     "github": "arhimede"
                 },
-                "excerpt": "DotKernel borrows the database naming conventions from FaZend: Rules of naming of database tables and columns. FaZend is an open-source PHP framework based on Zend Framework.",
-                "tl_dr": "DotKernel's database naming conventions are borrowed from FaZend's \"Rules of naming of database tables and columns.\"\nTables use singular, camelLetter names, every table has an auto-increment id, foreign keys are named after the referenced table and column, and SQL keywords are capitalized.",
+                "excerpt": "Dotkernel borrows the database naming conventions from FaZend: Rules of naming of database tables and columns. FaZend is an open-source PHP framework based on Zend Framework.",
+                "tl_dr": "Dotkernel's database naming conventions are borrowed from FaZend's \"Rules of naming of database tables and columns.\"\nTables use singular, camelLetter names, every table has an auto-increment id, foreign keys are named after the referenced table and column, and SQL keywords are capitalized.",
                 "isObsolete": false
             },
             {
@@ -41,7 +41,7 @@
                 "tl_dr": "Dot_Email extends Zend_Mail, so all of Zend_Mail's methods are available in it.\nBeyond its constructor, Dot_Email itself adds only two methods: setContent() and send().\nTo send an email you must always call addTo(), setSubject(), one of setBodyText()\/setBodyHtml()\/setContent(), and finally send()."
             },
             {
-                "post_title": "DotKernel 1.2.0 release",
+                "post_title": "Dotkernel 1.2.0 release",
                 "post_date": "2010-07-05 09:36:10",
                 "post_status": "publish",
                 "author": {
@@ -49,11 +49,11 @@
                     "github": ""
                 },
                 "isObsolete": true,
-                "excerpt": "Finally we reached DotKernel 1.2.",
-                "tl_dr": "DotKernel 1.2.0 has been released, bringing changes since the previous 1.1.2 release.\nThe database tables were renamed and restructured to follow database naming conventions, and configuration for each \"dots\" (submodule) now lives in XML files instead of being hard-coded in PHP.\nThe release also adds new library classes (Dot_Geoip, Dot_Seo), updates existing ones (Dot_Curl, Dot_Session), and confirms that all SQL queries are written as prepared statements."
+                "excerpt": "Finally we reached Dotkernel 1.2.",
+                "tl_dr": "Dotkernel 1.2.0 has been released, bringing changes since the previous 1.1.2 release.\nThe database tables were renamed and restructured to follow database naming conventions, and configuration for each \"dots\" (submodule) now lives in XML files instead of being hard-coded in PHP.\nThe release also adds new library classes (Dot_Geoip, Dot_Seo), updates existing ones (Dot_Curl, Dot_Session), and confirms that all SQL queries are written as prepared statements."
             },
             {
-                "post_title": "DotKernel 1.2.2 release",
+                "post_title": "Dotkernel 1.2.2 release",
                 "post_date": "2010-07-30 05:10:12",
                 "post_status": "publish",
                 "author": {
@@ -61,11 +61,11 @@
                     "github": ""
                 },
                 "isObsolete": true,
-                "excerpt": "Yesterday, we released DotKernel 1.2.",
-                "tl_dr": "DotKernel 1.2.2 is a bug-fix release that closes five tracked issues.\nBecause one of the fixes updated the copyright line, every PHP file in the codebase changed, so the full release or the incremental upgrade package is needed."
+                "excerpt": "Yesterday, we released Dotkernel 1.2.",
+                "tl_dr": "Dotkernel 1.2.2 is a bug-fix release that closes five tracked issues.\nBecause one of the fixes updated the copyright line, every PHP file in the codebase changed, so the full release or the incremental upgrade package is needed."
             },
             {
-                "post_title": "DotKernel 1.3.0 release",
+                "post_title": "Dotkernel 1.3.0 release",
                 "post_date": "2010-10-15 06:27:36",
                 "post_status": "publish",
                 "author": {
@@ -73,11 +73,11 @@
                     "github": ""
                 },
                 "isObsolete": true,
-                "excerpt": "DotKernel 1.3.",
-                "tl_dr": "DotKernel 1.3.0 brings a switchable admin skin, a way to protect member-only pages, a rename of Dot_Sessions, and a reorganization of resource.xml into route.xml and dots.xml.\nBecause of that XML reorganization, 1.3.0 is not backward compatible with earlier versions."
+                "excerpt": "Dotkernel 1.3.",
+                "tl_dr": "Dotkernel 1.3.0 brings a switchable admin skin, a way to protect member-only pages, a rename of Dot_Sessions, and a reorganization of resource.xml into route.xml and dots.xml.\nBecause of that XML reorganization, 1.3.0 is not backward compatible with earlier versions."
             },
             {
-                "post_title": "GeoIP: Ip Address Location In DotKernel",
+                "post_title": "GeoIP: Ip Address Location In Dotkernel",
                 "post_date": "2010-10-19 10:07:43",
                 "post_status": "publish",
                 "author": {
@@ -86,10 +86,10 @@
                 },
                 "isObsolete": false,
                 "excerpt": "GeoIP is the proprietary technology that drives MaxMind's IP geolocation data and services. It is a non-invasive way to determine geographical and other information about Internet visitors in real-time.",
-                "tl_dr": "GeoIP is MaxMind's proprietary technology for IP geolocation.\nDotKernel uses it to get user statistics by country, determining a visitor's country, region, city, postal code, or area code in real time.\nThe logic lives in library\/Dot\/Geoip.php, inside the getCountryByIp function, which branches over four cases depending on whether the mod_geoip PECL extension and its .dat files are available."
+                "tl_dr": "GeoIP is MaxMind's proprietary technology for IP geolocation.\nDotkernel uses it to get user statistics by country, determining a visitor's country, region, city, postal code, or area code in real time.\nThe logic lives in library\/Dot\/Geoip.php, inside the getCountryByIp function, which branches over four cases depending on whether the mod_geoip PECL extension and its .dat files are available."
             },
             {
-                "post_title": "WURFL Zend Framework Integration into DotKernel",
+                "post_title": "WURFL Zend Framework Integration into Dotkernel",
                 "post_date": "2010-10-27 06:02:45",
                 "post_status": "publish",
                 "author": {
@@ -97,11 +97,11 @@
                     "github": ""
                 },
                 "isObsolete": false,
-                "excerpt": "WURFL is integrated into DotKernel, using the Zend_Http_UserAgent class from the latest release ZF 1.11.",
-                "tl_dr": "WURFL is integrated into DotKernel using the Zend_Http_UserAgent class from ZF 1.11.0rc1 (the beta release at the time of the post).\nThis post walks through the required folders, config files, and code to wire it up."
+                "excerpt": "WURFL is integrated into Dotkernel, using the Zend_Http_UserAgent class from the latest release ZF 1.11.",
+                "tl_dr": "WURFL is integrated into Dotkernel using the Zend_Http_UserAgent class from ZF 1.11.0rc1 (the beta release at the time of the post).\nThis post walks through the required folders, config files, and code to wire it up."
             },
             {
-                "post_title": "DotKernel 1.3.2 release",
+                "post_title": "Dotkernel 1.3.2 release",
                 "post_date": "2010-12-23 11:30:20",
                 "post_status": "publish",
                 "author": {
@@ -109,11 +109,11 @@
                     "github": ""
                 },
                 "isObsolete": true,
-                "excerpt": "Before the winter holiday we came with a new release: DotKernel 1.3.",
-                "tl_dr": "Released just before the winter holidays, DotKernel 1.3.2 is mainly a maintenance release: it contains many bug fixes, some refactoring, and a few minor features."
+                "excerpt": "Before the winter holiday we came with a new release: Dotkernel 1.3.",
+                "tl_dr": "Released just before the winter holidays, Dotkernel 1.3.2 is mainly a maintenance release: it contains many bug fixes, some refactoring, and a few minor features."
             },
             {
-                "post_title": "Zend_Auth and Zend_Acl integrated in DotKernel",
+                "post_title": "Zend_Auth and Zend_Acl integrated in Dotkernel",
                 "post_date": "2011-06-16 08:55:28",
                 "post_status": "publish",
                 "author": {
@@ -121,8 +121,8 @@
                     "github": ""
                 },
                 "isObsolete": false,
-                "excerpt": "Zend_Auth and Zend_Acl have been integrated into the DotKernel, starting with version 1.5.",
-                "tl_dr": "Zend_Auth and Zend_Acl have been integrated into DotKernel starting with version 1.5.0.\nThe User and Admin models were completely refactored using the new Dot_Auth and Dot_Acl classes for authentication and access control."
+                "excerpt": "Zend_Auth and Zend_Acl have been integrated into the Dotkernel, starting with version 1.5.",
+                "tl_dr": "Zend_Auth and Zend_Acl have been integrated into Dotkernel starting with version 1.5.0.\nThe User and Admin models were completely refactored using the new Dot_Auth and Dot_Acl classes for authentication and access control."
             },
             {
                 "post_title": "Disable Wurfl redirect for mobile browsers",
@@ -133,8 +133,8 @@
                     "github": ""
                 },
                 "isObsolete": false,
-                "excerpt": "DotKernel has an example mobile site at http:\/\/v1.dotkernel.",
-                "tl_dr": "DotKernel's example mobile site normally relies on Wurfl to detect mobile browsers and automatically redirect visitors there on their first homepage view, which isn't always desired.\nAs of revision 408, this behavior is controlled by a single resources.useragent.wurflapi.redirect setting in application.ini.\nThe article shows that setting along with the matching condition in IndexController.php that checks it before registering and redirecting a visit."
+                "excerpt": "Dotkernel has an example mobile site at http:\/\/v1.dotkernel.",
+                "tl_dr": "Dotkernel's example mobile site normally relies on Wurfl to detect mobile browsers and automatically redirect visitors there on their first homepage view, which isn't always desired.\nAs of revision 408, this behavior is controlled by a single resources.useragent.wurflapi.redirect setting in application.ini.\nThe article shows that setting along with the matching condition in IndexController.php that checks it before registering and redirecting a visit."
             },
             {
                 "post_title": "Protecting admin folder with .htaccess in Plesk",
@@ -161,7 +161,7 @@
                 "tl_dr": "On a high-traffic project using WURFL, profiling showed WURFL's default filesystem cache was costing up to a few hundred milliseconds per request. Adding a small, custom second cache layer on top of WURFL, built on APC, cut response time by an order of magnitude, down to 20-30ms."
             },
             {
-                "post_title": "Zend Registry usage in DotKernel",
+                "post_title": "Zend Registry usage in Dotkernel",
                 "post_date": "2011-06-01 03:00:47",
                 "post_status": "publish",
                 "author": {
@@ -169,11 +169,11 @@
                     "github": ""
                 },
                 "isObsolete": false,
-                "excerpt": "In DotKernel, Zend_Registry will contain the following variables: startTime - the result of microtime() at the beginning of the request configuration - the configuration options loaded from configs\/application.ini router - routing settings loaded from configs\/router.",
-                "tl_dr": "In DotKernel, Zend_Registry holds a fixed set of request-scoped variables — from timing and configuration to the database adapter and session object — and can be read either as a full instance or one value at a time."
+                "excerpt": "In Dotkernel, Zend_Registry will contain the following variables: startTime - the result of microtime() at the beginning of the request configuration - the configuration options loaded from configs\/application.ini router - routing settings loaded from configs\/router.",
+                "tl_dr": "In Dotkernel, Zend_Registry holds a fixed set of request-scoped variables — from timing and configuration to the database adapter and session object — and can be read either as a full instance or one value at a time."
             },
             {
-                "post_title": "WURFL PHP API license incompatible with DotKernel",
+                "post_title": "WURFL PHP API license incompatible with Dotkernel",
                 "post_date": "2011-06-08 20:29:04",
                 "post_status": "publish",
                 "author": {
@@ -181,11 +181,11 @@
                     "github": "arhimede"
                 },
                 "isObsolete": false,
-                "excerpt": "We integrated long time ago the WURFL PHP API into DotKernel code base. At that time, the license of that WURFL library was GNU\/GPL, which make it perfect compatible with Zend Framework license( new BSD) and DotKernel ( OSL 3.",
-                "tl_dr": "The WURFL PHP API was integrated into DotKernel long ago under a GNU\/GPL license, compatible with Zend Framework's new BSD license and DotKernel's OSL 3.0 license.\nOn June 6th, 2011, WURFL PHP API version 1.3.0 changed its license to AGPL, turning it into a \"trial only\" library for product evaluation.\nDotKernel had updated to this version in the 1.5.0 release candidate without noticing the license change."
+                "excerpt": "We integrated long time ago the WURFL PHP API into Dotkernel code base. At that time, the license of that WURFL library was GNU\/GPL, which make it perfect compatible with Zend Framework license( new BSD) and Dotkernel ( OSL 3.",
+                "tl_dr": "The WURFL PHP API was integrated into Dotkernel long ago under a GNU\/GPL license, compatible with Zend Framework's new BSD license and Dotkernel's OSL 3.0 license.\nOn June 6th, 2011, WURFL PHP API version 1.3.0 changed its license to AGPL, turning it into a \"trial only\" library for product evaluation.\nDotkernel had updated to this version in the 1.5.0 release candidate without noticing the license change."
             },
             {
-                "post_title": "DotKernel 1.5.0 Released",
+                "post_title": "Dotkernel 1.5.0 Released",
                 "post_date": "2011-06-15 12:07:08",
                 "post_status": "publish",
                 "author": {
@@ -193,11 +193,11 @@
                     "github": ""
                 },
                 "isObsolete": true,
-                "excerpt": "After a longer wait than usual, DotKernel 1.5.",
-                "tl_dr": "After a longer wait than usual and around 250 commits, DotKernel 1.5.0 was released, skipping 1.4 entirely due to the scale of changes.\nHighlights include switching from Dojo to jQuery, a redesigned admin and frontend, model inheritance through a new Dot_Model class, support for dashed controller names, and a reorganized Zend Registry."
+                "excerpt": "After a longer wait than usual, Dotkernel 1.5.",
+                "tl_dr": "After a longer wait than usual and around 250 commits, Dotkernel 1.5.0 was released, skipping 1.4 entirely due to the scale of changes.\nHighlights include switching from Dojo to jQuery, a redesigned admin and frontend, model inheritance through a new Dot_Model class, support for dashed controller names, and a reorganized Zend Registry."
             },
             {
-                "post_title": "Detecting Mobile Devices in DotKernel 1.6.0",
+                "post_title": "Detecting Mobile Devices in Dotkernel 1.6.0",
                 "post_date": "2012-05-18 16:35:47",
                 "post_status": "publish",
                 "author": {
@@ -205,11 +205,11 @@
                     "github": ""
                 },
                 "isObsolete": true,
-                "excerpt": "The new DotKernel version 1.6.",
-                "tl_dr": "DotKernel 1.6.0 no longer ships with a working built-in mobile detection method, because mobile detection now relies on the new Wurfl Cloud integration and must be configured via a Wurfl Cloud account and API key.\nThe old Dot_UserAgent_Wurfl class was removed and replaced by Dot_UserAgent_WurflCloud, which uses the Wurfl Cloud API adapter.\nThe article walks through the application.ini settings and shows sample code for reading device info and redirecting mobile visitors."
+                "excerpt": "The new Dotkernel version 1.6.",
+                "tl_dr": "Dotkernel 1.6.0 no longer ships with a working built-in mobile detection method, because mobile detection now relies on the new Wurfl Cloud integration and must be configured via a Wurfl Cloud account and API key.\nThe old Dot_UserAgent_Wurfl class was removed and replaced by Dot_UserAgent_WurflCloud, which uses the Wurfl Cloud API adapter.\nThe article walks through the application.ini settings and shows sample code for reading device info and redirecting mobile visitors."
             },
             {
-                "post_title": "Zend_Session usage in DotKernel - Refactor of Dot_Session class",
+                "post_title": "Zend_Session usage in Dotkernel - Refactor of Dot_Session class",
                 "post_date": "2011-07-28 19:03:38",
                 "post_status": "publish",
                 "author": {
@@ -217,11 +217,11 @@
                     "github": "arhimede"
                 },
                 "isObsolete": false,
-                "excerpt": "We found a strange behaviour of sessions in one of our project, running DotKernel version 1.5.",
-                "tl_dr": "A strange session bug was found on a project running DotKernel 1.5.0: in IE8 and IE9, the session cookie was sometimes not saved, forcing repeated logins.\nInvestigation traced it to the Dot_Session class calling both regenerateID() and rememberMe() unnecessarily, generating the session cookie 3 times.\nThe fix, shipped in DotKernel 1.5.1, removed the regenerateID() call and added two new application.ini settings."
+                "excerpt": "We found a strange behaviour of sessions in one of our project, running Dotkernel version 1.5.",
+                "tl_dr": "A strange session bug was found on a project running Dotkernel 1.5.0: in IE8 and IE9, the session cookie was sometimes not saved, forcing repeated logins.\nInvestigation traced it to the Dot_Session class calling both regenerateID() and rememberMe() unnecessarily, generating the session cookie 3 times.\nThe fix, shipped in Dotkernel 1.5.1, removed the regenerateID() call and added two new application.ini settings."
             },
             {
-                "post_title": "Zend_Console implementation in DotKernel",
+                "post_title": "Zend_Console implementation in Dotkernel",
                 "post_date": "2011-10-13 10:07:48",
                 "post_status": "publish",
                 "author": {
@@ -229,11 +229,11 @@
                     "github": ""
                 },
                 "isObsolete": false,
-                "excerpt": "Starting with 1.5, DotKernel has a Console bootstrap to easily run PHP scripts from the command line.",
-                "tl_dr": "Starting with version 1.5, DotKernel has a Console bootstrap to easily run PHP scripts from the command line.\nThe most common use for this is running cron jobs without using wget or going through Apache."
+                "excerpt": "Starting with 1.5, Dotkernel has a Console bootstrap to easily run PHP scripts from the command line.",
+                "tl_dr": "Starting with version 1.5, Dotkernel has a Console bootstrap to easily run PHP scripts from the command line.\nThe most common use for this is running cron jobs without using wget or going through Apache."
             },
             {
-                "post_title": "Manual upgrade of WURFL xml file in DotKernel",
+                "post_title": "Manual upgrade of WURFL xml file in Dotkernel",
                 "post_date": "2011-11-22 10:47:56",
                 "post_status": "publish",
                 "author": {
@@ -241,8 +241,8 @@
                     "github": "arhimede"
                 },
                 "isObsolete": false,
-                "excerpt": "DotKernel Application Framework can be downloaded with WURFL XML file bundled in it, but is quite an old file,  the latest GPL version, from June 2011. Because of license changed of that WURFL file,  this bundled file will not be upgraded anymore by us.",
-                "tl_dr": "DotKernel Application Framework bundles a WURFL XML file, but it's the last GPL version (from June 2011).\nBecause of a license change to that WURFL file, DotKernel will no longer upgrade the bundled file — it must be upgraded manually."
+                "excerpt": "Dotkernel Application Framework can be downloaded with WURFL XML file bundled in it, but is quite an old file,  the latest GPL version, from June 2011. Because of license changed of that WURFL file,  this bundled file will not be upgraded anymore by us.",
+                "tl_dr": "Dotkernel Application Framework bundles a WURFL XML file, but it's the last GPL version (from June 2011).\nBecause of a license change to that WURFL file, Dotkernel will no longer upgrade the bundled file — it must be upgraded manually."
             },
             {
                 "post_title": "How to Set a Persistent Connection to Database with Zend Framework Zend_Db adapter",
@@ -257,7 +257,7 @@
                 "tl_dr": ""
             },
             {
-                "post_title": "Zend Studio PHP Formatter file for DotKernel coding standard.",
+                "post_title": "Zend Studio PHP Formatter file for Dotkernel coding standard.",
                 "post_date": "2012-03-02 11:08:16",
                 "post_status": "publish",
                 "author": {
@@ -265,7 +265,7 @@
                     "github": "arhimede"
                 },
                 "isObsolete": false,
-                "excerpt": "Here is  uploaded the XML file , ready to be imported in your Zend Studio, version 9.x This file follow DotKernel’s Coding standard.",
+                "excerpt": "Here is  uploaded the XML file , ready to be imported in your Zend Studio, version 9.x This file follow Dotkernel’s Coding standard.",
                 "tl_dr": ""
             },
             {
@@ -281,7 +281,7 @@
                 "tl_dr": ""
             },
             {
-                "post_title": "Using  UTF8 charset in DotKernel",
+                "post_title": "Using  UTF8 charset in Dotkernel",
                 "post_date": "2012-04-07 23:49:34",
                 "post_status": "publish",
                 "author": {
@@ -289,8 +289,8 @@
                     "github": "arhimede"
                 },
                 "isObsolete": false,
-                "excerpt": "In order to use UTF8 encoding in your DotKernel based system, is needed to make some changes in both database structure and in the application.ini file.",
-                "tl_dr": "To use UTF8 encoding in a DotKernel-based system, changes are needed in both the database structure and the application.ini file.\nThese changes were committed into the DotKernel 1.6.0 dev codebase."
+                "excerpt": "In order to use UTF8 encoding in your Dotkernel based system, is needed to make some changes in both database structure and in the application.ini file.",
+                "tl_dr": "To use UTF8 encoding in a Dotkernel-based system, changes are needed in both the database structure and the application.ini file.\nThese changes were committed into the Dotkernel 1.6.0 dev codebase."
             },
             {
                 "post_title": "Commitment  to PHP -  new Zend Certified Engineers - ZCE - in our team",
@@ -317,7 +317,7 @@
                 "tl_dr": "In some situations it may be necessary to force the MySQL server's collation and character set to UTF8, since you can't control all the scripts connecting to your database (for instance the mysql command line or mysqldump).\nThis is done by editing my.cnf."
             },
             {
-                "post_title": "Highcharts Integration in DotKernel 1.6.0",
+                "post_title": "Highcharts Integration in Dotkernel 1.6.0",
                 "post_date": "2012-05-18 16:32:39",
                 "post_status": "publish",
                 "author": {
@@ -325,11 +325,11 @@
                     "github": ""
                 },
                 "isObsolete": true,
-                "excerpt": "Integrating a new charting library in the latest version of DotKernel (1.6.",
-                "tl_dr": "DotKernel 1.6.0 integrates the Highcharts charting library, offering a new, intuitive and interactive charting experience.\nSample charts (pie, column and line) were added to the admin, and the library ships in the project's externals directory."
+                "excerpt": "Integrating a new charting library in the latest version of Dotkernel (1.6.",
+                "tl_dr": "Dotkernel 1.6.0 integrates the Highcharts charting library, offering a new, intuitive and interactive charting experience.\nSample charts (pie, column and line) were added to the admin, and the library ships in the project's externals directory."
             },
             {
-                "post_title": "Wurfl Cloud Integration in DotKernel 1.6.0",
+                "post_title": "Wurfl Cloud Integration in Dotkernel 1.6.0",
                 "post_date": "2012-05-18 16:37:25",
                 "post_status": "publish",
                 "author": {
@@ -338,10 +338,10 @@
                 },
                 "isObsolete": true,
                 "excerpt": "Another new feature in version 1.6.",
-                "tl_dr": "DotKernel 1.6.0 integrates Wurfl Cloud, WURFL's (Wireless Universal Resource FiLe) new cloud-based way of delivering device detection services, as its default method for detecting mobile devices."
+                "tl_dr": "Dotkernel 1.6.0 integrates Wurfl Cloud, WURFL's (Wireless Universal Resource FiLe) new cloud-based way of delivering device detection services, as its default method for detecting mobile devices."
             },
             {
-                "post_title": "Scientia Mobile licensed its Wurfl Cloud PHP library to DotKernel 1.6",
+                "post_title": "Scientia Mobile licensed its Wurfl Cloud PHP library to Dotkernel 1.6",
                 "post_date": "2012-05-25 18:36:47",
                 "post_status": "publish",
                 "author": {
@@ -349,8 +349,8 @@
                     "github": "arhimede"
                 },
                 "isObsolete": true,
-                "excerpt": "In the DotKernel version 1.6.",
-                "tl_dr": "In DotKernel 1.6.0, released on May 16th, 2012, the GPL'ed WURFL PHP library was removed because its code was obsolete and the XML file structure had changed. It was replaced by Scientia Mobile's WURFL Cloud PHP library, made available to DotKernel under a special, restrictive license."
+                "excerpt": "In the Dotkernel version 1.6.",
+                "tl_dr": "In Dotkernel 1.6.0, released on May 16th, 2012, the GPL'ed WURFL PHP library was removed because its code was obsolete and the XML file structure had changed. It was replaced by Scientia Mobile's WURFL Cloud PHP library, made available to Dotkernel under a special, restrictive license."
             },
             {
                 "post_title": "New Features in Zend Framework 1.12",
@@ -365,7 +365,7 @@
                 "tl_dr": "Per Matthew Weier O'Phinney's announcement, the Zend Framework team made available the first release candidate of the Zend Framework 1.12 series, 1.12.0RC1.\nIt back ports several ZF2 components to ZF1, removes the WurflApi adapter due to licensing changes, and fixes over 200 reported issues."
             },
             {
-                "post_title": "DotKernel on Nginx",
+                "post_title": "Dotkernel on Nginx",
                 "post_date": "2013-06-25 12:42:19",
                 "post_status": "publish",
                 "author": {
@@ -374,7 +374,7 @@
                 },
                 "isObsolete": false,
                 "excerpt": "Due to the fact that the current buzzword is Nginx instead of Apache, we decided to test if Dotkernel is running out of the box on it. And how to configure Nginx :-) Installed on a clean Centos 6.",
-                "tl_dr": "Since Nginx was becoming the buzzword instead of Apache, this article tests DotKernel on Nginx and documents the configuration needed: server block settings, a try_files directive in place of .htaccess, PHP-FPM handling, and protecting the configs folder."
+                "tl_dr": "Since Nginx was becoming the buzzword instead of Apache, this article tests Dotkernel on Nginx and documents the configuration needed: server block settings, a try_files directive in place of .htaccess, PHP-FPM handling, and protecting the configs folder."
             },
             {
                 "post_title": "PHP Formatter and Templates for Zend Studio 10.1",
@@ -425,7 +425,7 @@
                 "tl_dr": ""
             },
             {
-                "post_title": "Implementing the new Password Hashing API from PHP 5.5 in DotKernel",
+                "post_title": "Implementing the new Password Hashing API from PHP 5.5 in Dotkernel",
                 "post_date": "2014-06-06 11:54:56",
                 "post_status": "publish",
                 "author": {
@@ -433,11 +433,11 @@
                     "github": "arhimede"
                 },
                 "isObsolete": false,
-                "excerpt": "In order to use the new Password Hashing functions , introduced in PHP 5.5 , and unify all password related functions , used for both admin and users, we did a major refactor of DotKernel codebase, in version 1.",
-                "tl_dr": "To use the new Password Hashing functions introduced in PHP 5.5 and unify password-related functions for both admin and users, DotKernel's codebase was refactored in version 1.8.0 (starting from revision 799).\nBecause those functions require PHP 5.5+, the Password Compat library is used for compatibility, and the minimum PHP version to run DotKernel was raised to 5.3.8."
+                "excerpt": "In order to use the new Password Hashing functions , introduced in PHP 5.5 , and unify all password related functions , used for both admin and users, we did a major refactor of Dotkernel codebase, in version 1.",
+                "tl_dr": "To use the new Password Hashing functions introduced in PHP 5.5 and unify password-related functions for both admin and users, Dotkernel's codebase was refactored in version 1.8.0 (starting from revision 799).\nBecause those functions require PHP 5.5+, the Password Compat library is used for compatibility, and the minimum PHP version to run Dotkernel was raised to 5.3.8."
             },
             {
-                "post_title": "Configuring the Cache in DotKernel",
+                "post_title": "Configuring the Cache in Dotkernel",
                 "post_date": "2015-01-29 10:08:15",
                 "post_status": "publish",
                 "author": {
@@ -445,11 +445,11 @@
                     "github": ""
                 },
                 "isObsolete": false,
-                "excerpt": "This article contains the DotKernel cache layer configuration guide. The DotKernel Caching Layer is based on Zend Framework Cache, more configuration options can be found at the following links: Zend Framework Cache Frontends Zend Framework Cache Backends Main cache settings (Cache Frontend) The main cache settings within the application.",
-                "tl_dr": "DotKernel's caching layer is built on Zend Framework Cache and is configured through cache.* settings in application.ini.\nThe main frontend settings control whether caching is enabled, which cache service to use, the namespace prefix, and how long entries live.\nOptional backend-specific settings (like the file cache directory) are recommended so that separate projects don't accidentally share the same cache."
+                "excerpt": "This article contains the Dotkernel cache layer configuration guide. The Dotkernel Caching Layer is based on Zend Framework Cache, more configuration options can be found at the following links: Zend Framework Cache Frontends Zend Framework Cache Backends Main cache settings (Cache Frontend) The main cache settings within the application.",
+                "tl_dr": "Dotkernel's caching layer is built on Zend Framework Cache and is configured through cache.* settings in application.ini.\nThe main frontend settings control whether caching is enabled, which cache service to use, the namespace prefix, and how long entries live.\nOptional backend-specific settings (like the file cache directory) are recommended so that separate projects don't accidentally share the same cache."
             },
             {
-                "post_title": "Caching in DotKernel using Zend Framework",
+                "post_title": "Caching in Dotkernel using Zend Framework",
                 "post_date": "2015-01-29 10:08:22",
                 "post_status": "publish",
                 "author": {
@@ -458,10 +458,10 @@
                 },
                 "isObsolete": false,
                 "excerpt": "It's very expensive to load configurations and settings from XML files, on every requests. First because of latency of accessing files from hard drive, second because of the XML file parsing burden.",
-                "tl_dr": "Loading configuration and settings from XML files on every request is expensive, both due to hard-drive latency and XML parsing overhead.\nDotKernel 1.8 implements a cache layer for router, acl_role, menu, options (including seo_xml), browser_xml, os_xml and test data, with a choice of APC\/APCU or file-based storage."
+                "tl_dr": "Loading configuration and settings from XML files on every request is expensive, both due to hard-drive latency and XML parsing overhead.\nDotkernel 1.8 implements a cache layer for router, acl_role, menu, options (including seo_xml), browser_xml, os_xml and test data, with a choice of APC\/APCU or file-based storage."
             },
             {
-                "post_title": "DotKernel Reserved Variable Names for Caching",
+                "post_title": "Dotkernel Reserved Variable Names for Caching",
                 "post_date": "2015-01-29 10:08:17",
                 "post_status": "publish",
                 "author": {
@@ -469,11 +469,11 @@
                     "github": ""
                 },
                 "isObsolete": false,
-                "excerpt": "This article is related to: Caching in DotKernel with Zend Framework Cache The variables that DotKernel cache are below: Router Router is the object that load routes (modules, controllers, actions) settings from router.xml file.",
-                "tl_dr": "This article is a follow-up to \"Caching in DotKernel Using Zend Framework Cache\" and lists the variables DotKernel caches, along with the exact cache key each one uses."
+                "excerpt": "This article is related to: Caching in Dotkernel with Zend Framework Cache The variables that Dotkernel cache are below: Router Router is the object that load routes (modules, controllers, actions) settings from router.xml file.",
+                "tl_dr": "This article is a follow-up to \"Caching in Dotkernel Using Zend Framework Cache\" and lists the variables Dotkernel caches, along with the exact cache key each one uses."
             },
             {
-                "post_title": "GeoIP City Removed From DotKernel",
+                "post_title": "GeoIP City Removed From Dotkernel",
                 "post_date": "2015-02-25 12:39:25",
                 "post_status": "publish",
                 "author": {
@@ -482,10 +482,10 @@
                 },
                 "isObsolete": false,
                 "excerpt": "In the newest version we have removed the GeoIP City integration. The City database on GeoIP 1.",
-                "tl_dr": "The newest DotKernel version removed the GeoIP City integration because the City database on GeoIP extension version 1.1.0+ was causing a segmentation fault, crashing requests or outputting an error instead of executing the PHP code.\nUsers on an older DotKernel version combined with GeoIP >=1.1.0 may hit this.\nIf you don't need GeoIP City, the affected code can be removed."
+                "tl_dr": "The newest Dotkernel version removed the GeoIP City integration because the City database on GeoIP extension version 1.1.0+ was causing a segmentation fault, crashing requests or outputting an error instead of executing the PHP code.\nUsers on an older Dotkernel version combined with GeoIP >=1.1.0 may hit this.\nIf you don't need GeoIP City, the affected code can be removed."
             },
             {
-                "post_title": "How to use Alerts in DotKernel",
+                "post_title": "How to use Alerts in Dotkernel",
                 "post_date": "2015-04-29 12:20:32",
                 "post_status": "publish",
                 "author": {
@@ -493,11 +493,11 @@
                     "github": ""
                 },
                 "isObsolete": false,
-                "excerpt": "Alerts (or Dot_Alert's) are e-mails usually sent to the site developers, these messages are sent with mail() therefore you shouldn't use them to send regular mail. Alerts should only notify you as a developer: \"Hey, something's wrong here, you might want to know this!\" In this article you will find out how to use the Alerts system in DotKernel, we will also go through an existing example so this can be understood easier.",
-                "tl_dr": "Alerts (Dot_Alert's) are e-mails usually sent to site developers using PHP's mail(), meant only to notify a developer that something is wrong — not for regular mail.\nDot_Alert resembles Dot_Email: it has a sender, subject, destination and message, and can be sent.\nThis guide walks through DotKernel's existing example, where an Alert notifies the developer when an e-mail fails to send."
+                "excerpt": "Alerts (or Dot_Alert's) are e-mails usually sent to the site developers, these messages are sent with mail() therefore you shouldn't use them to send regular mail. Alerts should only notify you as a developer: \"Hey, something's wrong here, you might want to know this!\" In this article you will find out how to use the Alerts system in Dotkernel, we will also go through an existing example so this can be understood easier.",
+                "tl_dr": "Alerts (Dot_Alert's) are e-mails usually sent to site developers using PHP's mail(), meant only to notify a developer that something is wrong — not for regular mail.\nDot_Alert resembles Dot_Email: it has a sender, subject, destination and message, and can be sent.\nThis guide walks through Dotkernel's existing example, where an Alert notifies the developer when an e-mail fails to send."
             },
             {
-                "post_title": "DotKernel 1.8.0 LTS Released",
+                "post_title": "Dotkernel 1.8.0 LTS Released",
                 "post_date": "2015-06-08 11:00:15",
                 "post_status": "publish",
                 "author": {
@@ -505,11 +505,11 @@
                     "github": ""
                 },
                 "isObsolete": true,
-                "excerpt": "DotKernel 1.8.",
-                "tl_dr": "DotKernel 1.8.0 (LTS) was released with a new Plugin Architecture, a redesigned and mobile-friendly frontend, APC\/File caching for faster response times, a new Dot_Request class, and multiple security and alerting improvements.\nSome features (WURFL integration, multiple SMTP transporters) were removed from core and made available as plugins instead."
+                "excerpt": "Dotkernel 1.8.",
+                "tl_dr": "Dotkernel 1.8.0 (LTS) was released with a new Plugin Architecture, a redesigned and mobile-friendly frontend, APC\/File caching for faster response times, a new Dot_Request class, and multiple security and alerting improvements.\nSome features (WURFL integration, multiple SMTP transporters) were removed from core and made available as plugins instead."
             },
             {
-                "post_title": "DotKernel 1.8.1 + Upgrade from 1.8.0 Released",
+                "post_title": "Dotkernel 1.8.1 + Upgrade from 1.8.0 Released",
                 "post_date": "2015-06-11 12:39:46",
                 "post_status": "publish",
                 "author": {
@@ -517,11 +517,11 @@
                     "github": ""
                 },
                 "isObsolete": true,
-                "excerpt": "DotKernel 1.8.",
-                "tl_dr": "DotKernel 1.8.1 was released with Enhanced Cache Support, allowing cache tags to be used if the hosting environment supports them.\nA dedicated upgrade package is available for users coming from 1.8.0."
+                "excerpt": "Dotkernel 1.8.",
+                "tl_dr": "Dotkernel 1.8.1 was released with Enhanced Cache Support, allowing cache tags to be used if the hosting environment supports them.\nA dedicated upgrade package is available for users coming from 1.8.0."
             },
             {
-                "post_title": "Adding Windows 10 OS and Browser detection in DotKernel projects",
+                "post_title": "Adding Windows 10 OS and Browser detection in Dotkernel projects",
                 "post_date": "2015-09-08 11:25:39",
                 "post_status": "publish",
                 "author": {
@@ -530,10 +530,10 @@
                 },
                 "isObsolete": false,
                 "excerpt": "Recently we have added the Windows 8, 8.1 and 10 OS icon and Microsoft's Edge browser icon.",
-                "tl_dr": "DotKernel added Windows 8, 8.1 and 10 OS icons and a Microsoft Edge browser icon, shown in the User and Admin login icons.\nThis article is the upgrade guide for applying that icon patch."
+                "tl_dr": "Dotkernel added Windows 8, 8.1 and 10 OS icons and a Microsoft Edge browser icon, shown in the User and Admin login icons.\nThis article is the upgrade guide for applying that icon patch."
             },
             {
-                "post_title": "Adding Composer support in your DotKernel project",
+                "post_title": "Adding Composer support in your Dotkernel project",
                 "post_date": "2016-04-04 09:00:29",
                 "post_status": "publish",
                 "author": {
@@ -542,10 +542,10 @@
                 },
                 "isObsolete": false,
                 "excerpt": "Composer is an application-level package manager. Composer auto-loads the dependencies on demand and can also auto-load custom classes .",
-                "tl_dr": "Composer is an application-level package manager that auto-loads dependencies (and custom classes) on demand.\nThis article covers the steps needed to add a composer.json file to a DotKernel project, run composer update, and safely require the generated autoloader so the project works whether or not Composer is present."
+                "tl_dr": "Composer is an application-level package manager that auto-loads dependencies (and custom classes) on demand.\nThis article covers the steps needed to add a composer.json file to a Dotkernel project, run composer update, and safely require the generated autoloader so the project works whether or not Composer is present."
             },
             {
-                "post_title": "Using DotKernel with Composer Dependencies",
+                "post_title": "Using Dotkernel with Composer Dependencies",
                 "post_date": "2016-04-04 09:10:44",
                 "post_status": "publish",
                 "author": {
@@ -553,8 +553,8 @@
                     "github": ""
                 },
                 "isObsolete": false,
-                "excerpt": "This article will cover the external dependency usage VIA composer within DotKernel applications. There is also an article explaining how composer can be added to DotKernel learn more.",
-                "tl_dr": "This article covers using external dependencies via Composer within DotKernel applications.\nComposer autoloads dependencies automatically, so there is no need to include\/require them.\nThe example renders a Barcode using Zend Framework 1 (non-namespaced) and Zend Framework 2 (namespaced), and applies to any DotKernel 1.x version running PHP greater than 5.4.0."
+                "excerpt": "This article will cover the external dependency usage VIA composer within Dotkernel applications. There is also an article explaining how composer can be added to Dotkernel learn more.",
+                "tl_dr": "This article covers using external dependencies via Composer within Dotkernel applications.\nComposer autoloads dependencies automatically, so there is no need to include\/require them.\nThe example renders a Barcode using Zend Framework 1 (non-namespaced) and Zend Framework 2 (namespaced), and applies to any Dotkernel 1.x version running PHP greater than 5.4.0."
             },
             {
                 "post_title": "Migration of Zend Framework 1 PEAR channel",
@@ -569,7 +569,7 @@
                 "tl_dr": "The unofficial PEAR channel for Zend Framework 1 was hosted on Google Code, and once Google Code closed, it had to move.\nBecause the repository is over 1 GB, it could not be migrated to GitHub, so a dedicated server was built to host the PEAR channel long-term at pear.dotkernel.com."
             },
             {
-                "post_title": "Disambiguation: DotKernel 1 and DotKernel 3",
+                "post_title": "Disambiguation: Dotkernel 1 and Dotkernel 3",
                 "post_date": "2017-04-24 05:29:24",
                 "post_status": "publish",
                 "author": {
@@ -577,11 +577,11 @@
                     "github": ""
                 },
                 "isObsolete": true,
-                "excerpt": "What is DotKernel? The name DotKernel symbiotically  combines the string  Dot, as a representation of the Internet, and Kernel, the quintessence of any IT application. In other words Dotkernel wishes to be, with modesty, the central part of the Internet development and hence ensuring increased development productivity and run-time performance.",
-                "tl_dr": "DotKernel 1 is the original PHP Application Framework built on Zend Framework 1 with an MVC architecture, released in 2010 and now in bugfix-only mode at version 1.8 LTS.\nDotKernel 3 is a newer collection of PSR-7 middleware applications built on the Zend Expressive microframework and Zend Framework 3 components, implementing PSR-1, PSR-2, PSR-4, PSR-7, and PSR-11.\nSince DotKernel 3's release, the unqualified name \"DotKernel\" refers to DotKernel 3, while DotKernel 1 is always referenced explicitly."
+                "excerpt": "What is Dotkernel? The name Dotkernel symbiotically  combines the string  Dot, as a representation of the Internet, and Kernel, the quintessence of any IT application. In other words Dotkernel wishes to be, with modesty, the central part of the Internet development and hence ensuring increased development productivity and run-time performance.",
+                "tl_dr": "Dotkernel 1 is the original PHP Application Framework built on Zend Framework 1 with an MVC architecture, released in 2010 and now in bugfix-only mode at version 1.8 LTS.\nDotkernel 3 is a newer collection of PSR-7 middleware applications built on the Zend Expressive microframework and Zend Framework 3 components, implementing PSR-1, PSR-2, PSR-4, PSR-7, and PSR-11.\nSince Dotkernel 3's release, the unqualified name \"Dotkernel\" refers to Dotkernel 3, while Dotkernel 1 is always referenced explicitly."
             },
             {
-                "post_title": "Templating in DotKernel3",
+                "post_title": "Templating in Dotkernel3",
                 "post_date": "2017-12-20 02:17:31",
                 "post_status": "publish",
                 "author": {
@@ -589,11 +589,11 @@
                     "github": "jesper@apidemia.dk"
                 },
                 "isObsolete": false,
-                "excerpt": "DotKernel3 aims to improve the DotKernel stack in every way possible, and one of the painpoints in the previous version of DotKernel was the templating engine. Albeit a solid and robust templating engine, it was also 10 years old, and used techniques that's slightly outdated by now.",
-                "tl_dr": "DotKernel3 moved from its previous, 10-year-old templating engine to the popular Twig Templating Engine, gaining layouts, loops, variables, and escaping, while giving developers the familiarity of HTML with the overview and convenience of PHP."
+                "excerpt": "Dotkernel3 aims to improve the Dotkernel stack in every way possible, and one of the painpoints in the previous version of Dotkernel was the templating engine. Albeit a solid and robust templating engine, it was also 10 years old, and used techniques that's slightly outdated by now.",
+                "tl_dr": "Dotkernel3 moved from its previous, 10-year-old templating engine to the popular Twig Templating Engine, gaining layouts, loops, variables, and escaping, while giving developers the familiarity of HTML with the overview and convenience of PHP."
             },
             {
-                "post_title": "Logging with dot-log in Zend Expressive and DotKernel",
+                "post_title": "Logging with dot-log in Zend Expressive and Dotkernel",
                 "post_date": "2018-11-13 10:55:08",
                 "post_status": "publish",
                 "author": {
@@ -601,8 +601,8 @@
                     "github": ""
                 },
                 "isObsolete": false,
-                "excerpt": "This article will explain the usage of the dot-log component within DotKernel, Zend Expressive or in a project that uses Zend Service Manager. Since dot-log extends zendframework\/zend-log this tutorial mostly compatible with zend-log as well.",
-                "tl_dr": "This article explains how to use the dot-log component within DotKernel, Zend Expressive, or any project that uses Zend Service Manager.\nSince dot-log extends zendframework\/zend-log, the tutorial is mostly compatible with zend-log as well.\nSee the zend-log documentation for more detail."
+                "excerpt": "This article will explain the usage of the dot-log component within Dotkernel, Zend Expressive or in a project that uses Zend Service Manager. Since dot-log extends zendframework\/zend-log this tutorial mostly compatible with zend-log as well.",
+                "tl_dr": "This article explains how to use the dot-log component within Dotkernel, Zend Expressive, or any project that uses Zend Service Manager.\nSince dot-log extends zendframework\/zend-log, the tutorial is mostly compatible with zend-log as well.\nSee the zend-log documentation for more detail."
             },
             {
                 "post_title": "Handling and Logging errors with dot-errorhandler and dot-log",
@@ -613,8 +613,8 @@
                     "github": ""
                 },
                 "isObsolete": false,
-                "excerpt": "This article is a follow-up for: Logging with dot-log in Zend Expressive and DotKernel, the mentioned article is a guide to using dot-log.   This article explains the usage of dotkernel\/dot-errorhandler with dotkernel\/dot-log or zendframework\/zend-log to log errors in Zend Expressive applications.",
-                "tl_dr": "This article is a follow-up to \"Logging with dot-log in Zend Expressive and DotKernel\" and explains how to use dotkernel\/dot-errorhandler together with dotkernel\/dot-log or zendframework\/zend-log to log errors in Zend Expressive applications.\nIt covers how dot-errorhandler was built, how to configure it, and how it was tested."
+                "excerpt": "This article is a follow-up for: Logging with dot-log in Zend Expressive and Dotkernel, the mentioned article is a guide to using dot-log.   This article explains the usage of dotkernel\/dot-errorhandler with dotkernel\/dot-log or zendframework\/zend-log to log errors in Zend Expressive applications.",
+                "tl_dr": "This article is a follow-up to \"Logging with dot-log in Zend Expressive and Dotkernel\" and explains how to use dotkernel\/dot-errorhandler together with dotkernel\/dot-log or zendframework\/zend-log to log errors in Zend Expressive applications.\nIt covers how dot-errorhandler was built, how to configure it, and how it was tested."
             },
             {
                 "post_title": "Adding a CORS implementation to Zend Expressive",
@@ -625,11 +625,11 @@
                     "github": ""
                 },
                 "isObsolete": false,
-                "excerpt": "This article is a guide on how to add a CORS implementation on an existing DotKernel3 project. The issue If you're facing this message: \"Access to XMLHttpRequest at ‘url’ has been blocked by cors policy.",
-                "tl_dr": "When a client-side request is blocked with a \"No 'Access-Control-Allow-Origin' header\" error, it's because the server isn't sending the header that allows a browser to access its data (most common when fetching JSON to process with JavaScript).\nThis guide adds CORS support to a Zend Expressive \/ DotKernel3 project using Tuupola's Cors Middleware package."
+                "excerpt": "This article is a guide on how to add a CORS implementation on an existing Dotkernel3 project. The issue If you're facing this message: \"Access to XMLHttpRequest at ‘url’ has been blocked by cors policy.",
+                "tl_dr": "When a client-side request is blocked with a \"No 'Access-Control-Allow-Origin' header\" error, it's because the server isn't sending the header that allows a browser to access its data (most common when fetching JSON to process with JavaScript).\nThis guide adds CORS support to a Zend Expressive \/ Dotkernel3 project using Tuupola's Cors Middleware package."
             },
             {
-                "post_title": "DotKernel Coding Standard",
+                "post_title": "Dotkernel Coding Standard",
                 "post_date": "2008-03-28 15:44:51",
                 "post_status": "publish",
                 "author": {
@@ -637,8 +637,8 @@
                     "github": "arhimede"
                 },
                 "isObsolete": false,
-                "excerpt": "DotKernel will be a \"skeleton\"of Zend Framework. DotKernel borrowed the coding standard from Zend Framework: ZF Coding Standard with some exceptions.",
-                "tl_dr": "DotKernel is a \"skeleton\" of Zend Framework and borrows its coding standard from the ZF Coding Standard, with a small number of exceptions covering indentation, naming conventions, and brace placement."
+                "excerpt": "Dotkernel will be a \"skeleton\"of Zend Framework. Dotkernel borrowed the coding standard from Zend Framework: ZF Coding Standard with some exceptions.",
+                "tl_dr": "Dotkernel is a \"skeleton\" of Zend Framework and borrows its coding standard from the ZF Coding Standard, with a small number of exceptions covering indentation, naming conventions, and brace placement."
             },
             {
                 "post_title": "DotBoost Technologies : Products and Services North American Relaunch",
@@ -650,10 +650,10 @@
                 },
                 "isObsolete": false,
                 "excerpt": "A new style and advanced approach to accompany the Dotkernel source release Dotboost is pleased to announce our North American Relaunch. This new phase comes as a result of dedicated research and analysis on how to best serve clients in Canada and the US.",
-                "tl_dr": "Dotboost announces its North American relaunch, aimed at better serving clients in Canada and the US.\nThe relaunch centers on the source release of its in-house DotKernel framework, along with expanded business IT integration and clearer consulting services.\nFounded in 2005, Dotboost describes itself as treating clients as strategic partners rather than as a typical IT vendor."
+                "tl_dr": "Dotboost announces its North American relaunch, aimed at better serving clients in Canada and the US.\nThe relaunch centers on the source release of its in-house Dotkernel framework, along with expanded business IT integration and clearer consulting services.\nFounded in 2005, Dotboost describes itself as treating clients as strategic partners rather than as a typical IT vendor."
             },
             {
-                "post_title": "DotKernel version 1.0 in action",
+                "post_title": "Dotkernel version 1.0 in action",
                 "post_date": "2009-10-02 16:08:47",
                 "post_status": "publish",
                 "author": {
@@ -661,11 +661,11 @@
                     "github": "arhimede"
                 },
                 "isObsolete": false,
-                "excerpt": "DotKernel is the DotBoost's in-house developed framework, based on Zend Framework. DotKernel is at version 1.",
-                "tl_dr": "DotKernel is DotBoost's in-house developed framework, built on top of Zend Framework and released under the Open Software License (OSL 3.0).\nIt uses a simplified MVC architecture, easy to learn for beginner and intermediate programmers, by eliminating much of Zend Framework's complexity through a different approach to handling web requests.\nIt relies on only a handful of Zend Framework classes."
+                "excerpt": "Dotkernel is the DotBoost's in-house developed framework, based on Zend Framework. Dotkernel is at version 1.",
+                "tl_dr": "Dotkernel is DotBoost's in-house developed framework, built on top of Zend Framework and released under the Open Software License (OSL 3.0).\nIt uses a simplified MVC architecture, easy to learn for beginner and intermediate programmers, by eliminating much of Zend Framework's complexity through a different approach to handling web requests.\nIt relies on only a handful of Zend Framework classes."
             },
             {
-                "post_title": "DotKernel Template Engine",
+                "post_title": "Dotkernel Template Engine",
                 "post_date": "2009-10-02 16:21:27",
                 "post_status": "publish",
                 "author": {
@@ -673,7 +673,7 @@
                     "github": "arhimede"
                 },
                 "isObsolete": false,
-                "excerpt": "DotKernel Template Engine is an implementation of PHPLib Template engine for PHP5. It has an amazing ability to separate the application code from the presentation layer.",
+                "excerpt": "Dotkernel Template Engine is an implementation of PHPLib Template engine for PHP5. It has an amazing ability to separate the application code from the presentation layer.",
                 "tl_dr": ""
             },
             {
@@ -710,7 +710,7 @@
                 },
                 "isObsolete": false,
                 "excerpt": "When it comes to web development, performance is one of the critical elements that influence the success of an application. Developers focus on improving response times and overall speed to enhance the user experience.",
-                "tl_dr": "Caching stores data the first time it's requested so that later requests can be served from the cache instead of the original, slower source, which improves response times.\nThis article, a follow-up to an earlier caching article, shows how to enable the dot-cache component, a wrapper around symfony\/cache, in DotKernel Admin.\nIt covers the array and filesystem storage adapters, configuring Doctrine's four cache types (result, metadata, query, hydration), and marking entities and queries as cacheable."
+                "tl_dr": "Caching stores data the first time it's requested so that later requests can be served from the cache instead of the original, slower source, which improves response times.\nThis article, a follow-up to an earlier caching article, shows how to enable the dot-cache component, a wrapper around symfony\/cache, in Dotkernel Admin.\nIt covers the array and filesystem storage adapters, configuring Doctrine's four cache types (result, metadata, query, hydration), and marking entities and queries as cacheable."
             },
             {
                 "post_title": "Dependency Injection made easy in Laminas\/Mezzio applications",
@@ -722,7 +722,7 @@
                 },
                 "isObsolete": false,
                 "excerpt": "Note: The package requires Doctrine ORM. Still, it can be used in applications which do not integrate Doctrine.",
-                "tl_dr": "DotKernel's dot-dependency-injection package autowires constructor dependencies in Laminas\/Mezzio (and other PSR-11) applications, removing the need to write and maintain a custom factory class for every service.\nInstead of a bespoke factory, you add an attribute to the class constructor and register a single shared AttributedServiceFactory in your ConfigProvider.\nThe package requires Doctrine ORM but can still be used in applications that don't integrate Doctrine, and it also supports injecting Doctrine repositories directly instead of fetching them from the EntityManager."
+                "tl_dr": "Dotkernel's dot-dependency-injection package autowires constructor dependencies in Laminas\/Mezzio (and other PSR-11) applications, removing the need to write and maintain a custom factory class for every service.\nInstead of a bespoke factory, you add an attribute to the class constructor and register a single shared AttributedServiceFactory in your ConfigProvider.\nThe package requires Doctrine ORM but can still be used in applications that don't integrate Doctrine, and it also supports injecting Doctrine repositories directly instead of fetching them from the EntityManager."
             },
             {
                 "post_title": "Dotkernel Light - Starting with Mezzio microframework and Laminas components",
@@ -788,8 +788,8 @@
                     "github": ""
                 },
                 "isObsolete": false,
-                "excerpt": "Starting with the 1.5 release, DotKernel will make the switch from Dojo to jQuery.",
-                "tl_dr": "Starting with DotKernel's 1.5 release, the framework switched from Dojo to jQuery, and this post is a quick primer on jQuery basics.\nIt covers the jQuery ($) object and CSS-style selectors, chaining methods to manipulate matched elements, binding events like click, and making Ajax calls with $.get() and $.getJSON()."
+                "excerpt": "Starting with the 1.5 release, Dotkernel will make the switch from Dojo to jQuery.",
+                "tl_dr": "Starting with Dotkernel's 1.5 release, the framework switched from Dojo to jQuery, and this post is a quick primer on jQuery basics.\nIt covers the jQuery ($) object and CSS-style selectors, chaining methods to manipulate matched elements, binding events like click, and making Ajax calls with $.get() and $.getJSON()."
             },
             {
                 "post_title": "Codelobster PHP Edition - Free PHP, HTML, CSS, JavaScript editor (IDE)",
@@ -856,7 +856,7 @@
                 },
                 "isObsolete": false,
                 "excerpt": "The release of ZF 1.12.",
-                "tl_dr": "Zend Framework 1.12.12 was released with security fixes for the Zend_Mail and Zend_Http components.\nConsumers of these components, including DotKernel which relies heavily on Zend_Mail, were strongly urged to upgrade immediately via PEAR or by applying the patch directly.\nA follow-up release, 1.12.13, was issued shortly after to fix a regression introduced in 1.12.12."
+                "tl_dr": "Zend Framework 1.12.12 was released with security fixes for the Zend_Mail and Zend_Http components.\nConsumers of these components, including Dotkernel which relies heavily on Zend_Mail, were strongly urged to upgrade immediately via PEAR or by applying the patch directly.\nA follow-up release, 1.12.13, was issued shortly after to fix a regression introduced in 1.12.12."
             },
             {
                 "post_title": "Zend Framework 1 End-of-Life",
@@ -903,8 +903,8 @@
                     "github": "arhimede"
                 },
                 "isObsolete": false,
-                "excerpt": "Just found today a very interesting and helpful debug tool: Scienta We at DotKernel used some very basic debug bar:  queries, time spent , memory used.  But this Scienta is way more complex and nicer then our internal code,  so we switch to it and integrate it in DotKernel code base.",
-                "tl_dr": "The author came across the Scienta ZF Debug Bar, a debugging tool for Zend Framework applications.\nDotKernel had been relying on its own basic debug bar, which only showed queries, time spent, and memory used.\nFinding Scienta far more complex and polished than their internal tool, the DotKernel team decided to switch to it and integrate it into the DotKernel code base."
+                "excerpt": "Just found today a very interesting and helpful debug tool: Scienta We at Dotkernel used some very basic debug bar:  queries, time spent , memory used.  But this Scienta is way more complex and nicer then our internal code,  so we switch to it and integrate it in Dotkernel code base.",
+                "tl_dr": "The author came across the Scienta ZF Debug Bar, a debugging tool for Zend Framework applications.\nDotkernel had been relying on its own basic debug bar, which only showed queries, time spent, and memory used.\nFinding Scienta far more complex and polished than their internal tool, the Dotkernel team decided to switch to it and integrate it into the Dotkernel code base."
             },
             {
                 "post_title": "Sunsetting PEAR Channel for Zend Framework 1",
@@ -916,7 +916,7 @@
                 },
                 "isObsolete": false,
                 "excerpt": "Sunsetting PEAR Channel for Zend Framework 1 The unofficial PEAR channel for Zend Framework 1 was created in 2016 , at the time when PEAR was still used a lot. Due to the fact that is a pain to upgrade PEAR to work with PHP 8 , we must sunset the channel .",
-                "tl_dr": "DotKernel is sunsetting its unofficial PEAR channel for Zend Framework 1, which was created in 2016 when PEAR was still widely used.\nThe main reasons are that upgrading PEAR to work with PHP 8 is too painful, and the channel currently runs on an LXC container with CentOS 7, which doesn't work on the latest Proxmox version, making the upgrade to AlmaLinux not worth the effort.\nThe post closes by thanking PEAR for its historical contribution to the PHP ecosystem."
+                "tl_dr": "Dotkernel is sunsetting its unofficial PEAR channel for Zend Framework 1, which was created in 2016 when PEAR was still widely used.\nThe main reasons are that upgrading PEAR to work with PHP 8 is too painful, and the channel currently runs on an LXC container with CentOS 7, which doesn't work on the latest Proxmox version, making the upgrade to AlmaLinux not worth the effort.\nThe post closes by thanking PEAR for its historical contribution to the PHP ecosystem."
             }
         ]
     },
@@ -986,7 +986,7 @@
                 "tl_dr": "In hosted software development, an environment is a server tier designated to a specific stage of a release process.\nThe three most common environments are Development, Staging and Production, and applications are typically moved between them using Subversion source control."
             },
             {
-                "post_title": "Using Aptana to connect to DotKernel tracker (Mantis)",
+                "post_title": "Using Aptana to connect to Dotkernel tracker (Mantis)",
                 "post_date": "2010-10-18 09:57:56",
                 "post_status": "publish",
                 "author": {
@@ -994,8 +994,8 @@
                     "github": ""
                 },
                 "isObsolete": false,
-                "excerpt": "In developing DotKernel application framework, we needed a tracking system. DotKernel Tracker is the place where the bugs are reported, new features are announced and other general tickets are added.",
-                "tl_dr": "This guide explains how to connect the Aptana IDE to DotKernel Tracker, the Mantis-based bug tracker used for the DotKernel application framework, via the Mylyn plugin's Mantis connector.\nIt walks through installing Aptana and Mylyn, adding DotKernel Tracker as a task repository, and validating the connection so tickets can be managed directly from the IDE."
+                "excerpt": "In developing Dotkernel application framework, we needed a tracking system. Dotkernel Tracker is the place where the bugs are reported, new features are announced and other general tickets are added.",
+                "tl_dr": "This guide explains how to connect the Aptana IDE to Dotkernel Tracker, the Mantis-based bug tracker used for the Dotkernel application framework, via the Mylyn plugin's Mantis connector.\nIt walks through installing Aptana and Mylyn, adding Dotkernel Tracker as a task repository, and validating the connection so tickets can be managed directly from the IDE."
             },
             {
                 "post_title": "How To Upgrade Wamp to PHP 5.3.4",
@@ -1079,7 +1079,7 @@
                 },
                 "isObsolete": false,
                 "excerpt": "Beginning with version 5.5 of MySQL , utf8mb4 character set was introduced, in order to better support Unicode.",
-                "tl_dr": "MySQL 5.5 introduced the utf8mb4 character set for fuller Unicode support, and DotKernel's sample dk.sql file was updated to use it.\nSwitching to utf8mb4 means VARCHAR(255) columns can hit MySQL's 767-byte max key length error, so VARCHAR(150) is used instead, and the connection charset must be updated in both the application config and my.cnf."
+                "tl_dr": "MySQL 5.5 introduced the utf8mb4 character set for fuller Unicode support, and Dotkernel's sample dk.sql file was updated to use it.\nSwitching to utf8mb4 means VARCHAR(255) columns can hit MySQL's 767-byte max key length error, so VARCHAR(150) is used instead, and the connection charset must be updated in both the application config and my.cnf."
             },
             {
                 "post_title": "Using PHP 7 Express in Zend Studio 13",
@@ -1127,7 +1127,7 @@
                 },
                 "isObsolete": false,
                 "excerpt": "Database seeding: Doctrine data fixtures vs Phinx Seeding the database means populating the database with initial values, it's commonly used for seeding the user roles and user accounts. Seeding the database the right way is no easy feat, and we will see why.",
-                "tl_dr": "DotKernel 3 previously used cakephp\/phinx for seeding the database, but the team wanted more flexibility and switched to doctrine\/data-fixtures since Doctrine is already the ORM in use.\nBecause doctrine\/data-fixtures has no CLI interface, DotKernel built the dotkernel\/dot-data-fixtures package to add one, and this article covers installing it, creating and executing fixtures, and ordering them by explicit order or by declared dependencies."
+                "tl_dr": "Dotkernel 3 previously used cakephp\/phinx for seeding the database, but the team wanted more flexibility and switched to doctrine\/data-fixtures since Doctrine is already the ORM in use.\nBecause doctrine\/data-fixtures has no CLI interface, Dotkernel built the dotkernel\/dot-data-fixtures package to add one, and this article covers installing it, creating and executing fixtures, and ordering them by explicit order or by declared dependencies."
             },
             {
                 "post_title": "Mezzio app development in WSL2",
@@ -1138,8 +1138,8 @@
                     "github": "alexmerlin"
                 },
                 "isObsolete": false,
-                "excerpt": "Install a Mezzio app (DotKernel API) using WSL2 This article will run you through the steps of installing a Mezzio application (DotKernel API) in WSL2 and run it on Ubuntu 20.04 LTS.",
-                "tl_dr": "This article runs through the steps of installing a Mezzio application (DotKernel API) in WSL2 and running it on Ubuntu 20.04 LTS, from installing WSL2 itself to configuring PHPStorm to work with the WSL2 file system."
+                "excerpt": "Install a Mezzio app (Dotkernel API) using WSL2 This article will run you through the steps of installing a Mezzio application (Dotkernel API) in WSL2 and run it on Ubuntu 20.04 LTS.",
+                "tl_dr": "This article runs through the steps of installing a Mezzio application (Dotkernel API) in WSL2 and running it on Ubuntu 20.04 LTS, from installing WSL2 itself to configuring PHPStorm to work with the WSL2 file system."
             },
             {
                 "post_title": "AlmaLinux 9 in WSL2 : install PHP, Apache, MariaDB, Composer, PhpMyadmin",
@@ -1193,8 +1193,8 @@
                     "github": "jesper@apidemia.dk"
                 },
                 "isObsolete": false,
-                "excerpt": "Migrations, the superhero your database deserves Migrations ease the process of working together on projects, as well as deploying the database changes.   A newly released package for the DotKernel stack integrates migrations and seeders into the application; This is all done via the newly introduced \"php dot\" command that's available in the DotKernel stack.",
-                "tl_dr": "Database migrations track schema changes so teams can collaborate without ad hoc, convoluted database change messages and can keep column types consistent across the team.\nA package for the DotKernel stack adds migrations and seeders to the application via a new php dot command.\nThe article walks through adopting migrations in an existing project, running and naming them, and explains how seeders differ from migrations by adding data rather than changing schema."
+                "excerpt": "Migrations, the superhero your database deserves Migrations ease the process of working together on projects, as well as deploying the database changes.   A newly released package for the Dotkernel stack integrates migrations and seeders into the application; This is all done via the newly introduced \"php dot\" command that's available in the Dotkernel stack.",
+                "tl_dr": "Database migrations track schema changes so teams can collaborate without ad hoc, convoluted database change messages and can keep column types consistent across the team.\nA package for the Dotkernel stack adds migrations and seeders to the application via a new php dot command.\nThe article walks through adopting migrations in an existing project, running and naming them, and explains how seeders differ from migrations by adding data rather than changing schema."
             },
             {
                 "post_title": "Using the URLGenerator work in FastRoute",
@@ -1205,11 +1205,11 @@
                     "github": "jesper@apidemia.dk"
                 },
                 "isObsolete": false,
-                "excerpt": "DotKernel 3 uses FastRoute under the hood, which is an excellent and fast routing package, but it does have some quirks. A wrong setup can lead to many headaches, as it's not prominent that the error you're experiencing is from FastRoute, and you may not know where exactly to look for the cause.",
-                "tl_dr": "DotKernel 3 uses FastRoute under the hood, which is fast but has a quirk around slash-suffixes that a wrong route setup can trigger, leading to hard-to-diagnose errors.\nOptional slashes must be kept inside the optional block of a route definition, or the URLGenerator ends up producing the wrong route.\nEvery named route can then be referenced instead of hard-coded, using $this->url() in controllers or the path() function in Twig views."
+                "excerpt": "Dotkernel 3 uses FastRoute under the hood, which is an excellent and fast routing package, but it does have some quirks. A wrong setup can lead to many headaches, as it's not prominent that the error you're experiencing is from FastRoute, and you may not know where exactly to look for the cause.",
+                "tl_dr": "Dotkernel 3 uses FastRoute under the hood, which is fast but has a quirk around slash-suffixes that a wrong route setup can trigger, leading to hard-to-diagnose errors.\nOptional slashes must be kept inside the optional block of a route definition, or the URLGenerator ends up producing the wrong route.\nEvery named route can then be referenced instead of hard-coded, using $this->url() in controllers or the path() function in Twig views."
             },
             {
-                "post_title": "Migrating DotKernel 3 from Zend Expressive 2 to Zend Expressive 3",
+                "post_title": "Migrating Dotkernel 3 from Zend Expressive 2 to Zend Expressive 3",
                 "post_date": "2018-06-13 12:16:37",
                 "post_status": "publish",
                 "author": {
@@ -1217,8 +1217,8 @@
                     "github": ""
                 },
                 "isObsolete": false,
-                "excerpt": "This article covers the steps required to migrate a DotKernel 3 instance to the latest Zend Expressive Version. Migration from Zend Expressive 2 to 3.",
-                "tl_dr": "This guide covers migrating a DotKernel 3 instance from Zend Expressive 2 to Zend Expressive 3, for projects that only contain controller-based middleware.\nOld middleware must first be refactored to the psr\/http-server-middleware interfaces, since Delegates become RequestHandlers.\nThe steps then cover updating composer.json dependencies, registering new ConfigProviders, wrapping routes.php and pipeline.php in callables, and replacing the old pipeRoutingMiddleware()\/pipeDispatchMiddleware() calls with their PSR-15 equivalents."
+                "excerpt": "This article covers the steps required to migrate a Dotkernel 3 instance to the latest Zend Expressive Version. Migration from Zend Expressive 2 to 3.",
+                "tl_dr": "This guide covers migrating a Dotkernel 3 instance from Zend Expressive 2 to Zend Expressive 3, for projects that only contain controller-based middleware.\nOld middleware must first be refactored to the psr\/http-server-middleware interfaces, since Delegates become RequestHandlers.\nThe steps then cover updating composer.json dependencies, registering new ConfigProviders, wrapping routes.php and pipeline.php in callables, and replacing the old pipeRoutingMiddleware()\/pipeDispatchMiddleware() calls with their PSR-15 equivalents."
             },
             {
                 "post_title": "Doctrine Cache in Mezzio and Dotkernel",
@@ -1229,7 +1229,7 @@
                     "github": "arhimede"
                 },
                 "isObsolete": false,
-                "excerpt": "Doctrine caching in DotKernel Following version 2 of doctrine\/cache, in 2024 we published an update to this article here: https:\/\/www.dotkernel.",
+                "excerpt": "Doctrine caching in Dotkernel Following version 2 of doctrine\/cache, in 2024 we published an update to this article here: https:\/\/www.dotkernel.",
                 "tl_dr": "Running Doctrine ORM in production without any caching strategy wastes CPU cycles regenerating metadata and queries on every request.\nThis article configures Doctrine's metadata_cache, query_cache, and result_cache through psr\/container, using PhpFileCache and a default result cache lifetime of 3600 seconds.\nIt walks through enabling these caches both directly on a query and on a Doctrine Paginator-based collection, with real examples from Dotkernel Admin.\nNote: a 2024 follow-up article covers the same topic using Symfony Cache instead."
             },
             {
@@ -1253,11 +1253,11 @@
                     "github": "alexmerlin"
                 },
                 "isObsolete": false,
-                "excerpt": "Replacing dot-console with dot-cli based on laminas-cli Implementing dot-cli in your application DotKernel's dot-cli package comes as a replacement for dot-console, which was abandoned after Laminas abandoned their laminas-console package, that dot-console was based on. Setup Install package Run the following command in your application's root directory: composer require dotkernel\/dot-cli Register ConfigProvider Open your application's config\/config.",
-                "tl_dr": "DotKernel's dot-cli package replaces dot-console, which was abandoned after Laminas dropped the laminas-console package it was based on.\nSetting it up involves requiring the package via Composer, registering its ConfigProvider, and copying its bootstrap and config files into the application.\nIt also ships with FileLocker, a built-in, enabled-by-default locking system that prevents overlapping calls to the same command."
+                "excerpt": "Replacing dot-console with dot-cli based on laminas-cli Implementing dot-cli in your application Dotkernel's dot-cli package comes as a replacement for dot-console, which was abandoned after Laminas abandoned their laminas-console package, that dot-console was based on. Setup Install package Run the following command in your application's root directory: composer require dotkernel\/dot-cli Register ConfigProvider Open your application's config\/config.",
+                "tl_dr": "Dotkernel's dot-cli package replaces dot-console, which was abandoned after Laminas dropped the laminas-console package it was based on.\nSetting it up involves requiring the package via Composer, registering its ConfigProvider, and copying its bootstrap and config files into the application.\nIt also ships with FileLocker, a built-in, enabled-by-default locking system that prevents overlapping calls to the same command."
             },
             {
-                "post_title": "List available endpoints in  DotKernel API using dot-cli",
+                "post_title": "List available endpoints in  Dotkernel API using dot-cli",
                 "post_date": "2021-06-29 09:17:18",
                 "post_status": "publish",
                 "author": {
@@ -1265,11 +1265,11 @@
                     "github": "alexmerlin"
                 },
                 "isObsolete": false,
-                "excerpt": "Displaying DotKernel API endpoints using dot-cli Starting from version 3, DotKernel API uses dot-cli to display a list of available endpoints. Usage Run the following command in your application’s root directory: php .",
-                "tl_dr": "Starting from version 3, DotKernel API uses the dot-cli package to list all of its available endpoints via the route:list command.\nThe command's output can be filtered by route name, path, or HTTP method, and filters are case-insensitive and combinable."
+                "excerpt": "Displaying Dotkernel API endpoints using dot-cli Starting from version 3, Dotkernel API uses dot-cli to display a list of available endpoints. Usage Run the following command in your application’s root directory: php .",
+                "tl_dr": "Starting from version 3, Dotkernel API uses the dot-cli package to list all of its available endpoints via the route:list command.\nThe command's output can be filtered by route name, path, or HTTP method, and filters are case-insensitive and combinable."
             },
             {
-                "post_title": "Creating admin accounts in DotKernel API",
+                "post_title": "Creating admin accounts in Dotkernel API",
                 "post_date": "2021-07-09 09:13:39",
                 "post_status": "publish",
                 "author": {
@@ -1277,11 +1277,11 @@
                     "github": "alexmerlin"
                 },
                 "isObsolete": false,
-                "excerpt": "Creating admin accounts in DotKernel API Starting from v3, DotKernel API introduces support for admin accounts. In this article we will describe two different methods of creating an admin account.",
-                "tl_dr": "Starting with version 3, DotKernel API supports dedicated admin accounts.\nThey can be created either through a protected API endpoint, which lets you assign one or more admin roles and optional names, or through a terminal command, which is quicker but always assigns the default admin role.\nBoth methods leave you with a ready-to-use admin account."
+                "excerpt": "Creating admin accounts in Dotkernel API Starting from v3, Dotkernel API introduces support for admin accounts. In this article we will describe two different methods of creating an admin account.",
+                "tl_dr": "Starting with version 3, Dotkernel API supports dedicated admin accounts.\nThey can be created either through a protected API endpoint, which lets you assign one or more admin roles and optional names, or through a terminal command, which is quicker but always assigns the default admin role.\nBoth methods leave you with a ready-to-use admin account."
             },
             {
-                "post_title": "Using Postman for documentation  in DotKernel API 3",
+                "post_title": "Using Postman for documentation  in Dotkernel API 3",
                 "post_date": "2021-06-14 10:07:02",
                 "post_status": "publish",
                 "author": {
@@ -1289,8 +1289,8 @@
                     "github": "alexmerlin"
                 },
                 "isObsolete": false,
-                "excerpt": "Using Postman documentation in DotKernel API 3 Starting from version 3.0 DotKernel API provides it's documentation using Postman.",
-                "tl_dr": "Starting from version 3.0, DotKernel API documents its endpoints using Postman, via a provided collection and environment file that get imported into the tool.\nPostman organizes work into a Workspace, Collections, Environments, and Requests, and the DotKernel API collection ships with built-in security: global Bearer Token authorization inherited from the collection root, and automatic ACCESS_TOKEN\/REFRESH_TOKEN storage on the Admin\/Security and User\/Security folders.\nAfter making changes, the collection and environment files can be re-exported to overwrite the application's documentation files."
+                "excerpt": "Using Postman documentation in Dotkernel API 3 Starting from version 3.0 Dotkernel API provides it's documentation using Postman.",
+                "tl_dr": "Starting from version 3.0, Dotkernel API documents its endpoints using Postman, via a provided collection and environment file that get imported into the tool.\nPostman organizes work into a Workspace, Collections, Environments, and Requests, and the Dotkernel API collection ships with built-in security: global Bearer Token authorization inherited from the collection root, and automatic ACCESS_TOKEN\/REFRESH_TOKEN storage on the Admin\/Security and User\/Security folders.\nAfter making changes, the collection and environment files can be re-exported to overwrite the application's documentation files."
             },
             {
                 "post_title": "Generating a doctrine migration without dropping custom tables",
@@ -1387,11 +1387,11 @@
                     "github": ""
                 },
                 "isObsolete": false,
-                "excerpt": "This report contains updates about the DotKernel3 documentation. We have added the release notes for DotKernel3 frontend and admin: you can now check the Release Notes page.",
-                "tl_dr": "This report covers updates to the DotKernel3 documentation: new release notes for the frontend and admin, a Webpack tutorial added to the Prerequisites section, and revisions to the Api Endpoint Documentation Guidelines.\nContributor JapSeyz is thanked for this round of updates."
+                "excerpt": "This report contains updates about the Dotkernel3 documentation. We have added the release notes for Dotkernel3 frontend and admin: you can now check the Release Notes page.",
+                "tl_dr": "This report covers updates to the Dotkernel3 documentation: new release notes for the frontend and admin, a Webpack tutorial added to the Prerequisites section, and revisions to the Api Endpoint Documentation Guidelines.\nContributor JapSeyz is thanked for this round of updates."
             },
             {
-                "post_title": "DotKernel3 - Stable Release version 1.0",
+                "post_title": "Dotkernel3 - Stable Release version 1.0",
                 "post_date": "2018-06-27 11:46:06",
                 "post_status": "publish",
                 "author": {
@@ -1399,8 +1399,8 @@
                     "github": ""
                 },
                 "isObsolete": false,
-                "excerpt": "DotKernel was updated to support Zend Expressive 3 alongside with PSR-15 middleware. We have updated the core packages to support PSR-15 Middleware.",
-                "tl_dr": "DotKernel3 1.0 updates the core packages to support Zend Expressive 3 and PSR-15 middleware, making both frontend (1.0.0) and admin (1.0.1) easier to migrate.\nNo functional changes were made to the core code, though projects using the old http-interop\/http-middleware package must migrate to the psr\/http-server-middleware interfaces.\nExisting DotKernel 3 (Expressive 2) projects can follow a separate guide to move to Zend Expressive 3."
+                "excerpt": "Dotkernel was updated to support Zend Expressive 3 alongside with PSR-15 middleware. We have updated the core packages to support PSR-15 Middleware.",
+                "tl_dr": "Dotkernel3 1.0 updates the core packages to support Zend Expressive 3 and PSR-15 middleware, making both frontend (1.0.0) and admin (1.0.1) easier to migrate.\nNo functional changes were made to the core code, though projects using the old http-interop\/http-middleware package must migrate to the psr\/http-server-middleware interfaces.\nExisting Dotkernel 3 (Expressive 2) projects can follow a separate guide to move to Zend Expressive 3."
             },
             {
                 "post_title": "Dotkernel Frontend version 3  launched",
@@ -1435,8 +1435,8 @@
                     "github": "sergiu@rospace.com"
                 },
                 "isObsolete": false,
-                "excerpt": "Getting Started with Dotkernel Admin V4 DotKernel's PSR-7 Admin is an application based on Mezzio, with the main purpose of managing and displaying tabular data from one or more databases components. On 19 July 2022 Dotkernel Admin V4 has been officially released.",
-                "tl_dr": "Dotkernel Admin V4, officially released on 19 July 2022, is DotKernel's PSR-7 Admin application built on Mezzio for managing and displaying tabular data from one or more databases.\nIt supports PHP 8.1 (minimum PHP 7.4), offers a config-driven module\/middleware\/route setup, RBAC-based authorization guards, a Symfony Console-based CLI with a file locker, per-module routing via RoutesDelegator, and a Bootstrap 4.5.0 \/ Fontawesome 5.0.6 frontend using Bootstrap Table for data listing."
+                "excerpt": "Getting Started with Dotkernel Admin V4 Dotkernel's PSR-7 Admin is an application based on Mezzio, with the main purpose of managing and displaying tabular data from one or more databases components. On 19 July 2022 Dotkernel Admin V4 has been officially released.",
+                "tl_dr": "Dotkernel Admin V4, officially released on 19 July 2022, is Dotkernel's PSR-7 Admin application built on Mezzio for managing and displaying tabular data from one or more databases.\nIt supports PHP 8.1 (minimum PHP 7.4), offers a config-driven module\/middleware\/route setup, RBAC-based authorization guards, a Symfony Console-based CLI with a file locker, per-module routing via RoutesDelegator, and a Bootstrap 4.5.0 \/ Fontawesome 5.0.6 frontend using Bootstrap Table for data listing."
             },
             {
                 "post_title": "Dotkernel API: architecture and components",
@@ -1459,7 +1459,7 @@
                     "github": "bidi47"
                 },
                 "isObsolete": false,
-                "excerpt": "With the release of PHP 8.3, the DotKernel team has been working on updating the dependencies in our packages.",
+                "excerpt": "With the release of PHP 8.3, the Dotkernel team has been working on updating the dependencies in our packages.",
                 "tl_dr": "Dotkernel Admin added PHP 8.3 support in release 4.3.1, dropping PHP 8.1 and now supporting only PHP 8.2 and PHP 8.3.\nThe update brought numerous dependency bumps across dotkernel\/, laminas\/, and mezzio\/* packages, removed PhpFileCache-related cache configuration because doctrine\/cache dropped its implementation classes, and removed doctrine\/doctrine-module due to a conflict, which may affect packages that depended on it.\nThe AdminService::logAdminVisit method was also updated to no longer return AddressNotFoundException."
             },
             {
@@ -1471,8 +1471,8 @@
                     "github": "bidi47"
                 },
                 "isObsolete": false,
-                "excerpt": "To be able to take advantage of the support for PHP 8.3 in the newest packages, the DotKernel team has updated the Frontend Application to version 4.",
-                "tl_dr": "To take advantage of PHP 8.3 support in the newest packages, the DotKernel team updated the Frontend application to version 4.2.0.\nAs with the earlier Admin update, this required dropping support for PHP 8.1 and for the no-longer-available PhpFileCache class, until a replacement is implemented."
+                "excerpt": "To be able to take advantage of the support for PHP 8.3 in the newest packages, the Dotkernel team has updated the Frontend Application to version 4.",
+                "tl_dr": "To take advantage of PHP 8.3 support in the newest packages, the Dotkernel team updated the Frontend application to version 4.2.0.\nAs with the earlier Admin update, this required dropping support for PHP 8.1 and for the no-longer-available PhpFileCache class, until a replacement is implemented."
             },
             {
                 "post_title": "PHP 8.3 support in Dotkernel API",
@@ -1731,7 +1731,7 @@
         "isVisible": true,
         "articles": [
             {
-                "post_title": "DotKernel API Client Side  Authorization",
+                "post_title": "Dotkernel API Client Side  Authorization",
                 "post_date": "2019-08-05 11:38:26",
                 "post_status": "publish",
                 "author": {
@@ -1739,11 +1739,11 @@
                     "github": "arhimede"
                 },
                 "isObsolete": false,
-                "excerpt": "This article covers the basic authorization of a Client application which use a backend built using DotKernel API Authorization Request Client application users send a POST request to the backend containing the following JSON object: { \"grant_type\": \"password\", \"client_id\": \"{API_CLIENT}\", \"client_secret\": \"{API_CLIENT_SECRET}\", \"scope\": \"{SCOPE}\", \"username\": \"{USERNAME\/EMAIL}\", \"password\": \"{PASSWORD}\" } Authorization Response If the credentials are correct, the API will return a JSON object containing the authentication data: { \"token_type\": \"Bearer\", \"expires_in\": 86400, \"access_token\": \"..",
+                "excerpt": "This article covers the basic authorization of a Client application which use a backend built using Dotkernel API Authorization Request Client application users send a POST request to the backend containing the following JSON object: { \"grant_type\": \"password\", \"client_id\": \"{API_CLIENT}\", \"client_secret\": \"{API_CLIENT_SECRET}\", \"scope\": \"{SCOPE}\", \"username\": \"{USERNAME\/EMAIL}\", \"password\": \"{PASSWORD}\" } Authorization Response If the credentials are correct, the API will return a JSON object containing the authentication data: { \"token_type\": \"Bearer\", \"expires_in\": 86400, \"access_token\": \"..",
                 "tl_dr": ""
             },
             {
-                "post_title": "DotKernel API Server Side Authorization",
+                "post_title": "Dotkernel API Server Side Authorization",
                 "post_date": "2019-09-05 12:03:05",
                 "post_status": "publish",
                 "author": {
@@ -1751,11 +1751,11 @@
                     "github": "alexmerlin"
                 },
                 "isObsolete": false,
-                "excerpt": "This article covers the basic authorization of a Server Side application  built using DotKernel API Protecting an endpoint no-auth: the resource can be accessed without the need of authentication\/authorization authentication: the resource can be accessed only by authenticated users authorization: the resource can be accessed only by authenticated AND authorized users Configuring access to the endpoints is done by editing the following config file: config\/autoload\/authorization.local.",
-                "tl_dr": "DotKernel API endpoints can be protected at three levels: no-auth, authentication, and authorization.\nAccess is configured in config\/autoload\/authorization.local.php under the zend-expressive-authorization-rbac key, using a roles section for role inheritance and a permissions section for route access.\nAuthentication endpoints require a valid Bearer token and return 401 Unauthorized if it's missing, while authorization endpoints additionally check role permissions and return 403 Forbidden."
+                "excerpt": "This article covers the basic authorization of a Server Side application  built using Dotkernel API Protecting an endpoint no-auth: the resource can be accessed without the need of authentication\/authorization authentication: the resource can be accessed only by authenticated users authorization: the resource can be accessed only by authenticated AND authorized users Configuring access to the endpoints is done by editing the following config file: config\/autoload\/authorization.local.",
+                "tl_dr": "Dotkernel API endpoints can be protected at three levels: no-auth, authentication, and authorization.\nAccess is configured in config\/autoload\/authorization.local.php under the zend-expressive-authorization-rbac key, using a roles section for role inheritance and a permissions section for route access.\nAuthentication endpoints require a valid Bearer token and return 401 Unauthorized if it's missing, while authorization endpoints additionally check role permissions and return 403 Forbidden."
             },
             {
-                "post_title": "How to implement MailChimp in DotKernel API",
+                "post_title": "How to implement MailChimp in Dotkernel API",
                 "post_date": "2020-01-04 10:29:42",
                 "post_status": "publish",
                 "author": {
@@ -1763,11 +1763,11 @@
                     "github": "alexmerlin"
                 },
                 "isObsolete": false,
-                "excerpt": "This article will walk you through the process of implementing MailChimp into your instance of DotKernel API using drewm\/mailchimp-api   Step 1: Add the library to your application using the following command: composer require drewm\/mailchimp-api   Step 2: Create configuration file config\/autoload\/mailchimp.global.",
-                "tl_dr": "This is a step-by-step guide to adding MailChimp support to a DotKernel API instance using the drewm\/mailchimp-api library.\nIt covers installing the library, creating a MailChimp config file, building a factory that returns a DrewM\\MailChimp\\MailChimp instance, and registering that factory in ConfigProvider.php so it can be injected wherever needed."
+                "excerpt": "This article will walk you through the process of implementing MailChimp into your instance of Dotkernel API using drewm\/mailchimp-api   Step 1: Add the library to your application using the following command: composer require drewm\/mailchimp-api   Step 2: Create configuration file config\/autoload\/mailchimp.global.",
+                "tl_dr": "This is a step-by-step guide to adding MailChimp support to a Dotkernel API instance using the drewm\/mailchimp-api library.\nIt covers installing the library, creating a MailChimp config file, building a factory that returns a DrewM\\MailChimp\\MailChimp instance, and registering that factory in ConfigProvider.php so it can be injected wherever needed."
             },
             {
-                "post_title": "DotKernel API 1.0.0 Released",
+                "post_title": "Dotkernel API 1.0.0 Released",
                 "post_date": "2019-12-15 10:27:48",
                 "post_status": "publish",
                 "author": {
@@ -1791,7 +1791,7 @@
                 "tl_dr": ""
             },
             {
-                "post_title": "DotKernel API versus Laminas API Tools",
+                "post_title": "Dotkernel API versus Laminas API Tools",
                 "post_date": "2024-06-03 12:09:10",
                 "post_status": "publish",
                 "author": {
@@ -1799,7 +1799,7 @@
                     "github": "bidi47"
                 },
                 "isObsolete": false,
-                "excerpt": "Below we have created an analysis of the basic features available in Laminas Api Tools and DotKernel API. It's intended to highlight the differences between the two and also to showcase why DotKernel API is a good alternative for Laminas API Tools, especially considering the latter's archived status.",
+                "excerpt": "Below we have created an analysis of the basic features available in Laminas Api Tools and Dotkernel API. It's intended to highlight the differences between the two and also to showcase why Dotkernel API is a good alternative for Laminas API Tools, especially considering the latter's archived status.",
                 "tl_dr": "This article compares the basic features of Laminas API Tools and Dotkernel API side by side, covering architecture, versioning, documentation, authentication, and more.\nIt highlights that Dotkernel API is a solid alternative now that Laminas API Tools has been archived, since Dotkernel API uses a modern middleware architecture, MIT license, and evolution-based deprecations instead of traditional versioning."
             },
             {
@@ -1885,8 +1885,8 @@
                     "github": "bidi47"
                 },
                 "isObsolete": false,
-                "excerpt": "After a recent analysis, we discovered that one of the upstream packages we use is licensed under LGPL v3. Even though we at DotKernel use the MIT license for our open source projects, the more restrictive license must be applied to the whole application.",
-                "tl_dr": "DotKernel discovered that an upstream dependency, matomo\/device-detector, was licensed under LGPL v3 - a more restrictive license than the MIT license DotKernel uses for its own projects.\nBecause the more restrictive license would have to apply to the whole application, DotKernel implemented a workaround: it stopped bundling that dependency by default and documented the licensing implications."
+                "excerpt": "After a recent analysis, we discovered that one of the upstream packages we use is licensed under LGPL v3. Even though we at Dotkernel use the MIT license for our open source projects, the more restrictive license must be applied to the whole application.",
+                "tl_dr": "Dotkernel discovered that an upstream dependency, matomo\/device-detector, was licensed under LGPL v3 - a more restrictive license than the MIT license Dotkernel uses for its own projects.\nBecause the more restrictive license would have to apply to the whole application, Dotkernel implemented a workaround: it stopped bundling that dependency by default and documented the licensing implications."
             }
         ]
     },
