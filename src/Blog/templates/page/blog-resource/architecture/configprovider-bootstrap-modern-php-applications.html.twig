@@ -47,7 +47,10 @@
 {
     public function __invoke(): array
     {
-        return ;
+        return [
+            'dependencies' => $this->getDependencies(),
+            'templates'    => $this->getTemplates(),
+        ];
     }
 
     public function getDependencies(): array

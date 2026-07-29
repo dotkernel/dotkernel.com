@@ -27,9 +27,9 @@ If the session is set to regenerate on each request, as a normal security measur
 the currently logged user is logged off, because the session ID is different now.
 
 To avoid this, <strong>below</strong> the following line
-<pre>>RewriteEngine On</pre>
+<pre>RewriteEngine On</pre>
 add the line :
-<pre>>RewriteCond %{REQUEST_FILENAME} (\.gif|\.jpg|\.png|\.css|\.js)$ </pre>
+<pre>RewriteCond %{REQUEST_FILENAME} (\.gif|\.jpg|\.png|\.css|\.js)$ [OR]</pre>
 Save and don't forget to test.
 
 Even though it's a well known fact that real men do not test...

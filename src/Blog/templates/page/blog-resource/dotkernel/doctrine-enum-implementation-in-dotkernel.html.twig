@@ -30,30 +30,33 @@
 
 <h3><a href="#old-setup"></a>Old setup</h3>
 
-<pre>#
+<pre>#[Entity]
 class Card
 {
-    #
-    #
-    #
+    #[Id]
+    #[GeneratedValue]
+    #[Column]
     public int $id;
 
-    #],
+    #[Column(
+        type: Types::ENUM,
+        enumType: Suit::class,
+        options: ['values' => ['H', 'D', 'C', 'S']],
     )]
     public Suit $suit;
 }</pre>
 
 <h3><a href="#new-setup"></a>New setup</h3>
 
-<pre>#
+<pre>#[Entity]
 class Card
 {
-    #
-    #
-    #
+    #[Id]
+    #[GeneratedValue]
+    #[Column]
     public int $id;
 
-    #
+    #[Column(type: Types::ENUM)]
     public Suit $suit;
 }</pre>
 
@@ -74,11 +77,14 @@ class Card
 
 <pre>public const STATUS_PENDING = 'pending';
 public const STATUS_ACTIVE  = 'active';
-public const STATUSES       = ;</pre>
+public const STATUSES       = [
+    self::STATUS_PENDING,
+    self::STATUS_ACTIVE,
+];</pre>
 
 <p class="mb-3">The column for the ORM was defined like this, as a simple string, with <code>pending</code> as its default value:</p>
 
-<pre>#
+<pre>#[ORM\Column(name: "status", type: "string", length: 20)]
 protected string $status = self::STATUS_PENDING;</pre>
 
 <p class="mb-3">Obviously, the <code>getStatus</code> and <code>setStatus</code> also work with strings:</p>
@@ -145,9 +151,10 @@ class UserStatusEnumType extends AbstractEnumType
 
 <p class="mb-3">Let's register the custom type in <code>config/autoload/doctrine.global.php</code> under the <code>types</code> key:</p>
 
-<pre>'types'         =>
+<pre>'types'         => [
+[...]
     UserStatusEnumType::NAME => UserStatusEnumType::class,
-
+[...]
 ],</pre>
 
 <p class="mb-3">The filtering is updated in <code>src/User/src/InputFilter/Input/StatusInput.php</code>:</p>
@@ -158,13 +165,16 @@ class UserStatusEnumType extends AbstractEnumType
     ->attach(fn($value) => $value === null ? UserStatusEnum::Active : UserStatusEnum::from($value));
 
 $this->getValidatorChain()
-    ->attachByName(InArray::class, , true);</pre>
+    ->attachByName(InArray::class, [
+        'haystack' => UserStatusEnum::cases(),
+        'message'  => sprintf(Message::INVALID_VALUE, 'status'),
+    ], true);</pre>
 
 <p class="mb-3">The above ensures that the new <code>UserStatusEnum</code> class is used for the <code>status</code> column updates.</p>
 
 <p class="mb-3">The <code>User</code> entity uses the new <code>UserStatusEnum</code> class.</p>
 
-<pre>#)]
+<pre>#[ORM\Column(type: 'user_status_enum', options: ['default' => UserStatusEnum::Pending])]
 protected UserStatusEnum $status = UserStatusEnum::Pending;</pre>
 
 <p class="mb-3">The <code>status</code> getter and setter are also updated:</p>
@@ -181,7 +191,7 @@ public function setStatus(UserStatusEnum $status): self
 
 <p class="mb-3">Dotkernel checks the user status during login in <code>src/User/src/Repository/UserRepository.php</code>. If the user is not activated, the login is rejected.</p>
 
-<pre>if ($clientEntity->getName() === 'frontend' &amp;&amp; $result !== UserStatusEnum::Active) {
+<pre>if ($clientEntity->getName() === 'frontend' &amp;&amp; $result['status'] !== UserStatusEnum::Active) {
     throw new OAuthServerException(Message::USER_NOT_ACTIVATED, 6, 'inactive_user', 401);
 }</pre>
 
@@ -189,9 +199,9 @@ public function setStatus(UserStatusEnum $status): self
 
 <pre>$user = (new User())
     ->setDetail($detail)
-    ->setIdentity($data)
-    ->usePassword($data)
-    ->setStatus($data ?? UserStatusEnum::Pending);</pre>
+    ->setIdentity($data['identity'])
+    ->usePassword($data['password'])
+    ->setStatus($data['status'] ?? UserStatusEnum::Pending);</pre>
 
 <p class="mb-3">Note the <code>status</code> column in the migration query which now looks like this:</p>
 

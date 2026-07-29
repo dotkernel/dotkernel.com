@@ -91,13 +91,16 @@
 
 <p class="mb-3">Now let's use <strong>DotKernel's</strong> <a href="https://github.com/dotkernel/dot-dependency-injection" target="_blank" rel="noreferrer noopener">dot-dependency-injection</a> package to inject the required dependency into your class.</p>
 
-<p class="mb-3">After you install the package, your class needs to <code>use Dot\DependencyInjection\Attribute\Inject</code> , then you need to add the <code>#</code> attribute to the constructor definition to specify which dependencies should be injected.</p>
+<p class="mb-3">After you install the package, your class needs to <code>use Dot\DependencyInjection\Attribute\Inject</code> , then you need to add the <code>#[Inject(...)]</code> attribute to the constructor definition to specify which dependencies should be injected.</p>
 
 <pre>use Dot\DependencyInjection\Attribute\Inject;
 
 class UserHandler implements RequestHandlerInterface
 {
-    #
+    #[Inject(
+        UserServiceInterface::class,
+        "config",
+    )]
     public function __construct(
         protected UserServiceInterface $userService,
         protected array $config,

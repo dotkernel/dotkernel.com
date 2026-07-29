@@ -39,7 +39,7 @@ Developers are used to hand-write and hard-code URLs into anchor tags, but this 
 To use it in a Controller, you have access to <code>$this-&gt;url();</code> which takes the route name, in this case, '<strong>page</strong>', as the first parameter, and then any optional blocks as the second parameter.
 
 A controller redirect may then look like this:
-<pre>>return new RedirectResponse($this-&gt;url('contact', ));</pre>
+<pre>>return new RedirectResponse($this-&gt;url('contact', ['action' =&gt; 'thank-you']));</pre>
 Using the URLGenerator in views is approximately the same, since you have access to the global <code>path()</code> method.
 
 The path method works the same way as the <code>url()</code> method, and takes the route name as the first parameter, and any optional blocks as its second parameter. This is of course done in <code>Twig</code>, so we need to put curly brackets around it since it's dynamic and not static HTML. It could look like this:

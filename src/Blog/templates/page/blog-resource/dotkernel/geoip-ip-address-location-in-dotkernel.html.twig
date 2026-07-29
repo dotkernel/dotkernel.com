@@ -100,7 +100,7 @@ public function getCountryByIp($ip)
         }
         else
         {
-            $session->message = $this->option->warningMessage->modGeoIp;;
+            $session->message['txt'] = $this->option->warningMessage->modGeoIp;;
             $session->message = 'warning';
         }
     }

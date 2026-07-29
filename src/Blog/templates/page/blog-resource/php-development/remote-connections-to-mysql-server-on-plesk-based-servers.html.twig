@@ -33,7 +33,7 @@ tool to reset your password with the command SET PASSWORD = PASSWORD('your_exist
 This will store a new, and more secure, hash value in mysql.user.
 If this user is used in other scripts executed by PHP 5.2 or earlier you might need to remove
  the old-passwords flag from your my.cnf file' in</pre>
-<!--more-->How to fix that  :
+<!--more-->How to fix that [ You need mysql admin priviledges] :
 <ol>
     <li>Create a new database user,  <strong>someuser</strong> for instance directly in command line</li>
     <li>Grant priviledges to that user to the database you want to connect to.</li>

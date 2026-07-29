@@ -62,9 +62,9 @@ class MailChimpFactory
      */
     public function __invoke(ContainerInterface $container) : MailChimp
     {
-        $config = $container-&gt;get('config') ?? [];
+        $config = $container-&gt;get('config')['mailChimp'] ?? [];
 
-        return new MailChimp($config ?? '');
+        return new MailChimp($config['apiKey'] ?? '');
     }
 }
 

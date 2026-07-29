@@ -55,7 +55,13 @@
 <p class="mb-3">We announce endpoint deprecation by including an updated response header via handler attributes.</p>
 
 <pre>...
-#
+#[ResourceDeprecation(
+    sunset: '2026-01-01',
+    link: 'https://docs.dotkernel.org/api-documentation/v7/tutorials/api-evolution/',
+    deprecationReason: 'Resource deprecation example.',
+    rel: 'sunset',
+    type: 'text/html'
+)]
 class OldHandler implements RequestHandlerInterface
 {
 ...</pre>

@@ -53,8 +53,8 @@ If you don't want to use GeoIP City and just want to get rid of the error go to
     $record = geoip_record_by_name($ip);
     if(!empty($record))
     {
-        $countryCode = $record;
-        $countryName = $record;
+        $countryCode = $record['country_code'];
+        $countryName = $record['country_name'];
         $country = $countryCode != false  ? $countryCode : 'unknown';
         $country = $countryName != false  ? $countryName : 'NA';
     }

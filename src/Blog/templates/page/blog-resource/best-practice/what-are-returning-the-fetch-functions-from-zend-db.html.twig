@@ -21,12 +21,12 @@
             <article class="article">
                 <div class="entry">
 Continuing the Zend_DB article <a href="http://www.dotkernel.com/dotkernel/sql-select-zend-db/" target="_blank" rel="noopener noreferrer">series</a>, we are stopping now at <i>FETCH</i> methods that are in <a href="http://framework.zend.com/apidoc/core/Zend_Db/Adapter/Zend_Db_Adapter_Abstract.html#sec-method-summary" target="_blank" rel="noopener noreferrer">Zend_Db_Adapter_Abstract</a>:
-<pre>>
+<pre>
 array  fetchAll  (string|Zend_Db_Select $sql, , )
-array fetchAssoc (string|Zend_Db_Select $sql, )
-array fetchCol (string|Zend_Db_Select $sql, )
-string fetchOne (string|Zend_Db_Select $sql, )
-array fetchPairs (string|Zend_Db_Select $sql, )
+array fetchAssoc (string|Zend_Db_Select $sql, [mixed $bind = array()])
+array fetchCol (string|Zend_Db_Select $sql, [mixed $bind = array()])
+string fetchOne (string|Zend_Db_Select $sql, [mixed $bind = array()])
+array fetchPairs (string|Zend_Db_Select $sql, [mixed $bind = array()])
 array fetchRow (string|Zend_Db_Select $sql, , )
 </pre>
 To be more easily to follow, in <span style="background-color: #B5DFC1">green</span> box is the classical SQL statement, and in <span style="background-color:  #9FCFFF">blue</span> box is the query written in Zend_Db style.
@@ -34,17 +34,17 @@ To be more easily to follow, in <span style="background-color: #B5DFC1">green</s
 <!--more-->
 Lets start.
 Initialize the connection to our MySql database:
-<pre> style="background-color: #9FCFFF">
+<pre style="background-color: #9FCFFF">
 $db = Zend_Db::factory('Pdo_Mysql', $dbConnect);
 </pre>
 Here is a SQL query, that we want to fetch:
 </br>
-<pre> style="background-color: #B5DFC1">
+<pre style="background-color: #B5DFC1">
 $sql = "SELECT id, title FROM files";
 $db->query($sql)
 </pre>
 </br>
-<pre> style="background-color: #9FCFFF">
+<pre style="background-color: #9FCFFF">
 $select = $db->select()
              ->from('files', array('id', 'title'))
 </pre>
@@ -55,7 +55,7 @@ $select = $db->select()
 </br>
 <b>fetchAll</b>
 </br>
-<pre> style="background-color: #B5DFC1">
+<pre style="background-color: #B5DFC1">
 while($db->next_record())
 {
     $a[] = array(
@@ -65,66 +65,66 @@ while($db->next_record())
 }
 </pre>
 </br>
-<pre> style="background-color: #9FCFFF">
+<pre style="background-color: #9FCFFF">
 $a = $db->fetchAll($select);
 </pre>
 </br>
 <b>fetchAssoc</b>
 </br>
-<pre> style="background-color: #B5DFC1">
+<pre style="background-color: #B5DFC1">
 while($db->next_record())
 {
-    $a = array(
+    $a[$db->f('id')] = array(
                              'id' => $db->f('id'),
                              'title' => $db->f('title')
                             );
 }
 </pre>
 </br>
-<pre> style="background-color: #9FCFFF">
+<pre style="background-color: #9FCFFF">
 $a = $db->fetchAssoc($select);
 </pre>
 </br>
 <b>fetchCol</b>
 </br>
-<pre> style="background-color: #B5DFC1">
+<pre style="background-color: #B5DFC1">
 while($db->next_record())
 {
     $a[] = $db->f('id');
 }
 </pre>
 </br>
-<pre> style="background-color: #9FCFFF">
+<pre style="background-color: #9FCFFF">
 $a = $db->fetchCol($select);
 </pre>
 </br>
 <b>fetchOne</b>
 </br>
-<pre> style="background-color: #B5DFC1">
+<pre style="background-color: #B5DFC1">
 $db->next_record();
 $a = $db->f('id');
 </pre>
 </br>
-<pre> style="background-color: #9FCFFF">
+<pre style="background-color: #9FCFFF">
 $a = $db->fetchOne($select);
 </pre>
 </br>
 <b>fetchPairs</b>
 </br>
-<pre> style="background-color: #B5DFC1">
+<pre style="background-color: #B5DFC1">
 while($db->next_record())
 {
-    $a = $db->f('title');
+    $a[$db->f('id')] = $db->f('title');
 }
 </pre>
 </br>
-<pre> style="background-color: #9FCFFF">
+<pre style="background-color: #9FCFFF">
 $a = $db->fetchPairs($select);
 </pre>
 </br>
 <b>fetchRow</b>
 </br>
-<pre> style="background-color: #B5DFC1">
+<pre style="background-color: #B5DFC1">
 $db->next_record();
 $a = array(
            'id' => $db->f('id'),
@@ -132,7 +132,7 @@ $a = array(
           );
 </pre>
 </br>
-<pre> style="background-color: #9FCFFF">
+<pre style="background-color: #9FCFFF">
 $a = $db->fetchRow($select);
 </pre>
 
