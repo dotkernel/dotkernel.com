@@ -20,6 +20,7 @@
 
             <article class="article">
                 <div class="entry">
+                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
 As all <a href="http://www.aptana.org/" target="_blank" rel="noopener noreferrer">aptana</a> fans know, <a href="http://www.aptana.org/php" target="_blank" rel="noopener noreferrer">Aptana PHP</a> plugin was discontinued in Aptana 2.x, in favor of PDT.
  But PDT is a joke, not suitable for professional PHP development, major features are missing.
  So if you want to continue using Aptana PHP, that's what need to be done:

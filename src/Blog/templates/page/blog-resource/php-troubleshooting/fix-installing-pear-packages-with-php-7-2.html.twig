@@ -20,6 +20,7 @@
 
             <article class="article">
                 <div class="entry">
+                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
 This article will cover the solution to the PEAR "<em>Cannot use result of built-in function in write context</em>" issue.
 <h2>The Issue</h2>
 If installing a pear package (for instance PHP Code Sniffer), when running:

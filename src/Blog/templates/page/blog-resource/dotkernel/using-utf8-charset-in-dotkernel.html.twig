@@ -20,6 +20,7 @@
 
             <article class="article">
                 <div class="entry">
+                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
 In order to use UTF8 encoding in your DotKernel based system, is needed to make some changes in both database structure and in the application.ini file.
 <blockquote class="blockquote border-start border-4 ps-3 text-muted my-3">Those changes are commited into <strong>DotKernel 1.6.0 dev</strong> codebase, which will be released in next days.</blockquote>
 <!--more-->

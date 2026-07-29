@@ -20,6 +20,7 @@
 
             <article class="article">
                 <div class="entry">
+                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
 <h2>Getting Started with Dotkernel Admin V4</h2>
 
 <p class="mb-3"><strong><a rel="noreferrer noopener" href="https://github.com/dotkernel/admin" target="_blank">DotKernel's PSR-7 Admin</a> </strong> is an application based on <strong><a rel="noreferrer noopener" href="https://getlaminas.org/" target="_blank">Mezzio</a></strong>, with the main purpose of managing and displaying tabular data from one or more databases components.</p>

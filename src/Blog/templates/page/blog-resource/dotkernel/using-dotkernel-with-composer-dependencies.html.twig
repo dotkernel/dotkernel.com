@@ -20,6 +20,7 @@
 
             <article class="article">
                 <div class="entry">
+                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
 This article will cover the external dependency usage VIA composer within DotKernel applications.
 
 There is also an article explaining how composer can be added to DotKernel <a href="http://www.dotkernel.com/dotkernel/adding-composer-support-in-your-dotkernel-project" target="_blank" rel="noopener noreferrer">learn more</a>.

@@ -20,6 +20,7 @@
 
             <article class="article">
                 <div class="entry">
+                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
 <blockquote style="font-size: 16px;
   font-weight: 400;">This article refers to Dotkernel API v5. Checkout out the new additions for <a href="https://www.dotkernel.com/headless-platform/dotkernel-api-v6-the-root-of-dotkernel-headless-platform/">Dotkernel API v6</a> to stay up-to-date.</blockquote>
 <p class="mb-3">Based on Enrico Zimuel's <a href="https://github.com/ezimuel/zend-expressive-api" target="_blank" rel="noreferrer noopener">Zend Expressive API - Skeleton example</a>, Dotkernel API runs on <a href="https://github.com/mezzio" target="_blank" rel="noreferrer noopener">Mezzio</a> microframework   and<a href="https://github.com/laminas" target="_blank" rel="noreferrer noopener">Laminas</a> components and implements standards like PSR-3, PSR-4, PSR-7, PSR-11 and PSR-15.</p>

@@ -20,6 +20,7 @@
 
             <article class="article">
                 <div class="entry">
+                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
 <p class="mb-3">In PHP, the <code>ConfigProvider</code> is a class that is part of an application's bootstrap process. <strong>It's a class or callable that returns configuration data telling the platform which middleware should run, in what order, and sometimes under what conditions.</strong></p>
 
 <p class="mb-3">If you're talking specifically about the ConfigProvider in the Laminas/Mezzio ecosystem, it's literally an array of configuration, settings, or anything else your application needs.</p>

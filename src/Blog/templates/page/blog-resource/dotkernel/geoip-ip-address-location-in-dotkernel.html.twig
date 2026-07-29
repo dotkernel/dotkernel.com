@@ -20,6 +20,7 @@
 
             <article class="article">
                 <div class="entry">
+                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
 <em><strong>GeoIP</strong> </em>is the proprietary technology that drives <a href="http://www.maxmind.com/app/ip-location" target="_blank" rel="noopener noreferrer">MaxMind's</a> IP geolocation data and services. It is a non-invasive way to determine geographical and other information about Internet visitors in real-time. When a person visits your website, <strong><em>GeoIP </em></strong>can determine which country, region, city, postal code, area code the visitor is coming from.
 
 DotKernel uses <em><strong>GeoIP </strong></em>to get user statistics by country. The main file for <em><strong>GeoIP </strong></em>is <a href="http://websvn.dotkernel.net/filedetails.php?repname=DotKernel&amp;path=%2Ftrunk%2Flibrary%2FDot%2FGeoip.php" target="_blank" rel="noopener noreferrer">library/Dot/Geoip.php</a>

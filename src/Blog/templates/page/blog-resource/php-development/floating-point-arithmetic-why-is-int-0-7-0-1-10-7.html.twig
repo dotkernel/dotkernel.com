@@ -20,6 +20,7 @@
 
             <article class="article">
                 <div class="entry">
+                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
 This article applies to <strong>PHP 5.x</strong> but also to <strong>PHP 7</strong>
 
 While using <strong>floating-point arithmetic</strong> you might have noticed that not all the calculus results are as expected, this can usually be observed when casting values.

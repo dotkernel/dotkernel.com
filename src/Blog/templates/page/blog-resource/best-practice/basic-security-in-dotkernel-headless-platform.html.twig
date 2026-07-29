@@ -20,6 +20,7 @@
 
             <article class="article">
                 <div class="entry">
+                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
 <p class="mb-3"><strong>Software security</strong> should always be in the back of your mind as a developer. It may seem fine at first to deliver a feature sooner, only to find later on that you left a backdoor into your crisp new update. You ignore security at your own risk, with potentially major costs to your personal or your organization's image, and to your client's trust in your abilities. The costs to recover the damages caused by a lacking security are sometimes astronomical, enough to put a company out of business.</p>
 
 <p class="mb-3">There are many facets of software security, meaning there are a lot of potential ways a hacker can access your code or your data fraudulently:</p>

@@ -20,6 +20,7 @@
 
             <article class="article">
                 <div class="entry">
+                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
 Starting with the 1.5 release, DotKernel will make the switch from Dojo to jQuery.
 
 On jQuery's website, there's an excellent "<a href="http://docs.jquery.com/Tutorials:Getting_Started_with_jQuery" target="_blank" rel="noopener noreferrer">Getting started with jQuery tutorial</a>", as well as a extensive <a href="http://api.jquery.com/" target="_blank" rel="noopener noreferrer">documentation</a> for the framework, so I'll just go over a few basic concepts and common examples.

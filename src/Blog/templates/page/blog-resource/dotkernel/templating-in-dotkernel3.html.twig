@@ -20,6 +20,7 @@
 
             <article class="article">
                 <div class="entry">
+                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
 <strong>DotKernel3</strong> aims to improve the DotKernel stack in every way possible, and one of the painpoints in the previous version of DotKernel was the templating engine.
 Albeit a solid and robust templating engine, it was also 10 years old, and used techniques that's slightly outdated by now.
 

@@ -20,6 +20,7 @@
 
             <article class="article">
                 <div class="entry">
+                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
 DotKernel 3 uses <code>FastRoute</code> under the hood, which is an excellent and fast routing package, but it does have some <strong>quirks</strong>.
 
 A wrong setup can lead to many headaches, as it's not prominent that the error you're experiencing is from FastRoute, and you may not know where exactly to look for the cause.

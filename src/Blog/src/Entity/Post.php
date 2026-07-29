@@ -46,6 +46,9 @@ class Post extends AbstractEntity
     #[ORM\JoinColumn(name: 'author_id', referencedColumnName: 'id', nullable: false)]
     private Author $author;
 
+    #[ORM\Column(name: 'isObsolete', type: 'boolean')]
+    private bool $isObsolete = false;
+
     public function getTitle(): string
     {
         return $this->title;
@@ -126,6 +129,16 @@ class Post extends AbstractEntity
         $this->tlDr = $tlDr;
     }
 
+    public function isObsolete(): bool
+    {
+        return $this->isObsolete;
+    }
+
+    public function setObsolete(bool $isObsolete): void
+    {
+        $this->isObsolete = $isObsolete;
+    }
+
     /**
      * @return array{
      *     id: non-empty-string,
@@ -135,6 +148,7 @@ class Post extends AbstractEntity
      *     excerpt: string,
      *     tlDr: string|null,
      *     postDate: string,
+     *     isObsolete: bool,
      *     category: array{id: non-empty-string, name: string, slug: string},
      *     author: array{id: non-empty-string, name: string, slug: string, github: string|null}
      * }
@@ -142,15 +156,16 @@ class Post extends AbstractEntity
     public function getArrayCopy(): array
     {
         return [
-            'id'       => $this->id->toString(),
-            'title'    => $this->title,
-            'slug'     => $this->slug,
-            'status'   => $this->status->value,
-            'excerpt'  => $this->excerpt,
-            'tlDr'     => $this->tlDr,
-            'postDate' => $this->postDate->format('Y-m-d H:i:s'),
-            'category' => $this->category->getArrayCopy(),
-            'author'   => $this->author->getArrayCopy(),
+            'id'         => $this->id->toString(),
+            'title'      => $this->title,
+            'slug'       => $this->slug,
+            'status'     => $this->status->value,
+            'excerpt'    => $this->excerpt,
+            'tlDr'       => $this->tlDr,
+            'isObsolete' => $this->isObsolete,
+            'postDate'   => $this->postDate->format('Y-m-d H:i:s'),
+            'category'   => $this->category->getArrayCopy(),
+            'author'     => $this->author->getArrayCopy(),
         ];
     }
 }

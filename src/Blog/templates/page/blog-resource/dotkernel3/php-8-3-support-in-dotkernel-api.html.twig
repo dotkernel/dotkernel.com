@@ -20,6 +20,7 @@
 
             <article class="article">
                 <div class="entry">
+                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
 <p class="mb-3">The last remaining application to be updated to support PHP 8.3 is the <a href="https://github.com/dotkernel/api" data-type="link" data-id="https://github.com/dotkernel/api" target="_blank" rel="noreferrer noopener">API</a>, now at v4.2.1. The steps taken to perform the update are similar to the ones in the update for the <a href="https://github.com/dotkernel/frontend" data-type="link" data-id="https://github.com/dotkernel/frontend" target="_blank" rel="noreferrer noopener">Frontend</a>.</p>
 
 <p class="mb-3">The full list of file changes is <a href="https://github.com/dotkernel/api/pull/222" data-type="link" data-id="https://github.com/dotkernel/admin/pull/218/files" target="_blank" rel="noreferrer noopener">here</a>.</p>

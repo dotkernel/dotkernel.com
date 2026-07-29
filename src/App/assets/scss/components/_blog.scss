@@ -236,6 +236,40 @@ $bp-tablet: 900px;
   }
 }
 
+// ---------- Obsolete post warning ----------
+.obsolete-warning {
+  margin: 0 0 40px;
+  padding: 20px 24px;
+  border-radius: var(--radius);
+  background: rgba(199, 31, 56, .12);
+  border: 1px solid var(--brand-red);
+  border-left: 4px solid var(--brand-red);
+
+  p {
+    font-size: 14.5px;
+    line-height: 1.7;
+    margin: 0;
+    color: var(--text);
+  }
+
+  strong {
+    color: var(--brand-red);
+  }
+
+  a {
+    color: var(--brand-red);
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: var(--brand-red);
+    text-underline-offset: 3px;
+
+    &:hover {
+      color: var(--teal);
+      text-decoration-color: var(--teal);
+    }
+  }
+}
+
 // ---------- Callout ----------
 .callout {
   margin: 44px 0;

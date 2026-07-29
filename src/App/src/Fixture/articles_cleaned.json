@@ -13,7 +13,8 @@
                     "github": "arhimede"
                 },
                 "excerpt": "DotKernel borrows the database naming conventions from FaZend: Rules of naming of database tables and columns. FaZend is an open-source PHP framework based on Zend Framework.",
-                "tl_dr": "DotKernel's database naming conventions are borrowed from FaZend's \"Rules of naming of database tables and columns.\"\nTables use singular, camelLetter names, every table has an auto-increment id, foreign keys are named after the referenced table and column, and SQL keywords are capitalized."
+                "tl_dr": "DotKernel's database naming conventions are borrowed from FaZend's \"Rules of naming of database tables and columns.\"\nTables use singular, camelLetter names, every table has an auto-increment id, foreign keys are named after the referenced table and column, and SQL keywords are capitalized.",
+                "isObsolete": false
             },
             {
                 "post_title": "camelCase Table Names in MySQL on Windows",
@@ -23,6 +24,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "If you are using a WAMP stack, like WAMP or XAMPP, and try to create a table in camelCase ( example: adminLogin) you will notice that camelCase is not working, table name will be lowercase: adminlogin. In order to fix this, you need to add to your my.",
                 "tl_dr": ""
             },
@@ -34,6 +36,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "Dot_Email class extends Zend_Mail, so all the methods from Zend_Mail are available  in Dot_Email. Dot_Email is a simple class composed only from 2 methods, except constructor, all  other methods beeing inherited  from Zend_Mail.",
                 "tl_dr": "Dot_Email extends Zend_Mail, so all of Zend_Mail's methods are available in it.\nBeyond its constructor, Dot_Email itself adds only two methods: setContent() and send().\nTo send an email you must always call addTo(), setSubject(), one of setBodyText()\/setBodyHtml()\/setContent(), and finally send()."
             },
@@ -45,6 +48,7 @@
                     "display_name": "Teo",
                     "github": ""
                 },
+                "isObsolete": true,
                 "excerpt": "Finally we reached DotKernel 1.2.",
                 "tl_dr": "DotKernel 1.2.0 has been released, bringing changes since the previous 1.1.2 release.\nThe database tables were renamed and restructured to follow database naming conventions, and configuration for each \"dots\" (submodule) now lives in XML files instead of being hard-coded in PHP.\nThe release also adds new library classes (Dot_Geoip, Dot_Seo), updates existing ones (Dot_Curl, Dot_Session), and confirms that all SQL queries are written as prepared statements."
             },
@@ -56,6 +60,7 @@
                     "display_name": "Teo",
                     "github": ""
                 },
+                "isObsolete": true,
                 "excerpt": "Yesterday, we released DotKernel 1.2.",
                 "tl_dr": "DotKernel 1.2.2 is a bug-fix release that closes five tracked issues.\nBecause one of the fixes updated the copyright line, every PHP file in the codebase changed, so the full release or the incremental upgrade package is needed."
             },
@@ -67,6 +72,7 @@
                     "display_name": "Teo",
                     "github": ""
                 },
+                "isObsolete": true,
                 "excerpt": "DotKernel 1.3.",
                 "tl_dr": "DotKernel 1.3.0 brings a switchable admin skin, a way to protect member-only pages, a rename of Dot_Sessions, and a reorganization of resource.xml into route.xml and dots.xml.\nBecause of that XML reorganization, 1.3.0 is not backward compatible with earlier versions."
             },
@@ -78,6 +84,7 @@
                     "display_name": "Teo",
                     "github": ""
                 },
+                "isObsolete": false,
                 "excerpt": "GeoIP is the proprietary technology that drives MaxMind's IP geolocation data and services. It is a non-invasive way to determine geographical and other information about Internet visitors in real-time.",
                 "tl_dr": "GeoIP is MaxMind's proprietary technology for IP geolocation.\nDotKernel uses it to get user statistics by country, determining a visitor's country, region, city, postal code, or area code in real time.\nThe logic lives in library\/Dot\/Geoip.php, inside the getCountryByIp function, which branches over four cases depending on whether the mod_geoip PECL extension and its .dat files are available."
             },
@@ -89,6 +96,7 @@
                     "display_name": "Teo",
                     "github": ""
                 },
+                "isObsolete": false,
                 "excerpt": "WURFL is integrated into DotKernel, using the Zend_Http_UserAgent class from the latest release ZF 1.11.",
                 "tl_dr": "WURFL is integrated into DotKernel using the Zend_Http_UserAgent class from ZF 1.11.0rc1 (the beta release at the time of the post).\nThis post walks through the required folders, config files, and code to wire it up."
             },
@@ -100,6 +108,7 @@
                     "display_name": "Teo",
                     "github": ""
                 },
+                "isObsolete": true,
                 "excerpt": "Before the winter holiday we came with a new release: DotKernel 1.3.",
                 "tl_dr": "Released just before the winter holidays, DotKernel 1.3.2 is mainly a maintenance release: it contains many bug fixes, some refactoring, and a few minor features."
             },
@@ -111,6 +120,7 @@
                     "display_name": "Teo",
                     "github": ""
                 },
+                "isObsolete": false,
                 "excerpt": "Zend_Auth and Zend_Acl have been integrated into the DotKernel, starting with version 1.5.",
                 "tl_dr": "Zend_Auth and Zend_Acl have been integrated into DotKernel starting with version 1.5.0.\nThe User and Admin models were completely refactored using the new Dot_Auth and Dot_Acl classes for authentication and access control."
             },
@@ -122,6 +132,7 @@
                     "display_name": "Adrian",
                     "github": ""
                 },
+                "isObsolete": false,
                 "excerpt": "DotKernel has an example mobile site at http:\/\/v1.dotkernel.",
                 "tl_dr": "DotKernel's example mobile site normally relies on Wurfl to detect mobile browsers and automatically redirect visitors there on their first homepage view, which isn't always desired.\nAs of revision 408, this behavior is controlled by a single resources.useragent.wurflapi.redirect setting in application.ini.\nThe article shows that setting along with the matching condition in IndexController.php that checks it before registering and redirecting a visit."
             },
@@ -133,6 +144,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "In \/var\/www\/vhosts\/exampledomain.com\/conf\/vhost.",
                 "tl_dr": ""
             },
@@ -144,6 +156,7 @@
                     "display_name": "Adrian",
                     "github": ""
                 },
+                "isObsolete": false,
                 "excerpt": "On one of our recent projects that used WURFL, response time was an important factor. Profiling revealed that the greatest chunk of response time (up to a few hundred milliseconds) was taken up by WURFL.",
                 "tl_dr": "On a high-traffic project using WURFL, profiling showed WURFL's default filesystem cache was costing up to a few hundred milliseconds per request. Adding a small, custom second cache layer on top of WURFL, built on APC, cut response time by an order of magnitude, down to 20-30ms."
             },
@@ -155,6 +168,7 @@
                     "display_name": "Adrian",
                     "github": ""
                 },
+                "isObsolete": false,
                 "excerpt": "In DotKernel, Zend_Registry will contain the following variables: startTime - the result of microtime() at the beginning of the request configuration - the configuration options loaded from configs\/application.ini router - routing settings loaded from configs\/router.",
                 "tl_dr": "In DotKernel, Zend_Registry holds a fixed set of request-scoped variables — from timing and configuration to the database adapter and session object — and can be read either as a full instance or one value at a time."
             },
@@ -166,6 +180,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "We integrated long time ago the WURFL PHP API into DotKernel code base. At that time, the license of that WURFL library was GNU\/GPL, which make it perfect compatible with Zend Framework license( new BSD) and DotKernel ( OSL 3.",
                 "tl_dr": "The WURFL PHP API was integrated into DotKernel long ago under a GNU\/GPL license, compatible with Zend Framework's new BSD license and DotKernel's OSL 3.0 license.\nOn June 6th, 2011, WURFL PHP API version 1.3.0 changed its license to AGPL, turning it into a \"trial only\" library for product evaluation.\nDotKernel had updated to this version in the 1.5.0 release candidate without noticing the license change."
             },
@@ -177,6 +192,7 @@
                     "display_name": "Adrian",
                     "github": ""
                 },
+                "isObsolete": true,
                 "excerpt": "After a longer wait than usual, DotKernel 1.5.",
                 "tl_dr": "After a longer wait than usual and around 250 commits, DotKernel 1.5.0 was released, skipping 1.4 entirely due to the scale of changes.\nHighlights include switching from Dojo to jQuery, a redesigned admin and frontend, model inheritance through a new Dot_Model class, support for dashed controller names, and a reorganized Zend Registry."
             },
@@ -188,6 +204,7 @@
                     "display_name": "deddu",
                     "github": ""
                 },
+                "isObsolete": true,
                 "excerpt": "The new DotKernel version 1.6.",
                 "tl_dr": "DotKernel 1.6.0 no longer ships with a working built-in mobile detection method, because mobile detection now relies on the new Wurfl Cloud integration and must be configured via a Wurfl Cloud account and API key.\nThe old Dot_UserAgent_Wurfl class was removed and replaced by Dot_UserAgent_WurflCloud, which uses the Wurfl Cloud API adapter.\nThe article walks through the application.ini settings and shows sample code for reading device info and redirecting mobile visitors."
             },
@@ -199,6 +216,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "We found a strange behaviour of sessions in one of our project, running DotKernel version 1.5.",
                 "tl_dr": "A strange session bug was found on a project running DotKernel 1.5.0: in IE8 and IE9, the session cookie was sometimes not saved, forcing repeated logins.\nInvestigation traced it to the Dot_Session class calling both regenerateID() and rememberMe() unnecessarily, generating the session cookie 3 times.\nThe fix, shipped in DotKernel 1.5.1, removed the regenerateID() call and added two new application.ini settings."
             },
@@ -210,6 +228,7 @@
                     "display_name": "Adrian",
                     "github": ""
                 },
+                "isObsolete": false,
                 "excerpt": "Starting with 1.5, DotKernel has a Console bootstrap to easily run PHP scripts from the command line.",
                 "tl_dr": "Starting with version 1.5, DotKernel has a Console bootstrap to easily run PHP scripts from the command line.\nThe most common use for this is running cron jobs without using wget or going through Apache."
             },
@@ -221,6 +240,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "DotKernel Application Framework can be downloaded with WURFL XML file bundled in it, but is quite an old file,  the latest GPL version, from June 2011. Because of license changed of that WURFL file,  this bundled file will not be upgraded anymore by us.",
                 "tl_dr": "DotKernel Application Framework bundles a WURFL XML file, but it's the last GPL version (from June 2011).\nBecause of a license change to that WURFL file, DotKernel will no longer upgrade the bundled file — it must be upgraded manually."
             },
@@ -232,6 +252,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "From time to time, it may be a good idea to have a persistent connection to database. The place where it should be added that new configuration option is application.",
                 "tl_dr": ""
             },
@@ -243,6 +264,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "Here is  uploaded the XML file , ready to be imported in your Zend Studio, version 9.x This file follow DotKernel’s Coding standard.",
                 "tl_dr": ""
             },
@@ -254,6 +276,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "According to Matthew Weier O'Phinney, Zend Framework Project Leader, in the next release of ZF, 1.12.",
                 "tl_dr": ""
             },
@@ -265,6 +288,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "In order to use UTF8 encoding in your DotKernel based system, is needed to make some changes in both database structure and in the application.ini file.",
                 "tl_dr": "To use UTF8 encoding in a DotKernel-based system, changes are needed in both the database structure and the application.ini file.\nThese changes were committed into the DotKernel 1.6.0 dev codebase."
             },
@@ -276,6 +300,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "Another 2 of our team members passed the ZCE exam. Now we are 5 :-) That mean we are really taking PHP  into serious , and at least we have good technical skills.",
                 "tl_dr": ""
             },
@@ -287,6 +312,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "In some situations, it may be neccesar to force MySQL server collation and character set to UTF8. As you can't control all scripts that are connecting to your database( for instance: mysql command line, or mysqldump) For that , open the my.",
                 "tl_dr": "In some situations it may be necessary to force the MySQL server's collation and character set to UTF8, since you can't control all the scripts connecting to your database (for instance the mysql command line or mysqldump).\nThis is done by editing my.cnf."
             },
@@ -298,6 +324,7 @@
                     "display_name": "deddu",
                     "github": ""
                 },
+                "isObsolete": true,
                 "excerpt": "Integrating a new charting library in the latest version of DotKernel (1.6.",
                 "tl_dr": "DotKernel 1.6.0 integrates the Highcharts charting library, offering a new, intuitive and interactive charting experience.\nSample charts (pie, column and line) were added to the admin, and the library ships in the project's externals directory."
             },
@@ -309,6 +336,7 @@
                     "display_name": "deddu",
                     "github": ""
                 },
+                "isObsolete": true,
                 "excerpt": "Another new feature in version 1.6.",
                 "tl_dr": "DotKernel 1.6.0 integrates Wurfl Cloud, WURFL's (Wireless Universal Resource FiLe) new cloud-based way of delivering device detection services, as its default method for detecting mobile devices."
             },
@@ -320,6 +348,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": true,
                 "excerpt": "In the DotKernel version 1.6.",
                 "tl_dr": "In DotKernel 1.6.0, released on May 16th, 2012, the GPL'ed WURFL PHP library was removed because its code was obsolete and the XML file structure had changed. It was replaced by Scientia Mobile's WURFL Cloud PHP library, made available to DotKernel under a special, restrictive license."
             },
@@ -331,6 +360,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "According to Matthew Weier O'Phinney announcement, Zend Framework team is pleased to announce the immediate availability of the first release candidate of the Zend Framework 1.12 series, 1.",
                 "tl_dr": "Per Matthew Weier O'Phinney's announcement, the Zend Framework team made available the first release candidate of the Zend Framework 1.12 series, 1.12.0RC1.\nIt back ports several ZF2 components to ZF1, removes the WurflApi adapter due to licensing changes, and fixes over 200 reported issues."
             },
@@ -342,6 +372,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "Due to the fact that the current buzzword is Nginx instead of Apache, we decided to test if Dotkernel is running out of the box on it. And how to configure Nginx :-) Installed on a clean Centos 6.",
                 "tl_dr": "Since Nginx was becoming the buzzword instead of Apache, this article tests DotKernel on Nginx and documents the configuration needed: server block settings, a try_files directive in place of .htaccess, PHP-FPM handling, and protecting the configs folder."
             },
@@ -353,6 +384,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "Because Zend donated the Zend Studio's Formatter upstream to the PDT project, the Formatter plugin for Zend Studio 10.1 need to be changed: replace  \"com.",
                 "tl_dr": ""
             },
@@ -364,6 +396,7 @@
                     "display_name": "deddu",
                     "github": ""
                 },
+                "isObsolete": false,
                 "excerpt": "To test if you have php_geoip extension on your Zend Server, create an php file and copy the following code. This will output true if extension is available or false if not.",
                 "tl_dr": "Test whether php_geoip is already available, and if not, download the correct php_geoip.dll for your PHP build from windows.php.net, copy it into Zend Server's phpext folder, enable it from the Zend Server GUI, and download the MaxMind GeoIP databases."
             },
@@ -375,6 +408,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "As an update to the post Installing GeoIP extension in Zend Server 5.6 on Windows , for Zend Server 6.",
                 "tl_dr": "As an update to Installing GeoIP extension in Zend Server 5.6 on Windows, here's how to enable php_geoip on Zend Server 6.1."
             },
@@ -386,6 +420,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "In some cases you may encounter missing files: images, css or js files. All those missing files are processed by the current bootstrap: index.",
                 "tl_dr": ""
             },
@@ -397,6 +432,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "In order to use the new Password Hashing functions , introduced in PHP 5.5 , and unify all password related functions , used for both admin and users, we did a major refactor of DotKernel codebase, in version 1.",
                 "tl_dr": "To use the new Password Hashing functions introduced in PHP 5.5 and unify password-related functions for both admin and users, DotKernel's codebase was refactored in version 1.8.0 (starting from revision 799).\nBecause those functions require PHP 5.5+, the Password Compat library is used for compatibility, and the minimum PHP version to run DotKernel was raised to 5.3.8."
             },
@@ -408,6 +444,7 @@
                     "display_name": "Gabi DJ",
                     "github": ""
                 },
+                "isObsolete": false,
                 "excerpt": "This article contains the DotKernel cache layer configuration guide. The DotKernel Caching Layer is based on Zend Framework Cache, more configuration options can be found at the following links: Zend Framework Cache Frontends Zend Framework Cache Backends Main cache settings (Cache Frontend) The main cache settings within the application.",
                 "tl_dr": "DotKernel's caching layer is built on Zend Framework Cache and is configured through cache.* settings in application.ini.\nThe main frontend settings control whether caching is enabled, which cache service to use, the namespace prefix, and how long entries live.\nOptional backend-specific settings (like the file cache directory) are recommended so that separate projects don't accidentally share the same cache."
             },
@@ -419,6 +456,7 @@
                     "display_name": "Gabi DJ",
                     "github": ""
                 },
+                "isObsolete": false,
                 "excerpt": "It's very expensive to load configurations and settings from XML files, on every requests. First because of latency of accessing files from hard drive, second because of the XML file parsing burden.",
                 "tl_dr": "Loading configuration and settings from XML files on every request is expensive, both due to hard-drive latency and XML parsing overhead.\nDotKernel 1.8 implements a cache layer for router, acl_role, menu, options (including seo_xml), browser_xml, os_xml and test data, with a choice of APC\/APCU or file-based storage."
             },
@@ -430,6 +468,7 @@
                     "display_name": "Gabi DJ",
                     "github": ""
                 },
+                "isObsolete": false,
                 "excerpt": "This article is related to: Caching in DotKernel with Zend Framework Cache The variables that DotKernel cache are below: Router Router is the object that load routes (modules, controllers, actions) settings from router.xml file.",
                 "tl_dr": "This article is a follow-up to \"Caching in DotKernel Using Zend Framework Cache\" and lists the variables DotKernel caches, along with the exact cache key each one uses."
             },
@@ -441,6 +480,7 @@
                     "display_name": "Gabi DJ",
                     "github": ""
                 },
+                "isObsolete": false,
                 "excerpt": "In the newest version we have removed the GeoIP City integration. The City database on GeoIP 1.",
                 "tl_dr": "The newest DotKernel version removed the GeoIP City integration because the City database on GeoIP extension version 1.1.0+ was causing a segmentation fault, crashing requests or outputting an error instead of executing the PHP code.\nUsers on an older DotKernel version combined with GeoIP >=1.1.0 may hit this.\nIf you don't need GeoIP City, the affected code can be removed."
             },
@@ -452,6 +492,7 @@
                     "display_name": "Gabi DJ",
                     "github": ""
                 },
+                "isObsolete": false,
                 "excerpt": "Alerts (or Dot_Alert's) are e-mails usually sent to the site developers, these messages are sent with mail() therefore you shouldn't use them to send regular mail. Alerts should only notify you as a developer: \"Hey, something's wrong here, you might want to know this!\" In this article you will find out how to use the Alerts system in DotKernel, we will also go through an existing example so this can be understood easier.",
                 "tl_dr": "Alerts (Dot_Alert's) are e-mails usually sent to site developers using PHP's mail(), meant only to notify a developer that something is wrong — not for regular mail.\nDot_Alert resembles Dot_Email: it has a sender, subject, destination and message, and can be sent.\nThis guide walks through DotKernel's existing example, where an Alert notifies the developer when an e-mail fails to send."
             },
@@ -463,6 +504,7 @@
                     "display_name": "Gabi DJ",
                     "github": ""
                 },
+                "isObsolete": true,
                 "excerpt": "DotKernel 1.8.",
                 "tl_dr": "DotKernel 1.8.0 (LTS) was released with a new Plugin Architecture, a redesigned and mobile-friendly frontend, APC\/File caching for faster response times, a new Dot_Request class, and multiple security and alerting improvements.\nSome features (WURFL integration, multiple SMTP transporters) were removed from core and made available as plugins instead."
             },
@@ -474,6 +516,7 @@
                     "display_name": "Gabi DJ",
                     "github": ""
                 },
+                "isObsolete": true,
                 "excerpt": "DotKernel 1.8.",
                 "tl_dr": "DotKernel 1.8.1 was released with Enhanced Cache Support, allowing cache tags to be used if the hosting environment supports them.\nA dedicated upgrade package is available for users coming from 1.8.0."
             },
@@ -485,6 +528,7 @@
                     "display_name": "Gabi DJ",
                     "github": ""
                 },
+                "isObsolete": false,
                 "excerpt": "Recently we have added the Windows 8, 8.1 and 10 OS icon and Microsoft's Edge browser icon.",
                 "tl_dr": "DotKernel added Windows 8, 8.1 and 10 OS icons and a Microsoft Edge browser icon, shown in the User and Admin login icons.\nThis article is the upgrade guide for applying that icon patch."
             },
@@ -496,6 +540,7 @@
                     "display_name": "Gabi DJ",
                     "github": ""
                 },
+                "isObsolete": false,
                 "excerpt": "Composer is an application-level package manager. Composer auto-loads the dependencies on demand and can also auto-load custom classes .",
                 "tl_dr": "Composer is an application-level package manager that auto-loads dependencies (and custom classes) on demand.\nThis article covers the steps needed to add a composer.json file to a DotKernel project, run composer update, and safely require the generated autoloader so the project works whether or not Composer is present."
             },
@@ -507,6 +552,7 @@
                     "display_name": "Gabi DJ",
                     "github": ""
                 },
+                "isObsolete": false,
                 "excerpt": "This article will cover the external dependency usage VIA composer within DotKernel applications. There is also an article explaining how composer can be added to DotKernel learn more.",
                 "tl_dr": "This article covers using external dependencies via Composer within DotKernel applications.\nComposer autoloads dependencies automatically, so there is no need to include\/require them.\nThe example renders a Barcode using Zend Framework 1 (non-namespaced) and Zend Framework 2 (namespaced), and applies to any DotKernel 1.x version running PHP greater than 5.4.0."
             },
@@ -518,6 +564,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "The unofficial PEAR channel for Zend Framework 1 was hosted on Google Code at this location: ZF Pear, but since the closing of Google Code we were forced to move it. Zend Framework 1 is still used by a lot of  projects in Production, it's still a viable library collection  and it's also  running on  PHP7 ; even if is only in maintenance\/security-patch mode, so it's not an option to cancel it completely.",
                 "tl_dr": "The unofficial PEAR channel for Zend Framework 1 was hosted on Google Code, and once Google Code closed, it had to move.\nBecause the repository is over 1 GB, it could not be migrated to GitHub, so a dedicated server was built to host the PEAR channel long-term at pear.dotkernel.com."
             },
@@ -529,6 +576,7 @@
                     "display_name": "Gabi DJ",
                     "github": ""
                 },
+                "isObsolete": true,
                 "excerpt": "What is DotKernel? The name DotKernel symbiotically  combines the string  Dot, as a representation of the Internet, and Kernel, the quintessence of any IT application. In other words Dotkernel wishes to be, with modesty, the central part of the Internet development and hence ensuring increased development productivity and run-time performance.",
                 "tl_dr": "DotKernel 1 is the original PHP Application Framework built on Zend Framework 1 with an MVC architecture, released in 2010 and now in bugfix-only mode at version 1.8 LTS.\nDotKernel 3 is a newer collection of PSR-7 middleware applications built on the Zend Expressive microframework and Zend Framework 3 components, implementing PSR-1, PSR-2, PSR-4, PSR-7, and PSR-11.\nSince DotKernel 3's release, the unqualified name \"DotKernel\" refers to DotKernel 3, while DotKernel 1 is always referenced explicitly."
             },
@@ -540,6 +588,7 @@
                     "display_name": "Jesper",
                     "github": "jesper@apidemia.dk"
                 },
+                "isObsolete": false,
                 "excerpt": "DotKernel3 aims to improve the DotKernel stack in every way possible, and one of the painpoints in the previous version of DotKernel was the templating engine. Albeit a solid and robust templating engine, it was also 10 years old, and used techniques that's slightly outdated by now.",
                 "tl_dr": "DotKernel3 moved from its previous, 10-year-old templating engine to the popular Twig Templating Engine, gaining layouts, loops, variables, and escaping, while giving developers the familiarity of HTML with the overview and convenience of PHP."
             },
@@ -551,6 +600,7 @@
                     "display_name": "Gabi DJ",
                     "github": ""
                 },
+                "isObsolete": false,
                 "excerpt": "This article will explain the usage of the dot-log component within DotKernel, Zend Expressive or in a project that uses Zend Service Manager. Since dot-log extends zendframework\/zend-log this tutorial mostly compatible with zend-log as well.",
                 "tl_dr": "This article explains how to use the dot-log component within DotKernel, Zend Expressive, or any project that uses Zend Service Manager.\nSince dot-log extends zendframework\/zend-log, the tutorial is mostly compatible with zend-log as well.\nSee the zend-log documentation for more detail."
             },
@@ -562,6 +612,7 @@
                     "display_name": "Gabi DJ",
                     "github": ""
                 },
+                "isObsolete": false,
                 "excerpt": "This article is a follow-up for: Logging with dot-log in Zend Expressive and DotKernel, the mentioned article is a guide to using dot-log.   This article explains the usage of dotkernel\/dot-errorhandler with dotkernel\/dot-log or zendframework\/zend-log to log errors in Zend Expressive applications.",
                 "tl_dr": "This article is a follow-up to \"Logging with dot-log in Zend Expressive and DotKernel\" and explains how to use dotkernel\/dot-errorhandler together with dotkernel\/dot-log or zendframework\/zend-log to log errors in Zend Expressive applications.\nIt covers how dot-errorhandler was built, how to configure it, and how it was tested."
             },
@@ -573,6 +624,7 @@
                     "display_name": "Gabi DJ",
                     "github": ""
                 },
+                "isObsolete": false,
                 "excerpt": "This article is a guide on how to add a CORS implementation on an existing DotKernel3 project. The issue If you're facing this message: \"Access to XMLHttpRequest at ‘url’ has been blocked by cors policy.",
                 "tl_dr": "When a client-side request is blocked with a \"No 'Access-Control-Allow-Origin' header\" error, it's because the server isn't sending the header that allows a browser to access its data (most common when fetching JSON to process with JavaScript).\nThis guide adds CORS support to a Zend Expressive \/ DotKernel3 project using Tuupola's Cors Middleware package."
             },
@@ -584,6 +636,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "DotKernel will be a \"skeleton\"of Zend Framework. DotKernel borrowed the coding standard from Zend Framework: ZF Coding Standard with some exceptions.",
                 "tl_dr": "DotKernel is a \"skeleton\" of Zend Framework and borrows its coding standard from the ZF Coding Standard, with a small number of exceptions covering indentation, naming conventions, and brace placement."
             },
@@ -595,6 +648,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "A new style and advanced approach to accompany the Dotkernel source release Dotboost is pleased to announce our North American Relaunch. This new phase comes as a result of dedicated research and analysis on how to best serve clients in Canada and the US.",
                 "tl_dr": "Dotboost announces its North American relaunch, aimed at better serving clients in Canada and the US.\nThe relaunch centers on the source release of its in-house DotKernel framework, along with expanded business IT integration and clearer consulting services.\nFounded in 2005, Dotboost describes itself as treating clients as strategic partners rather than as a typical IT vendor."
             },
@@ -606,6 +660,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "DotKernel is the DotBoost's in-house developed framework, based on Zend Framework. DotKernel is at version 1.",
                 "tl_dr": "DotKernel is DotBoost's in-house developed framework, built on top of Zend Framework and released under the Open Software License (OSL 3.0).\nIt uses a simplified MVC architecture, easy to learn for beginner and intermediate programmers, by eliminating much of Zend Framework's complexity through a different approach to handling web requests.\nIt relies on only a handful of Zend Framework classes."
             },
@@ -617,6 +672,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "DotKernel Template Engine is an implementation of PHPLib Template engine for PHP5. It has an amazing ability to separate the application code from the presentation layer.",
                 "tl_dr": ""
             },
@@ -628,6 +684,7 @@
                     "display_name": "Alex Karajos",
                     "github": "alexmerlin"
                 },
+                "isObsolete": false,
                 "excerpt": "As described in this article, dot-log is a powerful tool for logging messages in your application. It's power stays in the fact that it can be implemented in a few easy steps and that it's highly customizable.",
                 "tl_dr": "dot-log is a powerful, easily customizable logging tool.\nVersion 3.1.1 adds the ability to use datetime formatter strings right in the stream option of a log writer, and fixes an issue where caching dot-log configs caused logs to be written to a single file instead of being grouped by date."
             },
@@ -639,6 +696,7 @@
                     "display_name": "SergiuB",
                     "github": ""
                 },
+                "isObsolete": false,
                 "excerpt": "Autologin using Cookie \/ Remember Me in Dotkernel This feature is used to automatically log the user who chooses this by checking the remember me box. Implemented in Dotkernel Frontend starting from Release 3.",
                 "tl_dr": "This feature automatically logs in a user who checks the \"remember me\" box at login.\nIt has been implemented in Dotkernel Frontend starting from Release 3.3.0, and requires changes across the login form, a new entity\/migration, a new middleware, config, and the user service\/repository\/controller."
             },
@@ -650,6 +708,7 @@
                     "display_name": "MarioRadu",
                     "github": "marioradu05"
                 },
+                "isObsolete": false,
                 "excerpt": "When it comes to web development, performance is one of the critical elements that influence the success of an application. Developers focus on improving response times and overall speed to enhance the user experience.",
                 "tl_dr": "Caching stores data the first time it's requested so that later requests can be served from the cache instead of the original, slower source, which improves response times.\nThis article, a follow-up to an earlier caching article, shows how to enable the dot-cache component, a wrapper around symfony\/cache, in DotKernel Admin.\nIt covers the array and filesystem storage adapters, configuring Doctrine's four cache types (result, metadata, query, hydration), and marking entities and queries as cacheable."
             },
@@ -661,6 +720,7 @@
                     "display_name": "Claudiu Pintiuta",
                     "github": "claudiu@rospace.com"
                 },
+                "isObsolete": false,
                 "excerpt": "Note: The package requires Doctrine ORM. Still, it can be used in applications which do not integrate Doctrine.",
                 "tl_dr": "DotKernel's dot-dependency-injection package autowires constructor dependencies in Laminas\/Mezzio (and other PSR-11) applications, removing the need to write and maintain a custom factory class for every service.\nInstead of a bespoke factory, you add an attribute to the class constructor and register a single shared AttributedServiceFactory in your ConfigProvider.\nThe package requires Doctrine ORM but can still be used in applications that don't integrate Doctrine, and it also supports injecting Doctrine repositories directly instead of fetching them from the EntityManager."
             },
@@ -672,6 +732,7 @@
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
                 },
+                "isObsolete": false,
                 "excerpt": "Dotkernel Light is a version of Dotkernel Frontend that includes only the bare-bones essentials. Though simpler, it's perfect for: A presentation site, An introduction into the Mezzio microframework architecture, A starting point for a more complex project where you have full control over functionality.",
                 "tl_dr": "Dotkernel Light is a version of Dotkernel Frontend that includes only the bare-bones essentials.\nIt's built on the Mezzio microframework using Laminas components, and is designed as a presentation site, a fast-start introduction to Mezzio, or a clean starting point for a project where you want full control over functionality."
             },
@@ -683,6 +744,7 @@
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
                 },
+                "isObsolete": false,
                 "excerpt": "Dotkernel Light is a good starting point for a project if you want to have full control over the functionality it contains. It easily grows into something more complex with the integration of packages based on your requirements.",
                 "tl_dr": "Dotkernel Light is a lightweight starting point for a project when you want full control over its functionality, and it grows into something more complex as you add packages.\nIt comes with routing, templating, error handling, and tests\/code quality checks out of the box, but strips out everything a presentation site doesn't need — database, sessions\/cookies\/flash messages, auth, dependency injection, mail, navigation, CORS, forms, the user\/contact\/plugin modules."
             },
@@ -694,6 +756,7 @@
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
                 },
+                "isObsolete": false,
                 "excerpt": "The update of doctrine\/orm to version 3.2.",
                 "tl_dr": "Doctrine ORM 3.2.0 added EnumType columns, building on the enum type introduced in PHP 8.1, and Dotkernel now implements this on both the PHP and database sides.\nThe article contrasts Dotkernel's old string-based flag columns (like User->Status) with a new setup that uses custom PHP enums paired with a DBAL type extending AbstractEnumType.\nThe new approach creates an explicit, enforced link between the PHP code and the database column values, at the cost of needing to update both sides whenever the value set changes."
             },
@@ -705,6 +768,7 @@
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
                 },
+                "isObsolete": false,
                 "excerpt": "What prompted the change According to the discussion from the LaminasTechnical steering Committee of 2023-12-04, it was decided that the laminas\/laminas-mail package would be abandoned. On the one hand, there is nobody to maintain the package and on the other, there are several alternatives available in the ecosystem: ddeboer\/imap for interacting with IMAP zbateson\/mail-mime-parser for parsing MIME messages symfony\/mailer for sending mail How Dotkernel handles the issue The Dotkernel team has also opted to replace the laminas\/laminas-mail package in the dotkernel\/dot-mail package.",
                 "tl_dr": "The Laminas Technical Steering Committee decided on 2023-12-04 to abandon laminas\/laminas-mail.\nDotkernel responded by replacing it with symfony\/mailer inside the dotkernel\/dot-mail package (version 5), aiming for minimal impact on existing projects — calls to send mail stay the same, though mime and imap related functionality is removed."
             }
@@ -723,6 +787,7 @@
                     "display_name": "Adrian",
                     "github": ""
                 },
+                "isObsolete": false,
                 "excerpt": "Starting with the 1.5 release, DotKernel will make the switch from Dojo to jQuery.",
                 "tl_dr": "Starting with DotKernel's 1.5 release, the framework switched from Dojo to jQuery, and this post is a quick primer on jQuery basics.\nIt covers the jQuery ($) object and CSS-style selectors, chaining methods to manipulate matched elements, binding events like click, and making Ajax calls with $.get() and $.getJSON()."
             },
@@ -734,6 +799,7 @@
                     "display_name": "Stas",
                     "github": "stas@codelobster.com"
                 },
+                "isObsolete": false,
                 "excerpt": "Free PHP, HTML, CSS, JavaScript editor (IDE) - Codelobster PHP Edition For valuable work on creation of sites you need a good comfortable editor necessarily. There are many requiring paid products for this purpose, but we would like to select free of charge very functional and at the same time of simple in the use editor - Codelobster PHP Edition .",
                 "tl_dr": "Codelobster PHP Edition is a free, lightweight IDE that highlights and autocompletes mixed PHP, HTML, CSS, and JavaScript code, including HTML5 and CSS3.\nIt also bundles an HTML\/CSS inspector, a PHP debugger, an SQL manager, FTP support, and a portable mode that needs no installation.\nOn top of that, it ships plugins for popular CMS platforms and PHP frameworks such as Drupal, Joomla, CakePHP, CodeIgniter, Symfony, Yii, WordPress, and Smarty."
             },
@@ -745,6 +811,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "Problem: email should allow +\/- characters in user, - in domain. dash (-) should be allowed anywhere in an email address or domain.",
                 "tl_dr": ""
             }
@@ -763,6 +830,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "GPL versions of WURFL PHP API libraries are ready to be downloaded from here . Version 1.",
                 "tl_dr": "GPL versions of the WURFL PHP API libraries were made available: version 1.1, the one integrated into Zend Framework's Zend_Http_UserAgent component, and version 1.2.1, the latest released under the GPL license.\nA later edit notes the download was removed because an AGPL version is available (which readers need to get themselves), and as a favor to Luca Passani."
             },
@@ -774,6 +842,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "Matthew Weier O'Phinney just announced the release of ZF 1.12.",
                 "tl_dr": "Matthew Weier O'Phinney announced the release of Zend Framework 1.12.4, along with 2.1.6 and 2.2.6, all containing security updates, and the ZF PEAR channel was updated to the latest 1.12.4 release.\nA March 7, 2014 edit notes that Zend Framework 1.12.5 was subsequently released to fix a backward compatibility issue introduced in the 1.12.4 release."
             },
@@ -785,6 +854,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "The release of ZF 1.12.",
                 "tl_dr": "Zend Framework 1.12.12 was released with security fixes for the Zend_Mail and Zend_Http components.\nConsumers of these components, including DotKernel which relies heavily on Zend_Mail, were strongly urged to upgrade immediately via PEAR or by applying the patch directly.\nA follow-up release, 1.12.13, was issued shortly after to fix a regression introduced in 1.12.12."
             },
@@ -796,6 +866,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "EOL ( End-of-Life)  term was just announced. Only up until Sept.",
                 "tl_dr": "Zend Framework 1 has officially entered End-of-Life (EOL) status now that Zend Framework 3 has been released.\nSecurity updates for Zend Framework 1 continued only until 28 September 2016, three months after the announcement."
             },
@@ -807,6 +878,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "Why we want to install ZF as PEAR ? Because is too boring and time consuming to move all ZF files up and down for each script you want to install , there are a lot of files. Also that way we can forget about the need to update ZF at latest versions, and keep tracks of which version and on which server we have ZF.",
                 "tl_dr": "Rather than copying all of Zend Framework's many files into every project, this article shows how to install ZF as a PEAR-accessible repository on a Plesk server.\nThis makes it easier to track which ZF version is installed on which server and avoids manually updating each project, though it can introduce backward compatibility concerns in future ZF releases."
             },
@@ -818,6 +890,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "At first glance , the biggest news is AMF support: Adobe's Action Message Format protocol to your PHP 5 application Download latest  ZF",
                 "tl_dr": "Zend Framework 1.7.0 has been released, and its headline feature is support for Adobe's Action Message Format (AMF) protocol in PHP 5 applications.\nThe release is available directly from the official Zend Framework download page."
             },
@@ -829,6 +902,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "Just found today a very interesting and helpful debug tool: Scienta We at DotKernel used some very basic debug bar:  queries, time spent , memory used.  But this Scienta is way more complex and nicer then our internal code,  so we switch to it and integrate it in DotKernel code base.",
                 "tl_dr": "The author came across the Scienta ZF Debug Bar, a debugging tool for Zend Framework applications.\nDotKernel had been relying on its own basic debug bar, which only showed queries, time spent, and memory used.\nFinding Scienta far more complex and polished than their internal tool, the DotKernel team decided to switch to it and integrate it into the DotKernel code base."
             },
@@ -840,6 +914,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "Sunsetting PEAR Channel for Zend Framework 1 The unofficial PEAR channel for Zend Framework 1 was created in 2016 , at the time when PEAR was still used a lot. Due to the fact that is a pain to upgrade PEAR to work with PHP 8 , we must sunset the channel .",
                 "tl_dr": "DotKernel is sunsetting its unofficial PEAR channel for Zend Framework 1, which was created in 2016 when PEAR was still widely used.\nThe main reasons are that upgrading PEAR to work with PHP 8 is too painful, and the channel currently runs on an LXC container with CentOS 7, which doesn't work on the latest Proxmox version, making the upgrade to AlmaLinux not worth the effort.\nThe post closes by thanking PEAR for its historical contribution to the PHP ecosystem."
             }
@@ -858,6 +933,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "Aptana 3.0 is in beta stage, can be downloaded from the official site .",
                 "tl_dr": "Aptana 3.0, then in beta, was set to bring PHP support back - and this time it would be built directly into the Studio 3 core rather than shipped as a separate plugin.\nA PHP debugger was also announced, to arrive as a separate set of plugins a few weeks later."
             },
@@ -869,6 +945,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "SQL injection is a technique that exploits a security vulnerability occurring in the database layer of an application. Usually, user input is not filtered by the script and is passed into a SQL statement.",
                 "tl_dr": "SQL injection exploits unfiltered user input passed into SQL statements.\nPDO (PHP Data Objects) is a standardized database access layer that provides a data-access abstraction (not a database abstraction) and offers several benefits, including help protecting against SQL injection.\nIn Zend Framework, prepared statements are encouraged since they handle parameter escaping, but they are not a complete guarantee against SQL injection - especially with PDO_MySQL, and with WHERE IN \/ ORDER BY clauses."
             },
@@ -880,6 +957,7 @@
                     "display_name": "Teo",
                     "github": ""
                 },
+                "isObsolete": false,
                 "excerpt": "Following the preview article about SQL Injection, here is more - a strong argument why you should use Zend Framework for handling database access. Zend_Db is the primary class used for access the database, but there is more: Zend_Db_Statement, Zend_Db_Select and Zend_Db_Tables.",
                 "tl_dr": "Following up on the earlier SQL Injection article, this part digs into the specific methods of Zend_Db (and related classes Zend_Db_Statement, Zend_Db_Select, Zend_Db_Tables) to show exactly when their use of prepared statements does, and does not, protect against SQL injection - and offers a quick type-casting tip for WHERE clauses."
             },
@@ -891,6 +969,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "PHP 5.2.",
                 "tl_dr": "PHP 5.2.14 was just released, marking the end of active support for the PHP 5.2.x branch.\nPHP 5.3.3 was released at the same time, and projects and servers are encouraged to upgrade to the 5.3.x branch."
             },
@@ -902,6 +981,7 @@
                     "display_name": "Teo",
                     "github": ""
                 },
+                "isObsolete": false,
                 "excerpt": "In hosted software development, the environment refers to a server tier designated to a specific stage in a release process. The purpose of these environments is to improve the development, testing and release processes in client-server applications.",
                 "tl_dr": "In hosted software development, an environment is a server tier designated to a specific stage of a release process.\nThe three most common environments are Development, Staging and Production, and applications are typically moved between them using Subversion source control."
             },
@@ -913,6 +993,7 @@
                     "display_name": "Teo",
                     "github": ""
                 },
+                "isObsolete": false,
                 "excerpt": "In developing DotKernel application framework, we needed a tracking system. DotKernel Tracker is the place where the bugs are reported, new features are announced and other general tickets are added.",
                 "tl_dr": "This guide explains how to connect the Aptana IDE to DotKernel Tracker, the Mantis-based bug tracker used for the DotKernel application framework, via the Mylyn plugin's Mantis connector.\nIt walks through installing Aptana and Mylyn, adding DotKernel Tracker as a task repository, and validating the connection so tickets can be managed directly from the IDE."
             },
@@ -924,6 +1005,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "1.    Stop WAMP server.",
                 "tl_dr": "A step-by-step guide to manually upgrading the PHP version used by a WAMP server to PHP 5.3.4, by downloading the VC6 Thread Safe build, copying over configuration files, and switching the active PHP version in WAMP."
             },
@@ -935,6 +1017,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "PHP 5.3.",
                 "tl_dr": ""
             },
@@ -946,6 +1029,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "In order to make  usable a fresh installation of Zend Server 5.5.",
                 "tl_dr": "A fresh Zend Server 5.5.0 install on Windows 7 needs a few quick tweaks before it's ready for development: enabling mod_rewrite in Apache, adjusting a handful of PHP directives, and fixing APC so it actually works even though it's shown as enabled."
             },
@@ -957,6 +1041,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "By default, MySql servers on Linux machines where Plesk is installed, have the old_passwords=1 or ON flag. That mean even if you have MySQL 5.",
                 "tl_dr": "Plesk-based Linux servers default to old_passwords=1, which forces MySQL to use the old, pre-4.1 password storage style even on MySQL 5.5+, breaking remote PDO connections.\nThe fix is to create a new database user, grant it privileges, disable old_passwords, and reset its password so a newer, longer password hash is stored in mysql.user."
             },
@@ -968,6 +1053,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "In order to globally manage the \"Ignored Resources\"  patterns in Zend Studio, for all projects , instead of manually add to each project, you can do the following: 1. Go to Window-> Preferences 2.",
                 "tl_dr": "Zend Studio lets you manage \"Ignored Resources\" patterns globally, under Window -> Preferences -> Team -> Ignored Resources, instead of configuring them separately for each project.\nThis is especially handy when a workspace mixes Git and SVN projects, though any given project can still opt to use its own specific patterns instead of the global ones."
             },
@@ -979,6 +1065,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "Today is a major milestone for our Dotboost Technologies Inc. Company.",
                 "tl_dr": "Dotboost Technologies Inc. announces that the 10th member of its team has passed the Zend Certified Engineer exam, part of its commitment to top-level PHP development and quality assurance for clients.\nNext up: adopting Zend Framework 2 best practices, pursuing the Zend Framework 2 Certified Architect exam, and, starting in 2014, making Zend Certification mandatory for every developer on the team."
             },
@@ -990,6 +1077,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "Beginning with version 5.5 of MySQL , utf8mb4 character set was introduced, in order to better support Unicode.",
                 "tl_dr": "MySQL 5.5 introduced the utf8mb4 character set for fuller Unicode support, and DotKernel's sample dk.sql file was updated to use it.\nSwitching to utf8mb4 means VARCHAR(255) columns can hit MySQL's 767-byte max key length error, so VARCHAR(150) is used instead, and the connection charset must be updated in both the application config and my.cnf."
             },
@@ -1001,6 +1089,7 @@
                     "display_name": "Gabi DJ",
                     "github": ""
                 },
+                "isObsolete": false,
                 "excerpt": "This article will cover the steps needed in order to check the PHP7 compatibility, a small troubleshooter. This article will also contain a compatibility issue check on the latest Zend Framework 1 version.",
                 "tl_dr": "Zend Studio 13 introduces PHP 7 Express, a feature that checks whether pre-PHP7 code will run cleanly on a PHP7 server.\nThis article walks through setting up a test project with the correct PHP version, verifying the PHP Interpreter setting, adding Zend Framework 1 to the project, and running PHP 7 Express to surface compatibility issues."
             },
@@ -1012,6 +1101,7 @@
                     "display_name": "Gabi DJ",
                     "github": ""
                 },
+                "isObsolete": false,
                 "excerpt": "This article applies to PHP 5.x but also to PHP 7 While using floating-point arithmetic you might have noticed that not all the calculus results are as expected, this can usually be observed when casting values.",
                 "tl_dr": "This applies to PHP 5.x and PHP 7.\nFloating-point arithmetic doesn't always produce the results you'd expect, especially when casting values to int, because numbers like 0.7 and 0.1 cannot be represented exactly in binary.\nThe result is that (int)((0.7+0.1)*10) evaluates to 7 instead of the mathematically expected 8."
             },
@@ -1023,6 +1113,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "As all aptana fans know, Aptana PHP plugin was discontinued in Aptana 2.x, in favor of PDT.",
                 "tl_dr": "Aptana discontinued its bundled Aptana PHP plugin in Aptana 2.x in favor of PDT, but PDT is missing major features needed for professional PHP development.\nThis article shows how to manually reinstall the Aptana PHP plugin through Aptana's update site, and how to add SVN support via Subclipse if it isn't already installed."
             },
@@ -1034,6 +1125,7 @@
                     "display_name": "MarioRadu",
                     "github": "marioradu05"
                 },
+                "isObsolete": false,
                 "excerpt": "Database seeding: Doctrine data fixtures vs Phinx Seeding the database means populating the database with initial values, it's commonly used for seeding the user roles and user accounts. Seeding the database the right way is no easy feat, and we will see why.",
                 "tl_dr": "DotKernel 3 previously used cakephp\/phinx for seeding the database, but the team wanted more flexibility and switched to doctrine\/data-fixtures since Doctrine is already the ORM in use.\nBecause doctrine\/data-fixtures has no CLI interface, DotKernel built the dotkernel\/dot-data-fixtures package to add one, and this article covers installing it, creating and executing fixtures, and ordering them by explicit order or by declared dependencies."
             },
@@ -1045,6 +1137,7 @@
                     "display_name": "Alex Karajos",
                     "github": "alexmerlin"
                 },
+                "isObsolete": false,
                 "excerpt": "Install a Mezzio app (DotKernel API) using WSL2 This article will run you through the steps of installing a Mezzio application (DotKernel API) in WSL2 and run it on Ubuntu 20.04 LTS.",
                 "tl_dr": "This article runs through the steps of installing a Mezzio application (DotKernel API) in WSL2 and running it on Ubuntu 20.04 LTS, from installing WSL2 itself to configuring PHPStorm to work with the WSL2 file system."
             },
@@ -1056,6 +1149,7 @@
                     "display_name": "Alex Karajos",
                     "github": "alexmerlin"
                 },
+                "isObsolete": false,
                 "excerpt": "In this article we will demonstrate how we install AlmaLinux 9 using Windows Subsystem for Linux (WSL2). First, you need to check if your machine is ready for using WSL2.",
                 "tl_dr": "This guide shows how to install AlmaLinux 9 through Windows Subsystem for Linux (WSL2) and provision it with an Ansible-driven installer script that sets up PHP, Apache, MariaDB, Composer, and phpMyAdmin.\nIt covers verifying WSL2 readiness, installing the AlmaLinux 9 distribution from the Microsoft Store, running the two-step Ansible installer (with a required restart in between), and confirming the setup through Apache's homepage, a PHP info page, and phpMyAdmin."
             },
@@ -1067,6 +1161,7 @@
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
                 },
+                "isObsolete": false,
                 "excerpt": "What is Static Analysis Static analysis (static code analysis or source code analysis) applies a set of coding rules to debug source code before a program is run. Applied in the early phase of code development, the goals of static analysis are: Catch and fix errors like type-related errors which can occur especially in dynamically-typed programming languages like PHP.",
                 "tl_dr": "Dotkernel is replacing Psalm with PHPStan for static analysis, following a broader PHP community shift (including projects like Doctrine and Composer) toward PHPStan's faster-growing ecosystem, full-time maintainer, PHPStorm-based stubs, and stronger detection.\nThis article explains what static analysis is, why the switch makes sense, and walks through updating composer.json, the CI workflow, and the phpstan.neon configuration to run PHPStan checks in place of Psalm."
             }
@@ -1085,6 +1180,7 @@
                     "display_name": "Gabi DJ",
                     "github": ""
                 },
+                "isObsolete": false,
                 "excerpt": "What is PSR-7 and how to use itPSR-7 is a set of common interfaces defined by PHP Framework Interop Group. These interfaces are representing HTTP messages, and URIs for use when communicating trough HTTP.",
                 "tl_dr": "PSR-7 defines a set of common interfaces from the PHP Framework Interop Group for representing HTTP messages and URIs, and any application built on those interfaces is a PSR-7 application.\nThis article lists the PSR-7 interfaces as a cheatsheet, then walks through practical examples using Zend Diactoros: adding, appending, reading, and removing HTTP headers, and reading, writing, appending, and prepending content to a PSR-7 message body via its stream interface."
             },
@@ -1096,6 +1192,7 @@
                     "display_name": "Jesper",
                     "github": "jesper@apidemia.dk"
                 },
+                "isObsolete": false,
                 "excerpt": "Migrations, the superhero your database deserves Migrations ease the process of working together on projects, as well as deploying the database changes.   A newly released package for the DotKernel stack integrates migrations and seeders into the application; This is all done via the newly introduced \"php dot\" command that's available in the DotKernel stack.",
                 "tl_dr": "Database migrations track schema changes so teams can collaborate without ad hoc, convoluted database change messages and can keep column types consistent across the team.\nA package for the DotKernel stack adds migrations and seeders to the application via a new php dot command.\nThe article walks through adopting migrations in an existing project, running and naming them, and explains how seeders differ from migrations by adding data rather than changing schema."
             },
@@ -1107,6 +1204,7 @@
                     "display_name": "Jesper",
                     "github": "jesper@apidemia.dk"
                 },
+                "isObsolete": false,
                 "excerpt": "DotKernel 3 uses FastRoute under the hood, which is an excellent and fast routing package, but it does have some quirks. A wrong setup can lead to many headaches, as it's not prominent that the error you're experiencing is from FastRoute, and you may not know where exactly to look for the cause.",
                 "tl_dr": "DotKernel 3 uses FastRoute under the hood, which is fast but has a quirk around slash-suffixes that a wrong route setup can trigger, leading to hard-to-diagnose errors.\nOptional slashes must be kept inside the optional block of a route definition, or the URLGenerator ends up producing the wrong route.\nEvery named route can then be referenced instead of hard-coded, using $this->url() in controllers or the path() function in Twig views."
             },
@@ -1118,6 +1216,7 @@
                     "display_name": "Gabi DJ",
                     "github": ""
                 },
+                "isObsolete": false,
                 "excerpt": "This article covers the steps required to migrate a DotKernel 3 instance to the latest Zend Expressive Version. Migration from Zend Expressive 2 to 3.",
                 "tl_dr": "This guide covers migrating a DotKernel 3 instance from Zend Expressive 2 to Zend Expressive 3, for projects that only contain controller-based middleware.\nOld middleware must first be refactored to the psr\/http-server-middleware interfaces, since Delegates become RequestHandlers.\nThe steps then cover updating composer.json dependencies, registering new ConfigProviders, wrapping routes.php and pipeline.php in callables, and replacing the old pipeRoutingMiddleware()\/pipeDispatchMiddleware() calls with their PSR-15 equivalents."
             },
@@ -1129,6 +1228,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "Doctrine caching in DotKernel Following version 2 of doctrine\/cache, in 2024 we published an update to this article here: https:\/\/www.dotkernel.",
                 "tl_dr": "Running Doctrine ORM in production without any caching strategy wastes CPU cycles regenerating metadata and queries on every request.\nThis article configures Doctrine's metadata_cache, query_cache, and result_cache through psr\/container, using PhpFileCache and a default result cache lifetime of 3600 seconds.\nIt walks through enabling these caches both directly on a query and on a Doctrine Paginator-based collection, with real examples from Dotkernel Admin.\nNote: a 2024 follow-up article covers the same topic using Symfony Cache instead."
             },
@@ -1140,6 +1240,7 @@
                     "display_name": "Alex Karajos",
                     "github": "alexmerlin"
                 },
+                "isObsolete": false,
                 "excerpt": "CORS policy setup in Dotkernel using mezzio-cors Error message Access to fetch at RESOURCE_URL from origin ORIGIN_URL has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. Most developers have encountered this error when interacting with APIs.",
                 "tl_dr": "This article explains how to fix the common \"No 'Access-Control-Allow-Origin' header is present\" browser error by installing and configuring the mezzio-cors package.\nIt covers registering the package's ConfigProvider and middleware, then creating a CORS configuration file.\nThe configuration supports a permissive mode, where any origin is allowed, and a restrictive mode, where only specific listed origins are allowed.\nIt also shows how to verify each mode is working correctly."
             },
@@ -1151,6 +1252,7 @@
                     "display_name": "Alex Karajos",
                     "github": "alexmerlin"
                 },
+                "isObsolete": false,
                 "excerpt": "Replacing dot-console with dot-cli based on laminas-cli Implementing dot-cli in your application DotKernel's dot-cli package comes as a replacement for dot-console, which was abandoned after Laminas abandoned their laminas-console package, that dot-console was based on. Setup Install package Run the following command in your application's root directory: composer require dotkernel\/dot-cli Register ConfigProvider Open your application's config\/config.",
                 "tl_dr": "DotKernel's dot-cli package replaces dot-console, which was abandoned after Laminas dropped the laminas-console package it was based on.\nSetting it up involves requiring the package via Composer, registering its ConfigProvider, and copying its bootstrap and config files into the application.\nIt also ships with FileLocker, a built-in, enabled-by-default locking system that prevents overlapping calls to the same command."
             },
@@ -1162,6 +1264,7 @@
                     "display_name": "Alex Karajos",
                     "github": "alexmerlin"
                 },
+                "isObsolete": false,
                 "excerpt": "Displaying DotKernel API endpoints using dot-cli Starting from version 3, DotKernel API uses dot-cli to display a list of available endpoints. Usage Run the following command in your application’s root directory: php .",
                 "tl_dr": "Starting from version 3, DotKernel API uses the dot-cli package to list all of its available endpoints via the route:list command.\nThe command's output can be filtered by route name, path, or HTTP method, and filters are case-insensitive and combinable."
             },
@@ -1173,6 +1276,7 @@
                     "display_name": "Alex Karajos",
                     "github": "alexmerlin"
                 },
+                "isObsolete": false,
                 "excerpt": "Creating admin accounts in DotKernel API Starting from v3, DotKernel API introduces support for admin accounts. In this article we will describe two different methods of creating an admin account.",
                 "tl_dr": "Starting with version 3, DotKernel API supports dedicated admin accounts.\nThey can be created either through a protected API endpoint, which lets you assign one or more admin roles and optional names, or through a terminal command, which is quicker but always assigns the default admin role.\nBoth methods leave you with a ready-to-use admin account."
             },
@@ -1184,6 +1288,7 @@
                     "display_name": "Alex Karajos",
                     "github": "alexmerlin"
                 },
+                "isObsolete": false,
                 "excerpt": "Using Postman documentation in DotKernel API 3 Starting from version 3.0 DotKernel API provides it's documentation using Postman.",
                 "tl_dr": "Starting from version 3.0, DotKernel API documents its endpoints using Postman, via a provided collection and environment file that get imported into the tool.\nPostman organizes work into a Workspace, Collections, Environments, and Requests, and the DotKernel API collection ships with built-in security: global Bearer Token authorization inherited from the collection root, and automatic ACCESS_TOKEN\/REFRESH_TOKEN storage on the Admin\/Security and User\/Security folders.\nAfter making changes, the collection and environment files can be re-exported to overwrite the application's documentation files."
             },
@@ -1195,6 +1300,7 @@
                     "display_name": "Alex Karajos",
                     "github": "alexmerlin"
                 },
+                "isObsolete": false,
                 "excerpt": "Generating a doctrine migration without dropping custom tables If your application needs to hold some custom (unmapped) tables in the database, then generating migrations with doctrine-migrations diff will try to drop the custom tables. This article provides a solution on how to avoid dropping those tables.",
                 "tl_dr": "When an application has custom, unmapped database tables, running doctrine-migrations diff will try to drop them, since no Doctrine entity describes them.\nThis article shows how to prevent that using the --filter-expression option, including how to filter multiple table prefixes at once.\nIt also flags a Windows PowerShell quirk where the caret in the regex gets stripped, and how to work around it."
             },
@@ -1206,6 +1312,7 @@
                     "display_name": "Alex Karajos",
                     "github": "alexmerlin"
                 },
+                "isObsolete": false,
                 "excerpt": "What is cross origin token redemption? Cross-origin token redemption is a technique used to ensure the security and authenticity of a token that is issued by one website or domain, but intended for use on a different website or domain. This process is commonly used in situations where a user needs to access resources from multiple domains, such as when a user is logged in to one website and needs to access resources from another website.",
                 "tl_dr": "Cross-origin token redemption verifies the security and authenticity of a token issued on one domain but used on another, which is common when a logged-in user needs to access resources on a different site.\nThe receiving domain checks the token's signature and decrypts it before trusting it.\nJWT and OAuth 2.0 are two standards that implement this pattern, each with a different verification flow."
             },
@@ -1217,6 +1324,7 @@
                     "display_name": "MarioRadu",
                     "github": "marioradu05"
                 },
+                "isObsolete": false,
                 "excerpt": "Prerequisites: Mezzio App Doctrine In the vast digital landscape of the internet, where websites compete for attention, having a well-crafted URL can make a significant difference. By incorporating human-readable slugs into website URLs, we can enhance user experience, improve search engine optimization (SEO), and foster better engagement.",
                 "tl_dr": "Human-readable URL slugs improve readability, SEO, and shareability compared to raw numeric IDs in URLs.\nThis article shows how to add slug support to a Mezzio application using the gedmo\/doctrine-extensions package.\nIt covers installing the package via Composer, registering its SluggableListener with Doctrine, and adding a slug column generated from an existing field (such as identity) via the @Gedmo\\Slug annotation."
             },
@@ -1228,6 +1336,7 @@
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
                 },
+                "isObsolete": false,
                 "excerpt": "With the recent release of AlmaLinux OS 10, we have created a new recipe for our WSL development environment. Compared to its predecessor, AlmaLinux 10 provides performance enhancements, security updates and improved hardware support.",
                 "tl_dr": "With the release of AlmaLinux OS 10, Dotkernel created a new WSL2 development environment recipe offering performance, security, and hardware improvements over AlmaLinux 9.\nThe recipe sets up WSL2, AlmaLinux 10, PHP, Apache, MariaDB, Git, Composer, Node.js, and PhpMyAdmin.\nIt also covers the OS\/hardware requirements, installing the distro, and running PHP projects directly or via virtual hosts."
             }
@@ -1246,6 +1355,7 @@
                     "display_name": "Gabi DJ",
                     "github": ""
                 },
+                "isObsolete": false,
                 "excerpt": "Problem PHP packages\/frameworks\/libraries\/scripts we work with might require different PHP extensions. In this case the Intl extension is needed to work with using Internationalization Functions.",
                 "tl_dr": "Errors like \"requires intl PHP extension\" or \"extension intl is missing\" happen because the PHP Intl extension isn't installed or enabled.\nThis article explains what Intl is used for, why it might be missing depending on whether you have a bundled or unbundled PHP install, and gives step-by-step fixes for both Linux and Windows servers."
             },
@@ -1257,6 +1367,7 @@
                     "display_name": "Gabi DJ",
                     "github": ""
                 },
+                "isObsolete": false,
                 "excerpt": "This article will cover the solution to the PEAR \"Cannot use result of built-in function in write context\" issue. The Issue If installing a pear package (for instance PHP Code Sniffer), when running: pear install PHP_CodeSniffer This error is shown PHP Fatal error: Cannot use result of built-in function in write context in .",
                 "tl_dr": "On PHP 7.2, installing PEAR packages such as PHP Code Sniffer fails with a \"Cannot use result of built-in function in write context\" error in Archive_Tar's Tar.php, because a function is called by reference.\nThe fix is to edit the offending line in Tar.php to drop the by-reference call, then reinstall Archive_Tar and the target package."
             }
@@ -1275,6 +1386,7 @@
                     "display_name": "Gabi DJ",
                     "github": ""
                 },
+                "isObsolete": false,
                 "excerpt": "This report contains updates about the DotKernel3 documentation. We have added the release notes for DotKernel3 frontend and admin: you can now check the Release Notes page.",
                 "tl_dr": "This report covers updates to the DotKernel3 documentation: new release notes for the frontend and admin, a Webpack tutorial added to the Prerequisites section, and revisions to the Api Endpoint Documentation Guidelines.\nContributor JapSeyz is thanked for this round of updates."
             },
@@ -1286,6 +1398,7 @@
                     "display_name": "Gabi DJ",
                     "github": ""
                 },
+                "isObsolete": false,
                 "excerpt": "DotKernel was updated to support Zend Expressive 3 alongside with PSR-15 middleware. We have updated the core packages to support PSR-15 Middleware.",
                 "tl_dr": "DotKernel3 1.0 updates the core packages to support Zend Expressive 3 and PSR-15 middleware, making both frontend (1.0.0) and admin (1.0.1) easier to migrate.\nNo functional changes were made to the core code, though projects using the old http-interop\/http-middleware package must migrate to the psr\/http-server-middleware interfaces.\nExisting DotKernel 3 (Expressive 2) projects can follow a separate guide to move to Zend Expressive 3."
             },
@@ -1297,6 +1410,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "Dotkernel Frontend PHP Application version 3 was launched. Dotkernel is a Collection of PSR-7 Middleware applications built on top of Mezzio microframework and using Laminas components You can clone it from github Live demo: v3.",
                 "tl_dr": "Dotkernel Frontend version 3 has launched as part of the Dotkernel collection of PSR-7 Middleware applications, built on the Mezzio microframework using Laminas components.\nThe source is available on GitHub, with a live demo running at v3.dotkernel.net.\nBranch 3.0 is now the default branch, requiring Mezzio ^3.2, PHP ^7.4, Doctrine 2.7.x, and Twig 3.x, with dot-* packages limited to version 3.x and above."
             },
@@ -1308,6 +1422,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "Dotkernel Admin PHP Application version 3 was launched. Dotkernel is a Collection of PSR-7 Middleware applications built on top of Mezzio microframework and using Laminas components  Dotkernel Admin is a basic admin panel, based on Boostrap ^4.",
                 "tl_dr": "Dotkernel Admin version 3 has launched as a basic admin panel built on Bootstrap ^4.5.0 and Doctrine, performing CRUD operations over a database on top of the Mezzio microframework and Laminas components.\nThe source is available on GitHub, with a live demo running at admin.dotkernel.net.\nBranch 3.0 is now the default branch, requiring Mezzio ^3.2, PHP ^7.4, Doctrine 2.7.x, Twig 3.x, and Bootstrap 4.5, with dot-* packages limited to version 3.x and above."
             },
@@ -1319,6 +1434,7 @@
                     "display_name": "kakapiciu",
                     "github": "sergiu@rospace.com"
                 },
+                "isObsolete": false,
                 "excerpt": "Getting Started with Dotkernel Admin V4 DotKernel's PSR-7 Admin is an application based on Mezzio, with the main purpose of managing and displaying tabular data from one or more databases components. On 19 July 2022 Dotkernel Admin V4 has been officially released.",
                 "tl_dr": "Dotkernel Admin V4, officially released on 19 July 2022, is DotKernel's PSR-7 Admin application built on Mezzio for managing and displaying tabular data from one or more databases.\nIt supports PHP 8.1 (minimum PHP 7.4), offers a config-driven module\/middleware\/route setup, RBAC-based authorization guards, a Symfony Console-based CLI with a file locker, per-module routing via RoutesDelegator, and a Bootstrap 4.5.0 \/ Fontawesome 5.0.6 frontend using Bootstrap Table for data listing."
             },
@@ -1330,6 +1446,7 @@
                     "display_name": "kakapiciu",
                     "github": "sergiu@rospace.com"
                 },
+                "isObsolete": false,
                 "excerpt": "This article refers to Dotkernel API v5. Checkout out the new additions for Dotkernel API v6 to stay up-to-date.",
                 "tl_dr": "Dotkernel API is built on the Mezzio microframework and Laminas components, based on Enrico Zimuel's Zend Expressive API skeleton and implementing PSR-3, PSR-4, PSR-7, PSR-11, and PSR-15.\nIts core components include Doctrine ORM for persistence, mezzio-hal for API payloads, mezzio-cors for CORS handling, and mezzio-authentication-oauth2 for OAuth 2.0 authentication, alongside Postman-based documentation, configurable routing and commands, a file locker system, and a factory-made test suite."
             },
@@ -1341,6 +1458,7 @@
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
                 },
+                "isObsolete": false,
                 "excerpt": "With the release of PHP 8.3, the DotKernel team has been working on updating the dependencies in our packages.",
                 "tl_dr": "Dotkernel Admin added PHP 8.3 support in release 4.3.1, dropping PHP 8.1 and now supporting only PHP 8.2 and PHP 8.3.\nThe update brought numerous dependency bumps across dotkernel\/, laminas\/, and mezzio\/* packages, removed PhpFileCache-related cache configuration because doctrine\/cache dropped its implementation classes, and removed doctrine\/doctrine-module due to a conflict, which may affect packages that depended on it.\nThe AdminService::logAdminVisit method was also updated to no longer return AddressNotFoundException."
             },
@@ -1352,6 +1470,7 @@
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
                 },
+                "isObsolete": false,
                 "excerpt": "To be able to take advantage of the support for PHP 8.3 in the newest packages, the DotKernel team has updated the Frontend Application to version 4.",
                 "tl_dr": "To take advantage of PHP 8.3 support in the newest packages, the DotKernel team updated the Frontend application to version 4.2.0.\nAs with the earlier Admin update, this required dropping support for PHP 8.1 and for the no-longer-available PhpFileCache class, until a replacement is implemented."
             },
@@ -1363,6 +1482,7 @@
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
                 },
+                "isObsolete": false,
                 "excerpt": "The last remaining application to be updated to support PHP 8.3 is the API, now at v4.",
                 "tl_dr": "Dotkernel API, now at v4.2.1, is the last remaining Dotkernel application updated to support PHP 8.3, following the same approach used for the Frontend update.\nThe update drops PHP 8.1 support, updates a large set of dependencies, removes the PhpFileCache-based configuration in favor of the new dot-cache package, and requires a small query change (useQueryCache() to setCacheable())."
             }
@@ -1381,6 +1501,7 @@
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
                 },
+                "isObsolete": false,
                 "excerpt": "The goal of this update is to replace the static way of creating routes with a more dynamic implementation. The result is a cleaner approach that is easier to set up and review at a glance.",
                 "tl_dr": "This article, the first in a series about switching from controllers to PSR-15 compliant handlers, explains how Dotkernel replaced its static, hard-coded route declarations with a centralized, dynamic configuration in local.php.\nThe change is aimed at static pages only - any method other than GET (post, put, delete) returns a 405 status code."
             },
@@ -1392,6 +1513,7 @@
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
                 },
+                "isObsolete": false,
                 "excerpt": "The goal of this update is to implement PSR-15 handlers into Dotkernel Light. There are several advantages to using handlers, which we will explore below.",
                 "tl_dr": "The goal of this update is to implement PSR-15 handlers into Dotkernel Light, keeping the application up-to-date with recommended design guidelines, secure, and aligned with standards widely adopted by the PHP community."
             },
@@ -1403,6 +1525,7 @@
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
                 },
+                "isObsolete": false,
                 "excerpt": "Dotkernel Light is a PSR-15 compliant application that uses the Mezzio microframework and Laminas components. It's aimed at creating a simple website, like a presentation site, but can be expanded as needed.",
                 "tl_dr": "Dotkernel Light is a PSR-15 compliant application built on Mezzio and Laminas, aimed at simple websites like presentation sites.\nSince its last update, it has moved from controllers to PSR-15 handlers, adopted Vite as its bundler, replaced Psalm with PHPStan, and picked up several smaller improvements."
             }
@@ -1421,6 +1544,7 @@
                     "display_name": "Teo",
                     "github": ""
                 },
+                "isObsolete": false,
                 "excerpt": "Zend_Db and its related classes provide a simple SQL database interface for Zend Framework. To connect to MySql database, we are using Pdo_Mysql adapter : $db = Zend_Db::factory('Pdo_Mysql', $dbConnect); SELECT query - WHERE clause The below 2 classical SQL queries are equivalent.",
                 "tl_dr": "Zend_Db and its related classes provide a simple SQL database interface for Zend Framework.\nThis article shows how classical SELECT queries with JOINs and WHERE IN clauses are translated into Zend_Db's select() style, and how to debug the generated query."
             },
@@ -1432,6 +1556,7 @@
                     "display_name": "Teo",
                     "github": ""
                 },
+                "isObsolete": false,
                 "excerpt": "Continuing the Zend_DB article series, we are stopping now at FETCH methods that are in Zend_Db_Adapter_Abstract: array fetchAll (string|Zend_Db_Select $sql, , ) array fetchAssoc (string|Zend_Db_Select $sql, ) array fetchCol (string|Zend_Db_Select $sql, ) string fetchOne (string|Zend_Db_Select $sql, ) array fetchPairs (string|Zend_Db_Select $sql, ) array fetchRow (string|Zend_Db_Select $sql, , ) To be more easily to follow, in green box is the classical SQL statement, and in blue box is the query written in Zend_Db style. Lets start.",
                 "tl_dr": "Continuing the Zend_Db article series, this article walks through the FETCH methods available on Zend_Db_Adapter_Abstract: fetchAll, fetchAssoc, fetchCol, fetchOne, fetchPairs, and fetchRow.\nEach method is shown next to the equivalent old-style code built on query(), next_record(), and f(), so the two approaches can be compared side by side."
             },
@@ -1443,6 +1568,7 @@
                     "display_name": "Teo",
                     "github": ""
                 },
+                "isObsolete": false,
                 "excerpt": "Continuing the Zend_DB article series, we are stopping now at subqueries. As you note, the below is a complicate query, with COUNT(), LEFT JOIN(), GROUP BY - select from 3 tables, and make a count from 2 different tables: SELECT a.",
                 "tl_dr": "Continuing the Zend_Db series, this article shows a more complex query — combining COUNT(), LEFT JOIN, and GROUP BY across 3 tables, with a count taken from 2 different tables — and how to build it, including a nested subquery, using Zend_Db."
             },
@@ -1454,6 +1580,7 @@
                     "display_name": "Teo",
                     "github": ""
                 },
+                "isObsolete": false,
                 "excerpt": "Continuing the Zend_DB article series, we are stopping now at DML statements. DML (Data Manipulation Language) statements are statements that change data values in database tables.",
                 "tl_dr": "DML (Data Manipulation Language) statements change data values in database tables.\nThis article, continuing the Zend_Db series, shows how the three primary DML statements — INSERT, UPDATE, and DELETE — are written in raw SQL and translated into Zend_Db method calls."
             },
@@ -1465,6 +1592,7 @@
                     "display_name": "Teo",
                     "github": ""
                 },
+                "isObsolete": false,
                 "excerpt": "On a TIMESTAMP field that records date and time when inserting a new record, it is encouraged to use as a DEFAULT value, the CURRENT_TIMESTAMP constant. Why? Because when inserting a new row in the table for the date and time field there is no need to specifically add its value, either by creating it from PHP code with the Date\/ Time functions or with MySQL function NOW() ALTER TABLE `user` CHANGE `dateCreated` `dateCreated` TIMESTAMP NOT  DEFAULT CURRENT_TIMESTAMP; CURRENT_TIMESTAMP is also a solution for  updating date and time fields.",
                 "tl_dr": "On a TIMESTAMP field that records date and time when inserting a new record, it's encouraged to use the CURRENT_TIMESTAMP constant as its DEFAULT value.\nThis removes the need to set the value manually from PHP or with MySQL's NOW() function, and the ON UPDATE CURRENT_TIMESTAMP clause can additionally keep the field updated automatically on every row update.\nOnly one TIMESTAMP field per table can be DEFAULT CURRENT_TIMESTAMP."
             },
@@ -1476,6 +1604,7 @@
                     "display_name": "Teo",
                     "github": ""
                 },
+                "isObsolete": false,
                 "excerpt": "Continuing the Zend_Db article series, let's discuss the LIKE condition. The LIKE condition allows you to use wildcards in the WHERE clause of an SQL statement.",
                 "tl_dr": "The LIKE condition allows pattern matching in the WHERE clause of SELECT, INSERT, UPDATE, or DELETE statements.\nThe _ wildcard matches a single character, and % matches any string of any length (including zero).\nThis article shows how to use LIKE and NOT LIKE with both wildcards in Zend_Db."
             },
@@ -1487,6 +1616,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "To always redirect users to the www site (for example: http:\/\/dotboost.com to http:\/\/www.",
                 "tl_dr": ""
             },
@@ -1498,6 +1628,7 @@
                     "display_name": "Adrian",
                     "github": ""
                 },
+                "isObsolete": false,
                 "excerpt": "The following commands should be run in the terminal (for example, using Putty in Windows) on the host where you want to export the repository). It's recommended that you run them using the domain's user, not root.",
                 "tl_dr": "svn export lets you export the contents of a repository into a virtual host directory.\nThe commands should be run in a terminal (e.g. via Putty on Windows) on the target host, ideally using the domain's own user rather than root."
             },
@@ -1509,6 +1640,7 @@
                     "display_name": "Teo",
                     "github": ""
                 },
+                "isObsolete": false,
                 "excerpt": "In Aptana it's very simple to set the svn:keywords property for a file. For example if you want to set the svn keyword property Id: In the file where you want to add the svn keyword property write $Id$ Right click on the file, then follow Team -> Set Property.",
                 "tl_dr": ""
             },
@@ -1520,6 +1652,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "1.  Always use in development and in staging highest error reporting level, and display_errors ON: error_reporting(-1); ini_set('display_errors', 1); 2.",
                 "tl_dr": ""
             },
@@ -1531,6 +1664,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "For a better integration of SVN, your PHP IDE( Zend Studio), and a bug tracker of choice, the below proprieties must be set, for each project you have. Right click on project Go to Team->Set Propriety SVN Ignore files, below you have an example.",
                 "tl_dr": "For better integration between SVN, the Zend Studio PHP IDE, and a bug tracker, a set of SVN properties must be set for each project.\nThis article lists which properties to set and how."
             },
@@ -1542,6 +1676,7 @@
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
                 },
+                "isObsolete": false,
                 "excerpt": "It all started with the announcement: Laminas MVC Is Retiring. Some people wrongfully thought everything with a Laminas logo is going away - NOT SO! Read on for a bit of history about Zend and Laminas, what it means to migrate your platform and why it's a decision that should not be taken lightly.",
                 "tl_dr": "Laminas MVC is retiring, following Zend Framework and Apigility before it, but this doesn't mean everything with a Laminas logo is going away — Mezzio, built on Laminas components, is the fully-functional successor.\nMaintaining legacy MVC platforms is costly and risky long-term, since the architecture of today and tomorrow is middleware-based, and Apidemia offers a proven, phased migration process to move legacy platforms to Mezzio."
             },
@@ -1553,6 +1688,7 @@
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
                 },
+                "isObsolete": false,
                 "excerpt": "Software security should always be in the back of your mind as a developer. It may seem fine at first to deliver a feature sooner, only to find later on that you left a backdoor into your crisp new update.",
                 "tl_dr": "Software security should always be top of mind for a developer, since ignoring it can lead to major costs, data loss, GDPR fines, or the loss of client trust. The article surveys many facets of software security and walks through the practical measures Dotkernel Headless Platform takes for each: input validation, content negotiation, CORS, RBAC, demo credentials, error reporting, OpenAPI docs, PHP and JavaScript dependencies, OAuth2, session\/cookie settings, and CI checks."
             }
@@ -1571,6 +1707,7 @@
                     "display_name": "n3vrax",
                     "github": ""
                 },
+                "isObsolete": false,
                 "excerpt": "Did you come to a point where using multiple broadcast receivers to listen for the same intent, separatly, in the same android app, leads to unexpected results? If that\"s the case, one broadcast receiver might consume the broadcasted intent, online casino leaving the others with nothing to receive. This can be the case where you use 3rd party libraries with broadcast receivers defined.",
                 "tl_dr": ""
             },
@@ -1582,6 +1719,7 @@
                     "display_name": "n3vrax",
                     "github": ""
                 },
+                "isObsolete": false,
                 "excerpt": "Have you ever wondered if Android market sends you information at the moment of app install? Wouldn\"t be nice to create custom links to your android application, including bits of information about the referrer, and send it directly to the app for online casino processing at install? This could be a simple and accurate solution for mobile app install tracking but I\"m sure you can find this useful in many ways. With Android, you actually get this information as a broadcasted intent by android market at install time - even before opening your app.",
                 "tl_dr": ""
             }
@@ -1600,6 +1738,7 @@
                     "display_name": "admin",
                     "github": "arhimede"
                 },
+                "isObsolete": false,
                 "excerpt": "This article covers the basic authorization of a Client application which use a backend built using DotKernel API Authorization Request Client application users send a POST request to the backend containing the following JSON object: { \"grant_type\": \"password\", \"client_id\": \"{API_CLIENT}\", \"client_secret\": \"{API_CLIENT_SECRET}\", \"scope\": \"{SCOPE}\", \"username\": \"{USERNAME\/EMAIL}\", \"password\": \"{PASSWORD}\" } Authorization Response If the credentials are correct, the API will return a JSON object containing the authentication data: { \"token_type\": \"Bearer\", \"expires_in\": 86400, \"access_token\": \"..",
                 "tl_dr": ""
             },
@@ -1611,6 +1750,7 @@
                     "display_name": "Alex Karajos",
                     "github": "alexmerlin"
                 },
+                "isObsolete": false,
                 "excerpt": "This article covers the basic authorization of a Server Side application  built using DotKernel API Protecting an endpoint no-auth: the resource can be accessed without the need of authentication\/authorization authentication: the resource can be accessed only by authenticated users authorization: the resource can be accessed only by authenticated AND authorized users Configuring access to the endpoints is done by editing the following config file: config\/autoload\/authorization.local.",
                 "tl_dr": "DotKernel API endpoints can be protected at three levels: no-auth, authentication, and authorization.\nAccess is configured in config\/autoload\/authorization.local.php under the zend-expressive-authorization-rbac key, using a roles section for role inheritance and a permissions section for route access.\nAuthentication endpoints require a valid Bearer token and return 401 Unauthorized if it's missing, while authorization endpoints additionally check role permissions and return 403 Forbidden."
             },
@@ -1622,6 +1762,7 @@
                     "display_name": "Alex Karajos",
                     "github": "alexmerlin"
                 },
+                "isObsolete": false,
                 "excerpt": "This article will walk you through the process of implementing MailChimp into your instance of DotKernel API using drewm\/mailchimp-api   Step 1: Add the library to your application using the following command: composer require drewm\/mailchimp-api   Step 2: Create configuration file config\/autoload\/mailchimp.global.",
                 "tl_dr": "This is a step-by-step guide to adding MailChimp support to a DotKernel API instance using the drewm\/mailchimp-api library.\nIt covers installing the library, creating a MailChimp config file, building a factory that returns a DrewM\\MailChimp\\MailChimp instance, and registering that factory in ConfigProvider.php so it can be injected wherever needed."
             },
@@ -1633,6 +1774,7 @@
                     "display_name": "Alex Karajos",
                     "github": "alexmerlin"
                 },
+                "isObsolete": false,
                 "excerpt": "Dotkernel API has come a long way since this post was created. Check out the newest version of Dotkernel API to stay up to date with the latest functional and security features.",
                 "tl_dr": ""
             },
@@ -1644,6 +1786,7 @@
                     "display_name": "kakapiciu",
                     "github": "sergiu@rospace.com"
                 },
+                "isObsolete": false,
                 "excerpt": "API Endpoint to Collect Client Errors Let's say you have a (Client) Frontend (e.g.",
                 "tl_dr": ""
             },
@@ -1655,6 +1798,7 @@
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
                 },
+                "isObsolete": false,
                 "excerpt": "Below we have created an analysis of the basic features available in Laminas Api Tools and DotKernel API. It's intended to highlight the differences between the two and also to showcase why DotKernel API is a good alternative for Laminas API Tools, especially considering the latter's archived status.",
                 "tl_dr": "This article compares the basic features of Laminas API Tools and Dotkernel API side by side, covering architecture, versioning, documentation, authentication, and more.\nIt highlights that Dotkernel API is a solid alternative now that Laminas API Tools has been archived, since Dotkernel API uses a modern middleware architecture, MIT license, and evolution-based deprecations instead of traditional versioning."
             },
@@ -1666,6 +1810,7 @@
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
                 },
+                "isObsolete": false,
                 "excerpt": "What is OpenAPI? The OpenAPI Specification provides a consistent way to develop and interact with an API. It defines API structure and syntax in a universal way, regardless of the programming language used in the API's development.",
                 "tl_dr": "OpenAPI is a specification for describing an API's structure in a language-agnostic, machine-readable way, offering benefits like standardization, automatic documentation, upfront design, and better collaboration compared to a tool like Postman.\nDotkernel API has full OpenAPI support: each module (Admin, App, User) documents its endpoints in an OpenAPI.php file, which zircote\/swagger-php turns into documentation rendered via Swagger UI or Redoc.\nTesting protected endpoints in Swagger UI requires generating an authentication token that matches the endpoint's required privileges."
             },
@@ -1677,6 +1822,7 @@
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
                 },
+                "isObsolete": false,
                 "excerpt": "Dotkernel API has received a lot of love from our developers, with regular updates to the platform for years. We use Dotkernel API in our projects, so any bugs and issues are addressed as soon as they are found.",
                 "tl_dr": "Dotkernel API includes an error reporting endpoint that lets frontend developers securely report bugs and incorrect data processing back to the API, even when no fatal error shows up in the logs.\nIt works by sending a POST request to \/error-report with a token in the header; the API validates the request against configured tokens, domains, and IPs before logging the message.\nSetup involves generating a token, adding it to config\/autoload\/error-handling.global.php, and having the frontend send the Error-Reporting-Token and Origin headers."
             },
@@ -1688,6 +1834,7 @@
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
                 },
+                "isObsolete": false,
                 "excerpt": "Content negotiation is an important aspect of RESTful APIs to make it possible for diverse systems to work seamlessly together. It's based on enabling clients and servers to agree on the format and language of data they exchange.",
                 "tl_dr": "Content negotiation lets clients and servers agree on the format and language of exchanged data.\nIt can be handled server-side or client-side (the latter being more versatile), communicated through HTTP headers or URL patterns, and Dotkernel API implements it out of the box using the Content-Type and Accept headers."
             },
@@ -1699,6 +1846,7 @@
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
                 },
+                "isObsolete": false,
                 "excerpt": "Why We Switched to the Offline-Focused Bruno Every API developer knows that to build an API properly you need a reliable client for testing and interacting with the API. Ideally this tool should be free, it should store endpoint collections and share them easily with your team, and it should be fast and secure.",
                 "tl_dr": "The team has used Postman for years but is considering switching to Bruno, a lightweight, offline-first alternative, reflecting a broader PHP community trend toward local-first, Git-native developer tools.\nBruno wins on offline access, version control via Git, performance, and (arguably) security, while Postman still offers a broader feature set for larger, budget-having teams."
             }
@@ -1717,6 +1865,7 @@
                     "display_name": "Alex Karajos",
                     "github": "alexmerlin"
                 },
+                "isObsolete": false,
                 "excerpt": "PHP_CodeSniffer or phpcs is a tool that helps developers maintain a specific standard in the way they write code. In order to be able to provide relevant information, phpcs needs to be configured correctly in PHPStorm (see image).",
                 "tl_dr": "PHP_CodeSniffer (phpcs) needs to be configured correctly in PHPStorm under PHP > Quality Tools > PHP_CodeSniffer, with the Custom coding standard pointed at your project's phpcs.xml file.\nThis article gives separate setup steps for a freshly cloned project versus an existing one that isn't reporting issues yet, and explains how to read the resulting inline error and warning indicators in the editor."
             }
@@ -1735,6 +1884,7 @@
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
                 },
+                "isObsolete": false,
                 "excerpt": "After a recent analysis, we discovered that one of the upstream packages we use is licensed under LGPL v3. Even though we at DotKernel use the MIT license for our open source projects, the more restrictive license must be applied to the whole application.",
                 "tl_dr": "DotKernel discovered that an upstream dependency, matomo\/device-detector, was licensed under LGPL v3 - a more restrictive license than the MIT license DotKernel uses for its own projects.\nBecause the more restrictive license would have to apply to the whole application, DotKernel implemented a workaround: it stopped bundling that dependency by default and documented the licensing implications."
             }
@@ -1753,6 +1903,7 @@
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
                 },
+                "isObsolete": false,
                 "excerpt": "Middleware is code that exists between the request and response, and which can take the incoming request, perform actions based on it, and either complete the response or pass delegation on to the next middleware in the queue. The purpose of middleware Middleware makes it easier for software developers to implement communication and input\/output, so they can focus on the specific purpose of their application.",
                 "tl_dr": "Middleware is code that exists between the request and response: it can take an incoming request, act on it, and either complete the response itself or delegate to the next middleware in the queue.\nIt's used for concerns like authentication, CORS, caching, rate limiting, and more, and in PHP a PSR-15 compliant middleware implements Psr\\Http\\Server\\MiddlewareInterface with a single process() method."
             },
@@ -1764,6 +1915,7 @@
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
                 },
+                "isObsolete": false,
                 "excerpt": "In PHP, the ConfigProvider is a class that is part of an application's bootstrap process. It's a class or callable that returns configuration data telling the platform which middleware should run, in what order, and sometimes under what conditions.",
                 "tl_dr": "In PHP, a ConfigProvider is a class or callable that is part of an application's bootstrap process, returning configuration data that tells the platform which middleware should run, in what order, and under what conditions.\nFrameworks like Mezzio, Laminas, Slim, and the Dotkernel Headless Platform use ConfigProviders to declare middleware pipeline configuration, dependency injection mappings, and request handlers, which get merged together automatically during bootstrap (except in Dotkernel, where new ConfigProviders must be registered manually)."
             },
@@ -1775,6 +1927,7 @@
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
                 },
+                "isObsolete": false,
                 "excerpt": "Seamlessly Interconnected Middleware for Enterprise-Level Solutions The request lifecycle is the sequence of steps that happen from the moment a user makes an HTTP request until the server sends back a response. The graph below shows how the request is handled by Dotkernel Light (GitHub, documentation), one of the applications in the Dotkernel Headless Platform suite.",
                 "tl_dr": "The request lifecycle is the sequence of steps that happen from the moment a user makes an HTTP request until the server sends back a response.\nThis is illustrated using Dotkernel Light, one of the applications in the Dotkernel Headless Platform suite, walking through entry point setup, routing, handler execution, template rendering, response creation, and the response emitter."
             }
@@ -1793,6 +1946,7 @@
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
                 },
+                "isObsolete": false,
                 "excerpt": "This naming pattern is used in Dotkernel Admin v6 and will also be implemented in the next releases for Frontend and Light. The bigger a project is, the more time it will take to develop and the more people will be assigned to it.",
                 "tl_dr": ""
             }
@@ -1811,6 +1965,7 @@
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
                 },
+                "isObsolete": false,
                 "excerpt": "The principle of a Headless Platform is to decouple the User Interface (frontend) from the backend services. The responses from the platform are then used by another system, such as a website or mobile app.",
                 "tl_dr": "A Headless Platform decouples the frontend (UI) from the backend services, with responses consumed by another system such as a website or mobile app. The Dotkernel Headless Platform is made up of Dotkernel API (a REST API based on the Mezzio skeleton) and Dotkernel Admin (a backend management interface), which can be installed separately or together.\nUsing both together, sharing a common Core module, gives consistent entities and queries, an easy-to-maintain shared file structure, and an architecture that scales from small microservices to enterprise-grade APIs."
             },
@@ -1822,6 +1977,7 @@
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
                 },
+                "isObsolete": false,
                 "excerpt": "Dotkernel has implemented a Headless solution made up of these applications: Dotkernel API - a REST API, the root of the platform. Dotkernel Admin - (optional) complementary backend management.",
                 "tl_dr": "Dotkernel's Headless Platform is composed of Dotkernel API, Admin, and Queue, and can share a common Core submodule that holds the database entities and services used consistently across all of them.\nThe article walks through creating the Core submodule with git submodule add, committing changes from within the Core folder, and initializing\/updating it with git submodule init and git submodule update.\nSharing a Core module brings design flexibility, scalability, and easier bugfixes and onboarding as the platform grows."
             },
@@ -1833,6 +1989,7 @@
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
                 },
+                "isObsolete": false,
                 "excerpt": "Dotkernel API has come a long way since we published a list of its architecture and components a while ago. We implemented new features, while some components were replaced, and others were enhanced.",
                 "tl_dr": "Dotkernel API has evolved significantly since its original architecture and components article, adding Content Negotiation, standardized error responses via mezzio-problem-details, a shareable Core module, a custom templating solution replacing Twig, and a leaner handler dependency setup.\nPackages were updated across the board, the test suite switched from Psalm to PHPStan at a stricter rule level, and the roadmap for v6.1 targets Service Manager 4 and PHP 8.4\/8.5 support."
             },
@@ -1844,6 +2001,7 @@
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
                 },
+                "isObsolete": false,
                 "excerpt": "The Dotkernel Headless Platform is built with an architecture designed to be easy to maintain and expand indefinitely. Its core components are Dotkernel API and Dotkernel Queue, but the Dotkernel application suite also offers a fully separate, complementary Admin application designed to pair seamlessly with Dotkernel API.",
                 "tl_dr": "The Dotkernel Headless Platform's core components are Dotkernel API and Dotkernel Queue, but the suite also offers a fully separate, complementary Admin application designed to pair seamlessly with Dotkernel API.\nAdmin is an independent app built on the same Mezzio + Laminas foundation, sharing a unified tech stack with the API so the two form a cohesive, consistent system."
             },
@@ -1855,6 +2013,7 @@
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
                 },
+                "isObsolete": false,
                 "excerpt": "Dotkernel Queue is a component based on Symfony Messenger that is used to queue asynchronous tasks. netglue\/laminas-messenger is an adapter that integrates Symfony Messenger with the Laminas Service Manager container for Mezzio\/Laminas applications.",
                 "tl_dr": "Dotkernel Queue is a component built on Symfony Messenger (via the netglue\/laminas-messenger adapter) that lets time-consuming or resource-intensive operations run asynchronously on background workers instead of inside the normal PHP request-response cycle.\nAn active daemon listens for TCP connections, stores incoming messages in Redis, and processes them in FIFO order, with logging, IP-whitelisting security, a configurable retry mechanism, reporting metrics, and a Dead Letter Queue for messages that fail.\nPriorities and parallel execution are planned future features."
             },
@@ -1866,6 +2025,7 @@
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
                 },
+                "isObsolete": false,
                 "excerpt": "The dotkernel\/dot-maker library, also named DotMaker, is designed to programmatically generate project files and directories that match the Dotkernel file structure inspired by Mezzio. Handling the file creation and configuration task manually invites mistakes that nobody has time for.",
                 "tl_dr": "DotMaker (dotkernel\/dot-maker) programmatically generates project files and directories matching the Dotkernel file structure inspired by Mezzio.\nIt boosts productivity and enforces consistency and standardization compared to creating modules and files by hand, and it can tell the difference between Dotkernel applications (Api, Admin, Frontend) to create the files each one requires."
             },
@@ -1877,6 +2037,7 @@
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
                 },
+                "isObsolete": false,
                 "excerpt": "In programming and software architecture, an Evolution Pattern is a reusable, high-level strategy for modifying or evolving existing software systems over time. An evolution pattern tries to keep software relevant for old and new users by whatever means are available, as new needs arise.",
                 "tl_dr": "An Evolution Pattern keeps the same codebase and evolves it gradually (for example via sunsetting), while API versioning maintains multiple parallel versions of an API so existing clients aren't broken.\nThe two are not mutually exclusive.\nDotkernel API favors an evolution pattern with a sunsetting mechanism, reserving full versioning for major, format-level changes."
             },
@@ -1888,6 +2049,7 @@
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
                 },
+                "isObsolete": false,
                 "excerpt": "The Dotkernel Headless Platform has seen new releases for both API and Admin. The Admin codebase has received an overall facelift, as well as updates to retain compatibility with API v7.",
                 "tl_dr": "Dotkernel API v7 adds support for native UUID v7, PostgreSQL, PHP 8.5 (8.4 for Admin), database table prefixes, and improved database configuration, while replacing the binary data type for id columns with uuid.\nIt drops the Evolution pattern's Method Deprecation support and MySQL, since MySQL doesn't support the UUID data type.\nUUIDs are generated with the ramsey\/uuid package, previously uuid-named table columns are now called id, and PostgreSQL or MariaDB v10.7+ is required for UUID support."
             },
@@ -1899,6 +2061,7 @@
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
                 },
+                "isObsolete": false,
                 "excerpt": "What TOTP Does A Time-based One-Time Password (TOTP) is a security algorithm used as part of two-factor authentication (2FA) to protect against account attacks. The mechanism is integrated into dot-totp to enhance security by requiring both a password and an additional one-time code.",
                 "tl_dr": "dot-totp adds two-factor authentication (2FA) to Dotkernel Admin using time-based one-time passwords.\nUsers authenticate with their password plus a 6-digit code from an Authenticator app that refreshes every 30 seconds.\nInstallation is one Composer command plus a set of forms, handlers, middleware, and templates from the official code examples, applying a TotpTrait to the relevant entity, migrating three new database columns, and registering routes\/pipeline\/ConfigProvider updates."
             }

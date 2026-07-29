@@ -20,6 +20,7 @@
 
             <article class="article">
                 <div class="entry">
+                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
 <p class="mb-3">With the release of <strong>PHP 8.3</strong>, the DotKernel team has been working on updating the dependencies in our packages. Eventually, this allowed us to update our Applications as well, starting with the <a href="https://github.com/dotkernel/admin" data-type="link" data-id="https://github.com/dotkernel/admin" target="_blank" rel="noreferrer noopener">Admin</a>, in release <strong>4.3.1</strong></p>
 
 <p class="mb-3">There were some issues and backward incompatibilities that we will list below.</p>

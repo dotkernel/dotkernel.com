@@ -20,6 +20,7 @@
 
             <article class="article">
                 <div class="entry">
+                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
 On a <em>TIMESTAMP field</em> that records date and time when <em>inserting </em>a new record, it is encouraged to use as a <em>DEFAULT </em>value, the <strong>CURRENT_TIMESTAMP</strong> constant.
 <!--more-->
 <strong>Why? </strong>

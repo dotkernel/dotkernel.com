@@ -20,6 +20,7 @@
 
             <article class="article">
                 <div class="entry">
+                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
 <blockquote><p class="mb-3"><strong>Note</strong>: The package requires Doctrine ORM. Still, it can be used in applications which do not integrate Doctrine.</p>
 </blockquote>
 

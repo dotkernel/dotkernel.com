@@ -20,6 +20,7 @@
 
             <article class="article">
                 <div class="entry">
+                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
 <p class="mb-3">In programming and software architecture, an <strong>Evolution Pattern</strong> is a reusable, high-level strategy for modifying or evolving existing software systems over time. An evolution pattern tries to keep software relevant for old and new users by whatever means are available, as new needs arise.</p>
 
 <p class="mb-3"><strong>Versioning</strong> in software is the practice of assigning unique identifiers (version numbers) to different releases of a software platform. These numbers help track changes, improvements, bug fixes, compatibility, and evolution over time. In particular, API versioning is the practice of assigning versions to an API so that it can change over time without breaking existing clients that rely on it.</p>
