@@ -26,6 +26,7 @@ class FeedGeneratorFactory
             rtrim($config['application']['url'] ?? '', '/') . '/',
             $config['app']['meta']['title'] ?? '',
             $config['app']['meta']['description'] ?? '',
+            $config['app']['meta']['image'] ?? '',
         );
     }
 }
