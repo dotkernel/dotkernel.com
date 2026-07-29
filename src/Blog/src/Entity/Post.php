@@ -27,6 +27,9 @@ class Post extends AbstractEntity
     #[ORM\Column(name: 'excerpt', type: 'text')]
     private string $excerpt;
 
+    #[ORM\Column(name: 'tl_dr', type: 'text', nullable: true)]
+    private ?string $tlDr = null;
+
     #[ORM\Column(
         name: 'status',
         type: 'post_status_enum',
@@ -113,6 +116,16 @@ class Post extends AbstractEntity
         $this->excerpt = $excerpt;
     }
 
+    public function getTldr(): ?string
+    {
+        return $this->tlDr;
+    }
+
+    public function setTldr(?string $tlDr): void
+    {
+        $this->tlDr = $tlDr;
+    }
+
     /**
      * @return array{
      *     id: non-empty-string,
@@ -120,6 +133,7 @@ class Post extends AbstractEntity
      *     slug: string,
      *     status: string,
      *     excerpt: string,
+     *     tlDr: string|null,
      *     postDate: string,
      *     category: array{id: non-empty-string, name: string, slug: string},
      *     author: array{id: non-empty-string, name: string, slug: string, github: string|null}
@@ -133,6 +147,7 @@ class Post extends AbstractEntity
             'slug'     => $this->slug,
             'status'   => $this->status->value,
             'excerpt'  => $this->excerpt,
+            'tlDr'     => $this->tlDr,
             'postDate' => $this->postDate->format('Y-m-d H:i:s'),
             'category' => $this->category->getArrayCopy(),
             'author'   => $this->author->getArrayCopy(),

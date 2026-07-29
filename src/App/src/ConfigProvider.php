@@ -12,9 +12,13 @@ use Dot\Cache\Adapter\ArrayAdapter;
 use Dot\Cache\Adapter\FilesystemAdapter;
 use Light\App\DBAL\Types\UuidType;
 use Light\App\Factory\EntityListenerResolverFactory;
+use Light\App\Factory\FeedGeneratorFactory;
+use Light\App\Factory\GetFeedViewHandlerFactory;
 use Light\App\Factory\GetIndexViewHandlerFactory;
+use Light\App\Handler\GetFeedViewHandler;
 use Light\App\Handler\GetIndexViewHandler;
 use Light\App\Resolver\EntityListenerResolver;
+use Light\App\Service\FeedGenerator;
 use Mezzio\Application;
 use Roave\PsrContainerDoctrine\EntityManagerFactory;
 use Symfony\Component\Cache\Adapter\AdapterInterface;
@@ -109,6 +113,8 @@ class ConfigProvider
                 'doctrine.entity_manager.orm_default' => EntityManagerFactory::class,
                 EntityListenerResolver::class         => EntityListenerResolverFactory::class,
                 GetIndexViewHandler::class            => GetIndexViewHandlerFactory::class,
+                GetFeedViewHandler::class             => GetFeedViewHandlerFactory::class,
+                FeedGenerator::class                  => FeedGeneratorFactory::class,
             ],
             'aliases'    => [
                 EntityManager::class          => 'doctrine.entity_manager.orm_default',

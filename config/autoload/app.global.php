@@ -22,6 +22,9 @@ $app     = [
 
 return [
     'app'  => $app,
+    'feed' => [
+        'file' => 'public/feed.xml',
+    ],
     'twig' => [
         'globals' => [
             'app' => $app,
