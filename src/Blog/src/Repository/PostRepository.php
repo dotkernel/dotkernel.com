@@ -103,6 +103,21 @@ class PostRepository extends AbstractRepository
     /**
      * @return array<int, Post>
      */
+    public function getPublishedPosts(): array
+    {
+        return $this->getQueryBuilder()
+            ->select('articles')
+            ->from(Post::class, 'articles')
+            ->where('articles.status = :published')
+            ->setParameter('published', PostStatusEnum::Published)
+            ->orderBy('articles.postDate', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @return array<int, Post>
+     */
     public function getRecentPosts(int $limit = 5): array
     {
         $qb = $this->getQueryBuilder()

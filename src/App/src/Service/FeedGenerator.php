@@ -8,7 +8,6 @@ use DateTimeImmutable;
 use DateTimeInterface;
 use DOMDocument;
 use DOMElement;
-use Light\Blog\Enum\PostStatusEnum;
 use Light\Blog\Repository\PostRepository;
 use RuntimeException;
 
@@ -37,10 +36,7 @@ class FeedGenerator
 
     public function write(): int
     {
-        $posts = $this->postRepository->findBy(
-            ['status' => PostStatusEnum::Published],
-            ['postDate' => 'DESC']
-        );
+        $posts = $this->postRepository->getPublishedPosts();
 
         $dom               = new DOMDocument('1.0', 'UTF-8');
         $dom->formatOutput = true;
