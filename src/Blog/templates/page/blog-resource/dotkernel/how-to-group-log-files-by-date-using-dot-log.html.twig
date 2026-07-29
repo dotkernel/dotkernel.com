@@ -32,7 +32,7 @@
 
 <p class="mb-3">As always, we strongly suggest you to keep your packages updated. Allthough, if your application logs messages in a single file with a static name (eg: log/dk.log), you can skip the rest of this article - logging will work as before.</p>
 
-<h2>Configuring the logger with DotKernel</h2>
+<h2>Configuring the logger with Dotkernel</h2>
 
 <p class="mb-3">Your application should already have a <strong>config/autoload/error-handling.global.php</strong> file, similar to this:</p>
 
@@ -88,7 +88,7 @@ return &#91;
 
 <p class="mb-3">If the path to your log files contains other date format specifiers, make sure you adapt it accordingly. A complete list of the specifiers can be found <a rel="noreferrer noopener" href="https://www.php.net/manual/en/datetime.format.php" target="_blank">here</a>.</p>
 
-<h2>Configuring the logger without DotKernel</h2>
+<h2>Configuring the logger without Dotkernel</h2>
 
 <p class="mb-3">Locate dot-log configs in your application (probably /config/autoload/log.global.php). They should look similar to this:</p>
 
@@ -191,13 +191,13 @@ return &#91;
         </div>
     </details>
     <details class="acc">
-        <summary>How do I group log files by date when using DotKernel? <span class="chev">+</span></summary>
+        <summary>How do I group log files by date when using Dotkernel? <span class="chev">+</span></summary>
         <div class="acc-body">
             <p class="mb-0">In <strong>config/autoload/error-handling.global.php</strong>, locate every log writer by navigating to <code>dot_log-&gt;loggers-&gt;default_logger-&gt;writers</code> and replace a <code>stream</code> value like <code>sprintf('%s/../../log/error-log-%s.log', __DIR__, date('Y-m-d'))</code> with <code>__DIR__ . '/../../log/error-log-{Y}-{m}-{d}.log'</code>.</p>
         </div>
     </details>
     <details class="acc">
-        <summary>How do I group log files by date without DotKernel? <span class="chev">+</span></summary>
+        <summary>How do I group log files by date without Dotkernel? <span class="chev">+</span></summary>
         <div class="acc-body">
             <p class="mb-0">In your dot-log config (e.g. /config/autoload/log.global.php), locate every writer under <code>dot_log-&gt;loggers-&gt;my_logger-&gt;writers</code> and replace a dynamic <code>stream</code> value such as <code>sprintf('%s/../../log/dk-%s.log', __DIR__, date('Y-m-d'))</code> with a formatter string like <code>__DIR__ . '/../../log/error-log-{Y}-{m}-{d}.log'</code>.</p>
         </div>
@@ -205,7 +205,7 @@ return &#91;
     <details class="acc">
         <summary>What must I do after changing the stream configuration? <span class="chev">+</span></summary>
         <div class="acc-body">
-            <p class="mb-0">Clear the config cache. In a DotKernel application, run <code>php bin/clear-config-cache.php</code>; in a non-DotKernel setup, make sure you clear your application's config before usage.</p>
+            <p class="mb-0">Clear the config cache. In a Dotkernel application, run <code>php bin/clear-config-cache.php</code>; in a non-Dotkernel setup, make sure you clear your application's config before usage.</p>
         </div>
     </details>
 </div>

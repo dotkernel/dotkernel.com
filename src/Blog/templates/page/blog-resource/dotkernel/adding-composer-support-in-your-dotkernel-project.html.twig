@@ -1,7 +1,7 @@
 {% extends '@layout/default.html.twig' %}
 {% block json_ld %} {{ include('@jsonld/dotkernel/adding-composer-support-in-your-dotkernel-project.jsonld.twig') }} {% endblock %}
 
-{% block title %}Adding Composer support in your DotKernel project{% endblock %}
+{% block title %}Adding Composer support in your Dotkernel project{% endblock %}
 
 {% block page_title %}
     {{ include('@partial/title-section.html.twig', {
@@ -22,13 +22,13 @@
                 <div class="entry">
 Composer is an application-level package manager. Composer auto-loads the dependencies on demand and can also auto-load custom classes .
 
-This article will cover the needed steps to add composer support to your DotKernel project or even "composify" it.
+This article will cover the needed steps to add composer support to your Dotkernel project or even "composify" it.
 
-Assuming that you know how to use composer (if not you should consider reading <a href="https://www.codementor.io/php/tutorial/composer-install-php-dependency-manager" target="_blank" rel="noopener noreferrer">this article</a>) we wil move on to your DotKernel project "composification".
+Assuming that you know how to use composer (if not you should consider reading <a href="https://www.codementor.io/php/tutorial/composer-install-php-dependency-manager" target="_blank" rel="noopener noreferrer">this article</a>) we wil move on to your Dotkernel project "composification".
 
 &nbsp;
 <h2>First things first</h2>
-The DotKernel project must have a <strong>composer.json</strong> file so that composer can work.
+The Dotkernel project must have a <strong>composer.json</strong> file so that composer can work.
 
 Our <strong>composer.json</strong> file should look like this:
 <pre>>{
@@ -54,7 +54,7 @@ The dependencies provided in the <strong>require</strong> section are also loade
 
 &nbsp;
 
-In order to have these components instaled you must run the following command in your DotKernel root path
+In order to have these components instaled you must run the following command in your Dotkernel root path
 <pre>>composer update</pre>
 If the <em>vendor </em>folder is present composer will check for updates, and update the packages as needed.
 
@@ -63,7 +63,7 @@ If the <em>vendor</em> folder does not exist composer will create a vendor folde
 Composer will create an autoload file, which will be use to load our dependencies/packages.
 
 &nbsp;
-<h2>Adding Composer Support to DotKernel</h2>
+<h2>Adding Composer Support to Dotkernel</h2>
 The autoload file created by composer will be used to load our packages.
 <pre>>$composerAutoLoaderPath = <a href="http://php.net/manual/en/function.realpath.php" target="_blank" rel="noopener noreferrer">realpath</a>(APPLICATION_PATH.'/vendor/autoload.php');
 require_once($composerAutoLoaderPath);</pre>
@@ -90,9 +90,9 @@ Later on, the packages can be used like this:
 
 $myDependency = new MyDependency($neededArguments);
 $myDependency->doSomething();</pre>
-Learn more about how to use dependencies in DotKernel 1.x by reading <a href="http://www.dotkernel.com/dotkernel/using-dotkernel-…ser-dependencies/" target="_blank" rel="noopener noreferrer">this article</a>.
+Learn more about how to use dependencies in Dotkernel 1.x by reading <a href="http://www.dotkernel.com/dotkernel/using-dotkernel-…ser-dependencies/" target="_blank" rel="noopener noreferrer">this article</a>.
 
-This article works for any <strong>DotKernel 1.x</strong> version if your server is running <strong>PHP &gt;5.4.0.</strong>
+This article works for any <strong>Dotkernel 1.x</strong> version if your server is running <strong>PHP &gt;5.4.0.</strong>
 
 <h2 id="user-content-faq">Frequently Asked Questions</h2>
 
@@ -104,7 +104,7 @@ This article works for any <strong>DotKernel 1.x</strong> version if your server
         </div>
     </details>
     <details class="acc">
-        <summary>What must a DotKernel project have before Composer can be used? <span class="chev">+</span></summary>
+        <summary>What must a Dotkernel project have before Composer can be used? <span class="chev">+</span></summary>
         <div class="acc-body">
             <p class="mb-0">A composer.json file, for example requiring zendframework/zendframework1 at 1.12.* and mobiledetect/mobiledetectlib at 2.8.*, plus PHP &gt;=5.4.0 listed under require-dev.</p>
         </div>
@@ -122,9 +122,9 @@ This article works for any <strong>DotKernel 1.x</strong> version if your server
         </div>
     </details>
     <details class="acc">
-        <summary>Which DotKernel versions does this apply to? <span class="chev">+</span></summary>
+        <summary>Which Dotkernel versions does this apply to? <span class="chev">+</span></summary>
         <div class="acc-body">
-            <p class="mb-0">The article states it works for any DotKernel 1.x version, as long as the server is running PHP greater than 5.4.0.</p>
+            <p class="mb-0">The article states it works for any Dotkernel 1.x version, as long as the server is running PHP greater than 5.4.0.</p>
         </div>
     </details>
 </div>

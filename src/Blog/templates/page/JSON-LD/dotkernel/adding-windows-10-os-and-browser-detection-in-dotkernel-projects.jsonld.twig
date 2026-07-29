@@ -41,7 +41,7 @@
                 "@type": "FAQPage",
                 "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
                 "mainEntity": [
-                    { "@type": "Question", "name": "What DotKernel version is required before applying this patch?", "acceptedAnswer": { "@type": "Answer", "text": "Your project must be running version 1.5.0 or newer." } },
+                    { "@type": "Question", "name": "What Dotkernel version is required before applying this patch?", "acceptedAnswer": { "@type": "Answer", "text": "Your project must be running version 1.5.0 or newer." } },
                     { "@type": "Question", "name": "Which files does the patch modify or add?", "acceptedAnswer": { "@type": "Answer", "text": "It modifies configs/useragent/browser.xml and configs/useragent/os.xml, and adds images/browsers/edge.png and images/os/windows_metro.png." } },
                     { "@type": "Question", "name": "Why do you need to clear the cache after applying the patch?", "acceptedAnswer": { "@type": "Answer", "text": "Because the OS and browser XML files are cached, so the new icons won't show up until the cache is cleared." } },
                     { "@type": "Question", "name": "Will applying the patch overwrite existing files?", "acceptedAnswer": { "@type": "Answer", "text": "You'll be prompted to replace 2 files (browser.xml and os.xml) and should agree, and also agree to merge the folders' contents since the other files listed are added rather than replaced." } }

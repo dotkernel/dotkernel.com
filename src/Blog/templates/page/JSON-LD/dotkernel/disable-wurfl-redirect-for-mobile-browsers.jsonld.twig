@@ -41,7 +41,7 @@
                 "@type": "FAQPage",
                 "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
                 "mainEntity": [
-                    { "@type": "Question", "name": "How do you disable the automatic mobile redirect in DotKernel?", "acceptedAnswer": { "@type": "Answer", "text": "Starting with revision 408, set resources.useragent.wurflapi.redirect = false in application.ini. Per the article, this is also the default state of the redirect option." } },
+                    { "@type": "Question", "name": "How do you disable the automatic mobile redirect in Dotkernel?", "acceptedAnswer": { "@type": "Answer", "text": "Starting with revision 408, set resources.useragent.wurflapi.redirect = false in application.ini. Per the article, this is also the default state of the redirect option." } },
                     { "@type": "Question", "name": "Where in the code is this configuration option checked?", "acceptedAnswer": { "@type": "Answer", "text": "In Controllers/frontend/IndexController.php (around line 19), a condition checks whether the redirect is enabled in application.ini, whether the visiting browser is mobile, and whether session->mobileHit isn't already set, before registering and redirecting the visit." } }
                 ]
             }

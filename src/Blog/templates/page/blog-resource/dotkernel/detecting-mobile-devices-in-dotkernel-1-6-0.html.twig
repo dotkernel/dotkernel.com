@@ -1,7 +1,7 @@
 {% extends '@layout/default.html.twig' %}
 {% block json_ld %} {{ include('@jsonld/dotkernel/detecting-mobile-devices-in-dotkernel-1-6-0.jsonld.twig') }} {% endblock %}
 
-{% block title %}Detecting Mobile Devices in DotKernel 1.6.0{% endblock %}
+{% block title %}Detecting Mobile Devices in Dotkernel 1.6.0{% endblock %}
 
 {% block page_title %}
     {{ include('@partial/title-section.html.twig', {
@@ -20,9 +20,9 @@
 
             <article class="article">
                 <div class="entry">
-The new DotKernel version 1.6.0 is comming with some changes how we are detecting mobile devices, this changes are because of the new Wurfl Cloud integration.
+The new Dotkernel version 1.6.0 is comming with some changes how we are detecting mobile devices, this changes are because of the new Wurfl Cloud integration.
 
-This version of DotKernel is not comming anymore with a working built in method for mobile detection, so first we have to configure it.
+This version of Dotkernel is not comming anymore with a working built in method for mobile detection, so first we have to configure it.
 
 <!--more-->
 <ul>
@@ -50,11 +50,11 @@ resources.useragent.wurflcloud.lib_dir = APPLICATION_PATH "/library/WurflCloud/"
 <strong>cache_lifetime</strong> - time in seconds to keep the results in cache (default: 3600)
 <strong>cache_namespace</strong> - the prefix used for cache keys (default: WURFLCLOUD)
 <strong>api_key</strong> - API Key from WURFL Cloud account (change this with your key)
-<strong>lib_dir</strong> - the wurfl cloud library location in DotKernel (don't change this, just if you want to move the library)
+<strong>lib_dir</strong> - the wurfl cloud library location in Dotkernel (don't change this, just if you want to move the library)
 
 Because of these changes we removed the old Dot_UserAgent_Wurfl class and added the new one Dot_UserAgent_WurflCloud wich is using the Wurfl Cloud API adapter.
 
-<h2>Example of Dot_UserAgent usage in DotKernel:</h2>
+<h2>Example of Dot_UserAgent usage in Dotkernel:</h2>
 
 Get Wurfl configuration
 <pre>>$wurflConf = $registry->configuration->resources->useragent->wurflcloud;</pre>
@@ -97,7 +97,7 @@ If detected device is an mobile device we will save device info in database and 
 
 <div class="faq-list">
     <details class="acc" open>
-        <summary>Why did mobile detection change in DotKernel 1.6.0? <span class="chev">+</span></summary>
+        <summary>Why did mobile detection change in Dotkernel 1.6.0? <span class="chev">+</span></summary>
         <div class="acc-body">
             <p class="mb-0">Because of the new Wurfl Cloud integration. This version no longer ships with a working built-in method for mobile detection, so it must be configured first.</p>
         </div>
@@ -111,7 +111,7 @@ If detected device is an mobile device we will save device info in database and 
     <details class="acc">
         <summary>Why choose the device_os and mobile_browser capabilities specifically? <span class="chev">+</span></summary>
         <div class="acc-body">
-            <p class="mb-0">With these two capabilities, DotKernel's built-in methods can also derive extra capabilities such as isMobile, isSmartPhone, isIphone, isAndroid, isBlackberry, isSymbian, and isWindowsMobile. Choosing other capabilities from scientiamobile results in wrong detection of these extra capabilities.</p>
+            <p class="mb-0">With these two capabilities, Dotkernel's built-in methods can also derive extra capabilities such as isMobile, isSmartPhone, isIphone, isAndroid, isBlackberry, isSymbian, and isWindowsMobile. Choosing other capabilities from scientiamobile results in wrong detection of these extra capabilities.</p>
         </div>
     </details>
     <details class="acc">

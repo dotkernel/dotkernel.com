@@ -1,7 +1,7 @@
 {% extends '@layout/default.html.twig' %}
 {% block json_ld %} {{ include('@jsonld/dotkernel/dotkernel-on-nginx.jsonld.twig') }} {% endblock %}
 
-{% block title %}DotKernel on Nginx{% endblock %}
+{% block title %}Dotkernel on Nginx{% endblock %}
 
 {% block page_title %}
     {{ include('@partial/title-section.html.twig', {
@@ -58,12 +58,12 @@ location ~ ^/configs/ {
 </li>
 </ul>
 </li>
-    <li>  Export a DotKernel copy from SVN
+    <li>  Export a Dotkernel copy from SVN
 <pre>>svn export --force  http://v1.dotkernel.net/svn/trunk/ /var/www/html</pre>
 </li>
     <li>Edit <em><strong>application.ini</strong></em> to reflect the current settings and check if is  protected
 <a href="http://nginx.dotkernel.net/configs/application.ini" target="_blank" rel="noopener noreferrer">http://nginx.dotkernel.net/configs/application.ini</a></li>
-    <li>And walla, site is running on Nginx       <a title="Nginx DotKernel" href="http://nginx.dotkernel.net/" target="_blank" rel="noopener noreferrer">http://nginx.dotkernel.net/</a>
+    <li>And walla, site is running on Nginx       <a title="Nginx Dotkernel" href="http://nginx.dotkernel.net/" target="_blank" rel="noopener noreferrer">http://nginx.dotkernel.net/</a>
 <em>Admin login is disabled due to security reason.</em></li>
 </ol>
 
@@ -89,7 +89,7 @@ location ~ ^/configs/ {
         </div>
     </details>
     <details class="acc">
-        <summary>How was the DotKernel codebase deployed onto the server? <span class="chev">+</span></summary>
+        <summary>How was the Dotkernel codebase deployed onto the server? <span class="chev">+</span></summary>
         <div class="acc-body">
             <p class="mb-0">It was exported directly from SVN using svn export --force http://v1.dotkernel.net/svn/trunk/ /var/www/html.</p>
         </div>

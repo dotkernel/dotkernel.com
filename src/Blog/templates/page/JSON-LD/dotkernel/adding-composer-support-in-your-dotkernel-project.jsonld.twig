@@ -42,10 +42,10 @@
                 "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "What does Composer do?", "acceptedAnswer": { "@type": "Answer", "text": "Composer is an application-level package manager. It auto-loads dependencies on demand and can also auto-load custom classes." } },
-                    { "@type": "Question", "name": "What must a DotKernel project have before Composer can be used?", "acceptedAnswer": { "@type": "Answer", "text": "A composer.json file, for example requiring zendframework/zendframework1 at 1.12.* and mobiledetect/mobiledetectlib at 2.8.*, plus PHP >=5.4.0 listed under require-dev." } },
+                    { "@type": "Question", "name": "What must a Dotkernel project have before Composer can be used?", "acceptedAnswer": { "@type": "Answer", "text": "A composer.json file, for example requiring zendframework/zendframework1 at 1.12.* and mobiledetect/mobiledetectlib at 2.8.*, plus PHP >=5.4.0 listed under require-dev." } },
                     { "@type": "Question", "name": "What happens when you run composer update?", "acceptedAnswer": { "@type": "Answer", "text": "If the vendor folder already exists, composer checks for and applies updates to the packages. If it doesn't exist, composer creates the vendor folder containing all requested packages, along with an autoload file." } },
                     { "@type": "Question", "name": "How do you safely load the Composer autoloader in case Composer isn't present?", "acceptedAnswer": { "@type": "Answer", "text": "Check whether vendor/autoload.php exists using file_exists() before calling require_once() on it, and handle the case gracefully (for example by loading fallbacks) if the path is missing." } },
-                    { "@type": "Question", "name": "Which DotKernel versions does this apply to?", "acceptedAnswer": { "@type": "Answer", "text": "The article states it works for any DotKernel 1.x version, as long as the server is running PHP greater than 5.4.0." } }
+                    { "@type": "Question", "name": "Which Dotkernel versions does this apply to?", "acceptedAnswer": { "@type": "Answer", "text": "The article states it works for any Dotkernel 1.x version, as long as the server is running PHP greater than 5.4.0." } }
                 ]
             }
         ]

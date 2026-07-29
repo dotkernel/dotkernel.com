@@ -41,10 +41,10 @@
                 "@type": "FAQPage",
                 "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
                 "mainEntity": [
-                    { "@type": "Question", "name": "What is new in the admin interface in DotKernel 1.3.0?", "acceptedAnswer": { "@type": "Answer", "text": "1.3.0 adds a skin switcher for the admin, with several ready-made skins (blue, brown, gray, green) that can be set via the settings.admin.skin configuration value." } },
+                    { "@type": "Question", "name": "What is new in the admin interface in Dotkernel 1.3.0?", "acceptedAnswer": { "@type": "Answer", "text": "1.3.0 adds a skin switcher for the admin, with several ready-made skins (blue, brown, gray, green) that can be set via the settings.admin.skin configuration value." } },
                     { "@type": "Question", "name": "How do I protect a page so only logged-in members can access it?", "acceptedAnswer": { "@type": "Answer", "text": "Add the line Dot_Auth::checkIdentity(); in the controller file above the code you want to protect - everything below that line requires the visitor to be logged in." } },
                     { "@type": "Question", "name": "What happened to resource.xml in this release?", "acceptedAnswer": { "@type": "Answer", "text": "resource.xml was deleted and its content split between two new files, route.xml and dots.xml." } },
-                    { "@type": "Question", "name": "Is DotKernel 1.3.0 backward compatible with earlier versions?", "acceptedAnswer": { "@type": "Answer", "text": "No. Because of the XML file reorganization (bug 69), 1.3.0 is not compatible with previous versions." } }
+                    { "@type": "Question", "name": "Is Dotkernel 1.3.0 backward compatible with earlier versions?", "acceptedAnswer": { "@type": "Answer", "text": "No. Because of the XML file reorganization (bug 69), 1.3.0 is not compatible with previous versions." } }
                 ]
             }
         ]

@@ -1,7 +1,7 @@
 {% extends '@layout/default.html.twig' %}
 {% block json_ld %} {{ include('@jsonld/dotkernel/caching-in-dotkernel-using-zend-framework.jsonld.twig') }} {% endblock %}
 
-{% block title %}Caching in DotKernel using Zend Framework{% endblock %}
+{% block title %}Caching in Dotkernel using Zend Framework{% endblock %}
 
 {% block page_title %}
     {{ include('@partial/title-section.html.twig', {
@@ -25,7 +25,7 @@ It's very expensive to load configurations and settings from XML files, on every
 First because of latency of accessing files from hard drive, second because of the XML
 file parsing burden.
 
-Because of that , we implemented in upcoming 1.8 version of DotKernel a cache layer where to store<strong> router, acl_role, menu, options(including seo_xml), browser_xml, os_xml, test</strong> between requests. More information about the variables which DotKernel cache by default follow this link: <a title="DotKernel Reserved Variable Names for Caching" href="http://www.dotkernel.com/dotkernel/dotkernel-reserved-variable-names-for-caching" target="_blank" rel="noopener noreferrer">DotKernel Reserved Variable Names for Caching</a>
+Because of that , we implemented in upcoming 1.8 version of Dotkernel a cache layer where to store<strong> router, acl_role, menu, options(including seo_xml), browser_xml, os_xml, test</strong> between requests. More information about the variables which Dotkernel cache by default follow this link: <a title="Dotkernel Reserved Variable Names for Caching" href="http://www.dotkernel.com/dotkernel/dotkernel-reserved-variable-names-for-caching" target="_blank" rel="noopener noreferrer">Dotkernel Reserved Variable Names for Caching</a>
 
 <!--more-->
 
@@ -33,7 +33,7 @@ We are implementing 2 different cache factories to choose from: <strong>apc</str
 <h2>1. Configuring the cache</h2>
 The configuration can be set from /configs/application.ini, you can choose if you use the caching system, how long your cache stays valid, the cache namespace, and the storage provider (<strong>File</strong> or <strong>APC</strong>). I would disable the cache in development mode if I were you.
 
-For more info about the configuration and help configuring the cache see: <a title="DotKernel - Configuring the Cache in DotKernel" href="http://www.dotkernel.com/dotkernel/configuring-the-cache-in-dotkernel/" target="_blank" rel="noopener noreferrer">Configuring the Cache in DotKernel</a>.
+For more info about the configuration and help configuring the cache see: <a title="Dotkernel - Configuring the Cache in Dotkernel" href="http://www.dotkernel.com/dotkernel/configuring-the-cache-in-dotkernel/" target="_blank" rel="noopener noreferrer">Configuring the Cache in Dotkernel</a>.
 <h2>2. Using the Cache</h2>
 The cache is automatically loaded in the initialization and stored in the Registry.
 
@@ -67,7 +67,7 @@ else
 
 <div class="faq-list">
     <details class="acc" open>
-        <summary>What data does DotKernel's cache layer store? <span class="chev">+</span></summary>
+        <summary>What data does Dotkernel's cache layer store? <span class="chev">+</span></summary>
         <div class="acc-body">
             <p class="mb-0">Router, acl_role, menu, options (including seo_xml), browser_xml, os_xml, and test data between requests.</p>
         </div>
