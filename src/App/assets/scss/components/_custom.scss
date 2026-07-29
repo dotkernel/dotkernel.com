@@ -614,11 +614,6 @@ html[data-theme="light"] .theme-toggle {
   gap: 18px;
 }
 
-.other-skeletons-grid {
-  grid-template-columns: repeat(2, 1fr);
-  max-width: 800px;
-}
-
 .card {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -1003,6 +998,10 @@ footer {
 }
 
 @media (max-width: 700px) {
+  .wrap {
+    padding: 0 16px;
+  }
+
   .hero h1 {
     font-size: 32px;
   }
