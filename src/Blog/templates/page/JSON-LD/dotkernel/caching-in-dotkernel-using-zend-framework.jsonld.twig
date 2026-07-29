@@ -41,7 +41,7 @@
                 "@type": "FAQPage",
                 "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
                 "mainEntity": [
-                    { "@type": "Question", "name": "What data does DotKernel's cache layer store?", "acceptedAnswer": { "@type": "Answer", "text": "Router, acl_role, menu, options (including seo_xml), browser_xml, os_xml, and test data between requests." } },
+                    { "@type": "Question", "name": "What data does Dotkernel's cache layer store?", "acceptedAnswer": { "@type": "Answer", "text": "Router, acl_role, menu, options (including seo_xml), browser_xml, os_xml, and test data between requests." } },
                     { "@type": "Question", "name": "What storage providers are available for the cache?", "acceptedAnswer": { "@type": "Answer", "text": "Two cache factories to choose from: APC (or APCU for newer PHP installations) and File." } },
                     { "@type": "Question", "name": "Where is the cache configured?", "acceptedAnswer": { "@type": "Answer", "text": "In /configs/application.ini, where you can enable or disable caching, set how long the cache stays valid, choose the cache namespace, and pick the storage provider (File or APC). The article recommends disabling the cache in development mode." } },
                     { "@type": "Question", "name": "Do you need to manually load the cache engine?", "acceptedAnswer": { "@type": "Answer", "text": "No, it's automatically loaded during kernel initialization (Dot_Kernel::initialize()). Manually calling Dot_Cache::loadCache() is only needed if you want to use caching outside of that normal initialization." } },

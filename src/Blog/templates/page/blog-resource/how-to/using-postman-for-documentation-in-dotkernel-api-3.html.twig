@@ -1,7 +1,7 @@
 {% extends '@layout/default.html.twig' %}
 {% block json_ld %} {{ include('@jsonld/how-to/using-postman-for-documentation-in-dotkernel-api-3.jsonld.twig') }} {% endblock %}
 
-{% block title %}Using Postman for documentation  in DotKernel API 3{% endblock %}
+{% block title %}Using Postman for documentation  in Dotkernel API 3{% endblock %}
 
 {% block page_title %}
     {{ include('@partial/title-section.html.twig', {
@@ -20,9 +20,9 @@
 
             <article class="article">
                 <div class="entry">
-<h2>Using Postman documentation in DotKernel API 3</h2>
+<h2>Using Postman documentation in Dotkernel API 3</h2>
 
-<p class="mb-3">Starting from version 3.0 DotKernel API provides it's documentation using <a href="https://www.postman.com/" data-type="URL" data-id="https://www.postman.com/" target="_blank" rel="noreferrer noopener">Postman</a>.</p>
+<p class="mb-3">Starting from version 3.0 Dotkernel API provides it's documentation using <a href="https://www.postman.com/" data-type="URL" data-id="https://www.postman.com/" target="_blank" rel="noreferrer noopener">Postman</a>.</p>
 
 <p class="mb-3">In this article we will go into the details of creating and maintaining your application's documentation.</p>
 
@@ -32,7 +32,7 @@
 
 <p class="mb-3">In order to follow the steps, you will need the following:</p>
 
-<ul><li>a working installation of DotKernel API 3</li><li>download and install Postman from their <a href="https://www.postman.com/downloads/" target="_blank" rel="noreferrer noopener">download page</a>.</li></ul>
+<ul><li>a working installation of Dotkernel API 3</li><li>download and install Postman from their <a href="https://www.postman.com/downloads/" target="_blank" rel="noreferrer noopener">download page</a>.</li></ul>
 
 <p class="mb-3"><strong>TIP:</strong> If you don't have a Postman account, we recommend you to create one. This way Postman is able to backup your workspace in the cloud and synchronize it across multiple devices.</p>
 
@@ -40,7 +40,7 @@
 
 <p class="mb-3">For better understanding on how Postman works, we need to run through the "building blocks" of Postman:</p>
 
-<ul><li><strong>Workspace</strong>: is the main container that holds all your collections, APIs, environments etc</li><li><strong>Collection</strong>: holds all requests and dependencies of a project (for example DotKernel API's collection containing all requests)</li><li><strong>Environment</strong>: holds a set of environment-specific variables (for example DotKernel API's environment file cotaining the application URL specific to the development environment)</li><li><strong>Request</strong>: the definition of an API endpoint, including request method, name, description, URL, body, parameters and an example</li></ul>
+<ul><li><strong>Workspace</strong>: is the main container that holds all your collections, APIs, environments etc</li><li><strong>Collection</strong>: holds all requests and dependencies of a project (for example Dotkernel API's collection containing all requests)</li><li><strong>Environment</strong>: holds a set of environment-specific variables (for example Dotkernel API's environment file cotaining the application URL specific to the development environment)</li><li><strong>Request</strong>: the definition of an API endpoint, including request method, name, description, URL, body, parameters and an example</li></ul>
 
 <p class="mb-3">There are more terms to cover, like <em>Mock servers</em>, <em>Monitors</em> etc but they are not relevant yet in our case.</p>
 
@@ -48,7 +48,7 @@
 
 <p class="mb-3">Open Postman (and log in if you have an account), then follow the below steps:</p>
 
-<ul><li>open the import modal by clicking <code>File</code> -&gt; <code>Import</code> (or <code>Ctrl + O</code>)</li><li>inside the modal, make sure you're on the <code>File</code> tab, then click <code>Upload files</code></li><li>navigate to <code>documentation</code> directory of your DotKernel API 3 application and select both of the following files:<ul><li><strong>DotKernel_API.postman_collection.json</strong></li><li><strong>DotKernel_API.postman_environment.json</strong></li></ul></li><li>after clicking <code>Open</code> the modal should show the following:</li></ul>
+<ul><li>open the import modal by clicking <code>File</code> -&gt; <code>Import</code> (or <code>Ctrl + O</code>)</li><li>inside the modal, make sure you're on the <code>File</code> tab, then click <code>Upload files</code></li><li>navigate to <code>documentation</code> directory of your Dotkernel API 3 application and select both of the following files:<ul><li><strong>DotKernel_API.postman_collection.json</strong></li><li><strong>DotKernel_API.postman_environment.json</strong></li></ul></li><li>after clicking <code>Open</code> the modal should show the following:</li></ul>
 
 <pre>Select files to import . 2/2 selected
 NAME                 FORMAT                         IMPORT AS
@@ -59,7 +59,7 @@ NAME                 FORMAT                         IMPORT AS
 
 <p class="mb-3">Under <strong>My Workspace</strong> you should see a tab called <strong>Collections</strong>. Clicking on it should display all your collections, one of them called <code>DotKernel_API</code>. This collection holds all of the provided requests and serves as the documentation of your application.</p>
 
-<p class="mb-3">DotKernel API 3 collection and environment files ar now imported and ready to use.</p>
+<p class="mb-3">Dotkernel API 3 collection and environment files ar now imported and ready to use.</p>
 
 <p class="mb-3">For more information on importing files into Postman, please consult their <a rel="noreferrer noopener" href="https://learning.postman.com/docs/getting-started/importing-and-exporting-data/" data-type="URL" data-id="https://learning.postman.com/docs/getting-started/importing-and-exporting-data/" target="_blank">docs</a>.</p>
 
@@ -93,7 +93,7 @@ VARIABLE               INITIAL VALUE                CURRENT_VALUE
 
 <h2>Features</h2>
 
-<p class="mb-3">The collection provided by DotKernel API 3 comes with some built-in security features. </p>
+<p class="mb-3">The collection provided by Dotkernel API 3 comes with some built-in security features. </p>
 
 <h3>Global security</h3>
 
@@ -135,11 +135,11 @@ VARIABLE               INITIAL VALUE                CURRENT_VALUE
     <details class="acc" open>
         <summary>What are Postman's main "building blocks"? <span class="chev">+</span></summary>
         <div class="acc-body">
-            <p class="mb-0">Workspace (the main container holding all collections, APIs and environments), Collection (holds all requests and dependencies of a project, such as DotKernel API's collection), Environment (holds environment-specific variables, like the application URL), and Request (the definition of an API endpoint, including method, name, description, URL, body, parameters and an example).</p>
+            <p class="mb-0">Workspace (the main container holding all collections, APIs and environments), Collection (holds all requests and dependencies of a project, such as Dotkernel API's collection), Environment (holds environment-specific variables, like the application URL), and Request (the definition of an API endpoint, including method, name, description, URL, body, parameters and an example).</p>
         </div>
     </details>
     <details class="acc">
-        <summary>How do you import DotKernel API's documentation files into Postman? <span class="chev">+</span></summary>
+        <summary>How do you import Dotkernel API's documentation files into Postman? <span class="chev">+</span></summary>
         <div class="acc-body">
             <p class="mb-0">Open the import modal via <code>File -&gt; Import</code> (or <code>Ctrl + O</code>), go to the <code>File</code> tab, click <code>Upload files</code>, then select both <strong>DotKernel_API.postman_collection.json</strong> and <strong>DotKernel_API.postman_environment.json</strong> from the application's <code>documentation</code> directory, and click <code>Import</code>.</p>
         </div>

@@ -41,7 +41,7 @@
                 "@type": "FAQPage",
                 "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
                 "mainEntity": [
-                    { "@type": "Question", "name": "Where do you configure a persistent database connection in a DotKernel project?", "acceptedAnswer": { "@type": "Answer", "text": "The option should be added in application.ini, as shown in the DotKernel approach used as an example in the article." } },
+                    { "@type": "Question", "name": "Where do you configure a persistent database connection in a Dotkernel project?", "acceptedAnswer": { "@type": "Answer", "text": "The option should be added in application.ini, as shown in the Dotkernel approach used as an example in the article." } },
                     { "@type": "Question", "name": "What Zend_Db configuration line should NOT be used for a persistent connection?", "acceptedAnswer": { "@type": "Answer", "text": "database.params.options.PDO::ATTR_PERSISTENT = TRUE should not be used - the article states that it will not work." } },
                     { "@type": "Question", "name": "What's the correct line to enable a persistent connection?", "acceptedAnswer": { "@type": "Answer", "text": "Use database.params.persistent = TRUE instead." } }
                 ]

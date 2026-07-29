@@ -41,7 +41,7 @@
                 "@type": "FAQPage",
                 "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
                 "mainEntity": [
-                    { "@type": "Question", "name": "Where do DotKernel's database naming conventions come from?", "acceptedAnswer": { "@type": "Answer", "text": "They are borrowed from FaZend's \"Rules of naming of database tables and columns,\" an open-source PHP framework based on Zend Framework." } },
+                    { "@type": "Question", "name": "Where do Dotkernel's database naming conventions come from?", "acceptedAnswer": { "@type": "Answer", "text": "They are borrowed from FaZend's \"Rules of naming of database tables and columns,\" an open-source PHP framework based on Zend Framework." } },
                     { "@type": "Question", "name": "Should table names be singular or plural?", "acceptedAnswer": { "@type": "Answer", "text": "Singular table names only, for example user, category, product, order, orderProduct." } },
                     { "@type": "Question", "name": "How should foreign key columns be named?", "acceptedAnswer": { "@type": "Answer", "text": "A foreign key column takes the name of the referenced table plus the name of the referenced column. For example, referencing table admin's Id column produces a column named adminId." } },
                     { "@type": "Question", "name": "What naming pattern is used for CONSTRAINT names?", "acceptedAnswer": { "@type": "Answer", "text": "The pattern is FK_referencedTableName_tableName, for example CONSTRAINT `FK_admin_adminLogin`." } },

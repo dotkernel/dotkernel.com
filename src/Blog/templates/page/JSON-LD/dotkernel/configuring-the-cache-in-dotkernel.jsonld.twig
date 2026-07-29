@@ -41,7 +41,7 @@
                 "@type": "FAQPage",
                 "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
                 "mainEntity": [
-                    { "@type": "Question", "name": "What is DotKernel's caching layer based on?", "acceptedAnswer": { "@type": "Answer", "text": "It's based on Zend Framework Cache, configured through settings in application.ini, with more configuration options available at the Zend Framework Cache Frontends and Backends documentation links given in the article." } },
+                    { "@type": "Question", "name": "What is Dotkernel's caching layer based on?", "acceptedAnswer": { "@type": "Answer", "text": "It's based on Zend Framework Cache, configured through settings in application.ini, with more configuration options available at the Zend Framework Cache Frontends and Backends documentation links given in the article." } },
                     { "@type": "Question", "name": "What does the cache.enable setting do?", "acceptedAnswer": { "@type": "Answer", "text": "It can be used to disable caching, which is mostly useful during the development stage." } },
                     { "@type": "Question", "name": "What values can cache.factory take?", "acceptedAnswer": { "@type": "Answer", "text": "The cache.factory value is the cache service to use, and the article lists two options: file or apc." } },
                     { "@type": "Question", "name": "Why bother setting the individual/backend cache settings like cache.file.cache_dir?", "acceptedAnswer": { "@type": "Answer", "text": "These settings are optional, but the article highly recommends setting them, otherwise other projects might end up using the same cache." } }

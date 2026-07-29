@@ -1,7 +1,7 @@
 {% extends '@layout/default.html.twig' %}
 {% block json_ld %} {{ include('@jsonld/dotkernel/how-to-use-alerts-in-dotkernel.jsonld.twig') }} {% endblock %}
 
-{% block title %}How to use Alerts in DotKernel{% endblock %}
+{% block title %}How to use Alerts in Dotkernel{% endblock %}
 
 {% block page_title %}
     {{ include('@partial/title-section.html.twig', {
@@ -22,13 +22,13 @@
                 <div class="entry">
 Alerts (or Dot_Alert's) are e-mails usually sent to the site developers, these messages are sent with <strong>mail()</strong> therefore you shouldn't use them to send regular mail. Alerts should only notify you as a developer: "<em><strong>Hey, something's wrong here, you might want to know this!</strong></em>"
 
-In this article you will find out how to use the Alerts system in DotKernel, we will also go through an existing example so this can be understood easier.
+In this article you will find out how to use the Alerts system in Dotkernel, we will also go through an existing example so this can be understood easier.
 
 The Dot_Alert class resembles with Dot_Email, the alerts, like a mail message, have at least the sender, a subject, a destination and a message and it can also be sent.
 
 <!--more-->
 
-In DotKernel we use the Alerts for notifying the developer that an email was not sent successfully.
+In Dotkernel we use the Alerts for notifying the developer that an email was not sent successfully.
 
 In this case we kept the message in the dots.xml file
 <pre>>
@@ -103,9 +103,9 @@ Everything is great, we can now send our alert:
         </div>
     </details>
     <details class="acc">
-        <summary>What's an example use of Alerts in DotKernel? <span class="chev">+</span></summary>
+        <summary>What's an example use of Alerts in Dotkernel? <span class="chev">+</span></summary>
         <div class="acc-body">
-            <p class="mb-0">DotKernel uses Alerts to notify the developer when an email was not sent successfully, with the message kept in the dots.xml file under the alertMessages section.</p>
+            <p class="mb-0">Dotkernel uses Alerts to notify the developer when an email was not sent successfully, with the message kept in the dots.xml file under the alertMessages section.</p>
         </div>
     </details>
     <details class="acc">

@@ -1,7 +1,7 @@
 {% extends '@layout/default.html.twig' %}
 {% block json_ld %} {{ include('@jsonld/dotkernel/geoip-city-removed-from-dotkernel.jsonld.twig') }} {% endblock %}
 
-{% block title %}GeoIP City Removed From DotKernel{% endblock %}
+{% block title %}GeoIP City Removed From Dotkernel{% endblock %}
 
 {% block page_title %}
     {{ include('@partial/title-section.html.twig', {
@@ -24,7 +24,7 @@ In the newest version we have removed the GeoIP City integration. The City datab
 
 <!--more-->
 
-This error occurs due to the extension incompatibility with the database(dat) file. If you have an older DotKernel version and version <strong>&gt;=1.1.0</strong> of GeoIP you might get this error.
+This error occurs due to the extension incompatibility with the database(dat) file. If you have an older Dotkernel version and version <strong>&gt;=1.1.0</strong> of GeoIP you might get this error.
 
 On some operating systems Apache will respond your request with HTTP Status Code 200 (OK) and a web page containing the text below.
 
@@ -36,7 +36,7 @@ The error might not be logged as the error is generated the GeoIP extension and 
 
 If you don't want to use GeoIP City and just want to get rid of the error go to
 <ul>
-    <li>DotKernel/admin/System.php (Admin/System model) and comment or remove the lines below</li>
+    <li>Dotkernel/admin/System.php (Admin/System model) and comment or remove the lines below</li>
 </ul>
 <pre>>if(geoip_db_avail(GEOIP_CITY_EDITION_REV0))
 {
@@ -59,7 +59,7 @@ If you don't want to use GeoIP City and just want to get rid of the error go to
         $country = $countryName != false  ? $countryName : 'NA';
     }
 }</pre>
-Theese changes were also made in the latest version of DotKernel. You should use this fix only if you don't intend to use GeoIP City.
+Theese changes were also made in the latest version of Dotkernel. You should use this fix only if you don't intend to use GeoIP City.
 
 We recommend special coding for using GeoIP City and in the GeoIP extension in general.
 
@@ -69,7 +69,7 @@ Note that GeoIP is an obsolete extension, Maxmind recommends using GeoIP2.
 
 <div class="faq-list">
     <details class="acc" open>
-        <summary>Why was GeoIP City removed from DotKernel? <span class="chev">+</span></summary>
+        <summary>Why was GeoIP City removed from Dotkernel? <span class="chev">+</span></summary>
         <div class="acc-body">
             <p class="mb-0">The City database on GeoIP extension version 1.1.0 and above was causing a segmentation fault, which resulted in crashing or outputting an error instead of executing the PHP code.</p>
         </div>
@@ -77,7 +77,7 @@ Note that GeoIP is an obsolete extension, Maxmind recommends using GeoIP2.
     <details class="acc">
         <summary>Who is affected by this error? <span class="chev">+</span></summary>
         <div class="acc-body">
-            <p class="mb-0">Users running an older DotKernel version together with GeoIP extension version 1.1.0 or newer, since the error comes from the extension's incompatibility with the database (dat) file.</p>
+            <p class="mb-0">Users running an older Dotkernel version together with GeoIP extension version 1.1.0 or newer, since the error comes from the extension's incompatibility with the database (dat) file.</p>
         </div>
     </details>
     <details class="acc">
@@ -89,7 +89,7 @@ Note that GeoIP is an obsolete extension, Maxmind recommends using GeoIP2.
     <details class="acc">
         <summary>How can you get rid of the error if you don't need GeoIP City? <span class="chev">+</span></summary>
         <div class="acc-body">
-            <p class="mb-0">Comment out or remove the relevant lines in DotKernel/admin/System.php (the Admin/System model) and in library/Dot/GeoIp.php (the Dot_GeoIp class). These changes were also made in the latest version of DotKernel, but this fix should only be used if you don't intend to use GeoIP City.</p>
+            <p class="mb-0">Comment out or remove the relevant lines in Dotkernel/admin/System.php (the Admin/System model) and in library/Dot/GeoIp.php (the Dot_GeoIp class). These changes were also made in the latest version of Dotkernel, but this fix should only be used if you don't intend to use GeoIP City.</p>
         </div>
     </details>
     <details class="acc">
