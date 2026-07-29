@@ -41,8 +41,8 @@
                 "@type": "FAQPage",
                 "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
                 "mainEntity": [
-                    { "@type": "Question", "name": "What coding standard does DotKernel follow?", "acceptedAnswer": { "@type": "Answer", "text": "DotKernel borrows its coding standard from the Zend Framework Coding Standard, with some exceptions described in this article." } },
-                    { "@type": "Question", "name": "Tabs or spaces for indentation?", "acceptedAnswer": { "@type": "Answer", "text": "DotKernel indents with tabs, not spaces." } },
+                    { "@type": "Question", "name": "What coding standard does Dotkernel follow?", "acceptedAnswer": { "@type": "Answer", "text": "Dotkernel borrows its coding standard from the Zend Framework Coding Standard, with some exceptions described in this article." } },
+                    { "@type": "Question", "name": "Tabs or spaces for indentation?", "acceptedAnswer": { "@type": "Answer", "text": "Dotkernel indents with tabs, not spaces." } },
                     { "@type": "Question", "name": "How should classes, interfaces, and filenames be named?", "acceptedAnswer": { "@type": "Answer", "text": "Classes start with the prefix Dot_ (e.g. Dot_Templates), interfaces end with the string \"Interface\" (e.g. Dot_Db_Interface), and all PHP files use the \".php\" extension, with no fancy extensions like \".inc\"." } },
                     { "@type": "Question", "name": "How should curly braces be placed for control statements?", "acceptedAnswer": { "@type": "Answer", "text": "Every opening curly brace starts on its own new line after the statement, and its matching closing brace also goes on a new line, aligned in the same column as the opening brace, for better indentation of the code." } }
                 ]

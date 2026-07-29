@@ -44,7 +44,7 @@
                     { "@type": "Question", "name": "What server stack was used to test Dotkernel on Nginx?", "acceptedAnswer": { "@type": "Answer", "text": "A clean CentOS 6.3 VPS running Nginx 1.4.1, PHP 5.4.16, and PHP-FPM, with the APC and GeoIP PHP modules installed." } },
                     { "@type": "Question", "name": "What is the Nginx equivalent of the main .htaccess file?", "acceptedAnswer": { "@type": "Answer", "text": "The directive try_files $uri $uri/ /index.php;, which sends all requests to the index.php file." } },
                     { "@type": "Question", "name": "How is the configs folder protected from web access in Nginx?", "acceptedAnswer": { "@type": "Answer", "text": "By adding a location block matching ^/configs/ that returns deny all;." } },
-                    { "@type": "Question", "name": "How was the DotKernel codebase deployed onto the server?", "acceptedAnswer": { "@type": "Answer", "text": "It was exported directly from SVN using svn export --force http://v1.dotkernel.net/svn/trunk/ /var/www/html." } }
+                    { "@type": "Question", "name": "How was the Dotkernel codebase deployed onto the server?", "acceptedAnswer": { "@type": "Answer", "text": "It was exported directly from SVN using svn export --force http://v1.dotkernel.net/svn/trunk/ /var/www/html." } }
                 ]
             }
         ]

@@ -41,11 +41,11 @@
                 "@type": "FAQPage",
                 "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
                 "mainEntity": [
-                    { "@type": "Question", "name": "Why did DotKernel jump from 1.3 straight to 1.5.0?", "acceptedAnswer": { "@type": "Answer", "text": "Because of the large amount of changes and the long time spent in development, the team chose to skip version 1.4 and go straight to 1.5.0." } },
-                    { "@type": "Question", "name": "Did DotKernel switch from Dojo to jQuery in 1.5.0?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Starting with 1.5.0, DotKernel switched from Dojo to jQuery for its own distribution, though Dojo can still be used in your own projects." } },
+                    { "@type": "Question", "name": "Why did Dotkernel jump from 1.3 straight to 1.5.0?", "acceptedAnswer": { "@type": "Answer", "text": "Because of the large amount of changes and the long time spent in development, the team chose to skip version 1.4 and go straight to 1.5.0." } },
+                    { "@type": "Question", "name": "Did Dotkernel switch from Dojo to jQuery in 1.5.0?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Starting with 1.5.0, Dotkernel switched from Dojo to jQuery for its own distribution, though Dojo can still be used in your own projects." } },
                     { "@type": "Question", "name": "What is Dot_Model and why was it introduced?", "acceptedAnswer": { "@type": "Answer", "text": "Dot_Model is a base class introduced to reduce code duplication between admin and frontend models. Both admin- and frontend-specific model classes (such as User) inherit from a shared Dot_Model_User class that holds the common code." } },
                     { "@type": "Question", "name": "How does the \"dashed controllers\" feature work?", "acceptedAnswer": { "@type": "Answer", "text": "The controller name parsing was changed so a URL like www.example.com/search-article correctly calls SearchArticleController.php, allowing multi-word controller names split with dashes without breaking the coding standard." } },
-                    { "@type": "Question", "name": "How much changed in the 1.5.0 release?", "acceptedAnswer": { "@type": "Answer", "text": "About 250 commits went into the SVN repository since the previous release, so the blog post only covers the highlights - the full DotKernel 1.5.0 download is available to try out." } }
+                    { "@type": "Question", "name": "How much changed in the 1.5.0 release?", "acceptedAnswer": { "@type": "Answer", "text": "About 250 commits went into the SVN repository since the previous release, so the blog post only covers the highlights - the full Dotkernel 1.5.0 download is available to try out." } }
                 ]
             }
         ]

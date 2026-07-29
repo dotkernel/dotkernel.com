@@ -41,11 +41,11 @@
                 "@type": "FAQPage",
                 "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
                 "mainEntity": [
-                    { "@type": "Question", "name": "What is a \"dots\" in DotKernel, a term introduced in this release?", "acceptedAnswer": { "@type": "Answer", "text": "A term for a submodule and all its component files. For example, \"user\" is a dots of the frontend module, and one dots can belong to multiple modules, such as \"user\" belonging to both frontend and admin." } },
+                    { "@type": "Question", "name": "What is a \"dots\" in Dotkernel, a term introduced in this release?", "acceptedAnswer": { "@type": "Answer", "text": "A term for a submodule and all its component files. For example, \"user\" is a dots of the frontend module, and one dots can belong to multiple modules, such as \"user\" belonging to both frontend and admin." } },
                     { "@type": "Question", "name": "Where are dots configuration values stored, compared to earlier versions?", "acceptedAnswer": { "@type": "Answer", "text": "They're stored in XML files inside the configs/dots folder. In previous versions, these values were hard-coded in the PHP files." } },
-                    { "@type": "Question", "name": "What dots does the admin module include by default?", "acceptedAnswer": { "@type": "Answer", "text": "admin, user, and system, to make it easier to start an application from DotKernel." } },
+                    { "@type": "Question", "name": "What dots does the admin module include by default?", "acceptedAnswer": { "@type": "Answer", "text": "admin, user, and system, to make it easier to start an application from Dotkernel." } },
                     { "@type": "Question", "name": "What library classes were added or updated in 1.2.0?", "acceptedAnswer": { "@type": "Answer", "text": "Dot_Geoip and Dot_Seo were newly implemented, while Dot_Curl and Dot_Session were updated, with each module now having its own session." } },
-                    { "@type": "Question", "name": "How are SQL queries written in DotKernel?", "acceptedAnswer": { "@type": "Answer", "text": "All SQL queries are written as prepared statements, a practice the article strongly encourages." } }
+                    { "@type": "Question", "name": "How are SQL queries written in Dotkernel?", "acceptedAnswer": { "@type": "Answer", "text": "All SQL queries are written as prepared statements, a practice the article strongly encourages." } }
                 ]
             }
         ]
