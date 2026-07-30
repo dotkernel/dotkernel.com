@@ -624,8 +624,6 @@ $bp-tablet: 900px;
   justify-content: flex-end;
   margin-bottom: 12px;
 
-  // this bar becomes .entry's new first child, so restore the
-  // zero top-margin that .entry h2:first-child would otherwise give up
   & + h2 {
     margin-top: 0;
   }
