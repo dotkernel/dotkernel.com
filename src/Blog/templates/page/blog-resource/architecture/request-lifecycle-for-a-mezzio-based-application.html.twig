@@ -540,10 +540,10 @@
 $('.hasTooltip').hover(
     function() {
         $('#tool-tip').show();
-        $('#tool-tip-title').text($(this).dataset.tooltiptitle);
-        $('#tool-tip-line1').text($(this).dataset.tooltipline1);
-        if ($(this).dataset.tooltipline2) {
-            $('#tool-tip-line2').html($(this).dataset.tooltipline2);
+        $('#tool-tip-title').text(this.dataset.tooltiptitle);
+        $('#tool-tip-line1').text(this.dataset.tooltipline1);
+        if (this.dataset.tooltipline2) {
+            $('#tool-tip-line2').html(this.dataset.tooltipline2);
         }
     },
     function() {
