@@ -15,8 +15,10 @@ use Light\App\Factory\EntityListenerResolverFactory;
 use Light\App\Factory\FeedGeneratorFactory;
 use Light\App\Factory\GetFeedViewHandlerFactory;
 use Light\App\Factory\GetIndexViewHandlerFactory;
+use Light\App\Factory\GetMarkdownArticleHandlerFactory;
 use Light\App\Handler\GetFeedViewHandler;
 use Light\App\Handler\GetIndexViewHandler;
+use Light\App\Handler\GetMarkdownArticleHandler;
 use Light\App\Resolver\EntityListenerResolver;
 use Light\App\Service\FeedGenerator;
 use Mezzio\Application;
@@ -114,6 +116,7 @@ class ConfigProvider
                 EntityListenerResolver::class         => EntityListenerResolverFactory::class,
                 GetIndexViewHandler::class            => GetIndexViewHandlerFactory::class,
                 GetFeedViewHandler::class             => GetFeedViewHandlerFactory::class,
+                GetMarkdownArticleHandler::class      => GetMarkdownArticleHandlerFactory::class,
                 FeedGenerator::class                  => FeedGeneratorFactory::class,
             ],
             'aliases'    => [
