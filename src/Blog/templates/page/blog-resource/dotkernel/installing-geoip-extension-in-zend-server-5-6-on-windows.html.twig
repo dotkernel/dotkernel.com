@@ -21,6 +21,7 @@
             <article class="article">
                 <div class="entry">
                     {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
 To test if you have php_geoip extension on your Zend Server, create an php file and copy the following code. This will output true if extension is available or false if not.
 <pre>><?php
 var_dump(function_exists('geoip_database_info'));</pre>

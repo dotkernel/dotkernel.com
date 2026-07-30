@@ -21,6 +21,7 @@
             <article class="article">
                 <div class="entry">
                     {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
 Beginning with version 5.5 of MySQL , <strong>utf8mb4 </strong> character set was introduced, in order to better support <strong>Unicode</strong>.
 Further reading: <a href="http://mzsanford.com/blog/mysql-and-unicode/" target="_blank" rel="noopener noreferrer">MySQL and Unicode</a> , also directly related to <a href="http://www.phptherightway.com/#php_and_utf8" target="_blank" rel="noopener noreferrer">PHP</a>
 

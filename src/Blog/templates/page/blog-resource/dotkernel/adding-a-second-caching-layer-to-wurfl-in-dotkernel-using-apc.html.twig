@@ -21,6 +21,7 @@
             <article class="article">
                 <div class="entry">
                     {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
 On one of our recent projects that used WURFL, response time was an important factor. Profiling revealed that the greatest chunk of response time (up to a few hundred milliseconds) was taken up by WURFL. We realized that its default filesystem cache was too slow for our needs, especially with a relatively high traffic application.
 
 <!--more-->

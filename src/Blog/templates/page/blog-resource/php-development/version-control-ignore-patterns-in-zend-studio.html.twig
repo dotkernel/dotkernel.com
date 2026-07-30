@@ -21,6 +21,7 @@
             <article class="article">
                 <div class="entry">
                     {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
 In order to globally manage the <a href="http://www.dotkernel.com/best-practice/svn-keywords-setup-in-php-ide-zend-studio/" target="_blank" rel="noopener noreferrer">"Ignored Resources"</a>  patterns in Zend Studio, for all projects , instead of manually add to each project, you can do the following:
 
 1. Go to <strong>Window</strong>-&gt; <strong>Preferences</strong>

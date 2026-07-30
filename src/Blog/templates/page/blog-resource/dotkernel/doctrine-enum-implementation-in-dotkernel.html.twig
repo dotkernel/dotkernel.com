@@ -21,6 +21,7 @@
             <article class="article">
                 <div class="entry">
                     {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
 <p class="mb-3">The update of <code>doctrine/orm</code> to version 3.2.0 saw the introduction of <strong>EnumType</strong> columns. The enum type was introduced in <strong>PHP 8.1</strong>. This new data type is now implemented in Dotkernel, on both the PHP side and the database side.</p>
 
 <p class="mb-3">Below we will discuss some technical aspects behind this update. You can review the full update in <a href="https://github.com/dotkernel/api/pull/339/files" target="_blank" rel="noreferrer noopener">this Dotkernel API Pull Request</a>.</p>

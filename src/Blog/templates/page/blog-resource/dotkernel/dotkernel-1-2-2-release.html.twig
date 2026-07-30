@@ -21,6 +21,7 @@
             <article class="article">
                 <div class="entry">
                     {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
 Yesterday, we released <strong>Dotkernel 1.2.2</strong>. It contains some bug fixes:
 <ul>
     <li><span style="text-decoration: line-through;"><a href="http://www.dotkernel.net/view.php?id=31">31</a></span> – captcha errors try catch</li>

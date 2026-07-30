@@ -21,6 +21,7 @@
             <article class="article">
                 <div class="entry">
                     {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
 The unofficial <strong>PEAR channel for Zend Framework 1</strong> was hosted on Google Code at this location: <a href="http://code.google.com/p/zend/" target="_blank" rel="noopener noreferrer">ZF Pear</a>, but since the closing of Google Code we were forced to move it.
 
 Zend Framework 1 is still used by a lot of&nbsp; projects in Production, it's still a viable library collection&nbsp; and it's also&nbsp; running on&nbsp; PHP7 ; even if is only in maintenance/security-patch mode, so it's not an option to cancel it completely.

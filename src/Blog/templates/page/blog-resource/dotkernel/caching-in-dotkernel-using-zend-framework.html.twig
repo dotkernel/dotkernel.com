@@ -21,6 +21,7 @@
             <article class="article">
                 <div class="entry">
                     {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
 It's very expensive to load configurations and settings from XML files, on every requests.
 
 First because of latency of accessing files from hard drive, second because of the XML

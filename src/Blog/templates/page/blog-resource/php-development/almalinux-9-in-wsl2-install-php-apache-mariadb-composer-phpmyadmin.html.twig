@@ -21,6 +21,7 @@
             <article class="article">
                 <div class="entry">
                     {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
 <p class="mb-3">In this article we will demonstrate how we install AlmaLinux 9 using Windows Subsystem for Linux  (WSL2).</p>
 
 <p class="mb-3">First, you need to check if your machine is ready for using WSL2. Open Windows Terminal and execute the following command:</p>

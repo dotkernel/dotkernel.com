@@ -21,6 +21,7 @@
             <article class="article">
                 <div class="entry">
                     {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
 In some cases you may encounter missing files: images, css or js files.
 All those missing files are processed by the current bootstrap: index.php
 

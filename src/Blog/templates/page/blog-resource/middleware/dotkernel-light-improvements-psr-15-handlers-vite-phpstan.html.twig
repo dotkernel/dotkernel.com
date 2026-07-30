@@ -21,6 +21,7 @@
             <article class="article">
                 <div class="entry">
                     {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
 <p class="mb-3"><a href="https://github.com/dotkernel/light" target="_blank" rel="noreferrer noopener">Dotkernel Light</a> is a PSR-15 compliant application that uses the Mezzio microframework and Laminas components. It's aimed at creating a simple website, like a presentation site, but can be expanded as needed.</p>
 
 <p class="mb-3">Dotkernel Light has come a long way since our <a href="https://www.dotkernel.com/dotkernel/dotkernel-light-the-best-choice-for-your-presentation-site/">last update</a>. It's just as useful for a presentation site, but our perfectionist devs thought we could do better. Let's see what we have improved to make your use of Light that much more convenient.</p>

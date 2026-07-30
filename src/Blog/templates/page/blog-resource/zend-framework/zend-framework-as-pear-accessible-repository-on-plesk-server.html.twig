@@ -21,6 +21,7 @@
             <article class="article">
                 <div class="entry">
                     {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
 Why we want to install ZF as PEAR ? Because is too boring and time consuming to move all ZF files up and down for each script you want to install , there are a lot of files.
 
 Also that way we can forget about the need to update ZF at latest versions, and keep tracks of which version and on which server we have ZF.  Of course, backward compatibility  can be an issue in future ZF releases ( like 2.0 branch for PHP &gt; 5.3)

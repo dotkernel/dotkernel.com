@@ -21,6 +21,7 @@
             <article class="article">
                 <div class="entry">
                     {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
 Continuing the Zend_Db article <a href="http://www.dotkernel.com/dotkernel/sql-select-zend-db/" target="_blank" rel="noopener noreferrer">series</a>, let's discuss the LIKE condition.
 
 The <strong>LIKE </strong>condition allows you to use wildcards in the <em>WHERE </em>clause of an SQL statement. This allows pattern matching. It can be used in any valid SQL statement (<em>SELECT</em>, <em>INSERT</em>, <em>UPDATE </em>or <em>DELETE</em>).

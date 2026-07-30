@@ -21,6 +21,7 @@
             <article class="article">
                 <div class="entry">
                     {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
 SQL injection is a technique that exploits a security vulnerability occurring in the database layer of an application. Usually, <em>user input is not filtered by the script and is passed into a SQL statement.</em>
 
 <strong>PDO – PHP Data Objects </strong>– is a database access layer providing a standardized method of access to multiple databases. 

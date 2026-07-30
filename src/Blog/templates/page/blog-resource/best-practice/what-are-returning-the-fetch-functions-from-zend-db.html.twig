@@ -21,6 +21,7 @@
             <article class="article">
                 <div class="entry">
                     {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
 Continuing the Zend_DB article <a href="http://www.dotkernel.com/dotkernel/sql-select-zend-db/" target="_blank" rel="noopener noreferrer">series</a>, we are stopping now at <i>FETCH</i> methods that are in <a href="http://framework.zend.com/apidoc/core/Zend_Db/Adapter/Zend_Db_Adapter_Abstract.html#sec-method-summary" target="_blank" rel="noopener noreferrer">Zend_Db_Adapter_Abstract</a>:
 <pre>
 array  fetchAll  (string|Zend_Db_Select $sql, , )

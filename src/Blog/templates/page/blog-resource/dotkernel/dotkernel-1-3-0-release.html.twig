@@ -21,6 +21,7 @@
             <article class="article">
                 <div class="entry">
                     {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
 
                     <a href="../download/?did=23">Dotkernel 1.3.0</a> is released at last. It contains important changes and new features.
 

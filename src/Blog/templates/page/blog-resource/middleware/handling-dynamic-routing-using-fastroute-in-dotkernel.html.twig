@@ -21,6 +21,7 @@
             <article class="article">
                 <div class="entry">
                     {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
 <p class="mb-3">The goal of this update is to replace the static way of creating routes with a more dynamic implementation. The result is a cleaner approach that is easier to set up and review at a glance.</p>
 
 <p class="mb-3"><code>RoutesDelegator.php</code> is used to configure the routes in Dotkernel applications. <code>Routing </code>allows web applications to respond to user requests by executing the correct code based on URL paths. The dynamic aspect discussed in this article moves the relevant items for each route into the <code>local.php</code> file. The RoutesDelegator then reads the route configuration and generates the routes.</p>

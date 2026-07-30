@@ -21,6 +21,7 @@
             <article class="article">
                 <div class="entry">
                     {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
 Following the preview article about <a title="Protection against SQL Injection using PDO and Zend Framework" href="http://www.dotkernel.com/php-development/protection-against-sql-injection-using-pdo-and-zend-framework/" target="_self" rel="noopener noreferrer">SQL Injection</a>, here is more - a strong argument why you should use Zend Framework for handling database access. <em>Zend_Db</em> is the primary class used for access the database, but there is more: <em>Zend_Db_Statement</em>, <em>Zend_Db_Select</em> and <em>Zend_Db_Tables</em>.
 What you should know about their methods is:
 <!--more-->

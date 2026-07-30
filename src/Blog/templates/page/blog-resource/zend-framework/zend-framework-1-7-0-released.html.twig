@@ -21,6 +21,7 @@
             <article class="article">
                 <div class="entry">
                     {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
 At first glance , the biggest news is AMF support:
 
 <a title="Zend Framework AMF" href="http://framework.zend.com/manual/1.12/en/zend.amf.server.html" target="_blank" rel="noopener noreferrer">Adobe's Action Message Format protocol to your PHP 5 application</a>

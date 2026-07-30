@@ -21,6 +21,7 @@
             <article class="article">
                 <div class="entry">
                     {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
 <p class="mb-3">The <code>dotkernel/dot-maker</code> library, also named DotMaker, is designed to <strong>programmatically generate project files and directories</strong> that match the Dotkernel file structure inspired by Mezzio.</p>
 
 <p class="mb-3">Handling the file creation and configuration task manually invites mistakes that nobody has time for. Enter DotMaker which provides a big <strong>productivity boost</strong> compared to doing everything manually by promoting <strong>consistenty and standardization</strong> for these common tasks.</p>

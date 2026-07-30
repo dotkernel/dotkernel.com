@@ -21,6 +21,7 @@
             <article class="article">
                 <div class="entry">
                     {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
 Starting with 1.5, Dotkernel has a Console bootstrap to easily run PHP scripts from the command line. The most common use for this is to be able to run cron jobs without using wget and going through Apache.
 
 <!--more-->

@@ -21,6 +21,7 @@
             <article class="article">
                 <div class="entry">
                     {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
 <p class="mb-3">Dotkernel API has come a long way since we published a list of its <a href="https://www.dotkernel.com/dotkernel3/dotkernel-api-architecture-components/" rel="noreferrer noopener" target="_blank">architecture and components</a> a while ago. We implemented new features, while some components were replaced, and others were enhanced. Our ultimate goal is to stay relevant in the PHP ecosystem by implementing best practices recommended by the PHP community.</p>
 
 <h2><a href="#new-features"></a>New Features</h2>

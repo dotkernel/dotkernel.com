@@ -21,6 +21,7 @@
             <article class="article">
                 <div class="entry">
                     {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
 <p class="mb-3"><strong>Dotkernel</strong> has implemented a <strong>Headless</strong> solution made up of these applications:</p>
 
 <ul><li><a href="https://github.com/dotkernel/api" target="_blank" rel="noreferrer noopener">Dotkernel API</a> - a REST API, the root of the platform.</li>

@@ -21,6 +21,7 @@
             <article class="article">
                 <div class="entry">
                     {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
 In some situations, it may be neccesar to force MySQL server collation and character set to UTF8.
 As you can't control all scripts that are connecting to your database( for instance: mysql command line, or mysqldump)
 

@@ -21,6 +21,7 @@
             <article class="article">
                 <div class="entry">
                     {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
 In <strong>/var/www/vhosts/exampledomain.com/conf/vhost.conf</strong> file add this code:
 <pre>>
 < Location /admin>

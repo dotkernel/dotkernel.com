@@ -21,6 +21,7 @@
             <article class="article">
                 <div class="entry">
                     {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
                     <p>This article is a guide on how to add a CORS implementation on an existing Dotkernel3 project.</p>
 
                     <h2>The issue</h2>

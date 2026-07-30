@@ -21,6 +21,7 @@
             <article class="article">
                 <div class="entry">
                     {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
 <a href="http://wurfl.sourceforge.net/" target="_blank" rel="noopener noreferrer">WURFL</a> is integrated into Dotkernel, using the <a href="http://framework.zend.com/manual/1.11/en/zend.http.user-agent.html" target="_blank" rel="noopener noreferrer">Zend_Http_UserAgent</a> class from the latest release <a href="http://framework.zend.com/download/latest" target="_blank" rel="noopener noreferrer">ZF 1.11.0rc1</a> ( Beta release at the date of this post).
 
 The integration of <a href="http://wurfl.sourceforge.net/" target="_blank" rel="noopener noreferrer">WURFL</a> into Dotkernel is described below.

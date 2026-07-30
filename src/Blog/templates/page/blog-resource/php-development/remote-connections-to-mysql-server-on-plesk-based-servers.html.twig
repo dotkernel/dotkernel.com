@@ -21,6 +21,7 @@
             <article class="article">
                 <div class="entry">
                     {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
 By default, MySql servers on Linux machines where Plesk is installed, have the <strong>old_passwords</strong>=1 or ON flag.
 
 That mean even if you have MySQL 5.5+ version, it still use old style of password storage, pre-mysql 4.1+
