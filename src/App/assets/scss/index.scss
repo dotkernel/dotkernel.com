@@ -1,11 +1,5 @@
-// Bootstrap
-$navbar-height: 60px;
-$grid-float-breakpoint: 767px;
-$icon-font-path: "../../../../node_modules/bootstrap-sass/assets/fonts/bootstrap/";
-@import "../../../../node_modules/bootstrap/scss/bootstrap";
-@import "../../../../node_modules/toastr/toastr";
-@import "../../../../node_modules/bootstrap-slider/src/sass/bootstrap-slider";
+@use "~bootstrap/scss/bootstrap";
 // Base
-@import "components/custom";
-@import "components/left_menu";
-@import "components/blog";
+@use "components/custom";
+@use "components/left_menu";
+@use "components/blog";
