@@ -57,7 +57,7 @@ return [
             'dotkernel-packages-oss-lifecycle' => 'dotkernel-packages-oss-lifecycle',
         ],
     ],
-    'twig'         => [
+    'twig'        => [
         'globals' => [
             'app' => $app,
         ],
