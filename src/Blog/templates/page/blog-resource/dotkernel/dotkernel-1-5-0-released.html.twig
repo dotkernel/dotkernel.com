@@ -1,27 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel/dotkernel-1-5-0-released.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Dotkernel 1.5.0 Released{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
+{% block body %}
 After a longer wait than usual, Dotkernel 1.5.0 was just released. Due to the large amount of changes and the long time spent in development, we chose to skip 1.4 and go straight to 1.5.0.
 
 Here are a few of the many changes to Dotkernel in the latest release:
@@ -80,11 +59,4 @@ There have been about 250 commits in our SVN repository since the latest release
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

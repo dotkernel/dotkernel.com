@@ -1,27 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel/geoip-ip-address-location-in-dotkernel.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}GeoIP: Ip Address Location In Dotkernel{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
+{% block body %}
 <em><strong>GeoIP</strong> </em>is the proprietary technology that drives <a href="http://www.maxmind.com/app/ip-location" target="_blank" rel="noopener noreferrer">MaxMind's</a> IP geolocation data and services. It is a non-invasive way to determine geographical and other information about Internet visitors in real-time. When a person visits your website, <strong><em>GeoIP </em></strong>can determine which country, region, city, postal code, area code the visitor is coming from.
 
 Dotkernel uses <em><strong>GeoIP </strong></em>to get user statistics by country. The main file for <em><strong>GeoIP </strong></em>is <a href="http://websvn.dotkernel.net/filedetails.php?repname=Dotkernel&amp;path=%2Ftrunk%2Flibrary%2FDot%2FGeoip.php" target="_blank" rel="noopener noreferrer">library/Dot/Geoip.php</a>
@@ -145,11 +124,4 @@ public function getCountryByIp($ip)
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

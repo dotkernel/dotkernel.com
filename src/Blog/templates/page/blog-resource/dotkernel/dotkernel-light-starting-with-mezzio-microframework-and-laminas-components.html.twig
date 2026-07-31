@@ -1,27 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel/dotkernel-light-starting-with-mezzio-microframework-and-laminas-components.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Dotkernel Light - Starting with Mezzio microframework and Laminas components{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
+{% block body %}
 <p class="mb-3"><strong>Dotkernel Light</strong> is a version of Dotkernel Frontend that includes only the bare-bones essentials. Though simpler, it's perfect for:</p>
 
 <ul><li>A presentation site,</li>
@@ -167,11 +146,4 @@
 </ul>
 
 <p class="mb-3"></p>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

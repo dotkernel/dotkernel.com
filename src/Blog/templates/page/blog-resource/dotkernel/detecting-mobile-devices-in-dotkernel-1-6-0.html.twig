@@ -1,27 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel/detecting-mobile-devices-in-dotkernel-1-6-0.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Detecting Mobile Devices in Dotkernel 1.6.0{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
+{% block body %}
 The new Dotkernel version 1.6.0 is comming with some changes how we are detecting mobile devices, this changes are because of the new Wurfl Cloud integration.
 
 This version of Dotkernel is not comming anymore with a working built in method for mobile detection, so first we have to configure it.
@@ -39,7 +18,7 @@ We choosed device_os and mobile_browser capabilities because with these two capa
 Choosing other capabilities from scientiamobile will result in wrong detection of these extra capabilities, but you can get only those capabilities using another method from Dot_UserAgent_WurflCloud class.
 
 Wurfl Cloud setting in application.ini
-<pre>>resources.useragent.wurflcloud.active = TRUE
+<pre>resources.useragent.wurflcloud.active = TRUE
 resources.useragent.wurflcloud.redirect = TRUE
 resources.useragent.wurflcloud.cache = TRUE
 resources.useragent.wurflcloud.cache_lifetime = 3600
@@ -59,17 +38,17 @@ Because of these changes we removed the old Dot_UserAgent_Wurfl class and added 
 <h2>Example of Dot_UserAgent usage in Dotkernel:</h2>
 
 Get Wurfl configuration
-<pre>>$wurflConf = $registry->configuration->resources->useragent->wurflcloud;</pre>
+<pre>$wurflConf = $registry->configuration->resources->useragent->wurflcloud;</pre>
 Note: You can have more Wurfl configurations if you have more libraries like Wurfl Package (GPL)
 
 If Wurfl is active then get device info
-<pre>>if($wurflConf->active)
+<pre>if($wurflConf->active)
 {
     $deviceInfo = Dot_UserAgent :: getDeviceInfo($_SERVER);
     ...
 }</pre>
 If detected device is an mobile device we will save device info in database and redirect it to the mobile controller
-<pre>>if( (0 < count((array)$deviceInfo)) && $deviceInfo->isMobile)
+<pre>if( (0 < count((array)$deviceInfo)) && $deviceInfo->isMobile)
 {
 
     if(!$registry->session->visitId)
@@ -129,11 +108,4 @@ If detected device is an mobile device we will save device info in database and 
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

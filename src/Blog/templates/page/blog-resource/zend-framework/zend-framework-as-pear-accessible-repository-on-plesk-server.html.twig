@@ -1,27 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/zend-framework/zend-framework-as-pear-accessible-repository-on-plesk-server.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Zend Framework as PEAR accessible repository on Plesk server{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Zend Framework',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
+{% block body %}
 Why we want to install ZF as PEAR ? Because is too boring and time consuming to move all ZF files up and down for each script you want to install , there are a lot of files.
 
 Also that way we can forget about the need to update ZF at latest versions, and keep tracks of which version and on which server we have ZF.  Of course, backward compatibility  can be an issue in future ZF releases ( like 2.0 branch for PHP &gt; 5.3)
@@ -31,18 +10,11 @@ Also that way we can forget about the need to update ZF at latest versions, and 
     <li> Follow the instructions for <a href="http://code.google.com/p/zend/" target="_blank" rel="noopener noreferrer">ZF PEAR </a>. Then simply use: <em>pear install zend/zend</em></li>
     <li>Create a vhosts.conf file in /var/www/vhosts/dotkernel.com/conf  or where is your vhost configuration folder located.</li>
     <li>In that file, remove the open_basedir :</li>
-<pre>>php_admin_value open_basedir "/var/www/vhosts/dotkernel.com/httpdocs:/tmp:/usr/share/pear"</pre>
+<pre>php_admin_value open_basedir "/var/www/vhosts/dotkernel.com/httpdocs:/tmp:/usr/share/pear"</pre>
     <li>rebuild all vhosts:  /usr/local/psa/admin/sbin/websrvmng -a</li>
     <li>Restart httpd</li>
     <li>Call directly the preloader:
-<pre>> require_once 'Zend/Loader/Autoloader.php';</pre>
+<pre> require_once 'Zend/Loader/Autoloader.php';</pre>
 </li>
 </ol>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

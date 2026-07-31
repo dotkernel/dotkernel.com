@@ -1,0 +1,34 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block json_ld %} {{ include('@jsonld/' ~ article.category.slug ~ '/' ~ article.slug ~ '.jsonld.twig') }} {% endblock %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block page_title %}
+    {{ include('@partial/title-section.html.twig', {
+        back_href: url('page::blog'),
+        back_label: 'Back to Blog',
+        badge: article.category.name,
+        article: article,
+    }) }}
+{% endblock %}
+
+{% block content %}
+    <div class="wrap post-body-wrap">
+        <div class="post-layout">
+
+            {{ include('@partial/left-menu.html.twig') }}
+
+            <article class="article">
+                <div class="entry">
+                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
+                    {% block body %}{% endblock %}
+                </div>
+
+                {{ include('@partial/post-nav.html.twig') }}
+            </article>
+
+        </div>
+    </div>
+{% endblock %}

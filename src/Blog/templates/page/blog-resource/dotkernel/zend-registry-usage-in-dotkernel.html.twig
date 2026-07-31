@@ -1,27 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel/zend-registry-usage-in-dotkernel.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Zend Registry usage in Dotkernel{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
+{% block body %}
 In Dotkernel, Zend_Registry will contain the following variables:
 <ul>
     <li><strong>startTime</strong> - the result of <a title="microtime" href="http://php.net/manual/en/function.microtime.php" target="_blank" rel="noopener noreferrer">microtime()</a> at the beginning of the request</li>
@@ -37,13 +16,13 @@ In Dotkernel, Zend_Registry will contain the following variables:
     <li><strong>session</strong> - the session object</li>
 </ul>
 To use the variables in the registry, you must first get an instance of the registry object:
-<pre>>$registry = Zend_Registry::getInstance();
+<pre>$registry = Zend_Registry::getInstance();
 //...
 echo $registry-&gt;startTime;
 //...
 echo $registry-&gt;requestAction;</pre>
 Or if you only need one variable from the registry, you can get it directly using:
-<pre>>$action = Zend_Registry::get('requestAction');</pre>
+<pre>$action = Zend_Registry::get('requestAction');</pre>
 You can find more information about Zend_Registry, in the <a href="http://framework.zend.com/manual/en/zend.registry.using.html">Zend Framework Documentation</a>.
 
 <h2 id="user-content-faq">Frequently Asked Questions</h2>
@@ -74,11 +53,4 @@ You can find more information about Zend_Registry, in the <a href="http://framew
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

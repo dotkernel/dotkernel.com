@@ -1,27 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel/zend-console-implementation-in-dotkernel.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Zend_Console implementation in Dotkernel{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
+{% block body %}
 Starting with 1.5, Dotkernel has a Console bootstrap to easily run PHP scripts from the command line. The most common use for this is to be able to run cron jobs without using wget and going through Apache.
 
 <!--more-->
@@ -37,8 +16,8 @@ Any other arguments set when calling the script will be available in the control
 
 The controller bundled with Dotkernel has two example actions, "count-users" which demonstrates how to interact with models, and "send-newsletter" which reads the newsletter from the command line.
 <h2>Examples</h2>
-<pre>>/var/www/vhosts/example.com/httpdocs/Cron/index.php -e staging -a count-users</pre>
-<pre>>/var/www/vhosts/example.com/httpdocs/Cron/index.php -e staging -a send-newsletter "test newsletter"</pre>
+<pre>/var/www/vhosts/example.com/httpdocs/Cron/index.php -e staging -a count-users</pre>
+<pre>/var/www/vhosts/example.com/httpdocs/Cron/index.php -e staging -a send-newsletter "test newsletter"</pre>
 
 <h2 id="user-content-faq">Frequently Asked Questions</h2>
 
@@ -74,11 +53,4 @@ The controller bundled with Dotkernel has two example actions, "count-users" whi
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

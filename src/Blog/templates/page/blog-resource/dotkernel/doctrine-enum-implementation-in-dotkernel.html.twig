@@ -1,27 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel/doctrine-enum-implementation-in-dotkernel.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Doctrine enum implementation in Dotkernel{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
+{% block body %}
 <p class="mb-3">The update of <code>doctrine/orm</code> to version 3.2.0 saw the introduction of <strong>EnumType</strong> columns. The enum type was introduced in <strong>PHP 8.1</strong>. This new data type is now implemented in Dotkernel, on both the PHP side and the database side.</p>
 
 <p class="mb-3">Below we will discuss some technical aspects behind this update. You can review the full update in <a href="https://github.com/dotkernel/api/pull/339/files" target="_blank" rel="noreferrer noopener">this Dotkernel API Pull Request</a>.</p>
@@ -285,11 +264,4 @@ new setup: status ENUM(\'active\', \'pending\') DEFAULT \'pending\' NOT NULL</pr
 
 <li><a href="https://www.php.net/manual/en/language.enumerations.overview.php" target="_blank" rel="noreferrer noopener">PHP Enumerations</a></li>
 </ul>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

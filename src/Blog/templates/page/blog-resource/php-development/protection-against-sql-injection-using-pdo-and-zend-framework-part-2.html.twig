@@ -1,27 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/php-development/protection-against-sql-injection-using-pdo-and-zend-framework-part-2.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Protection against SQL Injection using PDO and Zend Framework - part 2{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'PHP Development',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
+{% block body %}
 Following the preview article about <a title="Protection against SQL Injection using PDO and Zend Framework" href="http://www.dotkernel.com/php-development/protection-against-sql-injection-using-pdo-and-zend-framework/" target="_self" rel="noopener noreferrer">SQL Injection</a>, here is more - a strong argument why you should use Zend Framework for handling database access. <em>Zend_Db</em> is the primary class used for access the database, but there is more: <em>Zend_Db_Statement</em>, <em>Zend_Db_Select</em> and <em>Zend_Db_Tables</em>.
 What you should know about their methods is:
 <!--more-->
@@ -63,7 +42,7 @@ What you should know about their methods is:
 For more details see <a title="Secure Programming with the Zend-Framework" href="http://www.suspekt.org/downloads/DPC_Secure_Programming_With_The_Zend_Framework.pdf" target="_blank" rel="noopener noreferrer">Stefan Esser slides</a>.
 
 PS. A short <a href="http://www.dustinweber.com/main-page/type-casting-in-php-whats-the-point/">tip</a>, you can use cast type to avoid SQL Injection in WHERE clause where is possible.
-<pre>>$sql= 'SELECT * FROM table WHERE id = ' . (int)$_POST['id'];
+<pre>$sql= 'SELECT * FROM table WHERE id = ' . (int)$_POST['id'];
 </pre>
 
 <h2 id="user-content-faq">Frequently Asked Questions</h2>
@@ -106,11 +85,4 @@ PS. A short <a href="http://www.dustinweber.com/main-page/type-casting-in-php-wh
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

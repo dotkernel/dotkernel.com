@@ -1,29 +1,8 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel/installing-geoip-extension-in-zend-server-5-6-on-windows.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Installing GeoIP extension in Zend Server 5.6 on Windows{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
+{% block body %}
 To test if you have php_geoip extension on your Zend Server, create an php file and copy the following code. This will output true if extension is available or false if not.
-<pre>><?php
+<pre><?php
 var_dump(function_exists('geoip_database_info'));</pre>
 If your output is false than you have to download an php_geoip.dll file correctly compiled for your zend server version.
 <!--more-->
@@ -109,11 +88,4 @@ And now you can use geoip functions on your Zend Server 5.6
         </div>
     </details>
 </div>
-</div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

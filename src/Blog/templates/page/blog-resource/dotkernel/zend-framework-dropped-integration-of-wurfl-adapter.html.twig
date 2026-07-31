@@ -1,27 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel/zend-framework-dropped-integration-of-wurfl-adapter.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Zend Framework dropped integration of WURFL adapter{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
+{% block body %}
 According to Matthew Weier O'Phinney, Zend Framework Project Leader, in the next release of ZF, 1.12.0 branch, WURFL adapter will be dropped
 <blockquote class="blockquote border-start border-4 ps-3 text-muted my-3">due to a change in licensing by the WURFL project --
 the free version is now AGPL -- we're dropping the WURFL adapter from
@@ -54,11 +33,4 @@ Dotkernel framework is using its own WURFL adapter, so this will not affect proj
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

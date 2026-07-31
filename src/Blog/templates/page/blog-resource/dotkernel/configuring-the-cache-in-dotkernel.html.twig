@@ -1,27 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel/configuring-the-cache-in-dotkernel.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Configuring the Cache in Dotkernel{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
+{% block body %}
 This article contains the Dotkernel cache layer configuration guide.
 
 The Dotkernel Caching Layer is based on Zend Framework Cache, more configuration options can be found at the following links:
@@ -32,7 +11,7 @@ The Dotkernel Caching Layer is based on Zend Framework Cache, more configuration
 <!--more-->
 <h2>Main cache settings (Cache Frontend)</h2>
 The main cache settings within the <strong>application.ini </strong>file should look like this:
-<pre>>cache.enable = true
+<pre>cache.enable = true
 cache.factory = "apc"
 cache.lifetime = "86400"
 cache.namespace = "dotkernel"</pre>
@@ -45,7 +24,7 @@ The <em>cache.namespace </em>will be the cache variables prefix and the <em>cach
 &nbsp;
 <h2>Individual cache settings (Cache Backend)</h2>
 The individual cache settings are optional but we highly recommend that you have theese values set, otherwise other projects might use the same cache
-<pre>>; file caching settings
+<pre>; file caching settings
  cache.file.cache_dir = APPLICATION_PATH "/cache"
  cache.file.cache_file_perm = 0600</pre>
 &nbsp;
@@ -53,7 +32,7 @@ The individual cache settings are optional but we highly recommend that you have
 For more settings and caching alternatives see the Zend Framework Cache Links at the article beginning.
 
 The setting pattern and sample are below:
-<pre>>cache.BACKEND_NAME.SETTING = "VALUE"
+<pre>cache.BACKEND_NAME.SETTING = "VALUE"
 ; example:
 cache.file.file_name_prefix = "Dotkernel"</pre>
 
@@ -85,11 +64,4 @@ cache.file.file_name_prefix = "Dotkernel"</pre>
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

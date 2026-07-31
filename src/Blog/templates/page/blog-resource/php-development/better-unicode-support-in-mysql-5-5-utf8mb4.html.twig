@@ -1,47 +1,19 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/php-development/better-unicode-support-in-mysql-5-5-utf8mb4.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Better Unicode Support in MySQL 5.5 UTF8MB4{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'PHP Development',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
+{% block body %}
 Beginning with version 5.5 of MySQL , <strong>utf8mb4 </strong> character set was introduced, in order to better support <strong>Unicode</strong>.
 Further reading: <a href="http://mzsanford.com/blog/mysql-and-unicode/" target="_blank" rel="noopener noreferrer">MySQL and Unicode</a> , also directly related to <a href="http://www.phptherightway.com/#php_and_utf8" target="_blank" rel="noopener noreferrer">PHP</a>
 
 Sample dk.sql file, part of Dotkernel framework, was updated in <a title="Revision 793" href="http://websvn.dotkernel.net/filedetails.php?repname=Dotkernel&amp;path=%2Ftrunk%2Fdot_kernel.sql&amp;rev=793&amp;peg=793" target="_blank" rel="noopener noreferrer">revision 793</a>
 
 Only one downside , is not possible to use anymore VARCHAR(255), as you will get the error:
-<pre>>#1071 - Specified key was too long; max key length is 767 bytes</pre>
+<pre>#1071 - Specified key was too long; max key length is 767 bytes</pre>
 Explanation <a href="http://stackoverflow.com/questions/1814532/1071-specified-key-was-too-long-max-key-length-is-767-bytes" target="_blank" rel="noopener noreferrer">here</a> ; so we use instead VARCHAR(150)
 
 Now we should change the connection charset. In config/application.ini file, edit the below line :
-<pre>>database.params.charset = utf8mb4</pre>
+<pre>database.params.charset = utf8mb4</pre>
 Other changes that can be made in <strong>my.cnf</strong> file are all related to replacing the string <strong>utf8_*</strong> with <strong>utf8mb4_* </strong>
-<pre>>character_set_server=utf8mb4</pre>
-<pre>>collation_server=utf8mb4_general_ci</pre>
-<pre>>collation_server=utf8mb4_unicode_ci</pre>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
+<pre>character_set_server=utf8mb4</pre>
+<pre>collation_server=utf8mb4_general_ci</pre>
+<pre>collation_server=utf8mb4_unicode_ci</pre>
 {% endblock %}

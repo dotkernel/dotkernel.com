@@ -1,35 +1,14 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/best-practice/golden-rules-of-professional-php-coding.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Golden Rules of Professional PHP Coding{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Best Practice',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
+{% block body %}
 1.  Always use in development and in staging highest <strong>error reporting</strong> level, and <strong>display_errors</strong> ON:
-<pre>>error_reporting(-1);
+<pre>error_reporting(-1);
 ini_set('display_errors', 1);</pre>
 2. <strong>Fix</strong> every warning or notice that occur.
 3. <strong>Check</strong> regularly server's error_log for notices/warnings
 
 4. Identify any <strong>temporary hack</strong> with a special <strong>mark</strong>. Maybe something like:
-<pre>>#@TODO masterpiece by @smartguy, to quick fix the division by zero</pre>
+<pre>#@TODO masterpiece by @smartguy, to quick fix the division by zero</pre>
 &nbsp;
 
 5. Each <strong>function</strong> must do a <strong> single task</strong>. If is log in the user and record the login in stats table, be nice and create a separate function for 'record the login' stuff.
@@ -75,11 +54,4 @@ Maybe even a <strong>distinct class</strong> for stats ?
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

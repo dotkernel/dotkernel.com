@@ -1,27 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel/dotkernel-coding-standard.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Dotkernel Coding Standard{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
+{% block body %}
 <strong>Dotkernel</strong> will be a "skeleton"of <a href="http://framework.zend.com/" target="_blank" rel="noopener noreferrer"><strong>Zend Framework</strong></a>.
 Dotkernel borrowed the coding standard from Zend Framework: <strong><a title="ZF Coding Standard" href="http://framework.zend.com/manual/en/coding-standard.php-file-formatting.html" target="_blank" rel="noopener noreferrer">ZF Coding Standard</a> </strong>with some exceptions.
 
@@ -47,11 +26,11 @@ All php files will have the  extension  ".php". No fancy extensions like .inc
 <a href="http://framework.zend.com/manual/en/coding-standard.coding-style.html#coding-standard.coding-style.control-statements" target="_blank" rel="noopener noreferrer"><strong>B.4.6. Control Statements</strong></a>
 every starting curly brace <strong>}</strong> after a statement starts on a new line, end it's closing curly brace <strong>} </strong>will be on a new line too. The start and end braces must be on the same column (for better indentation of the code)
 e.g:
-<pre>>if ($a != 2)
+<pre>if ($a != 2)
 {
    $a = 2;
 }</pre>
-<pre>>if ($a != 2)
+<pre>if ($a != 2)
 {
     $a = 2;
     if($a == 2)
@@ -88,11 +67,4 @@ e.g:
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

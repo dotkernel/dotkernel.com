@@ -1,30 +1,9 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/best-practice/sql-queries-using-zend-db-select.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}SQL queries using Zend_Db – SELECT{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Best Practice',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
+{% block body %}
 <a href="http://framework.zend.com/manual/en/zend.db.adapter.html" target="_blank" rel="noopener noreferrer">Zend_Db</a> and its related classes provide a simple SQL database interface for Zend Framework.
 To connect to MySql database, we are using Pdo_Mysql adapter :
-<pre>>
+<pre>
 $db = Zend_Db::factory('Pdo_Mysql', $dbConnect);
 </pre>
 </br>
@@ -33,14 +12,14 @@ $db = Zend_Db::factory('Pdo_Mysql', $dbConnect);
 <b>SELECT query - WHERE clause</b>
 </br>
 The below 2 classical SQL queries are equivalent. First one is simple, the second one use INNER JOIN keyword, but the result is the same.
-<pre>>
+<pre>
 SELECT a.id, a.name, b.order_id
 FROM users AS a, orders AS b
 WHERE a.id = b.user_id
 AND a.id = {$userId}
 </pre>
 </br>
-<pre>>
+<pre>
 SELECT `a`.`id`, `a`.`name`, `b`.`order_id`
 FROM `users` AS `a` INNER JOIN `orders` AS `b` ON a.id = b.user_id
 WHERE (a.id = '{$userId}')
@@ -48,7 +27,7 @@ WHERE (a.id = '{$userId}')
 </br>
 The above querys are translated in Zend_Db style:
 </br>
-<pre>>
+<pre>
 $select = $db->select()
              ->from(array('a'=>'users'),
                     array('a.id', 'a.name'))
@@ -57,7 +36,7 @@ $select = $db->select()
 </pre>
 </br>
 If we don't want to select any column from the second table, the 3rd parameter of join() method should be an empty string
-<pre>>
+<pre>
 SELECT a.id, a.name
 FROM users AS a, orders AS b
 WHERE a.id = b.user_id
@@ -73,7 +52,7 @@ $select = $db->select()
 </pre>
 </br>
 Note*: If we don't write the 3rd parameter, it will select all the fields from that table:
-<pre>>
+<pre>
 SELECT a.id, a.name, b.*
 FROM users AS a, orders AS b
 WHERE a.id = b.user_id
@@ -90,7 +69,7 @@ $select = $db->select()
 </br>
 <b>SELECT query - WHERE IN clause</b>
 </br>
-<pre>>
+<pre>
 SELECT id
 FROM users
 WHERE aff_id IN ('1','2','3')
@@ -103,7 +82,7 @@ $select = $db->select()
 </pre>
 </br>
 <b>Note*:</b> If you are not sure if you write the correct query, before you fetch it you can echo your query to visualize it:
-<pre>>
+<pre>
 echo $select->__toString();exit;
 </pre>
 </br>
@@ -152,11 +131,4 @@ Also see:
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

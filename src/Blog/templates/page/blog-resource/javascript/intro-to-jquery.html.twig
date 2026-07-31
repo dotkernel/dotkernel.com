@@ -1,27 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/javascript/intro-to-jquery.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Intro to jQuery{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Javascript',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
+{% block body %}
 Starting with the 1.5 release, Dotkernel will make the switch from Dojo to jQuery.
 
 On jQuery's website, there's an excellent "<a href="http://docs.jquery.com/Tutorials:Getting_Started_with_jQuery" target="_blank" rel="noopener noreferrer">Getting started with jQuery tutorial</a>", as well as a extensive <a href="http://api.jquery.com/" target="_blank" rel="noopener noreferrer">documentation</a> for the framework, so I'll just go over a few basic concepts and common examples.
@@ -34,7 +13,7 @@ It contains a few useful methods such as <a href="http://api.jquery.com/jQuery.
 jQuery supports the same selectors as CSS (note: all selectors will work even in browsers that don't actually have CSS support for them)
 
 <h3>Examples:</h3>
-<pre>>// the element that matches an id
+<pre>// the element that matches an id
 $("#someId");
 // all elements with a certain class
 $(".someClass")
@@ -44,26 +23,26 @@ $("table#monthlyStats tbody tr:nth-child(odd)")
 The results of these expressions is a jQuery object that contains one, more, or no matched elements.
 <h2>Manipulating matched elements</h2>
 There are a number of functions that can be applied to a jQuery object, for example:
-<pre>>$("input#username").addClass("error")</pre>
+<pre>$("input#username").addClass("error")</pre>
 Since most of these functions will also return the same jQuery object, they can be chained. For example, the following expression will set the text of the <em>#errors</em> element and fade it in:
-<pre>>$("#errors").text("The was an eror").fadeIn()</pre>
+<pre>$("#errors").text("The was an eror").fadeIn()</pre>
 <h2>Events</h2>
 Adding events in Javascript instead of using "onclick" attributes in HTML means that the markup is much cleaner, and you get better support for more events in all browsers.
 
 In the following example, a click event is attached to an element. The function that will be called when the event is fired (callback) is passed as an argument to the <em>click</em> function
-<pre>>$("#helpButton").click(function(){
+<pre>$("#helpButton").click(function(){
     $("#helpMessage").show()
 });
 </pre>
 <h2>Ajax</h2>
 jQuery has <a href="http://api.jquery.com/category/ajax/" target="_blank" rel="noopener noreferrer">many ajax helper functions</a>, here is a simple example that will replace the contents of an element with data loaded from the server:
-<pre>>$.get("get-news.php", function(result){
+<pre>$.get("get-news.php", function(result){
    $("#news").html(result)
 })
 </pre>
 <h2>Putting it all together</h2>
 The following snippet can be used on a registration form to check whether the username already exists, before the form is submitted.
-<pre>>$(document).ready(
+<pre>$(document).ready(
   $("input#username").blur(function(){
     $.getJSON(
       "/check-username.php",
@@ -115,11 +94,4 @@ The following snippet can be used on a registration form to check whether the us
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

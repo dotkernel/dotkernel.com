@@ -1,27 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel/sending-emails-using-dot-email-component-and-zend-email.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Sending emails using Dot_Email component and Zend_Email{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
+{% block body %}
 <strong>Dot_Email</strong> class extends Zend_Mail, so all the methods from Zend_Mail are available  in Dot_Email.
 
 <strong>Dot_Email</strong> is a simple class composed only from 2 methods, except constructor, all  other methods beeing inherited  from Zend_Mail.
@@ -33,7 +12,7 @@ Note the declaration of this method: setContent ($content, $format = 'text/plain
 2.  <strong>send()</strong>, set the transporter and is calling parent::send() method for sending the email
 
 For sending the email you MUST use this methods in the code above:
-<pre>>$dotEmail = new Dot_Email();
+<pre>$dotEmail = new Dot_Email();
 $dotEmail->addTo($email);
 $dotEmail->setSubject('Forgot Password');
 $dotEmail->setBodyText('Your password is '.$password);
@@ -47,7 +26,7 @@ else
     echo "Message failed, not sent!";
 }</pre>
 Only if you want to overwrite the default Email and Name, add the below lines:
-<pre>>$dotEmail->setFrom($fromEmail, $fromName);
+<pre>$dotEmail->setFrom($fromEmail, $fromName);
 $dotEmail->setReplyTo($fromEmail, $fromName);</pre>
 <strong>NOTE*:</strong> you always have to use  <strong>addTo()</strong>,  <strong>setSubject()</strong>,<strong> setBodyText()</strong> or<strong> setBodyHtml()</strong> or <strong>setContent()</strong>, and finally send() method.
 
@@ -99,11 +78,4 @@ Methods inherited  from Zend_Mail and that can be used in your code are:
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

@@ -1,27 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/php-development/remote-connections-to-mysql-server-on-plesk-based-servers.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Remote connections to MySQL server on Plesk based servers{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'PHP Development',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
+{% block body %}
 By default, MySql servers on Linux machines where Plesk is installed, have the <strong>old_passwords</strong>=1 or ON flag.
 
 That mean even if you have MySQL 5.5+ version, it still use old style of password storage, pre-mysql 4.1+
@@ -29,7 +8,7 @@ That mean even if you have MySQL 5.5+ version, it still use old style of passwor
 If you try to connect remote, from your local development machine, you will get an ugly error, like:
 
 &nbsp;
-<pre>>Fatal error: Uncaught exception 'PDOException' with message 'SQLSTATE  mysqlnd
+<pre>Fatal error: Uncaught exception 'PDOException' with message 'SQLSTATE  mysqlnd
 cannot connect  to MySQL 4.1+ using the old insecure authentication. Please use an administration
 tool to reset your password with the command SET PASSWORD = PASSWORD('your_existing_password').
 This will store a new, and more secure, hash value in mysql.user.
@@ -41,7 +20,7 @@ If this user is used in other scripts executed by PHP 5.2 or earlier you might n
     <li>Grant priviledges to that user to the database you want to connect to.</li>
     <li>Now run the below SQL statements:</li>
 </ol>
-<pre>>SET old_passwords = 0;
+<pre>SET old_passwords = 0;
 UPDATE mysql.user SET Password = PASSWORD('somepassword') WHERE User = 'someuser' limit 1;
 SELECT LENGTH(Password) FROM mysql.user WHERE User = 'someuser';
 FLUSH PRIVILEGES;</pre>
@@ -81,11 +60,4 @@ NOTE: if you browse the table mysql.user , you will note that the password field
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

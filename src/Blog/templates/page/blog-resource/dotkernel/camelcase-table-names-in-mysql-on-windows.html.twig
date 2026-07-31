@@ -1,30 +1,9 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel/camelcase-table-names-in-mysql-on-windows.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}camelCase Table Names in MySQL on Windows{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
+{% block body %}
 If you are using a WAMP stack, like WAMP or XAMPP, and try to create a table in camelCase ( example: <strong>adminLogin</strong>)  you will notice that camelCase is not working, table name will be lowercase: <strong>adminlogin</strong>.
 In order to fix this, you need to add to your my.cnf file the line:
-<pre>>lower_case_table_names=2</pre>
+<pre>lower_case_table_names=2</pre>
 and restart mysql.
 
 More on that here: <a href="http://dev.mysql.com/doc/refman/4.1/en/server-system-variables.html#sysvar_lower_case_table_names" target="_blank" rel="noopener noreferrer">http://dev.mysql.com/doc/refman/4.1/en/server-system-variables.html#sysvar_lower_case_table_names</a>
@@ -45,11 +24,4 @@ More on that here: <a href="http://dev.mysql.com/doc/refman/4.1/en/server-system
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

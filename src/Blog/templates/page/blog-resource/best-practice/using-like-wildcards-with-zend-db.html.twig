@@ -1,27 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/best-practice/using-like-wildcards-with-zend-db.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Using LIKE wildcards with Zend_Db{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Best Practice',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
+{% block body %}
 Continuing the Zend_Db article <a href="http://www.dotkernel.com/dotkernel/sql-select-zend-db/" target="_blank" rel="noopener noreferrer">series</a>, let's discuss the LIKE condition.
 
 The <strong>LIKE </strong>condition allows you to use wildcards in the <em>WHERE </em>clause of an SQL statement. This allows pattern matching. It can be used in any valid SQL statement (<em>SELECT</em>, <em>INSERT</em>, <em>UPDATE </em>or <em>DELETE</em>).
@@ -34,13 +13,13 @@ The <strong>LIKE </strong>condition allows you to use wildcards in the <em>WHERE
 
 <!--more-->
 <em>Note*: </em>
-<pre>>$db = Zend_Db::factory('Pdo_Mysql', $dbConnect);</pre>
+<pre>$db = Zend_Db::factory('Pdo_Mysql', $dbConnect);</pre>
 <b>LIKE _</b>
 <ul>
     <li>Return all ids which start with '1' and second digit is between 0 and 9 (10, 11, 12, ..., 18, 19):</li>
 </ul>
-<pre>>SELECT * FROM `table` WHERE (`id` LIKE '1_' )</pre>
-<pre>>$col = $this->db->quoteIdentifier('id');
+<pre>SELECT * FROM `table` WHERE (`id` LIKE '1_' )</pre>
+<pre>$col = $this->db->quoteIdentifier('id');
 $where = $this->db->quoteInto("$col LIKE ? ", '1_');
 $select = $this->db->select()
     ->from('table')
@@ -49,10 +28,10 @@ $result = $this->db->fetchAll($select);</pre>
 <ul>
     <li>Return all instances whose name is 4 characters long, where the first two characters are 'Fr' and the last character is 'd' (Frad, Fred, Frod, etc.) :</li>
 </ul>
-<pre>>
+<pre>
 SELECT * FROM `table` WHERE (`name` LIKE 'Fr_d' )
 </pre>
-<pre>>
+<pre>
 $col = $this->db->quoteIdentifier('name');
 $where = $this->db->quoteInto("$col LIKE ? ", 'Fr_d');
 $select = $this->db->select()
@@ -66,10 +45,10 @@ $result = $this->db->fetchAll($select);
 <ul>
     <li>Returns all instances that have the 'gallery' string in the <em>source</em> field:</li>
 </ul>
-<pre>>
+<pre>
 SELECT * FROM `table` WHERE (`source` LIKE '%gallery%' )
 </pre>
-<pre>>
+<pre>
 $col = $this->db->quoteIdentifier('source');
 $where = $this->db->quoteInto("$col LIKE ? ", '%gallery%');
 $select = $this->db->select()
@@ -80,10 +59,10 @@ $result = $this->db->fetchAll($select);
 <ul>
     <li>Returns all instances that have the 'gallery' or 'folder' strings in the <em>source</em> field:</li>
 </ul>
-<pre>>
+<pre>
 SELECT * FROM `table` WHERE (`source` LIKE '%gallery%' OR `source` LIKE ('%folder%') )
 </pre>
-<pre>>
+<pre>
 $col = $this->db->quoteIdentifier('source');
 $where = $this->db->quoteInto("$col LIKE ? ", '%gallery%');
 $where .= $this->db->quoteInto("OR $col LIKE (?) ", '%folder%');
@@ -98,10 +77,10 @@ $result = $this->db->fetchAll($select);
 <ul>
     <li>Returns all 2-digit ids that don't start with <em>1</em> (20->99 ) or have a different number of digits than 2 (1, 2, ..., 8, 9, 100, 101, ...):</li>
 </ul>
-<pre>>
+<pre>
 SELECT * FROM `table` WHERE (`id` NOT LIKE '1_' )
 </pre>
-<pre>>
+<pre>
 $col = $this->db->quoteIdentifier('id');
 $where = $this->db->quoteInto("$col NOT LIKE ? ", '1_');
 $select = $this->db->select()
@@ -115,10 +94,10 @@ $result = $this->db->fetchAll($select);
 <ul>
     <li>Returns all instances that don't have 'gallery', 'folder' or 'file' strings in the <em>source</em> field:</li>
 </ul>
-<pre>>
+<pre>
 SELECT * FROM `table` WHERE (`source` NOT LIKE ('%gallery%') AND `source` NOT LIKE ('%folder%') AND `source` NOT LIKE ('%file%') )
 </pre>
-<pre>>
+<pre>
 $col = $this->db->quoteIdentifier('source');
 $where = $this->db->quoteInto("$col NOT LIKE (?) ", '%gallery%');
 $where .= $this->db->quoteInto("AND $col NOT LIKE (?) ", '%folder%');
@@ -131,8 +110,8 @@ $result = $this->db->fetchAll($select);
 </br>
 </br>
 <b>OTHER Example</b>
-<pre>>SELECT * FROM `table` WHERE `number` LIKE '_6%' </pre>
-<pre>>$col = $this->db->quoteIdentifier('number');
+<pre>SELECT * FROM `table` WHERE `number` LIKE '_6%' </pre>
+<pre>$col = $this->db->quoteIdentifier('number');
 $where = $this->db->quoteInto("$col LIKE ? ", '_6%');
 $select = $this->db->select()
     ->from('table')
@@ -179,11 +158,4 @@ $result = $this->db->fetchAll($select);</pre>
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

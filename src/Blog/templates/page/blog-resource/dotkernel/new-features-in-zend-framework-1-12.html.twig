@@ -1,27 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel/new-features-in-zend-framework-1-12.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}New Features in Zend Framework 1.12{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
+{% block body %}
 According to <a href="http://devzone.zend.com/2366/zend-framework-1-12-series-1-12-0rc1-now-available/" target="_blank" rel="noopener noreferrer">Matthew Weier O'Phinney announcement</a>, Zend Framework team is pleased to announce the immediate availability of the first release candidate of the Zend Framework 1.12 series, 1.12.0RC1
 <h2> New Features</h2>
 <!--more-->
@@ -102,11 +81,4 @@ For a complete list go here:<a href="http://framework.zend.com/issues/secure/Iss
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

@@ -1,27 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel/using-dotkernel-with-composer-dependencies.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Using Dotkernel with Composer Dependencies{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
+{% block body %}
 This article will cover the external dependency usage VIA composer within Dotkernel applications.
 
 There is also an article explaining how composer can be added to Dotkernel <a href="http://www.dotkernel.com/dotkernel/adding-composer-support-in-your-dotkernel-project" target="_blank" rel="noopener noreferrer">learn more</a>.
@@ -31,16 +10,16 @@ Composer automatically loads our dependencies so there is no need to include/req
 For this example we will render a Barcode using <a href="http://framework.zend.com/manual/1.12/en/manual.html" target="_blank" rel="noopener noreferrer">Zend Framework 1</a> as the Non-Namespaced dependency and <a href="http://framework.zend.com/manual/current/en/index.html" target="_blank" rel="noopener noreferrer">Zend Framework 2</a> as the Namespaced dependency.
 <h2>The Composer Dependencies</h2>
 ZendFramework 1 Barcode module can only be loaded with the ZF1 itself:
-<pre>>composer require 'zendframework/zendframework1'</pre>
+<pre>composer require 'zendframework/zendframework1'</pre>
 The ZendFramework 2 Barcode module can be separately loaded:
-<pre>>composer require 'zendframework/zend-barcode'</pre>
+<pre>composer require 'zendframework/zend-barcode'</pre>
 &nbsp;
 <h2>Important note</h2>
 <pre>These dependencies can be used anywhere after the <span style="color: #ff0000;"><strong>Dot_Kernel::initialize()</strong> </span>function was called</pre>
 &nbsp;
 <h2>Using Non-Namespaced Dependencies (Zend Framework 1)</h2>
 The class is loaded <a href="http://www.php-fig.org/psr/psr-0/" target="_blank" rel="noopener noreferrer">PSR-0</a> style, meaning the class name looks like VendorName_PackageName_ClassName
-<pre>>// Only the text to draw is required
+<pre>// Only the text to draw is required
 $barcodeOptions = array('text' =>; 'ZEND-FRAMEWORK');
  
 // No required options
@@ -54,7 +33,7 @@ Zend_Barcode::factory(
 &nbsp;
 <h2>Using Namespaced Dependencies (Zend Framework 2)</h2>
 The class is loaded <a href="http://www.php-fig.org/psr/psr-4/" target="_blank" rel="noopener noreferrer">PSR-4</a> style, meaning the class name looks like \VendorName\PackageName\ClassName
-<pre>>use Zend\Barcode\Barcode;
+<pre>use Zend\Barcode\Barcode;
 
 // Only the text to draw is required
 $barcodeOptions = array('text' => 'ZEND-FRAMEWORK');
@@ -73,7 +52,7 @@ Both the examples will render the following barcode if nothing goes wrong:
 <a href="/uploads/2016/04/zend.barcode.introduction.example-1.png" rel="attachment wp-att-2948"><img src="{{ asset('uploads/article/' ~ article.id ~ '/zend.barcode.introduction.example-1.png') }}" alt="Resulting barcode. Source: http://framework.zend.com/images/manual/zend.barcode.introduction.example-1.png" width="275" height="61"> </a> Resulting barcode.<br />Source: bit.ly/1XbZZ81
 <h3>Tip</h3>
 In this case the first example will work for both namespaced an non-namespaced dependencies if we add the the following as the first line at the first example:
-<pre>>use Zend\Barcode\Barcode as Zend_Barcode;</pre>
+<pre>use Zend\Barcode\Barcode as Zend_Barcode;</pre>
 Now we can use any of the following to access ZF2's Barcode Module:
 <ul>
     <li>Zend\Barcode\Barcode</li>
@@ -132,11 +111,4 @@ This article works for any <strong>Dotkernel 1.x</strong> version if your server
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

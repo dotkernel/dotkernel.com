@@ -1,27 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel/adding-composer-support-in-your-dotkernel-project.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Adding Composer support in your Dotkernel project{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
+{% block body %}
 Composer is an application-level package manager. Composer auto-loads the dependencies on demand and can also auto-load custom classes .
 
 This article will cover the needed steps to add composer support to your Dotkernel project or even "composify" it.
@@ -33,7 +12,7 @@ Assuming that you know how to use composer (if not you should consider reading <
 The Dotkernel project must have a <strong>composer.json</strong> file so that composer can work.
 
 Our <strong>composer.json</strong> file should look like this:
-<pre>>{
+<pre>{
   "require" : {
     "zendframework/zendframework1" : "1.12.*",
     "mobiledetect/mobiledetectlib" : "2.8.*"
@@ -57,7 +36,7 @@ The dependencies provided in the <strong>require</strong> section are also loade
 &nbsp;
 
 In order to have these components instaled you must run the following command in your Dotkernel root path
-<pre>>composer update</pre>
+<pre>composer update</pre>
 If the <em>vendor </em>folder is present composer will check for updates, and update the packages as needed.
 
 If the <em>vendor</em> folder does not exist composer will create a vendor folder. This folder will contain all the requested packages.
@@ -67,12 +46,12 @@ Composer will create an autoload file, which will be use to load our dependencie
 &nbsp;
 <h2>Adding Composer Support to Dotkernel</h2>
 The autoload file created by composer will be used to load our packages.
-<pre>>$composerAutoLoaderPath = <a href="http://php.net/manual/en/function.realpath.php" target="_blank" rel="noopener noreferrer">realpath</a>(APPLICATION_PATH.'/vendor/autoload.php');
+<pre>$composerAutoLoaderPath = <a href="http://php.net/manual/en/function.realpath.php" target="_blank" rel="noopener noreferrer">realpath</a>(APPLICATION_PATH.'/vendor/autoload.php');
 require_once($composerAutoLoaderPath);</pre>
 So far so good, but what if the file does not exist or composer is not present?
 
 First we must make sure the composer autoload path exists and only load the dependencies if composer autoload file was found.
-<pre>>$composerAutoLoaderPath = realpath('./vendor/autoload.php');
+<pre>$composerAutoLoaderPath = realpath('./vendor/autoload.php');
 
 $composerEnabled = <a href="http://php.net/manual/en/function.file-exists.php" target="_blank" rel="noopener noreferrer">file_exists</a>($composerAutoLoaderPath);
 
@@ -88,7 +67,7 @@ else
 The variable <strong>$composerEnabled</strong> will be true only if the composer path exists so the application behavior can be controlled if composer is not present.
 
 Later on, the packages can be used like this:
-<pre>>use VendorName\PackageName\ClassName as MyDependency;
+<pre>use VendorName\PackageName\ClassName as MyDependency;
 
 $myDependency = new MyDependency($neededArguments);
 $myDependency->doSomething();</pre>
@@ -130,11 +109,4 @@ This article works for any <strong>Dotkernel 1.x</strong> version if your server
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

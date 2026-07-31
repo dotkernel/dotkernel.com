@@ -1,32 +1,11 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel/handling-and-logging-errors-with-dot-errorhandler-and-dot-log.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Handling and Logging errors with dot-errorhandler and dot-log{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
-This article is a follow-up for:<strong> <a href="https://www.dotkernel.com/dotkernel/logging-with-dot-log-in-zend-expressive-and-dotkernel/" target="_blank" rel="noopener noreferrer">Logging with dot-log in Zend Expressive and Dotkernel</a></strong>, the mentioned article is a guide to using dot-log.
+{% block body %}
+This article is a follow-up for:<strong> <a href="https://www.dotkernel.com/dotkernel/logging-with-dot-log-in-zend-expressive-and-dotkernel/" target="_blank" rel="noopener noreferrer">Logging with dot-log in Zend Expressive and Dotkernel</a></strong>, the mentioned article is a guide to using dot-log.
 
 &nbsp;
 
-This article explains the usage of <strong>dotkernel/dot-errorhandler</strong> with <strong>dotkernel/dot-log </strong>or <strong>zendframework/zend-log</strong> to<strong> log errors </strong>in Zend Expressive applications.
+This article explains the usage of <strong>dotkernel/dot-errorhandler</strong> with <strong>dotkernel/dot-log </strong>or <strong>zendframework/zend-log</strong> to<strong> log errors </strong>in Zend Expressive applications.
 
 This can be considered as a guide on how the <strong>dot-errorhandler</strong> was made and how it's meant to be used.
 
@@ -36,14 +15,14 @@ This can be considered as a guide on how the <strong>dot-errorhandler</strong> w
 
 As a first note Dot Error Handler provides two kinds of error handlers:
 <ul>
-     <li>the plain <code>ErrorHandler</code>  - this class is a copy of Zend Expressive's error handler <code>Zend\Stratigility\Middleware\ErrorHandler</code> (as it is final)</li>
-     <li>the logging <code>LogErrorHandler</code> - this class is like the above one, but with added Logging support (via container)</li>
+     <li>the plain <code>ErrorHandler</code>  - this class is a copy of Zend Expressive's error handler <code>Zend\Stratigility\Middleware\ErrorHandler</code> (as it is final)</li>
+     <li>the logging <code>LogErrorHandler</code> - this class is like the above one, but with added Logging support (via container)</li>
 </ul>
 Both error handlers have factories for an easier usage with the <strong>Container</strong>.
 
 &nbsp;
 
-To use dot-error handler in your project run the following command: <code>composer require dotkernel/dot-errorhandler</code>.
+To use dot-error handler in your project run the following command: <code>composer require dotkernel/dot-errorhandler</code>.
 
 &nbsp;
 <h2>The Config Provider</h2>
@@ -58,24 +37,24 @@ As a fallback case the plain error handler is selected by default and can be ove
 
 &nbsp;
 <h2>Configuration</h2>
-<strong>IMPORTANT NOTES: </strong>
+<strong>IMPORTANT NOTES: </strong>
 <ul>
-     <li>Assuming the project in hand has a configured logger as per <strong><a href="https://www.dotkernel.com/dotkernel/logging-with-dot-log-in-zend-expressive-and-dotkernel/" target="_blank" rel="noopener noreferrer">this article</a></strong> and the logger name is <strong>default_logger</strong> (as provided in the package's config example).</li>
-     <li>Although the key is <code>dot_log</code>, when selecting a logger the dot log abstract factory responds to the <code>dot-log</code> selector
+     <li>Assuming the project in hand has a configured logger as per <strong><a href="https://www.dotkernel.com/dotkernel/logging-with-dot-log-in-zend-expressive-and-dotkernel/" target="_blank" rel="noopener noreferrer">this article</a></strong> and the logger name is <strong>default_logger</strong> (as provided in the package's config example).</li>
+     <li>Although the key is <code>dot_log</code>, when selecting a logger the dot log abstract factory responds to the <code>dot-log</code> selector
 <ul>
-     <li>to select<code></code> the container key asked for is <code>dot-log.default_logger</code></li>
+     <li>to select<code></code> the container key asked for is <code>dot-log.default_logger</code></li>
 </ul>
 </li>
      <li>The dot-errorhandler was meant as a silent logger for staging and production environments doesn't block whoops
 <ul>
-     <li>to test it the development mode should be <strong>disabled</strong>, otherwise whoops will catch the errors and show them to the developer</li>
-     <li>you can use any custom implemented error handler as long as it implements the provided <code>ErrorHandlerInterface</code></li>
+     <li>to test it the development mode should be <strong>disabled</strong>, otherwise whoops will catch the errors and show them to the developer</li>
+     <li>you can use any custom implemented error handler as long as it implements the provided <code>ErrorHandlerInterface</code></li>
 </ul>
 </li>
 </ul>
 The steps to configuring are the following:
 <ul>
-     <li>add the <code>Dot\ErrorHandler\ConfigProvider</code> in the project's <code>config/config.php</code> file</li>
+     <li>add the <code>Dot\ErrorHandler\ConfigProvider</code> in the project's <code>config/config.php</code> file</li>
      <li>write the error handler config</li>
 </ul>
 &nbsp;
@@ -148,11 +127,4 @@ The tests we have made were the following:
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}
