@@ -9,7 +9,7 @@
 
 declare(strict_types=1);
 
-$baseUrl   = 'https://dotkernel.com';
+$baseUrl   = 'https://www.dotkernel.com';
 $databases = [
     'default' => [
         'host'     => 'localhost',
