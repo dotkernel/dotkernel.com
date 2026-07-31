@@ -1,26 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel/dotkernel-database-naming-conventions-for-mysql.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Dotkernel Database Naming Conventions for MySQL{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 Dotkernel borrows the database naming conventions from <a href="http://fazend.com/a/2009-11-DataNaming.html" target="_blank" rel="noopener noreferrer">FaZend: Rules of naming of database tables and columns</a>. FaZend is an open-source PHP framework based on Zend Framework.
 <!--more-->
 <strong>Database naming conventions for tables and columns:</strong>
@@ -37,7 +17,7 @@ Dotkernel borrows the database naming conventions from <a href="http://fazend.co
     <li>SQL keywords are capitalized (e.g. SELECT, INT)</li>
 </ul>
 <strong>Example of proper SQL file formatting and naming:</strong>
-<pre>>CREATE TABLE IF NOT EXISTS `user`
+<pre>CREATE TABLE IF NOT EXISTS `user`
  (
    `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
    `username` VARCHAR(255) NOT NULL,
@@ -96,11 +76,4 @@ The names of database tables and columns must follow <em>camelLetter</em> as nam
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

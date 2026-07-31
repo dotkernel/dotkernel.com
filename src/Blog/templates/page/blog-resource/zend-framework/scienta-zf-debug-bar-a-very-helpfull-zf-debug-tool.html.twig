@@ -1,26 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/zend-framework/scienta-zf-debug-bar-a-very-helpfull-zf-debug-tool.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Scienta ZF Debug Bar: A very helpfull ZF debug tool{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Zend Framework',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 Just found today a very interesting and helpful debug tool:
 
 <strong><a title="Scienta ZF Debug Bar" href="http://jokke.dk/software/scientadebugbar" target="_blank" rel="noopener noreferrer">Scienta</a></strong>
@@ -43,11 +23,4 @@ We at Dotkernel used some very basic debug bar:  queries, time spent , memory u
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

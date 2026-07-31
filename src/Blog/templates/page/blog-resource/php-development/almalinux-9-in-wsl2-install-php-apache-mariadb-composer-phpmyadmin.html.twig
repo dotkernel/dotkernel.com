@@ -1,26 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/php-development/almalinux-9-in-wsl2-install-php-apache-mariadb-composer-phpmyadmin.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}AlmaLinux 9 in WSL2 : install PHP, Apache, MariaDB, Composer, PhpMyadmin{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'PHP Development',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 <p class="mb-3">In this article we will demonstrate how we install AlmaLinux 9 using Windows Subsystem for Linux  (WSL2).</p>
 
 <p class="mb-3">First, you need to check if your machine is ready for using WSL2. Open Windows Terminal and execute the following command:</p>
@@ -143,11 +123,4 @@ Windows version: 10.0.22631.3737</code></pre>
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

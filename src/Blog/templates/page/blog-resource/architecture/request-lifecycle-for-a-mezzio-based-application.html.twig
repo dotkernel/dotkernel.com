@@ -1,26 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/architecture/request-lifecycle-for-a-mezzio-based-application.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Request Lifecycle for a Mezzio-Based Application{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Architecture',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 <h2>Seamlessly Interconnected Middleware for Enterprise-Level Solutions</h2>
 
 <p class="mb-3">The request lifecycle is the sequence of steps that happen from the moment a user makes an HTTP request until the server sends back a response. </p>
@@ -597,11 +577,4 @@ $('.hasTooltip').hover(
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

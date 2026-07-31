@@ -1,28 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel/replacing-laminas-mail-with-symfony-mailer-in-dot-mail.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Replacing laminas-mail with Symfony mailer in dot-mail{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-<h2></h2>
-
+{% block body %}
 <h2>What prompted the change</h2>
 
 <p class="mb-3">According to the discussion from the <a href="https://github.com/laminas/technical-steering-committee/blob/main/meetings/minutes/2023-12-04-TSC-Minutes.md#maintainers-for-laminas-mime-and-laminas-mail" target="_blank" rel="noreferrer noopener">LaminasTechnical steering Committee of 2023-12-04</a>, it was decided that the <a href="https://github.com/laminas/laminas-mail">laminas/laminas-mail</a> package would be abandoned. On the one hand, there is nobody to maintain the package and on the other, there are several alternatives available in the ecosystem:</p>
@@ -155,11 +133,4 @@ return ,
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

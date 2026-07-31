@@ -1,26 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/php-development/using-aptana-to-connect-to-dotkernel-tracker-mantis.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Using Aptana to connect to Dotkernel tracker (Mantis){% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'PHP Development',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 In developing <strong>Dotkernel</strong> application framework, we needed a tracking system. <strong><a href="http://www.dotkernel.net/">Dotkernel Tracker</a></strong> is the place where the <em>bugs</em> are reported, new <em>features</em> are announced and other <em>general tickets</em> are added.
 
 <strong><a href="http://www.dotkernel.net/">Dotkernel Tracker</a></strong> is a <strong><a href="http://www.mantisbt.org/">Mantis</a></strong> web-based bugtracking system. To simplify the development of <strong>Dotkernel</strong>, we integrated our web development IDE – <strong><a href="http://www.aptana.com/">Aptana</a></strong> with our bugtracking system – <strong><a href="http://www.dotkernel.net/">Dotkernel Tracker</a></strong>. In the <em><strong>Downloads</strong></em> section, you will find screenshots with the below steps for <strong><a href="../download/?did=24">Using Aptana with the Mylyn connector for Mantis</a></strong>
@@ -92,11 +72,4 @@ In developing <strong>Dotkernel</strong> application framework, we needed a trac
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

@@ -1,26 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/best-practice/insert-update-delete-statements-with-zend-db.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}INSERT, UPDATE, DELETE statements with Zend_Db{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Best Practice',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 Continuing the Zend_DB article <a href="http://www.dotkernel.com/dotkernel/sql-select-zend-db/" target="_blank" rel="noopener noreferrer">series</a>, we are stopping now at DML statements.</br>
 DML (Data Manipulation Language) statements are statements that change data values in database tables. There are 3 primary DML statements:
 <ul>
@@ -31,17 +11,17 @@ DML (Data Manipulation Language) statements are statements that change data valu
 </br>
 <!--more-->
 <i>Note*: </i>
-<pre>>
+<pre>
 $db = Zend_Db::factory('Pdo_Mysql', $dbConnect);
 </pre>
 </br>
 <b>INSERT</b>
-<pre>>
+<pre>
 INSERT INTO user(email, password, firstName, lastName, active)
        VALUES ('$email', '$password', '$firstName', '$lastName', 1);
 </pre>
 The above SQL <i>INSERT</i> statement is translated in Zend_Db as follow:
-<pre>>
+<pre>
 $data = array( 'email' => $email,
             'password' => $password,
             'firstName' => $firstName,
@@ -50,7 +30,7 @@ $data = array( 'email' => $email,
 $db->insert('user', $data);
 </pre></br>
 <b>UPDATE</b>
-<pre>>
+<pre>
 UPDATE user
    SET password = '$password',
        firstName = '$firstName',
@@ -59,7 +39,7 @@ UPDATE user
  WHERE id = '$id'
 </pre>
 The above SQL <i>UPDATE</i> statemnet is translated in Zend_Db as follow:
-<pre>>
+<pre>
 $data = array('password' => $password,
               'firstName' => $firstName,
               'lastName' => $vlastname,
@@ -68,11 +48,11 @@ $db->update('user', $data, 'id = '.$id);
 </pre>
 </br>
 <b>DELETE</b>
-<pre>>
+<pre>
 DELETE FROM user WHERE id = '$id'
 </pre>
 The above SQL <i>DELETE</i> statemnet is translated in Zend_Db as follow:
-<pre>>
+<pre>
 $db->delete('user', 'id = '.$id);
 </pre>
 
@@ -104,11 +84,4 @@ $db->delete('user', 'id = '.$id);
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

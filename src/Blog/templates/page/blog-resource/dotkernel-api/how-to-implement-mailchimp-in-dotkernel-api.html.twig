@@ -1,26 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel-api/how-to-implement-mailchimp-in-dotkernel-api.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}How to implement MailChimp in Dotkernel API{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel API',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 <h2>This article will walk you through the process of implementing MailChimp into your instance of <a href="https://github.com/dotkernel/api">Dotkernel API</a> using <a href="https://github.com/drewm/mailchimp-api">drewm/mailchimp-api</a></h2>
 &nbsp;
 
@@ -119,11 +99,4 @@ After this, you can start using the library by <strong>@Inject</strong>ing <stro
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

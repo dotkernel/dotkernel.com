@@ -1,26 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel-api/content-negotiation-in-dotkernel-rest-api.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Content Negotiation in Dotkernel REST API{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel API',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 <h2></h2>
 
 <p class="mb-3">Content negotiation is an important aspect of RESTful APIs to make it possible for diverse systems to work seamlessly together. It's based on enabling clients and servers to agree on the format and language of data they exchange.</p>
@@ -166,11 +146,4 @@ https://www.example-api.com/record/47?format=json</pre>
 <p class="mb-3"><a rel="noreferrer noopener" href="https://docs.dotkernel.org/api-documentation/v5/core-features/content-validation/" target="_blank">Content Negotiation in Dotkernel API</a></p>
 
 <p class="mb-3"><a rel="noreferrer noopener" href="https://www.iana.org/assignments/media-types/media-types.xhtml" target="_blank">Content types on iana.org</a></p>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

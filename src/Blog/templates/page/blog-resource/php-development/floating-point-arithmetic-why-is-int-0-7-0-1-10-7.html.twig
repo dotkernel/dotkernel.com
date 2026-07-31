@@ -1,26 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/php-development/floating-point-arithmetic-why-is-int-0-7-0-1-10-7.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Floating-Point Arithmetic - Why is (int)((0.7+0.1)*10) = 7 ?{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'PHP Development',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 This article applies to <strong>PHP 5.x</strong> but also to <strong>PHP 7</strong>
 
 While using <strong>floating-point arithmetic</strong> you might have noticed that not all the calculus results are as expected, this can usually be observed when casting values.
@@ -119,11 +99,4 @@ For a more technical &amp; mathematical approach read <a href="http://docs.oracl
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

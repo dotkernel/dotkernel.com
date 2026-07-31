@@ -1,26 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/android/listen-for-android-install-referrer.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Listen for Android install referrer{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Android',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 <h2>Getting Referrer Data at Install Time</h2>
 
 <p class="mb-3">Have you ever wondered if Android market sends you information at the moment of app install? Wouldn't it be nice to create custom links to your Android application, including bits of information about the referrer, and send it directly to the app for processing at install? This could be a simple and accurate solution for mobile app install tracking, but I'm sure you can find this useful in many ways.</p>
@@ -43,11 +23,4 @@
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

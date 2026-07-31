@@ -1,26 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/architecture/configprovider-bootstrap-modern-php-applications.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}ConfigProvider - Bootstrap Modern PHP Applications{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Architecture',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 <p class="mb-3">In PHP, the <code>ConfigProvider</code> is a class that is part of an application's bootstrap process. <strong>It's a class or callable that returns configuration data telling the platform which middleware should run, in what order, and sometimes under what conditions.</strong></p>
 
 <p class="mb-3">If you're talking specifically about the ConfigProvider in the Laminas/Mezzio ecosystem, it's literally an array of configuration, settings, or anything else your application needs.</p>
@@ -184,11 +164,4 @@
 </ul>
 
 <p class="mb-3"></p>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

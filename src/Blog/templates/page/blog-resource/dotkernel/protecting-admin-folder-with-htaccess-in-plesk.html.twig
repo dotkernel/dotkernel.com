@@ -1,28 +1,8 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel/protecting-admin-folder-with-htaccess-in-plesk.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Protecting admin folder with .htaccess in Plesk{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 In <strong>/var/www/vhosts/exampledomain.com/conf/vhost.conf</strong> file add this code:
-<pre>>
+<pre>
 < Location /admin>
    AuthType Basic
    AuthName "My Site Admin"
@@ -32,7 +12,7 @@ In <strong>/var/www/vhosts/exampledomain.com/conf/vhost.conf</strong> file add t
 &nbsp;
 
 Notice the server that vhost.conf has been added/changed with command:
-<pre>>/usr/local/psa/admin/sbin/websrvmng -a</pre>
+<pre>/usr/local/psa/admin/sbin/websrvmng -a</pre>
 &nbsp;
 
 Then create the .htpasswd file and upload it to <strong>/var/www/vhosts/exampledomain.com/conf/</strong>
@@ -56,11 +36,4 @@ Then create the .htpasswd file and upload it to <strong>/var/www/vhosts/exampled
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

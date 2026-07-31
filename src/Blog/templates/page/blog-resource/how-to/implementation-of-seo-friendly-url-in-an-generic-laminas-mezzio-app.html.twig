@@ -1,26 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/how-to/implementation-of-seo-friendly-url-in-an-generic-laminas-mezzio-app.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Implementation of SEO friendly URL in an generic Laminas Mezzio app{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: "How to's",
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 <p class="mb-3"><strong>Prerequisites:</strong></p>
 
 <ul><li><a href="https://docs.mezzio.dev/" data-type="URL" data-id="https://docs.mezzio.dev/" target="_blank" rel="noreferrer noopener">Mezzio App</a></li>
@@ -118,11 +98,4 @@ protected string $slug;</code></pre>
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

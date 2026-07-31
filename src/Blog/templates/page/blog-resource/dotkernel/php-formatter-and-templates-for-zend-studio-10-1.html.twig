@@ -1,26 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel/php-formatter-and-templates-for-zend-studio-10-1.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}PHP Formatter and Templates for Zend Studio 10.1{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 Because Zend donated the Zend Studio's Formatter upstream to the PDT project, the Formatter plugin for Zend Studio 10.1 need to be changed: replace  "com.zend.php" to "org.eclipse.php".
 
 See  the updated file  <a href="http://www.dotkernel.com/download/?did=37" target="_blank" rel="noopener noreferrer">Dotkernel PHP Formatter for Zend Studio 10.1</a>
@@ -51,11 +31,4 @@ About Templates in Zend Studio and how to import/export: <a href="http://files.z
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

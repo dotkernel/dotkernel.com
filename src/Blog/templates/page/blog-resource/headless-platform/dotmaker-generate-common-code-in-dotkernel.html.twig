@@ -1,26 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/headless-platform/dotmaker-generate-common-code-in-dotkernel.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}DotMaker - Generate common code in Dotkernel{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Headless Platform',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 <p class="mb-3">The <code>dotkernel/dot-maker</code> library, also named DotMaker, is designed to <strong>programmatically generate project files and directories</strong> that match the Dotkernel file structure inspired by Mezzio.</p>
 
 <p class="mb-3">Handling the file creation and configuration task manually invites mistakes that nobody has time for. Enter DotMaker which provides a big <strong>productivity boost</strong> compared to doing everything manually by promoting <strong>consistenty and standardization</strong> for these common tasks.</p>
@@ -177,11 +157,4 @@ https://www.youtube.com/watch?v=CPDilXP2kAc
 
 <li><a href="https://symfony.com/bundles/SymfonyMakerBundle/current/index.html" target="_blank" rel="noreferrer noopener">Symfony Maker Bundle Documentation</a></li>
 </ul>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

@@ -1,26 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/best-practice/basic-security-in-dotkernel-headless-platform.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Basic Security in Dotkernel Headless Platform{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Best Practice',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 <p class="mb-3"><strong>Software security</strong> should always be in the back of your mind as a developer. It may seem fine at first to deliver a feature sooner, only to find later on that you left a backdoor into your crisp new update. You ignore security at your own risk, with potentially major costs to your personal or your organization's image, and to your client's trust in your abilities. The costs to recover the damages caused by a lacking security are sometimes astronomical, enough to put a company out of business.</p>
 
 <p class="mb-3">There are many facets of software security, meaning there are a lot of potential ways a hacker can access your code or your data fraudulently:</p>
@@ -246,11 +226,4 @@
 </ul>
 
 <p class="mb-3"></p>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

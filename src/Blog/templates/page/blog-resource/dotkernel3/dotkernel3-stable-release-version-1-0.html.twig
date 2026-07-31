@@ -1,26 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel3/dotkernel3-stable-release-version-1-0.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Dotkernel3 - Stable Release version 1.0{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel 3',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 Dotkernel was updated to support <strong><a href="https://docs.zendframework.com/zend-expressive/" target="_blank" rel="noopener noreferrer">Zend Expressive 3</a> </strong>alongside with <strong>PSR-15 </strong>middleware.
 
 We have updated the core packages to support <strong><a href="https://www.php-fig.org/psr/psr-15/" target="_blank" rel="noopener noreferrer">PSR-15 Middleware</a>.</strong>
@@ -127,11 +107,4 @@ If your project is a Dotkernel 3 instance (based on expressive 2), you can migra
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

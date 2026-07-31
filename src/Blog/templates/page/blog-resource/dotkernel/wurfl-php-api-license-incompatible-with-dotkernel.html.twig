@@ -1,26 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel/wurfl-php-api-license-incompatible-with-dotkernel.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}WURFL PHP API license incompatible with Dotkernel{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 We integrated long time ago the WURFL PHP API into Dotkernel code base. At that time, the license of that WURFL library was GNU/GPL, which make it perfect compatible with Zend Framework license( <strong>new BSD</strong>) and Dotkernel ( <strong>OSL 3.0</strong>). Everybody was happy, users was able to make web applications for them or for their customers without worry about licensing costs at all.
 
 On June 6th, 2011, the WURFL PHP API library was updated to version 1.3.0. So we updated too the latest Dotkernel 1.5.0 ( now in release candidate stage, soon to be released as stable) , without noticing the change on its license, from GNU/GPL to AGPL which suddenly transform it into a 'trial only' library, for "Product evaluation" only.
@@ -62,11 +42,4 @@ But we must keep <a href="http://www.dotkernel.com" target="_blank" rel="noopene
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

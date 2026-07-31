@@ -1,26 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/headless-platform/shared-core-submodule-in-dotkernel-headless-platform.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Shared Core Submodule in Dotkernel Headless Platform{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Headless Platform',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 <p class="mb-3"><strong>Dotkernel</strong> has implemented a <strong>Headless</strong> solution made up of these applications:</p>
 
 <ul><li><a href="https://github.com/dotkernel/api" target="_blank" rel="noreferrer noopener">Dotkernel API</a> - a REST API, the root of the platform.</li>
@@ -171,11 +151,4 @@ git submodule update</pre>
 </ul>
 
 <p class="mb-3"></p>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

@@ -1,26 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel/using-utf8-charset-in-dotkernel.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Using  UTF8 charset in Dotkernel{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 In order to use UTF8 encoding in your Dotkernel based system, is needed to make some changes in both database structure and in the application.ini file.
 <blockquote class="blockquote border-start border-4 ps-3 text-muted my-3">Those changes are commited into <strong>Dotkernel 1.6.0 dev</strong> codebase, which will be released in next days.</blockquote>
 <!--more-->
@@ -28,7 +8,7 @@ In order to use UTF8 encoding in your Dotkernel based system, is needed to make 
 set for all tables and columns proper collation , either <strong>utf8_general_ci</strong> or <strong>utf8_bin</strong>
 <h2>Application.ini</h2>
 add the line
-<pre>>database.params.charset = utf8</pre>
+<pre>database.params.charset = utf8</pre>
 to your application.ini file, in the <strong>[production]</strong> area.
 <h2>Differences between utf8_general_ci and utf8_bin</h2>
 <strong>utf8_bin</strong>: compare strings by the binary value of each character in the string
@@ -70,11 +50,4 @@ Those differences happens only on <strong>MySQL</strong> level ( for instance in
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

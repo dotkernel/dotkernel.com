@@ -1,26 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/php-development/aptana-php-installation-in-aptana-2-x.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Aptana PHP installation in Aptana 2.x{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'PHP Development',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 As all <a href="http://www.aptana.org/" target="_blank" rel="noopener noreferrer">aptana</a> fans know, <a href="http://www.aptana.org/php" target="_blank" rel="noopener noreferrer">Aptana PHP</a> plugin was discontinued in Aptana 2.x, in favor of PDT.
  But PDT is a joke, not suitable for professional PHP development, major features are missing.
  So if you want to continue using Aptana PHP, that's what need to be done:
@@ -36,11 +16,4 @@ In case you don't have yet a SVN plugin, go to
     <li>Others -> Subclipse</li>
     <li>Follow the instructions</li>
 </ol>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

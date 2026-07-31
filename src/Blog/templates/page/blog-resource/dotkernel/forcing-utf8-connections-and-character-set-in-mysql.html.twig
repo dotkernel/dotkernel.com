@@ -1,37 +1,17 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel/forcing-utf8-connections-and-character-set-in-mysql.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Forcing UTF8 connections and character set in MySQL{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 In some situations, it may be neccesar to force MySQL server collation and character set to UTF8.
 As you can't control all scripts that are connecting to your database( for instance: mysql command line, or mysqldump)
 
 For that , open the my.cnf file
 and add the below lines:
-<pre>>character_set_server=utf8
+<pre>character_set_server=utf8
 skip-character-set-client-handshake</pre>
 If you are interested in better performance, add the below line:
-<pre>>collation_server=utf8_general_ci</pre>
+<pre>collation_server=utf8_general_ci</pre>
 If you are interested in better sorting order, add the below line instead:
-<pre>>collation_server=utf8_unicode_ci</pre>
+<pre>collation_server=utf8_unicode_ci</pre>
 
 <h2 id="user-content-faq">Frequently Asked Questions</h2>
 
@@ -55,11 +35,4 @@ If you are interested in better sorting order, add the below line instead:
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

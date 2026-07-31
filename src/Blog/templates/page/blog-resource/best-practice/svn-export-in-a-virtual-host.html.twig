@@ -1,26 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/best-practice/svn-export-in-a-virtual-host.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}SVN Export in a virtual host{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Best Practice',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 The following commands should be run in the terminal (for example, using Putty in Windows) on the host where you want to export the repository). It's recommended that you run them using the domain's user, not root.
 
 First make sure that Subversion is installed on the host. To check if it is installed, run:
@@ -44,13 +24,13 @@ The command looks like this:<pre>svn export repositoryUrl repositoryUrl</pre>
     <li><strong>--force</strong> - <em>optional</em> - by default SVN will not export in an existing directory. if you want to override this, you have to use the <em>force</em> parameter. <strong>Be careful, this option can overwrite files</strong></li>
 </ul>
 Examples:
-<pre>>svn export http://v1.dotkernel.net/svn/trunk ./ --force
+<pre>svn export http://v1.dotkernel.net/svn/trunk ./ --force
 svn export -r 423 http://v1.dotkernel.net/svn/trunk ./ --force
 svn export http://v1.dotkernel.net/svn/trunk /var/www/vhosts/domain.com/httpdocs/dk</pre>
 For more information, you can run <strong>svn help export</strong>.
 
 If you've exported the repository using a different user (root for example), you can change the permissions back by running the following command as root:
-<pre>>chown -R siteuser.psacln /var/www/vhosts/example.com/httpdocs</pre>
+<pre>chown -R siteuser.psacln /var/www/vhosts/example.com/httpdocs</pre>
 
 <h2 id="user-content-faq">Frequently Asked Questions</h2>
 
@@ -86,11 +66,4 @@ If you've exported the repository using a different user (root for example), you
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

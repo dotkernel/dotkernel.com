@@ -1,26 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel/logging-with-dot-log-in-zend-expressive-and-dotkernel.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Logging with dot-log in Zend Expressive and Dotkernel{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 This article will explain the usage of the <strong><a href="https://github.com/dotkernel/dot-log" target="_blank" rel="noopener noreferrer">dot-log</a> </strong>component within Dotkernel, Zend Expressive or in a project that uses Zend Service Manager.
 
 Since dot-log extends zendframework/zend-log this tutorial mostly compatible with zend-log as well.
@@ -293,11 +273,4 @@ $logger-&gt;log(Logger::NOTICE, 'NOTICE from log()');</pre>
 This article will be continued in a different article that treats the error handling in middleware applications.
 
 &nbsp;
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

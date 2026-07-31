@@ -1,26 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel/wurfl-cloud-integration-in-dotkernel-1-6-0.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Wurfl Cloud Integration in Dotkernel 1.6.0{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 Another new feature in version 1.6.0 of Dotkernel is the integration of Wurfl Cloud.
 
 Wurfl or Wireless Universal Resource FiLe is coming with a new way to deliver their services of device detection and they named it Wurfl Cloud.
@@ -37,7 +17,7 @@ Quick steps to have a functional device detection in Dotkernel.
     <li>choose <strong>device_os</strong> and <strong>mobile_browser</strong> as your capabilities</li>
     <li>copy your API Key in application.ini in Dotkernel</li>
 </ul>
-<pre>>resources.useragent.wurflcloud.api_key = 000000:XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</pre>
+<pre>resources.useragent.wurflcloud.api_key = 000000:XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</pre>
 Now you can test it by changing the user agent in your browser to a mobile device and access your project. Now you can see that you are redirected to the mobile module.
 
 To see how mobile detection is working in Dotkernel read this <a title="Detecting Mobile Devices in Dotkernel 1.6.0" href="http://www.dotkernel.com/?p=1465">post</a>.
@@ -70,11 +50,4 @@ To see how mobile detection is working in Dotkernel read this <a title="Detectin
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

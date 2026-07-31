@@ -1,26 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel-api/api-client-migration-from-postman-to-bruno.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}API Client Migration: From Postman to Bruno{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel API',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 <h2>Why We Switched to the Offline-Focused Bruno</h2>
 
 <p class="mb-3">Every API developer knows that to build an API properly <strong>you need a reliable client for testing and interacting with the API</strong>. Ideally this tool should be free, it should store endpoint collections and share them easily with your team, and it should be fast and secure.</p>
@@ -155,11 +135,4 @@
 <h2 id="user-content-additional-resources">Additional Resources<a href="#additional-resources"></a></h2>
 
 <p class="mb-3"><a href="https://www.usebruno.com/" rel="noreferrer noopener" target="_blank">Bruno homepage</a></p>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

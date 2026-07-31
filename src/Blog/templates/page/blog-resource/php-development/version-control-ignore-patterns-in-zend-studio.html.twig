@@ -1,26 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/php-development/version-control-ignore-patterns-in-zend-studio.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Version Control Ignore Patterns in Zend Studio{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'PHP Development',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 In order to globally manage the <a href="http://www.dotkernel.com/best-practice/svn-keywords-setup-in-php-ide-zend-studio/" target="_blank" rel="noopener noreferrer">"Ignored Resources"</a>  patterns in Zend Studio, for all projects , instead of manually add to each project, you can do the following:
 
 1. Go to <strong>Window</strong>-&gt; <strong>Preferences</strong>
@@ -53,11 +33,4 @@ Also, on each project, you can use either global ignored  patterns, or use spec
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

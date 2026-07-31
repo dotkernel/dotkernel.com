@@ -1,26 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/how-to/using-postman-for-documentation-in-dotkernel-api-3.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Using Postman for documentation  in Dotkernel API 3{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: "How to's",
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 <h2>Using Postman documentation in Dotkernel API 3</h2>
 
 <p class="mb-3">Starting from version 3.0 Dotkernel API provides it's documentation using <a href="https://www.postman.com/" data-type="URL" data-id="https://www.postman.com/" target="_blank" rel="noreferrer noopener">Postman</a>.</p>
@@ -164,11 +144,4 @@ VARIABLE               INITIAL VALUE                CURRENT_VALUE
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

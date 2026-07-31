@@ -1,26 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel-api/dotkernel-api-1-0-0-released.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Dotkernel API 1.0.0 Released{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel API',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 <blockquote><p class="mb-3">Dotkernel API has come a long way since this post was created. <a href="https://www.dotkernel.com/headless-platform/version-7-adds-postgresql-native-uuid-and-php-8-5/" data-type="link" data-id="https://www.dotkernel.com/headless-platform/version-7-adds-postgresql-native-uuid-and-php-8-5/">Check out the newest version of Dotkernel API</a> to stay up to date with the latest functional and security features.</p>
 </blockquote>
 
@@ -78,11 +58,4 @@
     </details>
 </div>
 <p class="mb-3"> </p>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

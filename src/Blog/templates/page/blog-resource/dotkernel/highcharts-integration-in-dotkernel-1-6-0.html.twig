@@ -1,26 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel/highcharts-integration-in-dotkernel-1-6-0.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Highcharts Integration in Dotkernel 1.6.0{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 Integrating a new charting library in the latest version of Dotkernel (1.6.0) we offer a new experience with this new intuitive and interactive charts.
 
 <!--more-->
@@ -30,7 +10,7 @@ Also in admin we made some samples using highcharts. These samples includes an p
 You can find highcharts library in the <strong>externals </strong>directory.
 
 Take a quick view on the code to see how highcharts are working.
-<pre>>chart = new Highcharts.Chart({
+<pre>chart = new Highcharts.Chart({
         chart: {
             renderTo: elementId,
             type: 'line',
@@ -94,11 +74,4 @@ Take a quick view on the code to see how highcharts are working.
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

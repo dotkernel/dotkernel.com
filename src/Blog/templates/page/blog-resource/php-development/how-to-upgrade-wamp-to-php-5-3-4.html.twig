@@ -1,26 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/php-development/how-to-upgrade-wamp-to-php-5-3-4.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}How To Upgrade Wamp to PHP 5.3.4{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'PHP Development',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 <div id="_mcePaste">1.    Stop WAMP server.</div>
 <div id="_mcePaste">2.    Go to <a href="http://windows.php.net/download/" target="_blank" rel="noopener noreferrer">windows.php.net</a> and download the the latests ZIPPED package for php5.3.4.</div>
 <div id="_mcePaste">Make sure it is the <strong>VC6 Thread Safe build</strong>. DO NOT DOWNLOAD THE INSTALLER.</div>
@@ -80,11 +60,4 @@
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

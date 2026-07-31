@@ -1,26 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel3/dotkernel-admin-v4.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Dotkernel Admin V4{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel 3',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 <h2>Getting Started with Dotkernel Admin V4</h2>
 
 <p class="mb-3"><strong><a rel="noreferrer noopener" href="https://github.com/dotkernel/admin" target="_blank">Dotkernel's PSR-7 Admin</a> </strong> is an application based on <strong><a rel="noreferrer noopener" href="https://getlaminas.org/" target="_blank">Mezzio</a></strong>, with the main purpose of managing and displaying tabular data from one or more databases components.</p>
@@ -254,11 +234,4 @@
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

@@ -1,35 +1,15 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel/disable-wurfl-redirect-for-mobile-browsers.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Disable Wurfl redirect for mobile browsers{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 Dotkernel has an example mobile site at <a href="http://v1.dotkernel.net/mobile" target="_blank" rel="noopener noreferrer">http://v1.dotkernel.net/mobile</a> that uses <a href="http://jquerymobile.com/">jQuery Mobile</a>.
 
 Wurfl is also used to detect mobile browsers (as discussed in a <a href="http://www.dotkernel.com/dotkernel/wurfl-zend-framework-integration-into-dotkernel/">previous blog post</a>) and automatically redirect them to the mobile site the first time they view the homepage. Sometimes, this behavior isn't desired (for example when you don't have a mobile site, or you don't plan on using Wurfl at all)
 
 Starting with revision 408, there's an option in <strong>application.ini</strong> to disable the automatic redirect (by default the redirect is disabled):
 <!--more-->
-<pre>>resources.useragent.wurflapi.redirect = false</pre>
+<pre>resources.useragent.wurflapi.redirect = false</pre>
 The following condition is also added to <strong>Controllers/frontend/IndexController.php</strong> (at line 19) to check the configuration:
-<pre>>//if automatic redirect is enabled in application.ini and the browser is mobile and session->mobileHit is not set, register it and redirect
+<pre>//if automatic redirect is enabled in application.ini and the browser is mobile and session->mobileHit is not set, register it and redirect
 if($config->resources->useragent->wurflapi->redirect && 'mobile' == Dot_Kernel::getDevice()->getType() && !isset($session->mobileHit))</pre>
 
 <h2 id="user-content-faq">Frequently Asked Questions</h2>
@@ -48,11 +28,4 @@ if($config->resources->useragent->wurflapi->redirect && 'mobile' == Dot_Kernel::
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

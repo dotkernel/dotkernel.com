@@ -1,26 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel/dotkernel-light-the-best-choice-for-your-presentation-site.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Dotkernel Light: the best choice for your presentation site{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 <h2></h2>
 
 <p class="mb-3"><strong>Dotkernel Light </strong>is a good starting point for a project if you want to have <strong>full control over the functionality </strong>it contains. It <strong>easily grows </strong>into something more complex with the integration of packages based on your requirements.</p>
@@ -232,11 +212,4 @@
 
 <li>More from <a href="https://github.com/dotkernel" target="_blank" rel="noreferrer noopener">Dotkernel</a></li>
 </ul>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

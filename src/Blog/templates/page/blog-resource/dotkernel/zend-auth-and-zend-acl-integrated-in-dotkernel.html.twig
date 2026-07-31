@@ -1,26 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel/zend-auth-and-zend-acl-integrated-in-dotkernel.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Zend_Auth and Zend_Acl integrated in Dotkernel{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 <a href="http://framework.zend.com/manual/en/zend.auth.html" target="_blank" rel="noopener noreferrer">Zend_Auth</a> and <a href="http://framework.zend.com/manual/en/zend.acl.html" target="_blank" rel="noopener noreferrer">Zend_Acl</a> have been integrated into the Dotkernel, starting with version 1.5.0
 
 With the integration of these two major components for user authorization and access we completely refactored the User and Admin models by using <em>Dot_Auth</em> and <em>Dot_Acl</em> classes.
@@ -28,7 +8,7 @@ With the integration of these two major components for user authorization and ac
 <!--more-->
 
 The <em>Dot_Auth</em> class authenticates the user by checking the database – <span style="color: #666699;"><em>Zend_Auth_Adapter_DbTable</em></span>.
-<pre>>private function _getAuthAdapter($who)
+<pre>private function _getAuthAdapter($who)
     {
         $dbAdapter = Zend_Registry::get('database');
         $authAdapter = new Zend_Auth_Adapter_DbTable($dbAdapter);
@@ -48,9 +28,9 @@ The <em>Dot_Acl</em> class
     <li><em></em>uses Zend_Acl,  for checking if a role (user) has access to a resource (controller)</li>
 </ul>
 <em>Dot_Auth</em> calls the <span style="color: #666699;"><em>isAllowed </em></span>method from <em>Dot_Acl</em> which authenticates the user.
-<pre>>// instantiate Zend_Acl
+<pre>// instantiate Zend_Acl
 $this-&gt;acl = new Zend_Acl();</pre>
-<pre>>public function isAllowed($role)
+<pre>public function isAllowed($role)
     {
         $resource = $this-&gt;requestControllerProcessed;
         $privillege = $this-&gt;requestAction;
@@ -64,7 +44,7 @@ $this-&gt;acl = new Zend_Acl();</pre>
         }
     }</pre>
 <em>IndexController.php</em> is calling <em>Dot_Auth</em>
-<pre>>$dotAuth = Dot_Auth::getInstance();
+<pre>$dotAuth = Dot_Auth::getInstance();
 $dotAuth-&gt;checkIdentity('user');</pre>
 
 <h2 id="user-content-faq">Frequently Asked Questions</h2>
@@ -101,11 +81,4 @@ $dotAuth-&gt;checkIdentity('user');</pre>
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

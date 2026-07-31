@@ -1,26 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/how-to/using-the-urlgenerator-work-in-fastroute.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Using the URLGenerator work in FastRoute{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: "How to's",
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 Dotkernel 3 uses <code>FastRoute</code> under the hood, which is an excellent and fast routing package, but it does have some <strong>quirks</strong>.
 
 A wrong setup can lead to many headaches, as it's not prominent that the error you're experiencing is from FastRoute, and you may not know where exactly to look for the cause.
@@ -28,19 +8,19 @@ A wrong setup can lead to many headaches, as it's not prominent that the error y
 To save you some time, here's a how-to for creating and using routes in <code>Dotkernel 3</code>.
 <h2>Declaring routes</h2>
 When defining routes in the <em>routes.php</em> file, they need to follow a specific pattern, a usual route would look like this:
-<pre>>$app-&gt;route('/page', , , 'page');</pre>
+<pre>$app-&gt;route('/page', , , 'page');</pre>
 <blockquote class="blockquote border-start border-4 ps-3 text-muted my-3">Notice the <em>'</em><strong>/page</strong><em>'</em> part, as this is crucial. FastRoute cannot handle a <em>slash-suffix</em>, which means that <strong>/page</strong> will give you the indexAction, whereas <strong>/page/</strong> will give you a 404.</blockquote>
 To prevent the URLGenerator from adding a slash-suffix, we need to make sure that the optional slash is included in the optional block. <strong>The above example is correct</strong>, if we instead wrote it like this, it'd be woefully bad.
-<pre>>$app-&gt;route('/page/', , , 'page');</pre>
+<pre>$app-&gt;route('/page/', , , 'page');</pre>
 <blockquote class="blockquote border-start border-4 ps-3 text-muted my-3">Notice that the slash has changed places and is now outside the optional block. This would generate a <strong>/page/</strong> route for the index action, which is bad, so always include any optional parts, even slashes, in the optional block.</blockquote>
 <h2>Referencing routes</h2>
 Developers are used to hand-write and hard-code URLs into anchor tags, but this is a bad idea, as a URL may change and then you'd have to go through the entire app to find every single reference for it. Instead, every route we define has a name that can be used to reference it in the URLGenerator.
-<pre>>$app-&gt;route('/page', , , 'page');</pre>
+<pre>$app-&gt;route('/page', , , 'page');</pre>
 <blockquote class="blockquote border-start border-4 ps-3 text-muted my-3">That very last part there, that's the route name, which can be referenced in any view or controller to generate a route to a specific route in the app.</blockquote>
 To use it in a Controller, you have access to <code>$this-&gt;url();</code> which takes the route name, in this case, '<strong>page</strong>', as the first parameter, and then any optional blocks as the second parameter.
 
 A controller redirect may then look like this:
-<pre>>return new RedirectResponse($this-&gt;url('contact', ['action' =&gt; 'thank-you']));</pre>
+<pre>return new RedirectResponse($this-&gt;url('contact', ['action' =&gt; 'thank-you']));</pre>
 Using the URLGenerator in views is approximately the same, since you have access to the global <code>path()</code> method.
 
 The path method works the same way as the <code>url()</code> method, and takes the route name as the first parameter, and any optional blocks as its second parameter. This is of course done in <code>Twig</code>, so we need to put curly brackets around it since it's dynamic and not static HTML. It could look like this:
@@ -74,11 +54,4 @@ The path method works the same way as the <code>url()</code> method, and takes t
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

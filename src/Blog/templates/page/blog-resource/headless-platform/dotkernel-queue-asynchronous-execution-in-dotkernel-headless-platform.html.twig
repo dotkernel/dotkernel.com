@@ -1,26 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/headless-platform/dotkernel-queue-asynchronous-execution-in-dotkernel-headless-platform.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Dotkernel Queue - Asynchronous Execution in Dotkernel Headless Platform{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Headless Platform',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 <p class="mb-3"><a href="https://github.com/dotkernel/queue" target="_blank" rel="noreferrer noopener">Dotkernel Queue</a> is a component based on <a href="https://github.com/symfony/messenger" target="_blank" rel="noreferrer noopener">Symfony Messenger</a> that is used to queue asynchronous tasks. <a href="https://github.com/netglue/laminas-messenger" target="_blank" rel="noreferrer noopener">netglue/laminas-messenger</a> is an adapter that integrates Symfony Messenger with the <a href="https://docs.laminas.dev/laminas-servicemanager/" data-type="link" data-id="https://docs.laminas.dev/laminas-servicemanager/" target="_blank" rel="noreferrer noopener">Laminas Service Manager</a> container for Mezzio/Laminas applications.</p>
 
 <p class="mb-3">Some everyday <strong>operations are time-consuming and resource-intensive</strong>, so it's best if they run on separate machines, decoupled from the regular request-response cycle. With the addition of <strong>asynchronous execution</strong> performed by background workers, you can ensure that these operations are not lost, terminated by PHP because of timeouts, or interrupted by new requests. The most important benefit is that you <strong>prevent the main platform from overloading</strong>, allowing it to return a response, remain responsive for new requests, while the heavy lifting is scheduled to run later.</p>
@@ -196,11 +176,4 @@
 
 <li><a href="https://sensiolabs.com/blog/2025/how-to-prioritize-messages-when-building-asynchronous-applications-with-symfony-messenger" target="_blank" rel="noreferrer noopener">How To Prioritize Messages When Building Asynchronous Applications With Symfony Messenger</a></li>
 </ul>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

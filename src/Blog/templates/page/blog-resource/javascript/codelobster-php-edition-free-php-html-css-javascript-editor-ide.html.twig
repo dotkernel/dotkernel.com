@@ -1,26 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/javascript/codelobster-php-edition-free-php-html-css-javascript-editor-ide.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Codelobster PHP Edition - Free PHP, HTML, CSS, JavaScript editor (IDE){% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Javascript',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 <h2>Free PHP, HTML, CSS, JavaScript editor (IDE) - Codelobster PHP Edition</h2>
 <div ><img title="Free PHP, HTML, CSS, JavaScript editor (IDE) - Codelobster PHP Edition" alt="Free PHP, HTML, CSS, JavaScript editor (IDE) - Codelobster PHP Edition" src="http://www.codelobster.com/images/clphped.gif" width="582" height="420" ></div>
 <p >For valuable work on creation of sites you need a good comfortable editor necessarily. There are many requiring paid products for this purpose, but we would like to select free of charge very functional and at the same time of simple in the use editor - <strong><a href="http://www.codelobster.com/" target="_blank" rel="noopener noreferrer">Codelobster PHP Edition</a></strong> .</p>
@@ -76,11 +56,4 @@
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

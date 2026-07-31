@@ -1,26 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel/geoip-city-removed-from-dotkernel.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}GeoIP City Removed From Dotkernel{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 In the newest version we have removed the GeoIP City integration. The City database on <em><strong>GeoIP 1.1.0</strong></em> extension was causing a segmentation fault, which resulted in crashing or outputting an error instead of executing the PHP Code.
 
 <!--more-->
@@ -30,7 +10,7 @@ This error occurs due to the extension incompatibility with the database(dat) fi
 On some operating systems Apache will respond your request with HTTP Status Code 200 (OK) and a web page containing the text below.
 
 Error result:
-<pre>>The server encountered an internal error or
+<pre>The server encountered an internal error or
  misconfiguration and was unable to complete
  your request.</pre>
 The error might not be logged as the error is generated the GeoIP extension and not by your PHP code.
@@ -39,7 +19,7 @@ If you don't want to use GeoIP City and just want to get rid of the error go to
 <ul>
     <li>Dotkernel/admin/System.php (Admin/System model) and comment or remove the lines below</li>
 </ul>
-<pre>>if(geoip_db_avail(GEOIP_CITY_EDITION_REV0))
+<pre>if(geoip_db_avail(GEOIP_CITY_EDITION_REV0))
 {
     $info = explode(" ",geoip_database_info(GEOIP_CITY_EDITION_REV0));
     $return = $info.' '.Dot_Kernel::TimeFormat($info);
@@ -47,7 +27,7 @@ If you don't want to use GeoIP City and just want to get rid of the error go to
 <ul>
     <li>library/Dot/GeoIp.php (Dot_GeoIp class) and comment or remove the lines below</li>
 </ul>
-<pre>>if(function_exists('geoip_db_avail') && geoip_db_avail(GEOIP_CITY_EDITION_REV0)
+<pre>if(function_exists('geoip_db_avail') && geoip_db_avail(GEOIP_CITY_EDITION_REV0)
 && 'unknown' == $country)
 {
     //if GeoIPCity.dat file exists
@@ -100,11 +80,4 @@ Note that GeoIP is an obsolete extension, Maxmind recommends using GeoIP2.
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

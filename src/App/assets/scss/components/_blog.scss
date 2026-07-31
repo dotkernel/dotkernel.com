@@ -503,3 +503,128 @@ $bp-tablet: 900px;
     flex-shrink: 0;
   }
 }
+
+// ---------- Copy page / view as markdown / open in Claude dropdown ----------
+.md-actions {
+  position: relative;
+  display: inline-flex;
+}
+
+.md-actions-toggle {
+  display: inline-flex;
+  align-items: stretch;
+  padding: 0;
+  border-radius: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-family: var(--sans);
+  font-size: 13px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: box-shadow .15s ease, border-color .15s ease, color .15s ease;
+
+  svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+  }
+
+  .chev {
+    width: 12px;
+    height: 12px;
+    transition: transform .15s ease;
+  }
+
+  &:hover {
+    border-color: var(--text-dim);
+    color: var(--text);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .12);
+  }
+}
+
+.md-actions-toggle-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+}
+
+.md-actions-toggle-chev {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-left: 1px solid var(--border);
+}
+
+.md-actions.open .md-actions-toggle {
+  border-color: var(--text-dim);
+  color: var(--text);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .12);
+}
+
+.md-actions.open .md-actions-toggle .chev {
+  transform: rotate(180deg);
+}
+
+.md-actions-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 240px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, .18);
+  padding: 6px;
+  display: none;
+  flex-direction: column;
+  gap: 2px;
+  z-index: 20;
+}
+
+.md-actions.open .md-actions-menu {
+  display: flex;
+}
+
+.md-actions-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 13px;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    color: var(--text-dim);
+    flex-shrink: 0;
+  }
+
+  &:hover {
+    background: var(--surface-2);
+    color: var(--amber);
+
+    svg {
+      color: var(--amber);
+    }
+  }
+}
+
+.md-actions-bar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 12px;
+
+  & + h2 {
+    margin-top: 0;
+  }
+}

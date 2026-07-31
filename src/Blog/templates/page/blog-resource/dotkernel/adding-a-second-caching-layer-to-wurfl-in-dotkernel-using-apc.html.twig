@@ -1,29 +1,7 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel/adding-a-second-caching-layer-to-wurfl-in-dotkernel-using-apc.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Adding a second caching layer to WURFL in Dotkernel using APC{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 On one of our recent projects that used WURFL, response time was an important factor. Profiling revealed that the greatest chunk of response time (up to a few hundred milliseconds) was taken up by WURFL. We realized that its default filesystem cache was too slow for our needs, especially with a relatively high traffic application.
-
-<!--more-->
 
 If you're not familiar with how WURFL's caching works, here's a brief introduction:
 <ol>
@@ -75,11 +53,4 @@ This small change (under 10 lines of code), decreased our response time by an <s
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

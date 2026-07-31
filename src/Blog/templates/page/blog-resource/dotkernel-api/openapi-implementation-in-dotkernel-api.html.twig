@@ -1,26 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel-api/openapi-implementation-in-dotkernel-api.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}OpenAPI implementation in Dotkernel API{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel API',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 <h2>What is OpenAPI?</h2>
 
 <p class="mb-3">The <strong>OpenAPI Specification </strong>provides a consistent way to develop and interact with an API. It <strong>defines API structure and syntax </strong>in a universal way, regardless of the programming language used in the API's development. API specifications typically use <strong>YAML </strong>or <strong>JSON </strong>to share and use the specification. They allow users of the API to quickly discover how it works by describing its elements, e.g. endpoints, request and response formats, security mechanisms and more.</p>
@@ -163,11 +143,4 @@
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

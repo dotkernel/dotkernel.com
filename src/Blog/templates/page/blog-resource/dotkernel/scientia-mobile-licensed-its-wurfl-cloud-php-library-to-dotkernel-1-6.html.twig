@@ -1,26 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel/scientia-mobile-licensed-its-wurfl-cloud-php-library-to-dotkernel-1-6.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Scientia Mobile licensed its Wurfl Cloud PHP library to Dotkernel 1.6{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 In the Dotkernel version 1.6.0 , released on May 16th, 2012 we have removed the GPL'ed WURFL PHP library , as the code it was obsolete anyway and also the structure of the XML file was changed.
 
 Instead , we implemented the <a title="Scientia Mobile" href="http://www.scientiamobile.com/" target="_blank" rel="noopener noreferrer">Scientia Mobile's </a>WURFL Cloud PHP  library .
@@ -69,11 +49,4 @@ and regardless of whether the code is not obfuscated.</blockquote>
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

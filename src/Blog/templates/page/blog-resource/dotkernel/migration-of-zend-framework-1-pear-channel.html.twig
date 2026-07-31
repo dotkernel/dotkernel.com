@@ -1,26 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel/migration-of-zend-framework-1-pear-channel.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Migration of Zend Framework 1 PEAR channel{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 The unofficial <strong>PEAR channel for Zend Framework 1</strong> was hosted on Google Code at this location: <a href="http://code.google.com/p/zend/" target="_blank" rel="noopener noreferrer">ZF Pear</a>, but since the closing of Google Code we were forced to move it.
 
 Zend Framework 1 is still used by a lot of&nbsp; projects in Production, it's still a viable library collection&nbsp; and it's also&nbsp; running on&nbsp; PHP7 ; even if is only in maintenance/security-patch mode, so it's not an option to cancel it completely.
@@ -32,13 +12,13 @@ Instructions on how to use the new channel can be found below .
 Use the PEAR installer:
 
 1. Remove the installed pear package
-<pre>>pear uninstall zend/zend</pre>
+<pre>pear uninstall zend/zend</pre>
 2. Remove the old googlecode channel
-<pre>>pear channel-delete zend.googlecode.com/svn</pre>
+<pre>pear channel-delete zend.googlecode.com/svn</pre>
 3. Discover the new channel
-<pre>>pear channel-discover pear.dotkernel.com/zf1/svn</pre>
+<pre>pear channel-discover pear.dotkernel.com/zf1/svn</pre>
 4. Install the package
-<pre>>pear install zend/zend</pre>
+<pre>pear install zend/zend</pre>
 Follow <a href="https://twitter.com/dotkernel" target="_blank" rel="noopener noreferrer">@dotkernel&nbsp; </a> in order to be up to date related to new releases.
 
 &nbsp;
@@ -71,11 +51,4 @@ Follow <a href="https://twitter.com/dotkernel" target="_blank" rel="noopener nor
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

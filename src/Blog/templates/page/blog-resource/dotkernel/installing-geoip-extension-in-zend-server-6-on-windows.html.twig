@@ -1,26 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel/installing-geoip-extension-in-zend-server-6-on-windows.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Installing GeoIP extension in Zend Server 6 on Windows{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 As an update to the post <a title="Installing GeoIP extension in Zend Server" href="http://www.dotkernel.com/dotkernel/installing-geoip-extension-in-zend-server-5-6-on-windows/" target="_blank" rel="noopener noreferrer">Installing GeoIP extension in Zend Server 5.6 on Windows </a>, for Zend Server 6.1 , you can do the following:
 <ol>
     <li>Download the php_geoip-1.0.8-5.4-nts-vc9-x86.zip file from <a href="http://windows.php.net/downloads/pecl/releases/geoip/1.0.8/">http://windows.php.net/downloads/pecl/releases/geoip/1.0.8/</a></li>
@@ -59,11 +39,4 @@ As an update to the post <a title="Installing GeoIP extension in Zend Server" hr
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

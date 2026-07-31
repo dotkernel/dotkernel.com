@@ -1,26 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/middleware/handling-dynamic-routing-using-fastroute-in-dotkernel.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Handling dynamic routing using FastRoute in Dotkernel{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Middleware',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 <p class="mb-3">The goal of this update is to replace the static way of creating routes with a more dynamic implementation. The result is a cleaner approach that is easier to set up and review at a glance.</p>
 
 <p class="mb-3"><code>RoutesDelegator.php</code> is used to configure the routes in Dotkernel applications. <code>Routing </code>allows web applications to respond to user requests by executing the correct code based on URL paths. The dynamic aspect discussed in this article moves the relevant items for each route into the <code>local.php</code> file. The RoutesDelegator then reads the route configuration and generates the routes.</p>
@@ -165,11 +145,4 @@ foreach ($routes as $prefix => $moduleRoutes) {
 <p class="mb-3"><a href="https://github.com/nikic/FastRoute" target="_blank" rel="noreferrer noopener">FastRoute</a></p>
 
 <p class="mb-3"></p>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

@@ -1,26 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel/caching-in-dotkernel-using-zend-framework.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Caching in Dotkernel using Zend Framework{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 It's very expensive to load configurations and settings from XML files, on every requests.
 
 First because of latency of accessing files from hard drive, second because of the XML
@@ -39,11 +19,11 @@ For more info about the configuration and help configuring the cache see: <a tit
 The cache is automatically loaded in the initialization and stored in the Registry.
 
 Loading the caching engine is not needed because it is already loaded on kernel initialization (<em>see <strong>Dot_Kernel</strong>::<strong>initialize</strong>($startTime)</em>)<em>,</em> but if you would like to use caching for other purposes (where you are not initializing the kernel), the loading syntax is the following:
-<pre>>Dot_Cache::loadCache();</pre>
+<pre>Dot_Cache::loadCache();</pre>
 Below is a simple object caching sample, yes, you can also cache objects.
 <br>
 <span style="color: #ff0000;">Note: The cache key must match the following RegEx pattern: </span><strong>[A-Za-z0-9_]*</strong>
-<pre>>$id = 'MyCachedKey';
+<pre>$id = 'MyCachedKey';
 $obj = new stdClass();
 $obj->text = 'I am a cached text';
 
@@ -98,11 +78,4 @@ else
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

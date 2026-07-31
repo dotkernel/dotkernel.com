@@ -1,32 +1,12 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/best-practice/subqueries-with-zend-db.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Subqueries with Zend_Db{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Best Practice',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 Continuing the Zend_DB article <a href="http://www.dotkernel.com/dotkernel/sql-select-zend-db/" target="_blank" rel="noopener noreferrer">series</a>, we are stopping now at subqueries.
 </br>
 As you note, the below is a complicate query, with <i>COUNT()</i>, <i>LEFT JOIN()</i>, <i>GROUP BY</i>
  - select from 3 tables, and make a count from 2 different tables:
 <!--more-->
-<pre>>
+<pre>
 SELECT a.id,
        a.title,
        (SELECT COUNT(c.track_id)
@@ -40,11 +20,11 @@ GROUP BY a.id
 </pre>
 </br>
 Initialize the connection to our MySql database:
-<pre>>
+<pre>
 $db = Zend_Db::factory('Pdo_Mysql', $dbConnect);
 </pre>
 </br>
-<pre>>
+<pre>
 $db->select()
    ->from(array('a'=>'tracks'),
          array('id',
@@ -85,11 +65,4 @@ $db->select()
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

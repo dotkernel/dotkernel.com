@@ -1,26 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/zend-framework/zend-mail-and-zend-http-security-fixes-in-zend-framework-1-12-12.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Zend_Mail and Zend_Http Security Fixes in Zend Framework 1.12.12{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Zend Framework',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 The release of ZF 1.12.12 was just announced,  with Security Updates especially on
 Zend_Mail and Zend_Http components.
 
@@ -45,11 +25,4 @@ If you cannot, you can download the patch separately and apply it to your ZF ins
 Zend Framework 1.12.13 was released, in order to fix a regression issue introduced in 1.12.12 release.
 
 <a href="http://framework.zend.com/blog/zend-framework-1-12-13-released.html" target="_blank" rel="noopener noreferrer">Release Announcement </a>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

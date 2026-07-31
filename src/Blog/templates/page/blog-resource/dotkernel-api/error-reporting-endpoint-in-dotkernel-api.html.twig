@@ -1,26 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel-api/error-reporting-endpoint-in-dotkernel-api.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Error reporting endpoint in Dotkernel API{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel API',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 <h2></h2>
 
 <p class="mb-3">Dotkernel API has received a lot of love from our developers, with regular updates to the platform for years. We use Dotkernel API in our projects, so any bugs and issues are addressed as soon as they are found. Still, it's not unlikely that some hidden issues remain in fringe use cases that we simply haven't explored. The occurrence of bugs increases when the API is used in a complex frontend project.</p>
@@ -136,11 +116,4 @@ return ,
 <p class="mb-3">The error reporting feature in Dotkernel API is a secured and highly configurable tool for users of your API to report any unwanted behavior. More often than not, a detailed error report will help developers understand how to replicate the issue and fix it in due course.</p>
 
 <p class="mb-3">This article is also included in the full API documentation <a href="https://docs.dotkernel.org/api-documentation/v5/core-features/error-reporting" target="_blank" rel="noreferrer noopener">https://docs.dotkernel.org/api-documentation/v5/core-features/error-reporting</a>.</p>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

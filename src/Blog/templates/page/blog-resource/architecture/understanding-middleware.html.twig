@@ -1,26 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/architecture/understanding-middleware.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Understanding Middleware{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Architecture',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
+{% block body %}
 <p class="mb-3"><strong>Middleware </strong>is code that exists <strong>between the request and response</strong>, and which can take the incoming request, perform actions based on it, and either <strong>complete the response or pass delegation </strong>on to the next middleware in the queue.</p>
 
 <h2>The purpose of middleware</h2>
@@ -176,11 +156,4 @@
 
 <li><a href="https://www.youtube.com/watch?v=v1I57-_Rsv0" target="_blank" rel="noreferrer noopener">From Helpers to Middleware</a></li>
 </ul>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}
