@@ -1,27 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/headless-platform/dotkernel-headless-platform-the-whats-hows-and-whys.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Dotkernel Headless Platform - The Whats, Hows and Whys{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Headless Platform',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
+{% block body %}
 <p class="mb-3">The principle of a <strong>Headless Platform</strong> is to decouple the User Interface (<strong>frontend</strong>) from the <strong>backend </strong>services. The responses from the platform are then used by another system, such as a website or mobile app. In this article we will explore the Dotkernel implementation of the <strong>Headless Platform</strong> architecture, how to use it and what are its benefits.</p>
 
 <h2>Components of the Dotkernel Headless Platform</h2>
@@ -169,11 +148,4 @@
 </ul>
 
 <p class="mb-3"></p>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

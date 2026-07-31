@@ -1,27 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel3/development-report-december-11-2017.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Development Report December 11, 2017{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel 3',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
+{% block body %}
 This report contains updates about the Dotkernel3 documentation.
 
 We have added the release notes for Dotkernel3 <strong>frontend</strong> and <strong>admin</strong>: you can now check the <a href="https://docs.dotkernel.com/Overview/Release-Notes.html" target="_blank" rel="noopener noreferrer">Release Notes</a> page.
@@ -60,11 +39,4 @@ The <a href="https://docs.dotkernel.com/Guidelines/Documentation-Guidelines/Api
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

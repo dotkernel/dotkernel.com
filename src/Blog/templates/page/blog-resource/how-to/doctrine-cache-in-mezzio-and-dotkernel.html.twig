@@ -1,27 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/how-to/doctrine-cache-in-mezzio-and-dotkernel.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Doctrine Cache in Mezzio and Dotkernel{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: "How to's",
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
+{% block body %}
 <h2>Doctrine caching in Dotkernel</h2>
 
 <blockquote><p class="mb-3">Following version 2 of doctrine/cache, in 2024 we  published an update to this article here:<a href="https://www.dotkernel.com/dotkernel/doctrine-cache-using-symfony-cache/" target="_blank" rel="noreferrer noopener"> https://www.dotkernel.com/dotkernel/doctrine-cache-using-symfony-cache/</a></p>
@@ -207,11 +186,4 @@ class MyCollection extends Paginator
 <p class="mb-3"></p>
 
 <p class="mb-3"></p>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

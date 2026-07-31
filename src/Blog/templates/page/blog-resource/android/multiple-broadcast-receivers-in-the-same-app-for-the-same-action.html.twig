@@ -1,27 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/android/multiple-broadcast-receivers-in-the-same-app-for-the-same-action.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Multiple broadcast receivers in the same app, for the same action{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Android',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
+{% block body %}
 Did you come to a point where using multiple broadcast receivers to listen for the same intent, separatly, in the same android app, leads to unexpected results?
 If that's the case, one broadcast receiver might consume the broadcasted intent, <a href="http://www.cillap.com/">online casino</a> leaving the others with nothing to receive.
 This can be the case where you use 3rd party libraries with broadcast receivers defined.
@@ -44,11 +23,4 @@ The following is a solution for this kind of problem, a code snippet inspired by
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

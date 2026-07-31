@@ -1,27 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/middleware/replacing-controllers-with-psr-15-compliant-handlers-in-dotkernel-light.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Replacing controllers with PSR-15 compliant handlers in Dotkernel Light{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Middleware',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
+{% block body %}
 <h2></h2>
 
 <p class="mb-3">The goal of this update is to implement <a href="https://www.php-fig.org/psr/psr-15/" target="_blank" rel="noreferrer noopener">PSR-15</a> handlers into <a href="https://github.com/dotkernel/light" target="_blank" rel="noreferrer noopener">Dotkernel Light</a>. There are several advantages to using handlers, which we will explore below.</p>
@@ -185,11 +164,4 @@ class GetPageViewHandler implements RequestHandlerInterface
 <p class="mb-3"><a href="https://dev.to/ilyasdeckers/single-action-handlers-in-php-frameworks-3jai" target="_blank" rel="noreferrer noopener">Single Action Handlers in PHP Frameworks</a></p>
 
 <p class="mb-3"></p>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

@@ -1,27 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/middleware/dotkernel-light-improvements-psr-15-handlers-vite-phpstan.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Dotkernel Light improvements: PSR-15 Handlers, Vite, PHPStan{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Middleware',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
+{% block body %}
 <p class="mb-3"><a href="https://github.com/dotkernel/light" target="_blank" rel="noreferrer noopener">Dotkernel Light</a> is a PSR-15 compliant application that uses the Mezzio microframework and Laminas components. It's aimed at creating a simple website, like a presentation site, but can be expanded as needed.</p>
 
 <p class="mb-3">Dotkernel Light has come a long way since our <a href="https://www.dotkernel.com/dotkernel/dotkernel-light-the-best-choice-for-your-presentation-site/">last update</a>. It's just as useful for a presentation site, but our perfectionist devs thought we could do better. Let's see what we have improved to make your use of Light that much more convenient.</p>
@@ -113,11 +92,4 @@
 <p class="mb-3"><a href="https://www.php-fig.org/psr/psr-15/" target="_blank" rel="noreferrer noopener">PSR-15: HTTP Server Request Handlers</a></p>
 
 <p class="mb-3"><a href="https://www.dotkernel.com/php-development/static-analysis-replacing-psalm-with-phpstan/" target="_blank" rel="noreferrer noopener">Static Analysis – Replacing Psalm with PHPStan</a></p>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

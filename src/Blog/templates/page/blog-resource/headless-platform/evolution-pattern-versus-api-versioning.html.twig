@@ -1,27 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/headless-platform/evolution-pattern-versus-api-versioning.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Evolution Pattern versus API Versioning{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Headless Platform',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
+{% block body %}
 <p class="mb-3">In programming and software architecture, an <strong>Evolution Pattern</strong> is a reusable, high-level strategy for modifying or evolving existing software systems over time. An evolution pattern tries to keep software relevant for old and new users by whatever means are available, as new needs arise.</p>
 
 <p class="mb-3"><strong>Versioning</strong> in software is the practice of assigning unique identifiers (version numbers) to different releases of a software platform. These numbers help track changes, improvements, bug fixes, compatibility, and evolution over time. In particular, API versioning is the practice of assigning versions to an API so that it can change over time without breaking existing clients that rely on it.</p>
@@ -148,11 +127,4 @@ Vary: Origin</pre>
 
 <li><a href="https://urthen.github.io/2013/05/16/ways-to-version-your-api-part-2" target="_blank" rel="noreferrer noopener">Ways to version your API, Part 2</a></li>
 </ul>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

@@ -1,27 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel3/php-8-3-support-in-dotkernel-api.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}PHP 8.3 support in Dotkernel API{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel 3',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
+{% block body %}
 <p class="mb-3">The last remaining application to be updated to support PHP 8.3 is the <a href="https://github.com/dotkernel/api" data-type="link" data-id="https://github.com/dotkernel/api" target="_blank" rel="noreferrer noopener">API</a>, now at v4.2.1. The steps taken to perform the update are similar to the ones in the update for the <a href="https://github.com/dotkernel/frontend" data-type="link" data-id="https://github.com/dotkernel/frontend" target="_blank" rel="noreferrer noopener">Frontend</a>.</p>
 
 <p class="mb-3">The full list of file changes is <a href="https://github.com/dotkernel/api/pull/222" data-type="link" data-id="https://github.com/dotkernel/admin/pull/218/files" target="_blank" rel="noreferrer noopener">here</a>.</p>
@@ -167,11 +146,4 @@
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

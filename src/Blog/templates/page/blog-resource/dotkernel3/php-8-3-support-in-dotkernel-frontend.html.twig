@@ -1,27 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel3/php-8-3-support-in-dotkernel-frontend.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}PHP 8.3 support in Dotkernel Frontend{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel 3',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
+{% block body %}
 <p class="mb-3">To be able to take advantage of the support for <strong>PHP 8.3</strong> in the newest packages, the Dotkernel team has updated the <a href="https://github.com/dotkernel/frontend" data-type="link" data-id="https://github.com/dotkernel/frontend" target="_blank" rel="noreferrer noopener">Frontend</a> Application to version <strong>4.2.0</strong>. Very much like for the Admin update before it, the Frontend must also remove support for PHP 8.1 and the no-longer-available PhpFileCache class until a replacement is implemented.</p>
 
 <p class="mb-3">The full list of file changes is <a href="https://github.com/dotkernel/frontend/pull/417" data-type="link" data-id="https://github.com/dotkernel/admin/pull/218/files" target="_blank" rel="noreferrer noopener">here</a>.</p>
@@ -163,11 +142,4 @@
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

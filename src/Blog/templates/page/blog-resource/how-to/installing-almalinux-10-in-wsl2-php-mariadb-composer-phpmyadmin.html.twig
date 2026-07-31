@@ -1,149 +1,121 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/how-to/installing-almalinux-10-in-wsl2-php-mariadb-composer-phpmyadmin.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Installing AlmaLinux 10 in WSL2: PHP, MariaDB, Composer, PhpMyadmin{% endblock %}
+{% block body %}
+<p class="mb-3">With the recent release of <a href="https://almalinux.org/blog/2025-05-27-welcoming-almalinux-10/" target="_blank" rel="noreferrer noopener">AlmaLinux OS 10</a>, we have created a new recipe for our WSL development environment. Compared to its predecessor, AlmaLinux 10 provides performance enhancements, security updates and improved hardware support.</p>
 
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: "How to's",
-        article: article,
-    }) }}
-{% endblock %}
+<h2>What You Get</h2>
 
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
+<p class="mb-3">Like for <a href="https://www.dotkernel.com/php-development/almalinux-9-in-wsl2-install-php-apache-mariadb-composer-phpmyadmin/" data-type="link" data-id="https://www.dotkernel.com/php-development/almalinux-9-in-wsl2-install-php-apache-mariadb-composer-phpmyadmin/" target="_blank" rel="noreferrer noopener">AlmaLinux 9</a>, the WSL recipe sets up the development environment with all the components a regular PHP developer needs:</p>
 
-            {{ include('@partial/left-menu.html.twig') }}
+<ul><li>WSL2 - Windows Subsystem for Linux.</li>
 
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
-                    <p class="mb-3">With the recent release of <a href="https://almalinux.org/blog/2025-05-27-welcoming-almalinux-10/" target="_blank" rel="noreferrer noopener">AlmaLinux OS 10</a>, we have created a new recipe for our WSL development environment. Compared to its predecessor, AlmaLinux 10 provides performance enhancements, security updates and improved hardware support.</p>
+<li>AlmaLinux 10 - Free and open source Linux distribution.</li>
 
-                    <h2>What You Get</h2>
+<li>PHP - General-purpose scripting language geared towards web development.</li>
 
-                    <p class="mb-3">Like for <a href="https://www.dotkernel.com/php-development/almalinux-9-in-wsl2-install-php-apache-mariadb-composer-phpmyadmin/" data-type="link" data-id="https://www.dotkernel.com/php-development/almalinux-9-in-wsl2-install-php-apache-mariadb-composer-phpmyadmin/" target="_blank" rel="noreferrer noopener">AlmaLinux 9</a>, the WSL recipe sets up the development environment with all the components a regular PHP developer needs:</p>
+<li>Apache - Free and open-source cross-platform web server software.</li>
 
-                    <ul><li>WSL2 - Windows Subsystem for Linux.</li>
+<li>MariaDB - Community-developed, commercially supported fork of the MySQL relational database management system.</li>
 
-                    <li>AlmaLinux 10 - Free and open source Linux distribution.</li>
+<li>Git - Distributed version control system.</li>
 
-                    <li>PHP - General-purpose scripting language geared towards web development.</li>
+<li>Composer - Application-level dependency manager.</li>
 
-                    <li>Apache - Free and open-source cross-platform web server software.</li>
+<li>Node.js - JavaScript runtime environment.</li>
 
-                    <li>MariaDB - Community-developed, commercially supported fork of the MySQL relational database management system.</li>
+<li>PhpMyAdmin - Open source administration tool for MySQL and MariaDB.</li>
+</ul>
 
-                    <li>Git - Distributed version control system.</li>
+<h2>Requirements</h2>
 
-                    <li>Composer - Application-level dependency manager.</li>
+<p class="mb-3">Make sure that you have the <a href="https://learn.microsoft.com/en-us/windows/wsl/install#prerequisites" target="_blank" rel="noreferrer noopener">minimum requirements for running WSL2</a>.</p>
 
-                    <li>Node.js - JavaScript runtime environment.</li>
+<p class="mb-3">OS-wise you must be running:</p>
 
-                    <li>PhpMyAdmin - Open source administration tool for MySQL and MariaDB.</li>
-                    </ul>
+<ul><li>Windows 10:<ul><li>For x64 systems: Version 1903 or later with Build 18362.1049 or later.</li>
 
-                    <h2>Requirements</h2>
+<li>For ARM64 systems: Version 2004 or later with Build 19041 or later.</li>
+</ul>
+</li>
 
-                    <p class="mb-3">Make sure that you have the <a href="https://learn.microsoft.com/en-us/windows/wsl/install#prerequisites" target="_blank" rel="noreferrer noopener">minimum requirements for running WSL2</a>.</p>
+<li>or Windows 11.</li>
+</ul>
 
-                    <p class="mb-3">OS-wise you must be running:</p>
+<p class="mb-3">Hardware-wise, you need virtualization support. On some older hardware that supports this feature, it may be disabled from the BIOS.</p>
 
-                    <ul><li>Windows 10:<ul><li>For x64 systems: Version 1903 or later with Build 18362.1049 or later.</li>
+<p class="mb-3">WSL2 needs Virtual Machine Platform feature enabled. You can enable it via the PowerShell running as an Administrator:</p>
 
-                    <li>For ARM64 systems: Version 2004 or later with Build 19041 or later.</li>
-                    </ul>
-                    </li>
+<pre>dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart</pre>
 
-                    <li>or Windows 11.</li>
-                    </ul>
+<h2>Installing the distro</h2>
 
-                    <p class="mb-3">Hardware-wise, you need virtualization support. On some older hardware that supports this feature, it may be disabled from the BIOS.</p>
+<p class="mb-3">Start by downloading and installing the Linux distro with this command:</p>
 
-                    <p class="mb-3">WSL2 needs Virtual Machine Platform feature enabled. You can enable it via the PowerShell running as an Administrator:</p>
+<pre>wsl --install -d AlmaLinux-10</pre>
 
-                    <pre>dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart</pre>
+<p class="mb-3">If everything ran ok, you are asked to enter a password at the end.</p>
 
-                    <h2>Installing the distro</h2>
+<p class="mb-3">Next run each of the <a href="https://docs.dotkernel.org/development/v2/setup/setup-packages/" target="_blank" rel="noreferrer noopener">ansible playbook commands</a> to install the development components.</p>
 
-                    <p class="mb-3">Start by downloading and installing the Linux distro with this command:</p>
+<h2>Using WSL2 with AlmaLinux 10</h2>
 
-                    <pre>wsl --install -d AlmaLinux-10</pre>
+<p class="mb-3">You can start AlmaLinux10 by executing this coomand in the Windows Terminal:</p>
 
-                    <p class="mb-3">If everything ran ok, you are asked to enter a password at the end.</p>
+<pre>wsl -d AlmaLinux-10</pre>
 
-                    <p class="mb-3">Next run each of the <a href="https://docs.dotkernel.org/development/v2/setup/setup-packages/" target="_blank" rel="noreferrer noopener">ansible playbook commands</a> to install the development components.</p>
+<p class="mb-3">Our PHP projects can be run by navigating into the root project folder and running this command:</p>
 
-                    <h2>Using WSL2 with AlmaLinux 10</h2>
+<pre>php -S 0.0.0.0:8080 -t public</pre>
 
-                    <p class="mb-3">You can start AlmaLinux10 by executing this coomand in the Windows Terminal:</p>
+<p class="mb-3">Then you need to navigate to <code>http://localhost:8080</code> in your preferred browser.</p>
 
-                    <pre>wsl -d AlmaLinux-10</pre>
+<h3>Running the Application Via Virtual Hosts</h3>
 
-                    <p class="mb-3">Our PHP projects can be run by navigating into the root project folder and running this command:</p>
+<p class="mb-3">An <strong>easier way</strong> to run your applications is via virtual hosts. The full instructions to set up your virtual hosts are in the <a href="https://docs.dotkernel.org/development/v2/virtualhosts/create-virtualhost/" target="_blank" rel="noreferrer noopener">Create virtualhosts page</a>.</p>
 
-                    <pre>php -S 0.0.0.0:8080 -t public</pre>
+<p class="mb-3">After you set up your virtual hosts and install your project in e.g. the <code>/var/www/example.localhost/html</code> folder, you can run the application in the browser by accessing <code>example.localhost</code>.</p>
 
-                    <p class="mb-3">Then you need to navigate to <code>http://localhost:8080</code> in your preferred browser.</p>
+<p class="mb-3">If you run into any issues, make sure to first check our <a href="https://docs.dotkernel.org/development/v2/faq/" target="_blank" rel="noreferrer noopener">FAQ page</a>. If all else fails, <a href="https://github.com/dotkernel/development/issues" target="_blank" rel="noreferrer noopener">create an issue</a> with details and we can talk.</p>
 
-                    <h3>Running the Application Via Virtual Hosts</h3>
+<h2 id="user-content-faq">Frequently Asked Questions</h2>
 
-                    <p class="mb-3">An <strong>easier way</strong> to run your applications is via virtual hosts. The full instructions to set up your virtual hosts are in the <a href="https://docs.dotkernel.org/development/v2/virtualhosts/create-virtualhost/" target="_blank" rel="noreferrer noopener">Create virtualhosts page</a>.</p>
-
-                    <p class="mb-3">After you set up your virtual hosts and install your project in e.g. the <code>/var/www/example.localhost/html</code> folder, you can run the application in the browser by accessing <code>example.localhost</code>.</p>
-
-                    <p class="mb-3">If you run into any issues, make sure to first check our <a href="https://docs.dotkernel.org/development/v2/faq/" target="_blank" rel="noreferrer noopener">FAQ page</a>. If all else fails, <a href="https://github.com/dotkernel/development/issues" target="_blank" rel="noreferrer noopener">create an issue</a> with details and we can talk.</p>
-
-                    <h2 id="user-content-faq">Frequently Asked Questions</h2>
-
-                    <div class="faq-list">
-                        <details class="acc" open>
-                            <summary>What does this WSL recipe set up? <span class="chev">+</span></summary>
-                            <div class="acc-body">
-                                <p class="mb-0">It sets up a full PHP development environment: WSL2, AlmaLinux 10, PHP, Apache, MariaDB, Git, Composer, Node.js and PhpMyAdmin.</p>
-                            </div>
-                        </details>
-                        <details class="acc">
-                            <summary>What are the OS and hardware requirements? <span class="chev">+</span></summary>
-                            <div class="acc-body">
-                                <p class="mb-0">Windows 10 (Version 1903+ / Build 18362.1049+ for x64, or Version 2004+ / Build 19041+ for ARM64) or Windows 11, plus hardware virtualization support. If needed, enable the Virtual Machine Platform feature via <code>dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart</code> in an administrator PowerShell.</p>
-                            </div>
-                        </details>
-                        <details class="acc">
-                            <summary>How do I install AlmaLinux 10 via WSL2? <span class="chev">+</span></summary>
-                            <div class="acc-body">
-                                <p class="mb-0">Run <code>wsl --install -d AlmaLinux-10</code>, set a password when prompted, then run each of the Ansible playbook commands from the Dotkernel docs to install the development components.</p>
-                            </div>
-                        </details>
-                        <details class="acc">
-                            <summary>How do I run a PHP project after setup? <span class="chev">+</span></summary>
-                            <div class="acc-body">
-                                <p class="mb-0">Either run <code>php -S 0.0.0.0:8080 -t public</code> from the project root and browse to http://localhost:8080, or, more easily, set up virtual hosts per the Dotkernel docs and access the project at its configured hostname (e.g. example.localhost).</p>
-                            </div>
-                        </details>
-                        <details class="acc">
-                            <summary>What should I do if I run into issues during setup? <span class="chev">+</span></summary>
-                            <div class="acc-body">
-                                <p class="mb-0">First check the Dotkernel FAQ page. If that doesn't resolve it, create an issue on the dotkernel/development GitHub repository with details.</p>
-                            </div>
-                        </details>
-                    </div>
-
-                    <h2>Additional Resources</h2>
-
-                    <ul><li><a href="https://docs.dotkernel.org/development/v2/setup/installation/" target="_blank" rel="noreferrer noopener">Full AlmaLinux 10 Installation Instructions</a></li>
-
-                    <li><a href="https://www.dotkernel.com/php-development/almalinux-9-in-wsl2-install-php-apache-mariadb-composer-phpmyadmin/" target="_blank" rel="noreferrer noopener">AlmaLinux 9 in WSL2 with PHP, Mariadb, Composer, PhpMyadmin instructions</a></li>
-                    </ul>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
+<div class="faq-list">
+    <details class="acc" open>
+        <summary>What does this WSL recipe set up? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">It sets up a full PHP development environment: WSL2, AlmaLinux 10, PHP, Apache, MariaDB, Git, Composer, Node.js and PhpMyAdmin.</p>
         </div>
-    </div>
+    </details>
+    <details class="acc">
+        <summary>What are the OS and hardware requirements? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Windows 10 (Version 1903+ / Build 18362.1049+ for x64, or Version 2004+ / Build 19041+ for ARM64) or Windows 11, plus hardware virtualization support. If needed, enable the Virtual Machine Platform feature via <code>dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart</code> in an administrator PowerShell.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How do I install AlmaLinux 10 via WSL2? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Run <code>wsl --install -d AlmaLinux-10</code>, set a password when prompted, then run each of the Ansible playbook commands from the Dotkernel docs to install the development components.</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>How do I run a PHP project after setup? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">Either run <code>php -S 0.0.0.0:8080 -t public</code> from the project root and browse to http://localhost:8080, or, more easily, set up virtual hosts per the Dotkernel docs and access the project at its configured hostname (e.g. example.localhost).</p>
+        </div>
+    </details>
+    <details class="acc">
+        <summary>What should I do if I run into issues during setup? <span class="chev">+</span></summary>
+        <div class="acc-body">
+            <p class="mb-0">First check the Dotkernel FAQ page. If that doesn't resolve it, create an issue on the dotkernel/development GitHub repository with details.</p>
+        </div>
+    </details>
+</div>
+
+<h2>Additional Resources</h2>
+
+<ul><li><a href="https://docs.dotkernel.org/development/v2/setup/installation/" target="_blank" rel="noreferrer noopener">Full AlmaLinux 10 Installation Instructions</a></li>
+
+<li><a href="https://www.dotkernel.com/php-development/almalinux-9-in-wsl2-install-php-apache-mariadb-composer-phpmyadmin/" target="_blank" rel="noreferrer noopener">AlmaLinux 9 in WSL2 with PHP, Mariadb, Composer, PhpMyadmin instructions</a></li>
+</ul>
 {% endblock %}

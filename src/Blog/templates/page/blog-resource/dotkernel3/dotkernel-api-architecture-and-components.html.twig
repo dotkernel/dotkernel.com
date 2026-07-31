@@ -1,27 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel3/dotkernel-api-architecture-and-components.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Dotkernel API: architecture and components{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel 3',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
+{% block body %}
 <blockquote style="font-size: 16px;
   font-weight: 400;">This article refers to Dotkernel API v5. Checkout out the new additions for <a href="https://www.dotkernel.com/headless-platform/dotkernel-api-v6-the-root-of-dotkernel-headless-platform/">Dotkernel API v6</a> to stay up-to-date.</blockquote>
 <p class="mb-3">Based on Enrico Zimuel's <a href="https://github.com/ezimuel/zend-expressive-api" target="_blank" rel="noreferrer noopener">Zend Expressive API - Skeleton example</a>, Dotkernel API runs on <a href="https://github.com/mezzio" target="_blank" rel="noreferrer noopener">Mezzio</a> microframework   and<a href="https://github.com/laminas" target="_blank" rel="noreferrer noopener">Laminas</a> components and implements standards like PSR-3, PSR-4, PSR-7, PSR-11 and PSR-15.</p>
@@ -409,11 +388,4 @@
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

@@ -1,27 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/licensing/mit-versus-lgpl-in-practice-dotkernel-case.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}MIT versus LGPL in practice: Dotkernel case{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Licensing',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
+{% block body %}
 <p class="mb-3">After a recent analysis, we discovered that <strong>one of the upstream packages</strong> we use is <strong>licensed under <a href="https://www.gnu.org/licenses/lgpl-3.0.en.html" data-type="link" data-id="https://www.gnu.org/licenses/lgpl-3.0.en.html" target="_blank" rel="noreferrer noopener">LGPL v3</a></strong>. Even though we at <strong>Dotkernel </strong>use the <strong><a href="https://opensource.org/license/mit" data-type="link" data-id="https://opensource.org/license/mit" target="_blank" rel="noreferrer noopener">MIT</a></strong> license for our open source projects, the more restrictive license must be applied to the whole application. We implemented a workaround detailed below.</p>
 
 <h2>Detailing the problem</h2>
@@ -78,11 +57,4 @@
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

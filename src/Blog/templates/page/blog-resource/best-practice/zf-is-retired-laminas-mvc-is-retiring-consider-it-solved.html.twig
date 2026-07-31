@@ -1,27 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/best-practice/zf-is-retired-laminas-mvc-is-retiring-consider-it-solved.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}ZF Is Retired. Laminas MVC Is Retiring. Consider It Solved{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Best Practice',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
+{% block body %}
 <p class="mb-3">It all started with the <strong>announcement</strong>: <a href="https://getlaminas.org/blog/2025-06-06-laminas-mvc-is-retiring.html" rel="noreferrer noopener" target="_blank">Laminas MVC Is Retiring</a>. Some people wrongfully thought everything with a Laminas logo is going away - NOT SO! Read on for a bit of history about Zend and Laminas, what it means to migrate your platform and why it's a decision that should not be taken lightly.</p>
 
 <h2><a href="#a-bit-of-history"></a>A Bit of History</h2>
@@ -110,11 +89,4 @@
 </ul>
 
 <p class="mb-3"></p>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

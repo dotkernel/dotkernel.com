@@ -1,27 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/php-development/database-seeding-doctrine-data-fixtures-vs-phinx.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Database seeding: Doctrine data fixtures vs Phinx{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'PHP Development',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
+{% block body %}
 <h2>Database seeding: Doctrine data fixtures vs Phinx</h2>
 
 <p class="mb-3">Seeding the database means populating the database with initial values, it's commonly used for seeding the user roles and user accounts. </p>
@@ -275,11 +254,4 @@ class UserLoader implements FixtureInterface, DependentFixtureInterface
 <p class="mb-3"><strong>To wrap things up, we implemented a database seeder and saw a practical example of how to use it.</strong></p>
 
 <p class="mb-3">More details about Fixtures in this blogpost: <a rel="noreferrer noopener" href="https://matthiasnoback.nl/2018/07/about-fixtures/" target="_blank">https://matthiasnoback.nl/2018/07/about-fixtures/</a> .</p>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

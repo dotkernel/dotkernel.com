@@ -1,27 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/php-development/php-support-back-in-aptana-3-0.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}PHP support back in Aptana 3.0{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'PHP Development',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
+{% block body %}
 Aptana 3.0 is in beta stage, can be downloaded from the <a title="Aptana " href="http://www.aptana.com/products/studio3" target="_blank" rel="noopener noreferrer">official site</a> .
 
 The very super good news is that Aptana PHP Support is back , based on an annoucement from their <a href="https://aptanastudio.tenderapp.com/discussions/questions/419-php-in-studio-3" target="_blank" rel="noopener noreferrer">forum</a>. And even more,  will be integrated in Studio 3 core, not as a separate plugin.
@@ -58,11 +37,4 @@ p.s. You can follow us on twitter for any major announcements, or follow me 'sgi
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

@@ -1,27 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/zend-framework/sunsetting-pear-channel-for-zend-framework-1.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Sunsetting PEAR Channel for Zend Framework 1{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Zend Framework',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
+{% block body %}
 <h2>Sunsetting PEAR Channel for Zend Framework 1</h2>
 
 <p class="mb-3">The unofficial <a rel="noreferrer noopener" href="http://pear.dotkernel.com/" data-type="URL" data-id="http://pear.dotkernel.com/" target="_blank"><strong>PEAR channel for Zend Framework 1</strong> </a> was created in <a rel="noreferrer noopener" href="https://www.dotkernel.com/dotkernel/migration-of-zend-framework-1-pear-channel/" data-type="URL" data-id="https://www.dotkernel.com/dotkernel/migration-of-zend-framework-1-pear-channel/" target="_blank">2016</a> , at the time when <a rel="noreferrer noopener" href="https://pear.php.net/" data-type="URL" data-id="https://pear.php.net/" target="_blank">PEAR</a> was still used a lot.</p>
@@ -62,11 +41,4 @@
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

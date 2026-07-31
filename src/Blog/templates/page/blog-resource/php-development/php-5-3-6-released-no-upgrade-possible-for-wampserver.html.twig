@@ -1,27 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/php-development/php-5-3-6-released-no-upgrade-possible-for-wampserver.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}PHP 5.3.6 released. No upgrade possible for WampServer.{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'PHP Development',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
+{% block body %}
 PHP 5.3.6 was released, but it come with a bad news for WampServer users:
 <blockquote class="blockquote border-start border-4 ps-3 text-muted my-3">"Windows users: please mind that we do no longer provide builds created with Visual Studio C++ 6"</blockquote>
 Since WampServer is built using VC++ 6,  is not possible an upgrade , without a rewrite from scratch of entire WampServer package.
@@ -44,11 +23,4 @@ More details on WampServer forum  <strong><a href="http://www.wampserver.com/ph
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

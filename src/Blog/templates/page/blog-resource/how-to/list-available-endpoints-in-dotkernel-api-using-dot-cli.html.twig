@@ -1,27 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/how-to/list-available-endpoints-in-dotkernel-api-using-dot-cli.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}List available endpoints in  Dotkernel API using dot-cli{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: "How to's",
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
+{% block body %}
 <h2>Displaying Dotkernel API endpoints using dot-cli</h2>
 
 <p class="mb-3">Starting from version 3, Dotkernel API uses <a href="https://github.com/dotkernel/dot-cli" data-type="URL" data-id="https://github.com/dotkernel/dot-cli" target="_blank" rel="noreferrer noopener">dot-cli</a> to display a list of available endpoints.</p>
@@ -141,11 +120,4 @@
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

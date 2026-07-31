@@ -1,27 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/headless-platform/dotkernel-api-v6-the-root-of-dotkernel-headless-platform.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}Dotkernel API v6: The root of Dotkernel Headless Platform{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Headless Platform',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
+{% block body %}
 <p class="mb-3">Dotkernel API has come a long way since we published a list of its <a href="https://www.dotkernel.com/dotkernel3/dotkernel-api-architecture-components/" rel="noreferrer noopener" target="_blank">architecture and components</a> a while ago. We implemented new features, while some components were replaced, and others were enhanced. Our ultimate goal is to stay relevant in the PHP ecosystem by implementing best practices recommended by the PHP community.</p>
 
 <h2><a href="#new-features"></a>New Features</h2>
@@ -106,11 +85,4 @@
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}

@@ -1,27 +1,6 @@
-{% extends '@layout/default.html.twig' %}
-{% block json_ld %} {{ include('@jsonld/dotkernel-api/api-endpoint-to-collect-client-errors.jsonld.twig') }} {% endblock %}
+{% extends '@layout/blog-post.html.twig' %}
 
-{% block title %}API Endpoint to Collect Client Errors{% endblock %}
-
-{% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        back_href: url('page::blog'),
-        back_label: 'Back to Blog',
-        badge: 'Dotkernel API',
-        article: article,
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-
-            {{ include('@partial/left-menu.html.twig') }}
-
-            <article class="article">
-                <div class="entry">
-                    {{ include('@partial/obsolete-warning.html.twig', {article: article}) }}
-                    {{ include('@partial/markdown-actions.html.twig', {article: article}) }}
+{% block body %}
 <h2>API Endpoint to Collect Client Errors</h2>
 
 <p class="mb-3">Let's say you have a <strong>(Client)</strong> <strong>Frontend</strong> (e.g. Angular) over a <a rel="noreferrer noopener" href="https://github.com/dotkernel/api" data-type="URL" data-id="https://github.com/dotkernel/api" target="_blank">Dotkernel API</a> and there may be cases when there are errors, eighter the API changed it's response(s) over night or just a simple variable being <code>undefined</code> for some reason.</p>
@@ -62,11 +41,4 @@
         </div>
     </details>
 </div>
-                </div>
-
-                {{ include('@partial/post-nav.html.twig') }}
-            </article>
-
-        </div>
-    </div>
 {% endblock %}
