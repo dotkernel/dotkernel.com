@@ -22,7 +22,7 @@ $databases = [
     ],
 ];
 
-$app       = [
+$app = [
     'baseUrl' => $baseUrl,
     'name'    => 'Dotkernel Light | PSR-15 compliant application',
     'meta'    => [
