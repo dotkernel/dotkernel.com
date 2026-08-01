@@ -90,14 +90,14 @@
                 <h2>Three applications, one platform</h2>
                 <p>API, Admin and Queue declare the same <code>Core</code> namespaces — the same entities, repositories and services. 
                   A <code>User</code> means the same thing to the endpoint that creates it, the admin screen that moderates it and the worker that emails it.
-                Three deployables that scale independently and never disagree about the domain.</p></p>
+                Three deployables that scale independently and never disagree about the domain.</p>
             </div>
 
  <div class="core-band">                                                                                                                                                                                                                                                                                                                                                
       <span class="core-band-label">Shared domain layer</span>                                                                                                                                                                                                                                                                                                           
       <code>Core\App</code> <code>Core\Admin</code> <code>Core\User</code>                                                                                                                                                                                                                                                                                               
       <code>Core\Security</code> <code>Core\Setting</code>                                                                                                                                                                                                                                                                                                               
-      <p>One set of entities and repositories, integrated into each application as a Git submodule.</p>                                                                                                                                                                                                                                                                  
+      <p>One set of entities and repositorie. Committed in each repo so a single-component start just works — lift it into its own repo and share it as a Git submodule when you add a second.</p>                                                                                                                                                                                                                                                                  
   </div>   
 
             <div class="products-grid">
