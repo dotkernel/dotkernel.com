@@ -9,7 +9,8 @@
             <div>
                 <span class="eyebrow">PSR-15 . middleware-first architecture</span>
                 <h1>A headless platform for building modern web applications</h1>
-                <p class="sub">Dotkernel is a collection of open-source application skeletons built on Mezzio and Laminas - pre-configured and ready for anything from a presentation site to an enterprise-grade API.</p>
+                <p class="sub"> Dotkernel is a set of open-source PHP applications — REST API, admin, and queue — that ship assembled on Mezzio and Laminas, over one shared Doctrine domain layer.
+                                OAuth2, RBAC, HAL, and a generated OpenAPI spec are wired together on install, not left for you to choose.</p>
                 <div class="hero-ctas">
                     <a class="btn btn-primary" href="https://docs.dotkernel.org" target="_blank" rel="noopener">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
@@ -60,23 +61,23 @@
             </div>
             <div class="traits">
                 <div class="trait">
-                    <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/traffic-sign-50.svg') }}" alt="Unmatched flexibility" loading="lazy">
-                    <p>Unmatched flexibility</p>
+                    <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/traffic-sign-50.svg') }}" alt="" loading="lazy">
+                    <p>Doctrine, not Active Record</p>
                 </div>
 
                 <div class="trait">
-                    <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/success-50.svg') }}" alt="Unlimited scalability" loading="lazy">
-                    <p>Unlimited scalability</p>
+                    <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/success-50.svg') }}" alt="" loading="lazy">
+                    <p>Explicit wiring, no magic</p>
                 </div>
 
                 <div class="trait">
                     <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/speed-radar-50.svg') }}" alt="Lightning-fast performance" loading="lazy">
-                    <p>Lightning-fast performance</p>
+                    <p>One domain, three deployables<\</p>
                 </div>
 
                 <div class="trait">
                     <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/maintenance.svg') }}" alt="Easier maintenance and onboarding" loading="lazy">
-                    <p>Easier maintenance and onboarding</p>
+                    <p>Dependencies that move slowly</p>
                 </div>
             </div>
         </div>
@@ -102,7 +103,8 @@
                         <img alt="License" src="https://img.shields.io/github/license/dotkernel/api?style=flat">
                         <img alt="Stars" src="https://img.shields.io/github/stars/dotkernel/api?style=flat&label=%E2%98%85">
                     </div>
-                    <p class="desc">An alternative to legacy Laminas API Tools (Apigility). A framework-less, opinionated toolkit for intermediate-to-advanced developers who want to ship REST APIs quickly and efficiently.</p>
+                    <p class="desc">An alternative to legacy Laminas API Tools (Apigility). REST APIs on a readable PSR-15 middleware pipeline — no kernel, no facades, no runtime magic.
+                                   OAuth2, RBAC and OpenAPI included.</p>
                     <div class="card-btns">
                         <a class="btn btn-ghost btn-sm" href="https://github.com/dotkernel/api" target="_blank" rel="noopener">GitHub</a>
                         <a class="btn btn-ghost btn-sm" href="https://api.dotkernel.net/" target="_blank" rel="noopener">Demo</a>
@@ -194,7 +196,7 @@
             <div class="products-grid">
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Skeleton . Didactic</span><h3>Light</h3></div>
+                        <div><span class="kicker">Standalone . Minimal</span><h3>Light</h3></div>
                     </div>
                     <div class="badges">
                         <img alt="PHP" src="https://img.shields.io/packagist/php-v/dotkernel/light?style=flat&label=php">
@@ -202,7 +204,7 @@
                         <img alt="License" src="https://img.shields.io/github/license/dotkernel/light?style=flat">
                         <img alt="Stars" src="https://img.shields.io/github/stars/dotkernel/light?style=flat&label=%E2%98%85">
                     </div>
-                    <p class="desc">A minimal, PSR-15 compliant skeleton built for learning purposes - a simple, didactic example of how to put together a basic website, not a Headless Platform component.</p>
+                    <p class="desc">The smallest complete Mezzio application — PSR-15 pipeline, routing and templating, nothing to strip out. A real starting point for a simple site, outside the API/Admin/Queue platform.</p>
                     <div class="card-btns">
                         <a class="btn btn-ghost btn-sm" href="https://github.com/dotkernel/light" target="_blank" rel="noopener">GitHub</a>
                         <a class="btn btn-ghost btn-sm" href="https://light.dotkernel.net/" target="_blank" rel="noopener">Demo</a>
