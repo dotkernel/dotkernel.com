@@ -9,7 +9,7 @@
 
 declare(strict_types=1);
 
-$baseUrl   = 'http://dotkernel.com.localhost';
+$baseUrl   = 'https://www.dotkernel.com';
 $databases = [
     'default' => [
         'host'     => 'localhost',
@@ -21,10 +21,25 @@ $databases = [
         'collate'  => 'utf8mb4_general_ci',
     ],
 ];
-return [
-    'application' => [
-        'url' => $baseUrl,
+
+$app = [
+    'baseUrl' => $baseUrl,
+    'meta'    => [
+        'title'       => 'Dotkernel | Headless Platform for modern web application',
+        'description' => 'Dotkernel is a Headless Platform for building modern web applications '
+            . 'using a collection of applications (skeletons).',
+        'image'       => $baseUrl . '/uploads/opengraph/dotkernel.png',
+        'type'        => 'website',
+        'siteName'    => 'Dotkernel Light',
+        'locale'      => 'en_US',
+        'url'         => $baseUrl,
+        'twitterCard' => 'summary_large_image',
+        'twitterSite' => '@dotkernel',
     ],
+];
+
+return [
+    'application' => $app,
     'databases'   => $databases,
     'doctrine'    => [
         'connection' => [
@@ -33,12 +48,18 @@ return [
             ],
         ],
     ],
+    'feed'        => [
+        'path' => realpath(__DIR__ . '/../../public/feed.xml'),
+    ],
     'routes'      => [
         'page' => [
-            'about'                            => 'about',
-            'who-we-are'                       => 'who-we-are',
             'contact'                          => 'contact',
             'dotkernel-packages-oss-lifecycle' => 'dotkernel-packages-oss-lifecycle',
+        ],
+    ],
+    'twig'        => [
+        'globals' => [
+            'app' => $app,
         ],
     ],
 ];
