@@ -1,103 +1,100 @@
+{% autoescape false %}
+{#
+    Canonical origin for @id values. These are stable entity identifiers, not links —
+    they must NOT follow absolute_url() while the site is served from new.dotkernel.com,
+    or every entity gets a new identity at cutover.
+#}
+{% set site_url = 'https://www.dotkernel.com/' %}
+{% set license_url = 'https://opensource.org/licenses/MIT' %}
+
+{# Every value goes through |json_encode(json_flags) so quotes, apostrophes and dashes
+   can never break the document. The flags only keep view-source readable. #}
+{% set json_flags = constant('JSON_UNESCAPED_SLASHES') b-or constant('JSON_UNESCAPED_UNICODE') %}
+
+{% set products = [
+    {
+        slug: 'api',
+        name: 'Dotkernel API',
+        description: 'An alternative to legacy Laminas API Tools (Apigility). A linear PSR-15 middleware pipeline instead of a framework kernel — OAuth2 authorisation, RBAC, HAL responses and a generated OpenAPI spec, wired together and configured on install.'
+    },
+    {
+        slug: 'admin',
+        name: 'Dotkernel Admin',
+        description: 'A ready-to-go admin skeleton for managing your platform\'s records with a simple, table-based approach - plus the tools to build reports and dashboards.'
+    },
+    {
+        slug: 'queue',
+        name: 'Dotkernel Queue',
+        description: 'Asynchronous task queuing built on Symfony Messenger, wired into the Laminas Service Manager container via netglue/laminas-messenger.'
+    },
+    {
+        slug: 'light',
+        name: 'Dotkernel Light',
+        description: 'The smallest complete Mezzio application — a PSR-15 pipeline, routing and templating, with nothing to strip out. A real starting point for a simple site. Outside the API/Admin/Queue platform.'
+    },
+    {
+        slug: 'frontend',
+        name: 'Dotkernel Frontend',
+        description: 'A web starter skeleton for building frontend applications on Mezzio and Laminas - a standalone alternative, separate from the Headless Platform.'
+    }
+] %}
 <script type="application/ld+json">
 {
     "@context": "https://schema.org",
     "@graph": [
         {
             "@type": "WebSite",
-            "@id": "{{ absolute_url('/') }}#website",
-            "url": "{{ absolute_url('/') }}",
+            "@id": {{ (site_url ~ '#website')|json_encode(json_flags) }},
+            "url": {{ site_url|json_encode(json_flags) }},
             "name": "Dotkernel",
-            "description": "Dotkernel is a collection of open-source application skeletons built on Mezzio and Laminas - pre-configured and ready for anything from a presentation site to an enterprise-grade API.",
+            "description": {{ 'Dotkernel is a set of open-source PHP applications — REST API, admin, and queue — that ship assembled on Mezzio and Laminas, over one shared Doctrine domain layer. OAuth2, RBAC, HAL, and a generated OpenAPI spec are wired together on install, not left for you to choose.'|json_encode(json_flags) }},
+            "inLanguage": "en-US",
             "publisher": {
-                "@id": "{{ absolute_url('/') }}#organization"
+                "@id": {{ (site_url ~ '#organization')|json_encode(json_flags) }}
             }
         },
         {
             "@type": "Organization",
-            "@id": "{{ absolute_url('/') }}#organization",
+            "@id": {{ (site_url ~ '#organization')|json_encode(json_flags) }},
             "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}",
+            "url": {{ site_url|json_encode(json_flags) }},
+            "logo": {{ absolute_url(asset('images/app/dotkernel-logo.png'))|json_encode(json_flags) }},
             "sameAs": [
                 "https://github.com/dotkernel",
-                "https://www.dotkernel.com"
+                "https://packagist.org/packages/dotkernel/",
+                "https://x.com/dotkernel"
             ],
             "parentOrganization": {
                 "@type": "Organization",
                 "name": "Apidemia",
                 "url": "https://www.apidemia.com"
             }
-        },
+        }{% for product in products %},
         {
             "@type": "SoftwareApplication",
-            "name": "Dotkernel API",
+            "@id": {{ (site_url ~ '#software-' ~ product.slug)|json_encode(json_flags) }},
+            "name": {{ product.name|json_encode(json_flags) }},
             "applicationCategory": "DeveloperApplication",
             "operatingSystem": "Cross-platform",
-            "description": "A framework-less, opinionated toolkit for intermediate-to-advanced developers who want to ship REST APIs quickly and efficiently. An alternative to legacy Laminas API Tools (Apigility).",
-            "url": "https://github.com/dotkernel/api",
-            "license": "https://opensource.org/licenses/BSD-3-Clause",
+            "description": {{ product.description|json_encode(json_flags) }},
+            "url": {{ ('https://github.com/dotkernel/' ~ product.slug)|json_encode(json_flags) }},
+            "sameAs": {{ ('https://packagist.org/packages/dotkernel/' ~ product.slug)|json_encode(json_flags) }},
+            "license": {{ license_url|json_encode(json_flags) }},
+            "isAccessibleForFree": true,
+            "author": {
+                "@id": {{ (site_url ~ '#organization')|json_encode(json_flags) }}
+            },
+            "publisher": {
+                "@id": {{ (site_url ~ '#organization')|json_encode(json_flags) }}
+            },
             "offers": {
                 "@type": "Offer",
                 "price": "0",
                 "priceCurrency": "USD"
             }
-        },
-        {
-            "@type": "SoftwareApplication",
-            "name": "Dotkernel Admin",
-            "applicationCategory": "DeveloperApplication",
-            "operatingSystem": "Cross-platform",
-            "description": "A ready-to-go admin skeleton for managing your platform's records with a simple, table-based approach - plus the tools to build reports and dashboards.",
-            "url": "https://github.com/dotkernel/admin",
-            "license": "https://opensource.org/licenses/BSD-3-Clause",
-            "offers": {
-                "@type": "Offer",
-                "price": "0",
-                "priceCurrency": "USD"
-            }
-        },
-        {
-            "@type": "SoftwareApplication",
-            "name": "Dotkernel Queue",
-            "applicationCategory": "DeveloperApplication",
-            "operatingSystem": "Cross-platform",
-            "description": "Asynchronous task queuing built on Symfony Messenger, wired into the Laminas Service Manager container via netglue/laminas-messenger.",
-            "url": "https://github.com/dotkernel/queue",
-            "license": "https://opensource.org/licenses/BSD-3-Clause",
-            "offers": {
-                "@type": "Offer",
-                "price": "0",
-                "priceCurrency": "USD"
-            }
-        },
-        {
-            "@type": "SoftwareApplication",
-            "name": "Dotkernel Light",
-            "applicationCategory": "DeveloperApplication",
-            "operatingSystem": "Cross-platform",
-            "description": "A minimal, PSR-15 compliant skeleton built for learning purposes - a simple, didactic example of how to put together a basic website.",
-            "url": "https://github.com/dotkernel/light",
-            "license": "https://opensource.org/licenses/BSD-3-Clause",
-            "offers": {
-                "@type": "Offer",
-                "price": "0",
-                "priceCurrency": "USD"
-            }
-        },
-        {
-            "@type": "SoftwareApplication",
-            "name": "Dotkernel Frontend",
-            "applicationCategory": "DeveloperApplication",
-            "operatingSystem": "Cross-platform",
-            "description": "A web starter skeleton for building frontend applications on Mezzio and Laminas - a standalone alternative, separate from the Headless Platform.",
-            "url": "https://github.com/dotkernel/frontend",
-            "license": "https://opensource.org/licenses/BSD-3-Clause",
-            "offers": {
-                "@type": "Offer",
-                "price": "0",
-                "priceCurrency": "USD"
-            }
-        }
+        }{% endfor %}
+
     ]
 }
 </script>
+{% endautoescape %}
