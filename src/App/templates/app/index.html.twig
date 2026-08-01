@@ -9,7 +9,7 @@
             <div>
                 <span class="eyebrow">PSR-15 . middleware-first architecture</span>
                 <h1>A headless platform for building modern web applications</h1>
-                <p class="sub"> Dotkernel is a set of open-source PHP applications — REST API, admin, and queue — that ship assembled on Mezzio and Laminas, over one shared Doctrine domain layer.
+                <p class="sub"> Dotkernel is a set of open-source PHP applications — REST API, admin, and queue — that ship assembled on Mezzio and Laminas, over one shared Doctrine domain layer called Core.
                                 OAuth2, RBAC, HAL, and a generated OpenAPI spec are wired together on install, not left for you to choose.</p>
                 <div class="hero-ctas">
                     <a class="btn btn-primary" href="https://docs.dotkernel.org" target="_blank" rel="noopener">
@@ -88,14 +88,23 @@
             <div class="section-head">
                 <span class="eyebrow">Headless Platform</span>
                 <h2>Three applications, one platform</h2>
-                <p>API, Admin, and Queue are designed to integrate into a single, unified headless platform - better together than the sum of their parts.</p>
+                <p>API, Admin and Queue declare the same <code>Core</code> namespaces — the same entities, repositories and services. 
+                  A <code>User</code> means the same thing to the endpoint that creates it, the admin screen that moderates it and the worker that emails it.
+                Three deployables that scale independently and never disagree about the domain.</p></p>
             </div>
+
+ <div class="core-band">                                                                                                                                                                                                                                                                                                                                                
+      <span class="core-band-label">Shared domain layer</span>                                                                                                                                                                                                                                                                                                           
+      <code>Core\App</code> <code>Core\Admin</code> <code>Core\User</code>                                                                                                                                                                                                                                                                                               
+      <code>Core\Security</code> <code>Core\Setting</code>                                                                                                                                                                                                                                                                                                               
+      <p>One set of entities and repositories, integrated into each application as a Git submodule.</p>                                                                                                                                                                                                                                                                  
+  </div>   
 
             <div class="products-grid">
 
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Skeleton</span><h3>API</h3></div>
+                        <div><span class="kicker">Deployable . Shares Core</span><h3>API</h3></div>
                     </div>
                     <div class="badges">
                         <img alt="PHP" src="https://img.shields.io/packagist/dependency-v/dotkernel/api/php?style=flat&label=php">
@@ -114,7 +123,7 @@
 
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Skeleton</span><h3>Admin</h3></div>
+                        <div><span class="kicker">Deployable . Shares Core</span><h3>Admin</h3></div>
                     </div>
                     <div class="badges">
                         <img alt="PHP" src="https://img.shields.io/packagist/dependency-v/dotkernel/admin/php?style=flat&label=php">
@@ -132,7 +141,7 @@
 
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Skeleton</span><h3>Queue</h3></div>
+                        <div><span class="kicker">Deployable . Shares Core</span><h3>Queue</h3></div>
                     </div>
                     <div class="badges">
                         <img alt="PHP" src="https://img.shields.io/packagist/php-v/dotkernel/queue?style=flat&label=php">
