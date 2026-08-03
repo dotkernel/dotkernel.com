@@ -10,7 +10,7 @@
                 <span class="eyebrow">PSR-15 . middleware-first architecture</span>
                 <h1>A headless platform for building modern web applications</h1>
                 <p class="sub"> Dotkernel is a set of open-source PHP applications — REST API, admin, and queue — that ship assembled on Mezzio and Laminas, over one shared Doctrine domain layer called Core.
-                    OAuth2, RBAC, HAL, and a generated OpenAPI spec are wired together on install, not left for you to choose.</p>
+                                OAuth2, RBAC, HAL, and a generated OpenAPI spec are wired together on install, not left for you to choose.</p>
                 <div class="hero-ctas">
                     <a class="btn btn-primary" href="https://docs.dotkernel.org" target="_blank" rel="noopener">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
@@ -89,16 +89,16 @@
                 <span class="eyebrow">Headless Platform</span>
                 <h2>Three applications, one platform</h2>
                 <p>API, Admin and Queue declare the same <code>Core</code> namespaces — the same entities, repositories and services.
-                    A <code>User</code> means the same thing to the endpoint that creates it, the admin screen that moderates it and the worker that emails it.
-                    Three deployables that scale independently and never disagree about the domain.</p>
+                  A <code>User</code> means the same thing to the endpoint that creates it, the admin screen that moderates it and the worker that emails it.
+                Three deployables that scale independently and never disagree about the domain.</p>
             </div>
 
-            <div class="core-band">
-                <span class="core-band-label">Shared domain layer</span>
-                <code>Core\App</code> <code>Core\Admin</code> <code>Core\User</code>
-                <code>Core\Security</code> <code>Core\Setting</code>
-                <p>One set of entities and repository. Committed in each repo so a single-component start just works — lift it into its own repo and share it as a Git submodule when you add a second.</p>
-            </div>
+ <div class="core-band">
+      <span class="core-band-label">Shared domain layer</span>
+      <code>Core\App</code> <code>Core\Admin</code> <code>Core\User</code>
+      <code>Core\Security</code> <code>Core\Setting</code>
+      <p>One set of entities and repository. Committed in each repo so a single-component start just works — lift it into its own repo and share it as a Git submodule when you add a second.</p>
+  </div>
 
             <div class="products-grid">
 
@@ -113,7 +113,7 @@
                         <img alt="Stars" src="https://img.shields.io/github/stars/dotkernel/api?style=flat&label=%E2%98%85">
                     </div>
                     <p class="desc">An alternative to legacy Laminas API Tools (Apigility). REST APIs on a readable PSR-15 middleware pipeline — no kernel, no facades, no runtime magic.
-                        OAuth2, RBAC and OpenAPI included.</p>
+                                   OAuth2, RBAC and OpenAPI included.</p>
                     <div class="card-btns">
                         <a class="btn btn-ghost btn-sm" href="https://github.com/dotkernel/api" target="_blank" rel="noopener">GitHub</a>
                         <a class="btn btn-ghost btn-sm" href="https://api.dotkernel.net/" target="_blank" rel="noopener">Demo</a>
