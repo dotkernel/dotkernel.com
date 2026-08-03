@@ -39,25 +39,33 @@ $app = [
 ];
 
 return [
-    'application' => $app,
-    'databases'   => $databases,
-    'doctrine'    => [
+    'application'          => $app,
+    'databases'            => $databases,
+    'dot_response_headers' => [
+        '*' => [
+            'X-Powered-By' => [
+                'value'     => $app['meta']['siteName'],
+                'overwrite' => true,
+            ],
+        ],
+    ],
+    'doctrine'             => [
         'connection' => [
             'orm_default' => [
                 'params' => $databases['default'],
             ],
         ],
     ],
-    'feed'        => [
+    'feed'                 => [
         'path' => realpath(__DIR__ . '/../../public/feed.xml'),
     ],
-    'routes'      => [
+    'routes'               => [
         'page' => [
             'contact'                          => 'contact',
             'dotkernel-packages-oss-lifecycle' => 'dotkernel-packages-oss-lifecycle',
         ],
     ],
-    'twig'        => [
+    'twig'                 => [
         'globals' => [
             'app' => $app,
         ],
