@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Dot\ErrorHandler\ErrorHandlerInterface;
+use Light\App\Middleware\PoweredByMiddleware;
 use Mezzio\Application;
 use Mezzio\Handler\NotFoundHandler;
 use Mezzio\Helper\ServerUrlMiddleware;
@@ -18,6 +19,7 @@ return function (Application $app): void {
     // all Exceptions.
     $app->pipe(ErrorHandlerInterface::class);
     $app->pipe(ServerUrlMiddleware::class);
+    $app->pipe(PoweredByMiddleware::class);
 
     // Pipe more middleware here that you want to execute on every request:
     // - bootstrapping
