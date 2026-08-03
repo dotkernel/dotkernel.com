@@ -86,8 +86,8 @@ use function getcwd;
  *       aliases: array<class-string|non-empty-string, class-string|non-empty-string>,
  * }
  * @phpstan-type TemplatesType array{
- *         paths: non-empty-array<non-empty-string, non-empty-string[]>,
- *  }
+ *        paths: non-empty-array<non-empty-string, non-empty-string[]>,
+ * }
  **/
 class ConfigProvider
 {
