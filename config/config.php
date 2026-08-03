@@ -28,6 +28,7 @@ $aggregator = new ConfigAggregator([
     \Dot\ErrorHandler\ConfigProvider::class,
     \Dot\Log\ConfigProvider::class,
     \Dot\Cache\ConfigProvider::class,
+    \Dot\ResponseHeader\ConfigProvider::class,
 
     // Default App module config
     \Light\App\ConfigProvider::class,

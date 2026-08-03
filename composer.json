@@ -30,16 +30,17 @@
         "ext-dom": "*",
         "doctrine/data-fixtures": "^2.2",
         "doctrine/doctrine-fixtures-bundle": "^4.3",
-        "dotkernel/dot-errorhandler": "^5.0.0",
         "dotkernel/dot-cache": "^4.0",
-        "ramsey/uuid": "^4.5.0",
-        "ramsey/uuid-doctrine": "^2.1.0",
-        "roave/psr-container-doctrine": "^5.2.2 || ^6.0.0",
+        "dotkernel/dot-errorhandler": "^5.0.0",
+        "dotkernel/dot-response-header": "^3.6",
         "laminas/laminas-component-installer": "^3.5.0",
         "laminas/laminas-config-aggregator": "^1.17.0",
         "mezzio/mezzio": "^3.24.0",
         "mezzio/mezzio-fastroute": "^3.13.0",
-        "mezzio/mezzio-twigrenderer": "^2.17.0"
+        "mezzio/mezzio-twigrenderer": "^2.17.0",
+        "ramsey/uuid": "^4.5.0",
+        "ramsey/uuid-doctrine": "^2.1.0",
+        "roave/psr-container-doctrine": "^5.2.2 || ^6.0.0"
     },
     "require-dev": {
         "filp/whoops": "^2.17.0",

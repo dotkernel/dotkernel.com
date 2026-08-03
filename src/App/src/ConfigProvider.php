@@ -16,11 +16,9 @@ use Light\App\Factory\FeedGeneratorFactory;
 use Light\App\Factory\GetFeedViewHandlerFactory;
 use Light\App\Factory\GetIndexViewHandlerFactory;
 use Light\App\Factory\GetMarkdownArticleHandlerFactory;
-use Light\App\Factory\PoweredByMiddlewareFactory;
 use Light\App\Handler\GetFeedViewHandler;
 use Light\App\Handler\GetIndexViewHandler;
 use Light\App\Handler\GetMarkdownArticleHandler;
-use Light\App\Middleware\PoweredByMiddleware;
 use Light\App\Resolver\EntityListenerResolver;
 use Light\App\Service\FeedGenerator;
 use Mezzio\Application;
@@ -120,7 +118,6 @@ class ConfigProvider
                 GetFeedViewHandler::class             => GetFeedViewHandlerFactory::class,
                 GetMarkdownArticleHandler::class      => GetMarkdownArticleHandlerFactory::class,
                 FeedGenerator::class                  => FeedGeneratorFactory::class,
-                PoweredByMiddleware::class            => PoweredByMiddlewareFactory::class,
             ],
             'aliases'    => [
                 EntityManager::class          => 'doctrine.entity_manager.orm_default',
