@@ -73,9 +73,10 @@ class FeedGenerator
             );
             $this->appendText($dom, $item, 'guid', $link);
 
-            if ($this->image !== '') {
+            $image = $post->getOpenGraphImage() ?? $this->image;
+            if ($image !== '') {
                 $media = $dom->createElementNS(self::MEDIA_NAMESPACE, 'media:content');
-                $media->setAttribute('url', $this->image);
+                $media->setAttribute('url', $image);
                 $media->setAttribute('medium', 'image');
                 $item->appendChild($media);
             }

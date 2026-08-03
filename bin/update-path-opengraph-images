@@ -1,0 +1,118 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+use Doctrine\ORM\EntityManager;
+use Light\Blog\Entity\Post;
+
+chdir(__DIR__ . '/../');
+
+require 'vendor/autoload.php';
+
+$uploadsDir = 'public/uploads';
+$ogDir      = $uploadsDir . '/opengraph/article';
+
+$container      = require 'config/container.php';
+$entityManager  = $container->get(EntityManager::class);
+$postRepository = $entityManager->getRepository(Post::class);
+
+$config  = $container->get('config');
+$baseUrl = rtrim($config['application']['baseUrl'] ?? '', '/');
+
+/**
+ *
+ * @return array<string, string>
+ */
+function indexUploadSources(string $uploadsDir, string $excludeDir): array
+{
+    $index = [];
+
+    $iterator = new RecursiveIteratorIterator(
+        new RecursiveDirectoryIterator($uploadsDir, FilesystemIterator::SKIP_DOTS)
+    );
+
+    foreach ($iterator as $file) {
+        if (! $file->isFile()) {
+            continue;
+        }
+
+        $path = $file->getPathname();
+        if (str_starts_with($path, $excludeDir . '/')) {
+            continue;
+        }
+
+        $basename = $file->getFilename();
+        if (! isset($index[$basename])) {
+            $index[$basename] = $path;
+        }
+    }
+
+    return $index;
+}
+
+$sourceIndex = indexUploadSources($uploadsDir, $ogDir);
+
+$postsUpdated  = 0;
+$postsSkipped  = 0;
+$dirsCreated   = 0;
+$imagesMissing = 0;
+
+$posts = $postRepository->findAll();
+
+foreach ($posts as $post) {
+    $image = $post->getOpenGraphImage();
+    if ($image === null || $image === '') {
+        continue;
+    }
+
+    if ($baseUrl !== '' && str_starts_with($image, $baseUrl . '/')) {
+        continue;
+    }
+
+    $filename = basename(parse_url($image, PHP_URL_PATH) ?: $image);
+    if ($filename === '') {
+        continue;
+    }
+
+    if (! isset($sourceIndex[$filename])) {
+        printf("Source image '%s' not found for post '%s'%s", $filename, $post->getTitle(), PHP_EOL);
+        $imagesMissing++;
+        continue;
+    }
+
+    $targetDir = $ogDir . '/' . $post->getId()->toString();
+    if (! is_dir($targetDir)) {
+        if (! mkdir($targetDir, 0775, true) && ! is_dir($targetDir)) {
+            fwrite(STDERR, sprintf("Failed to create directory '%s'%s", $targetDir, PHP_EOL));
+            continue;
+        }
+        $dirsCreated++;
+    }
+
+    $targetPath = $targetDir . '/' . $filename;
+    if (! file_exists($targetPath) && ! copy($sourceIndex[$filename], $targetPath)) {
+        fwrite(STDERR, sprintf("Failed to copy '%s' to '%s'%s", $sourceIndex[$filename], $targetPath, PHP_EOL));
+        continue;
+    }
+
+    $post->setOpenGraphImage($baseUrl . '/uploads/opengraph/article/' . $post->getId()->toString() . '/' . $filename);
+    $postsUpdated++;
+}
+
+$entityManager->flush();
+
+$postsSkipped = count($posts) - $postsUpdated - $imagesMissing;
+
+printf(
+    "Done. %d post%s updated, %d director%s created, %d image%s missing, %d post%s skipped.%s",
+    $postsUpdated,
+    $postsUpdated === 1 ? '' : 's',
+    $dirsCreated,
+    $dirsCreated === 1 ? 'y' : 'ies',
+    $imagesMissing,
+    $imagesMissing === 1 ? '' : 's',
+    $postsSkipped,
+    $postsSkipped === 1 ? '' : 's',
+    PHP_EOL
+);
