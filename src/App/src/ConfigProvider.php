@@ -31,6 +31,7 @@ use function getcwd;
  * @phpstan-type ConfigType array{
  *      dependencies: DependenciesType,
  *      doctrine: DoctrineConfigType,
+ *      templates: TemplatesType,
  *      resultCacheLifetime: int,
  * }
  * @phpstan-type DoctrineConfigType array{
@@ -84,6 +85,9 @@ use function getcwd;
  *       factories: array<class-string|non-empty-string, class-string|non-empty-string>,
  *       aliases: array<class-string|non-empty-string, class-string|non-empty-string>,
  * }
+ * @phpstan-type TemplatesType array{
+ *         paths: non-empty-array<non-empty-string, non-empty-string[]>,
+ *  }
  **/
 class ConfigProvider
 {
@@ -127,15 +131,7 @@ class ConfigProvider
     }
 
     /**
-     * @return array{
-     *     paths: array{
-     *          app: array{literal-string&non-falsy-string},
-     *          error: array{literal-string&non-falsy-string},
-     *          jsonld: array{literal-string&non-falsy-string},
-     *          layout: array{literal-string&non-falsy-string},
-     *          partial: array{literal-string&non-falsy-string},
-     *     }
-     * }
+     * @return TemplatesType
      */
     public function getTemplates(): array
     {

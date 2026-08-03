@@ -6,9 +6,9 @@ namespace LightTest\Unit\Page\Service;
 
 use Light\Page\Service\PageService;
 use Light\Page\Service\PageServiceInterface;
-use PHPUnit\Framework\TestCase;
+use LightTest\Unit\UnitTest;
 
-class PageServiceTest extends TestCase
+class PageServiceTest extends UnitTest
 {
     public function testWillInstantiate(): void
     {

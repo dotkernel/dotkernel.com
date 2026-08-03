@@ -8,14 +8,14 @@ use Laminas\Diactoros\Response\HtmlResponse;
 use Light\Blog\Repository\CategoryRepository;
 use Light\Blog\Repository\PostRepository;
 use Light\Page\Handler\GetPageViewHandler;
+use LightTest\Unit\UnitTest;
 use Mezzio\Router\RouteResult;
 use Mezzio\Template\TemplateRendererInterface;
 use PHPUnit\Framework\MockObject\Exception;
-use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class PageHandlerTest extends TestCase
+class PageHandlerTest extends UnitTest
 {
     /**
      * @throws Exception

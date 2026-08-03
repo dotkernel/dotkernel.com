@@ -11,13 +11,24 @@ use Light\Page\Service\PageService;
 use Light\Page\Service\PageServiceInterface;
 use Mezzio\Application;
 
+/**
+ * @phpstan-type ConfigType array{
+ *      dependencies: DependenciesType,
+ *      templates: TemplatesType,
+ * }
+ * @phpstan-type DependenciesType array{
+ *       delegators: non-empty-array<class-string, array<class-string>>,
+ *       factories: array<class-string|non-empty-string, class-string|non-empty-string>,
+ *       aliases: array<class-string|non-empty-string, class-string|non-empty-string>,
+ * }
+ * @phpstan-type TemplatesType array{
+ *       paths: non-empty-array<non-empty-string, non-empty-string[]>,
+ * }
+ **/
 class ConfigProvider
 {
     /**
-    @return array{
-     *     dependencies: array<mixed>,
-     *     templates: array<mixed>,
-     * }
+     * @return ConfigType
      */
     public function __invoke(): array
     {
@@ -28,11 +39,7 @@ class ConfigProvider
     }
 
     /**
-    @return array{
-     *     delegators: array<class-string, array<class-string>>,
-     *     factories: array<class-string, class-string>,
-     *     aliases: array<class-string, class-string>
-     * }
+     * @return DependenciesType
      */
     public function getDependencies(): array
     {
@@ -53,9 +60,7 @@ class ConfigProvider
     }
 
     /**
-    @return array{
-     *     paths: array{page: array{literal-string&non-falsy-string}}
-     * }
+     * @return TemplatesType
      */
     public function getTemplates(): array
     {

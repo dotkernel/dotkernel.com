@@ -17,12 +17,20 @@ class TestCase extends \PHPUnit\Framework\TestCase
     protected ?ContainerInterface $container         = null;
     protected ?EntityManagerInterface $entityManager = null;
 
+    /**
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
     protected function setUp(): void
     {
         TestMode::enable();
         $this->ensureTestMode();
     }
 
+    /**
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
     private function ensureTestMode(): void
     {
         if (! TestMode::isEnabled()) {
