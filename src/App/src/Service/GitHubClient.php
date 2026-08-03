@@ -41,21 +41,34 @@ use const CURLOPT_USERAGENT;
  * package generator needs and nothing more. Requests degrade to unauthenticated when no token is
  * configured, which keeps the generator usable on a machine without credentials.
  *
- * @phpstan-type ResponseData array{status: int, body: string, links: array<string, string>}
+ * @phpstan-type ResponseData array{status: int, body: string, links: array<string, non-empty-string>}
  */
 class GitHubClient implements GitHubClientInterface
 {
-    private const string API_ROOT    = 'https://api.github.com';
-    private const string API_VERSION = '2022-11-28';
+    private const string API_ROOT           = 'https://api.github.com';
+    private const string API_VERSION        = '2022-11-28';
+    private const string DEFAULT_USER_AGENT = 'dotkernel.com';
+
+    /**
+     * cURL rejects an empty user agent, and GitHub rejects requests without one, so an empty
+     * configured value falls back to the default rather than failing every request.
+     *
+     * @var non-empty-string
+     */
+    private readonly string $userAgent;
 
     public function __construct(
         private readonly string $token,
-        private readonly string $userAgent,
+        string $userAgent,
         private readonly int $timeout,
         private readonly int $connectTimeout,
     ) {
+        $this->userAgent = $userAgent === '' ? self::DEFAULT_USER_AGENT : $userAgent;
     }
 
+    /**
+     * @param non-empty-string $path
+     */
     public function get(string $path, string $accept = self::ACCEPT_JSON): ?string
     {
         $response = $this->request($this->absoluteUrl($path), $accept);
@@ -70,6 +83,7 @@ class GitHubClient implements GitHubClientInterface
     }
 
     /**
+     * @param non-empty-string $path
      * @return list<array<string, mixed>>
      */
     public function getAllPages(string $path): array
@@ -99,6 +113,7 @@ class GitHubClient implements GitHubClientInterface
     }
 
     /**
+     * @param non-empty-string $url
      * @return ResponseData
      */
     private function request(string $url, string $accept): array
@@ -147,16 +162,18 @@ class GitHubClient implements GitHubClientInterface
     /**
      * Parses `<https://...>; rel="next", <https://...>; rel="last"` into a rel => url map.
      *
-     * @return array<string, string>
+     * @return array<string, non-empty-string>
      */
     private function parseLinkHeader(string $value): array
     {
         $links = [];
 
         foreach (explode(',', $value) as $part) {
-            if (preg_match('/<([^>]+)>\s*;\s*rel="([^"]+)"/', trim($part), $matches) === 1) {
-                $links[$matches[2]] = $matches[1];
+            if (preg_match('/<([^>]+)>\s*;\s*rel="([^"]+)"/', trim($part), $matches) !== 1) {
+                continue;
             }
+
+            $links[$matches[2]] = $matches[1];
         }
 
         return $links;
@@ -179,6 +196,10 @@ class GitHubClient implements GitHubClientInterface
         return $headers;
     }
 
+    /**
+     * @param non-empty-string $path
+     * @return non-empty-string
+     */
     private function absoluteUrl(string $path): string
     {
         if (str_starts_with($path, 'http://') || str_starts_with($path, 'https://')) {
