@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 const ENVIRONMENT_DEVELOPMENT = 'development';
 const ENVIRONMENT_PRODUCTION  = 'production';
+
 // phpcs:disable PSR1.Files.SideEffects.FoundWithSymbols
 
 /**
