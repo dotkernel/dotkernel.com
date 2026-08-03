@@ -6,17 +6,17 @@ namespace LightTest\Unit\Page;
 
 use Light\Page\Handler\GetPageViewHandler;
 use Light\Page\RoutesDelegator;
+use LightTest\Unit\UnitTest;
 use Mezzio\Application;
 use Mezzio\Router\Route;
 use PHPUnit\Framework\MockObject\Exception;
-use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
 
 use function sprintf;
 
-class RoutesDelegatorTest extends TestCase
+class RoutesDelegatorTest extends UnitTest
 {
     /**
      * @throws ContainerExceptionInterface
