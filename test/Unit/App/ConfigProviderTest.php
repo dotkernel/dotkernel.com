@@ -6,11 +6,17 @@ namespace LightTest\Unit\App;
 
 use Light\App\ConfigProvider;
 use Light\App\Handler\GetIndexViewHandler;
-use PHPUnit\Framework\TestCase;
+use LightTest\Unit\UnitTest;
 
-class ConfigProviderTest extends TestCase
+/**
+ * @phpstan-import-type ConfigType from ConfigProvider
+ */
+class ConfigProviderTest extends UnitTest
 {
-    /** @var array<mixed> */
+    /**
+     * @phpstan-var ConfigType $config
+     * @phpstan-ignore property.defaultValue
+     */
     protected array $config = [];
 
     protected function setup(): void

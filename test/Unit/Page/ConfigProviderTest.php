@@ -8,12 +8,18 @@ use Light\Page\ConfigProvider;
 use Light\Page\RoutesDelegator;
 use Light\Page\Service\PageService;
 use Light\Page\Service\PageServiceInterface;
+use LightTest\Unit\UnitTest;
 use Mezzio\Application;
-use PHPUnit\Framework\TestCase;
 
-class ConfigProviderTest extends TestCase
+/**
+ * @phpstan-import-type ConfigType from ConfigProvider
+ */
+class ConfigProviderTest extends UnitTest
 {
-    /** @var array<string, array<string, mixed>>*/
+    /**
+     * @phpstan-var ConfigType $config
+     * @phpstan-ignore property.defaultValue
+     */
     protected array $config = [];
 
     protected function setup(): void
