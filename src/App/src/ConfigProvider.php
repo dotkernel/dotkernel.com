@@ -16,11 +16,18 @@ use Light\App\Factory\FeedGeneratorFactory;
 use Light\App\Factory\GetFeedViewHandlerFactory;
 use Light\App\Factory\GetIndexViewHandlerFactory;
 use Light\App\Factory\GetMarkdownArticleHandlerFactory;
+use Light\App\Factory\GetPackagesViewHandlerFactory;
+use Light\App\Factory\GitHubClientFactory;
+use Light\App\Factory\PackageGeneratorFactory;
 use Light\App\Handler\GetFeedViewHandler;
 use Light\App\Handler\GetIndexViewHandler;
 use Light\App\Handler\GetMarkdownArticleHandler;
+use Light\App\Handler\GetPackagesViewHandler;
 use Light\App\Resolver\EntityListenerResolver;
 use Light\App\Service\FeedGenerator;
+use Light\App\Service\GitHubClient;
+use Light\App\Service\GitHubClientInterface;
+use Light\App\Service\PackageGenerator;
 use Mezzio\Application;
 use Roave\PsrContainerDoctrine\EntityManagerFactory;
 use Symfony\Component\Cache\Adapter\AdapterInterface;
@@ -121,11 +128,15 @@ class ConfigProvider
                 GetIndexViewHandler::class            => GetIndexViewHandlerFactory::class,
                 GetFeedViewHandler::class             => GetFeedViewHandlerFactory::class,
                 GetMarkdownArticleHandler::class      => GetMarkdownArticleHandlerFactory::class,
+                GetPackagesViewHandler::class         => GetPackagesViewHandlerFactory::class,
                 FeedGenerator::class                  => FeedGeneratorFactory::class,
+                GitHubClient::class                   => GitHubClientFactory::class,
+                PackageGenerator::class               => PackageGeneratorFactory::class,
             ],
             'aliases'    => [
                 EntityManager::class          => 'doctrine.entity_manager.orm_default',
                 EntityManagerInterface::class => 'doctrine.entity_manager.orm_default',
+                GitHubClientInterface::class  => GitHubClient::class,
             ],
         ];
     }

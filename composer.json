@@ -27,6 +27,7 @@
     },
     "require": {
         "php": "~8.5.0",
+        "ext-curl": "*",
         "ext-dom": "*",
         "doctrine/data-fixtures": "^2.2",
         "doctrine/doctrine-fixtures-bundle": "^4.3",
