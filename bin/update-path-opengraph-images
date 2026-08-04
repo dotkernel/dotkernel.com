@@ -96,7 +96,7 @@ foreach ($posts as $post) {
         continue;
     }
 
-    $post->setOpenGraphImage($baseUrl . '/uploads/opengraph/article/' . $post->getId()->toString() . '/' . $filename);
+    $post->setOpenGraphImage('/' . $targetPath);
     $postsUpdated++;
 }
 
