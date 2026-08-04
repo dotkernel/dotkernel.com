@@ -64,17 +64,17 @@ return [
      * scopes at all; without a token the generator still runs, at a lower rate limit.
      * Non-credential settings (ignore list, output path) live in `packages.global.php`.
      */
-    'github'               => [
+    'github'  => [
         'userAgent'  => 'dotkernel.com',
         'authBearer' => '',
         'org'        => 'dotkernel',
     ],
-    'sitemap'              => [
+    'sitemap' => [
         'path' => realpath(__DIR__ . '/../../public/sitemap.xml'),
     ],
     // `dotkernel-packages-oss-lifecycle` is intentionally absent: it has a dedicated handler
     // and is routed in Light\App\RoutesDelegator. Re-adding it here registers the path twice.
-    'routes'               => [
+    'routes' => [
         'page' => [
             'contact' => 'contact',
         ],
