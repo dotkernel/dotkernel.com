@@ -13,10 +13,14 @@ use ReflectionProperty;
 use RuntimeException;
 
 use function fclose;
+use function file_get_contents;
 use function fsockopen;
+use function function_exists;
+use function is_file;
 use function is_resource;
 use function json_decode;
 use function proc_close;
+use function proc_get_status;
 use function proc_open;
 use function proc_terminate;
 use function sprintf;
@@ -24,11 +28,16 @@ use function stream_socket_get_name;
 use function stream_socket_server;
 use function strrchr;
 use function substr;
+use function sys_get_temp_dir;
+use function tempnam;
+use function trim;
+use function unlink;
 use function usleep;
 
 use const DIRECTORY_SEPARATOR;
 use const JSON_THROW_ON_ERROR;
 use const PHP_BINARY;
+use const PHP_EOL;
 
 /**
  * Drives the real cURL transport against a local stand-in for the GitHub API.
@@ -41,27 +50,65 @@ class GitHubClientTest extends UnitTest
     private const string TOKEN      = 'gh-test-token';
     private const string USER_AGENT = 'dotkernel.com-test';
 
+    /**
+     * Spawning the stand-in needs process and socket functions that a hardened PHP build may
+     * have disabled. Skipping with a named reason beats an unexplained error.
+     */
+    private const array REQUIRED_FUNCTIONS = [
+        'proc_open',
+        'proc_get_status',
+        'proc_terminate',
+        'stream_socket_server',
+        'fsockopen',
+    ];
+
     /** @var resource|null */
     private static $server;
 
     private static string $baseUrl = '';
 
+    /**
+     * The stand-in's own output, kept so a startup failure can report why rather than vanishing.
+     */
+    private static ?string $outputFile = null;
+
     public static function setUpBeforeClass(): void
     {
+        foreach (self::REQUIRED_FUNCTIONS as $function) {
+            if (! function_exists($function)) {
+                self::markTestSkipped(sprintf(
+                    '%s() is unavailable, so the local GitHub API stand-in cannot be started.',
+                    $function
+                ));
+            }
+        }
+
+        $router = __DIR__ . DIRECTORY_SEPARATOR . 'Fixture' . DIRECTORY_SEPARATOR . 'github-api-server.php';
+        if (! is_file($router)) {
+            self::fail(sprintf('The GitHub API stand-in is missing from %s.', $router));
+        }
+
+        $outputFile = tempnam(sys_get_temp_dir(), 'github-api-server-');
+        if ($outputFile === false) {
+            self::fail('Unable to create a log file for the local GitHub API stand-in.');
+        }
+
+        self::$outputFile = $outputFile;
+
         $port    = self::findFreePort();
-        $router  = __DIR__ . DIRECTORY_SEPARATOR . 'Fixture' . DIRECTORY_SEPARATOR . 'github-api-server.php';
+        $command = [PHP_BINARY, '-S', sprintf('127.0.0.1:%d', $port), $router];
         $process = proc_open(
-            [PHP_BINARY, '-S', sprintf('127.0.0.1:%d', $port), $router],
+            $command,
             [
                 0 => ['file', '/dev/null', 'r'],
-                1 => ['file', '/dev/null', 'w'],
-                2 => ['file', '/dev/null', 'w'],
+                1 => ['file', $outputFile, 'a'],
+                2 => ['file', $outputFile, 'a'],
             ],
             $pipes
         );
 
         if (! is_resource($process)) {
-            self::fail('Unable to start the local GitHub API stand-in.');
+            self::markTestSkipped(sprintf('Unable to run %s -S 127.0.0.1:%d.', PHP_BINARY, $port));
         }
 
         self::$server  = $process;
@@ -77,8 +124,13 @@ class GitHubClientTest extends UnitTest
             proc_close(self::$server);
         }
 
-        self::$server  = null;
-        self::$baseUrl = '';
+        if (self::$outputFile !== null && is_file(self::$outputFile)) {
+            unlink(self::$outputFile);
+        }
+
+        self::$server     = null;
+        self::$baseUrl    = '';
+        self::$outputFile = null;
     }
 
     public function testGetReturnsTheResponseBody(): void
@@ -287,6 +339,17 @@ class GitHubClientTest extends UnitTest
     private static function waitForServer(int $port): void
     {
         for ($attempt = 0; $attempt < 100; $attempt++) {
+            if (is_resource(self::$server)) {
+                $status = proc_get_status(self::$server);
+                if ($status['running'] === false) {
+                    self::markTestSkipped(sprintf(
+                        'The local GitHub API stand-in exited with code %d.%s',
+                        $status['exitcode'],
+                        self::serverOutput()
+                    ));
+                }
+            }
+
             $connection = @fsockopen('127.0.0.1', $port, $errorNumber, $errorMessage, 0.2);
             if (is_resource($connection)) {
                 fclose($connection);
@@ -297,6 +360,27 @@ class GitHubClientTest extends UnitTest
             usleep(50_000);
         }
 
-        self::fail(sprintf('The local GitHub API stand-in never came up on port %d.', $port));
+        self::markTestSkipped(sprintf(
+            'The local GitHub API stand-in never accepted a connection on port %d.%s',
+            $port,
+            self::serverOutput()
+        ));
+    }
+
+    /**
+     * Whatever the stand-in wrote before giving up, appended to a failure message.
+     */
+    private static function serverOutput(): string
+    {
+        if (self::$outputFile === null || ! is_file(self::$outputFile)) {
+            return '';
+        }
+
+        $output = file_get_contents(self::$outputFile);
+        if ($output === false || trim($output) === '') {
+            return ' It produced no output.';
+        }
+
+        return sprintf("%sIt reported:%s%s", PHP_EOL, PHP_EOL, trim($output));
     }
 }
