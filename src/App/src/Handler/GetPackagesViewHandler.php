@@ -33,12 +33,13 @@ class GetPackagesViewHandler implements RequestHandlerInterface
         // no inline regeneration
         // data is cached in `public/packages.json` by `bin/generate-packages`
         $data = $this->packageGenerator->read();
-
-        $packages = is_array($data) && isset($data['packages']) && is_array($data['packages'])
+        if (! is_array($data)) {
+            $data = [];
+        }
+        $packages    = isset($data['packages']) && is_array($data['packages'])
             ? $data['packages']
             : [];
-
-        $generatedAt = is_array($data) && isset($data['generated_at']) && is_string($data['generated_at'])
+        $generatedAt = isset($data['generated_at']) && is_string($data['generated_at'])
             ? $data['generated_at']
             : null;
 

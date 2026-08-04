@@ -14,13 +14,15 @@ class GitHubClientFactory
     public function __invoke(ContainerInterface $container): GitHubClient
     {
         $config = $container->get('config');
-
+        if (! is_array($config)) {
+            $config = [];
+        }
         // the token is in `config/autoload/local.php`
         // if unauthenticated, the client has a lower call limit
-        $github   = is_array($config) && isset($config['github']) && is_array($config['github'])
+        $github   = isset($config['github']) && is_array($config['github'])
             ? $config['github']
             : [];
-        $packages = is_array($config) && isset($config['packages']) && is_array($config['packages'])
+        $packages = isset($config['packages']) && is_array($config['packages'])
             ? $config['packages']
             : [];
 

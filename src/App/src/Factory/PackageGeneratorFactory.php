@@ -20,11 +20,13 @@ class PackageGeneratorFactory
         assert($client instanceof GitHubClientInterface);
 
         $config = $container->get('config');
-
-        $github   = is_array($config) && isset($config['github']) && is_array($config['github'])
+        if (! is_array($config)) {
+            $config = [];
+        }
+        $github   = isset($config['github']) && is_array($config['github'])
             ? $config['github']
             : [];
-        $packages = is_array($config) && isset($config['packages']) && is_array($config['packages'])
+        $packages = isset($config['packages']) && is_array($config['packages'])
             ? $config['packages']
             : [];
 

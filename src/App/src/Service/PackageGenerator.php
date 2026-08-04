@@ -56,12 +56,12 @@ use const PHP_INT_MAX;
  *     warnings: list<string>,
  * }
  */
-class PackageGenerator
+readonly class PackageGenerator
 {
     /**
      * Display order for the generated listing. Anything unrecognised sorts last.
      */
-    private const LIFECYCLE_ORDER = [
+    private const array LIFECYCLE_ORDER = [
         'active'        => 0,
         'maintenance'   => 1,
         'security-only' => 2,
@@ -72,19 +72,19 @@ class PackageGenerator
      * Fraction of failed requests above which the run is abandoned rather than writing a
      * partial listing over a known-good one.
      */
-    private const FAILURE_THRESHOLD = 0.2;
+    private const float FAILURE_THRESHOLD = 0.2;
 
-    private const GITHUB_ROOT = 'https://github.com/';
+    private const string GITHUB_ROOT = 'https://github.com/';
 
     /**
      * @param list<string> $ignoreRepos
      */
     public function __construct(
-        private readonly GitHubClientInterface $client,
-        private readonly string $dataFile,
-        private readonly string $org,
-        private readonly array $ignoreRepos,
-        private readonly bool $includeArchived,
+        private GitHubClientInterface $client,
+        private string $dataFile,
+        private string $org,
+        private array $ignoreRepos,
+        private bool $includeArchived,
     ) {
     }
 

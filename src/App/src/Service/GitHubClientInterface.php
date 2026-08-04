@@ -8,8 +8,8 @@ use RuntimeException;
 
 interface GitHubClientInterface
 {
-    public const ACCEPT_JSON = 'application/vnd.github+json';
-    public const ACCEPT_RAW  = 'application/vnd.github.raw';
+    public const string ACCEPT_JSON = 'application/vnd.github+json';
+    public const string ACCEPT_RAW  = 'application/vnd.github.raw';
 
     /**
      * Performs a single authenticated GET request.
