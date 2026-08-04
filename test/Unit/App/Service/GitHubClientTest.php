@@ -13,9 +13,12 @@ use ReflectionProperty;
 use RuntimeException;
 
 use function fclose;
+use function feof;
+use function fgets;
 use function file_get_contents;
 use function fsockopen;
 use function function_exists;
+use function fwrite;
 use function is_file;
 use function is_resource;
 use function json_decode;
@@ -24,6 +27,8 @@ use function proc_get_status;
 use function proc_open;
 use function proc_terminate;
 use function sprintf;
+use function str_contains;
+use function stream_set_timeout;
 use function stream_socket_get_name;
 use function stream_socket_server;
 use function strrchr;
@@ -350,10 +355,7 @@ class GitHubClientTest extends UnitTest
                 }
             }
 
-            $connection = @fsockopen('127.0.0.1', $port, $errorNumber, $errorMessage, 0.2);
-            if (is_resource($connection)) {
-                fclose($connection);
-
+            if (self::probeWithARealRequest($port)) {
                 return;
             }
 
@@ -365,6 +367,45 @@ class GitHubClientTest extends UnitTest
             $port,
             self::serverOutput()
         ));
+    }
+
+    /**
+     * Sends a complete request and reads the whole response back.
+     *
+     * The stand-in is single threaded, so it must be allowed to finish a full request cycle
+     * before the first test runs. Probing by opening a connection and dropping it without
+     * sending anything leaves the server reading EOF, and the next response comes back empty.
+     */
+    private static function probeWithARealRequest(int $port): bool
+    {
+        $connection = @fsockopen('127.0.0.1', $port, $errorNumber, $errorMessage, 0.5);
+        if (! is_resource($connection)) {
+            return false;
+        }
+
+        stream_set_timeout($connection, 1);
+        fwrite($connection, sprintf(
+            "GET /ok HTTP/1.0%sHost: 127.0.0.1:%d%sUser-Agent: readiness-probe%s%s",
+            "\r\n",
+            $port,
+            "\r\n",
+            "\r\n",
+            "\r\n"
+        ));
+
+        $response = '';
+        while (! feof($connection)) {
+            $chunk = fgets($connection);
+            if ($chunk === false) {
+                break;
+            }
+
+            $response .= $chunk;
+        }
+
+        fclose($connection);
+
+        return str_contains($response, '200') && str_contains($response, '{"lifecycle":"active"}');
     }
 
     /**
