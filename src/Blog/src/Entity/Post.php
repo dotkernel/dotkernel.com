@@ -49,6 +49,9 @@ class Post extends AbstractEntity
     #[ORM\Column(name: 'isObsolete', type: 'boolean')]
     private bool $isObsolete = false;
 
+    #[ORM\Column(name: 'opengraph_img', type: 'string', length: 255, nullable: true)]
+    private ?string $openGraphImage = null;
+
     public function getTitle(): string
     {
         return $this->title;
@@ -139,6 +142,16 @@ class Post extends AbstractEntity
         $this->isObsolete = $isObsolete;
     }
 
+    public function getOpenGraphImage(): ?string
+    {
+        return $this->openGraphImage;
+    }
+
+    public function setOpenGraphImage(?string $openGraphImage): void
+    {
+        $this->openGraphImage = $openGraphImage;
+    }
+
     /**
      * @return array{
      *     id: non-empty-string,
@@ -149,6 +162,7 @@ class Post extends AbstractEntity
      *     tlDr: string|null,
      *     postDate: string,
      *     isObsolete: bool,
+     *     openGraphImage: string|null,
      *     category: array{id: non-empty-string, name: string, slug: string},
      *     author: array{id: non-empty-string, name: string, slug: string, github: string|null}
      * }
@@ -156,16 +170,17 @@ class Post extends AbstractEntity
     public function getArrayCopy(): array
     {
         return [
-            'id'         => $this->id->toString(),
-            'title'      => $this->title,
-            'slug'       => $this->slug,
-            'status'     => $this->status->value,
-            'excerpt'    => $this->excerpt,
-            'tlDr'       => $this->tlDr,
-            'isObsolete' => $this->isObsolete,
-            'postDate'   => $this->postDate->format('Y-m-d H:i:s'),
-            'category'   => $this->category->getArrayCopy(),
-            'author'     => $this->author->getArrayCopy(),
+            'id'             => $this->id->toString(),
+            'title'          => $this->title,
+            'slug'           => $this->slug,
+            'status'         => $this->status->value,
+            'excerpt'        => $this->excerpt,
+            'tlDr'           => $this->tlDr,
+            'isObsolete'     => $this->isObsolete,
+            'openGraphImage' => $this->openGraphImage,
+            'postDate'       => $this->postDate->format('Y-m-d H:i:s'),
+            'category'       => $this->category->getArrayCopy(),
+            'author'         => $this->author->getArrayCopy(),
         ];
     }
 }

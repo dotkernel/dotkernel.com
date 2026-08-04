@@ -74,9 +74,10 @@ class PostLoader extends Fixture implements DependentFixtureInterface
                     ? new DateTimeImmutable($rawDate)
                     : new DateTimeImmutable();
 
-                $excerpt    = $articleData['excerpt'] ?? '';
-                $tlDr       = $articleData['tl_dr'] ?? '';
-                $isObsolete = (bool) ($articleData['isObsolete'] ?? false);
+                $excerpt      = $articleData['excerpt'] ?? '';
+                $tlDr         = $articleData['tl_dr'] ?? '';
+                $isObsolete   = (bool) ($articleData['isObsolete'] ?? false);
+                $openGraphImg = $articleData['opengraph_img'] ?? null;
 
                 $article = $repository->findOneBy(['slug' => $slug]);
 
@@ -91,6 +92,7 @@ class PostLoader extends Fixture implements DependentFixtureInterface
                     $article->setExcerpt($excerpt);
                     $article->setTldr($tlDr);
                     $article->setObsolete($isObsolete);
+                    $article->setOpenGraphImage($openGraphImg);
 
                     $manager->persist($article);
                     echo "CREATE: {$title}\n";
@@ -127,6 +129,10 @@ class PostLoader extends Fixture implements DependentFixtureInterface
                     }
                     if ($article->isObsolete() !== $isObsolete) {
                         $article->setObsolete($isObsolete);
+                        $changed = true;
+                    }
+                    if ($article->getOpenGraphImage() !== $openGraphImg) {
+                        $article->setOpenGraphImage($openGraphImg);
                         $changed = true;
                     }
 
