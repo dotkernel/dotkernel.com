@@ -59,13 +59,24 @@ return [
     'feed'                 => [
         'path' => realpath(__DIR__ . '/../../public/feed.xml'),
     ],
-    'routes'               => [
+    /**
+     * Credentials for `bin/generate-packages`. Reading public repositories needs no token
+     * scopes at all; without a token the generator still runs, at a lower rate limit.
+     * Non-credential settings (ignore list, output path) live in `packages.global.php`.
+     */
+    'github' => [
+        'userAgent'  => 'dotkernel.com',
+        'authBearer' => '',
+        'org'        => 'dotkernel',
+    ],
+    // `dotkernel-packages-oss-lifecycle` is intentionally absent: it has a dedicated handler
+    // and is routed in Light\App\RoutesDelegator. Re-adding it here registers the path twice.
+    'routes' => [
         'page' => [
-            'contact'                          => 'contact',
-            'dotkernel-packages-oss-lifecycle' => 'dotkernel-packages-oss-lifecycle',
+            'contact' => 'contact',
         ],
     ],
-    'twig'                 => [
+    'twig'   => [
         'globals' => [
             'app' => $app,
         ],
