@@ -19,7 +19,7 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/app.css') }}?v=1" rel="stylesheet" />
     {% block json_ld %}{% endblock %}
     {% block stylesheets %}{% endblock %}
 </head>
@@ -103,7 +103,7 @@
         </div>
     </div>
 </footer>
-<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/app.js') }}?v=1"></script>
 {% block javascript %}{% endblock %}
 </body>
 </html>
