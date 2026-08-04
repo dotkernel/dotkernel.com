@@ -133,7 +133,7 @@ class ConfigProvider
                 GetFeedViewHandler::class             => GetFeedViewHandlerFactory::class,
                 GetMarkdownArticleHandler::class      => GetMarkdownArticleHandlerFactory::class,
                 GetSitemapViewHandler::class          => GetSitemapViewHandlerFactory::class,
-                GetPackagesViewHandler::class          => GetPackagesViewHandlerFactory::class,
+                GetPackagesViewHandler::class         => GetPackagesViewHandlerFactory::class,
                 FeedGenerator::class                  => FeedGeneratorFactory::class,
                 SitemapGenerator::class               => SitemapGeneratorFactory::class,
                 GitHubClient::class                   => GitHubClientFactory::class,
