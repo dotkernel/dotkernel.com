@@ -1,0 +1,60 @@
+#!/usr/bin/env php
+<?php
+
+/**
+ * Rebuilds the Dotkernel packages listing from the GitHub organisation.
+ *
+ * Intended to run from cron, e.g. daily:
+ *   0 4 * * * cd /path/to/dotkernel.com && /usr/bin/php bin/generate-packages >> log/generate-packages.log 2>&1
+ *
+ * Exits non-zero without touching the data file when the run cannot be trusted, so the
+ * previously generated listing keeps serving.
+ */
+
+declare(strict_types=1);
+
+use Light\App\Service\PackageGenerator;
+
+chdir(__DIR__ . '/../');
+
+require 'vendor/autoload.php';
+
+$container        = require 'config/container.php';
+$packageGenerator = $container->get(PackageGenerator::class);
+
+try {
+    $report = $packageGenerator->write();
+} catch (Throwable $exception) {
+    fwrite(STDERR, sprintf(
+        '[%s] generate-packages failed: %s%s',
+        date('c'),
+        $exception->getMessage(),
+        PHP_EOL
+    ));
+    exit(1);
+}
+
+printf(
+    '[%s] Done. %d package%s written to %s%s',
+    date('c'),
+    $report['written'],
+    $report['written'] === 1 ? '' : 's',
+    $packageGenerator->getDataFile(),
+    PHP_EOL
+);
+
+if ($report['skipped'] !== []) {
+    printf('Skipped by ignoreRepos: %s%s', implode(', ', $report['skipped']), PHP_EOL);
+}
+
+if ($report['ignoredMisses'] !== []) {
+    printf(
+        'WARNING: ignoreRepos entries matched nothing (renamed or deleted?): %s%s',
+        implode(', ', $report['ignoredMisses']),
+        PHP_EOL
+    );
+}
+
+foreach ($report['warnings'] as $warning) {
+    printf('WARNING: %s%s', $warning, PHP_EOL);
+}
