@@ -767,7 +767,7 @@
                     "github": "marioradu05"
                 },
                 "isObsolete": false,
-                "opengraph_img": "https:\/\/www.dotkernel.com\/wp-content\/uploads\/2024\/02\/doctrine-cache-using-symfony-cache-small.png",
+                "opengraph_img": "\/opengraph\/article\/doctrine-cache-using-symfony-cache-small.png",
                 "excerpt": "When it comes to web development, performance is one of the critical elements that influence the success of an application. Developers focus on improving response times and overall speed to enhance the user experience.",
                 "tl_dr": "Caching stores data the first time it's requested so that later requests can be served from the cache instead of the original, slower source, which improves response times.\nThis article, a follow-up to an earlier caching article, shows how to enable the dot-cache component, a wrapper around symfony\/cache, in Dotkernel Admin.\nIt covers the array and filesystem storage adapters, configuring Doctrine's four cache types (result, metadata, query, hydration), and marking entities and queries as cacheable."
             },
@@ -780,7 +780,7 @@
                     "github": "claudiu@rospace.com"
                 },
                 "isObsolete": false,
-                "opengraph_img": "https:\/\/www.dotkernel.com\/wp-content\/uploads\/2024\/06\/twitter-card.png",
+                "opengraph_img": "\/opengraph\/article\/twitter-card.png",
                 "excerpt": "Note: The package requires Doctrine ORM. Still, it can be used in applications which do not integrate Doctrine.",
                 "tl_dr": "Dotkernel's dot-dependency-injection package autowires constructor dependencies in Laminas\/Mezzio (and other PSR-11) applications, removing the need to write and maintain a custom factory class for every service.\nInstead of a bespoke factory, you add an attribute to the class constructor and register a single shared AttributedServiceFactory in your ConfigProvider.\nThe package requires Doctrine ORM but can still be used in applications that don't integrate Doctrine, and it also supports injecting Doctrine repositories directly instead of fetching them from the EntityManager."
             },
@@ -793,7 +793,7 @@
                     "github": "bidi47"
                 },
                 "isObsolete": false,
-                "opengraph_img": "https:\/\/www.dotkernel.com\/wp-content\/uploads\/2024\/10\/dotkernel-light-starting-with-mezzio-microframework-and-laminas-components.png",
+                "opengraph_img": "\/opengraph\/article\/dotkernel-light-starting-with-mezzio-microframework-and-laminas-components.png",
                 "excerpt": "Dotkernel Light is a version of Dotkernel Frontend that includes only the bare-bones essentials. Though simpler, it's perfect for: A presentation site, An introduction into the Mezzio microframework architecture, A starting point for a more complex project where you have full control over functionality.",
                 "tl_dr": "Dotkernel Light is a version of Dotkernel Frontend that includes only the bare-bones essentials.\nIt's built on the Mezzio microframework using Laminas components, and is designed as a presentation site, a fast-start introduction to Mezzio, or a clean starting point for a project where you want full control over functionality."
             },
@@ -806,7 +806,7 @@
                     "github": "bidi47"
                 },
                 "isObsolete": false,
-                "opengraph_img": "https:\/\/www.dotkernel.com\/wp-content\/uploads\/2024\/10\/twitter-card-Light-choice.png",
+                "opengraph_img": "\/opengraph\/article\/twitter-card-Light-choice.png",
                 "excerpt": "Dotkernel Light is a good starting point for a project if you want to have full control over the functionality it contains. It easily grows into something more complex with the integration of packages based on your requirements.",
                 "tl_dr": "Dotkernel Light is a lightweight starting point for a project when you want full control over its functionality, and it grows into something more complex as you add packages.\nIt comes with routing, templating, error handling, and tests\/code quality checks out of the box, but strips out everything a presentation site doesn't need — database, sessions\/cookies\/flash messages, auth, dependency injection, mail, navigation, CORS, forms, the user\/contact\/plugin modules."
             },
@@ -819,7 +819,7 @@
                     "github": "bidi47"
                 },
                 "isObsolete": false,
-                "opengraph_img": "https:\/\/www.dotkernel.com\/wp-content\/uploads\/2024\/11\/twitter-card-enum.png",
+                "opengraph_img": "\/opengraph\/article\/twitter-card-enum.png",
                 "excerpt": "The update of doctrine\/orm to version 3.2.",
                 "tl_dr": "Doctrine ORM 3.2.0 added EnumType columns, building on the enum type introduced in PHP 8.1, and Dotkernel now implements this on both the PHP and database sides.\nThe article contrasts Dotkernel's old string-based flag columns (like User->Status) with a new setup that uses custom PHP enums paired with a DBAL type extending AbstractEnumType.\nThe new approach creates an explicit, enforced link between the PHP code and the database column values, at the cost of needing to update both sides whenever the value set changes."
             },
@@ -832,7 +832,7 @@
                     "github": "bidi47"
                 },
                 "isObsolete": false,
-                "opengraph_img": "https:\/\/www.dotkernel.com\/wp-content\/uploads\/2025\/01\/twitter-card-symfony-mailer.png",
+                "opengraph_img": "\/opengraph\/article\/twitter-card-symfony-mailer.png",
                 "excerpt": "What prompted the change According to the discussion from the LaminasTechnical steering Committee of 2023-12-04, it was decided that the laminas\/laminas-mail package would be abandoned. On the one hand, there is nobody to maintain the package and on the other, there are several alternatives available in the ecosystem: ddeboer\/imap for interacting with IMAP zbateson\/mail-mime-parser for parsing MIME messages symfony\/mailer for sending mail How Dotkernel handles the issue The Dotkernel team has also opted to replace the laminas\/laminas-mail package in the dotkernel\/dot-mail package.",
                 "tl_dr": "The Laminas Technical Steering Committee decided on 2023-12-04 to abandon laminas\/laminas-mail.\nDotkernel responded by replacing it with symfony\/mailer inside the dotkernel\/dot-mail package (version 5), aiming for minimal impact on existing projects — calls to send mail stay the same, though mime and imap related functionality is removed."
             }
@@ -1243,7 +1243,7 @@
                     "github": "alexmerlin"
                 },
                 "isObsolete": false,
-                "opengraph_img": "https:\/\/www.dotkernel.com\/wp-content\/uploads\/2022\/12\/wsl2-php-dotkernel.png",
+                "opengraph_img": "\/opengraph\/article\/wsl2-php-dotkernel.png",
                 "excerpt": "In this article we will demonstrate how we install AlmaLinux 9 using Windows Subsystem for Linux (WSL2). First, you need to check if your machine is ready for using WSL2.",
                 "tl_dr": "This guide shows how to install AlmaLinux 9 through Windows Subsystem for Linux (WSL2) and provision it with an Ansible-driven installer script that sets up PHP, Apache, MariaDB, Composer, and phpMyAdmin.\nIt covers verifying WSL2 readiness, installing the AlmaLinux 9 distribution from the Microsoft Store, running the two-step Ansible installer (with a required restart in between), and confirming the setup through Apache's homepage, a PHP info page, and phpMyAdmin."
             },
@@ -1256,7 +1256,7 @@
                     "github": "bidi47"
                 },
                 "isObsolete": false,
-                "opengraph_img": "https:\/\/www.dotkernel.com\/wp-content\/uploads\/2024\/11\/twitter-card-static-analysis.png",
+                "opengraph_img": "\/opengraph\/article\/twitter-card-static-analysis.png",
                 "excerpt": "What is Static Analysis Static analysis (static code analysis or source code analysis) applies a set of coding rules to debug source code before a program is run. Applied in the early phase of code development, the goals of static analysis are: Catch and fix errors like type-related errors which can occur especially in dynamically-typed programming languages like PHP.",
                 "tl_dr": "Dotkernel is replacing Psalm with PHPStan for static analysis, following a broader PHP community shift (including projects like Doctrine and Composer) toward PHPStan's faster-growing ecosystem, full-time maintainer, PHPStorm-based stubs, and stronger detection.\nThis article explains what static analysis is, why the switch makes sense, and walks through updating composer.json, the CI workflow, and the phpstan.neon configuration to run PHPStan checks in place of Psalm."
             }
@@ -1445,7 +1445,7 @@
                     "github": "bidi47"
                 },
                 "isObsolete": false,
-                "opengraph_img": "https:\/\/www.dotkernel.com\/wp-content\/uploads\/2025\/06\/twitter-card-almalinux10.png",
+                "opengraph_img": "\/opengraph\/article\/twitter-card-almalinux10.png",
                 "excerpt": "With the recent release of AlmaLinux OS 10, we have created a new recipe for our WSL development environment. Compared to its predecessor, AlmaLinux 10 provides performance enhancements, security updates and improved hardware support.",
                 "tl_dr": "With the release of AlmaLinux OS 10, Dotkernel created a new WSL2 development environment recipe offering performance, security, and hardware improvements over AlmaLinux 9.\nThe recipe sets up WSL2, AlmaLinux 10, PHP, Apache, MariaDB, Git, Composer, Node.js, and PhpMyAdmin.\nIt also covers the OS\/hardware requirements, installing the distro, and running PHP projects directly or via virtual hosts."
             }
@@ -1602,7 +1602,7 @@
                     "github": "bidi47"
                 },
                 "isObsolete": false,
-                "opengraph_img": "https:\/\/www.dotkernel.com\/wp-content\/uploads\/2024\/04\/PHP-8.3-support-in-Dotkernel-API.png",
+                "opengraph_img": "\/opengraph\/article\/PHP-8.3-support-in-Dotkernel-API.png",
                 "excerpt": "The last remaining application to be updated to support PHP 8.3 is the API, now at v4.",
                 "tl_dr": "Dotkernel API, now at v4.2.1, is the last remaining Dotkernel application updated to support PHP 8.3, following the same approach used for the Frontend update.\nThe update drops PHP 8.1 support, updates a large set of dependencies, removes the PhpFileCache-based configuration in favor of the new dot-cache package, and requires a small query change (useQueryCache() to setCacheable())."
             }
@@ -1622,7 +1622,7 @@
                     "github": "bidi47"
                 },
                 "isObsolete": false,
-                "opengraph_img": "https:\/\/www.dotkernel.com\/wp-content\/uploads\/2025\/02\/twitter-card-dynamic-routing.png",
+                "opengraph_img": "\/opengraph\/article\/twitter-card-dynamic-routing.png",
                 "excerpt": "The goal of this update is to replace the static way of creating routes with a more dynamic implementation. The result is a cleaner approach that is easier to set up and review at a glance.",
                 "tl_dr": "This article, the first in a series about switching from controllers to PSR-15 compliant handlers, explains how Dotkernel replaced its static, hard-coded route declarations with a centralized, dynamic configuration in local.php.\nThe change is aimed at static pages only - any method other than GET (post, put, delete) returns a 405 status code."
             },
@@ -1635,7 +1635,7 @@
                     "github": "bidi47"
                 },
                 "isObsolete": false,
-                "opengraph_img": "https:\/\/www.dotkernel.com\/wp-content\/uploads\/2025\/03\/twitter-card-controllers-to-handlers.png",
+                "opengraph_img": "\/opengraph\/article\/twitter-card-controllers-to-handlers.png",
                 "excerpt": "The goal of this update is to implement PSR-15 handlers into Dotkernel Light. There are several advantages to using handlers, which we will explore below.",
                 "tl_dr": "The goal of this update is to implement PSR-15 handlers into Dotkernel Light, keeping the application up-to-date with recommended design guidelines, secure, and aligned with standards widely adopted by the PHP community."
             },
@@ -1648,7 +1648,7 @@
                     "github": "bidi47"
                 },
                 "isObsolete": false,
-                "opengraph_img": "https:\/\/www.dotkernel.com\/wp-content\/uploads\/2025\/05\/twitter-card-light-improvements.png",
+                "opengraph_img": "\/opengraph\/article\/twitter-card-light-improvements.png",
                 "excerpt": "Dotkernel Light is a PSR-15 compliant application that uses the Mezzio microframework and Laminas components. It's aimed at creating a simple website, like a presentation site, but can be expanded as needed.",
                 "tl_dr": "Dotkernel Light is a PSR-15 compliant application built on Mezzio and Laminas, aimed at simple websites like presentation sites.\nSince its last update, it has moved from controllers to PSR-15 handlers, adopted Vite as its bundler, replaced Psalm with PHPStan, and picked up several smaller improvements."
             }
@@ -1811,7 +1811,7 @@
                     "github": "bidi47"
                 },
                 "isObsolete": false,
-                "opengraph_img": "https:\/\/www.dotkernel.com\/wp-content\/uploads\/2025\/07\/twitter-card-retired-whats-next-1.png",
+                "opengraph_img": "\/opengraph\/article\/twitter-card-retired-whats-next-1.png",
                 "excerpt": "It all started with the announcement: Laminas MVC Is Retiring. Some people wrongfully thought everything with a Laminas logo is going away - NOT SO! Read on for a bit of history about Zend and Laminas, what it means to migrate your platform and why it's a decision that should not be taken lightly.",
                 "tl_dr": "Laminas MVC is retiring, following Zend Framework and Apigility before it, but this doesn't mean everything with a Laminas logo is going away — Mezzio, built on Laminas components, is the fully-functional successor.\nMaintaining legacy MVC platforms is costly and risky long-term, since the architecture of today and tomorrow is middleware-based, and Apidemia offers a proven, phased migration process to move legacy platforms to Mezzio."
             },
@@ -1824,7 +1824,7 @@
                     "github": "bidi47"
                 },
                 "isObsolete": false,
-                "opengraph_img": "https:\/\/www.dotkernel.com\/wp-content\/uploads\/2025\/10\/twitter-card-basic-security.png",
+                "opengraph_img": "\/opengraph\/article\/twitter-card-basic-security.png",
                 "excerpt": "Software security should always be in the back of your mind as a developer. It may seem fine at first to deliver a feature sooner, only to find later on that you left a backdoor into your crisp new update.",
                 "tl_dr": "Software security should always be top of mind for a developer, since ignoring it can lead to major costs, data loss, GDPR fines, or the loss of client trust. The article surveys many facets of software security and walks through the practical measures Dotkernel Headless Platform takes for each: input validation, content negotiation, CORS, RBAC, demo credentials, error reporting, OpenAPI docs, PHP and JavaScript dependencies, OAuth2, session\/cookie settings, and CI checks."
             }
@@ -1955,7 +1955,7 @@
                     "github": "bidi47"
                 },
                 "isObsolete": false,
-                "opengraph_img": "https:\/\/www.dotkernel.com\/wp-content\/uploads\/2024\/07\/OpenAPI-implementation-in-Dotkernel-API.png",
+                "opengraph_img": "\/opengraph\/article\/OpenAPI-implementation-in-Dotkernel-API.png",
                 "excerpt": "What is OpenAPI? The OpenAPI Specification provides a consistent way to develop and interact with an API. It defines API structure and syntax in a universal way, regardless of the programming language used in the API's development.",
                 "tl_dr": "OpenAPI is a specification for describing an API's structure in a language-agnostic, machine-readable way, offering benefits like standardization, automatic documentation, upfront design, and better collaboration compared to a tool like Postman.\nDotkernel API has full OpenAPI support: each module (Admin, App, User) documents its endpoints in an OpenAPI.php file, which zircote\/swagger-php turns into documentation rendered via Swagger UI or Redoc.\nTesting protected endpoints in Swagger UI requires generating an authentication token that matches the endpoint's required privileges."
             },
@@ -1968,7 +1968,7 @@
                     "github": "bidi47"
                 },
                 "isObsolete": false,
-                "opengraph_img": "https:\/\/www.dotkernel.com\/wp-content\/uploads\/2024\/08\/error-reporting-endoint-in-dotkernel-api.png",
+                "opengraph_img": "\/opengraph\/article\/error-reporting-endoint-in-dotkernel-api.png",
                 "excerpt": "Dotkernel API has received a lot of love from our developers, with regular updates to the platform for years. We use Dotkernel API in our projects, so any bugs and issues are addressed as soon as they are found.",
                 "tl_dr": "Dotkernel API includes an error reporting endpoint that lets frontend developers securely report bugs and incorrect data processing back to the API, even when no fatal error shows up in the logs.\nIt works by sending a POST request to \/error-report with a token in the header; the API validates the request against configured tokens, domains, and IPs before logging the message.\nSetup involves generating a token, adding it to config\/autoload\/error-handling.global.php, and having the frontend send the Error-Reporting-Token and Origin headers."
             },
@@ -1981,7 +1981,7 @@
                     "github": "bidi47"
                 },
                 "isObsolete": false,
-                "opengraph_img": "https:\/\/www.dotkernel.com\/wp-content\/uploads\/2024\/11\/twitter-card-content-negotiation.png",
+                "opengraph_img": "\/opengraph\/article\/twitter-card-content-negotiation.png",
                 "excerpt": "Content negotiation is an important aspect of RESTful APIs to make it possible for diverse systems to work seamlessly together. It's based on enabling clients and servers to agree on the format and language of data they exchange.",
                 "tl_dr": "Content negotiation lets clients and servers agree on the format and language of exchanged data.\nIt can be handled server-side or client-side (the latter being more versatile), communicated through HTTP headers or URL patterns, and Dotkernel API implements it out of the box using the Content-Type and Accept headers."
             },
@@ -1994,7 +1994,7 @@
                     "github": "bidi47"
                 },
                 "isObsolete": false,
-                "opengraph_img": "https:\/\/www.dotkernel.com\/wp-content\/uploads\/2026\/03\/twitter-card-postman-to-bruno.png",
+                "opengraph_img": "\/opengraph\/article\/twitter-card-postman-to-bruno.png",
                 "excerpt": "Why We Switched to the Offline-Focused Bruno Every API developer knows that to build an API properly you need a reliable client for testing and interacting with the API. Ideally this tool should be free, it should store endpoint collections and share them easily with your team, and it should be fast and secure.",
                 "tl_dr": "The team has used Postman for years but is considering switching to Bruno, a lightweight, offline-first alternative, reflecting a broader PHP community trend toward local-first, Git-native developer tools.\nBruno wins on offline access, version control via Git, performance, and (arguably) security, while Postman still offers a broader feature set for larger, budget-having teams."
             }
@@ -2034,7 +2034,7 @@
                     "github": "bidi47"
                 },
                 "isObsolete": false,
-                "opengraph_img": "https:\/\/www.dotkernel.com\/wp-content\/uploads\/2024\/04\/MIT-VERSUS-LGPL-IN-PRACTICE-1.png",
+                "opengraph_img": "\/opengraph\/article\/MIT-VERSUS-LGPL-IN-PRACTICE-1.png",
                 "excerpt": "After a recent analysis, we discovered that one of the upstream packages we use is licensed under LGPL v3. Even though we at Dotkernel use the MIT license for our open source projects, the more restrictive license must be applied to the whole application.",
                 "tl_dr": "Dotkernel discovered that an upstream dependency, matomo\/device-detector, was licensed under LGPL v3 - a more restrictive license than the MIT license Dotkernel uses for its own projects.\nBecause the more restrictive license would have to apply to the whole application, Dotkernel implemented a workaround: it stopped bundling that dependency by default and documented the licensing implications."
             }
@@ -2054,7 +2054,7 @@
                     "github": "bidi47"
                 },
                 "isObsolete": false,
-                "opengraph_img": "https:\/\/www.dotkernel.com\/wp-content\/uploads\/2025\/05\/twitter-card-understanding-middleware.png",
+                "opengraph_img": "\/opengraph\/article\/twitter-card-understanding-middleware.png",
                 "excerpt": "Middleware is code that exists between the request and response, and which can take the incoming request, perform actions based on it, and either complete the response or pass delegation on to the next middleware in the queue. The purpose of middleware Middleware makes it easier for software developers to implement communication and input\/output, so they can focus on the specific purpose of their application.",
                 "tl_dr": "Middleware is code that exists between the request and response: it can take an incoming request, act on it, and either complete the response itself or delegate to the next middleware in the queue.\nIt's used for concerns like authentication, CORS, caching, rate limiting, and more, and in PHP a PSR-15 compliant middleware implements Psr\\Http\\Server\\MiddlewareInterface with a single process() method."
             },
@@ -2067,7 +2067,7 @@
                     "github": "bidi47"
                 },
                 "isObsolete": false,
-                "opengraph_img": "https:\/\/www.dotkernel.com\/wp-content\/uploads\/2025\/08\/twitter-card-config-provider.png",
+                "opengraph_img": "\/opengraph\/article\/twitter-card-config-provider.png",
                 "excerpt": "In PHP, the ConfigProvider is a class that is part of an application's bootstrap process. It's a class or callable that returns configuration data telling the platform which middleware should run, in what order, and sometimes under what conditions.",
                 "tl_dr": "In PHP, a ConfigProvider is a class or callable that is part of an application's bootstrap process, returning configuration data that tells the platform which middleware should run, in what order, and under what conditions.\nFrameworks like Mezzio, Laminas, Slim, and the Dotkernel Headless Platform use ConfigProviders to declare middleware pipeline configuration, dependency injection mappings, and request handlers, which get merged together automatically during bootstrap (except in Dotkernel, where new ConfigProviders must be registered manually)."
             },
@@ -2080,7 +2080,7 @@
                     "github": "bidi47"
                 },
                 "isObsolete": false,
-                "opengraph_img": "https:\/\/www.dotkernel.com\/wp-content\/uploads\/2026\/05\/twitter-card-request-lifecycle.png",
+                "opengraph_img": "\/opengraph\/article\/twitter-card-request-lifecycle.png",
                 "excerpt": "Seamlessly Interconnected Middleware for Enterprise-Level Solutions The request lifecycle is the sequence of steps that happen from the moment a user makes an HTTP request until the server sends back a response. The graph below shows how the request is handled by Dotkernel Light (GitHub, documentation), one of the applications in the Dotkernel Headless Platform suite.",
                 "tl_dr": "The request lifecycle is the sequence of steps that happen from the moment a user makes an HTTP request until the server sends back a response.\nThis is illustrated using Dotkernel Light, one of the applications in the Dotkernel Headless Platform suite, walking through entry point setup, routing, handler execution, template rendering, response creation, and the response emitter."
             }
@@ -2100,7 +2100,7 @@
                     "github": "bidi47"
                 },
                 "isObsolete": false,
-                "opengraph_img": "https:\/\/www.dotkernel.com\/wp-content\/uploads\/2025\/04\/twitter-card-naming-patten.png",
+                "opengraph_img": "\/opengraph\/article\/twitter-card-naming-patten.png",
                 "excerpt": "This naming pattern is used in Dotkernel Admin v6 and will also be implemented in the next releases for Frontend and Light. The bigger a project is, the more time it will take to develop and the more people will be assigned to it.",
                 "tl_dr": ""
             }
@@ -2120,7 +2120,7 @@
                     "github": "bidi47"
                 },
                 "isObsolete": false,
-                "opengraph_img": "https:\/\/www.dotkernel.com\/wp-content\/uploads\/2025\/06\/twitter-card-headless-platform1.png",
+                "opengraph_img": "\/opengraph\/article\/twitter-card-headless-platform1.png",
                 "excerpt": "The principle of a Headless Platform is to decouple the User Interface (frontend) from the backend services. The responses from the platform are then used by another system, such as a website or mobile app.",
                 "tl_dr": "A Headless Platform decouples the frontend (UI) from the backend services, with responses consumed by another system such as a website or mobile app. The Dotkernel Headless Platform is made up of Dotkernel API (a REST API based on the Mezzio skeleton) and Dotkernel Admin (a backend management interface), which can be installed separately or together.\nUsing both together, sharing a common Core module, gives consistent entities and queries, an easy-to-maintain shared file structure, and an architecture that scales from small microservices to enterprise-grade APIs."
             },
@@ -2133,7 +2133,7 @@
                     "github": "bidi47"
                 },
                 "isObsolete": false,
-                "opengraph_img": "https:\/\/www.dotkernel.com\/wp-content\/uploads\/2025\/07\/twitter-card-core-submodule.png",
+                "opengraph_img": "\/opengraph\/article\/twitter-card-core-submodule.png",
                 "excerpt": "Dotkernel has implemented a Headless solution made up of these applications: Dotkernel API - a REST API, the root of the platform. Dotkernel Admin - (optional) complementary backend management.",
                 "tl_dr": "Dotkernel's Headless Platform is composed of Dotkernel API, Admin, and Queue, and can share a common Core submodule that holds the database entities and services used consistently across all of them.\nThe article walks through creating the Core submodule with git submodule add, committing changes from within the Core folder, and initializing\/updating it with git submodule init and git submodule update.\nSharing a Core module brings design flexibility, scalability, and easier bugfixes and onboarding as the platform grows."
             },
@@ -2146,7 +2146,7 @@
                     "github": "bidi47"
                 },
                 "isObsolete": false,
-                "opengraph_img": "https:\/\/www.dotkernel.com\/wp-content\/uploads\/2025\/07\/twitter-card-api-v6.png",
+                "opengraph_img": "\/opengraph\/article\/twitter-card-api-v6.png",
                 "excerpt": "Dotkernel API has come a long way since we published a list of its architecture and components a while ago. We implemented new features, while some components were replaced, and others were enhanced.",
                 "tl_dr": "Dotkernel API has evolved significantly since its original architecture and components article, adding Content Negotiation, standardized error responses via mezzio-problem-details, a shareable Core module, a custom templating solution replacing Twig, and a leaner handler dependency setup.\nPackages were updated across the board, the test suite switched from Psalm to PHPStan at a stricter rule level, and the roadmap for v6.1 targets Service Manager 4 and PHP 8.4\/8.5 support."
             },
@@ -2159,7 +2159,7 @@
                     "github": "bidi47"
                 },
                 "isObsolete": false,
-                "opengraph_img": "https:\/\/www.dotkernel.com\/wp-content\/uploads\/2025\/08\/twitter-card-complementary-admin.png",
+                "opengraph_img": "\/opengraph\/article\/twitter-card-complementary-admin.png",
                 "excerpt": "The Dotkernel Headless Platform is built with an architecture designed to be easy to maintain and expand indefinitely. Its core components are Dotkernel API and Dotkernel Queue, but the Dotkernel application suite also offers a fully separate, complementary Admin application designed to pair seamlessly with Dotkernel API.",
                 "tl_dr": "The Dotkernel Headless Platform's core components are Dotkernel API and Dotkernel Queue, but the suite also offers a fully separate, complementary Admin application designed to pair seamlessly with Dotkernel API.\nAdmin is an independent app built on the same Mezzio + Laminas foundation, sharing a unified tech stack with the API so the two form a cohesive, consistent system."
             },
@@ -2172,7 +2172,7 @@
                     "github": "bidi47"
                 },
                 "isObsolete": false,
-                "opengraph_img": "https:\/\/www.dotkernel.com\/wp-content\/uploads\/2025\/09\/twitter-card-queue.png",
+                "opengraph_img": "\/opengraph\/article\/twitter-card-queue.png",
                 "excerpt": "Dotkernel Queue is a component based on Symfony Messenger that is used to queue asynchronous tasks. netglue\/laminas-messenger is an adapter that integrates Symfony Messenger with the Laminas Service Manager container for Mezzio\/Laminas applications.",
                 "tl_dr": "Dotkernel Queue is a component built on Symfony Messenger (via the netglue\/laminas-messenger adapter) that lets time-consuming or resource-intensive operations run asynchronously on background workers instead of inside the normal PHP request-response cycle.\nAn active daemon listens for TCP connections, stores incoming messages in Redis, and processes them in FIFO order, with logging, IP-whitelisting security, a configurable retry mechanism, reporting metrics, and a Dead Letter Queue for messages that fail.\nPriorities and parallel execution are planned future features."
             },
@@ -2185,7 +2185,7 @@
                     "github": "bidi47"
                 },
                 "isObsolete": false,
-                "opengraph_img": "https:\/\/www.dotkernel.com\/wp-content\/uploads\/2025\/09\/twitter-card-dotmaker-2.png",
+                "opengraph_img": "\/opengraph\/article\/twitter-card-dotmaker-2.png",
                 "excerpt": "The dotkernel\/dot-maker library, also named DotMaker, is designed to programmatically generate project files and directories that match the Dotkernel file structure inspired by Mezzio. Handling the file creation and configuration task manually invites mistakes that nobody has time for.",
                 "tl_dr": "DotMaker (dotkernel\/dot-maker) programmatically generates project files and directories matching the Dotkernel file structure inspired by Mezzio.\nIt boosts productivity and enforces consistency and standardization compared to creating modules and files by hand, and it can tell the difference between Dotkernel applications (Api, Admin, Frontend) to create the files each one requires."
             },
@@ -2198,7 +2198,7 @@
                     "github": "bidi47"
                 },
                 "isObsolete": false,
-                "opengraph_img": "https:\/\/www.dotkernel.com\/wp-content\/uploads\/2025\/12\/twitter-card-api-evolution-versioning.png",
+                "opengraph_img": "\/opengraph\/article\/twitter-card-api-evolution-versioning.png",
                 "excerpt": "In programming and software architecture, an Evolution Pattern is a reusable, high-level strategy for modifying or evolving existing software systems over time. An evolution pattern tries to keep software relevant for old and new users by whatever means are available, as new needs arise.",
                 "tl_dr": "An Evolution Pattern keeps the same codebase and evolves it gradually (for example via sunsetting), while API versioning maintains multiple parallel versions of an API so existing clients aren't broken.\nThe two are not mutually exclusive.\nDotkernel API favors an evolution pattern with a sunsetting mechanism, reserving full versioning for major, format-level changes."
             },
@@ -2211,7 +2211,7 @@
                     "github": "bidi47"
                 },
                 "isObsolete": false,
-                "opengraph_img": "https:\/\/www.dotkernel.com\/wp-content\/uploads\/2025\/12\/twitter-card-headless-v7.png",
+                "opengraph_img": "\/opengraph\/article\/twitter-card-headless-v7.png",
                 "excerpt": "The Dotkernel Headless Platform has seen new releases for both API and Admin. The Admin codebase has received an overall facelift, as well as updates to retain compatibility with API v7.",
                 "tl_dr": "Dotkernel API v7 adds support for native UUID v7, PostgreSQL, PHP 8.5 (8.4 for Admin), database table prefixes, and improved database configuration, while replacing the binary data type for id columns with uuid.\nIt drops the Evolution pattern's Method Deprecation support and MySQL, since MySQL doesn't support the UUID data type.\nUUIDs are generated with the ramsey\/uuid package, previously uuid-named table columns are now called id, and PostgreSQL or MariaDB v10.7+ is required for UUID support."
             },
@@ -2224,7 +2224,7 @@
                     "github": "bidi47"
                 },
                 "isObsolete": false,
-                "opengraph_img": "https:\/\/www.dotkernel.com\/wp-content\/uploads\/2026\/04\/twitter-card-totp.png",
+                "opengraph_img": "\/opengraph\/article\/twitter-card-totp.png",
                 "excerpt": "What TOTP Does A Time-based One-Time Password (TOTP) is a security algorithm used as part of two-factor authentication (2FA) to protect against account attacks. The mechanism is integrated into dot-totp to enhance security by requiring both a password and an additional one-time code.",
                 "tl_dr": "dot-totp adds two-factor authentication (2FA) to Dotkernel Admin using time-based one-time passwords.\nUsers authenticate with their password plus a 6-digit code from an Authenticator app that refreshes every 30 seconds.\nInstallation is one Composer command plus a set of forms, handlers, middleware, and templates from the official code examples, applying a TotpTrait to the relevant entity, migrating three new database columns, and registering routes\/pipeline\/ConfigProvider updates."
             }
