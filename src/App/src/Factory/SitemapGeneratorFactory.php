@@ -4,28 +4,25 @@ declare(strict_types=1);
 
 namespace Light\App\Factory;
 
-use Light\App\Service\FeedGenerator;
+use Light\App\Service\SitemapGenerator;
 use Light\Blog\Repository\PostRepository;
 use Psr\Container\ContainerInterface;
 
 use function assert;
 
-class FeedGeneratorFactory
+class SitemapGeneratorFactory
 {
-    public function __invoke(ContainerInterface $container): FeedGenerator
+    public function __invoke(ContainerInterface $container): SitemapGenerator
     {
         $postRepository = $container->get(PostRepository::class);
         assert($postRepository instanceof PostRepository);
 
         $config = $container->get('config');
 
-        return new FeedGenerator(
+        return new SitemapGenerator(
             $postRepository,
-            $config['feed']['path'],
+            $config['sitemap']['path'],
             $config['application']['baseUrl'] ?? '',
-            $config['application']['meta']['title'] ?? '',
-            $config['application']['meta']['description'] ?? '',
-            $config['application']['meta']['image'] ?? '',
         );
     }
 }

@@ -16,11 +16,15 @@ use Light\App\Factory\FeedGeneratorFactory;
 use Light\App\Factory\GetFeedViewHandlerFactory;
 use Light\App\Factory\GetIndexViewHandlerFactory;
 use Light\App\Factory\GetMarkdownArticleHandlerFactory;
+use Light\App\Factory\GetSitemapViewHandlerFactory;
+use Light\App\Factory\SitemapGeneratorFactory;
 use Light\App\Handler\GetFeedViewHandler;
 use Light\App\Handler\GetIndexViewHandler;
 use Light\App\Handler\GetMarkdownArticleHandler;
+use Light\App\Handler\GetSitemapViewHandler;
 use Light\App\Resolver\EntityListenerResolver;
 use Light\App\Service\FeedGenerator;
+use Light\App\Service\SitemapGenerator;
 use Mezzio\Application;
 use Roave\PsrContainerDoctrine\EntityManagerFactory;
 use Symfony\Component\Cache\Adapter\AdapterInterface;
@@ -121,7 +125,9 @@ class ConfigProvider
                 GetIndexViewHandler::class            => GetIndexViewHandlerFactory::class,
                 GetFeedViewHandler::class             => GetFeedViewHandlerFactory::class,
                 GetMarkdownArticleHandler::class      => GetMarkdownArticleHandlerFactory::class,
+                GetSitemapViewHandler::class          => GetSitemapViewHandlerFactory::class,
                 FeedGenerator::class                  => FeedGeneratorFactory::class,
+                SitemapGenerator::class               => SitemapGeneratorFactory::class,
             ],
             'aliases'    => [
                 EntityManager::class          => 'doctrine.entity_manager.orm_default',

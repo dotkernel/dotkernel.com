@@ -59,6 +59,9 @@ return [
     'feed'                 => [
         'path' => realpath(__DIR__ . '/../../public/feed.xml'),
     ],
+    'sitemap'              => [
+        'path' => realpath(__DIR__ . '/../../public/sitemap.xml'),
+    ],
     'routes'               => [
         'page' => [
             'contact'                          => 'contact',

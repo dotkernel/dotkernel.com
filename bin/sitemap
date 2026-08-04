@@ -1,0 +1,23 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+use Light\App\Service\SitemapGenerator;
+
+chdir(__DIR__ . '/../');
+
+require 'vendor/autoload.php';
+
+$container        = require 'config/container.php';
+$sitemapGenerator = $container->get(SitemapGenerator::class);
+
+$count = $sitemapGenerator->write();
+
+printf(
+    "Done. %d url%s written to %s%s",
+    $count,
+    $count === 1 ? '' : 's',
+    $sitemapGenerator->getSitemapFile(),
+    PHP_EOL
+);
