@@ -34,12 +34,9 @@
                         {% set meta = lifecycleMeta[package.lifecycle] ?? {label: package.lifecycle|capitalize, accent: 'var(--periwinkle)'} %}
                         <div class="card" style="--accent:{{ meta.accent }}">
                             <div class="card-top">
-                                <div><span class="kicker">{{ meta.label }}</span><h2>{{ package.name }}</h2></div>
+                                <div><span class="kicker">{{ meta.label }}</span><h3>{{ package.name }}</h3></div>
                             </div>
                             <div class="badges">
-                                {% if package.php %}
-                                    <p class="package-php"><strong>PHP</strong> <code>{{ package.php }}</code></p>
-                                {% endif %}
                                 <img alt="PHP version for dotkernel/{{ package.name }}" loading="lazy" src="https://img.shields.io/packagist/dependency-v/dotkernel/{{ package.name }}/php?style=social">
                                 {% if package.archived %}
                                     <p class="package-archived">Archived on GitHub</p>
