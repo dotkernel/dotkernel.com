@@ -6,7 +6,7 @@
     <meta name="description"         content="{{ (meta.description ?? meta.excerpt ?? app.meta.description) }}"/>
     <meta property="og:title"        content="{{ meta.title ?? app.meta.title }}"/>
     <meta property="og:description"  content="{{ (meta.description ?? meta.excerpt ?? app.meta.description) }}"/>
-    <meta property="og:image"        content="{{ meta.openGraphImage ? (app.baseUrl ~ meta.openGraphImage) : app.meta.image }}"/>
+    <meta property="og:image"        content="{{ (meta is defined and meta.openGraphImage) ? (app.baseUrl ~ meta.openGraphImage) : app.meta.image }}"/>
     <meta property="og:type"         content="{{ meta.type ?? app.meta.type }}"/>
     <meta property="og:site_name"    content="{{ app.meta.siteName }}"/>
     <meta property="og:url"          content="{{ meta.url ?? (routeName is defined and routeName ? url(routeName) : app.baseUrl) }}"/>

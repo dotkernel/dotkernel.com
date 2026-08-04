@@ -17,9 +17,6 @@ $container      = require 'config/container.php';
 $entityManager  = $container->get(EntityManager::class);
 $postRepository = $entityManager->getRepository(Post::class);
 
-$config  = $container->get('config');
-$baseUrl = rtrim($config['application']['baseUrl'] ?? '', '/');
-
 /**
  *
  * @return array<string, string>
@@ -29,7 +26,7 @@ function indexUploadSources(string $uploadsDir, string $excludeDir): array
     $index = [];
 
     $iterator = new RecursiveIteratorIterator(
-        new RecursiveDirectoryIterator($uploadsDir, FilesystemIterator::SKIP_DOTS)
+            new RecursiveDirectoryIterator($uploadsDir, FilesystemIterator::SKIP_DOTS)
     );
 
     foreach ($iterator as $file) {
@@ -53,9 +50,13 @@ function indexUploadSources(string $uploadsDir, string $excludeDir): array
 
 $sourceIndex = indexUploadSources($uploadsDir, $ogDir);
 
+if (! is_dir($ogDir) && ! mkdir($ogDir, 0775, true) && ! is_dir($ogDir)) {
+    fwrite(STDERR, sprintf("Failed to create directory '%s'%s", $ogDir, PHP_EOL));
+    exit(1);
+}
+
 $postsUpdated  = 0;
 $postsSkipped  = 0;
-$dirsCreated   = 0;
 $imagesMissing = 0;
 
 $posts = $postRepository->findAll();
@@ -66,7 +67,7 @@ foreach ($posts as $post) {
         continue;
     }
 
-    if ($baseUrl !== '' && str_starts_with($image, $baseUrl . '/')) {
+    if (str_starts_with($image, '/uploads/opengraph/article/')) {
         continue;
     }
 
@@ -81,22 +82,13 @@ foreach ($posts as $post) {
         continue;
     }
 
-    $targetDir = $ogDir . '/' . $post->getId()->toString();
-    if (! is_dir($targetDir)) {
-        if (! mkdir($targetDir, 0775, true) && ! is_dir($targetDir)) {
-            fwrite(STDERR, sprintf("Failed to create directory '%s'%s", $targetDir, PHP_EOL));
-            continue;
-        }
-        $dirsCreated++;
-    }
-
-    $targetPath = $targetDir . '/' . $filename;
-    if (! file_exists($targetPath) && ! copy($sourceIndex[$filename], $targetPath)) {
+    $targetPath = $ogDir . '/' . $filename;
+    if (! copy($sourceIndex[$filename], $targetPath)) {
         fwrite(STDERR, sprintf("Failed to copy '%s' to '%s'%s", $sourceIndex[$filename], $targetPath, PHP_EOL));
         continue;
     }
 
-    $post->setOpenGraphImage('/' . $targetPath);
+    $post->setOpenGraphImage('/uploads/opengraph/article/' . $filename);
     $postsUpdated++;
 }
 
@@ -105,14 +97,12 @@ $entityManager->flush();
 $postsSkipped = count($posts) - $postsUpdated - $imagesMissing;
 
 printf(
-    "Done. %d post%s updated, %d director%s created, %d image%s missing, %d post%s skipped.%s",
-    $postsUpdated,
-    $postsUpdated === 1 ? '' : 's',
-    $dirsCreated,
-    $dirsCreated === 1 ? 'y' : 'ies',
-    $imagesMissing,
-    $imagesMissing === 1 ? '' : 's',
-    $postsSkipped,
-    $postsSkipped === 1 ? '' : 's',
-    PHP_EOL
+        "Done. %d post%s updated, %d image%s missing, %d post%s skipped.%s",
+        $postsUpdated,
+        $postsUpdated === 1 ? '' : 's',
+        $imagesMissing,
+        $imagesMissing === 1 ? '' : 's',
+        $postsSkipped,
+        $postsSkipped === 1 ? '' : 's',
+        PHP_EOL
 );
