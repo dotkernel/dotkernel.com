@@ -12,12 +12,8 @@
 
 {% block content %}
     {#
-        Rendered from public/packages.json, rebuilt daily by bin/generate-packages.
+        Rendered from public/dotkernel-packages.json, rebuilt daily by bin/generate-packages.
         The lifecycle value comes from each repository's OSSMETADATA file.
-
-        Every state gets its own colour, marker shape and card treatment, keyed off a
-        `package-card--<state>` modifier. `title` spells out what the state means, since the
-        label alone ("Security-only") does not say what a consumer should expect.
     #}
     {% set lifecycleMeta = {
         active: {label: 'Active', title: 'Actively developed, with new features and fixes.'},
@@ -35,8 +31,6 @@
                 <div class="packages-grid">
 
                     {% for package in packages %}
-                        {# An unrecognised lifecycle falls back to the muted "unknown" treatment
-                           rather than emitting it into a class name. #}
                         {% set state = lifecycleMeta[package.lifecycle] is defined ? package.lifecycle : 'unknown' %}
                         {% set meta = lifecycleMeta[state]|default({
                             label: package.lifecycle|capitalize,
@@ -49,8 +43,13 @@
                                     <h3>{{ package.name }}</h3>
                                 </div>
                             </div>
+                            {# GitHub repository description. hidden, if empty #}
+                            {% if package.description %}
+                                <p class="desc package-description">{{ package.description }}</p>
+                            {% endif %}
                             <div class="badges">
-                                <img alt="PHP version for dotkernel/{{ package.name }}" loading="lazy" src="https://img.shields.io/packagist/dependency-v/dotkernel/{{ package.name }}/php?style=social">
+                                <img alt="PHP version for dotkernel/{{ package.name }}" loading="lazy"
+                                     src="https://img.shields.io/packagist/dependency-v/dotkernel/{{ package.name }}/php?color=blue">
                                 {% if package.archived %}
                                     <p class="package-archived">Archived on GitHub</p>
                                 {% endif %}
@@ -67,7 +66,7 @@
                 {% if generatedAt %}
                     <p class="packages-generated-at"><small>Last updated {{ generatedAt|date('M d, Y H:i T') }}</small></p>
                     <div class="card-btns">
-                        <a class="btn btn-ghost btn-sm" href="/packages.json">View as JSON</a>
+                        <a class="btn btn-ghost btn-sm" href="/dotkernel-packages.json">View as JSON</a>
                     </div>
                 {% endif %}
             </main>

@@ -45,6 +45,7 @@ use const PHP_INT_MAX;
  * @phpstan-type PackageData array{
  *     name: string,
  *     url: string,
+ *     description: string|null,
  *     lifecycle: string,
  *     php: string|null,
  *     archived: bool,
@@ -175,11 +176,12 @@ readonly class PackageGenerator
             }
 
             $packages[] = [
-                'name'      => $name,
-                'url'       => self::GITHUB_ROOT . $this->org . '/' . $name,
-                'lifecycle' => $lifecycle,
-                'php'       => $php,
-                'archived'  => $archived,
+                'name'        => $name,
+                'url'         => self::GITHUB_ROOT . $this->org . '/' . $name,
+                'description' => $this->parseDescription($repository['description'] ?? null),
+                'lifecycle'   => $lifecycle,
+                'php'         => $php,
+                'archived'    => $archived,
             ];
         }
 
@@ -290,6 +292,21 @@ readonly class PackageGenerator
         }
 
         return array_flip($names);
+    }
+
+    /**
+     * GitHub sends `null` for a repository with no description, and the field is free text, so
+     * anything that is not a non-blank string is recorded as absent rather than as an empty label.
+     */
+    private function parseDescription(mixed $description): ?string
+    {
+        if (! is_string($description)) {
+            return null;
+        }
+
+        $description = trim($description);
+
+        return $description === '' ? null : $description;
     }
 
     private function parseLifecycle(string $contents): ?string

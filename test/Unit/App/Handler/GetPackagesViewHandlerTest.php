@@ -29,7 +29,13 @@ class GetPackagesViewHandlerTest extends UnitTest
     public function testHandlePassesTheGeneratedListingToTheTemplate(): void
     {
         $packages = [
-            ['name' => 'dot-cache', 'lifecycle' => 'active', 'php' => '~8.4.0', 'archived' => false],
+            [
+                'name'        => 'dot-cache',
+                'description' => 'Dotkernel cache component',
+                'lifecycle'   => 'active',
+                'php'         => '~8.4.0',
+                'archived'    => false,
+            ],
         ];
 
         $parameters = $this->render([
