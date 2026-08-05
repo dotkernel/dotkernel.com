@@ -3,17 +3,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="msapplication-TileColor" content="#2d89ef">
     <meta name="theme-color" content="#ffffff">
-    <title>{{ meta.title ?? meta.name ?? app.meta.title }}</title>
-    <meta name="description"         content="{{ (meta.description ?? meta.excerpt ?? app.meta.description) }}"/>
-    <meta property="og:title"        content="{{ meta.title ?? app.meta.title }}"/>
-    <meta property="og:description"  content="{{ (meta.description ?? meta.excerpt ?? app.meta.description) }}"/>
-    <meta property="og:image"        content="{{ ogImage ? (app.baseUrl ~ ogImage) : app.meta.image }}"/>
-    <meta property="og:type"         content="{{ meta.type ?? app.meta.type }}"/>
-    <meta property="og:site_name"    content="{{ app.meta.siteName }}"/>
-    <meta property="og:url"          content="{{ meta.url ?? (routeName is defined and routeName ? url(routeName) : app.baseUrl) }}"/>
-    <meta property="og:locale"       content="{{ app.meta.locale }}"/>
-    <meta name="twitter:card"        content="{{ app.meta.twitterCard }}"/>
-    <meta name="twitter:site"        content="{{ app.meta.twitterSite }}"/>
-    <meta name="twitter:title"       content="{{ meta.title ?? meta.name ?? app.meta.title }}"/>
-    <meta name="twitter:description" content="{{ (meta.description ?? meta.excerpt ?? app.meta.description) }}"/>
-    <meta name="twitter:image"       content="{{ meta.image ?? app.meta.image }}"/>
+{#    <title>{{ meta.title ?? meta.name ?? app.meta.title }}</title>#}
+{#    <meta name="description"         content="{{ (meta.description ?? meta.excerpt ?? app.meta.description) }}"/>#}
+{#    <meta property="og:title"        content="{{ meta.title ?? app.meta.title }}"/>#}
+{#    <meta property="og:description"  content="{{ (meta.description ?? meta.excerpt ?? app.meta.description) }}"/>#}
+{#    <meta property="og:image"        content="{{ ogImage ? (app.baseUrl ~ ogImage) : app.meta.image }}"/>#}
+{#    <meta property="og:type"         content="{{ meta.type ?? app.meta.type }}"/>#}
+{#    <meta property="og:site_name"    content="{{ app.meta.siteName }}"/>#}
+{#    <meta property="og:url"          content="{{ meta.url ?? (routeName is defined and routeName ? url(routeName) : app.baseUrl) }}"/>#}
+{#    <meta property="og:locale"       content="{{ app.meta.locale }}"/>#}
+{#    <meta name="twitter:card"        content="{{ app.meta.twitterCard }}"/>#}
+{#    <meta name="twitter:site"        content="{{ app.meta.twitterSite }}"/>#}
+{#    <meta name="twitter:title"       content="{{ meta.title ?? meta.name ?? app.meta.title }}"/>#}
+{#    <meta name="twitter:description" content="{{ (meta.description ?? meta.excerpt ?? app.meta.description) }}"/>#}
+{#    <meta name="twitter:image"       content="{{ meta.image ?? app.meta.image }}"/>#}

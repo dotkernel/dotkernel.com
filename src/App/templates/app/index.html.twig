@@ -7,9 +7,9 @@
     <section class="hero">
         <div class="wrap hero-grid">
             <div>
-                <span class="eyebrow">PSR-15 . middleware-first architecture</span>
+                <span class="eyebrow">PSR-15 · middleware-first architecture</span>
                 <h1>A headless platform for building modern web applications</h1>
-                <p class="sub"> Dotkernel is a set of open-source PHP applications — REST API, admin, and queue — that ship assembled on Mezzio and Laminas, over one shared Doctrine domain layer called Core.
+                <p class="sub"> Dotkernel is a set of open-source PHP applications - REST API, admin, and queue - that ship assembled on Mezzio and Laminas, over one shared Doctrine domain layer called Core.
                                 OAuth2, RBAC, HAL, and a generated OpenAPI spec are wired together on install, not left for you to choose.</p>
                 <div class="hero-ctas">
                     <a class="btn btn-primary" href="https://docs.dotkernel.org" target="_blank" rel="noopener">
@@ -23,7 +23,7 @@
                 </div>
                 <div class="hero-stack-note">
                     <div><span>Runtime</span> Mezzio + Laminas</div>
-                    <div><span>Standards</span> PSR-7 . PSR-11 . PSR-15</div>
+                    <div><span>Standards</span> PSR-7 · PSR-11 · PSR-15</div>
                     <div><span>License</span> BSD-3-Clause</div>
                 </div>
             </div>
@@ -88,8 +88,8 @@
             <div class="section-head">
                 <span class="eyebrow">Headless Platform</span>
                 <h2>Three applications, one platform</h2>
-                <p>API, Admin and Queue declare the same <code>Core</code> namespaces — the same entities, repositories and services.
-                  A <code>User</code> means the same thing to the endpoint that creates it, the admin screen that moderates it and the worker that emails it.
+                <p>API, Admin, and Queue declare the same <code>Core</code> namespaces - the same entities, repositories, and services.
+                  A <code>User</code> means the same thing to the endpoint that creates it, the admin screen that moderates it, and the worker that emails it.
                 Three deployables that scale independently and never disagree about the domain.</p>
             </div>
 
@@ -97,23 +97,23 @@
                   <span class="core-band-label">Shared domain layer</span>
                   <code>Core\App</code> <code>Core\Admin</code> <code>Core\User</code>
                   <code>Core\Security</code> <code>Core\Setting</code>
-                  <p>One set of entities and repository. Committed in each repo so a single-component start just works — lift it into its own repo and share it as a Git submodule when you add a second.</p>
+                  <p>One set of entities and repositories. Committed in each repo, so a single-component start just works. Commit it into its own repo and share it as a Git submodule when you add a second.</p>
               </div>
 
             <div class="products-grid">
 
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Deployable . Shares Core</span><h3>API</h3></div>
+                        <div><span class="kicker">Deployable · Shares Core</span><h3>API</h3></div>
                     </div>
+                    <p class="lede">The HTTP surface of your platform, ready for any client.</p>
                     <div class="badges">
-                        <img alt="PHP" src="https://img.shields.io/packagist/dependency-v/dotkernel/api/php?style=flat&label=php">
-                        <img alt="Packagist" src="https://img.shields.io/packagist/v/dotkernel/api?style=flat">
-                        <img alt="License" src="https://img.shields.io/github/license/dotkernel/api?style=flat">
-                        <img alt="Stars" src="https://img.shields.io/github/stars/dotkernel/api?style=flat&label=%E2%98%85">
+                        <img alt="PHP version for dotkernel/api" src="https://img.shields.io/packagist/dependency-v/dotkernel/api/php?style=flat&label=php">
+                        <img alt="Latest release of dotkernel/api" src="https://img.shields.io/packagist/v/dotkernel/api?style=flat">
+                        <img alt="License of dotkernel/api" src="https://img.shields.io/github/license/dotkernel/api?style=flat">
+                        <img alt="GitHub stars for dotkernel/api" src="https://img.shields.io/github/stars/dotkernel/api?style=flat&label=%E2%98%85">
                     </div>
-                    <p class="desc">An alternative to legacy Laminas API Tools (Apigility). REST APIs on a readable PSR-15 middleware pipeline — no kernel, no facades, no runtime magic.
-                                   OAuth2, RBAC and OpenAPI included.</p>
+                    <p class="desc">REST APIs on a readable PSR-15 middleware pipeline - no kernel, no facades, no runtime magic. OAuth2, RBAC, and OpenAPI included.</p>
                     <div class="card-btns">
                         <a class="btn btn-ghost btn-sm" href="https://github.com/dotkernel/api" target="_blank" rel="noopener">GitHub</a>
                         <a class="btn btn-ghost btn-sm" href="https://api.dotkernel.net/" target="_blank" rel="noopener">Demo</a>
@@ -123,15 +123,16 @@
 
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Deployable . Shares Core</span><h3>Admin</h3></div>
+                        <div><span class="kicker">Deployable · Shares Core</span><h3>Admin</h3></div>
                     </div>
+                    <p class="lede">A back office for complete control over the same data your API serves.</p>
                     <div class="badges">
-                        <img alt="PHP" src="https://img.shields.io/packagist/dependency-v/dotkernel/admin/php?style=flat&label=php">
-                        <img alt="Packagist" src="https://img.shields.io/packagist/v/dotkernel/admin?style=flat">
-                        <img alt="License" src="https://img.shields.io/github/license/dotkernel/admin?style=flat">
-                        <img alt="Stars" src="https://img.shields.io/github/stars/dotkernel/admin?style=flat&label=%E2%98%85">
+                        <img alt="PHP version for dotkernel/admin" src="https://img.shields.io/packagist/dependency-v/dotkernel/admin/php?style=flat&label=php">
+                        <img alt="Latest release of dotkernel/admin" src="https://img.shields.io/packagist/v/dotkernel/admin?style=flat">
+                        <img alt="License of dotkernel/admin" src="https://img.shields.io/github/license/dotkernel/admin?style=flat">
+                        <img alt="GitHub stars for dotkernel/admin" src="https://img.shields.io/github/stars/dotkernel/admin?style=flat&label=%E2%98%85">
                     </div>
-                    <p class="desc">A ready-to-go admin skeleton for managing your platform's records with a simple, table-based approach - plus the tools to build reports and dashboards.</p>
+                    <p class="desc">A ready-to-go admin skeleton - table-based CRUD screens for your records, plus the pieces for reports and dashboards.</p>
                     <div class="card-btns">
                         <a class="btn btn-ghost btn-sm" href="https://github.com/dotkernel/admin" target="_blank" rel="noopener">GitHub</a>
                         <a class="btn btn-ghost btn-sm" href="https://admin7.dotkernel.net/" target="_blank" rel="noopener">Demo</a>
@@ -141,39 +142,39 @@
 
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Deployable . Shares Core</span><h3>Queue</h3></div>
+                        <div><span class="kicker">Deployable · Shares Core</span><h3>Queue</h3></div>
                     </div>
+                    <p class="lede">Work your users should not wait for, moved off the request.</p>
                     <div class="badges">
-                        <img alt="PHP" src="https://img.shields.io/packagist/php-v/dotkernel/queue?style=flat&label=php">
-                        <img alt="Packagist" src="https://img.shields.io/packagist/v/dotkernel/queue?style=flat">
-                        <img alt="License" src="https://img.shields.io/github/license/dotkernel/queue?style=flat">
-                        <img alt="Stars" src="https://img.shields.io/github/stars/dotkernel/queue?style=flat&label=%E2%98%85">
+                        <img alt="PHP version for dotkernel/queue" src="https://img.shields.io/packagist/dependency-v/dotkernel/queue/php?style=flat&label=php">
+                        <img alt="Latest release of dotkernel/queue" src="https://img.shields.io/packagist/v/dotkernel/queue?style=flat">
+                        <img alt="License of dotkernel/queue" src="https://img.shields.io/github/license/dotkernel/queue?style=flat">
+                        <img alt="GitHub stars for dotkernel/queue" src="https://img.shields.io/github/stars/dotkernel/queue?style=flat&label=%E2%98%85">
                     </div>
-                    <p class="desc">Asynchronous task queuing built on Symfony Messenger, wired into the Laminas Service Manager container via netglue/laminas-messenger.</p>
+                    <p class="desc">Background job processing for the platform - dispatch work from API or Admin and run it in a separate worker. Built on Symfony Messenger.</p>
                     <div class="card-btns">
                         <a class="btn btn-ghost btn-sm" href="https://github.com/dotkernel/queue" target="_blank" rel="noopener">GitHub</a>
                         <a class="btn btn-ghost btn-sm" href="https://docs.dotkernel.org/queue-documentation/" target="_blank" rel="noopener">Docs</a>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
     <section>
         <div class="wrap">
             <div class="section-head">
-                <span class="eyebrow">Local Development</span>
+                <span class="eyebrow">Developer Tooling</span>
                 <h2>Set up your workspace</h2>
-                <p>Get a production-like environment running on your machine in minutes, ready for building and testing before anything reaches your users.</p>
+                <p>A production-like environment on your machine, and the context your AI tools need to write Dotkernel code - both ready before anything reaches your users.</p>
             </div>
 
             <div class="products-grid">
-
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Environment</span><h3>Development</h3></div>
+                        <div><span class="kicker">Tooling · Local Environment</span><h3>Development Environment</h3></div>
                     </div>
-                    <p class="desc">A controlled, safe, and efficient local workspace for building and testing applications before release. Runs AlmaLinux on Windows Subsystem for Linux (WSL2) for a RHEL-compatible, enterprise-grade setup, with an install script that pre-configures PHP, Apache, MariaDB, Git, Composer, Node.js, and phpMyAdmin - every essential tool, ready to go.</p>
+                    <p class="lede">A controlled local workspace for building and testing before release.</p>
+                    <p class="desc">AlmaLinux on WSL2 for a RHEL-compatible local stack. One install script configures PHP, Apache, MariaDB, Git, Composer, Node.js, and phpMyAdmin.</p>
                     <div class="card-btns">
                         <a class="btn btn-ghost btn-sm" href="https://github.com/dotkernel/development" target="_blank" rel="noopener">GitHub</a>
                         <a class="btn btn-ghost btn-sm" href="https://docs.dotkernel.org/development/" target="_blank" rel="noopener">Docs</a>
@@ -182,11 +183,12 @@
 
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Environment . Coming soon</span><h3>DevBox</h3></div>
+                        <div><span class="kicker">Tooling · AI Context</span><h3>Dotkernel Boost</h3></div>
                     </div>
-                    <p class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, ut enim ad minim veniam quis nostrud exercitation.</p>
+                    <p class="lede">Faster AI-assisted development, grounded in Dotkernel's own standards.</p>
+                    <p class="desc">Dotkernel context for AI coding tools - current standards, architectural patterns, and framework idioms, so generated code matches the ecosystem instead of guessing at it.</p>
                     <div class="card-btns">
-                        <span class="btn btn-ghost btn-sm" aria-disabled="true">Coming Soon</span>
+                        <a class="btn btn-ghost btn-sm" href="https://github.com/dotkernel/dotboost" target="_blank" rel="noopener">GitHub</a>
                     </div>
                 </div>
 
@@ -199,21 +201,22 @@
             <div class="section-head">
                 <span class="eyebrow">Other skeletons</span>
                 <h2>For projects outside the platform</h2>
-                <p>Not every project needs a headless platform. These two skeletons stand on their own, outside the API/Admin/Queue bundle above.</p>
+                <p>Not every project needs the full platform. These two skeletons stand on their own, outside the Headless Platform above.</p>
             </div>
 
             <div class="products-grid">
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Standalone . Minimal</span><h3>Light</h3></div>
+                        <div><span class="kicker">Skeleton · Minimal</span><h3>Light</h3></div>
                     </div>
+                    <p class="lede">A small site or service without a platform around it.</p>
                     <div class="badges">
-                        <img alt="PHP" src="https://img.shields.io/packagist/php-v/dotkernel/light?style=flat&label=php">
-                        <img alt="Packagist" src="https://img.shields.io/packagist/v/dotkernel/light?style=flat">
-                        <img alt="License" src="https://img.shields.io/github/license/dotkernel/light?style=flat">
-                        <img alt="Stars" src="https://img.shields.io/github/stars/dotkernel/light?style=flat&label=%E2%98%85">
+                        <img alt="PHP version for dotkernel/light" src="https://img.shields.io/packagist/dependency-v/dotkernel/light/php?style=flat&label=php">
+                        <img alt="Latest release of dotkernel/light" src="https://img.shields.io/packagist/v/dotkernel/light?style=flat">
+                        <img alt="License of dotkernel/light" src="https://img.shields.io/github/license/dotkernel/light?style=flat">
+                        <img alt="GitHub stars for dotkernel/light" src="https://img.shields.io/github/stars/dotkernel/light?style=flat&label=%E2%98%85">
                     </div>
-                    <p class="desc">The smallest complete Mezzio application — PSR-15 pipeline, routing and templating, nothing to strip out. A real starting point for a simple site, outside the API/Admin/Queue platform.</p>
+                    <p class="desc">The smallest complete Mezzio application - PSR-15 pipeline, routing, and templating, nothing to strip out. A real starting point for a simple site.</p>
                     <div class="card-btns">
                         <a class="btn btn-ghost btn-sm" href="https://github.com/dotkernel/light" target="_blank" rel="noopener">GitHub</a>
                         <a class="btn btn-ghost btn-sm" href="https://light.dotkernel.net/" target="_blank" rel="noopener">Demo</a>
@@ -223,15 +226,16 @@
 
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Skeleton . Standalone</span><h3>Frontend</h3></div>
+                        <div><span class="kicker">Skeleton · Standalone</span><h3>Frontend</h3></div>
                     </div>
+                    <p class="lede">A server-rendered web application you can build on.</p>
                     <div class="badges">
-                        <img alt="PHP" class="badge-fetch" src="https://img.shields.io/packagist/php-v/dotkernel/frontend?style=flat&label=php">
-                        <img alt="Packagist" class="badge-fetch" src="https://img.shields.io/packagist/v/dotkernel/frontend?style=flat">
-                        <img alt="License" class="badge-fetch" src="https://img.shields.io/github/license/dotkernel/frontend?style=flat&">
-                        <img alt="Stars" class="badge-fetch" src="https://img.shields.io/github/stars/dotkernel/frontend?style=flat&label=%E2%98%85">
+                        <img alt="PHP version for dotkernel/frontend" src="https://img.shields.io/packagist/dependency-v/dotkernel/frontend/php?style=flat&label=php">
+                        <img alt="Latest release of dotkernel/frontend" src="https://img.shields.io/packagist/v/dotkernel/frontend?style=flat">
+                        <img alt="License of dotkernel/frontend" src="https://img.shields.io/github/license/dotkernel/frontend?style=flat">
+                        <img alt="GitHub stars for dotkernel/frontend" src="https://img.shields.io/github/stars/dotkernel/frontend?style=flat&label=%E2%98%85">
                     </div>
-                    <p class="desc">A web starter skeleton for building frontend applications on Mezzio and Laminas - a standalone alternative, separate from the Headless Platform.</p>
+                    <p class="desc">A web starter skeleton for full-stack applications on Mezzio and Laminas - server-rendered Twig views, forms, sessions, and RBAC-guarded routes.</p>
                     <div class="card-btns">
                         <a class="btn btn-ghost btn-sm" href="https://github.com/dotkernel/frontend" target="_blank" rel="noopener">GitHub</a>
                         <a class="btn btn-ghost btn-sm" href="https://v5.dotkernel.net/" target="_blank" rel="noopener">Demo</a>
