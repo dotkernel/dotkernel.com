@@ -1,7 +1,7 @@
 html[data-theme="light"] {
   --bg: #FBF9F4;
   --surface: #FFFFFF;
-  --surface-2: #F3EFE6;
+  --surface-2: #f8f6f2;
   --border: #E3DDCF;
   --border-soft: #EBE6DA;
   --text: #0B0B0B;
@@ -17,6 +17,17 @@ html[data-theme="light"] {
   --teal-dim: rgba(163, 60, 75, .12);
   --nav-bg: rgba(251, 249, 244, .86);
   --on-accent: #FBF6F0;
+
+  /* OSS lifecycle states. The brand palette is deliberately one warm hue, so these are the
+     only tokens that carry a second signal; they stay muted to sit beside the red. */
+  --state-active: #2E7D64;
+  --state-active-dim: rgba(46, 125, 100, .12);
+  --state-maintenance: #96620A;
+  --state-maintenance-dim: rgba(150, 98, 10, .12);
+  --state-security: #C71F38;
+  --state-security-dim: rgba(199, 31, 56, .12);
+  --state-archived: #6B665C;
+  --state-archived-dim: rgba(107, 102, 92, .1);
 }
 
 html[data-theme="dark"] {
@@ -37,6 +48,16 @@ html[data-theme="dark"] {
   --amber-dim: rgba(218, 53, 80, .16);
   --teal-dim: rgba(232, 99, 122, .16);
   --nav-bg: rgba(11, 11, 11, .86);
+
+  /* Lifted for the dark surfaces; same four states as the light theme. */
+  --state-active: #58B79A;
+  --state-active-dim: rgba(88, 183, 154, .16);
+  --state-maintenance: #DCA23C;
+  --state-maintenance-dim: rgba(220, 162, 60, .16);
+  --state-security: #E8637A;
+  --state-security-dim: rgba(232, 99, 122, .16);
+  --state-archived: #8A847C;
+  --state-archived-dim: rgba(138, 132, 124, .14);
 }
 
 html {
@@ -719,6 +740,145 @@ html[data-theme="light"] .theme-toggle {
   img {
     height: 19px;
     border-radius: 3px;
+  }
+}
+
+/* ============================================================
+   Package lifecycle cards
+   ============================================================ */
+
+/* auto-fill keeps the packages grid responsive without breakpoints, since the
+   number of packages changes with every cron run. */
+.packages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 18px;
+}
+
+.package-card {
+  border-top-width: 4px;
+  transition: box-shadow .2s ease, transform .2s ease;
+
+  &:hover {
+    box-shadow: 0 6px 20px var(--accent-dim);
+    transform: translateY(-2px);
+  }
+
+  .card-top {
+    margin-bottom: 12px;
+  }
+
+  h3 {
+    margin: 0;
+  }
+}
+
+/* The pill carries the state, so it is the loudest thing on the card after the name. */
+.package-state {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 8px;
+  padding: 4px 10px;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  background: var(--accent-dim);
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+
+  /* Each state also changes the marker's shape, so the four are still telling apart
+     when the hues are not (colour blindness, greyscale printing, forced-colours mode). */
+  &::before {
+    content: '';
+    flex: none;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+}
+
+.package-card--active {
+  --accent: var(--state-active);
+  --accent-dim: var(--state-active-dim);
+}
+
+/* Hollow marker: still supported, no longer moving. */
+.package-card--maintenance {
+  --accent: var(--state-maintenance);
+  --accent-dim: var(--state-maintenance-dim);
+
+  .package-state::before {
+    background: transparent;
+    box-shadow: inset 0 0 0 2px var(--accent);
+  }
+}
+
+/* Haloed marker reads as a warning without leaning on hue alone. */
+.package-card--security-only {
+  --accent: var(--state-security);
+  --accent-dim: var(--state-security-dim);
+
+  .package-state::before {
+    box-shadow: 0 0 0 3px var(--accent-dim);
+  }
+}
+
+/* Archived and unrecognised states recede: dashed edge, quieter surface, square marker. */
+.package-card--archived,
+.package-card--unknown {
+  --accent: var(--state-archived);
+  --accent-dim: var(--state-archived-dim);
+  border-style: dashed;
+  border-top-style: solid;
+
+  h3 {
+    color: var(--text-muted);
+  }
+
+  .package-state::before {
+    border-radius: 2px;
+    background: transparent;
+    box-shadow: inset 0 0 0 2px var(--accent);
+  }
+
+  .badges img {
+    opacity: .65;
+  }
+}
+
+/* Repository description straight from GitHub, so its length is out of our hands. `desc`
+   already grows to fill the card, which keeps the badges and buttons on one line across the
+   row however long the sentence turns out to be. */
+.package-description {
+  margin: 0 0 14px;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.package-archived {
+  margin: 0;
+  color: var(--text-dim);
+  font-size: 12px;
+}
+
+.packages-generated-at {
+  margin-top: 22px;
+  color: var(--text-dim);
+}
+
+/* Respect a reduced-motion preference: the lift is decoration, the colour is the message. */
+@media (prefers-reduced-motion: reduce) {
+  .package-card {
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
   }
 }
 

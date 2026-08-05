@@ -45,7 +45,7 @@ class PackageGeneratorFactoryTest extends UnitTest
     {
         $generator = (new PackageGeneratorFactory())($this->createContainer($config));
 
-        $this->assertSame('data/packages.json', $generator->getDataFile());
+        $this->assertSame('data/dotkernel-packages.json', $generator->getDataFile());
         $this->assertSame('dotkernel', $this->readProperty($generator, 'org'));
         $this->assertSame([], $this->readProperty($generator, 'ignoreRepos'));
         $this->assertTrue($this->readProperty($generator, 'includeArchived'));

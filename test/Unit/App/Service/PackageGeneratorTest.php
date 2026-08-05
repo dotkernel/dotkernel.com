@@ -45,7 +45,7 @@ class PackageGeneratorTest extends UnitTest
         parent::setUp();
 
         $this->dataFile = sprintf(
-            '%s%slight-packages-%s%spackages.json',
+            '%s%slight-packages-%s%sdotkernel-packages.json',
             sys_get_temp_dir(),
             DIRECTORY_SEPARATOR,
             bin2hex(random_bytes(8)),
@@ -83,7 +83,13 @@ class PackageGeneratorTest extends UnitTest
     public function testWriteCreatesTheDataFileWithTheExpectedPayload(): void
     {
         $generator = $this->createGenerator(
-            [['name' => 'dot-cache', 'archived' => false]],
+            [
+                [
+                    'name'        => 'dot-cache',
+                    'description' => 'Dotkernel cache component',
+                    'archived'    => false,
+                ],
+            ],
             [
                 $this->metadataPath('dot-cache') => 'osslifecycle=active',
                 $this->composerPath('dot-cache') => '{"require":{"php":"~8.3.0 || ~8.4.0"}}',
@@ -106,11 +112,12 @@ class PackageGeneratorTest extends UnitTest
         );
         $this->assertSame([
             [
-                'name'      => 'dot-cache',
-                'url'       => 'https://github.com/dotkernel/dot-cache',
-                'lifecycle' => 'active',
-                'php'       => '~8.3.0 || ~8.4.0',
-                'archived'  => false,
+                'name'        => 'dot-cache',
+                'url'         => 'https://github.com/dotkernel/dot-cache',
+                'description' => 'Dotkernel cache component',
+                'lifecycle'   => 'active',
+                'php'         => '~8.3.0 || ~8.4.0',
+                'archived'    => false,
             ],
         ], $payload['packages']);
     }
@@ -335,6 +342,62 @@ class PackageGeneratorTest extends UnitTest
             'archived-repo',
             'frobnicate-repo',
         ], array_column($this->decodeDataFile()['packages'], 'name'));
+    }
+
+    /**
+     * The description comes from the organisation listing, so it costs no extra request.
+     *
+     * @throws Exception
+     * @throws JsonException
+     */
+    public function testWriteRecordsTheTrimmedRepositoryDescription(): void
+    {
+        $this->createGenerator(
+            [
+                [
+                    'name'        => 'dot-cache',
+                    'description' => '  Dotkernel cache component  ',
+                    'archived'    => false,
+                ],
+            ],
+            [$this->metadataPath('dot-cache') => 'osslifecycle=active']
+        )->write();
+
+        $this->assertSame(
+            'Dotkernel cache component',
+            $this->decodeDataFile()['packages'][0]['description']
+        );
+    }
+
+    /**
+     * GitHub sends `null` for a repository that has never been given a description.
+     *
+     * @param array<string, mixed> $repository
+     * @throws Exception
+     * @throws JsonException
+     */
+    #[DataProvider('unusableDescriptionProvider')]
+    public function testWriteRecordsANullDescriptionWhenItCannotBeUsed(array $repository): void
+    {
+        $this->createGenerator(
+            [$repository + ['name' => 'dot-cache', 'archived' => false]],
+            [$this->metadataPath('dot-cache') => 'osslifecycle=active']
+        )->write();
+
+        $this->assertNull($this->decodeDataFile()['packages'][0]['description']);
+    }
+
+    /**
+     * @return array<string, array{array<string, mixed>}>
+     */
+    public static function unusableDescriptionProvider(): array
+    {
+        return [
+            'absent'       => [[]],
+            'null'         => [['description' => null]],
+            'blank'        => [['description' => '   ']],
+            'not a string' => [['description' => 42]],
+        ];
     }
 
     /**

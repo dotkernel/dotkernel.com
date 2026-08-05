@@ -12,14 +12,14 @@
 
 {% block content %}
     {#
-        Rendered from data/packages.json, rebuilt daily by bin/generate-packages.
+        Rendered from public/dotkernel-packages.json, rebuilt daily by bin/generate-packages.
         The lifecycle value comes from each repository's OSSMETADATA file.
     #}
     {% set lifecycleMeta = {
-        active: {label: 'Active', accent: 'var(--teal)'},
-        maintenance: {label: 'Maintenance', accent: 'var(--brand-red)'},
-        'security-only': {label: 'Security-only', accent: 'var(--amber)'},
-        archived: {label: 'Archived', accent: 'var(--periwinkle)'},
+        active: {label: 'Active', title: 'Actively developed, with new features and fixes.'},
+        maintenance: {label: 'Maintenance', title: 'Still supported, receiving fixes but no new features.'},
+        'security-only': {label: 'Security-only', title: 'Only security fixes are released. Plan an upgrade.'},
+        archived: {label: 'Archived', title: 'No longer maintained. Do not use in new projects.'},
     } %}
 
     <div class="wrap post-body-wrap">
@@ -28,16 +28,28 @@
             {{ include('@partial/left-menu.html.twig') }}
 
             <main class="article">
-                <div class="products-grid" style="grid-template-columns:repeat(auto-fill,minmax(240px,1fr));">
+                <div class="packages-grid">
 
                     {% for package in packages %}
-                        {% set meta = lifecycleMeta[package.lifecycle] ?? {label: package.lifecycle|capitalize, accent: 'var(--periwinkle)'} %}
-                        <div class="card" style="--accent:{{ meta.accent }}">
+                        {% set state = lifecycleMeta[package.lifecycle] is defined ? package.lifecycle : 'unknown' %}
+                        {% set meta = lifecycleMeta[state]|default({
+                            label: package.lifecycle|capitalize,
+                            title: 'This package does not declare a recognised lifecycle.',
+                        }) %}
+                        <div class="card package-card package-card--{{ state }}">
                             <div class="card-top">
-                                <div><span class="kicker">{{ meta.label }}</span><h3>{{ package.name }}</h3></div>
+                                <div>
+                                    <span class="package-state" title="{{ meta.title }}">{{ meta.label }}</span>
+                                    <h3>{{ package.name }}</h3>
+                                </div>
                             </div>
+                            {# GitHub repository description. hidden, if empty #}
+                            {% if package.description %}
+                                <p class="desc package-description">{{ package.description }}</p>
+                            {% endif %}
                             <div class="badges">
-                                <img alt="PHP version for dotkernel/{{ package.name }}" loading="lazy" src="https://img.shields.io/packagist/dependency-v/dotkernel/{{ package.name }}/php?style=social">
+                                <img alt="PHP version for dotkernel/{{ package.name }}" loading="lazy"
+                                     src="https://img.shields.io/packagist/dependency-v/dotkernel/{{ package.name }}/php?color=blue">
                                 {% if package.archived %}
                                     <p class="package-archived">Archived on GitHub</p>
                                 {% endif %}
@@ -53,6 +65,9 @@
 
                 {% if generatedAt %}
                     <p class="packages-generated-at"><small>Last updated {{ generatedAt|date('M d, Y H:i T') }}</small></p>
+                    <div class="card-btns">
+                        <a class="btn btn-ghost btn-sm" href="/dotkernel-packages.json">View as JSON</a>
+                    </div>
                 {% endif %}
             </main>
         </div>
