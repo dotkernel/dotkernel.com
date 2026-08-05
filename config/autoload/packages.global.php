@@ -69,7 +69,7 @@ return [
             'zend-expressive-hal',
             'zf1',
         ],
-        'dataFile'        => __DIR__ . '/../../public/packages.json',
+        'dataFile'        => __DIR__ . '/../../public/dotkernel-packages.json',
         'includeArchived' => true,
         'timeout'         => 10,
         'connectTimeout'  => 5,

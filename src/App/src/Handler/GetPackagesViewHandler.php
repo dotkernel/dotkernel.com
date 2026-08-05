@@ -31,7 +31,7 @@ class GetPackagesViewHandler implements RequestHandlerInterface
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         // no inline regeneration
-        // data is cached in `public/packages.json` by `bin/generate-packages`
+        // data is cached in `public/dotkernel-packages.json` by `bin/generate-packages`
         $data = $this->packageGenerator->read();
         if (! is_array($data)) {
             $data = [];

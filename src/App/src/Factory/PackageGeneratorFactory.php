@@ -41,7 +41,7 @@ class PackageGeneratorFactory
 
         return new PackageGenerator(
             $client,
-            (string) ($packages['dataFile'] ?? 'data/packages.json'),
+            (string) ($packages['dataFile'] ?? 'data/dotkernel-packages.json'),
             (string) ($github['org'] ?? 'dotkernel'),
             $ignoreRepos,
             (bool) ($packages['includeArchived'] ?? true),
