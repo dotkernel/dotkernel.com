@@ -835,6 +835,19 @@
                 "opengraph_img": "\/opengraph\/article\/twitter-card-symfony-mailer.png",
                 "excerpt": "What prompted the change According to the discussion from the LaminasTechnical steering Committee of 2023-12-04, it was decided that the laminas\/laminas-mail package would be abandoned. On the one hand, there is nobody to maintain the package and on the other, there are several alternatives available in the ecosystem: ddeboer\/imap for interacting with IMAP zbateson\/mail-mime-parser for parsing MIME messages symfony\/mailer for sending mail How Dotkernel handles the issue The Dotkernel team has also opted to replace the laminas\/laminas-mail package in the dotkernel\/dot-mail package.",
                 "tl_dr": "The Laminas Technical Steering Committee decided on 2023-12-04 to abandon laminas\/laminas-mail.\nDotkernel responded by replacing it with symfony\/mailer inside the dotkernel\/dot-mail package (version 5), aiming for minimal impact on existing projects — calls to send mail stay the same, though mime and imap related functionality is removed."
+            },
+            {
+                "post_title": "Test article",
+                "post_date": "2026-08-06 00:00:00",
+                "post_status": "publish",
+                "author": {
+                    "display_name": "stefan",
+                    "github": "OStefan2001"
+                },
+                "isObsolete": false,
+                "opengraph_img": "\/opengraph\/article\/twitter-card-symfony-mailer.png",
+                "excerpt": "This is a test article used for fixture and testing purposes.",
+                "tl_dr": "This is a test article added to the dotkernel category for testing purposes."
             }
         ]
     },

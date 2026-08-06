@@ -59,6 +59,10 @@ return [
     'feed'                 => [
         'path' => realpath(__DIR__ . '/../../public/feed.xml'),
     ],
+    'llms'                 => [
+        'sourceDir'  => realpath(__DIR__ . '/../../public/md-articles'),
+        'outputFile' => realpath(__DIR__ . '/../../public/llms-full.txt'),
+    ],
     /**
      * Credentials for `bin/generate-packages`. Reading public repositories needs no token
      * scopes at all; without a token the generator still runs, at a lower rate limit.
