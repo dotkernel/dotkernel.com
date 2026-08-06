@@ -1,0 +1,23 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+use Light\App\Service\LlmsFullGenerator;
+
+chdir(__DIR__ . '/../');
+
+require 'vendor/autoload.php';
+
+$container          = require 'config/container.php';
+$llmsFullGenerator  = $container->get(LlmsFullGenerator::class);
+
+$count = $llmsFullGenerator->write();
+
+printf(
+    "Done. %d article%s written to %s%s",
+    $count,
+    $count === 1 ? '' : 's',
+    $llmsFullGenerator->getOutputFile(),
+    PHP_EOL
+);
