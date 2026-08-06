@@ -55,7 +55,7 @@ class FeedGenerator
         $this->appendText($dom, $channel, 'lastBuildDate', (new DateTimeImmutable())->format(DateTimeInterface::RSS));
 
         foreach ($posts as $post) {
-            $link = $this->baseUrl . $post->getCategory()->getSlug() . '/' . $post->getSlug() . '/';
+            $link = $this->baseUrl . '/' . $post->getCategory()->getSlug() . '/' . $post->getSlug() . '/';
 
             $item = $dom->createElement('item');
             $channel->appendChild($item);

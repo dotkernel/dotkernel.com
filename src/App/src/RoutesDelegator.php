@@ -9,6 +9,7 @@ use Light\App\Handler\GetFeedViewHandler;
 use Light\App\Handler\GetIndexViewHandler;
 use Light\App\Handler\GetMarkdownArticleHandler;
 use Light\App\Handler\GetPackagesViewHandler;
+use Light\App\Handler\GetSitemapViewHandler;
 use Mezzio\Application;
 use Psr\Container\ContainerInterface;
 
@@ -22,6 +23,7 @@ class RoutesDelegator
         assert($app instanceof Application);
         $app->get('/', [GetIndexViewHandler::class], 'app::index');
         $app->get('/feed/', [GetFeedViewHandler::class], 'app::feed');
+        $app->get('/sitemap/', [GetSitemapViewHandler::class], 'app::sitemap');
         $app->get('/{categorySlug}/{slug}.md', [GetMarkdownArticleHandler::class], 'app::markdown-article');
 
         // Route name kept as `page::…` because `@layout/default.html.twig` links it by name.
