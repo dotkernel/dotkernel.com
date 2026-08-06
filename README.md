@@ -40,7 +40,7 @@ If the article body uses images (via `asset('uploads/article/' ~ article.id ~ '/
 
 ## 3. At deploy — run in this order
 
-```
+```shell
 php bin/doctrine-fixtures
 php bin/create-uploads-dir
 ```
@@ -50,7 +50,7 @@ php bin/create-uploads-dir
 
 ## 4. Regenerate the public artifacts — any order
 
-```
+```shell
 php bin/generate-feed
 php bin/sitemap
 php bin/generate-llms-full
