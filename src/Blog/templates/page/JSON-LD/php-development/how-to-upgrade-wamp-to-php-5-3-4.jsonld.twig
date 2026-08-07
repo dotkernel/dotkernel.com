@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "Where do I download the PHP 5.3.4 package for WAMP?", "acceptedAnswer": { "@type": "Answer", "text": "Download the latest ZIPPED package for PHP 5.3.4 from windows.php.net. Make sure it is the VC6 Thread Safe build, and do not download the installer." } },
                     { "@type": "Question", "name": "Where should the downloaded PHP 5.3.4 files be extracted?", "acceptedAnswer": { "@type": "Answer", "text": "Create a folder named php5.3.4 inside wamp/bin/php, then extract the downloaded zip into that newly created folder." } },

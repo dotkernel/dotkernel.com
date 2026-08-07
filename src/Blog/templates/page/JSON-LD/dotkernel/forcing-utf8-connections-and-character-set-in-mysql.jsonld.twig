@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "Why force UTF8 at the MySQL server level instead of relying on each client?", "acceptedAnswer": { "@type": "Answer", "text": "Because you can't control all the scripts that connect to your database (for instance the mysql command line or mysqldump), so forcing the server's collation and character set to UTF8 in my.cnf guarantees it regardless of the connecting client." } },
                     { "@type": "Question", "name": "What two lines enable UTF8 for all connections in my.cnf?", "acceptedAnswer": { "@type": "Answer", "text": "character_set_server=utf8 and skip-character-set-client-handshake." } },

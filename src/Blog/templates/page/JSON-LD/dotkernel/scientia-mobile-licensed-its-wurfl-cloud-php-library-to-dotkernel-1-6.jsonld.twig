@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "Why was the WURFL PHP library removed from Dotkernel 1.6.0?", "acceptedAnswer": { "@type": "Answer", "text": "In Dotkernel 1.6.0, released on May 16th, 2012, the GPL'ed WURFL PHP library was removed because the code was obsolete anyway and the structure of the XML file had changed." } },
                     { "@type": "Question", "name": "What replaced the old WURFL PHP library?", "acceptedAnswer": { "@type": "Answer", "text": "Dotkernel implemented Scientia Mobile's WURFL Cloud PHP library instead." } },

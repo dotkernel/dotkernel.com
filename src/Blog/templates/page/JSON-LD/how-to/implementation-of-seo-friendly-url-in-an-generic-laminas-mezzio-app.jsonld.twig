@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "What are the benefits of human-readable slugs cited in this article?", "acceptedAnswer": { "@type": "Answer", "text": "Readability and a more user-friendly experience, better search engine optimization (SEO), and improved shareability and trustworthiness of the URL." } },
                     { "@type": "Question", "name": "What package is used to generate slugs in this example?", "acceptedAnswer": { "@type": "Answer", "text": "gedmo/doctrine-extensions, installed by running composer require gedmo/doctrine-extensions." } },

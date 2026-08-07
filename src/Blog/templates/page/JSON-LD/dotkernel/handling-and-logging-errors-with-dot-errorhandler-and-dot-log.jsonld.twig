@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "What two kinds of error handlers does dot-errorhandler provide?", "acceptedAnswer": { "@type": "Answer", "text": "A plain ErrorHandler, which is a copy of Zend Expressive's Zend\\Stratigility\\Middleware\\ErrorHandler (copied because that class is final), and a logging LogErrorHandler, which is the same but with added logging support via the container. Both have factories registered for easier use with the Container." } },
                     { "@type": "Question", "name": "How do you install dot-errorhandler?", "acceptedAnswer": { "@type": "Answer", "text": "Run composer require dotkernel/dot-errorhandler." } },

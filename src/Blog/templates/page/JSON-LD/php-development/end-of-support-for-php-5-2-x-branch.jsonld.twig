@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "What does the release of PHP 5.2.14 mean for the 5.2.x branch?", "acceptedAnswer": { "@type": "Answer", "text": "PHP 5.2.14 marks the end of active support for the PHP 5.2 branch. After this release, PHP 5.2 will receive no further active bug maintenance, though security fixes might still be published on a case-by-case basis." } },
                     { "@type": "Question", "name": "What should users of PHP 5.2 do?", "acceptedAnswer": { "@type": "Answer", "text": "All users of PHP 5.2 are encouraged to upgrade to PHP 5.3." } },

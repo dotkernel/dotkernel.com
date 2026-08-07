@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "What is PHP 7 Express in Zend Studio?", "acceptedAnswer": { "@type": "Answer", "text": "PHP 7 Express is a feature added in Zend Studio starting with version 13. It's useful for checking whether pre-PHP7 code will work correctly on a PHP7 server." } },
                     { "@type": "Question", "name": "What PHP version should you select when creating a test project?", "acceptedAnswer": { "@type": "Answer", "text": "Use the exact PHP version your project actually uses (e.g. PHP 5.6), not PHP 7. Choosing PHP 7 at project creation hides the PHP 7 Express feature, because Zend Studio assumes a PHP 7 project doesn't need compatibility checks." } },

@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "How do you set global ignored resource patterns in Zend Studio?", "acceptedAnswer": { "@type": "Answer", "text": "Go to Window -> Preferences, then Team -> Ignored Resources. From there, use Add Pattern to add ignored patterns one by one, applying them globally to all projects instead of adding them manually to each project, or remove existing patterns." } },
                     { "@type": "Question", "name": "When is this global ignore configuration especially useful?", "acceptedAnswer": { "@type": "Answer", "text": "It's especially useful when you have both Git and SVN projects in the same workspace, and also when you tend to be less careful about your code and workspace. On each project you can still choose to use either the global ignored patterns or specific ones." } }

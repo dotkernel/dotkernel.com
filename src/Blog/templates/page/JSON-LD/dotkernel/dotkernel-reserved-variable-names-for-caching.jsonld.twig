@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "What cache key is used for the router?", "acceptedAnswer": { "@type": "Answer", "text": "The router, which loads routes settings from router.xml, is cached as router." } },
                     { "@type": "Question", "name": "What cache key stores the ACL role definitions?", "acceptedAnswer": { "@type": "Answer", "text": "The role.xml file (used by Dot_Auth, from /configs/acl/role.xml, to define user rights) is cached as acl_role." } },

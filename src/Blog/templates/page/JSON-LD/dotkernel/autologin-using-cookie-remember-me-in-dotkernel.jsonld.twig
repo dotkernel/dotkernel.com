@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "Since which release is Remember Me implemented in Dotkernel?", "acceptedAnswer": { "@type": "Answer", "text": "It's implemented in Dotkernel Frontend starting from Release 3.3.0." } },
                     { "@type": "Question", "name": "How do you add the Remember Me checkbox to the login UI?", "acceptedAnswer": { "@type": "Answer", "text": "In src/User/templates/user/login.html.twig, under the password element, render the rememberMe element retrieved via form.get('rememberMe') with formElement()." } },

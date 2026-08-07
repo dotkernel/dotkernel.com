@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "What is Dotkernel Tracker?", "acceptedAnswer": { "@type": "Answer", "text": "Dotkernel Tracker is a Mantis-based, web-based bugtracking system used by the Dotkernel application framework, where bugs are reported, new features are announced, and other general tickets are added." } },
                     { "@type": "Question", "name": "How is Aptana integrated with Dotkernel Tracker?", "acceptedAnswer": { "@type": "Answer", "text": "Aptana, the web development IDE used for Dotkernel development, is integrated with Dotkernel Tracker via the Mylyn plugin's Mantis connector, so tickets can be managed directly from within the IDE." } },

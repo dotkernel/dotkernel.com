@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "What is the focus of this article?", "acceptedAnswer": { "@type": "Answer", "text": "Following the earlier article about SQL Injection, this article makes a stronger argument for using Zend Framework to handle database access. Zend_Db is the primary class used for accessing the database, but there is more to it: Zend_Db_Statement, Zend_Db_Select, and Zend_Db_Tables." } },
                     { "@type": "Question", "name": "Does Zend_Db's query() method protect against SQL injection?", "acceptedAnswer": { "@type": "Answer", "text": "query() uses prepared statements internally, but SQL Injection is still possible if the $sql parameter passed to it is dynamically created." } },

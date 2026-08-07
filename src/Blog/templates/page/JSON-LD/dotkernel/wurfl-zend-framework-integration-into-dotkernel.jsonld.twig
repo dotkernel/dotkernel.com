@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "Which Zend Framework class is used to integrate WURFL into Dotkernel?", "acceptedAnswer": { "@type": "Answer", "text": "WURFL is integrated using the Zend_Http_UserAgent class from Zend Framework 1.11.0rc1 (the beta release at the time of the post)." } },
                     { "@type": "Question", "name": "What is the first step to integrate WURFL into Dotkernel?", "acceptedAnswer": { "@type": "Answer", "text": "Download the WURFL PHP API and unzip it into a folder named wurfl-php-1.1." } },
