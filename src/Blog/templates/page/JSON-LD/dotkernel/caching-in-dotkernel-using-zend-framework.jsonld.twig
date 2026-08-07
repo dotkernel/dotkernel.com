@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "What data does Dotkernel's cache layer store?", "acceptedAnswer": { "@type": "Answer", "text": "Router, acl_role, menu, options (including seo_xml), browser_xml, os_xml, and test data between requests." } },
                     { "@type": "Question", "name": "What storage providers are available for the cache?", "acceptedAnswer": { "@type": "Answer", "text": "Two cache factories to choose from: APC (or APCU for newer PHP installations) and File." } },

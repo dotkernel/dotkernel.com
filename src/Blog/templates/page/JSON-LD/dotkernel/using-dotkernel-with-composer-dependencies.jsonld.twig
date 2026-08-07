@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "Do I need to manually include or require Composer dependencies in Dotkernel?", "acceptedAnswer": { "@type": "Answer", "text": "No. Composer automatically loads dependencies, so there is no need to include or require them yourself." } },
                     { "@type": "Question", "name": "What example does the article use to demonstrate Composer dependencies?", "acceptedAnswer": { "@type": "Answer", "text": "The article renders a Barcode using Zend Framework 1 as the Non-Namespaced dependency (installed with composer require 'zendframework/zendframework1') and Zend Framework 2 as the Namespaced dependency (installed with composer require 'zendframework/zend-barcode')." } },

@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "Why did Dotkernel need a workaround for this package?", "acceptedAnswer": { "@type": "Answer", "text": "An analysis found that an upstream package, matomo/device-detector, was licensed under LGPL v3, which requires developers to share their derivative code publicly. Since Dotkernel's own projects use the MIT license, and the more restrictive license would have to apply to the whole application, this conflicted with contractual obligations to keep client code business and enterprise friendly." } },
                     { "@type": "Question", "name": "Where was the LGPL v3 package being used?", "acceptedAnswer": { "@type": "Answer", "text": "The matomo/device-detector package was used in Dotkernel's dot-user-agent-sniffer package to identify the user agent and use the results in internal reports." } },

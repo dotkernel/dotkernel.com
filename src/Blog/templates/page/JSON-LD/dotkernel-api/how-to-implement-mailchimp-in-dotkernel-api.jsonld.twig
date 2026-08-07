@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "Which library does this tutorial use to add MailChimp to Dotkernel API?", "acceptedAnswer": { "@type": "Answer", "text": "The tutorial uses drewm/mailchimp-api, installed with the command composer require drewm/mailchimp-api." } },
                     { "@type": "Question", "name": "Where do you place the MailChimp configuration file?", "acceptedAnswer": { "@type": "Answer", "text": "In config/autoload/mailchimp.global.php, a new configuration file created as part of Step 2." } },

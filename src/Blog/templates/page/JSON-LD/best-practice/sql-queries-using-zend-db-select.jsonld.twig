@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "What does Zend_Db provide?", "acceptedAnswer": { "@type": "Answer", "text": "Zend_Db and its related classes provide a simple SQL database interface for Zend Framework. To connect to a MySQL database, the Pdo_Mysql adapter is used via Zend_Db::factory('Pdo_Mysql', $dbConnect)." } },
                     { "@type": "Question", "name": "How do you write a SELECT with a JOIN and a WHERE clause in Zend_Db style?", "acceptedAnswer": { "@type": "Answer", "text": "Use $db->select()->from(array('a'=>'users'), array('a.id','a.name'))->join(array('b'=>'orders'), 'a.id = b.user_id', array('b.order_id'))->where('a.id = ?', $userId), which is equivalent to a classical SQL query using INNER JOIN." } },

@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "What is the goal of replacing controllers with PSR-15 handlers?", "acceptedAnswer": { "@type": "Answer", "text": "The goal is to implement PSR-15 handlers into Dotkernel Light, keeping the application up-to-date with recommended design guidelines, ensuring it stays secure while implementing standards widely adopted by the PHP community." } },
                     { "@type": "Question", "name": "What makes handlers better than controllers?", "acceptedAnswer": { "@type": "Answer", "text": "Handlers split code into manageable chunks instead of one large controller file with several actions, following the Single-responsibility Principle (the S in SOLID). Each action becomes its own class, making handlers easier to maintain, refactor and test, easier to expand with new functionality, and simpler to write focused tests for." } },

@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "Why did Dotkernel Light switch from controllers to handlers?", "acceptedAnswer": { "@type": "Answer", "text": "Dotkernel Light switched to PSR-15 handlers instead of dotkernel/dot-controller (which isn't going away, but is no longer used here). Since the request can be filtered or augmented by the time it reaches custom code in a middleware architecture, handlers split the code into more manageable chunks and a cleaner file structure, and make an application's functionality easier to figure out." } },
                     { "@type": "Question", "name": "What naming pattern is used for the new PSR-15 handlers?", "acceptedAnswer": { "@type": "Answer", "text": "A naming pattern was devised that highlights the method, resource, and action for each handler file, so file names reflect their functionality at a glance, making navigation and onboarding easier." } },

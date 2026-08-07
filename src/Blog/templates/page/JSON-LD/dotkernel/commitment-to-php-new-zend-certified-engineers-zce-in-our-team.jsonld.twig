@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "How many Zend Certified Engineers does the team have?", "acceptedAnswer": { "@type": "Answer", "text": "According to the article, 2 more team members passed the ZCE exam, bringing the team's total to 5 Zend Certified Engineers." } }
                 ]

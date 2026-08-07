@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "Why use CURRENT_TIMESTAMP as a DEFAULT value for a date/time field?", "acceptedAnswer": { "@type": "Answer", "text": "Because when inserting a new row, there is no need to specifically set the date/time value yourself, either from PHP Date/Time functions or with MySQL's NOW() function." } },
                     { "@type": "Question", "name": "How do you make a field update its timestamp automatically on every UPDATE?", "acceptedAnswer": { "@type": "Answer", "text": "Add the ON UPDATE CURRENT_TIMESTAMP clause, for example: ALTER TABLE `user` CHANGE `dateLogin` `dateLogin` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP." } },

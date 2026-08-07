@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "What does this WSL recipe set up?", "acceptedAnswer": { "@type": "Answer", "text": "It sets up a full PHP development environment: WSL2, AlmaLinux 10, PHP, Apache, MariaDB, Git, Composer, Node.js and PhpMyAdmin." } },
                     { "@type": "Question", "name": "What are the OS and hardware requirements?", "acceptedAnswer": { "@type": "Answer", "text": "Windows 10 (Version 1903+ / Build 18362.1049+ for x64, or Version 2004+ / Build 19041+ for ARM64) or Windows 11, plus hardware virtualization support. If needed, enable the Virtual Machine Platform feature via dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart in an administrator PowerShell." } },

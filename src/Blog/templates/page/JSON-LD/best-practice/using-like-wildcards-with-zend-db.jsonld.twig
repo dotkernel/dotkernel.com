@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "What do the LIKE wildcards _ and % mean?", "acceptedAnswer": { "@type": "Answer", "text": "The _ wildcard matches a single character, while % matches any string of any length, including zero length." } },
                     { "@type": "Question", "name": "Which SQL statements can use the LIKE condition?", "acceptedAnswer": { "@type": "Answer", "text": "LIKE allows pattern matching in the WHERE clause and can be used in any valid SQL statement: SELECT, INSERT, UPDATE, or DELETE." } },

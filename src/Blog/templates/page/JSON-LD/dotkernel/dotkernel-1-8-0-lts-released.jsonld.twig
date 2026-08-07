@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "What does LTS mean for Dotkernel 1.8.0?", "acceptedAnswer": { "@type": "Answer", "text": "LTS stands for Long-term support, a type of special version designed to be supported for longer than normal, which is particularly common for open-source software projects." } },
                     { "@type": "Question", "name": "What is the Plugin Architecture introduced in 1.8.0?", "acceptedAnswer": { "@type": "Answer", "text": "Starting with 1.8.0, Dotkernel uses Plugins to make extending the framework easier." } },

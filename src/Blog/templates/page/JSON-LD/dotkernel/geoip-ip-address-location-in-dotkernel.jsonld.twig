@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "What is GeoIP and what does it let Dotkernel do?", "acceptedAnswer": { "@type": "Answer", "text": "GeoIP is MaxMind's proprietary technology for IP geolocation data. Dotkernel uses it to get user statistics by country, determining a visitor's country, region, city, postal code, or area code in real time." } },
                     { "@type": "Question", "name": "Where does the GeoIP logic live in Dotkernel?", "acceptedAnswer": { "@type": "Answer", "text": "In library/Dot/Geoip.php, inside the getCountryByIp function." } },

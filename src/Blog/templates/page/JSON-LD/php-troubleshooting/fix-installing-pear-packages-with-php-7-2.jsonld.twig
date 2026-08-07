@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "What error occurs when installing PEAR packages with PHP 7.2?", "acceptedAnswer": { "@type": "Answer", "text": "Running a command like pear install PHP_CodeSniffer produces the fatal error \"Cannot use result of built-in function in write context\" in Archive/Tar.php on line 639, because the function is called by reference." } },
                     { "@type": "Question", "name": "How do you fix the \"Cannot use result of built-in function in write context\" error?", "acceptedAnswer": { "@type": "Answer", "text": "Go to the line indicated in the error (line 639) and replace \"$v_att_list = &func_get_args();\" with \"$v_att_list = func_get_args();\", so func_get_args() is no longer called by reference." } },

@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "Where do Dotkernel's database naming conventions come from?", "acceptedAnswer": { "@type": "Answer", "text": "They are borrowed from FaZend's \"Rules of naming of database tables and columns,\" an open-source PHP framework based on Zend Framework." } },
                     { "@type": "Question", "name": "Should table names be singular or plural?", "acceptedAnswer": { "@type": "Answer", "text": "Singular table names only, for example user, category, product, order, orderProduct." } },

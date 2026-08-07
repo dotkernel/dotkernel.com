@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "What milestone is this article announcing?", "acceptedAnswer": { "@type": "Answer", "text": "Dotboost Technologies Inc. is announcing that the 10th member of its team has passed the Zend Certified Engineer (ZCE) exam, a milestone the company highlights as part of its commitment to top-level PHP development for clients." } },
                     { "@type": "Question", "name": "What are the team's next certification-related plans?", "acceptedAnswer": { "@type": "Answer", "text": "The next step is to implement Zend Framework 2 best practices and to pursue the Zend Framework 2 Certified Architect exam. Additionally, starting in 2014, Zend Certification will become mandatory for every developer on the team." } }

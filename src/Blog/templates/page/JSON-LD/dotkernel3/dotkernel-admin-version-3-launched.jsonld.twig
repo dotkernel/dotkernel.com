@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "What is Dotkernel Admin?", "acceptedAnswer": { "@type": "Answer", "text": "A basic admin panel based on Bootstrap ^4.5.0, using Doctrine to perform basic CRUD operations over a database, built as a collection of PSR-7 Middleware applications on top of Mezzio and Laminas components." } },
                     { "@type": "Question", "name": "Where can you see a live demo of version 3?", "acceptedAnswer": { "@type": "Answer", "text": "At admin.dotkernel.net." } },

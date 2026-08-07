@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "Why did mobile detection change in Dotkernel 1.6.0?", "acceptedAnswer": { "@type": "Answer", "text": "Because of the new Wurfl Cloud integration. This version no longer ships with a working built-in method for mobile detection, so it must be configured first." } },
                     { "@type": "Question", "name": "What are the steps to configure Wurfl Cloud detection?", "acceptedAnswer": { "@type": "Answer", "text": "Go to the scientiamobile website and register for a Wurfl Cloud account, choose the device_os and mobile_browser capabilities for the account and save, then go to API Keys and copy the key into application.ini." } },

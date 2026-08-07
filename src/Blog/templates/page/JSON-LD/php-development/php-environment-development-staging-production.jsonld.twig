@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "What is a \"server environment\" in hosted software development?", "acceptedAnswer": { "@type": "Answer", "text": "It refers to a server tier designated to a specific stage in a release process. The purpose of using different environments is to improve the development, testing and release processes in client-server applications." } },
                     { "@type": "Question", "name": "What is the development environment used for?", "acceptedAnswer": { "@type": "Answer", "text": "It's the working environment for individual developers or small teams, where the developer works on local host, separate from the rest of the team, allowing changes to be made without worrying about altering the work of other team members." } },

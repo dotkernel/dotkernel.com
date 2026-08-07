@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "What was announced for Zend Framework 1.12?", "acceptedAnswer": { "@type": "Answer", "text": "Matthew Weier O'Phinney announced the immediate availability of the first release candidate of the Zend Framework 1.12 series, 1.12.0RC1." } },
                     { "@type": "Question", "name": "What changed in Zend_Loader?", "acceptedAnswer": { "@type": "Answer", "text": "A number of autoloaders and autoloader facilities were back ported from ZF2, including Zend_Loader_StandardAutoloader, Zend_Loader_ClassMapAutoloader, and Zend_Loader_AutoloaderFactory, providing performant alternatives to the autoloading facilities already in the 1.X releases." } },

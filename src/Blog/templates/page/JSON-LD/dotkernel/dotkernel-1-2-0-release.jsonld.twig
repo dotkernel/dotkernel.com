@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "What is a \"dots\" in Dotkernel, a term introduced in this release?", "acceptedAnswer": { "@type": "Answer", "text": "A term for a submodule and all its component files. For example, \"user\" is a dots of the frontend module, and one dots can belong to multiple modules, such as \"user\" belonging to both frontend and admin." } },
                     { "@type": "Question", "name": "Where are dots configuration values stored, compared to earlier versions?", "acceptedAnswer": { "@type": "Answer", "text": "They're stored in XML files inside the configs/dots folder. In previous versions, these values were hard-coded in the PHP files." } },

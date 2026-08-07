@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "What Dotkernel version is required before applying this patch?", "acceptedAnswer": { "@type": "Answer", "text": "Your project must be running version 1.5.0 or newer." } },
                     { "@type": "Question", "name": "Which files does the patch modify or add?", "acceptedAnswer": { "@type": "Answer", "text": "It modifies configs/useragent/browser.xml and configs/useragent/os.xml, and adds images/browsers/edge.png and images/os/windows_metro.png." } },

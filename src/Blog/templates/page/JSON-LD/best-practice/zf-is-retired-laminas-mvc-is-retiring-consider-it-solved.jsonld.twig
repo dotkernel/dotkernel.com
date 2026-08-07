@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "What is Laminas MVC being replaced by?", "acceptedAnswer": { "@type": "Answer", "text": "Mezzio microframework, built using Laminas components. It has gone through rigorous development and testing since being released in 2015, when it was known as Zend Expressive, before being renamed Mezzio." } },
                     { "@type": "Question", "name": "Why is maintaining legacy platforms a problem?", "acceptedAnswer": { "@type": "Answer", "text": "Maintaining legacy platforms over the long term is often costly and time-consuming, so every few years platform owners must consider migrating to a newer platform that offers modern architecture, an active community, easier development/expansion/maintenance, security improvements, and more reliable dependencies." } },

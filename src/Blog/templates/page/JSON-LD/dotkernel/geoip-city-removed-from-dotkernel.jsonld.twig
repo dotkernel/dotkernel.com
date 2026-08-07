@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "Why was GeoIP City removed from Dotkernel?", "acceptedAnswer": { "@type": "Answer", "text": "The City database on GeoIP extension version 1.1.0 and above was causing a segmentation fault, which resulted in crashing or outputting an error instead of executing the PHP code." } },
                     { "@type": "Question", "name": "Who is affected by this error?", "acceptedAnswer": { "@type": "Answer", "text": "Users running an older Dotkernel version together with GeoIP extension version 1.1.0 or newer, since the error comes from the extension's incompatibility with the database (dat) file." } },

@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "Is this article still current?", "acceptedAnswer": { "@type": "Answer", "text": "The article notes that following version 2 of doctrine/cache, an updated version of this article covering Doctrine cache using Symfony Cache was published in 2024." } },
                     { "@type": "Question", "name": "Which three Doctrine cache types does this configure?", "acceptedAnswer": { "@type": "Answer", "text": "query_cache, metadata_cache and result_cache, configured through psr/container using PhpFileCache as the cache type." } },

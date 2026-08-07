@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "What are the two ways to create an admin account in Dotkernel API?", "acceptedAnswer": { "@type": "Answer", "text": "You can either call the protected API endpoint POST /admin with a JSON body, or run the terminal command php ./bin/cli.php admin:create." } },
                     { "@type": "Question", "name": "Who can create an admin account via the API endpoint?", "acceptedAnswer": { "@type": "Answer", "text": "This action can be performed only by an authenticated admin/superuser, calling the protected POST /admin endpoint." } },

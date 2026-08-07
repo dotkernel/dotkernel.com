@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "What is a database migration?", "acceptedAnswer": { "@type": "Answer", "text": "A database migration is a change to the database schema. The Dotkernel stack integrates migrations (and seeders) via a package that adds the php dot command to the application." } },
                     { "@type": "Question", "name": "What are the benefits of using migrations and seeders?", "acceptedAnswer": { "@type": "Answer", "text": "They keep the database synchronised across the team with minimal effort, so column types and limits stay consistent instead of drifting (e.g. one dev using VARCHAR(50) and another VARCHAR(150)). Deployment scripts can also run migrations automatically in production, avoiding manual SSH access and risky manual database changes." } },

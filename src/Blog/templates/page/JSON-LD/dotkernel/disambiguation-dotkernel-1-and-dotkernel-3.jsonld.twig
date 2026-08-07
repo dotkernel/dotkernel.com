@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "What does the name \"Dotkernel\" mean?", "acceptedAnswer": { "@type": "Answer", "text": "It combines \"Dot\", as a representation of the Internet, with \"Kernel\", the quintessence of any IT application, reflecting the aim of being a central part of Internet development." } },
                     { "@type": "Question", "name": "What is Dotkernel 1?", "acceptedAnswer": { "@type": "Answer", "text": "A PHP Application Framework built on top of Zend Framework 1, first publicly released in July 2010, with an architecture based on MVC. Its latest version is 1.8 Long Term Support, which per the article will not be followed by a new version, only bugfixes." } },

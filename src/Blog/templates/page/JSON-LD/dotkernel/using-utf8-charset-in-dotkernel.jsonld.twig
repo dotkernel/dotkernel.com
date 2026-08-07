@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "What needs to change to use UTF8 encoding in a Dotkernel-based system?", "acceptedAnswer": { "@type": "Answer", "text": "Both the database structure and the application.ini file need changes: all tables and columns must have a proper UTF8 collation (utf8_general_ci or utf8_bin), and application.ini must load the utf8 charset." } },
                     { "@type": "Question", "name": "What line should I add to application.ini to enable UTF8?", "acceptedAnswer": { "@type": "Answer", "text": "Add the line database.params.charset = utf8 to your application.ini file." } },

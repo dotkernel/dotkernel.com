@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "How do I check if my machine is ready for WSL2?", "acceptedAnswer": { "@type": "Answer", "text": "Open Windows Terminal and run wsl -v. If it returns version information, WSL2 is installed. If you get an error instead, WSL is not completely installed and you need to follow the linked setup guide first." } },
                     { "@type": "Question", "name": "How do I download and install AlmaLinux 9?", "acceptedAnswer": { "@type": "Answer", "text": "Open Microsoft Store, search for AlmaLinux, select AlmaLinux 9, and install it. Clicking Open launches it in Windows Terminal, where the installer prompts for your username, password, and password confirmation." } },

@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "What session bug was found in Dotkernel 1.5.0?", "acceptedAnswer": { "@type": "Answer", "text": "In unknown circumstances, and only in IE8 and IE9, the session cookie was not saved on the client machine, forcing the user to log in over and over again. The only workaround found was to open a new tab with the same page." } },
                     { "@type": "Question", "name": "What caused the session cookie to be generated multiple times?", "acceptedAnswer": { "@type": "Answer", "text": "Investigation of the Dot_Session class showed the session cookie was generated 3 times, because the code called both regenerateID() and rememberMe() methods of Zend_Session. According to the Zend Framework documentation, this is unnecessary: if you call rememberMe(), you should not also call regenerateId(), since rememberMe() already calls it internally." } },

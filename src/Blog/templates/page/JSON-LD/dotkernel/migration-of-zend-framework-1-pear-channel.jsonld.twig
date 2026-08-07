@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "Why did the PEAR channel for Zend Framework 1 need to move?", "acceptedAnswer": { "@type": "Answer", "text": "The unofficial PEAR channel for Zend Framework 1 was hosted on Google Code, and once Google Code was closed the channel was forced to move to a new location." } },
                     { "@type": "Question", "name": "Why wasn't the project moved to GitHub instead?", "acceptedAnswer": { "@type": "Answer", "text": "The team was unable to migrate the project to github.com because the repository is more than 1 GB in size, so they built a special server dedicated to hosting only the PEAR channel for Zend Framework 1." } },

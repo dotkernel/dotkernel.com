@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "What component does this article use for caching Doctrine data?", "acceptedAnswer": { "@type": "Answer", "text": "The dotkernel/dot-cache component, a wrapper that sits on top of symfony/cache. It's installed with composer require dotkernel/dot-cache and registered by adding DotCacheConfigProvider::class to the configuration aggregate." } },
                     { "@type": "Question", "name": "What storage adapters does dot-cache currently support?", "acceptedAnswer": { "@type": "Answer", "text": "Two: array, which stores data in-memory and is the fastest option but uses more RAM, and filesystem, which stores data in local disk files and is slightly slower but more persistent." } },

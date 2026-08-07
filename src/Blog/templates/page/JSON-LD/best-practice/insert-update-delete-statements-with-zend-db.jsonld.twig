@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "What are DML statements?", "acceptedAnswer": { "@type": "Answer", "text": "DML (Data Manipulation Language) statements are statements that change data values in database tables. There are 3 primary DML statements: INSERT, UPDATE, and DELETE." } },
                     { "@type": "Question", "name": "How do you insert a new row with Zend_Db?", "acceptedAnswer": { "@type": "Answer", "text": "Build an associative array of column names to values (e.g. email, password, firstName, lastName, active) and pass it to $db->insert('user', $data), which corresponds to an SQL INSERT INTO ... VALUES statement." } },

@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "When was Dotkernel Admin V4 released, and what is it built on?", "acceptedAnswer": { "@type": "Answer", "text": "Dotkernel Admin V4 was officially released on 19 July 2022. It's Dotkernel's PSR-7 Admin, an application based on Mezzio, mainly for managing and displaying tabular data from one or more database components." } },
                     { "@type": "Question", "name": "What are the demo credentials for trying out Dotkernel Admin V4?", "acceptedAnswer": { "@type": "Answer", "text": "Username admin and password dotadmin, on the demo at https://admin4.dotkernel.net/." } },

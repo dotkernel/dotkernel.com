@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "What problem does this fix address?", "acceptedAnswer": { "@type": "Answer", "text": "When missing static files (images, CSS, JS) are routed through the bootstrap (index.php) and the session is set to regenerate on each request, the currently logged-in user gets logged off because the session ID changes." } },
                     { "@type": "Question", "name": "What is the fix?", "acceptedAnswer": { "@type": "Answer", "text": "Below the \"RewriteEngine On\" line, add a RewriteCond matching file extensions like .gif, .jpg, .png, .css, and .js, so requests for those files are not routed through the bootstrap." } }

@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "Why was WURFL's default caching too slow for this project?", "acceptedAnswer": { "@type": "Answer", "text": "Profiling revealed that WURFL's default filesystem cache was taking up to a few hundred milliseconds of response time, which was too slow for a relatively high-traffic application." } },
                     { "@type": "Question", "name": "How does WURFL's caching work by default?", "acceptedAnswer": { "@type": "Answer", "text": "Device data is stored in a large zipped XML file. On first use, WURFL unzips the file, serializes each device's data, and writes it to cache using an MD5 signature of the user agent as the key. Because devices are stored as a tree inheriting properties from parent nodes, each lookup requires reading and merging several files." } },

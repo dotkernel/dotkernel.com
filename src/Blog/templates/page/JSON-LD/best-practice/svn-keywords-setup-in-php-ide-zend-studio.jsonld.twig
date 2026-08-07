@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "Why set these SVN properties on each project?", "acceptedAnswer": { "@type": "Answer", "text": "They provide better integration of SVN, your PHP IDE (Zend Studio), and a bug tracker of choice, and must be set for each project you have." } },
                     { "@type": "Question", "name": "What does the svn:ignore property do here?", "acceptedAnswer": { "@type": "Answer", "text": "It tells SVN to ignore local settings files such as *.project, *.prefs, .project, cache, .settings, .buildpath, and *.ini, since you don't want to commit your local settings to the main repository." } },

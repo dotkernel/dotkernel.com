@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "What FETCH methods are available in Zend_Db_Adapter_Abstract?", "acceptedAnswer": { "@type": "Answer", "text": "The article covers fetchAll, fetchAssoc, fetchCol, fetchOne, fetchPairs, and fetchRow." } },
                     { "@type": "Question", "name": "What does fetchAll do compared to the old query style?", "acceptedAnswer": { "@type": "Answer", "text": "$a = $db->fetchAll($select) replaces the old-style loop that calls next_record() repeatedly and builds an array of associative rows using f() for each column." } },

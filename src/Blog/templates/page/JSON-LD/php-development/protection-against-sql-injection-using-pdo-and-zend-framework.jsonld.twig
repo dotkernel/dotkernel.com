@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "What is SQL injection?", "acceptedAnswer": { "@type": "Answer", "text": "SQL injection is a technique that exploits a security vulnerability occurring in the database layer of an application. Usually, user input is not filtered by the script and is passed directly into a SQL statement." } },
                     { "@type": "Question", "name": "What is PDO and what kind of abstraction does it provide?", "acceptedAnswer": { "@type": "Answer", "text": "PDO (PHP Data Objects) is a database access layer providing a standardized method of access to multiple databases. It provides a data-access abstraction layer, meaning you apply the same functions to issue queries and fetch data regardless of which database you're using. However, PDO does not provide a database abstraction - it doesn't rewrite SQL or emulate missing database features." } },

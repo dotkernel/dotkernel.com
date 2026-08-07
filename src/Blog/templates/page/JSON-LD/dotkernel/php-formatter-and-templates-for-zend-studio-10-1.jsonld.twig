@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "Why does the PHP Formatter plugin for Zend Studio 10.1 need to be changed?", "acceptedAnswer": { "@type": "Answer", "text": "Because Zend donated the Zend Studio Formatter upstream to the PDT project, the Formatter plugin needs to be changed by replacing \"com.zend.php\" with \"org.eclipse.php\"." } },
                     { "@type": "Question", "name": "Where can I get Dotkernel's updated Formatter and Templates files for Zend Studio 10.1?", "acceptedAnswer": { "@type": "Answer", "text": "The updated PHP Formatter file for Zend Studio 10.1 and a templates file built according to the Dotkernel coding standard are both available as downloads linked in the article." } }

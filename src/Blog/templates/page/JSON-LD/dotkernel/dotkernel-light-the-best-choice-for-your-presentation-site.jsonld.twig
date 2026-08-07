@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "What is Dotkernel Light designed for?", "acceptedAnswer": { "@type": "Answer", "text": "It's a good starting point for a project when you want full control over its functionality, and it easily grows into something more complex by integrating packages based on your requirements." } },
                     { "@type": "Question", "name": "What functionality does Dotkernel Light include out of the box?", "acceptedAnswer": { "@type": "Answer", "text": "Routing, Templating, Error handling, and Tests and code quality checks." } },

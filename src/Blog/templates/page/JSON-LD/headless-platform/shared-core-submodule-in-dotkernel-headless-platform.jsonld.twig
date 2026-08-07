@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "What is the Core submodule in Dotkernel's Headless Platform?", "acceptedAnswer": { "@type": "Answer", "text": "The Core submodule is a common codebase shared by the applications in your project (for example API, Admin and Queue). It ensures each application uses entities and services in the same way, so rather than updating each application separately, you update the relevant service in Core once and sync it across applications." } },
                     { "@type": "Question", "name": "What is the golden rule for the Core codebase?", "acceptedAnswer": { "@type": "Answer", "text": "The Core codebase is the only place which manages the database entities. As much as possible, all Doctrine entities must reside in Core, whose current location is src/Core." } },

@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "What is a Dot_Alert used for?", "acceptedAnswer": { "@type": "Answer", "text": "Alerts (Dot_Alert's) are e-mails usually sent to the site developers using PHP's mail() function. They shouldn't be used to send regular mail - they only notify the developer that something is wrong." } },
                     { "@type": "Question", "name": "What does the Dot_Alert class resemble, and what does an alert contain?", "acceptedAnswer": { "@type": "Answer", "text": "Dot_Alert resembles Dot_Email. Like a mail message, an alert has at least a sender, a subject, a destination and a message, and it can be sent." } },

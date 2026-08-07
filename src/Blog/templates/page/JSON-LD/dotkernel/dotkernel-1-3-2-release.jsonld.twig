@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "What kind of release is Dotkernel 1.3.2?", "acceptedAnswer": { "@type": "Answer", "text": "It's mainly a maintenance release, containing many bug fixes, some refactoring, and a few minor features." } },
                     { "@type": "Question", "name": "What bugs were fixed in 1.3.2?", "acceptedAnswer": { "@type": "Answer", "text": "Fixes include a CSS issue on the admin phpinfo page, a warning in the admin dashboard, a WURFL cache issue and WURFL version issue in admin, a Dot_Paginator bug, a Zend Paginator double-query issue, and a database naming convention issue." } },

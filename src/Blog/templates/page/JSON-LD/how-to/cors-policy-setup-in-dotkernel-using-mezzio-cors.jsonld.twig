@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "What causes the CORS error described in this article?", "acceptedAnswer": { "@type": "Answer", "text": "It appears when a browser blocks access to a resource on another origin because the server's response doesn't include an 'Access-Control-Allow-Origin' header, per the browser's CORS (Cross-Origin Resource Sharing) policy." } },
                     { "@type": "Question", "name": "What package solves CORS handling in Dotkernel?", "acceptedAnswer": { "@type": "Answer", "text": "Mezzio CORS, installed by running 'composer require mezzio/mezzio-cors' in the application's root directory." } },

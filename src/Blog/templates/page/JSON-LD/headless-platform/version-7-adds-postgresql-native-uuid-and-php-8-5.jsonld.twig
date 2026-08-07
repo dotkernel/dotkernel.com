@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "What new features does Dotkernel API v7 introduce?", "acceptedAnswer": { "@type": "Answer", "text": "v7 adds support for UUID v7 using the native UUID data type, support for PostgreSQL, support for PHP 8.5 (API) and 8.4 (Admin), support for a database table prefix, improved database configuration, and replaces the binary data type for id (index) columns in favor of uuid." } },
                     { "@type": "Question", "name": "What features were removed in v7?", "acceptedAnswer": { "@type": "Answer", "text": "v7 removes the Evolution pattern's support for Method Deprecation, and drops support for MySQL, primarily because MySQL doesn't support UUID as a data type." } },

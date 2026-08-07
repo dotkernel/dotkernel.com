@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "What is new in the admin interface in Dotkernel 1.3.0?", "acceptedAnswer": { "@type": "Answer", "text": "1.3.0 adds a skin switcher for the admin, with several ready-made skins (blue, brown, gray, green) that can be set via the settings.admin.skin configuration value." } },
                     { "@type": "Question", "name": "How do I protect a page so only logged-in members can access it?", "acceptedAnswer": { "@type": "Answer", "text": "Add the line Dot_Auth::checkIdentity(); in the controller file above the code you want to protect - everything below that line requires the visitor to be logged in." } },

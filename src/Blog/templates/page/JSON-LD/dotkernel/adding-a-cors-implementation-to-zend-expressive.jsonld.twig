@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "What causes the \"No 'Access-Control-Allow-Origin' header\" error?", "acceptedAnswer": { "@type": "Answer", "text": "It means the server didn't send the header that lets a local client, such as a browser, access its data. This is most common when trying to fetch data (usually JSON) that you want to process using JavaScript." } },
                     { "@type": "Question", "name": "What package does the article use to add CORS support?", "acceptedAnswer": { "@type": "Answer", "text": "Tuupola's Cors Middleware package, installed by running composer require tuupola/cors-middleware in the project." } },

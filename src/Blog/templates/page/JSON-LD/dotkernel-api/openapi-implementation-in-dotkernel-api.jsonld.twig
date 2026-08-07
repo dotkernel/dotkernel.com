@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "What is the OpenAPI Specification?", "acceptedAnswer": { "@type": "Answer", "text": "A consistent way to develop and interact with an API. It defines API structure and syntax in a universal way, regardless of the programming language used, typically described in YAML or JSON so users can quickly discover endpoints, request/response formats, security mechanisms and more." } },
                     { "@type": "Question", "name": "How does OpenAPI compare to Postman?", "acceptedAnswer": { "@type": "Answer", "text": "OpenAPI standardizes how endpoints and request/response models are described, automatically generates machine-readable documentation, lets you define the API specification before development starts, and improves collaboration across teams. Postman, by contrast, is used mainly to test an already-completed endpoint and has no real focus on standardized documentation or upfront design." } },

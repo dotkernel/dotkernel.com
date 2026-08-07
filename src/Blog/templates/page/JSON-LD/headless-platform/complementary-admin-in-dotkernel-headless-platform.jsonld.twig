@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "What is Dotkernel Admin?", "acceptedAnswer": { "@type": "Answer", "text": "Dotkernel Admin is a fully-functional, independent application that lives in its own separate repository. It's built on the same Mezzio + Laminas foundation as Dotkernel API and includes a built-in UI with authentication, user management and a web interface." } },
                     { "@type": "Question", "name": "How do I install Dotkernel Admin?", "acceptedAnswer": { "@type": "Answer", "text": "Install it via Git into the folder of your choice with git clone https://github.com/dotkernel/admin.git ., then follow the step-by-step installation guide to configure the database credentials and run the migrations and fixtures that create and populate the database. Be sure to change the default credentials before going to production." } },

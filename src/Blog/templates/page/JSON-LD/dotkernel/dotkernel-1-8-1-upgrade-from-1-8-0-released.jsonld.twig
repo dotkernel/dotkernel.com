@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "What's new in Dotkernel 1.8.1?", "acceptedAnswer": { "@type": "Answer", "text": "The main change is Enhanced Cache Support, which means you can use tags in your cache system if the host supports it." } },
                     { "@type": "Question", "name": "How do I upgrade from 1.8.0 to 1.8.1?", "acceptedAnswer": { "@type": "Answer", "text": "The post provides a dedicated \"Upgrade from Dotkernel 1.8.0\" download link, separate from the full Dotkernel 1.8.1 package and the original Dotkernel 1.8.0 (LTS) download." } }

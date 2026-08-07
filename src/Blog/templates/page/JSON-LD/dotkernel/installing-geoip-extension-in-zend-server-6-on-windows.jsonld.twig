@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "Which php_geoip file should be downloaded for Zend Server 6.1?", "acceptedAnswer": { "@type": "Answer", "text": "Download the php_geoip-1.0.8-5.4-nts-vc9-x86.zip file from http://windows.php.net/downloads/pecl/releases/geoip/1.0.8/." } },
                     { "@type": "Question", "name": "Where does the php_geoip.dll go on Zend Server 6.1?", "acceptedAnswer": { "@type": "Answer", "text": "Copy the php_geoip.dll file from the archive to ZEND_PATH\\Zend\\ZendServer\\lib\\phpext\\." } },
