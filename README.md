@@ -62,4 +62,17 @@ php bin/generate-llms-full
 
 These three have no ordering dependency on each other, only on step 3 being done first.
 
-Note: none of this is wired into an automated deploy pipeline in this repository — there is no `deploy` script or CI job that runs these `bin/` scripts. They're run manually (or via cron, as already set up for `bin/generate-packages`). `public/feed.xml`, `public/sitemap.xml`, and `public/llms-full.txt` are committed generated artifacts, so re-running these scripts leaves them modified in git until committed.
+None of this is wired into an automated deploy pipeline in this repository — there is no `deploy` script or CI job that runs these `bin/` scripts. `public/feed.xml`, `public/sitemap.xml`, and `public/llms-full.txt` are committed generated artifacts, so re-running these scripts leaves them modified in git until committed.
+
+## 5. Scheduled jobs (cron)
+
+- **`bin/generate-packages`** — the only script here actually wired into a cron job. It rebuilds the Dotkernel packages listing from the GitHub organisation, which changes independently of this repo, so it runs on a schedule instead of at deploy time:
+  ```
+  0 4 * * * cd /path/to/dotkernel.com && /usr/bin/php bin/generate-packages >> log/generate-packages.log 2>&1
+  ```
+  - Runs daily at **04:00**.
+  - Exits non-zero without touching the data file if the run can't be trusted, so the previously generated listing keeps serving.
+  - Logs to `log/generate-packages.log`.
+- **`bin/generate-feed`** (RSS, `public/feed.xml`) — **manual only**, no cron. Run it as part of the publish flow in step 4, right after `bin/doctrine-fixtures`/`bin/create-uploads-dir`, whenever an article is added, edited, or its `post_status` changes.
+- **`bin/sitemap`** (`public/sitemap.xml`) — **manual only**, no cron. Same trigger as `bin/generate-feed`: re-run after any change to `articles_cleaned.json`.
+- **`bin/generate-llms-full`** (`public/llms-full.txt`) — **manual only**, no cron. Re-run after adding/editing a `.md` file under `public/md-articles/`, or after removing/renaming a draft's `.md` file (it doesn't check `post_status`, see step 1).
