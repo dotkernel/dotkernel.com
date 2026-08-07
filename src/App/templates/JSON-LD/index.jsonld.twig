@@ -1,26 +1,28 @@
+{% set organizationId = app.baseUrl ~ '/#organization' %}
 <script type="application/ld+json">
 {
     "@context": "https://schema.org",
     "@graph": [
         {
             "@type": "WebSite",
-            "@id": "{{ absolute_url('/') }}#website ",
-            "url": "{{ absolute_url('/') }}",
+            "@id": {{ (app.baseUrl ~ '/#website')|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }},
+            "url": {{ (app.baseUrl ~ '')|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }},
             "name": "Dotkernel",
-            "description": "Dotkernel is a collection of open-source application skeletons built on Mezzio and Laminas - pre-configured and ready for anything from a presentation site to an enterprise-grade API.",
+            "description": {{ 'Dotkernel is a collection of open-source application skeletons built on Mezzio and Laminas - pre-configured and ready for anything from a presentation site to an enterprise-grade API.'|json_encode|raw }},
             "publisher": {
-                "@id": "{{ absolute_url('/') }}#organization"
+                "@id": {{ organizationId|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }}
             }
         },
         {
             "@type": "Organization",
-            "@id": "{{ absolute_url('/') }}#organization",
+            "@id": {{ organizationId|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }},
             "name": "Dotkernel",
-            "url": "{{ absolute_url('/') }}",
-            "logo": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}",
+            "url": {{ (app.baseUrl ~ '')|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }},
+            "logo": {{ (app.baseUrl ~ asset('images/app/logo.png'))|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }},
             "sameAs": [
                 "https://github.com/dotkernel",
-                "https://www.dotkernel.com"
+                "https://packagist.org/packages/dotkernel/",
+                "https://x.com/dotkernel"
             ],
             "parentOrganization": {
                 "@type": "Organization",
@@ -30,12 +32,19 @@
         },
         {
             "@type": "SoftwareApplication",
+            "@id": {{ (app.baseUrl ~ '/#api')|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }},
             "name": "Dotkernel API",
             "applicationCategory": "DeveloperApplication",
             "operatingSystem": "Cross-platform",
-            "description": "A framework-less, opinionated toolkit for intermediate-to-advanced developers who want to ship REST APIs quickly and efficiently. An alternative to legacy Laminas API Tools (Apigility).",
+            "description": {{ 'REST APIs on a readable PSR-15 middleware pipeline - no kernel, no facades, no runtime magic. OAuth2, RBAC, and OpenAPI included.'|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }},
             "url": "https://github.com/dotkernel/api",
-            "license": "https://opensource.org/licenses/BSD-3-Clause",
+            "license": "https://opensource.org/licenses/MIT",
+            "author": {
+                "@id": {{ organizationId|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }}
+            },
+            "publisher": {
+                "@id": {{ organizationId|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }}
+            },
             "offers": {
                 "@type": "Offer",
                 "price": "0",
@@ -44,12 +53,19 @@
         },
         {
             "@type": "SoftwareApplication",
+            "@id": {{ (app.baseUrl ~ '/#admin')|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }},
             "name": "Dotkernel Admin",
             "applicationCategory": "DeveloperApplication",
             "operatingSystem": "Cross-platform",
-            "description": "A ready-to-go admin skeleton for managing your platform's records with a simple, table-based approach - plus the tools to build reports and dashboards.",
+            "description": {{ "A ready-to-go admin skeleton for managing your platform's records with a simple, table-based approach - plus the tools to build reports and dashboards."|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }},
             "url": "https://github.com/dotkernel/admin",
-            "license": "https://opensource.org/licenses/BSD-3-Clause",
+            "license": "https://opensource.org/licenses/MIT",
+            "author": {
+                "@id": {{ organizationId|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }}
+            },
+            "publisher": {
+                "@id": {{ organizationId|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }}
+            },
             "offers": {
                 "@type": "Offer",
                 "price": "0",
@@ -58,12 +74,19 @@
         },
         {
             "@type": "SoftwareApplication",
+            "@id": {{ (app.baseUrl ~ '/#queue')|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }},
             "name": "Dotkernel Queue",
             "applicationCategory": "DeveloperApplication",
             "operatingSystem": "Cross-platform",
-            "description": "Asynchronous task queuing built on Symfony Messenger, wired into the Laminas Service Manager container via netglue/laminas-messenger.",
+            "description": {{ 'Asynchronous task queuing built on Symfony Messenger, wired into the Laminas Service Manager container via netglue/laminas-messenger.'|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }},
             "url": "https://github.com/dotkernel/queue",
-            "license": "https://opensource.org/licenses/BSD-3-Clause",
+            "license": "https://opensource.org/licenses/MIT",
+            "author": {
+                "@id": {{ organizationId|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }}
+            },
+            "publisher": {
+                "@id": {{ organizationId|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }}
+            },
             "offers": {
                 "@type": "Offer",
                 "price": "0",
@@ -72,12 +95,19 @@
         },
         {
             "@type": "SoftwareApplication",
+            "@id": {{ (app.baseUrl ~ '/#light')|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }},
             "name": "Dotkernel Light",
             "applicationCategory": "DeveloperApplication",
             "operatingSystem": "Cross-platform",
-            "description": "A minimal, PSR-15 compliant skeleton built for learning purposes - a simple, didactic example of how to put together a basic website.",
+            "description": {{ 'The smallest complete Mezzio application - PSR-15 pipeline, routing, and templating, nothing to strip out. A real starting point for a simple site.'|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }},
             "url": "https://github.com/dotkernel/light",
-            "license": "https://opensource.org/licenses/BSD-3-Clause",
+            "license": "https://opensource.org/licenses/MIT",
+            "author": {
+                "@id": {{ organizationId|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }}
+            },
+            "publisher": {
+                "@id": {{ organizationId|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }}
+            },
             "offers": {
                 "@type": "Offer",
                 "price": "0",
@@ -86,12 +116,19 @@
         },
         {
             "@type": "SoftwareApplication",
+            "@id": {{ (app.baseUrl ~ '/#frontend')|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }},
             "name": "Dotkernel Frontend",
             "applicationCategory": "DeveloperApplication",
             "operatingSystem": "Cross-platform",
-            "description": "A web starter skeleton for building frontend applications on Mezzio and Laminas - a standalone alternative, separate from the Headless Platform.",
+            "description": {{ 'A web starter skeleton for building frontend applications on Mezzio and Laminas - a standalone alternative, separate from the Headless Platform.'|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }},
             "url": "https://github.com/dotkernel/frontend",
-            "license": "https://opensource.org/licenses/BSD-3-Clause",
+            "license": "https://opensource.org/licenses/MIT",
+            "author": {
+                "@id": {{ organizationId|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }}
+            },
+            "publisher": {
+                "@id": {{ organizationId|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }}
+            },
             "offers": {
                 "@type": "Offer",
                 "price": "0",

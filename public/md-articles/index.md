@@ -30,7 +30,7 @@ keywords: ["headless platform", "PHP", "Mezzio", "Laminas", "PSR-15 middleware",
 
 ## TL;DR
 
-Dotkernel is a collection of open-source PHP application skeletons built on Mezzio and Laminas, licensed BSD-3-Clause.
+Dotkernel is a collection of open-source PHP application skeletons built on Mezzio and Laminas, licensed MIT.
 Its headless platform combines three components — **API**, **Admin**, and **Queue** — that can be adopted separately or together.
 Two additional skeletons, **Light** and **Frontend**, stand outside the platform for simpler or frontend-only use cases.
 
@@ -40,7 +40,7 @@ Two additional skeletons, **Light** and **Frontend**, stand outside the platform
 |---|---|
 | Runtime | Mezzio + Laminas |
 | Standards | PSR-7, PSR-11, PSR-15 |
-| License | BSD-3-Clause |
+| License | MIT |
 | Router | FastRoute |
 | Response | Diactoros |
 | Maintainer | Apidemia |
