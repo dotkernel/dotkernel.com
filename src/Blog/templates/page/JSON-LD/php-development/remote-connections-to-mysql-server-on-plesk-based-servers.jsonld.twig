@@ -4,42 +4,42 @@
         "@graph": [
             {
                 "@type": "TechArticle",
-                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#article/",
                 "headline": {{ article.title|json_encode|raw }},
                 "description": {{ article.excerpt|json_encode|raw }},
-                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "url": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "mainEntityOfPage": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
                 "datePublished": "{{ article.postDate|date('c') }}",
                 "dateModified": "{{ article.postDate|date('c') }}",
-                "image": "{{ app.meta.image }}",
+                "image": "{{ meta.openGraphImage ? app.baseUrl ~ meta.openGraphImage : app.meta.image }}",
                 "articleSection": {{ article.category.name|json_encode|raw }},
                 "author": {
                     "@type": "Person",
                     "name": {{ article.author.name|json_encode|raw }},
-                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                    "url": "{{ app.baseUrl ~ path('page::author-resource', {slug: article.author.slug}) }}"
                 },
                 "publisher": {
                     "@type": "Organization",
                     "name": "Dotkernel",
-                    "url": "{{ absolute_url('/') }}",
+                    "url": "{{ app.baseUrl }}",
                     "logo": {
                         "@type": "ImageObject",
-                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                        "url": "{{ app.baseUrl ~ asset('images/app/logo.png') }}"
                     }
                 }
             },
             {
                 "@type": "BreadcrumbList",
-                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#breadcrumb/",
                 "itemListElement": [
-                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ absolute_url('/') }}" },
-                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}" },
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ app.baseUrl }}" },
+                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ app.baseUrl ~ path('page::category-resource', {slug: article.category.slug}) }}" },
                     { "@type": "ListItem", "position": 3, "name": {{ article.title|json_encode|raw }} }
                 ]
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
                 "mainEntity": [
                     { "@type": "Question", "name": "Why can't I connect remotely to MySQL on a Plesk-based server?", "acceptedAnswer": { "@type": "Answer", "text": "By default, MySQL servers on Linux machines with Plesk installed have the old_passwords flag set to 1 (ON). Even on MySQL 5.5+, this means the old, pre-4.1 password storage style is still used, which causes a PDOException error when connecting remotely." } },
                     { "@type": "Question", "name": "What error message indicates this old-passwords problem?", "acceptedAnswer": { "@type": "Answer", "text": "You get a fatal error mentioning \"cannot connect to MySQL 4.1+ using the old insecure authentication,\" suggesting you reset the password using SET PASSWORD = PASSWORD('your_existing_password') to store a newer, more secure hash." } },

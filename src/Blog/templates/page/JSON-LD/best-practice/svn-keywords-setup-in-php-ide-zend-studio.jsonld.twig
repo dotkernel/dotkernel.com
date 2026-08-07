@@ -4,42 +4,42 @@
         "@graph": [
             {
                 "@type": "TechArticle",
-                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#article",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#article/",
                 "headline": {{ article.title|json_encode|raw }},
                 "description": {{ article.excerpt|json_encode|raw }},
-                "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
-                "mainEntityOfPage": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                "url": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "mainEntityOfPage": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
                 "datePublished": "{{ article.postDate|date('c') }}",
                 "dateModified": "{{ article.postDate|date('c') }}",
-                "image": "{{ app.meta.image }}",
+                "image": "{{ meta.openGraphImage ? app.baseUrl ~ meta.openGraphImage : app.meta.image }}",
                 "articleSection": {{ article.category.name|json_encode|raw }},
                 "author": {
                     "@type": "Person",
                     "name": {{ article.author.name|json_encode|raw }},
-                    "url": "{{ absolute_url(path('page::author-resource', {slug: article.author.slug})) }}"
+                    "url": "{{ app.baseUrl ~ path('page::author-resource', {slug: article.author.slug}) }}"
                 },
                 "publisher": {
                     "@type": "Organization",
                     "name": "Dotkernel",
-                    "url": "{{ absolute_url('/') }}",
+                    "url": "{{ app.baseUrl }}",
                     "logo": {
                         "@type": "ImageObject",
-                        "url": "{{ absolute_url(asset('images/app/dotkernel-logo.png')) }}"
+                        "url": "{{ app.baseUrl ~ asset('images/app/logo.png') }}"
                     }
                 }
             },
             {
                 "@type": "BreadcrumbList",
-                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#breadcrumb",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#breadcrumb/",
                 "itemListElement": [
-                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ absolute_url('/') }}" },
-                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ absolute_url(path('page::category-resource', {slug: article.category.slug})) }}" },
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ app.baseUrl }}" },
+                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ app.baseUrl ~ path('page::category-resource', {slug: article.category.slug}) }}" },
                     { "@type": "ListItem", "position": 3, "name": {{ article.title|json_encode|raw }} }
                 ]
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}#faq",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
                 "mainEntity": [
                     { "@type": "Question", "name": "Why set these SVN properties on each project?", "acceptedAnswer": { "@type": "Answer", "text": "They provide better integration of SVN, your PHP IDE (Zend Studio), and a bug tracker of choice, and must be set for each project you have." } },
                     { "@type": "Question", "name": "What does the svn:ignore property do here?", "acceptedAnswer": { "@type": "Answer", "text": "It tells SVN to ignore local settings files such as *.project, *.prefs, .project, cache, .settings, .buildpath, and *.ini, since you don't want to commit your local settings to the main repository." } },
