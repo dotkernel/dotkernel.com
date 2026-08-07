@@ -67,7 +67,7 @@ None of this is wired into an automated deploy pipeline in this repository — t
 ## 5. Scheduled jobs (cron)
 
 - **`bin/generate-packages`** — the only script here actually wired into a cron job. It rebuilds the Dotkernel packages listing from the GitHub organisation, which changes independently of this repo, so it runs on a schedule instead of at deploy time:
-    ```
+    ```text
     0 4 * * * cd /path/to/dotkernel.com && /usr/bin/php bin/generate-packages >> log/generate-packages.log 2>&1
     ```
     - Runs daily at **04:00**.
