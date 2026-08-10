@@ -21,8 +21,8 @@ class SitemapGenerator
     private const SITEMAP_NAMESPACE = 'http://www.sitemaps.org/schemas/sitemap/0.9';
 
     /**
-     * @param array<int, string> $pageRoutes Route URIs registered under config['routes'][*],
-     *                                        e.g. ['contact'] for the /contact/ static page.
+     * @param array<int, string> $pageRoutes
+     *
      */
     public function __construct(
         private readonly PostRepository $postRepository,
