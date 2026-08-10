@@ -155,15 +155,24 @@ section {
 }
 
 .core-band {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
   background: var(--surface-2);
   border: 1px solid var(--border-soft);
   border-left: 3px solid var(--teal);
   border-radius: var(--radius);
-  padding: 10px 26px;
+  padding: 32px 40px;
   margin-bottom: 40px;
+  margin-right: 0;
+  margin-left: 0;
+
+  // Bootstrap's border-start divider only reads as a divider once the
+  // columns sit side by side; stacked on mobile it would just look stray.
+  .border-start {
+    @media (max-width: 991.98px) {
+      border: none !important;
+      padding-left: 0 !important;
+      margin-top: 16px;
+    }
+  }
 }
 
 .core-band-label {
@@ -175,6 +184,7 @@ section {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  margin-bottom: 14px !important;
 
   &::before {
     content: "";
@@ -193,15 +203,15 @@ section {
   background: var(--teal-dim);
   border: 1px solid var(--teal);
   border-radius: 6px;
-  padding: 4px 10px;
-  margin: 0 6px 6px 0;
+  padding: 5px 12px;
+  margin: 0 8px 10px 0;
   display: inline-block;
 }
 
 .core-band p {
-  font-size: 15px;
-  line-height: 1.65;
-  max-width: 780px;
+  font-size: 15.5px;
+  line-height: 1.75;
+  margin: 0;
 }
 
 /* ============================================================
