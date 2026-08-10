@@ -4,7 +4,7 @@
         "@graph": [
             {
                 "@type": "TechArticle",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#article/",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#article",
                 "headline": {{ article.title|json_encode|raw }},
                 "description": {{ article.excerpt|json_encode|raw }},
                 "url": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
@@ -30,7 +30,7 @@
             },
             {
                 "@type": "BreadcrumbList",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#breadcrumb/",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#breadcrumb",
                 "itemListElement": [
                     { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ app.baseUrl }}" },
                     { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ app.baseUrl ~ path('page::category-resource', {slug: article.category.slug}) }}" },
@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "What is the goal of this dynamic routing update?", "acceptedAnswer": { "@type": "Answer", "text": "The goal is to replace the static way of creating routes with a more dynamic implementation, resulting in a cleaner approach that is easier to set up and review at a glance." } },
                     { "@type": "Question", "name": "How were routes configured in the old, static approach?", "acceptedAnswer": { "@type": "Answer", "text": "Each module had its own RoutesDelegator.php file in the src folder, with hard-coded route entries. Each route needed a method, a path used to direct execution to a handler, a handler like GetPageViewHandler, and a unique route name. In a live application the route list can grow to many entries grouped across modules, meaning multiple RoutesDelegators had to be checked when a routing error occurred." } },

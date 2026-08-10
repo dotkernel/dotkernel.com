@@ -2,11 +2,11 @@
     {
         "@context": "https://schema.org",
         "@type": "CollectionPage",
-        "@id": "{{ absolute_url(path('page::blog')) }}#webpage",
-        "url": "{{ absolute_url(path('page::blog')) }}",
+        "@id": "{{ app.baseUrl ~ path('page::blog') }}#webpage",
+        "url": "{{ app.baseUrl ~ path('page::blog') }}",
         "name": "Blog",
         "description": "Latest articles from the Dotkernel blog.",
-        "isPartOf": { "@id": "{{ absolute_url('/') }}#website" },
+        "isPartOf": { "@id": "{{ app.baseUrl }}#website" },
         "mainEntity": {
             "@type": "ItemList",
             "itemListElement": [
@@ -14,7 +14,7 @@
                 {
                     "@type": "ListItem",
                     "position": {{ loop.index }},
-                    "url": "{{ absolute_url(path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug})) }}",
+                    "url": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
                     "name": "{{ article.title }}"
                 }
                 {% endfor %}

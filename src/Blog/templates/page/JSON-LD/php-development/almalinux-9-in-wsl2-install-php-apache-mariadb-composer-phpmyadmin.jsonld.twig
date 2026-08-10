@@ -4,7 +4,7 @@
         "@graph": [
             {
                 "@type": "TechArticle",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#article/",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#article",
                 "headline": {{ article.title|json_encode|raw }},
                 "description": {{ article.excerpt|json_encode|raw }},
                 "url": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
@@ -30,7 +30,7 @@
             },
             {
                 "@type": "BreadcrumbList",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#breadcrumb/",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#breadcrumb",
                 "itemListElement": [
                     { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ app.baseUrl }}" },
                     { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ app.baseUrl ~ path('page::category-resource', {slug: article.category.slug}) }}" },
@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "How do I check if my machine is ready for WSL2?", "acceptedAnswer": { "@type": "Answer", "text": "Open Windows Terminal and run wsl -v. If it returns version information, WSL2 is installed. If you get an error instead, WSL is not completely installed and you need to follow the linked setup guide first." } },
                     { "@type": "Question", "name": "How do I download and install AlmaLinux 9?", "acceptedAnswer": { "@type": "Answer", "text": "Open Microsoft Store, search for AlmaLinux, select AlmaLinux 9, and install it. Clicking Open launches it in Windows Terminal, where the installer prompts for your username, password, and password confirmation." } },

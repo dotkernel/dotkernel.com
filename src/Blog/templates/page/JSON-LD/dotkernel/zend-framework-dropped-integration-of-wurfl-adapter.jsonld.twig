@@ -4,7 +4,7 @@
         "@graph": [
             {
                 "@type": "TechArticle",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#article/",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#article",
                 "headline": {{ article.title|json_encode|raw }},
                 "description": {{ article.excerpt|json_encode|raw }},
                 "url": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
@@ -30,7 +30,7 @@
             },
             {
                 "@type": "BreadcrumbList",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#breadcrumb/",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#breadcrumb",
                 "itemListElement": [
                     { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ app.baseUrl }}" },
                     { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ app.baseUrl ~ path('page::category-resource', {slug: article.category.slug}) }}" },
@@ -39,7 +39,7 @@
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "Why did Zend Framework drop the WURFL adapter?", "acceptedAnswer": { "@type": "Answer", "text": "According to Matthew Weier O'Phinney, Zend Framework Project Leader, the WURFL adapter was dropped from Zend_Http_UserAgent in the upcoming 1.12.0 branch due to a change in licensing by the WURFL project: the free version became AGPL, which raised too many concerns for end users regarding how their products must be licensed to comply." } },
                     { "@type": "Question", "name": "Does this change affect projects built with Dotkernel?", "acceptedAnswer": { "@type": "Answer", "text": "No. Dotkernel uses its own WURFL adapter, so the removal of the WURFL adapter from Zend_Http_UserAgent in ZF 1.12.0 will not affect projects built with Dotkernel." } }

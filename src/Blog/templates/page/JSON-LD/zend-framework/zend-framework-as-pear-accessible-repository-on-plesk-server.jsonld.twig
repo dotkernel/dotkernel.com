@@ -2,7 +2,7 @@
     {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
-        "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#article/",
+        "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#article",
         "mainEntityOfPage": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
         "headline": "{{ article.title }}",
         "description": "{{ article.excerpt }}",
