@@ -93,12 +93,16 @@
                 Three deployables that scale independently and never disagree about the domain.</p>
             </div>
 
-              <div class="core-band">
-                  <span class="core-band-label">Shared domain layer</span>
-                  <code>Core\App</code> <code>Core\Admin</code> <code>Core\User</code>
-                  <code>Core\Security</code> <code>Core\Setting</code>
-                  <p>One set of entities and repositories. Committed in each repo, so a single-component start just works. Commit it into its own repo and share it as a Git submodule when you add a second.</p>
-              </div>
+            <div class="core-band row align-items-center gy-3">
+                <div class="col-12 col-lg-6">
+                    <span class="core-band-label my-2">Shared domain layer</span><br>
+                    <code>Core\App</code> <code>Core\Admin</code> <code>Core\User</code>
+                    <code>Core\Security</code> <code>Core\Setting</code>
+                </div>
+                <div class="col-12 col-lg-6 border-start ps-lg-4">
+                    <p>One set of entities and repositories. Committed in each repo, so a single-component start just works. Commit it into its own repo and share it as a Git submodule when you add a second.</p>
+                </div>
+            </div>
 
             <div class="products-grid">
 
