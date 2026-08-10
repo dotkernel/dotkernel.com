@@ -24,8 +24,6 @@ class AuthorRepository extends AbstractRepository
     }
 
     /**
-     * Authors with at least one published post, i.e. authors whose page actually has content.
-     *
      * @return array<Author>
      */
     public function getAuthorsWithPublishedPosts(): array
