@@ -7,8 +7,11 @@ namespace LightTest\Unit\App\Service;
 use DateTimeImmutable;
 use DateTimeZone;
 use Light\App\Service\SitemapGenerator;
+use Light\Blog\Entity\Author;
 use Light\Blog\Entity\Category;
 use Light\Blog\Entity\Post;
+use Light\Blog\Repository\AuthorRepository;
+use Light\Blog\Repository\CategoryRepository;
 use Light\Blog\Repository\PostRepository;
 use LightTest\Unit\UnitTest;
 use PHPUnit\Framework\MockObject\Exception;
@@ -31,6 +34,9 @@ use const DIRECTORY_SEPARATOR;
 
 class SitemapGeneratorTest extends UnitTest
 {
+    /** Homepage, /blog/, /categories/ and the packages-lifecycle page are always present. */
+    private const FIXED_URL_COUNT = 4;
+
     private string $sitemapFile;
 
     protected function setUp(): void
@@ -64,37 +70,76 @@ class SitemapGeneratorTest extends UnitTest
 
     public function testGetSitemapFileReturnsTheConfiguredPath(): void
     {
-        $this->assertSame($this->sitemapFile, $this->createGenerator([])->getSitemapFile());
-    }
-
-    /**
-     * The count includes the homepage entry in addition to one entry per post.
-     *
-     * @throws Exception
-     */
-    public function testWriteReturnsTheNumberOfPostsPlusTheHomepage(): void
-    {
-        $generator = $this->createGenerator([
-            $this->createPost('first-post', 'news'),
-            $this->createPost('second-post', 'news'),
-        ]);
-
-        $this->assertSame(3, $generator->write());
+        $this->assertSame($this->sitemapFile, $this->createGenerator()->getSitemapFile());
     }
 
     /**
      * @throws Exception
      */
-    public function testWriteAlwaysIncludesTheHomepageEvenWithoutPosts(): void
+    public function testWriteAlwaysIncludesTheFixedPagesEvenWithoutAnyContent(): void
     {
-        $generator = $this->createGenerator([]);
+        $generator = $this->createGenerator();
 
-        $this->assertSame(1, $generator->write());
+        $this->assertSame(self::FIXED_URL_COUNT, $generator->write());
 
         $urls = $this->loadSitemap()->url;
-        $this->assertCount(1, $urls);
-        $this->assertSame('https://example.test', (string) $urls[0]->loc);
+        $this->assertCount(self::FIXED_URL_COUNT, $urls);
+        $this->assertSame('https://example.test/', (string) $urls[0]->loc);
+        $this->assertSame('https://example.test/blog/', (string) $urls[1]->loc);
+        $this->assertSame('https://example.test/categories/', (string) $urls[2]->loc);
+        $this->assertSame(
+            'https://example.test/dotkernel-packages-oss-lifecycle/',
+            (string) $urls[3]->loc
+        );
         $this->assertCount(0, $urls[0]->lastmod);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testWriteAddsOneUrlEntryPerConfiguredStaticPage(): void
+    {
+        $generator = $this->createGenerator(pageRoutes: ['contact']);
+
+        $this->assertSame(self::FIXED_URL_COUNT + 1, $generator->write());
+
+        $urls = $this->loadSitemap()->url;
+        $this->assertSame('https://example.test/contact/', (string) $urls[self::FIXED_URL_COUNT]->loc);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testWriteAddsOneUrlEntryPerCategoryWithItsLastModifiedDate(): void
+    {
+        $category  = $this->createCategory('news', '2026-08-01 10:00:00');
+        $generator = $this->createGenerator(categories: [$category]);
+
+        $this->assertSame(self::FIXED_URL_COUNT + 1, $generator->write());
+
+        $urls = $this->loadSitemap()->url;
+        $this->assertSame('https://example.test/category/news/', (string) $urls[self::FIXED_URL_COUNT]->loc);
+        $this->assertSame(
+            '2026-08-01T10:00:00+00:00',
+            (string) $urls[self::FIXED_URL_COUNT]->lastmod
+        );
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testWriteAddsOneUrlEntryPerAuthor(): void
+    {
+        $author = $this->createStub(Author::class);
+        $author->method('getSlug')->willReturn('jane-doe');
+
+        $generator = $this->createGenerator(authors: [$author]);
+
+        $this->assertSame(self::FIXED_URL_COUNT + 1, $generator->write());
+
+        $urls = $this->loadSitemap()->url;
+        $this->assertSame('https://example.test/author/jane-doe/', (string) $urls[self::FIXED_URL_COUNT]->loc);
+        $this->assertCount(0, $urls[self::FIXED_URL_COUNT]->lastmod);
     }
 
     /**
@@ -103,13 +148,19 @@ class SitemapGeneratorTest extends UnitTest
     public function testWriteAddsOneUrlEntryPerPostWithACategoryQualifiedLink(): void
     {
         $post = $this->createPost('a-post', 'news', '2026-08-01 10:00:00');
-        $this->createGenerator([$post])->write();
+        $this->createGenerator(posts: [$post])->write();
 
         $urls = $this->loadSitemap()->url;
 
-        $this->assertCount(2, $urls);
-        $this->assertSame('https://example.test/news/a-post/', (string) $urls[1]->loc);
-        $this->assertSame('2026-08-01T10:00:00+00:00', (string) $urls[1]->lastmod);
+        $this->assertCount(self::FIXED_URL_COUNT + 1, $urls);
+        $this->assertSame(
+            'https://example.test/news/a-post/',
+            (string) $urls[self::FIXED_URL_COUNT]->loc
+        );
+        $this->assertSame(
+            '2026-08-01T10:00:00+00:00',
+            (string) $urls[self::FIXED_URL_COUNT]->lastmod
+        );
     }
 
     /**
@@ -120,7 +171,7 @@ class SitemapGeneratorTest extends UnitTest
      */
     public function testWriteThrowsWhenTheSitemapFileCannotBeWritten(): void
     {
-        $generator = $this->createGenerator([], sitemapFile: '/nonexistent-directory/sitemap.xml');
+        $generator = $this->createGenerator(sitemapFile: '/nonexistent-directory/sitemap.xml');
 
         $this->expectException(RuntimeException::class);
         $this->expectExceptionMessage('Unable to write sitemap.');
@@ -130,15 +181,32 @@ class SitemapGeneratorTest extends UnitTest
 
     /**
      * @param list<Post> $posts
+     * @param list<Category> $categories
+     * @param list<Author> $authors
+     * @param list<string> $pageRoutes
      * @throws Exception
      */
-    private function createGenerator(array $posts, ?string $sitemapFile = null): SitemapGenerator
-    {
+    private function createGenerator(
+        array $posts = [],
+        array $categories = [],
+        array $authors = [],
+        array $pageRoutes = [],
+        ?string $sitemapFile = null,
+    ): SitemapGenerator {
         $postRepository = $this->createStub(PostRepository::class);
         $postRepository->method('getPublishedPosts')->willReturn($posts);
 
+        $categoryRepository = $this->createStub(CategoryRepository::class);
+        $categoryRepository->method('getCategories')->willReturn($categories);
+
+        $authorRepository = $this->createStub(AuthorRepository::class);
+        $authorRepository->method('getAuthorsWithPublishedPosts')->willReturn($authors);
+
         return new SitemapGenerator(
             $postRepository,
+            $categoryRepository,
+            $authorRepository,
+            $pageRoutes,
             $sitemapFile ?? $this->sitemapFile,
             'https://example.test',
         );
@@ -158,6 +226,19 @@ class SitemapGeneratorTest extends UnitTest
         $post->method('getPostDate')->willReturn(new DateTimeImmutable($postDate, new DateTimeZone('UTC')));
 
         return $post;
+    }
+
+    /**
+     * @throws Exception
+     */
+    private function createCategory(string $slug, string $updated): Category
+    {
+        $category = $this->createStub(Category::class);
+        $category->method('getSlug')->willReturn($slug);
+        $category->method('getUpdated')->willReturn(new DateTimeImmutable($updated, new DateTimeZone('UTC')));
+        $category->method('getCreated')->willReturn(new DateTimeImmutable($updated, new DateTimeZone('UTC')));
+
+        return $category;
     }
 
     private function loadSitemap(): SimpleXMLElement
