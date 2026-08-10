@@ -6,6 +6,8 @@ namespace Light\Blog\Repository;
 
 use Light\App\Repository\AbstractRepository;
 use Light\Blog\Entity\Author;
+use Light\Blog\Entity\Post;
+use Light\Blog\Enum\PostStatusEnum;
 
 class AuthorRepository extends AbstractRepository
 {
@@ -15,8 +17,29 @@ class AuthorRepository extends AbstractRepository
     public function getAuthor(): array
     {
         $qb = $this->getQueryBuilder()
-            ->select('author.name, author.slug')
-            ->from(Author::class, 'authors');
+            ->select('author')
+            ->from(Author::class, 'author');
+
+        return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * @return array<Author>
+     */
+    public function getAuthorsWithPublishedPosts(): array
+    {
+        $publishedAuthorIds = $this->getQueryBuilder()
+            ->select('publishedAuthor.id')
+            ->from(Post::class, 'post')
+            ->join('post.author', 'publishedAuthor')
+            ->where('post.status = :published');
+
+        $qb = $this->getQueryBuilder()
+            ->select('author')
+            ->from(Author::class, 'author');
+
+        $qb->where($qb->expr()->in('author.id', $publishedAuthorIds->getDQL()))
+            ->setParameter('published', PostStatusEnum::Published);
 
         return $qb->getQuery()->getResult();
     }
