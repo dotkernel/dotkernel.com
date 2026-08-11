@@ -1,0 +1,545 @@
+{% extends '@layout/default.html.twig' %}
+
+{% set routeName = 'page::dotkernel-api' %}
+{% set meta = {
+    title: 'Dotkernel API | Open-source REST API skeleton for PHP',
+    description: 'Dotkernel API is an open-source REST API skeleton built on Mezzio, Laminas and Doctrine. '
+        ~ 'OAuth2, RBAC, HAL, problem details and OpenAPI 3.0 come wired together on install. MIT licensed.',
+} %}
+
+{% block title %}Dotkernel API{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        /* Comparison table - scoped to this page, uses the shared theme tokens. */
+        .spec-table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius); }
+        .spec-table { width: 100%; border-collapse: collapse; font-size: 14.5px; background: var(--surface); }
+        .spec-table th, .spec-table td { padding: 14px 18px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--border); }
+        .spec-table thead th { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--text-dim); background: var(--surface-2); }
+        .spec-table tbody tr:last-child th, .spec-table tbody tr:last-child td { border-bottom: 0; }
+        .spec-table tbody th { font-weight: 500; color: var(--text-muted); white-space: nowrap; }
+        .spec-table td { color: var(--text); }
+        .spec-table td.is-ours { border-left: 2px solid var(--brand-red); }
+        .spec-table img { vertical-align: middle; }
+        .spec-note { margin-top: 14px; font-size: 13.5px; color: var(--text-dim); }
+    </style>
+{% endblock %}
+
+{% block content %}
+
+    <section class="hero">
+        <div class="wrap hero-grid">
+            <div>
+                <span class="eyebrow">REST API skeleton · PSR-15 middleware</span>
+                <h1>Dotkernel API</h1>
+                <p class="sub">
+                    An open-source REST API skeleton for PHP, built on the Mezzio microframework and Laminas components
+                    over a Doctrine domain layer. OAuth 2.0, RBAC authorization, HAL payloads, standardized error
+                    responses and an OpenAPI 3.0 specification are assembled on install - not left as decisions for
+                    your first sprint.
+                </p>
+                <div class="hero-ctas">
+                    <a class="btn btn-primary" href="https://docs.dotkernel.org/api-documentation/" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                        Read the docs
+                    </a>
+                    <a class="btn btn-ghost" href="https://github.com/dotkernel/api" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.1.83-.27.83-.58v-2.17c-3.34.73-4.04-1.42-4.04-1.42-.55-1.4-1.34-1.77-1.34-1.77-1.08-.75.09-.73.09-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.84 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.53.12-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.65.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .31.22.69.83.57A12 12 0 0 0 12 .5z"/></svg>
+                        View on GitHub
+                    </a>
+                    <a class="btn btn-ghost" href="https://api.dotkernel.net/" target="_blank" rel="noopener">Live demo</a>
+                </div>
+                <div class="badges mt-3">
+                    <img alt="PHP version for dotkernel/api" loading="lazy" src="https://img.shields.io/packagist/dependency-v/dotkernel/api/php?style=flat&label=php">
+                    <img alt="Latest release of dotkernel/api" loading="lazy" src="https://img.shields.io/packagist/v/dotkernel/api?style=flat">
+                    <img alt="License of dotkernel/api" loading="lazy" src="https://img.shields.io/github/license/dotkernel/api?style=flat">
+                    <img alt="GitHub stars for dotkernel/api" loading="lazy" src="https://img.shields.io/github/stars/dotkernel/api?style=flat&label=%E2%98%85">
+                </div>
+                <div class="hero-stack-note">
+                    <div><span>Runtime</span> Mezzio + Laminas</div>
+                    <div><span>Persistence</span> Doctrine ORM</div>
+                    <div><span>License</span> MIT</div>
+                </div>
+            </div>
+
+            <div class="pipeline">
+                <div class="pipeline-label"><span>Request lifecycle</span></div>
+                <div class="pipeline-track">
+                    <div class="pl-packet" aria-hidden="true"></div>
+                    <div class="pl-step"><span class="name">CORS</span><span class="tag">mezzio-cors</span></div>
+                    <div class="pl-step"><span class="name">Router</span><span class="tag">FastRoute</span></div>
+                    <div class="pl-step"><span class="name">Authentication</span><span class="tag">OAuth 2.0</span></div>
+                    <div class="pl-step"><span class="name">RBAC guard</span><span class="tag">per route name</span></div>
+                    <div class="pl-step"><span class="name">Your handler</span><span class="tag">PSR-15</span></div>
+                    <div class="pl-step"><span class="name">Response</span><span class="tag">HAL / problem+json</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="what-is-platform">
+        <div class="wrap split">
+            <div>
+                <span class="eyebrow">What it is</span>
+                <h2>A REST API you own from the first commit</h2>
+                <p class="lede">
+                    Dotkernel API is the root of the Dotkernel Headless Platform: a REST API based on the Mezzio
+                    skeleton, using a PSR-compliant middleware stack as defined by the PHP Framework Interop Group.
+                    Rather than relying on elements built into a framework, business logic is built explicitly - from
+                    handlers to dependencies - so you keep full control over your business logic and data architecture.
+                </p>
+                <p class="lede">
+                    It scales down to a single microservice and up to an enterprise-grade API, and it has been
+                    developed and released continuously since 2018.
+                </p>
+                <div class="extending">
+                    Extending the power of
+                    <div class="extending-logo">
+                        <img src="{{ asset('images/app/content/mezzio-by-laminas.svg') }}" alt="Mezzio by Laminas" loading="lazy">
+                    </div>
+                </div>
+            </div>
+            <div class="traits">
+                <div class="trait">
+                    <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/traffic-sign-50.svg') }}" alt="" loading="lazy">
+                    <p>Doctrine ORM, not Active Record</p>
+                </div>
+
+                <div class="trait">
+                    <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/success-50.svg') }}" alt="" loading="lazy">
+                    <p>Explicit wiring, no runtime magic</p>
+                </div>
+
+                <div class="trait">
+                    <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/speed-radar-50.svg') }}" alt="" loading="lazy">
+                    <p>Auth, docs and errors on install</p>
+                </div>
+
+                <div class="trait">
+                    <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/maintenance.svg') }}" alt="" loading="lazy">
+                    <p>MIT licensed, actively maintained</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="background:var(--surface-2);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">What ships wired up</span>
+                <h2>The parts every API needs, already connected</h2>
+                <p>Each of these is configured and working in a fresh install. Nothing here is a placeholder you have
+                   to research and assemble before you can serve your first authenticated endpoint.</p>
+            </div>
+
+            <div class="products-grid">
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Security · Authentication</span><h3>OAuth 2.0</h3></div>
+                    </div>
+                    <p class="lede">Bearer tokens, issued and validated by the API itself.</p>
+                    <p class="desc">
+                        Authentication runs on <code>mezzio-authentication-oauth2</code>, which wraps
+                        <code>league/oauth2-server</code> to provide OAuth 2.0 for PSR-7 / PSR-15 applications.
+                        Endpoints marked as authenticated require a valid Bearer token and answer
+                        <code>401 Unauthorized</code> without one.
+                    </p>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Security · Authorization</span><h3>RBAC per route</h3></div>
+                    </div>
+                    <p class="lede">Three levels of protection: none, authenticated, authorized.</p>
+                    <p class="desc">
+                        Roles and their permissions are declared in configuration and allocated per route name, with
+                        role inheritance supported. An authenticated request that lacks the required permission gets a
+                        <code>403 Forbidden</code> - decided by config, not scattered through your handlers.
+                    </p>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Contract · Documentation</span><h3>OpenAPI 3.0</h3></div>
+                    </div>
+                    <p class="lede">A machine-readable contract, generated from the code that serves it.</p>
+                    <p class="desc">
+                        Every module documents its endpoints in an <code>OpenAPI.php</code> file, which
+                        <code>zircote/swagger-php</code> turns into a specification rendered through Swagger UI or
+                        Redoc. A Postman collection and environment ship alongside it, so every endpoint is ready to
+                        call by hand.
+                    </p>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Data · Persistence</span><h3>Doctrine ORM</h3></div>
+                    </div>
+                    <p class="lede">Your domain in entities, not in the query layer.</p>
+                    <p class="desc">
+                        Doctrine ORM handles persistence, so you can focus on object-oriented business logic and treat
+                        storage as a secondary concern. Migrations, fixtures via <code>dot-data-fixtures</code>, and
+                        multiple database connections are part of the setup.
+                    </p>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Contract · Responses</span><h3>HAL &amp; problem details</h3></div>
+                    </div>
+                    <p class="lede">One predictable shape for resources, one for failures.</p>
+                    <p class="desc">
+                        Payloads are built with <code>mezzio-hal</code>, describing each resource together with its
+                        relational links and embedded child resources. Errors return problem details responses via
+                        <code>mezzio-problem-details</code>, giving clients standardized error codes system-wide.
+                    </p>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Contract · Negotiation</span><h3>Content negotiation</h3></div>
+                    </div>
+                    <p class="lede">Client and server agree on format and language up front.</p>
+                    <p class="desc">
+                        Content negotiation is implemented out of the box through the <code>Content-Type</code> and
+                        <code>Accept</code> headers, so diverse systems can consume the same API without custom glue on
+                        either side. CORS preflight requests are recognized and configured by
+                        <code>mezzio-cors</code>.
+                    </p>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Operations · Feedback</span><h3>Error reporting endpoint</h3></div>
+                    </div>
+                    <p class="lede">A channel for the bugs that never reach your logs.</p>
+                    <p class="desc">
+                        Frontend developers can report incorrect behaviour by posting to <code>/error-report</code> with
+                        a token header. The API validates the request against configured tokens, domains and IPs before
+                        logging it - useful precisely when nothing fatal was thrown.
+                    </p>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Operations · CLI</span><h3>Commands &amp; file locker</h3></div>
+                    </div>
+                    <p class="lede">Scheduled work that refuses to trample itself.</p>
+                    <p class="desc">
+                        Console commands are registered through <code>dot-cli</code> on top of Symfony Console. The file
+                        locker, enabled by default, writes a lock file per command so a second instance cannot start
+                        while the previous run is still going - the safeguard cron jobs usually lack.
+                    </p>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Productivity · Scaffolding</span><h3>dot-maker</h3></div>
+                    </div>
+                    <p class="lede">New modules that already match the house style.</p>
+                    <p class="desc">
+                        <code>dot-maker</code> generates project files and directories following the Dotkernel structure,
+                        and knows which files each application type needs. It replaces hand-copied boilerplate with
+                        consistent, standardized scaffolding.
+                    </p>
+                    <div class="card-btns">
+                        <a class="btn btn-ghost btn-sm" href="https://docs.dotkernel.org/dot-maker/v1/overview/" target="_blank" rel="noopener">Docs</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Current release</span>
+                <h2>What version 7 changed</h2>
+                <p>The latest release moves identifiers to native database UUIDs and broadens platform support.</p>
+            </div>
+
+            <div class="standards-grid">
+                <div class="standard">
+                    <h4>Native UUID v7</h4>
+                    <p>Identifier columns use the database's <code>uuid</code> type instead of <code>binary</code>, with
+                       values generated by <code>ramsey/uuid</code>. You keep full control of the UUID version without
+                       depending on database extensions.</p>
+                </div>
+                <div class="standard">
+                    <h4>PostgreSQL support</h4>
+                    <p>PostgreSQL joins the supported databases. Because native UUID is required, you need PostgreSQL or
+                       MariaDB 10.7 or later; MySQL is no longer supported, as it has no UUID data type.</p>
+                </div>
+                <div class="standard">
+                    <h4>PHP 8.5</h4>
+                    <p>The API targets PHP 8.5, with Dotkernel Admin on 8.4. Dependencies are kept current, and the
+                       ecosystem's own packages track the versions Laminas and Doctrine support.</p>
+                </div>
+                <div class="standard">
+                    <h4>Table prefixes</h4>
+                    <p>A configurable string can be prepended to every table name - the practical requirement when an
+                       API shares a database with an existing application.</p>
+                </div>
+                <div class="standard">
+                    <h4>Clearer database configuration</h4>
+                    <p>Multi-connection setups spell out which connection is the default and how to switch to another,
+                       based on scenarios from real projects.</p>
+                </div>
+                <div class="standard">
+                    <h4>Shared Core module</h4>
+                    <p>Common logic lives in a Core module kept as its own Git repository, which can be added as a
+                       submodule to any Dotkernel application so entities and queries stay consistent.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="background:var(--surface-2);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);">
+        <div class="wrap split">
+            <div>
+                <span class="eyebrow">Change management</span>
+                <h2>Evolution, not a wall of versions</h2>
+                <p class="lede">
+                    Dotkernel API favours an evolution pattern with a sunsetting mechanism over maintaining parallel
+                    API versions. The same codebase evolves gradually and clients are given notice, instead of every
+                    change forking into another branch you have to keep alive.
+                </p>
+                <p class="lede">
+                    Full versioning stays reserved for major, format-level changes - the cases where it genuinely earns
+                    its maintenance cost. The two approaches are not mutually exclusive.
+                </p>
+                <div class="hero-ctas">
+                    <a class="btn btn-ghost" href="https://docs.dotkernel.org/api-documentation/v6/tutorials/api-evolution/" target="_blank" rel="noopener">API evolution guide</a>
+                </div>
+            </div>
+            <div class="callout">
+                <h4>Coming from Laminas API Tools?</h4>
+                <p>
+                    API Tools (formerly Apigility) is archived. Dotkernel API is an actively maintained alternative
+                    with a middleware architecture, a permissive MIT license and a Doctrine data layer.
+                </p>
+                <p>
+                    The comparison below is drawn from the full side-by-side write-up on our blog.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Comparison</span>
+                <h2>Dotkernel API vs Laminas API Tools</h2>
+            </div>
+
+            <div class="spec-table-wrap">
+                <table class="spec-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Feature</th>
+                            <th scope="col">API Tools (formerly Apigility)</th>
+                            <th scope="col">Dotkernel API</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><th scope="row">First release</th><td>2012</td><td class="is-ours">2018</td></tr>
+                        <tr><th scope="row">Architecture</th><td>MVC, event driven</td><td class="is-ours">Middleware</td></tr>
+                        <tr><th scope="row">OSS lifecycle</th><td>Archived</td><td class="is-ours"><img alt="OSS lifecycle for dotkernel/api" loading="lazy" src="https://img.shields.io/osslifecycle/dotkernel/api?style=flat"></td></tr>
+                        <tr><th scope="row">PHP version</th><td>&le; 8.2</td><td class="is-ours"><img alt="PHP version for dotkernel/api" loading="lazy" src="https://img.shields.io/packagist/dependency-v/dotkernel/api/php?style=flat&label=php"></td></tr>
+                        <tr><th scope="row">Style</th><td>REST, RPC</td><td class="is-ours">REST</td></tr>
+                        <tr><th scope="row">Change management</th><td>Versioning</td><td class="is-ours">Deprecations (API evolution)</td></tr>
+                        <tr><th scope="row">Documentation</th><td>Swagger (automated)</td><td class="is-ours">OpenAPI 3.0 (Swagger) and Postman (manual)</td></tr>
+                        <tr><th scope="row">License</th><td>BSD-3</td><td class="is-ours">MIT</td></tr>
+                        <tr><th scope="row">Default DB layer</th><td>laminas-db</td><td class="is-ours">doctrine-orm 3.x</td></tr>
+                        <tr><th scope="row">Authorization</th><td>ACL</td><td class="is-ours">RBAC guard</td></tr>
+                        <tr><th scope="row">Authentication</th><td>HTTP Basic / Digest, OAuth 2.0</td><td class="is-ours">OAuth 2.0</td></tr>
+                        <tr><th scope="row">Endpoint generator</th><td>Yes</td><td class="is-ours">dot-maker</td></tr>
+                        <tr><th scope="row">PSR standards</th><td>PSR-7</td><td class="is-ours">PSR-7, PSR-15</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="spec-note">
+                Comparison drawn against Dotkernel API v7. Read the reasoning behind each row in
+                <a href="{{ url('page::blog-resource', {categorySlug: 'dotkernel-api', slug: 'dotkernel-api-versus-laminas-api-tools'}) }}">Dotkernel API versus Laminas API Tools</a>.
+            </p>
+        </div>
+    </section>
+
+    <section style="background:var(--surface-2);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Headless Platform</span>
+                <h2>Runs alone, or as one of three</h2>
+                <p>Dotkernel API is a complete application on its own. When you add Admin or Queue, all three declare the
+                   same <code>Core</code> namespaces, so a <code>User</code> means the same thing to the endpoint that
+                   creates it, the admin screen that moderates it, and the worker that emails it.</p>
+            </div>
+
+            <div class="core-band">
+                <span class="core-band-label">Shared domain layer</span>
+                <code>Core\App</code> <code>Core\Admin</code> <code>Core\User</code>
+                <code>Core\Security</code> <code>Core\Setting</code>
+                <p>One set of entities and repositories, committed in each repository so a single-component start just
+                   works. Having many entities in Core does not oblige you to implement handlers for all of them -
+                   each application handles only what it needs.</p>
+            </div>
+
+            <div class="products-grid">
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Pair with · Back office</span><h3>Admin</h3></div>
+                    </div>
+                    <p class="lede">Manage the same data your API serves.</p>
+                    <p class="desc">A first-party application on the same Mezzio and Laminas foundation, with
+                        table-based CRUD screens, reports and graphs. Start with either one and add the other later.</p>
+                    <div class="card-btns">
+                        <a class="btn btn-ghost btn-sm" href="https://github.com/dotkernel/admin" target="_blank" rel="noopener">GitHub</a>
+                        <a class="btn btn-ghost btn-sm" href="https://admin7.dotkernel.net/" target="_blank" rel="noopener">Demo</a>
+                        <a class="btn btn-ghost btn-sm" href="https://docs.dotkernel.org/admin/" target="_blank" rel="noopener">Docs</a>
+                    </div>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Pair with · Async work</span><h3>Queue</h3></div>
+                    </div>
+                    <p class="lede">Move slow work off the request cycle.</p>
+                    <p class="desc">Built on Symfony Messenger. A daemon stores incoming messages and processes them in
+                        order, with retries, IP whitelisting and a dead letter queue for what still fails.</p>
+                    <div class="card-btns">
+                        <a class="btn btn-ghost btn-sm" href="https://github.com/dotkernel/queue" target="_blank" rel="noopener">GitHub</a>
+                        <a class="btn btn-ghost btn-sm" href="https://docs.dotkernel.org/queue-documentation/" target="_blank" rel="noopener">Docs</a>
+                    </div>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Pair with · Components</span><h3>dot-* packages</h3></div>
+                    </div>
+                    <p class="lede">Add a layer at a time, and nothing more.</p>
+                    <p class="desc">Authentication, RBAC, mail, logging, caching, CLI and more as small independent
+                        packages. Each one publishes its own support lifecycle.</p>
+                    <div class="card-btns">
+                        <a class="btn btn-ghost btn-sm" href="{{ url('page::dotkernel-packages-oss-lifecycle') }}">Packages lifecycle</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Standards &amp; quality</span>
+                <h2>Built on interfaces, checked on every change</h2>
+            </div>
+
+            <div class="standards-grid">
+                <div class="standard">
+                    <h4><a href="https://www.php-fig.org/psr/psr-15/" target="_blank" rel="noopener">PSR-15 &amp; PSR-7</a></h4>
+                    <p>Handlers implement <code>RequestHandlerInterface</code> and return <code>ResponseInterface</code>.
+                       The whole request path is middleware you can read top to bottom.</p>
+                </div>
+                <div class="standard">
+                    <h4><a href="https://www.php-fig.org/psr/psr-11/" target="_blank" rel="noopener">PSR-11 &amp; PSR-4</a></h4>
+                    <p>The application is container-based, with dependencies declared in each module's
+                       <code>ConfigProvider</code>, and classes located by autoloader.</p>
+                </div>
+                <div class="standard">
+                    <h4><a href="https://www.php-fig.org/psr/psr-3/" target="_blank" rel="noopener">PSR-3 logging</a></h4>
+                    <p>Errors are logged through <code>LoggerInterface</code> via
+                       <code>dot-errorhandler</code>, centralizing how failures are recorded.</p>
+                </div>
+                <div class="standard">
+                    <h4><a href="https://phpstan.org/" target="_blank" rel="noopener">PHPStan at level 8</a></h4>
+                    <p>Static analysis runs at a strict rule level, in line with the choice made by projects like
+                       Doctrine and Composer.</p>
+                </div>
+                <div class="standard">
+                    <h4>Functional &amp; unit tests</h4>
+                    <p>The skeleton ships with a test suite you extend rather than start, so new endpoints have
+                       somewhere to be tested from day one.</p>
+                </div>
+                <div class="standard">
+                    <h4>An active community</h4>
+                    <p>Updates arrive with bugfixes and improvements from the PHP community, and breaking changes come
+                       with companion articles and upgrade steps.</p>
+                    <div class="get-started">
+                        <a href="https://github.com/orgs/dotkernel/discussions" target="_blank" rel="noopener">Join the discussion →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="background:var(--surface-2);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);">
+        <div class="wrap split">
+            <div>
+                <span class="eyebrow">Get started</span>
+                <h2>Install it and call an endpoint</h2>
+                <p class="lede">
+                    Create the project with Composer, point it at PostgreSQL or MariaDB 10.7+, run the migrations, and
+                    you have an authenticated REST API with a browsable OpenAPI specification.
+                </p>
+                <div class="hero-ctas">
+                    <a class="btn btn-primary" href="https://docs.dotkernel.org/api-documentation/" target="_blank" rel="noopener">Installation guide</a>
+                    <a class="btn btn-ghost" href="https://api.dotkernel.net/" target="_blank" rel="noopener">Try the demo</a>
+                </div>
+            </div>
+            <div class="callout">
+                <h4>composer create-project dotkernel/api</h4>
+                <p>
+                    The installer walks through database credentials and the initial configuration. Follow the
+                    installation guide for the exact command and post-install steps for your target version, then use
+                    <code>dot-maker</code> to scaffold your first module.
+                </p>
+                <p>
+                    Questions along the way go to
+                    <a href="https://github.com/orgs/dotkernel/discussions" target="_blank" rel="noopener">Dotkernel Discussions</a>
+                    - the team answers issues on both Dotkernel and Laminas components.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    {% if posts is defined and posts is iterable %}
+        <section>
+            <div class="wrap">
+                <div class="section-head">
+                    <span class="eyebrow">From the blog</span>
+                    <h2>Go deeper</h2>
+                </div>
+                <div class="posts-grid">
+                    {% for post in posts %}
+                        <a class="post-card" href="{{ url('page::blog-resource', {categorySlug: post.category.slug, slug: post.slug}) }}">
+                            <div class="post-date">{{ post.postDate|date('M d, Y') }}</div>
+                            <h3>{{ post.title }}</h3>
+                            <p>{{ post.excerpt }}</p>
+                            <span class="read-more">Read more →</span>
+                        </a>
+                    {% else %}
+                        <p class="text-muted text-center mb-0">No recent posts.</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    {% endif %}
+
+    <section class="about-band">
+        <div class="wrap about-inner">
+            <div>
+                <span class="eyebrow">Open source, in production</span>
+                <h2>An API foundation you can read, audit and keep.</h2>
+            </div>
+            <div>
+                <p class="about-text">Dotkernel API is developed and led by the dev team at Apidemia - built first as an
+                    internal tool for handling complex architectures, released under MIT as our way of giving back to
+                    the community.</p>
+                <div class="about-cta">
+                    <a class="btn btn-ghost" href="{{ url('page::contact') }}">Talk to us →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

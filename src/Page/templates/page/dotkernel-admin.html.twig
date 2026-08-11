@@ -1,0 +1,575 @@
+{% extends '@layout/default.html.twig' %}
+
+{% set routeName = 'page::dotkernel-admin' %}
+{% set meta = {
+    title: 'Dotkernel Admin | Open-source PHP admin application',
+    description: 'Dotkernel Admin is an open-source admin application (skeleton) built on Mezzio, Laminas and Doctrine. '
+        ~ 'Table-based record management, RBAC guards, CSRF-protected forms and 2FA, over the same Core as Dotkernel API.',
+} %}
+
+{% block title %}Dotkernel Admin{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        /* Requirements table - scoped to this page, uses the shared theme tokens. */
+        .spec-table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius); }
+        .spec-table { width: 100%; border-collapse: collapse; font-size: 14.5px; background: var(--surface); }
+        .spec-table th, .spec-table td { padding: 14px 18px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--border); }
+        .spec-table thead th { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--text-dim); background: var(--surface-2); }
+        .spec-table tbody tr:last-child th, .spec-table tbody tr:last-child td { border-bottom: 0; }
+        .spec-table tbody th { font-weight: 500; color: var(--text-muted); white-space: nowrap; }
+        .spec-table td { color: var(--text); }
+        .spec-note { margin-top: 14px; font-size: 13.5px; color: var(--text-dim); }
+        .step-cmd { display: block; margin-top: 12px; font-family: var(--mono); font-size: 12.5px; color: var(--teal); overflow-x: auto; }
+    </style>
+{% endblock %}
+
+{% block content %}
+
+    <section class="hero">
+        <div class="wrap hero-grid">
+            <div>
+                <span class="eyebrow">Admin application · Server-rendered</span>
+                <h1>Dotkernel Admin</h1>
+                <p class="sub">
+                    An open-source application skeleton for standing up the administration site behind your platform.
+                    A fast, reliable way to manage the records in your database with a simple table-based approach, and
+                    to build the reports and graphs that let you monitor what is happening - with the graphical
+                    components for an intuitive experience already in place.
+                </p>
+                <div class="hero-ctas">
+                    <a class="btn btn-primary" href="https://docs.dotkernel.org/admin-documentation/" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                        Read the docs
+                    </a>
+                    <a class="btn btn-ghost" href="https://github.com/dotkernel/admin" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.1.83-.27.83-.58v-2.17c-3.34.73-4.04-1.42-4.04-1.42-.55-1.4-1.34-1.77-1.34-1.77-1.08-.75.09-.73.09-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.84 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.53.12-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.65.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .31.22.69.83.57A12 12 0 0 0 12 .5z"/></svg>
+                        View on GitHub
+                    </a>
+                    <a class="btn btn-ghost" href="https://admin7.dotkernel.net/" target="_blank" rel="noopener">Live demo</a>
+                </div>
+                <div class="badges mt-3">
+                    <img alt="PHP version for dotkernel/admin" loading="lazy" src="https://img.shields.io/packagist/dependency-v/dotkernel/admin/php?style=flat&label=php">
+                    <img alt="Latest release of dotkernel/admin" loading="lazy" src="https://img.shields.io/packagist/v/dotkernel/admin?style=flat">
+                    <img alt="License of dotkernel/admin" loading="lazy" src="https://img.shields.io/github/license/dotkernel/admin?style=flat">
+                    <img alt="GitHub stars for dotkernel/admin" loading="lazy" src="https://img.shields.io/github/stars/dotkernel/admin?style=flat&label=%E2%98%85">
+                </div>
+                <div class="hero-stack-note">
+                    <div><span>Runtime</span> Mezzio + Laminas</div>
+                    <div><span>Templating</span> Twig</div>
+                    <div><span>License</span> MIT</div>
+                </div>
+            </div>
+
+            <div class="pipeline">
+                <div class="pipeline-label"><span>Request lifecycle</span></div>
+                <div class="pipeline-track">
+                    <div class="pl-packet" aria-hidden="true"></div>
+                    <div class="pl-step"><span class="name">Session</span><span class="tag">dot-session</span></div>
+                    <div class="pl-step"><span class="name">Router</span><span class="tag">dot-router</span></div>
+                    <div class="pl-step"><span class="name">Authentication</span><span class="tag">laminas-authentication</span></div>
+                    <div class="pl-step"><span class="name">RBAC guard</span><span class="tag">dot-rbac-guard</span></div>
+                    <div class="pl-step"><span class="name">Your handler</span><span class="tag">PSR-15</span></div>
+                    <div class="pl-step"><span class="name">Response</span><span class="tag">Twig template</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="what-is-platform">
+        <div class="wrap split">
+            <div>
+                <span class="eyebrow">What it is</span>
+                <h2>The back office, not a framework to learn</h2>
+                <p class="lede">
+                    Dotkernel Admin is the complementary application of the Dotkernel Headless Platform: an independent
+                    app built on the same Mezzio and Laminas foundation as Dotkernel API, sharing the same tech stack so
+                    the two form one consistent system rather than two codebases that merely talk to each other.
+                </p>
+                <p class="lede">
+                    Authentication, role-based access control, CSRF-protected forms, validation, navigation and a
+                    dashboard are already assembled. What you add is your own screens for your own entities.
+                </p>
+                <div class="extending">
+                    Extending the power of
+                    <div class="extending-logo">
+                        <img src="{{ asset('images/app/content/mezzio-by-laminas.svg') }}" alt="Mezzio by Laminas" loading="lazy">
+                    </div>
+                </div>
+            </div>
+            <div class="traits">
+                <div class="trait">
+                    <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/traffic-sign-50.svg') }}" alt="" loading="lazy">
+                    <p>Table-based record management</p>
+                </div>
+
+                <div class="trait">
+                    <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/success-50.svg') }}" alt="" loading="lazy">
+                    <p>Every shipped form validated and CSRF-guarded</p>
+                </div>
+
+                <div class="trait">
+                    <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/speed-radar-50.svg') }}" alt="" loading="lazy">
+                    <p>Shares the Core module with API</p>
+                </div>
+
+                <div class="trait">
+                    <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/maintenance.svg') }}" alt="" loading="lazy">
+                    <p>Twig templates, npm asset pipeline</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="background:var(--surface-2);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">What ships wired up</span>
+                <h2>The unglamorous parts, already done</h2>
+                <p>Everything below works in a fresh install. The default modules are configured; your custom
+                   functionality needs the same configuration entries, and the docs say exactly which ones.</p>
+            </div>
+
+            <div class="products-grid">
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Security · Access control</span><h3>RBAC guards</h3></div>
+                    </div>
+                    <p class="lede">Permissions declared in config, enforced per route handler.</p>
+                    <p class="desc">
+                        <code>dot-rbac</code> and <code>dot-rbac-guard</code> work together: roles and their permissions
+                        live in <code>authorization.global.php</code>, while
+                        <code>authorization-guards.global.php</code> maps each route handler to the permissions it
+                        requires. Add a route, add its rule - access control never drifts into your handlers.
+                    </p>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Security · 2FA</span><h3>TOTP two-factor</h3></div>
+                    </div>
+                    <p class="lede">A password plus a code that expires in 30 seconds.</p>
+                    <p class="desc">
+                        <code>dot-totp</code> adds time-based one-time passwords following the industry standard:
+                        administrators authenticate with their password and a 6-digit code from an authenticator app.
+                        Installation is a documented set of forms, handlers, middleware and three new columns.
+                    </p>
+                    <div class="card-btns">
+                        <a class="btn btn-ghost btn-sm" href="https://docs.dotkernel.org/admin-documentation/v7/tutorials/install-dot-totp/" target="_blank" rel="noopener">Install guide</a>
+                    </div>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Security · Forms</span><h3>CSRF protection</h3></div>
+                    </div>
+                    <p class="lede">A fresh token per render, on every form that ships.</p>
+                    <p class="desc">
+                        Built from the <code>laminas-form</code> CSRF element, the <code>laminas-session</code> CSRF
+                        validator and the <code>formElement</code> view helper. Tokens are not reusable between forms
+                        and expire after a configurable timeout, defaulting to one hour.
+                    </p>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Input · Validation</span><h3>Forms &amp; input filters</h3></div>
+                    </div>
+                    <p class="lede">Validation rules that live beside the form, not in the handler.</p>
+                    <p class="desc">
+                        <code>laminas-form</code> bridges your domain models and the view layer, while
+                        <code>laminas-inputfilter</code> normalizes and validates the submitted set. Every form in the
+                        skeleton has its inputs filtered, so your own forms have a pattern to copy.
+                    </p>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Data · Persistence</span><h3>Doctrine ORM</h3></div>
+                    </div>
+                    <p class="lede">Migrations and fixtures, both driven from the CLI.</p>
+                    <p class="desc">
+                        Doctrine ORM 3 and DBAL 4 over MariaDB or PostgreSQL, with UUID identifiers via
+                        <code>ramsey/uuid-doctrine</code>. Generate a migration with
+                        <code>doctrine-migrations diff</code>, apply it with <code>migrate</code>, then seed the tables
+                        with <code>bin/doctrine fixtures:execute</code>.
+                    </p>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Wiring · DI</span><h3>Attribute injection</h3></div>
+                    </div>
+                    <p class="lede">Constructor injection declared where the constructor is.</p>
+                    <p class="desc">
+                        <code>dot-dependency-injection</code> reads an <code>#[Inject]</code> attribute on the
+                        constructor and resolves each listed dependency - including values from a configuration key, by
+                        dot notation. Register the class against <code>AttributedServiceFactory</code> and you are done
+                        writing factories by hand.
+                    </p>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Interface · Navigation</span><h3>Menus &amp; UI components</h3></div>
+                    </div>
+                    <p class="lede">Configuration-driven menus, ready-made interface pieces.</p>
+                    <p class="desc">
+                        <code>dot-navigation</code> defines and parses the top menu from
+                        <code>navigation.global.php</code>. The <code>Page</code> module carries reusable dropdowns,
+                        modal popups, error displays and tooltips; the <code>Dashboard</code> module holds the landing
+                        page layout and its widgets.
+                    </p>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Operations · CLI</span><h3>Commands &amp; lock files</h3></div>
+                    </div>
+                    <p class="lede">Cron-safe console commands out of the box.</p>
+                    <p class="desc">
+                        <code>dot-cli</code> builds the console application on top of laminas-cli, writing lock files
+                        into <code>data/lock</code> so a scheduled command cannot overlap with itself. GeoLite2
+                        databases sync through <code>bin/cli.php geoip:synchronize</code>, quiet mode included for
+                        cron jobs.
+                    </p>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Operations · Mail &amp; logs</span><h3>Mail and error handling</h3></div>
+                    </div>
+                    <p class="lede">Transactional mail configured in one file, errors in another.</p>
+                    <p class="desc">
+                        <code>dot-mail</code> handles sendmail or SMTP delivery, sender identity and CC lists from
+                        <code>mail.global.php</code>. <code>dot-errorhandler</code> writes daily log files to
+                        <code>log/</code>, with the format set in <code>error-handling.global.php</code>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Structure</span>
+                <h2>Modules you can name before you read them</h2>
+                <p>Admin follows PSR-4, with one folder per module. Each module keeps its handlers, input filters and
+                   services together, plus a <code>ConfigProvider</code> and a <code>RoutesDelegator</code> - so the
+                   second module you write looks like the first.</p>
+            </div>
+
+            <div class="core-band">
+                <span class="core-band-label">Shared domain layer</span>
+                <code>Core\Admin</code> <code>Core\App</code> <code>Core\Security</code>
+                <code>Core\Setting</code> <code>Core\User</code>
+                <p>The Core module is a common codebase shared with the other applications in your project. Each
+                   submodule holds its entities, repositories and its own ConfigProvider, so a user means the same
+                   thing to the admin screen and to the API endpoint.</p>
+            </div>
+
+            <div class="standards-grid">
+                <div class="standard">
+                    <h4><code>Admin</code></h4>
+                    <p>Managing the users that hold the <code>admin</code> role - the accounts stored in the
+                       <code>admin</code> database table.</p>
+                </div>
+                <div class="standard">
+                    <h4><code>User</code></h4>
+                    <p>Managing the platform's own users, stored separately in the <code>user</code> table. Two
+                       audiences, two models, no overloaded role column.</p>
+                </div>
+                <div class="standard">
+                    <h4><code>App</code></h4>
+                    <p>Core application functionality: authentication, rendering and error reporting.</p>
+                </div>
+                <div class="standard">
+                    <h4><code>Dashboard</code></h4>
+                    <p>The default landing page - its layout, widgets and rendering logic.</p>
+                </div>
+                <div class="standard">
+                    <h4><code>Page</code></h4>
+                    <p>Reusable interface elements: dropdowns, modals, error displays, tooltips.</p>
+                </div>
+                <div class="standard">
+                    <h4><code>Setting</code></h4>
+                    <p>Saving and reading display settings for the administration interface.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="background:var(--surface-2);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Installation</span>
+                <h2>From clone to login page</h2>
+                <p>The full walkthrough, with expected output for every command, is in the documentation. This is the
+                   shape of it.</p>
+            </div>
+
+            <div class="standards-grid">
+                <div class="standard">
+                    <h4>1 · Clone the project</h4>
+                    <p>Into an empty directory of your choosing.</p>
+                    <code class="step-cmd">git clone https://github.com/dotkernel/admin.git .</code>
+                </div>
+                <div class="standard">
+                    <h4>2 · Install dependencies</h4>
+                    <p>Run it from the CLI so the setup prompts stay interactive. Decline the ConfigProvider injection -
+                       Dotkernel ships its own.</p>
+                    <code class="step-cmd">composer install</code>
+                </div>
+                <div class="standard">
+                    <h4>3 · Enable development mode</h4>
+                    <p>For local work only. <code>composer development-status</code> tells you where you stand, and it
+                       must stay off in production.</p>
+                    <code class="step-cmd">composer development-enable</code>
+                </div>
+                <div class="standard">
+                    <h4>4 · Configure the database</h4>
+                    <p>Fill in the credentials in <code>config/autoload/local.php</code>. Both a MariaDB and a
+                       PostgreSQL connection are pre-declared; one is active at a time.</p>
+                </div>
+                <div class="standard">
+                    <h4>5 · Migrate and seed</h4>
+                    <p>Migrations build the schema; fixtures populate the default roles, OAuth clients and accounts.</p>
+                    <code class="step-cmd">php ./vendor/bin/doctrine-migrations migrate<br>php ./bin/doctrine fixtures:execute</code>
+                </div>
+                <div class="standard">
+                    <h4>6 · Build the assets</h4>
+                    <p><code>npm run watch</code> recompiles while you work; <code>npm run prod</code> minifies for
+                       release.</p>
+                    <code class="step-cmd">npm install &amp;&amp; npm run prod</code>
+                </div>
+            </div>
+
+            <p class="spec-note">
+                Open the virtual host in your browser and the Dotkernel Admin login page is waiting. If the fixtures
+                ran, sign in with user <code>admin</code> and password <code>dotadmin</code> - the same credentials as
+                the public demo, and the first thing to change before going live.
+            </p>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Requirements</span>
+                <h2>What the server needs</h2>
+            </div>
+
+            <div class="spec-table-wrap">
+                <table class="spec-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Component</th>
+                            <th scope="col">Requirement</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Operating system</th>
+                            <td>A *nix based system is strongly recommended for production.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">PHP</th>
+                            <td>8.2 or newer, mod_php or FCGI (FPM). <code>memory_limit</code> at least 128M;
+                                <code>upload_max_filesize</code> and <code>post_max_size</code> at least 100M depending
+                                on your data.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Web server</th>
+                            <td>Apache 2.2+ with <code>mod_rewrite</code> and <code>.htaccess</code> support
+                                (<code>AllowOverride All</code>) - a default <code>.htaccess</code> ships in
+                                <code>public/</code>. On Nginx, translate it into server configuration.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Database</th>
+                            <td>MariaDB 10.7, 10.11 LTS, 11.4 LTS and 11.8 LTS, or PostgreSQL 13 and above.
+                                <strong>MySQL is not supported</strong>, as it has no UUID support.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Required extensions</th>
+                            <td><code>mbstring</code>, the CLI SAPI for cron jobs, and Composer available on
+                                <code>$PATH</code>.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Recommended extensions</th>
+                            <td><code>opcache</code>; <code>pdo_mysql</code>, <code>pdo_pgsql</code> or
+                                <code>mysqli</code> to match your database; <code>dom</code> and
+                                <code>simplexml</code> for markup; <code>gd</code> and <code>exif</code> for images;
+                                <code>zlib</code>, <code>zip</code>, <code>bz2</code> for compression;
+                                <code>curl</code> when calling APIs; <code>sqlite3</code> for the test suite.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="spec-note">
+                On Windows, WSL2 is the recommended development environment - Dotkernel provides an AlmaLinux
+                distro implementation and an install script for the whole local stack.
+            </p>
+        </div>
+    </section>
+
+    <section style="background:var(--surface-2);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);">
+        <div class="wrap split">
+            <div>
+                <span class="eyebrow">Going live</span>
+                <h2>The checklist nobody writes down</h2>
+                <p class="lede">
+                    Admin gives you the tools to build a safe application, and the documentation is explicit that some
+                    of them are yours to apply. These are the ones worth checking off before the first deploy.
+                </p>
+                <div class="hero-ctas">
+                    <a class="btn btn-ghost" href="https://docs.dotkernel.org/admin-documentation/v7/security/basic-security/" target="_blank" rel="noopener">Security guide</a>
+                </div>
+            </div>
+            <div class="callout">
+                <h4>Before you go to production</h4>
+                <ul>
+                    <li>Change or remove the demo admin account - its identity and password are public.</li>
+                    <li>Review <code>cookie_httponly</code>, <code>cookie_samesite</code> and
+                        <code>cookie_secure</code> in <code>session.global.php</code>.</li>
+                    <li>Confirm development mode is off with <code>composer development-status</code>.</li>
+                    <li>Set your allowed origins in <code>cors.global.php</code>.</li>
+                    <li>Keep secrets in <code>*.local.php</code> - the <code>*.global.php</code> and
+                        <code>*.php.dist</code> files are committed.</li>
+                    <li>Add CSRF fields and authorization rules to every form and route you add.</li>
+                    <li>Watch dependencies on both sides: Composer advisories and <code>npm audit</code>.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap split">
+            <div>
+                <span class="eyebrow">Staying current</span>
+                <h2>Upgrades you can read before you run them</h2>
+                <p class="lede">
+                    Admin does not ship an automatic upgrade path, and that is deliberate: you implement the
+                    modifications listed for each release, in a codebase you already understand, instead of handing a
+                    migration script control over your customizations.
+                </p>
+                <p class="lede">
+                    A <code>CHANGELOG.md</code> in the project root lists implemented features in reverse chronological
+                    order, so it doubles as your version marker. From version 6.2 onward, the procedure is documented
+                    version to version, and releases are also published as an RSS feed.
+                </p>
+                <div class="hero-ctas">
+                    <a class="btn btn-ghost" href="https://github.com/dotkernel/admin/releases" target="_blank" rel="noopener">Releases</a>
+                    <a class="btn btn-ghost" href="https://docs.dotkernel.org/admin-documentation/v7/upgrading/upgrading/" target="_blank" rel="noopener">Upgrade guide</a>
+                </div>
+            </div>
+            <div class="callout">
+                <h4>Coming from Admin 6.x?</h4>
+                <p>
+                    Version 7 bumped dependencies, synchronised the Core module and refreshed the codebase to stay
+                    compatible with Dotkernel API v7 - the release that moved identifiers to native database UUIDs and
+                    dropped MySQL.
+                </p>
+                <p>
+                    Work through the pull requests listed for 7.0, then copy the release notes into your own changelog
+                    so your project keeps tracking upstream.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section style="background:var(--surface-2);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Headless Platform</span>
+                <h2>Better with an API in front of it</h2>
+                <p>Admin installs and runs on its own. Paired with Dotkernel API over the same <code>Core</code>
+                   namespaces, Admin manages the data while the API exposes it to third-party frontends and backends -
+                   and neither one disagrees about what an entity is.</p>
+            </div>
+
+            <div class="products-grid">
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Pair with · HTTP surface</span><h3>API</h3></div>
+                    </div>
+                    <p class="lede">Expose the data you manage here to any client.</p>
+                    <p class="desc">A REST API on a PSR-15 middleware pipeline, with OAuth 2.0, RBAC, HAL payloads and
+                        an OpenAPI 3.0 specification wired up on install.</p>
+                    <div class="card-btns">
+                        <a class="btn btn-primary btn-sm" href="{{ url('page::dotkernel-api') }}">Read more</a>
+                        <a class="btn btn-ghost btn-sm" href="https://github.com/dotkernel/api" target="_blank" rel="noopener">GitHub</a>
+                        <a class="btn btn-ghost btn-sm" href="https://api.dotkernel.net/" target="_blank" rel="noopener">Demo</a>
+                    </div>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Pair with · Async work</span><h3>Queue</h3></div>
+                    </div>
+                    <p class="lede">Move slow work off the request cycle.</p>
+                    <p class="desc">Built on Symfony Messenger. A daemon stores incoming messages and processes them in
+                        order, with retries, IP whitelisting and a dead letter queue for what still fails.</p>
+                    <div class="card-btns">
+                        <a class="btn btn-ghost btn-sm" href="https://github.com/dotkernel/queue" target="_blank" rel="noopener">GitHub</a>
+                        <a class="btn btn-ghost btn-sm" href="https://docs.dotkernel.org/queue-documentation/" target="_blank" rel="noopener">Docs</a>
+                    </div>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Pair with · Scaffolding</span><h3>dot-maker</h3></div>
+                    </div>
+                    <p class="lede">Generate a module instead of copying one.</p>
+                    <p class="desc">Generates files and directories matching the Dotkernel structure, and knows which
+                        files an Admin application needs versus an API.</p>
+                    <div class="card-btns">
+                        <a class="btn btn-ghost btn-sm" href="https://docs.dotkernel.org/dot-maker/v1/overview/" target="_blank" rel="noopener">Docs</a>
+                        <a class="btn btn-ghost btn-sm" href="{{ url('page::dotkernel-packages-oss-lifecycle') }}">All packages</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% if posts is defined and posts is iterable %}
+        <section>
+            <div class="wrap">
+                <div class="section-head">
+                    <span class="eyebrow">From the blog</span>
+                    <h2>Go deeper</h2>
+                </div>
+                <div class="posts-grid">
+                    {% for post in posts %}
+                        <a class="post-card" href="{{ url('page::blog-resource', {categorySlug: post.category.slug, slug: post.slug}) }}">
+                            <div class="post-date">{{ post.postDate|date('M d, Y') }}</div>
+                            <h3>{{ post.title }}</h3>
+                            <p>{{ post.excerpt }}</p>
+                            <span class="read-more">Read more →</span>
+                        </a>
+                    {% else %}
+                        <p class="text-muted text-center mb-0">No recent posts.</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    {% endif %}
+
+    <section class="about-band">
+        <div class="wrap about-inner">
+            <div>
+                <span class="eyebrow">Open source, in production</span>
+                <h2>Try it with the demo, keep it under MIT.</h2>
+            </div>
+            <div>
+                <p class="about-text">Sign in to the public demo with <code>admin</code> / <code>dotadmin</code> to see
+                    the interface before you install anything. Dotkernel Admin is developed and led by the dev team at
+                    Apidemia, and released as open source for the community.</p>
+                <div class="about-cta">
+                    <a class="btn btn-ghost" href="{{ url('page::contact') }}">Talk to us →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

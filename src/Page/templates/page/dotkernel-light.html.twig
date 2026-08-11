@@ -1,0 +1,527 @@
+{% extends '@layout/default.html.twig' %}
+
+{% set routeName = 'page::dotkernel-light' %}
+{% set meta = {
+    title: 'Dotkernel Light | Minimal PSR-15 site skeleton for PHP',
+    description: 'Dotkernel Light is a minimal PSR-15 application skeleton on Mezzio and Laminas, for presentation '
+        ~ 'sites and small services. Six direct dependencies, Twig templating, Vite assets, no database layer.',
+} %}
+
+{% block title %}Dotkernel Light{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        /* Lifecycle and requirement tables - scoped to this page, uses the shared theme tokens. */
+        .spec-table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius); }
+        .spec-table { width: 100%; border-collapse: collapse; font-size: 14.5px; background: var(--surface); }
+        .spec-table th, .spec-table td { padding: 13px 18px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--border); }
+        .spec-table thead th { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--text-dim); background: var(--surface-2); }
+        .spec-table tbody tr:last-child th, .spec-table tbody tr:last-child td { border-bottom: 0; }
+        .spec-table tbody th { font-weight: 500; color: var(--text-muted); white-space: nowrap; }
+        .spec-table td { color: var(--text); }
+        .spec-table td.is-step { font-family: var(--mono); font-size: 12.5px; color: var(--teal); white-space: nowrap; }
+        .spec-note { margin-top: 14px; font-size: 13.5px; color: var(--text-dim); }
+        .step-cmd { display: block; margin-top: 12px; font-family: var(--mono); font-size: 12.5px; color: var(--teal); overflow-x: auto; }
+    </style>
+{% endblock %}
+
+{% block content %}
+
+    <section class="hero">
+        <div class="wrap hero-grid">
+            <div>
+                <span class="eyebrow">Minimal skeleton · PSR-15</span>
+                <h1>Dotkernel Light</h1>
+                <p class="sub">
+                    A PSR-15 compliant application skeleton on the Mezzio microframework and Laminas components,
+                    designed as a minimal project for generating a simple website - a presentation site, a landing page,
+                    a small service. Six direct dependencies, two modules, and nothing to delete before you start.
+                </p>
+                <div class="hero-ctas">
+                    <a class="btn btn-primary" href="https://docs.dotkernel.org/light-documentation/" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                        Read the docs
+                    </a>
+                    <a class="btn btn-ghost" href="https://github.com/dotkernel/light" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.1.83-.27.83-.58v-2.17c-3.34.73-4.04-1.42-4.04-1.42-.55-1.4-1.34-1.77-1.34-1.77-1.08-.75.09-.73.09-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.84 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.53.12-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.65.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .31.22.69.83.57A12 12 0 0 0 12 .5z"/></svg>
+                        View on GitHub
+                    </a>
+                    <a class="btn btn-ghost" href="https://light.dotkernel.net/" target="_blank" rel="noopener">Live demo</a>
+                </div>
+                <div class="badges mt-3">
+                    <img alt="PHP version for dotkernel/light" loading="lazy" src="https://img.shields.io/packagist/dependency-v/dotkernel/light/php?style=flat&label=php">
+                    <img alt="Latest release of dotkernel/light" loading="lazy" src="https://img.shields.io/packagist/v/dotkernel/light?style=flat">
+                    <img alt="License of dotkernel/light" loading="lazy" src="https://img.shields.io/github/license/dotkernel/light?style=flat">
+                    <img alt="OSS lifecycle for dotkernel/light" loading="lazy" src="https://img.shields.io/osslifecycle/dotkernel/light?style=flat">
+                </div>
+                <div class="hero-stack-note">
+                    <div><span>Runtime</span> Mezzio + Laminas</div>
+                    <div><span>Templating</span> Twig</div>
+                    <div><span>Direct deps</span> Six</div>
+                </div>
+            </div>
+
+            <div class="pipeline">
+                <div class="pipeline-label"><span>Request lifecycle</span></div>
+                <div class="pipeline-track">
+                    <div class="pl-packet" aria-hidden="true"></div>
+                    <div class="pl-step"><span class="name">index.php</span><span class="tag">bootstrap</span></div>
+                    <div class="pl-step"><span class="name">Container</span><span class="tag">factories · aliases</span></div>
+                    <div class="pl-step"><span class="name">Routing</span><span class="tag">FastRoute</span></div>
+                    <div class="pl-step"><span class="name">Pipeline</span><span class="tag">pipeline.php</span></div>
+                    <div class="pl-step"><span class="name">Handler</span><span class="tag">PSR-15</span></div>
+                    <div class="pl-step"><span class="name">Twig</span><span class="tag">layout · blocks</span></div>
+                    <div class="pl-step"><span class="name">Emitter</span><span class="tag">HtmlResponse</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="what-is-platform">
+        <div class="wrap split">
+            <div>
+                <span class="eyebrow">What it is</span>
+                <h2>The smallest complete Mezzio application</h2>
+                <p class="lede">
+                    Light is what remains when you take a real PSR-15 application and remove everything a presentation
+                    site does not need. There is no ORM, no authentication stack, no admin scaffolding - not disabled,
+                    simply not installed. What you get is routing, a middleware pipeline, Twig, and error logging.
+                </p>
+                <p class="lede">
+                    That makes it two things at once: a genuine starting point for a small site, and the clearest way to
+                    read how a Mezzio application is put together, because there is almost nothing else in the way.
+                </p>
+                <div class="extending">
+                    Extending the power of
+                    <div class="extending-logo">
+                        <img src="{{ asset('images/app/content/mezzio-by-laminas.svg') }}" alt="Mezzio by Laminas" loading="lazy">
+                    </div>
+                </div>
+            </div>
+            <div class="traits">
+                <div class="trait">
+                    <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/success-50.svg') }}" alt="" loading="lazy">
+                    <p>Six direct dependencies</p>
+                </div>
+
+                <div class="trait">
+                    <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/traffic-sign-50.svg') }}" alt="" loading="lazy">
+                    <p>No database layer to configure</p>
+                </div>
+
+                <div class="trait">
+                    <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/speed-radar-50.svg') }}" alt="" loading="lazy">
+                    <p>A new page is one config line and one template</p>
+                </div>
+
+                <div class="trait">
+                    <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/maintenance.svg') }}" alt="" loading="lazy">
+                    <p>Twig layout, Vite asset pipeline</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="background:var(--surface-2);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">What's in the box</span>
+                <h2>Six packages, and you can name all of them</h2>
+                <p>This is the entire direct dependency list. Every one of them is doing a job you would have had to
+                   solve anyway.</p>
+            </div>
+
+            <div class="standards-grid">
+                <div class="standard">
+                    <h4><a href="https://github.com/mezzio/mezzio" target="_blank" rel="noopener">mezzio/mezzio</a></h4>
+                    <p>The PSR-15 middleware microframework the whole application runs on.</p>
+                </div>
+                <div class="standard">
+                    <h4><a href="https://github.com/mezzio/mezzio-fastroute" target="_blank" rel="noopener">mezzio-fastroute</a></h4>
+                    <p>FastRoute integration - matches the URL and method against your registered routes.</p>
+                </div>
+                <div class="standard">
+                    <h4><a href="https://github.com/mezzio/mezzio-twigrenderer" target="_blank" rel="noopener">mezzio-twigrenderer</a></h4>
+                    <p>Twig integration for Mezzio. Every template is a <code>.html.twig</code> file.</p>
+                </div>
+                <div class="standard">
+                    <h4><a href="https://github.com/dotkernel/dot-errorhandler" target="_blank" rel="noopener">dot-errorhandler</a></h4>
+                    <p>Logging error handler for middleware applications - daily log files, configured in one place.</p>
+                </div>
+                <div class="standard">
+                    <h4><a href="https://github.com/laminas/laminas-config-aggregator" target="_blank" rel="noopener">laminas-config-aggregator</a></h4>
+                    <p>Collects and merges configuration from every source into one array.</p>
+                </div>
+                <div class="standard">
+                    <h4><a href="https://github.com/laminas/laminas-component-installer" target="_blank" rel="noopener">laminas-component-installer</a></h4>
+                    <p>The Composer plugin that injects modules and config providers during installation.</p>
+                </div>
+            </div>
+
+            <p class="spec-note">
+                Two modules ship in <code>src/</code>: <code>App</code> for core functionality - rendering and error
+                reporting - and <code>Page</code> for displaying a page. Each module keeps its
+                <code>Handler</code>, <code>Factory</code> and <code>Service</code> folders next to a
+                <code>ConfigProvider</code> and a <code>RoutesDelegator</code>, following PSR-4.
+            </p>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">How it works</span>
+                <h2>A request, end to end</h2>
+                <p>Eleven steps from the browser to the rendered page, with nothing hidden behind a kernel. This is the
+                   sequence you can follow in the source.</p>
+            </div>
+
+            <div class="spec-table-wrap">
+                <table class="spec-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Step</th>
+                            <th scope="col">What happens</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="is-step">1</td><th scope="row">HTTP request</th><td><code>public/index.php</code> bootstraps the application, loads configuration, and creates the Mezzio application instance.</td></tr>
+                        <tr><td class="is-step">2</td><th scope="row">Service container</th><td>Factories, aliases and delegators are registered; every service is configured and ready to use.</td></tr>
+                        <tr><td class="is-step">3</td><th scope="row">Route registration</th><td>All available routes and their allowed methods are read and registered dynamically, managed by FastRoute.</td></tr>
+                        <tr><td class="is-step">4</td><th scope="row">Middleware pipeline</th><td><code>config/pipeline.php</code> defines the order middleware runs in, and so how requests travel and responses come back.</td></tr>
+                        <tr><td class="is-step">5</td><th scope="row">Routing</th><td>FastRoute matches the URL and method against the registered routes to find the handler.</td></tr>
+                        <tr><td class="is-step">6</td><th scope="row">Handler invocation</th><td>The matched route name is pulled off the request and passed to the renderer - <code>page::about</code> becomes the template to render.</td></tr>
+                        <tr><td class="is-step">7</td><th scope="row">Custom logic</th><td>Your business logic runs in the handler, calling whatever services it needs.</td></tr>
+                        <tr><td class="is-step">8</td><th scope="row">Template rendering</th><td>Twig loads the template, applies the layout, renders the blocks and includes the partials.</td></tr>
+                        <tr><td class="is-step">9</td><th scope="row">Response creation</th><td>An <code>HtmlResponse</code> is built with status, headers and the rendered HTML body.</td></tr>
+                        <tr><td class="is-step">10</td><th scope="row">Response pipeline</th><td>The response flows back out through the middleware stack, which can still change headers, cookies or compression.</td></tr>
+                        <tr><td class="is-step">11</td><th scope="row">Response emitter</th><td>The final response is sent to the browser.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="spec-note">
+                Handlers, not controllers - that is what keeps the application PSR-15 compliant. Each module's
+                <code>RoutesDelegator</code> reads the route config from the container and registers the routes it
+                finds, so adding a page never means touching the framework.
+            </p>
+        </div>
+    </section>
+
+    <section style="background:var(--surface-2);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);">
+        <div class="wrap split">
+            <div>
+                <span class="eyebrow">Day-to-day</span>
+                <h2>Adding a page is two files</h2>
+                <p class="lede">
+                    Routes live in configuration as <code>slug => template</code> pairs. Append a line, create the
+                    matching Twig template in <code>src/Page/templates/page/</code>, and add a link to the menu in the
+                    layout. The handler works out which template to render from the matched route name, so there is no
+                    handler to write.
+                </p>
+                <p class="lede">
+                    Want your templates in more than one folder? Add another entry under <code>paths</code> in the
+                    Page module's <code>ConfigProvider</code> - the key does not have to match the folder name.
+                </p>
+                <div class="hero-ctas">
+                    <a class="btn btn-ghost" href="https://docs.dotkernel.org/light-documentation/v1/how-tos/create-pages/" target="_blank" rel="noopener">Creating pages</a>
+                </div>
+            </div>
+            <div class="callout">
+                <h4>One route, one template</h4>
+                <p>In <code>config/autoload/local.php</code>, under the <code>routes</code> → <code>page</code> key:</p>
+                <code class="step-cmd">'example-page' =&gt; 'example-template',</code>
+                <p>Then create the template it names:</p>
+                <code class="step-cmd">src/Page/templates/page/example-template.html.twig</code>
+                <p>
+                    The key is the page slug, the value is the template. Your new page answers at
+                    <code>/page/example-page</code>, under the route name <code>page::example-template</code>.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Front end</span>
+                <h2>Assets, menus and social cards</h2>
+                <p>The parts you actually edit on a presentation site, and where each of them lives.</p>
+            </div>
+
+            <div class="products-grid">
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Build · Vite</span><h3>Asset pipeline</h3></div>
+                    </div>
+                    <p class="lede">One command while you work, one before you ship.</p>
+                    <p class="desc">
+                        Vite concatenates and compresses CSS and JavaScript, preprocesses SCSS, and copies fonts and
+                        images - avoiding the network bottleneck of many separate files. <code>npm run watch</code>
+                        recompiles on change; <code>npm run build</code> compiles once. Node.js v20 is the minimum
+                        supported version.
+                    </p>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Build · Source of truth</span><h3>assets → public</h3></div>
+                    </div>
+                    <p class="lede">Edit the source, never the output.</p>
+                    <p class="desc">
+                        Images, fonts, JavaScript and SCSS live in <code>src/App/assets/</code>. The build deletes and
+                        rebuilds <code>css</code>, <code>js</code>, <code>fonts</code> and <code>images</code> under
+                        <code>public/</code> - anything you edit there by hand is lost on the next run. Everything else
+                        in <code>public/</code> is left alone.
+                    </p>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Build · Caching</span><h3>Cache busting</h3></div>
+                    </div>
+                    <p class="lede">The oldest bug in web deployment, solved in one character.</p>
+                    <p class="desc">
+                        Browsers cache your built CSS and JS, so a deploy can leave visitors on the old file. Add a
+                        version parameter to the asset URL in the layout - <code>app.css?v=3</code> - and increment it
+                        whenever you commit a change to that file.
+                    </p>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Content · Navigation</span><h3>Menu and footer</h3></div>
+                    </div>
+                    <p class="lede">Plain Twig in one layout file.</p>
+                    <p class="desc">
+                        The top menu is the list under <code>id="navbarHeader"</code> in
+                        <code>src/App/templates/layout/default.html.twig</code>; each <code>li</code> is one item, and
+                        items can be grouped into dropdowns or styled as buttons. The footer is the
+                        <code>app-footer</code> element in the same file.
+                    </p>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Content · Sharing</span><h3>Twitter &amp; OpenGraph</h3></div>
+                    </div>
+                    <p class="lede">Cards for when your pages get posted elsewhere.</p>
+                    <p class="desc">
+                        Add the card meta tags to the layout head, generating URLs with the same helper the canonical
+                        block uses - <code>{{ '{{ url(routeName ?? null) }}' }}</code> - which also keeps mistyped URLs
+                        from breaking the page.
+                    </p>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Operations · Logs</span><h3>Errors and logs</h3></div>
+                    </div>
+                    <p class="lede">A log file per day, from the first request.</p>
+                    <p class="desc">
+                        <code>dot-errorhandler</code> writes daily files into <code>log/</code>, in the format set
+                        under the <code>stream</code> key of <code>error-handling.global.php</code>. Development mode
+                        adds the error handlers you want locally and nowhere else.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="background:var(--surface-2);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Installation</span>
+                <h2>Running in minutes, honestly</h2>
+                <p>No database to create, no fixtures to seed. Clone, install, set a URL, open it.</p>
+            </div>
+
+            <div class="standards-grid">
+                <div class="standard">
+                    <h4>1 · Clone into an empty folder</h4>
+                    <p>Git refuses a directory that is not empty, and you need write permissions on it.</p>
+                    <code class="step-cmd">git clone https://github.com/dotkernel/light.git .</code>
+                </div>
+                <div class="standard">
+                    <h4>2 · Install dependencies</h4>
+                    <p>Run it from the CLI so the prompts stay interactive. Decline the config provider injection -
+                       Light already includes its own.</p>
+                    <code class="step-cmd">composer install</code>
+                </div>
+                <div class="standard">
+                    <h4>3 · Enable development mode</h4>
+                    <p>Local work only. <code>composer development-status</code> reports where you stand.</p>
+                    <code class="step-cmd">composer development-enable</code>
+                </div>
+                <div class="standard">
+                    <h4>4 · Set the base URL</h4>
+                    <p>Point <code>$baseUrl</code> in <code>config/autoload/local.php</code> at your virtual host.</p>
+                </div>
+                <div class="standard">
+                    <h4>5 · Fix the writable folders</h4>
+                    <p>The two directories the application writes to. Most first-run errors are this and nothing
+                       else.</p>
+                    <code class="step-cmd">chmod -R 777 ./data ./log</code>
+                </div>
+                <div class="standard">
+                    <h4>6 · Open it in a browser</h4>
+                    <p>The Dotkernel Light welcome page is waiting. Errors about missing services usually mean a stale
+                       config cache.</p>
+                    <code class="step-cmd">php ./bin/clear-config-cache.php</code>
+                </div>
+            </div>
+
+            <p class="spec-note">
+                A cached <code>data/cache/config-cache.php</code> is loaded regardless of the
+                <code>ConfigAggregator::ENABLE_CACHE</code> setting - which is exactly why clearing it fixes so much.
+                On Windows, WSL2 with AlmaLinux is the recommended development environment.
+            </p>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Requirements</span>
+                <h2>What the server needs</h2>
+            </div>
+
+            <div class="spec-table-wrap">
+                <table class="spec-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Component</th>
+                            <th scope="col">Requirement</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Operating system</th>
+                            <td>A *nix based system is strongly recommended for production.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">PHP</th>
+                            <td>8.2, 8.3 or 8.4, with mod_php or FCGI (FPM). <code>memory_limit</code> at least
+                                128M.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Web server</th>
+                            <td>Apache 2.2+ with <code>mod_rewrite</code> and <code>.htaccess</code> support
+                                (<code>AllowOverride All</code>); a default <code>.htaccess</code> ships in
+                                <code>public/</code>. On Nginx, translate it into server configuration.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Database</th>
+                            <td>None. Light has no persistence layer - which is the point.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Required extensions</th>
+                            <td><code>mbstring</code>, plus Composer available on <code>$PATH</code>.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Recommended extensions</th>
+                            <td><code>opcache</code>; <code>dom</code> and <code>simplexml</code> for markup;
+                                <code>gd</code> and <code>exif</code> for images; <code>zlib</code>,
+                                <code>zip</code>, <code>bz2</code> for compression; <code>curl</code> if you call
+                                APIs.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section style="background:var(--surface-2);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Choosing</span>
+                <h2>When Light is the wrong answer</h2>
+                <p>Light sits outside the Headless Platform on purpose. It has no sessions, no forms, no authentication
+                   and no database - so the moment you need those, start from a skeleton that already has them rather
+                   than growing them here.</p>
+            </div>
+
+            <div class="products-grid">
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Instead · Full-stack web</span><h3>Frontend</h3></div>
+                    </div>
+                    <p class="lede">You need logins, forms and sessions.</p>
+                    <p class="desc">A server-rendered web starter on Mezzio and Laminas - Twig views, forms, sessions
+                        and RBAC-guarded routes, still standing on its own outside the platform.</p>
+                    <div class="card-btns">
+                        <a class="btn btn-ghost btn-sm" href="https://github.com/dotkernel/frontend" target="_blank" rel="noopener">GitHub</a>
+                        <a class="btn btn-ghost btn-sm" href="https://v5.dotkernel.net/" target="_blank" rel="noopener">Demo</a>
+                        <a class="btn btn-ghost btn-sm" href="https://docs.dotkernel.org/frontend/" target="_blank" rel="noopener">Docs</a>
+                    </div>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Instead · HTTP surface</span><h3>API</h3></div>
+                    </div>
+                    <p class="lede">You are serving clients, not pages.</p>
+                    <p class="desc">A REST API on a PSR-15 middleware pipeline, with OAuth 2.0, RBAC, HAL payloads and
+                        an OpenAPI 3.0 specification wired up on install.</p>
+                    <div class="card-btns">
+                        <a class="btn btn-primary btn-sm" href="{{ url('page::dotkernel-api') }}">Read more</a>
+                        <a class="btn btn-ghost btn-sm" href="https://github.com/dotkernel/api" target="_blank" rel="noopener">GitHub</a>
+                    </div>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Instead · Back office</span><h3>Admin</h3></div>
+                    </div>
+                    <p class="lede">You need to manage records, not publish copy.</p>
+                    <p class="desc">Table-based record management with RBAC guards, CSRF-protected forms and 2FA, over a
+                        Core module shared with the rest of the platform.</p>
+                    <div class="card-btns">
+                        <a class="btn btn-primary btn-sm" href="{{ url('page::dotkernel-admin') }}">Read more</a>
+                        <a class="btn btn-ghost btn-sm" href="https://github.com/dotkernel/admin" target="_blank" rel="noopener">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% if posts is defined and posts is iterable %}
+        <section>
+            <div class="wrap">
+                <div class="section-head">
+                    <span class="eyebrow">From the blog</span>
+                    <h2>Go deeper</h2>
+                </div>
+                <div class="posts-grid">
+                    {% for post in posts %}
+                        <a class="post-card" href="{{ url('page::blog-resource', {categorySlug: post.category.slug, slug: post.slug}) }}">
+                            <div class="post-date">{{ post.postDate|date('M d, Y') }}</div>
+                            <h3>{{ post.title }}</h3>
+                            <p>{{ post.excerpt }}</p>
+                            <span class="read-more">Read more →</span>
+                        </a>
+                    {% else %}
+                        <p class="text-muted text-center mb-0">No recent posts.</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    {% endif %}
+
+    <section class="about-band">
+        <div class="wrap about-inner">
+            <div>
+                <span class="eyebrow">Open source, in production</span>
+                <h2>Small enough to read, real enough to ship.</h2>
+            </div>
+            <div>
+                <p class="about-text">Dotkernel Light is developed and led by the dev team at Apidemia, and released as
+                    open source for the community. If you want to see the whole application before you commit to it,
+                    that is the entire promise of this skeleton.</p>
+                <div class="about-cta">
+                    <a class="btn btn-ghost" href="{{ url('page::contact') }}">Talk to us →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

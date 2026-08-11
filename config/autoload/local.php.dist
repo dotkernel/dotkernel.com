@@ -80,7 +80,12 @@ return [
     // and is routed in Light\App\RoutesDelegator. Re-adding it here registers the path twice.
     'routes' => [
         'page' => [
-            'contact' => 'contact',
+            'contact'            => 'contact',
+            'dotkernel-api'      => 'dotkernel-api',
+            'dotkernel-admin'    => 'dotkernel-admin',
+            'dotkernel-queue'    => 'dotkernel-queue',
+            'dotkernel-light'    => 'dotkernel-light',
+            'dotkernel-frontend' => 'dotkernel-frontend',
         ],
     ],
     'twig'   => [
