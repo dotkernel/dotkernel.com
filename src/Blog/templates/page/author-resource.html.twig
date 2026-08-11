@@ -44,18 +44,7 @@
                 </div>
 
                 {% if data.lastPage > 1 %}
-                    <nav class="pagination-row mt-3" aria-label="Author posts pagination">
-                        <a class="btn btn-ghost btn-sm {% if data.isFirstPage %}disabled{% endif %}"
-                           href="?page={{ data.previousPage }}" aria-label="Previous page">←</a>
-
-                        {% for p in data.pages %}
-                            <a class="btn btn-sm {% if p == data.currentPage %}btn-primary{% else %}btn-ghost{% endif %}"
-                               href="?page={{ p }}">{{ p }}</a>
-                        {% endfor %}
-
-                        <a class="btn btn-ghost btn-sm {% if data.isLastPage %}disabled{% endif %}"
-                           href="?page={{ data.nextPage }}" aria-label="Next page">→</a>
-                    </nav>
+                    {{ include('@partial/pagination.html.twig', {data: data, aria_label: 'Author posts pagination'}) }}
 
                     <p class="post-date pagination-summary">
                         Page {{ data.currentPage }} of {{ data.lastPage }}
