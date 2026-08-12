@@ -1,0 +1,564 @@
+{% extends '@layout/default.html.twig' %}
+
+{% set routeName = 'page::frontend' %}
+{% set meta = {
+    title: 'Dotkernel Frontend | Server-rendered PHP web starter',
+    description: 'Dotkernel Frontend is a web starter skeleton on Mezzio and Laminas - user accounts, a contact form, '
+        ~ 'RBAC guards, CSRF-protected forms, flash messages and GDPR account anonymization, server-rendered in Twig.',
+} %}
+
+{% block title %}Dotkernel Frontend{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        /* Requirement and reference tables - scoped to this page, uses the shared theme tokens. */
+        .spec-table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius); }
+        .spec-table { width: 100%; border-collapse: collapse; font-size: 14.5px; background: var(--surface); }
+        .spec-table th, .spec-table td { padding: 14px 18px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--border); }
+        .spec-table thead th { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--text-dim); background: var(--surface-2); }
+        .spec-table tbody tr:last-child th, .spec-table tbody tr:last-child td { border-bottom: 0; }
+        .spec-table tbody th { font-weight: 500; color: var(--text-muted); white-space: nowrap; }
+        .spec-table td { color: var(--text); }
+        .spec-note { margin-top: 14px; font-size: 13.5px; color: var(--text-dim); }
+        .step-cmd { display: block; margin-top: 12px; font-family: var(--mono); font-size: 12.5px; color: var(--teal); overflow-x: auto; }
+    </style>
+{% endblock %}
+
+{% block content %}
+
+    <section class="hero">
+        <div class="wrap hero-grid">
+            <div>
+                <span class="eyebrow">Web starter · Server-rendered</span>
+                <h1>Dotkernel Frontend</h1>
+                <p class="sub">
+                    A web starter skeleton on the Mezzio microframework and Laminas components, for the applications
+                    people log into. User accounts, a working contact form and a content page ship as proof of concept -
+                    real, running features whose only job is to show you where your own code goes.
+                </p>
+                <div class="hero-ctas">
+                    <a class="btn btn-primary" href="https://docs.dotkernel.org/frontend/" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                        Read the docs
+                    </a>
+                    <a class="btn btn-ghost" href="https://github.com/dotkernel/frontend" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.1.83-.27.83-.58v-2.17c-3.34.73-4.04-1.42-4.04-1.42-.55-1.4-1.34-1.77-1.34-1.77-1.08-.75.09-.73.09-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.84 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.53.12-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.65.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .31.22.69.83.57A12 12 0 0 0 12 .5z"/></svg>
+                        View on GitHub
+                    </a>
+                    <a class="btn btn-ghost" href="https://v5.dotkernel.net/" target="_blank" rel="noopener">Live demo</a>
+                </div>
+                <div class="badges mt-3">
+                    <img alt="PHP version for dotkernel/frontend" loading="lazy" src="https://img.shields.io/packagist/dependency-v/dotkernel/frontend/php?style=flat&label=php">
+                    <img alt="Latest release of dotkernel/frontend" loading="lazy" src="https://img.shields.io/packagist/v/dotkernel/frontend?style=flat">
+                    <img alt="License of dotkernel/frontend" loading="lazy" src="https://img.shields.io/github/license/dotkernel/frontend?style=flat">
+                    <img alt="OSS lifecycle for dotkernel/frontend" loading="lazy" src="https://img.shields.io/osslifecycle/dotkernel/frontend?style=flat">
+                </div>
+                <div class="hero-stack-note">
+                    <div><span>Runtime</span> Mezzio + Laminas</div>
+                    <div><span>Pattern</span> Action controllers</div>
+                    <div><span>Templating</span> Twig</div>
+                </div>
+            </div>
+
+            <div class="pipeline">
+                <div class="pipeline-label"><span>Request lifecycle</span></div>
+                <div class="pipeline-track">
+                    <div class="pl-packet" aria-hidden="true"></div>
+                    <div class="pl-step"><span class="name">Session</span><span class="tag">dot-session</span></div>
+                    <div class="pl-step"><span class="name">Router</span><span class="tag">FastRoute</span></div>
+                    <div class="pl-step"><span class="name">Authentication</span><span class="tag">User identity</span></div>
+                    <div class="pl-step"><span class="name">RBAC guard</span><span class="tag">route + action</span></div>
+                    <div class="pl-step"><span class="name">Controller action</span><span class="tag">dot-controller</span></div>
+                    <div class="pl-step"><span class="name">Response</span><span class="tag">Twig + flash</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="what-is-platform">
+        <div class="wrap split">
+            <div>
+                <span class="eyebrow">What it is</span>
+                <h2>The web application half of the stack</h2>
+                <p class="lede">
+                    Frontend is the skeleton for a server-rendered application with users in it. Where Light gives you
+                    pages, Frontend gives you the machinery around them: sessions, authentication, registration,
+                    validated forms, flash messages between redirects, and role-based access to individual controller
+                    actions.
+                </p>
+                <p class="lede">
+                    The shipped features - contact us, a generic content page, user accounts - are deliberately
+                    presented as building blocks rather than a finished product. They exist to showcase the file
+                    architecture and to be copied.
+                </p>
+                <div class="extending">
+                    Extending the power of
+                    <div class="extending-logo">
+                        <img src="{{ asset('images/app/content/mezzio-by-laminas.svg') }}" alt="Mezzio by Laminas" loading="lazy">
+                    </div>
+                </div>
+            </div>
+            <div class="traits">
+                <div class="trait">
+                    <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/success-50.svg') }}" alt="" loading="lazy">
+                    <p>User accounts, from register to unregister</p>
+                </div>
+
+                <div class="trait">
+                    <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/traffic-sign-50.svg') }}" alt="" loading="lazy">
+                    <p>Action controllers, not request handlers</p>
+                </div>
+
+                <div class="trait">
+                    <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/speed-radar-50.svg') }}" alt="" loading="lazy">
+                    <p>CSRF and reCAPTCHA on public forms</p>
+                </div>
+
+                <div class="trait">
+                    <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/maintenance.svg') }}" alt="" loading="lazy">
+                    <p>GDPR anonymization out of the box</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="background:var(--surface-2);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">What ships wired up</span>
+                <h2>Everything a logged-in site needs first</h2>
+                <p>These are the parts you would otherwise spend your first two weeks assembling, already working
+                   together in a fresh install.</p>
+            </div>
+
+            <div class="products-grid">
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Users · Accounts</span><h3>Registration &amp; login</h3></div>
+                    </div>
+                    <p class="lede">The whole account lifecycle, already routed.</p>
+                    <p class="desc">
+                        Login, registration and account management, including avatar upload, password change and
+                        unregistering. Password reset and account activation emails are part of the flow, which is why
+                        the skeleton stores a name and an email address and nothing more.
+                    </p>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Security · Access control</span><h3>Guards per action</h3></div>
+                    </div>
+                    <p class="lede">Permissions applied to individual controller actions.</p>
+                    <p class="desc">
+                        <code>dot-rbac-guard</code> and <code>dot-rbac</code> read roles and permissions from
+                        <code>authorization.global.php</code>, then <code>authorization-guards.global.php</code> maps
+                        rules onto a route and a named list of its actions - or an empty list to cover all of them.
+                        Fine-grained without being scattered.
+                    </p>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Security · Forms</span><h3>CSRF tokens</h3></div>
+                    </div>
+                    <p class="lede">A new token per render, validated on submit.</p>
+                    <p class="desc">
+                        Built from the <code>laminas-form</code> CSRF element, a <code>laminas-session</code> CSRF
+                        validator in the input filter, and the <code>formElement</code> view helper in the template.
+                        Tokens expire after a configurable timeout - one hour by default - and are never reusable
+                        between forms.
+                    </p>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Public · Contact</span><h3>Contact form with reCAPTCHA</h3></div>
+                    </div>
+                    <p class="lede">A public form that does not become a spam relay.</p>
+                    <p class="desc">
+                        The contact form uses Google reCAPTCHA, with the site and secret keys read from local
+                        configuration and the message recipients - <code>to</code> and any number of
+                        <code>cc</code> addresses - configured alongside them. Whitelist <code>localhost</code> while
+                        developing, and take it out again for production.
+                    </p>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">UX · Feedback</span><h3>Flash messages</h3></div>
+                    </div>
+                    <p class="lede">The message survives the redirect.</p>
+                    <p class="desc">
+                        <code>dot-flashmessenger</code> carries session messages across redirects - the small piece that
+                        makes post-then-redirect flows feel finished. <code>dot-session</code> extends laminas-session
+                        underneath, configured in <code>session.global.php</code>.
+                    </p>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Wiring · DI</span><h3>Attribute injection</h3></div>
+                    </div>
+                    <p class="lede">Constructor injection declared on the constructor.</p>
+                    <p class="desc">
+                        <code>dot-dependency-injection</code> reads an <code>#[Inject]</code> attribute and resolves
+                        each listed dependency - a service, the whole <code>config</code> array, or a single key by dot
+                        notation. Register the class against <code>AttributedServiceFactory</code> and stop writing
+                        factories.
+                    </p>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Data · Persistence</span><h3>Doctrine ORM</h3></div>
+                    </div>
+                    <p class="lede">Migrations and fixtures, driven from the CLI.</p>
+                    <p class="desc">
+                        Doctrine through <code>roave/psr-container-doctrine</code>, with UUIDs as a field type via
+                        <code>ramsey/uuid-doctrine</code>. Migrations live in <code>data/doctrine/migrations</code>;
+                        <code>bin/doctrine fixtures:execute</code> seeds the default roles.
+                    </p>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Delivery · HTTP</span><h3>Headers &amp; CORS</h3></div>
+                    </div>
+                    <p class="lede">Response headers declared per route.</p>
+                    <p class="desc">
+                        <code>dot-response-header</code> sets custom headers per route from
+                        <code>response-header.global.php</code>, while <code>mezzio-cors</code> handles origins, headers
+                        and cookies from <code>cors.global.php</code>.
+                    </p>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Content · Presentation</span><h3>Menus, templates, i18n</h3></div>
+                    </div>
+                    <p class="lede">Navigation from configuration, translation when you need it.</p>
+                    <p class="desc">
+                        <code>dot-navigation</code> defines and parses menus inside templates from configuration.
+                        <code>dot-twigrenderer</code> adds Dotkernel's Twig extensions, and
+                        <code>laminas-i18n</code> is present for a complete translation suite. The
+                        <code>Plugin</code> module carries dynamic forms and templates.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap split">
+            <div>
+                <span class="eyebrow">Compliance</span>
+                <h2>Account anonymization, not just deletion</h2>
+                <p class="lede">
+                    Under the GDPR, a company recording personal data from EU citizens must delete it on request -
+                    or anonymize it, which the European Commission accepts as an alternative. Frontend implements the
+                    second option, because deleting a user row is rarely what your foreign keys want.
+                </p>
+                <p class="lede">
+                    The skeleton stores only what it needs to run those flows: first name, last name and the email
+                    address used as the identity, for password reset and account activation. Anonymizing replaces
+                    exactly those.
+                </p>
+                <div class="hero-ctas">
+                    <a class="btn btn-ghost" href="https://docs.dotkernel.org/frontend/v5/reference/account-anonymization/" target="_blank" rel="noopener">Anonymization reference</a>
+                </div>
+            </div>
+            <div class="callout">
+                <h4>What anonymization changes</h4>
+                <ul>
+                    <li>First and last name become <code>anonymous</code> plus the current UNIX timestamp - for example
+                        <code>anonymous1725980747</code>.</li>
+                    <li>The email becomes the same value plus whatever you set in <code>userAnonymizeAppend</code> -
+                        <code>anonymous1725980747@example.com</code>.</li>
+                    <li>The avatar image and its database record are deleted.</li>
+                </ul>
+                <p>
+                    Point <code>userAnonymizeAppend</code> at a domain you control and it doubles as a catch-all
+                    address, if your mail provider supports one. Leave it empty and the local part stands alone.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section style="background:var(--surface-2);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Structure</span>
+                <h2>Five modules, PSR-4 throughout</h2>
+                <p>Each module keeps its controllers, entities, repositories and services together, alongside a
+                   <code>ConfigProvider</code> and a <code>RoutesDelegator</code> - so a new feature has an obvious
+                   shape before you write it.</p>
+            </div>
+
+            <div class="standards-grid">
+                <div class="standard">
+                    <h4><code>User</code></h4>
+                    <p>Login, registration and account management - the largest module, and the one worth reading
+                       first.</p>
+                </div>
+                <div class="standard">
+                    <h4><code>App</code></h4>
+                    <p>Core functionality: authentication, rendering and error reporting.</p>
+                </div>
+                <div class="standard">
+                    <h4><code>Contact</code></h4>
+                    <p>The contact us form, from validation through to the outgoing mail.</p>
+                </div>
+                <div class="standard">
+                    <h4><code>Page</code></h4>
+                    <p>Displaying a page - the minimal case, for static copy.</p>
+                </div>
+                <div class="standard">
+                    <h4><code>Plugin</code></h4>
+                    <p>Plugin functionality for dynamic forms and templates.</p>
+                </div>
+                <div class="standard">
+                    <h4>Module contents</h4>
+                    <p><code>Controller</code>, <code>Entity</code>, <code>Repository</code> and
+                       <code>Service</code> folders, plus <code>InputFilter</code>, <code>EventListener</code>,
+                       <code>Helper</code>, <code>Command</code> or <code>Factory</code> as needed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Installation</span>
+                <h2>From clone to welcome page</h2>
+                <p>The documentation walks through every command with its expected output. This is the sequence.</p>
+            </div>
+
+            <div class="standards-grid">
+                <div class="standard">
+                    <h4>1 · Clone into an empty folder</h4>
+                    <p>Git refuses a non-empty directory, and you need write permissions on it.</p>
+                    <code class="step-cmd">git clone https://github.com/dotkernel/frontend.git .</code>
+                </div>
+                <div class="standard">
+                    <h4>2 · Install dependencies</h4>
+                    <p>From the CLI, so the prompts stay interactive. Decline the config provider injection - Frontend
+                       ships its own.</p>
+                    <code class="step-cmd">composer install</code>
+                </div>
+                <div class="standard">
+                    <h4>3 · Enable development mode</h4>
+                    <p>Sets debug on, configuration caching off, and clears any existing cache.</p>
+                    <code class="step-cmd">composer development-enable</code>
+                </div>
+                <div class="standard">
+                    <h4>4 · Prepare the config files</h4>
+                    <p>Copy the <code>.dist</code> files into place - <code>local.php</code>,
+                       <code>development.local.php</code>, <code>mail.local.php</code>,
+                       <code>debugbar.local.php</code> - then fill in the database, SMTP and reCAPTCHA details.</p>
+                </div>
+                <div class="standard">
+                    <h4>5 · Migrate and seed</h4>
+                    <p>Migrations build the schema and are logged so none runs twice; the fixtures populate the default
+                       user roles.</p>
+                    <code class="step-cmd">php vendor/bin/doctrine-migrations migrate<br>php bin/doctrine fixtures:execute</code>
+                </div>
+                <div class="standard">
+                    <h4>6 · Fix permissions and open it</h4>
+                    <p>Three writable paths cover almost every first-run error.</p>
+                    <code class="step-cmd">chmod -R 777 data log public/uploads</code>
+                </div>
+            </div>
+
+            <p class="spec-note">
+                Two local-only notes worth keeping: <code>session.cookie_secure</code> has to be
+                <code>false</code> in your own <code>local.php</code> - never in <code>local.php.dist</code>, where it
+                stays <code>true</code> for production - and a stale
+                <code>data/cache/config-cache.php</code> is loaded regardless of
+                <code>ConfigAggregator::ENABLE_CACHE</code>, so clear it with
+                <code>bin/clear-config-cache.php</code> when services go missing. Duplicating
+                <code>local.test.php.dist</code> gives your tests an in-memory database.
+            </p>
+        </div>
+    </section>
+
+    <section style="background:var(--surface-2);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Requirements</span>
+                <h2>What the server needs</h2>
+            </div>
+
+            <div class="spec-table-wrap">
+                <table class="spec-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Component</th>
+                            <th scope="col">Requirement</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Operating system</th>
+                            <td>A *nix based system is strongly recommended for production.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">PHP</th>
+                            <td>8.2 or newer, mod_php or FCGI (FPM). <code>memory_limit</code> at least 128M;
+                                <code>upload_max_filesize</code> and <code>post_max_size</code> at least 100M depending
+                                on your data.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Web server</th>
+                            <td>Apache 2.2+ with <code>mod_rewrite</code> and <code>.htaccess</code> support
+                                (<code>AllowOverride All</code>); a default <code>.htaccess</code> ships in
+                                <code>public/</code>. On Nginx, translate it into server configuration.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Database</th>
+                            <td>Tested with MariaDB 10.11 LTS and 11.4 LTS, and with MySQL 8.4 LTS. For MySQL 8.4,
+                                <code>my.cnf</code> needs <code>mysql_native_password=ON</code>.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Required extensions</th>
+                            <td><code>mbstring</code>, the CLI SAPI for cron jobs, and Composer on
+                                <code>$PATH</code>.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Recommended extensions</th>
+                            <td><code>opcache</code>; <code>pdo_mysql</code> or <code>mysqli</code>;
+                                <code>dom</code> and <code>simplexml</code> for markup; <code>gd</code> and
+                                <code>exif</code> for images; <code>zlib</code>, <code>zip</code>,
+                                <code>bz2</code> for compression; <code>curl</code> when calling APIs;
+                                <code>sqlite3</code> for the test suite.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="spec-note">
+                Note that Frontend still supports MySQL - unlike API and Admin v7, which require native UUID support and
+                therefore PostgreSQL or MariaDB 10.7+.
+            </p>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Choosing</span>
+                <h2>Where Frontend sits</h2>
+                <p>Frontend stands on its own, outside the Headless Platform. It is the right starting point when your
+                   users log in and your pages are rendered on the server - and the wrong one in both directions from
+                   there.</p>
+            </div>
+
+            <div class="products-grid">
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Smaller · Minimal</span><h3>Light</h3></div>
+                    </div>
+                    <p class="lede">No users, no database, no forms to protect.</p>
+                    <p class="desc">The smallest complete Mezzio application - routing, pipeline and Twig, six direct
+                        dependencies. Right for a presentation site.</p>
+                    <div class="card-btns">
+                        <a class="btn btn-primary btn-sm" href="{{ url('page::light') }}">Read more</a>
+                        <a class="btn btn-ghost btn-sm" href="https://light.dotkernel.net/" target="_blank" rel="noopener">Demo</a>
+                    </div>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Different · HTTP surface</span><h3>API</h3></div>
+                    </div>
+                    <p class="lede">Your frontend is someone else's framework.</p>
+                    <p class="desc">A REST API on a PSR-15 middleware pipeline, with OAuth 2.0, RBAC, HAL payloads and
+                        an OpenAPI 3.0 specification wired up on install.</p>
+                    <div class="card-btns">
+                        <a class="btn btn-primary btn-sm" href="{{ url('page::api') }}">Read more</a>
+                        <a class="btn btn-ghost btn-sm" href="https://api.dotkernel.net/" target="_blank" rel="noopener">Demo</a>
+                    </div>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Bigger · Platform</span><h3>Admin</h3></div>
+                    </div>
+                    <p class="lede">You need a back office over a shared domain.</p>
+                    <p class="desc">Table-based record management with RBAC guards, CSRF-protected forms and 2FA, over a
+                        Core module shared with API and Queue.</p>
+                    <div class="card-btns">
+                        <a class="btn btn-primary btn-sm" href="{{ url('page::admin') }}">Read more</a>
+                        <a class="btn btn-ghost btn-sm" href="https://admin7.dotkernel.net/" target="_blank" rel="noopener">Demo</a>
+                    </div>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Alongside · Async work</span><h3>Queue</h3></div>
+                    </div>
+                    <p class="lede">Move the registration email off the request.</p>
+                    <p class="desc">Background workers on Symfony Messenger - a TCP listener, Valkey streams, retries
+                        and a dead letter queue for what still fails.</p>
+                    <div class="card-btns">
+                        <a class="btn btn-primary btn-sm" href="{{ url('page::queue') }}">Read more</a>
+                        <a class="btn btn-ghost btn-sm" href="https://github.com/dotkernel/queue" target="_blank" rel="noopener">GitHub</a>
+                    </div>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Tooling · AI context</span><h3>Dotboost</h3></div>
+                    </div>
+                    <p class="lede">Teach your AI tools this architecture.</p>
+                    <p class="desc">Drop-in Claude Code configuration - ten commands, seventeen skills and permission
+                        guardrails that keep your secrets out of the context window.</p>
+                    <div class="card-btns">
+                        <a class="btn btn-primary btn-sm" href="{{ url('page::dotboost') }}">Read more</a>
+                        <a class="btn btn-ghost btn-sm" href="https://github.com/dotkernel/dotboost" target="_blank" rel="noopener">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% if posts is defined and posts is iterable %}
+        <section>
+            <div class="wrap">
+                <div class="section-head">
+                    <span class="eyebrow">From the blog</span>
+                    <h2>Go deeper</h2>
+                </div>
+                <div class="posts-grid">
+                    {% for post in posts %}
+                        <a class="post-card" href="{{ url('page::blog-resource', {categorySlug: post.category.slug, slug: post.slug}) }}">
+                            <div class="post-date">{{ post.postDate|date('M d, Y') }}</div>
+                            <h3>{{ post.title }}</h3>
+                            <p>{{ post.excerpt }}</p>
+                            <span class="read-more">Read more →</span>
+                        </a>
+                    {% else %}
+                        <p class="text-muted text-center mb-0">No recent posts.</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    {% endif %}
+
+    <section class="about-band">
+        <div class="wrap about-inner">
+            <div>
+                <span class="eyebrow">Open source, in production</span>
+                <h2>Accounts, forms and compliance - already handled.</h2>
+            </div>
+            <div>
+                <p class="about-text">Dotkernel Frontend is developed and led by the dev team at Apidemia and released
+                    as open source for the community. Try the demo to see the account flows before you install
+                    anything.</p>
+                <div class="about-cta">
+                    <a class="btn btn-ghost" href="{{ url('page::contact') }}">Talk to us →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

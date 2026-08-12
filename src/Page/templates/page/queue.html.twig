@@ -1,0 +1,580 @@
+{% extends '@layout/default.html.twig' %}
+
+{% set routeName = 'page::queue' %}
+{% set meta = {
+    title: 'Dotkernel Queue | Asynchronous task queue for PHP',
+    description: 'Dotkernel Queue runs time-consuming work on background workers instead of inside the request cycle. '
+        ~ 'A Swoole TCP daemon, Valkey streams and Symfony Messenger, with retries, a dead letter queue and reporting commands.',
+} %}
+
+{% block title %}Dotkernel Queue{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        /* Config and command tables - scoped to this page, uses the shared theme tokens. */
+        .spec-table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius); }
+        .spec-table { width: 100%; border-collapse: collapse; font-size: 14.5px; background: var(--surface); }
+        .spec-table th, .spec-table td { padding: 14px 18px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--border); }
+        .spec-table thead th { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--text-dim); background: var(--surface-2); }
+        .spec-table tbody tr:last-child th, .spec-table tbody tr:last-child td { border-bottom: 0; }
+        .spec-table tbody th { font-weight: 500; color: var(--text-muted); white-space: nowrap; }
+        .spec-table td { color: var(--text); }
+        .spec-note { margin-top: 14px; font-size: 13.5px; color: var(--text-dim); }
+        .step-cmd { display: block; margin-top: 12px; font-family: var(--mono); font-size: 12.5px; color: var(--teal); overflow-x: auto; }
+    </style>
+{% endblock %}
+
+{% block content %}
+
+    <section class="hero">
+        <div class="wrap hero-grid">
+            <div>
+                <span class="eyebrow">Background workers · Symfony Messenger</span>
+                <h1>Dotkernel Queue</h1>
+                <p class="sub">
+                    Some operations are time-consuming and resource-intensive, and they have no business inside a
+                    request. Dotkernel Queue accepts them over a TCP connection, stores them, and runs them on
+                    background workers - so your platform answers the next request instead of waiting for a video to
+                    finish encoding.
+                </p>
+                <div class="hero-ctas">
+                    <a class="btn btn-primary" href="https://docs.dotkernel.org/queue-documentation/" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                        Read the docs
+                    </a>
+                    <a class="btn btn-ghost" href="https://github.com/dotkernel/queue" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.1.83-.27.83-.58v-2.17c-3.34.73-4.04-1.42-4.04-1.42-.55-1.4-1.34-1.77-1.34-1.77-1.08-.75.09-.73.09-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.84 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.53.12-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.65.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .31.22.69.83.57A12 12 0 0 0 12 .5z"/></svg>
+                        View on GitHub
+                    </a>
+                </div>
+                <div class="badges mt-3">
+                    <img alt="PHP version for dotkernel/queue" loading="lazy" src="https://img.shields.io/packagist/dependency-v/dotkernel/queue/php?style=flat&label=php">
+                    <img alt="Latest release of dotkernel/queue" loading="lazy" src="https://img.shields.io/packagist/v/dotkernel/queue?style=flat">
+                    <img alt="License of dotkernel/queue" loading="lazy" src="https://img.shields.io/github/license/dotkernel/queue?style=flat">
+                    <img alt="OSS lifecycle for dotkernel/queue" loading="lazy" src="https://img.shields.io/osslifecycle/dotkernel/queue?style=flat">
+                </div>
+                <div class="hero-stack-note">
+                    <div><span>Listener</span> Swoole on TCP</div>
+                    <div><span>Store</span> Valkey streams</div>
+                    <div><span>Worker</span> Symfony Messenger</div>
+                </div>
+            </div>
+
+            <div class="pipeline">
+                <div class="pipeline-label"><span>Message lifecycle</span></div>
+                <div class="pipeline-track">
+                    <div class="pl-packet" aria-hidden="true"></div>
+                    <div class="pl-step"><span class="name">Your application</span><span class="tag">JSON payload</span></div>
+                    <div class="pl-step"><span class="name">TCP :8556</span><span class="tag">IP whitelisted</span></div>
+                    <div class="pl-step"><span class="name">Swoole daemon</span><span class="tag">accepts &amp; stores</span></div>
+                    <div class="pl-step"><span class="name">messages stream</span><span class="tag">Valkey · FIFO</span></div>
+                    <div class="pl-step"><span class="name">Messenger worker</span><span class="tag">your handler</span></div>
+                    <div class="pl-step"><span class="name">failed stream</span><span class="tag">after 3 retries</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="what-is-platform">
+        <div class="wrap split">
+            <div>
+                <span class="eyebrow">What it is</span>
+                <h2>A separate machine for the slow work</h2>
+                <p class="lede">
+                    Dotkernel Queue is built on <strong>Symfony Messenger</strong>, integrated into Mezzio and Laminas
+                    applications through the <code>netglue/laminas-messenger</code> adapter for the Laminas Service
+                    Manager container. Work runs decoupled from the regular request-response cycle, on background
+                    workers that can live on their own hardware.
+                </p>
+                <p class="lede">
+                    The main platform returns its response and stays responsive to new requests. Tasks with long
+                    execution times are scheduled to run when resources are available, oldest first.
+                </p>
+                <div class="extending">
+                    Extending the power of
+                    <div class="extending-logo">
+                        <img src="{{ asset('images/app/content/mezzio-by-laminas.svg') }}" alt="Mezzio by Laminas" loading="lazy">
+                    </div>
+                </div>
+            </div>
+            <div class="traits">
+                <div class="trait">
+                    <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/speed-radar-50.svg') }}" alt="" loading="lazy">
+                    <p>High request rate without overloading</p>
+                </div>
+
+                <div class="trait">
+                    <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/traffic-sign-50.svg') }}" alt="" loading="lazy">
+                    <p>FIFO - the oldest message runs first</p>
+                </div>
+
+                <div class="trait">
+                    <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/success-50.svg') }}" alt="" loading="lazy">
+                    <p>Retries with exponential backoff</p>
+                </div>
+
+                <div class="trait">
+                    <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/maintenance.svg') }}" alt="" loading="lazy">
+                    <p>Failures parked, never blocking the queue</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="background:var(--surface-2);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">What belongs here</span>
+                <h2>Work that should never block a response</h2>
+                <p>Tasks suited to the queue take extended periods to execute and may be interrupted by PHP limits such
+                   as <code>max_execution_time</code>; depend on external systems that add authentication delays, slow
+                   replies, or fail outright when a server is offline; or simply are not part of the PHP response at
+                   all.</p>
+            </div>
+
+            <div class="standards-grid">
+                <div class="standard">
+                    <h4>Data processing</h4>
+                    <p>Big data analytics, scientific simulations, mathematical computations - anything where the data
+                       size or the algorithm sets the clock.</p>
+                </div>
+                <div class="standard">
+                    <h4>File &amp; media processing</h4>
+                    <p>Video and image processing, compressing and decompressing large files.</p>
+                </div>
+                <div class="standard">
+                    <h4>Networking</h4>
+                    <p>Uploading and downloading large files, where bandwidth rather than your code is the limit.</p>
+                </div>
+                <div class="standard">
+                    <h4>Database operations</h4>
+                    <p>Imports, exports and migrations that would otherwise hold a web request open.</p>
+                </div>
+                <div class="standard">
+                    <h4>System &amp; infrastructure</h4>
+                    <p>OS updates, software compilation, CI pipelines triggered from your application.</p>
+                </div>
+                <div class="standard">
+                    <h4>Transactional email</h4>
+                    <p>The classic case: hand the message to the queue and let the worker compose and send it while the
+                       server moves to the next task.</p>
+                    <div class="get-started">
+                        <a href="https://docs.dotkernel.org/queue-documentation/v2/how-to/send-emails/" target="_blank" rel="noopener">Sending emails →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">How it works</span>
+                <h2>Two daemons, one stream</h2>
+                <p>A listener that accepts messages fast, and a worker that processes them carefully. They are separate
+                   systemd services, so you can restart either one without losing the other.</p>
+            </div>
+
+            <div class="products-grid">
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Ingest · Swoole</span><h3>The TCP listener</h3></div>
+                    </div>
+                    <p class="lede">Accepts connections and gets out of the way.</p>
+                    <p class="desc">
+                        An active daemon listens for TCP connections on a port - 8556 by default - and stores incoming
+                        messages immediately. This supports a large number of requests per second without overloading,
+                        because accepting a message is all it does.
+                    </p>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Store · Valkey</span><h3>The messages stream</h3></div>
+                    </div>
+                    <p class="lede">An open-source key/value datastore built for this shape of work.</p>
+                    <p class="desc">
+                        Messages land in the <code>messages</code> stream, the main queue. The worker consumes from it
+                        in FIFO order - the oldest request first, then newer ones - and processes each according to your
+                        application logic. Valkey is BSD-licensed and handles caching, message queues, and primary
+                        datastore workloads.
+                    </p>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Process · Messenger</span><h3>The worker</h3></div>
+                    </div>
+                    <p class="lede">Your handler, running outside the request cycle.</p>
+                    <p class="desc">
+                        A Messenger worker consumes the stream and hands each message to your handler. Because it is a
+                        separate service on a separate machine if you want one, a slow job costs you worker time rather
+                        than user-facing latency.
+                    </p>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Resilience · DLQ</span><h3>Dead letter queue</h3></div>
+                    </div>
+                    <p class="lede">Failures get parked, not retried forever.</p>
+                    <p class="desc">
+                        Each transport defines a retry strategy. When a message exceeds its allowed retries it is
+                        forwarded automatically to the failure transport and stored in the <code>failed</code> stream -
+                        so a message that cannot succeed never blocks the ones behind it.
+                    </p>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Security · Firewall</span><h3>Whitelisted senders</h3></div>
+                    </div>
+                    <p class="lede">The port is open to your servers, not to the internet.</p>
+                    <p class="desc">
+                        The documented setup adds a firewall rich rule that accepts traffic on the queue's port only
+                        from the source addresses you name. Fast to evaluate, and a small attack surface for a service
+                        that takes instructions.
+                    </p>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Observability · Logs</span><h3>Metrics you can query</h3></div>
+                    </div>
+                    <p class="lede">Logging that answers the operational questions.</p>
+                    <p class="desc">
+                        Processed and failed messages are logged, which is what makes the reporting commands possible:
+                        queue length, processing time per job, error rates, and throughput in jobs per second.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="background:var(--surface-2);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Retry strategy</span>
+                <h2>Backoff, configured in one place</h2>
+                <p>The transport's <code>retry_strategy</code> decides how hard the worker tries before a message is
+                   handed to the dead letter queue. These are the shipped defaults.</p>
+            </div>
+
+            <div class="spec-table-wrap">
+                <table class="spec-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Setting</th>
+                            <th scope="col">Default</th>
+                            <th scope="col">What it controls</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row"><code>max_retries</code></th>
+                            <td>3</td>
+                            <td>Attempts before the message moves to the failure transport.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><code>delay</code></th>
+                            <td>1000</td>
+                            <td>Initial wait before retrying a failed message, in milliseconds.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><code>multiplier</code></th>
+                            <td>2</td>
+                            <td>Each retry's delay is multiplied by this factor - exponential backoff.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><code>max_delay</code></th>
+                            <td>0</td>
+                            <td>Ceiling on the wait between retries; 0 means unlimited or default behaviour.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><code>failure_transport</code></th>
+                            <td><code>failed</code></td>
+                            <td>Where messages go once they exceed the retry limit.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="spec-note">
+                Both transports are Redis-protocol DSNs pointing at a stream - <code>messages</code> for new work,
+                <code>failed</code> for what could not be processed - with the serializer configurable per transport.
+            </p>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Operations</span>
+                <h2>Console commands, over CLI or TCP</h2>
+                <p>The same three commands answer from the shell on the queue server or from a socket on another
+                   machine. Every flag is optional; when both <code>--start</code> and <code>--end</code> are given,
+                   <code>--limit</code> is ignored.</p>
+            </div>
+
+            <div class="spec-table-wrap">
+                <table class="spec-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Command</th>
+                            <th scope="col">Returns</th>
+                            <th scope="col">Invocation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row"><code>failed</code></th>
+                            <td>Log entries for messages that failed to process.</td>
+                            <td><code>php bin/cli.php failed --start="yyyy-mm-dd" --end="yyyy-mm-dd" --limit=int</code></td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><code>processed</code></th>
+                            <td>Log entries for messages processed successfully.</td>
+                            <td><code>php bin/cli.php processed --start="yyyy-mm-dd" --end="yyyy-mm-dd" --limit=int</code></td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><code>inventory</code></th>
+                            <td>Everything currently queued in the <code>messages</code> stream.</td>
+                            <td><code>php bin/cli.php inventory</code></td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><code>control</code></th>
+                            <td>A test message, logged as processed - the quickest end-to-end check.</td>
+                            <td><code>echo "control" | socat -t1 - TCP:host:port</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="spec-note">
+                Valkey itself stays inspectable: <code>valkey-cli</code> gives you <code>PING</code>,
+                <code>INFO</code>, <code>KEYS *</code>, and stream commands such as
+                <code>XRANGE streamName - +</code> to read entries oldest to newest, or
+                <code>XTRIM streamName MAXLEN 0</code> to empty a stream while keeping the key.
+            </p>
+        </div>
+    </section>
+
+    <section style="background:var(--surface-2);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);">
+        <div class="wrap split">
+            <div>
+                <span class="eyebrow">Integration</span>
+                <h2>Two ways to hand over a message</h2>
+                <p class="lede">
+                    The <strong>procedural</strong> approach opens a TCP connection, writes the JSON payload, and closes
+                    the socket. It is simple and quick to implement - and harder to reuse as the project grows. Make
+                    sure the message ends with a newline, or the server will keep waiting for the rest of it.
+                </p>
+                <p class="lede">
+                    The <strong>object-oriented</strong> approach wraps the queue in a service - a small
+                    <code>NotificationSystem</code> module under Core, built on <code>clue/socket-raw</code>, with its
+                    connection details injected from configuration. Handlers then inject the service and call a method
+                    that describes the intent, not the transport.
+                </p>
+                <div class="hero-ctas">
+                    <a class="btn btn-ghost" href="https://docs.dotkernel.org/queue-documentation/v2/how-to/communication-with-queue/" target="_blank" rel="noopener">Integration guide</a>
+                </div>
+            </div>
+            <div class="callout">
+                <h4>Smoke-test the listener</h4>
+                <p>From your local machine, with the daemon running and your IP whitelisted:</p>
+                <code class="step-cmd">echo "Hello" | socat -T1 - TCP:SERVER-IP:8556</code>
+                <p>
+                    The <code>-T1</code> timeout is optional but wise: without it, a server that never replies leaves
+                    <code>socat</code> waiting indefinitely.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Deployment</span>
+                <h2>A queue server, from a bare box</h2>
+                <p>The documented path is AlmaLinux 9 or 10 with root access, adapted accordingly for other operating
+                   systems. Everything runs as a non-root user.</p>
+            </div>
+
+            <div class="standards-grid">
+                <div class="standard">
+                    <h4>1 · Prepare the server</h4>
+                    <p>Update the OS, create a user with sudo permissions, and install the utilities you will need -
+                       including <code>socat</code> for testing.</p>
+                    <code class="step-cmd">dnf update -y &amp;&amp; useradd dotkernel</code>
+                </div>
+                <div class="standard">
+                    <h4>2 · Install the runtime</h4>
+                    <p>PHP from the Remi repository, plus the Swoole and Redis PECL extensions. Verify both are loaded
+                       before moving on.</p>
+                    <code class="step-cmd">dnf module enable php:remi-8.5<br>dnf install php-pecl-swoole6 php-pecl-redis</code>
+                </div>
+                <div class="standard">
+                    <h4>3 · Install Valkey</h4>
+                    <p>Enable and start the service, then confirm it answers.</p>
+                    <code class="step-cmd">dnf install valkey<br>valkey-cli ping</code>
+                </div>
+                <div class="standard">
+                    <h4>4 · Clone and configure</h4>
+                    <p>Clone the queue branch, then copy each <code>.dist</code> configuration file into place - local,
+                       log, messenger and swoole - and fill them in.</p>
+                    <code class="step-cmd">git clone -b default-queue https://github.com/dotkernel/queue.git<br>composer install --no-dev</code>
+                </div>
+                <div class="standard">
+                    <h4>5 · Register the daemons</h4>
+                    <p>Set the paths in the shipped unit files, copy them into <code>/etc/systemd/system/</code>, then
+                       enable and start both.</p>
+                    <code class="step-cmd">systemctl enable --now swoole.service<br>systemctl enable --now messenger.service</code>
+                </div>
+                <div class="standard">
+                    <h4>6 · Close the door</h4>
+                    <p>Allow SSH before starting the firewall, then permit the queue port only from the addresses that
+                       should reach it.</p>
+                    <code class="step-cmd">firewall-cmd --permanent --add-rich-rule='rule family="ipv4" source address="YOUR_IP" port port="8556" protocol="tcp" accept'</code>
+                </div>
+            </div>
+
+            <p class="spec-note">
+                Full commands, expected output and the reasoning behind each step are in the
+                <a href="https://docs.dotkernel.org/queue-documentation/v2/server-setup/" target="_blank" rel="noopener">server setup</a>
+                and <a href="https://docs.dotkernel.org/queue-documentation/v2/installation/" target="_blank" rel="noopener">installation</a>
+                guides.
+            </p>
+        </div>
+    </section>
+
+    <section style="background:var(--surface-2);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Headless Platform</span>
+                <h2>The third deployable</h2>
+                <p>Queue processes work produced by the rest of the platform. Share the <code>Core</code> module with it
+                   - copied in or added as a submodule - and your worker has the same entities, services and mail
+                   configuration as the application that queued the job.</p>
+            </div>
+
+            <div class="core-band">
+                <span class="core-band-label">Shared domain layer</span>
+                <code>Core\Admin</code> <code>Core\App</code> <code>Core\Security</code>
+                <code>Core\Setting</code> <code>Core\User</code>
+                <p>Keep Core in sync between the main project and the queue and every class, service and configuration
+                   needed for message processing is already there - which is what makes a worker able to compose an
+                   email from your own templates.</p>
+            </div>
+
+            <div class="products-grid">
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Pair with · HTTP surface</span><h3>API</h3></div>
+                    </div>
+                    <p class="lede">Dispatch work from an endpoint, answer immediately.</p>
+                    <p class="desc">A REST API on a PSR-15 middleware pipeline, with OAuth 2.0, RBAC, HAL payloads and
+                        an OpenAPI 3.0 specification wired up on install.</p>
+                    <div class="card-btns">
+                        <a class="btn btn-primary btn-sm" href="{{ url('page::api') }}">Read more</a>
+                        <a class="btn btn-ghost btn-sm" href="https://github.com/dotkernel/api" target="_blank" rel="noopener">GitHub</a>
+                    </div>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Pair with · Back office</span><h3>Admin</h3></div>
+                    </div>
+                    <p class="lede">Queue a bulk operation from an admin screen.</p>
+                    <p class="desc">Table-based record management with RBAC guards, CSRF-protected forms and 2FA, over
+                        the same Core module.</p>
+                    <div class="card-btns">
+                        <a class="btn btn-primary btn-sm" href="{{ url('page::admin') }}">Read more</a>
+                        <a class="btn btn-ghost btn-sm" href="https://github.com/dotkernel/admin" target="_blank" rel="noopener">GitHub</a>
+                    </div>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Pair with · Public-facing</span><h3>Frontend</h3></div>
+                    </div>
+                    <p class="lede">Queue the email your signup form triggers.</p>
+                    <p class="desc">A web starter skeleton - user accounts, a contact form, sessions and RBAC-guarded
+                        controller actions, rendered on the server.</p>
+                    <div class="card-btns">
+                        <a class="btn btn-primary btn-sm" href="{{ url('page::frontend') }}">Read more</a>
+                        <a class="btn btn-ghost btn-sm" href="https://v5.dotkernel.net/" target="_blank" rel="noopener">Demo</a>
+                    </div>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Smaller · Minimal</span><h3>Light</h3></div>
+                    </div>
+                    <p class="lede">A site with nothing to run in the background.</p>
+                    <p class="desc">The smallest complete Mezzio application - routing, pipeline and Twig, six direct
+                        dependencies and no database layer.</p>
+                    <div class="card-btns">
+                        <a class="btn btn-primary btn-sm" href="{{ url('page::light') }}">Read more</a>
+                        <a class="btn btn-ghost btn-sm" href="https://light.dotkernel.net/" target="_blank" rel="noopener">Demo</a>
+                    </div>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Tooling · AI context</span><h3>Dotboost</h3></div>
+                    </div>
+                    <p class="lede">Teach your AI tools this architecture.</p>
+                    <p class="desc">Drop-in Claude Code configuration - ten commands, seventeen skills and permission
+                        guardrails that keep your secrets out of the context window.</p>
+                    <div class="card-btns">
+                        <a class="btn btn-primary btn-sm" href="{{ url('page::dotboost') }}">Read more</a>
+                        <a class="btn btn-ghost btn-sm" href="https://github.com/dotkernel/dotboost" target="_blank" rel="noopener">GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+            <p style="margin-top:20px;font-size:13.5px;color:var(--text-dim);">
+                The queue's own dependencies are the same small <code>dot-*</code> components the rest of the platform
+                uses - each publishing its own support status on the
+                <a href="{{ url('page::dotkernel-packages-oss-lifecycle') }}">packages lifecycle</a> page.
+            </p>
+        </div>
+    </section>
+
+    {% if posts is defined and posts is iterable %}
+        <section>
+            <div class="wrap">
+                <div class="section-head">
+                    <span class="eyebrow">From the blog</span>
+                    <h2>Go deeper</h2>
+                </div>
+                <div class="posts-grid">
+                    {% for post in posts %}
+                        <a class="post-card" href="{{ url('page::blog-resource', {categorySlug: post.category.slug, slug: post.slug}) }}">
+                            <div class="post-date">{{ post.postDate|date('M d, Y') }}</div>
+                            <h3>{{ post.title }}</h3>
+                            <p>{{ post.excerpt }}</p>
+                            <span class="read-more">Read more →</span>
+                        </a>
+                    {% else %}
+                        <p class="text-muted text-center mb-0">No recent posts.</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    {% endif %}
+
+    <section class="about-band">
+        <div class="wrap about-inner">
+            <div>
+                <span class="eyebrow">Open source, in production</span>
+                <h2>Let the slow work happen somewhere else.</h2>
+            </div>
+            <div>
+                <p class="about-text">Dotkernel Queue is developed and led by the dev team at Apidemia - built to keep
+                    real platforms responsive under real load, and released as open source for the community.</p>
+                <div class="about-cta">
+                    <a class="btn btn-ghost" href="{{ url('page::contact') }}">Talk to us →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

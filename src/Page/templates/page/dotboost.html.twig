@@ -1,0 +1,625 @@
+{% extends '@layout/default.html.twig' %}
+
+{% set routeName = 'page::dotboost' %}
+{% set meta = {
+    title: 'dotboost | Claude Code configuration for Dotkernel projects',
+    description: 'dotboost is a drop-in .claude/ directory that teaches Claude Code the conventions of any Dotkernel '
+        ~ 'application - ten commands, seventeen skills, six hooks, and permission guardrails that keep secrets out of the context.',
+} %}
+
+{% block title %}dotboost{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        /* Command, skill and guardrail tables - scoped to this page, uses the shared theme tokens. */
+        .spec-table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius); }
+        .spec-table { width: 100%; border-collapse: collapse; font-size: 14.5px; background: var(--surface); }
+        .spec-table th, .spec-table td { padding: 13px 18px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--border); }
+        .spec-table thead th { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--text-dim); background: var(--surface-2); }
+        .spec-table tbody tr:last-child th, .spec-table tbody tr:last-child td { border-bottom: 0; }
+        .spec-table tbody th { font-weight: 500; color: var(--text-muted); white-space: nowrap; font-family: var(--mono); font-size: 13px; }
+        .spec-table td { color: var(--text); }
+        .spec-note { margin-top: 14px; font-size: 13.5px; color: var(--text-dim); }
+        .step-cmd { display: block; margin-top: 12px; font-family: var(--mono); font-size: 12.5px; color: var(--teal); overflow-x: auto; white-space: pre; }
+    </style>
+{% endblock %}
+
+{% block content %}
+
+    <section class="hero">
+        <div class="wrap hero-grid">
+            <div>
+                <span class="eyebrow">Developer tooling · AI context</span>
+                <h1>Dotboost</h1>
+                <p class="sub">
+                    Drop-in configuration that teaches Claude Code the conventions of any Dotkernel application - API,
+                    Admin, Frontend, Light, Queue, or a project derived from one of them. Every skill detects the variant
+                    first and applies the matching dialect, so generated code follows your architecture instead of
+                    guessing at it.
+                </p>
+                <div class="hero-ctas">
+                    <a class="btn btn-primary" href="https://github.com/dotkernel/dotboost" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.1.83-.27.83-.58v-2.17c-3.34.73-4.04-1.42-4.04-1.42-.55-1.4-1.34-1.77-1.34-1.77-1.08-.75.09-.73.09-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.84 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.53.12-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.65.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .31.22.69.83.57A12 12 0 0 0 12 .5z"/></svg>
+                        View on GitHub
+                    </a>
+                    <a class="btn btn-ghost" href="https://docs.claude.com/en/docs/claude-code/overview" target="_blank" rel="noopener">Claude Code docs</a>
+                </div>
+                <div class="badges mt-3">
+                    <img alt="License of dotkernel/dotboost" loading="lazy" src="https://img.shields.io/github/license/dotkernel/dotboost?style=flat">
+                    <img alt="GitHub stars for dotkernel/dotboost" loading="lazy" src="https://img.shields.io/github/stars/dotkernel/dotboost?style=flat&label=%E2%98%85">
+                    <img alt="Last commit to dotkernel/dotboost" loading="lazy" src="https://img.shields.io/github/last-commit/dotkernel/dotboost?style=flat">
+                </div>
+                <div class="hero-stack-note">
+                    <div><span>Payload</span> One .claude/ directory</div>
+                    <div><span>Commands</span> Ten /dk-*</div>
+                    <div><span>Skills</span> Seventeen</div>
+                </div>
+            </div>
+
+            <div class="pipeline">
+                <div class="pipeline-label"><span>What happens in a session</span></div>
+                <div class="pipeline-track">
+                    <div class="pl-packet" aria-hidden="true"></div>
+                    <div class="pl-step"><span class="name">Session start</span><span class="tag">variant briefing</span></div>
+                    <div class="pl-step"><span class="name">Skill loads</span><span class="tag">by description</span></div>
+                    <div class="pl-step"><span class="name">Plan mode</span><span class="tag">proposes first</span></div>
+                    <div class="pl-step"><span class="name">Guard hooks</span><span class="tag">Edit · Bash</span></div>
+                    <div class="pl-step"><span class="name">Normalise</span><span class="tag">BOM · CRLF · EOF</span></div>
+                    <div class="pl-step"><span class="name">Lint</span><span class="tag">php -l · markdown</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="what-is-platform">
+        <div class="wrap split">
+            <div>
+                <span class="eyebrow">What it is</span>
+                <h2>Not an application - a configuration payload</h2>
+                <p class="lede">
+                    Dotboost is not itself a Dotkernel application. Its entire payload is the <code>.claude/</code>
+                    directory: settings, hooks, a status line, a review subagent, ten <code>/dk-*</code> commands and
+                    seventeen skills. You install it by copying that directory into the Dotkernel project you are
+                    working on.
+                </p>
+                <p class="lede">
+                    There is no routing table telling Claude which skill to pick - each one loads from its own
+                    description. Ask where a new Doctrine entity goes and it should reach for the module-structure
+                    skill rather than answering from general framework knowledge.
+                </p>
+                <div class="extending">
+                    Maintained by
+                    <div class="extending-logo">
+                        <strong>Borsan Sergiu</strong>
+                    </div>
+                </div>
+            </div>
+            <div class="traits">
+                <div class="trait">
+                    <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/traffic-sign-50.svg') }}" alt="" loading="lazy">
+                    <p>Detects the variant before it answers</p>
+                </div>
+
+                <div class="trait">
+                    <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/success-50.svg') }}" alt="" loading="lazy">
+                    <p>Secrets never enter the context window</p>
+                </div>
+
+                <div class="trait">
+                    <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/speed-radar-50.svg') }}" alt="" loading="lazy">
+                    <p>Guards catch compound commands globs miss</p>
+                </div>
+
+                <div class="trait">
+                    <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/maintenance.svg') }}" alt="" loading="lazy">
+                    <p>Copy it in - nothing to build or install</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="background:var(--surface-2);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Guardrails</span>
+                <h2>The reason to adopt the file</h2>
+                <p>The permission rules in <code>settings.json</code> fall into four tiers. The first one is the
+                   headline: these are <code>Read</code> denies, not write protection, so the contents never enter the
+                   context window at all.</p>
+            </div>
+
+            <div class="products-grid">
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Tier · Never read</span><h3>Your secrets</h3></div>
+                    </div>
+                    <p class="lede">Not redacted - never loaded.</p>
+                    <p class="desc">
+                        <code>.env</code>, every <code>*.local.php</code>,
+                        <code>config/autoload/local.php</code>, <code>local.test.php</code> and
+                        <code>data/oauth/</code>. Database credentials, OAuth signing keys and environment secrets stay
+                        out of the transcript.
+                    </p>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Tier · Never written</span><h3>Generated &amp; vendored</h3></div>
+                    </div>
+                    <p class="lede">The files a diff should never touch by accident.</p>
+                    <p class="desc">
+                        Dependency manifests - <code>composer.json</code>, <code>composer.lock</code>,
+                        <code>package.json</code>, <code>package-lock.json</code> - plus <code>vendor/</code>,
+                        <code>node_modules/</code>, <code>data/</code>, <code>log/</code>,
+                        <code>public/uploads/</code> and anything under <code>Migration/</code>.
+                    </p>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Tier · Never run</span><h3>Installs &amp; destructive git</h3></div>
+                    </div>
+                    <p class="lede">Commands that change your tree without a diff.</p>
+                    <p class="desc">
+                        <code>composer require</code>, <code>remove</code>, <code>update</code>,
+                        <code>install</code>, <code>global</code>; the npm, yarn and pnpm install verbs;
+                        <code>git push</code>, <code>reset --hard</code>, <code>clean</code>,
+                        <code>submodule</code>; and <code>rm -rf</code>.
+                    </p>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Tier · Ask &amp; allow</span><h3>Your call</h3></div>
+                    </div>
+                    <p class="lede">Preference, not policy - override per machine.</p>
+                    <p class="desc">
+                        <strong>Ask</strong>: migrations, <code>bin/doctrine</code>, database clients, git commits and
+                        merges, pipeline and authorization config, the QA config files.
+                        <strong>Allow</strong>: the Composer QA scripts, <code>vendor/bin</code> tools,
+                        <code>php -l</code>, and read-only git. Layer changes in
+                        <code>settings.local.json</code>, never the shared file.
+                    </p>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Hooks · Six</span><h3>Where globs cannot see</h3></div>
+                    </div>
+                    <p class="lede">Path patterns miss what a shell can hide.</p>
+                    <p class="desc">
+                        <code>guard-bash.sh</code> inspects the command itself, so
+                        <code>cd src &amp;&amp; composer require foo</code> is caught where a path-based rule would let
+                        it through. <code>guard-protected-paths.sh</code> covers edits, and redirects a blocked
+                        <code>*.local.php</code> edit to its <code>.dist</code> template.
+                    </p>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Hooks · Report only</span><h3>Linters that do not rewrite</h3></div>
+                    </div>
+                    <p class="lede">Deliberately no <code>phpcbf</code>, no <code>--fix</code>.</p>
+                    <p class="desc">
+                        <code>php-lint.sh</code> and <code>markdown-lint.sh</code> report and stop, because
+                        reformatting a file right after it is written invalidates the in-memory copy and breaks the next
+                        targeted edit. Bulk formatting belongs at the end of a task. Both skip silently when their tool
+                        is missing.
+                    </p>
+                </div>
+            </div>
+
+            <p class="spec-note">
+                <code>settings.json</code> is a committed file carrying opinions, not only guardrails: sessions start in
+                <strong>plan mode</strong>, the terminal UI is full screen, the theme is dark, and Composer runs without
+                a memory ceiling. Know what you are adopting.
+            </p>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Stricter than documented</span>
+                <h2>Where the hooks overrule the tiers</h2>
+                <p>Some commands marked <em>ask</em> in <code>settings.json</code> are refused outright by
+                   <code>guard-bash.sh</code>, because the hook sees compound commands the permission globs cannot. The
+                   prompt you would expect never appears - you get a refusal. This is deliberate, and worth knowing
+                   before it surprises you.</p>
+            </div>
+
+            <div class="spec-table-wrap">
+                <table class="spec-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Command</th>
+                            <th scope="col">settings.json says</th>
+                            <th scope="col">guard-bash.sh does</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><th scope="row">git rebase</th><td>ask</td><td>blocks</td></tr>
+                        <tr><th scope="row">doctrine-migrations migrate / execute</th><td>ask</td><td>blocks</td></tr>
+                        <tr><th scope="row">fixtures:execute, schema:drop, schema:update</th><td>ask, via bin/cli.php</td><td>blocks</td></tr>
+                        <tr><th scope="row">composer development-enable / -disable</th><td>—</td><td>blocks</td></tr>
+                        <tr><th scope="row">pip install, git checkout --, git filter-branch</th><td>—</td><td>blocks</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="spec-note">
+                Everything else under <em>ask</em> - commits, database clients, the config and QA files - prompts as
+                documented. To get a blocked command back you edit the hook; relaxing
+                <code>settings.local.json</code> will not reach it.
+            </p>
+        </div>
+    </section>
+
+    <section style="background:var(--surface-2);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Commands</span>
+                <h2>Ten <code>/dk-*</code> commands</h2>
+                <p>Each one runs only when you ask for it.</p>
+            </div>
+
+            <div class="spec-table-wrap">
+                <table class="spec-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Command</th>
+                            <th scope="col">What it does</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><th scope="row">/dk-bootstrap</th><td>Fresh clone to a running install.</td></tr>
+                        <tr><th scope="row">/dk-module</th><td>Plan a new module - dot-maker first.</td></tr>
+                        <tr><th scope="row">/dk-route</th><td>Add a fully wired endpoint or page.</td></tr>
+                        <tr><th scope="row">/dk-trace</th><td>Trace a request through pipeline, handler and response.</td></tr>
+                        <tr><th scope="row">/dk-test</th><td>Write and run tests.</td></tr>
+                        <tr><th scope="row">/dk-document</th><td>Write or update a feature doc.</td></tr>
+                        <tr><th scope="row">/dk-check</th><td>Run and fix the QA gate.</td></tr>
+                        <tr><th scope="row">/dk-deprecate</th><td>Make an evolution-pattern breaking change.</td></tr>
+                        <tr><th scope="row">/dk-review</th><td>Pre-PR convention review - read-only by design.</td></tr>
+                        <tr><th scope="row">/dk-hygiene</th><td>Encoding and line-ending audit.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Skills</span>
+                <h2>Seventeen skills, loaded on demand</h2>
+                <p>Sixteen <code>dotkernel-*</code> skills plus <code>dependency-policy</code>. Each is a living
+                   document - when a review turns up the same mistake twice, that is a missing line in a skill.</p>
+            </div>
+
+            <div class="spec-table-wrap">
+                <table class="spec-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Skill</th>
+                            <th scope="col">Covers</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><th scope="row">application-variants</th><td>Detecting API vs Admin vs Frontend vs Light vs Queue.</td></tr>
+                        <tr><th scope="row">module-structure</th><td>Where code goes: application module vs Core, and the wiring.</td></tr>
+                        <tr><th scope="row">handler-naming</th><td>Both naming dialects, routes, authorization keys.</td></tr>
+                        <tr><th scope="row">doctrine-entities</th><td>Entities, enums and DBAL types, repositories, migrations.</td></tr>
+                        <tr><th scope="row">input-validation</th><td>InputFilters, Inputs, forms, CSRF, query whitelisting.</td></tr>
+                        <tr><th scope="row">responses</th><td>HAL and collections, or templates and redirects; errors.</td></tr>
+                        <tr><th scope="row">openapi</th><td>swagger-php attributes, for apps that publish OpenAPI.</td></tr>
+                        <tr><th scope="row">feature-docs</th><td>Feature docs: template, where they live, staleness.</td></tr>
+                        <tr><th scope="row">testing</th><td>Unit and functional patterns, test config, coverage matrix.</td></tr>
+                        <tr><th scope="row">evolution-pattern</th><td>Sunset headers instead of versioning.</td></tr>
+                        <tr><th scope="row">security</th><td>Auth, authorization, secrets, CORS, dependencies.</td></tr>
+                        <tr><th scope="row">dot-maker</th><td><code>composer make …</code> and the manual steps after it.</td></tr>
+                        <tr><th scope="row">core-submodule</th><td>Core layering rules and git submodule mechanics.</td></tr>
+                        <tr><th scope="row">psr-standards</th><td>PSR-1/3/4/6/7/11/12/15/16/17 as applied here.</td></tr>
+                        <tr><th scope="row">qa-gate</th><td>cs-check, static analysis, tests, and forbidden "fixes".</td></tr>
+                        <tr><th scope="row">troubleshooting</th><td>A symptom to cause table.</td></tr>
+                        <tr><th scope="row">dependency-policy</th><td>The ladder from installed packages to hand-rolled code, and the proposal format.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="spec-note">
+                A review subagent, <code>dotkernel-reviewer</code>, runs the convention review in its own context so the
+                main one stays clean.
+            </p>
+        </div>
+    </section>
+
+    <section style="background:var(--surface-2);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);">
+        <div class="wrap split">
+            <div>
+                <span class="eyebrow">Dependency policy</span>
+                <h2>Never name a package from memory</h2>
+                <p class="lede">
+                    The ladder is: already in <code>composer.lock</code>, then <code>dotkernel/*</code>, then
+                    <code>laminas/*</code> and <code>mezzio/*</code>, then a vetted community package, and only then
+                    hand-rolled code. Stop at the first hit.
+                </p>
+                <p class="lede">
+                    A skill's description decides whether it <em>can</em> load, not whether Claude stops to think before
+                    naming a package. The rule that makes it reach for the skill has to be always loaded - which means
+                    it lives in your project's own <code>CLAUDE.md</code>, not in the skill.
+                </p>
+                <div class="hero-ctas">
+                    <a class="btn btn-ghost" href="https://github.com/dotkernel/dotboost#add-this-to-your-projects-claudemd" target="_blank" rel="noopener">The block to paste</a>
+                </div>
+            </div>
+            <div class="callout">
+                <h4>Three things about how that behaves</h4>
+                <ul>
+                    <li>The <code>dotkernel/*</code> manifest is generated on first use, not shipped - the first package
+                        question runs the sync script itself. It needs <code>curl</code>, <code>jq</code> and network;
+                        without them Claude is told to call a package name <strong>unverified</strong> rather than
+                        assert it.</li>
+                    <li>Neither that script nor <code>composer show --available</code> is in the allow or deny list, so
+                        both prompt. That is deliberate - expect a prompt the first time.</li>
+                    <li>"How do I send mail from here?" is a package question. Implicit ones count.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Install</span>
+                <h2>Copy one directory into your project</h2>
+                <p>The payload has to sit at the root of your project. Two routes to the same files - pick whichever
+                   suits the machine you are on.</p>
+            </div>
+
+            <div class="standards-grid">
+                <div class="standard">
+                    <h4>1 · Clone it inside the project</h4>
+                    <p>Shallow, because only the current state of <code>main</code> is any use in a target project. The
+                       clone goes away right after the copy.</p>
+                    <code class="step-cmd">git clone --depth 1 \
+  https://github.com/dotkernel/dotboost.git .dotboost
+cp -r .dotboost/.claude .claude
+rm -rf .dotboost</code>
+                </div>
+                <div class="standard">
+                    <h4>1b · Or download the zip</h4>
+                    <p>No git needed, which is the point. The archive unpacks to <code>dotboost-main/</code> and does
+                       carry the dotfiles.</p>
+                    <code class="step-cmd">curl -L -o dotboost.zip https://github.com/\
+dotkernel/dotboost/archive/refs/heads/main.zip
+unzip -q dotboost.zip
+cp -r dotboost-main/.claude .claude</code>
+                </div>
+                <div class="standard">
+                    <h4>2 · Restore the executable bits</h4>
+                    <p>Nothing is committed executable, and a zip extracted on Windows carries no permission bits at
+                       all. The sync script is the one called by its own name.</p>
+                    <code class="step-cmd">chmod +x .claude/hooks/*.sh .claude/statusline.sh \
+  .claude/skills/dependency-policy/scripts/*.sh</code>
+                </div>
+                <div class="standard">
+                    <h4>3 · Keep local overrides out of git</h4>
+                    <p>Then copy the example file if you want personal settings that survive an update.</p>
+                    <code class="step-cmd">echo '.claude/settings.local.json' \
+  &gt;&gt; .git/info/exclude</code>
+                </div>
+                <div class="standard">
+                    <h4>4 · Optional: markdown linting</h4>
+                    <p>Not bundled - install it yourself, globally or as a project devDependency. Until the binary
+                       resolves, the hook exits silently.</p>
+                    <code class="step-cmd">npm install -g markdownlint-cli2</code>
+                </div>
+                <div class="standard">
+                    <h4>5 · Paste the CLAUDE.md block</h4>
+                    <p>The dependency policy and, if you want feature docs actually read, the feature-docs block
+                       alongside it.</p>
+                </div>
+            </div>
+
+            <p class="spec-note">
+                If the project already has its own <code>.claude/settings.json</code> or
+                <code>.claude/commands/</code>, merge by hand rather than running <code>cp -r</code> blind - same-named
+                files are overwritten. To update later, run the whole install again over the top; anything you changed
+                in the project's copy is lost, which is exactly why personal changes belong in
+                <code>settings.local.json</code>.
+            </p>
+        </div>
+    </section>
+
+    <section style="background:var(--surface-2);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Also in the box</span>
+                <h2>The parts you notice on day two</h2>
+            </div>
+
+            <div class="products-grid">
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Docs · /dk-document</span><h3>Feature documentation</h3></div>
+                    </div>
+                    <p class="lede">The part a cleared session cannot reconstruct from <code>src/</code>.</p>
+                    <p class="desc">
+                        One markdown file per feature - what it does, why, the routes and the roles that reach them, the
+                        data added, how to exercise it. Where it lands is detected, not assumed:
+                        <code>documentation/features/</code> when that directory exists,
+                        <code>docs/features/</code> otherwise, never a second documentation root beside an existing one.
+                        The frontmatter is load-bearing - <code>/dk-review</code> greps <code>routes:</code> and
+                        <code>handlers:</code> to decide whether a new route in the diff is documented.
+                    </p>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Status line</span><h3>Real usage, not guesses</h3></div>
+                    </div>
+                    <p class="lede">The same numbers <code>/usage</code> reports.</p>
+                    <p class="desc">
+                        5h and 7d account usage in the status bar, read from the rate-limit payload Claude Code 2.1+
+                        passes on stdin. Pure bash and awk - no <code>jq</code>, no python, no transcript scanning or
+                        guessed token budgets, so it works in Git Bash on Windows.
+                    </p>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Session start</span><h3>A briefing, every time</h3></div>
+                    </div>
+                    <p class="lede">What it detected, before you ask anything.</p>
+                    <p class="desc">
+                        Which variant, the root namespace, the authorization style, the branch, which config files are
+                        still missing - and a CRLF warning when it finds one. The same hook prints the feature-docs
+                        directory and a doc count, so the files are discoverable even without the CLAUDE.md block.
+                    </p>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Windows · Line endings</span><h3>CRLF, handled</h3></div>
+                    </div>
+                    <p class="lede">Dotkernel repos ship <code>* text eol=lf</code>.</p>
+                    <p class="desc">
+                        Belt and braces, configure the client so nothing converts:
+                        <code>core.autocrlf false</code>, <code>core.eol lf</code>,
+                        <code>core.safecrlf warn</code>. Already committed CRLF? Renormalise once with
+                        <code>git add --renormalize .</code>. <code>normalize-file.sh</code> keeps new writes clean.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Works with</span>
+                <h2>Every variant, one payload</h2>
+                <p>The application-variants skill detects which Dotkernel application it is looking at - including a
+                   project derived from one - and every other skill applies the matching dialect. Handler naming,
+                   response shape and authorization keys all differ between them, which is the whole reason the
+                   detection runs first.</p>
+            </div>
+
+            <div class="core-band">
+                <span class="core-band-label">Detected variants</span>
+                <code>API</code> <code>Admin</code> <code>Frontend</code>
+                <code>Light</code> <code>Queue</code>
+                <p>Before adapting the skills to a new Dotkernel application, the advice from its maintainer is to spend
+                   an hour reading that repo and correcting them against what is actually there. A skill written from
+                   framework docs rather than the codebase produces confident wrong answers, which is worse than no
+                   skill.</p>
+            </div>
+
+            <div class="products-grid" style="margin-top:26px;">
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Variant · Detected</span><h3>API</h3></div>
+                    </div>
+                    <p class="lede">Handlers, HAL collections, OpenAPI attributes.</p>
+                    <p class="desc">A REST API on a PSR-15 middleware pipeline, with OAuth 2.0, RBAC, HAL payloads and
+                        an OpenAPI 3.0 specification wired up on install.</p>
+                    <div class="card-btns">
+                        <a class="btn btn-primary btn-sm" href="{{ url('page::dotkernel-api') }}">Read more</a>
+                        <a class="btn btn-ghost btn-sm" href="https://github.com/dotkernel/api" target="_blank" rel="noopener">GitHub</a>
+                    </div>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Variant · Detected</span><h3>Admin</h3></div>
+                    </div>
+                    <p class="lede">Forms, CSRF, route-name authorization keys.</p>
+                    <p class="desc">Table-based record management with RBAC guards, CSRF-protected forms and 2FA, over
+                        the shared Core module.</p>
+                    <div class="card-btns">
+                        <a class="btn btn-primary btn-sm" href="{{ url('page::dotkernel-admin') }}">Read more</a>
+                        <a class="btn btn-ghost btn-sm" href="https://github.com/dotkernel/admin" target="_blank" rel="noopener">GitHub</a>
+                    </div>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Variant · Detected</span><h3>Frontend</h3></div>
+                    </div>
+                    <p class="lede">Action controllers and action-level guards.</p>
+                    <p class="desc">A web starter skeleton - user accounts, a contact form, sessions and RBAC-guarded
+                        controller actions, rendered on the server.</p>
+                    <div class="card-btns">
+                        <a class="btn btn-primary btn-sm" href="{{ url('page::dotkernel-frontend') }}">Read more</a>
+                        <a class="btn btn-ghost btn-sm" href="https://github.com/dotkernel/frontend" target="_blank" rel="noopener">GitHub</a>
+                    </div>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Variant · Detected</span><h3>Light</h3></div>
+                    </div>
+                    <p class="lede">Minimal modules, config-declared template routes.</p>
+                    <p class="desc">The smallest complete Mezzio application - routing, pipeline and Twig, six direct
+                        dependencies and no database layer.</p>
+                    <div class="card-btns">
+                        <a class="btn btn-primary btn-sm" href="{{ url('page::dotkernel-light') }}">Read more</a>
+                        <a class="btn btn-ghost btn-sm" href="https://github.com/dotkernel/light" target="_blank" rel="noopener">GitHub</a>
+                    </div>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Variant · Detected</span><h3>Queue</h3></div>
+                    </div>
+                    <p class="lede">Message handlers and background workers.</p>
+                    <p class="desc">Background workers on Symfony Messenger - a TCP listener, Valkey streams, retries
+                        and a dead letter queue for what still fails.</p>
+                    <div class="card-btns">
+                        <a class="btn btn-primary btn-sm" href="{{ url('page::dotkernel-queue') }}">Read more</a>
+                        <a class="btn btn-ghost btn-sm" href="https://github.com/dotkernel/queue" target="_blank" rel="noopener">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% if posts is defined and posts is iterable %}
+        <section style="background:var(--surface-2);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);">
+            <div class="wrap">
+                <div class="section-head">
+                    <span class="eyebrow">From the blog</span>
+                    <h2>Go deeper</h2>
+                </div>
+                <div class="posts-grid">
+                    {% for post in posts %}
+                        <a class="post-card" href="{{ url('page::blog-resource', {categorySlug: post.category.slug, slug: post.slug}) }}">
+                            <div class="post-date">{{ post.postDate|date('M d, Y') }}</div>
+                            <h3>{{ post.title }}</h3>
+                            <p>{{ post.excerpt }}</p>
+                            <span class="read-more">Read more →</span>
+                        </a>
+                    {% else %}
+                        <p class="text-muted text-center mb-0">No recent posts.</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    {% endif %}
+
+    <section class="about-band">
+        <div class="wrap about-inner">
+            <div>
+                <span class="eyebrow">Open source, in production</span>
+                <h2>Context your AI tools do not have to guess at.</h2>
+            </div>
+            <div>
+                <p class="about-text">Dotboost is maintained by Borsan Sergiu and released as open source alongside the
+                    rest of the Dotkernel ecosystem. Treat the skills as living documents - the repository is where
+                    corrections belong.</p>
+                <div class="about-cta">
+                    <a class="btn btn-ghost" href="https://github.com/dotkernel/dotboost" target="_blank" rel="noopener">Read the full README →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
