@@ -29,7 +29,7 @@
                 <li>
                     <a href="{{ url('page::category-resource', {slug: category.slug}) }}">
                         {{ category.name }}
-                        <span class="cat-count">{{ category.posts.count() }}</span>
+                        <span class="cat-count">{{ category.publishedPostsCount }}</span>
                     </a>
                 </li>
             {% endfor %}

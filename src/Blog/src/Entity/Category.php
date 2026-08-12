@@ -6,8 +6,11 @@ namespace Light\Blog\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\Criteria;
+use Doctrine\Common\Collections\Selectable;
 use Doctrine\ORM\Mapping as ORM;
 use Light\App\Entity\AbstractEntity;
+use Light\Blog\Enum\PostStatusEnum;
 use Light\Blog\Repository\CategoryRepository;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
@@ -24,7 +27,7 @@ class Category extends AbstractEntity
     #[ORM\Column(name: 'isVisible', type: 'boolean')]
     private bool $isVisible = true;
 
-    /** @var Collection<int, Post> */
+    /** @var Collection<int, Post>&Selectable<int, Post> */
     #[ORM\OneToMany(mappedBy: 'category', targetEntity: Post::class)]
     private Collection $posts;
 
@@ -71,6 +74,13 @@ class Category extends AbstractEntity
     public function getPosts(): Collection
     {
         return $this->posts;
+    }
+
+    public function getPublishedPostsCount(): int
+    {
+        $criteria = Criteria::create()->where(Criteria::expr()->eq('status', PostStatusEnum::Published));
+
+        return $this->posts->matching($criteria)->count();
     }
 
     /**
