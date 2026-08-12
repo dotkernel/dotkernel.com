@@ -80,13 +80,14 @@ return [
     // and is routed in Light\App\RoutesDelegator. Re-adding it here registers the path twice.
     'routes' => [
         'page' => [
-            'contact'  => 'contact',
-            'api'      => 'api',
-            'admin'    => 'admin',
-            'queue'    => 'queue',
-            'light'    => 'light',
-            'frontend' => 'frontend',
-            'dotboost' => 'dotboost',
+            'contact'      => 'contact',
+            'api'          => 'api',
+            'admin'        => 'admin',
+            'queue'        => 'queue',
+            'light'        => 'light',
+            'frontend'     => 'frontend',
+            'dotboost'     => 'dotboost',
+            'architecture' => 'architecture',
         ],
     ],
     'twig'   => [
