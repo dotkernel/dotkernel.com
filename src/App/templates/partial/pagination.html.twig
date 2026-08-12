@@ -1,22 +1,24 @@
 <nav class="pagination-row mt-3" aria-label="{{ aria_label }}">
-    <a class="btn btn-ghost btn-sm {% if data.isFirstPage %}disabled{% endif %}"
-       href="?page={{ data.firstPage }}" aria-label="First page">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-             style="width:14px;height:14px;" aria-hidden="true">
-            <path d="M17 18l-6-6 6-6M11 18l-6-6 6-6"/>
-        </svg>
-    </a>
+    {% if not data.isFirstPage %}
+        <a class="btn btn-ghost btn-sm" href="?page={{ data.firstPage }}" aria-label="First page">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 style="width:14px;height:14px;" aria-hidden="true">
+                <path d="M17 18l-6-6 6-6M11 18l-6-6 6-6"/>
+            </svg>
+        </a>
+    {% endif %}
 
     {% for p in data.pages %}
         <a class="btn btn-sm {% if p == data.currentPage %}btn-primary{% else %}btn-ghost{% endif %}"
            href="?page={{ p }}">{{ p }}</a>
     {% endfor %}
 
-    <a class="btn btn-ghost btn-sm {% if data.isLastPage %}disabled{% endif %}"
-       href="?page={{ data.lastPage }}" aria-label="Last page">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-             style="width:14px;height:14px;" aria-hidden="true">
-            <path d="M7 18l6-6-6-6M13 18l6-6-6-6"/>
-        </svg>
-    </a>
+    {% if not data.isLastPage %}
+        <a class="btn btn-ghost btn-sm" href="?page={{ data.lastPage }}" aria-label="Last page">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 style="width:14px;height:14px;" aria-hidden="true">
+                <path d="M7 18l6-6-6-6M13 18l6-6-6-6"/>
+            </svg>
+        </a>
+    {% endif %}
 </nav>
