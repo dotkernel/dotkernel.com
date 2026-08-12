@@ -1,0 +1,66 @@
+{% extends '@layout/default.html.twig' %}
+{% block json_ld %} {{ include('@jsonld/tag-resource.jsonld.twig') }} {% endblock %}
+
+{% block title %}{{ tag.name }}{% endblock %}
+
+{% block page_title %}
+    {{ include('@partial/title-section.html.twig', {
+        back_href: url('page::blog'),
+        back_label: 'Back to Blog',
+        badge: 'Tag',
+        title: tag.name,
+    }) }}
+{% endblock %}
+
+{% block content %}
+    <div class="wrap post-body-wrap">
+        <div class="post-layout">
+
+            {{ include('@partial/left-menu.html.twig') }}
+
+            <main class="article">
+                <div class="posts-grid-2-col">
+                    {% for article in data.items %}
+                        <a class="post-card"
+                           href="{{ url('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                 style="width:20px;height:20px;color:var(--teal);" aria-hidden="true">
+                                <path d="M4 4h11l5 5v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"/>
+                                <path d="M14 4v6h6"/>
+                            </svg>
+                            <span class="post-card-kicker">{{ article.category.name }}</span>
+                            <h4>{{ article.title }}</h4>
+                            <p>{{ article.excerpt|length > 200 ? article.excerpt|slice(0, 200)|trim ~ '…' : article.excerpt }}</p>
+                            <span class="post-date">{{ article.author.name }} · {{ article.postDate|date('M d, Y') }}</span>
+                            <span class="read-more">Read more →</span>
+                        </a>
+                    {% else %}
+                        <div class="card posts-empty">
+                            <p class="desc">No posts with this tag yet.</p>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                {% if data.lastPage > 1 %}
+                    <nav class="pagination-row mt-3" aria-label="Tag posts pagination">
+                        <a class="btn btn-ghost btn-sm {% if data.isFirstPage %}disabled{% endif %}"
+                           href="?page={{ data.previousPage }}" aria-label="Previous page">←</a>
+
+                        {% for p in data.pages %}
+                            <a class="btn btn-sm {% if p == data.currentPage %}btn-primary{% else %}btn-ghost{% endif %}"
+                               href="?page={{ p }}">{{ p }}</a>
+                        {% endfor %}
+
+                        <a class="btn btn-ghost btn-sm {% if data.isLastPage %}disabled{% endif %}"
+                           href="?page={{ data.nextPage }}" aria-label="Next page">→</a>
+                    </nav>
+
+                    <p class="post-date pagination-summary">
+                        Page {{ data.currentPage }} of {{ data.lastPage }}
+                        &nbsp;·&nbsp; {{ data.count }} articles total
+                    </p>
+                {% endif %}
+            </main>
+        </div>
+    </div>
+{% endblock %}

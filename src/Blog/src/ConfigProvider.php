@@ -14,14 +14,18 @@ use Light\Blog\Factory\Category\CategoryResourceHandlerFactory;
 use Light\Blog\Factory\Post\PostCollectionHandlerFactory;
 use Light\Blog\Factory\Post\PostCollectionRepositoryFactory;
 use Light\Blog\Factory\Post\PostResourceHandlerFactory;
+use Light\Blog\Factory\Tag\TagResourceHandlerFactory;
+use Light\Blog\Factory\Tag\TagResourceRepositoryFactory;
 use Light\Blog\Handler\GetAuthorResourceHandler;
 use Light\Blog\Handler\GetCategoryCollectionHandler;
 use Light\Blog\Handler\GetCategoryResourceHandler;
 use Light\Blog\Handler\GetPostCollectionHandler;
 use Light\Blog\Handler\GetPostResourceHandler;
+use Light\Blog\Handler\GetTagResourceHandler;
 use Light\Blog\Repository\AuthorRepository;
 use Light\Blog\Repository\CategoryRepository;
 use Light\Blog\Repository\PostRepository;
+use Light\Blog\Repository\TagRepository;
 use Mezzio\Application;
 
 class ConfigProvider
@@ -64,6 +68,8 @@ class ConfigProvider
                 GetCategoryResourceHandler::class   => CategoryResourceHandlerFactory::class,
                 AuthorRepository::class             => AuthorResourceRepositoryFactory::class,
                 GetAuthorResourceHandler::class     => AuthorResourceHandlerFactory::class,
+                TagRepository::class                => TagResourceRepositoryFactory::class,
+                GetTagResourceHandler::class        => TagResourceHandlerFactory::class,
             ],
         ];
     }

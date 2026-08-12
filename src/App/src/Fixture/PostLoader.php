@@ -38,12 +38,15 @@ class PostLoader extends Fixture implements DependentFixtureInterface
 
         $repository = $manager->getRepository(Post::class);
         $usedSlugs  = [];
+        $postIndex  = 0;
 
         foreach ($categories as $cat) {
             /** @var Category $category */
             $category = $this->getReference('category_' . $cat['slug'], Category::class);
 
             foreach ($cat['articles'] as $articleData) {
+                $postIndex++;
+
                 $authorName = $articleData['author']['display_name'] ?? null;
                 $authorSlug = $authorName ? $this->slugify($authorName) : null;
                 if (! $authorSlug || ! $this->hasReference('author_' . $authorSlug, Author::class)) {
@@ -138,6 +141,8 @@ class PostLoader extends Fixture implements DependentFixtureInterface
 
                     echo $changed ? "UPDATE: {$title}\n" : "UNCHANGED: {$title}\n";
                 }
+
+                $this->addReference('post_' . $postIndex, $article);
             }
         }
 

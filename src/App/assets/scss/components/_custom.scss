@@ -214,6 +214,23 @@ section {
   margin: 0;
 }
 
+.tag-badge {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--teal);
+  background: var(--teal-dim);
+  border: 1px solid var(--teal);
+  border-radius: 6px;
+  padding: 5px 12px;
+  display: inline-block;
+  text-decoration: none;
+
+  &:hover {
+    background: var(--teal);
+    color: var(--on-accent);
+  }
+}
+
 /* ============================================================
    Header / Bootstrap navbar
    ============================================================ */
