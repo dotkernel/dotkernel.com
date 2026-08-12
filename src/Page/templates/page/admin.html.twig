@@ -61,16 +61,41 @@
                 </div>
             </div>
 
-            <div class="pipeline">
-                <div class="pipeline-label"><span>Request lifecycle</span></div>
-                <div class="pipeline-track">
-                    <div class="pl-packet" aria-hidden="true"></div>
-                    <div class="pl-step"><span class="name">Session</span><span class="tag">dot-session</span></div>
-                    <div class="pl-step"><span class="name">Router</span><span class="tag">dot-router</span></div>
-                    <div class="pl-step"><span class="name">Authentication</span><span class="tag">laminas-authentication</span></div>
-                    <div class="pl-step"><span class="name">RBAC guard</span><span class="tag">dot-rbac-guard</span></div>
-                    <div class="pl-step"><span class="name">Your handler</span><span class="tag">PSR-15</span></div>
-                    <div class="pl-step"><span class="name">Response</span><span class="tag">Twig template</span></div>
+            <div class="hero-visual">
+                <figure class="hero-art">
+                    <figcaption>Guarded record table</figcaption>
+                    <svg viewBox="0 0 360 170" role="img" aria-label="A record table where one row is gated by a role check">
+                        <rect x="14" y="24" width="332" height="122" rx="10"/>
+                        <rect class="art-fill" x="14" y="90" width="332" height="28"/>
+                        <line x1="14" y1="56" x2="346" y2="56"/>
+                        <line class="art-faint" x1="14" y1="90" x2="346" y2="90"/>
+                        <line class="art-faint" x1="14" y1="118" x2="346" y2="118"/>
+                        <line class="art-faint" x1="104" y1="24" x2="104" y2="146"/>
+                        <line class="art-faint" x1="206" y1="24" x2="206" y2="146"/>
+                        <line class="art-faint" x1="286" y1="24" x2="286" y2="146"/>
+                        <line class="art-faint" x1="30" y1="41" x2="76" y2="41"/>
+                        <line class="art-faint" x1="120" y1="41" x2="176" y2="41"/>
+                        <line class="art-faint" x1="222" y1="41" x2="262" y2="41"/>
+                        <line class="art-faint" x1="302" y1="41" x2="330" y2="41"/>
+                        <path class="art-accent" d="M46 96 l10 3.4 v7.6 c0 6 -4 10.4 -10 12.4 c-6 -2 -10 -6.4 -10 -12.4 v-7.6 z"/>
+                        <line class="art-accent" x1="120" y1="104" x2="176" y2="104"/>
+                        <line class="art-accent" x1="222" y1="104" x2="262" y2="104"/>
+                        <line class="art-faint" x1="30" y1="132" x2="76" y2="132"/>
+                        <line class="art-faint" x1="120" y1="132" x2="176" y2="132"/>
+                    </svg>
+                </figure>
+
+                <div class="pipeline">
+                    <div class="pipeline-label"><span>Request lifecycle</span></div>
+                    <div class="pipeline-track">
+                        <div class="pl-packet" aria-hidden="true"></div>
+                        <div class="pl-step"><span class="name">Session</span><span class="tag">dot-session</span></div>
+                        <div class="pl-step"><span class="name">Router</span><span class="tag">dot-router</span></div>
+                        <div class="pl-step"><span class="name">Authentication</span><span class="tag">laminas-authentication</span></div>
+                        <div class="pl-step"><span class="name">RBAC guard</span><span class="tag">dot-rbac-guard</span></div>
+                        <div class="pl-step"><span class="name">Your handler</span><span class="tag">PSR-15</span></div>
+                        <div class="pl-step"><span class="name">Response</span><span class="tag">Twig template</span></div>
+                    </div>
                 </div>
             </div>
         </div>
