@@ -13,17 +13,22 @@ use Light\Blog\Entity\Tag;
 use RuntimeException;
 
 use function file_get_contents;
+use function in_array;
 use function json_decode;
 
 class PostTagLoader extends Fixture implements DependentFixtureInterface
 {
+    public function __construct(
+        private readonly string $jsonFile = __DIR__ . '/articles_cleaned.json',
+    ) {
+    }
+
     public function load(ObjectManager $manager): void
     {
-        $jsonFile = __DIR__ . '/articles_cleaned.json';
-        $contents = file_get_contents($jsonFile);
+        $contents = file_get_contents($this->jsonFile);
 
         if ($contents === false) {
-            throw new RuntimeException("Unable to read file: {$jsonFile}");
+            throw new RuntimeException("Unable to read file: {$this->jsonFile}");
         }
 
         $categories = json_decode($contents, true);
@@ -42,7 +47,11 @@ class PostTagLoader extends Fixture implements DependentFixtureInterface
                 /** @var Post $post */
                 $post = $this->getReference('post_' . $postIndex, Post::class);
 
+                $currentTagSlugs = [];
+
                 foreach ($articleData['tags'] ?? [] as $tagData) {
+                    $currentTagSlugs[] = $tagData['slug'];
+
                     /** @var Tag $tag */
                     $tag = $this->getReference('tag_' . $tagData['slug'], Tag::class);
 
@@ -57,6 +66,15 @@ class PostTagLoader extends Fixture implements DependentFixtureInterface
                     } else {
                         echo "UNCHANGED: {$post->getTitle()} - {$tag->getName()}\n";
                     }
+                }
+
+                foreach ($repository->findBy(['post' => $post]) as $existingPostTag) {
+                    if (in_array($existingPostTag->getTag()->getSlug(), $currentTagSlugs, true)) {
+                        continue;
+                    }
+
+                    echo "REMOVE: {$post->getTitle()} - {$existingPostTag->getTag()->getName()}\n";
+                    $manager->remove($existingPostTag);
                 }
             }
         }

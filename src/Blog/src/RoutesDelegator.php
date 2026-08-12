@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Light\Blog;
 
+use Light\Blog\Handler\GetAuthorCollectionHandler;
 use Light\Blog\Handler\GetAuthorResourceHandler;
 use Light\Blog\Handler\GetCategoryCollectionHandler;
 use Light\Blog\Handler\GetCategoryResourceHandler;
@@ -24,6 +25,7 @@ class RoutesDelegator
         $app->get('/blog/', [GetPostCollectionHandler::class], 'page::blog');
         $app->get('/category/{slug}/', [GetCategoryResourceHandler::class], 'page::category-resource');
         $app->get('/categories/', [GetCategoryCollectionHandler::class], 'page::categories');
+        $app->get('/authors/', [GetAuthorCollectionHandler::class], 'page::authors');
         $app->get('/author/{slug}/', [GetAuthorResourceHandler::class], 'page::author-resource');
         $app->get('/tag/{slug}/', [GetTagResourceHandler::class], 'page::tag-resource');
         $app->get('/{categorySlug}/{slug}/', [GetPostResourceHandler::class], 'page::blog-resource');

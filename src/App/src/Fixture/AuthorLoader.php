@@ -7,13 +7,17 @@ namespace Light\App\Fixture;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Light\Blog\Entity\Author;
+use Light\Blog\Entity\Post;
 use RuntimeException;
 
 use function file_get_contents;
+use function html_entity_decode;
 use function json_decode;
 use function preg_replace;
 use function strtolower;
 use function trim;
+
+use const ENT_QUOTES;
 
 class AuthorLoader extends Fixture
 {
@@ -28,8 +32,9 @@ class AuthorLoader extends Fixture
 
         $categories = json_decode($contents, true);
 
-        $repository    = $manager->getRepository(Author::class);
-        $seenAuthorIds = [];
+        $authorRepository = $manager->getRepository(Author::class);
+        $postRepository   = $manager->getRepository(Post::class);
+        $seenAuthorIds    = [];
 
         foreach ($categories as $cat) {
             foreach ($cat['articles'] as $article) {
@@ -38,16 +43,26 @@ class AuthorLoader extends Fixture
                     continue;
                 }
 
-                $name = $authorData['display_name'];
-                if (isset($seenAuthorIds[$name])) {
+                $name   = $authorData['display_name'];
+                $github = $authorData['github'] ?: null;
+
+                $identityKey = $github ?? ('name:' . $name);
+                if (isset($seenAuthorIds[$identityKey])) {
                     continue;
                 }
-                $seenAuthorIds[$name] = true;
+                $seenAuthorIds[$identityKey] = true;
 
-                $github = $authorData['github'] ?: null;
-                $slug   = $this->slugify($name);
+                $slug = $this->slugify($name);
 
-                $author = $repository->findOneBy(['name' => $name]);
+                $postTitle    = html_entity_decode($article['post_title'] ?? '', ENT_QUOTES, 'UTF-8');
+                $existingPost = $postTitle !== ''
+                    ? $postRepository->findOneBy(['slug' => $this->slugify($postTitle)])
+                    : null;
+
+                $author = $existingPost?->getAuthor()
+                    ?? ($github !== null
+                        ? $authorRepository->findOneBy(['github' => $github])
+                        : $authorRepository->findOneBy(['name' => $name]));
 
                 if ($author === null) {
                     $author = new Author();
@@ -58,6 +73,10 @@ class AuthorLoader extends Fixture
                     echo "CREATE: {$name}\n";
                 } else {
                     $changed = false;
+                    if ($author->getName() !== $name) {
+                        $author->setName($name);
+                        $changed = true;
+                    }
                     if ($author->getSlug() !== $slug) {
                         $author->setSlug($slug);
                         $changed = true;

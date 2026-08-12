@@ -6,6 +6,7 @@ namespace Light\Blog;
 
 use Doctrine\ORM\Mapping\Driver\AttributeDriver;
 use Light\Blog\DBAL\Types\PostStatusEnumType;
+use Light\Blog\Factory\Author\AuthorCollectionHandlerFactory;
 use Light\Blog\Factory\Author\AuthorResourceHandlerFactory;
 use Light\Blog\Factory\Author\AuthorResourceRepositoryFactory;
 use Light\Blog\Factory\Category\CategoryCollectionHandlerFactory;
@@ -16,6 +17,7 @@ use Light\Blog\Factory\Post\PostCollectionRepositoryFactory;
 use Light\Blog\Factory\Post\PostResourceHandlerFactory;
 use Light\Blog\Factory\Tag\TagResourceHandlerFactory;
 use Light\Blog\Factory\Tag\TagResourceRepositoryFactory;
+use Light\Blog\Handler\GetAuthorCollectionHandler;
 use Light\Blog\Handler\GetAuthorResourceHandler;
 use Light\Blog\Handler\GetCategoryCollectionHandler;
 use Light\Blog\Handler\GetCategoryResourceHandler;
@@ -68,6 +70,7 @@ class ConfigProvider
                 GetCategoryResourceHandler::class   => CategoryResourceHandlerFactory::class,
                 AuthorRepository::class             => AuthorResourceRepositoryFactory::class,
                 GetAuthorResourceHandler::class     => AuthorResourceHandlerFactory::class,
+                GetAuthorCollectionHandler::class   => AuthorCollectionHandlerFactory::class,
                 TagRepository::class                => TagResourceRepositoryFactory::class,
                 GetTagResourceHandler::class        => TagResourceHandlerFactory::class,
             ],

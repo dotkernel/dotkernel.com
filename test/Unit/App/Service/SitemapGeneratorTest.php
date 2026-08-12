@@ -34,8 +34,8 @@ use const DIRECTORY_SEPARATOR;
 
 class SitemapGeneratorTest extends UnitTest
 {
-    /** Homepage, /blog/, /categories/ and the packages-lifecycle page are always present. */
-    private const FIXED_URL_COUNT = 4;
+    /** Homepage, /blog/, /categories/, /authors/ and the packages-lifecycle page are always present. */
+    private const FIXED_URL_COUNT = 5;
 
     private string $sitemapFile;
 
@@ -87,9 +87,10 @@ class SitemapGeneratorTest extends UnitTest
         $this->assertSame('https://example.test/', (string) $urls[0]->loc);
         $this->assertSame('https://example.test/blog/', (string) $urls[1]->loc);
         $this->assertSame('https://example.test/categories/', (string) $urls[2]->loc);
+        $this->assertSame('https://example.test/authors/', (string) $urls[3]->loc);
         $this->assertSame(
             'https://example.test/dotkernel-packages-oss-lifecycle/',
-            (string) $urls[3]->loc
+            (string) $urls[4]->loc
         );
         $this->assertCount(0, $urls[0]->lastmod);
     }
@@ -105,22 +106,45 @@ class SitemapGeneratorTest extends UnitTest
 
         $urls = $this->loadSitemap()->url;
         $this->assertSame('https://example.test/contact/', (string) $urls[self::FIXED_URL_COUNT]->loc);
+        $this->assertCount(0, $urls[self::FIXED_URL_COUNT]->lastmod);
     }
 
     /**
      * @throws Exception
      */
-    public function testWriteAddsOneUrlEntryPerCategoryWithItsLastModifiedDate(): void
+    public function testWriteSetsLastmodOnHomeBlogCategoriesAndAuthorsFromTheNewestPost(): void
     {
-        $category  = $this->createCategory('news', '2026-08-01 10:00:00');
-        $generator = $this->createGenerator(categories: [$category]);
+        $olderPost = $this->createPost('older-post', 'news', '2026-08-01 10:00:00');
+        $newerPost = $this->createPost('newer-post', 'news', '2026-08-05 10:00:00');
 
-        $this->assertSame(self::FIXED_URL_COUNT + 1, $generator->write());
+        $generator = $this->createGenerator(posts: [$olderPost, $newerPost]);
+        $generator->write();
+
+        $urls = $this->loadSitemap()->url;
+        foreach ([0, 1, 2, 3] as $index) {
+            $this->assertSame('2026-08-05T10:00:00+00:00', (string) $urls[$index]->lastmod);
+        }
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testWriteAddsOneUrlEntryPerCategoryWithItsLastModifiedDateDerivedFromItsNewestPost(): void
+    {
+        $category = $this->createCategory('news');
+        $posts    = [
+            $this->createPost('older-post', 'news', '2026-08-01 10:00:00'),
+            $this->createPost('newer-post', 'news', '2026-08-03 10:00:00'),
+            $this->createPost('other-category-post', 'other', '2026-08-09 10:00:00'),
+        ];
+
+        $generator = $this->createGenerator(categories: [$category], posts: $posts);
+        $generator->write();
 
         $urls = $this->loadSitemap()->url;
         $this->assertSame('https://example.test/category/news/', (string) $urls[self::FIXED_URL_COUNT]->loc);
         $this->assertSame(
-            '2026-08-01T10:00:00+00:00',
+            '2026-08-03T10:00:00+00:00',
             (string) $urls[self::FIXED_URL_COUNT]->lastmod
         );
     }
@@ -140,6 +164,31 @@ class SitemapGeneratorTest extends UnitTest
         $urls = $this->loadSitemap()->url;
         $this->assertSame('https://example.test/author/jane-doe/', (string) $urls[self::FIXED_URL_COUNT]->loc);
         $this->assertCount(0, $urls[self::FIXED_URL_COUNT]->lastmod);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testWriteAddsOneUrlEntryPerAuthorWithItsLastModifiedDateDerivedFromItsNewestPost(): void
+    {
+        $author = $this->createStub(Author::class);
+        $author->method('getSlug')->willReturn('jane-doe');
+
+        $posts = [
+            $this->createPost('older-post', 'news', '2026-08-01 10:00:00', 'jane-doe'),
+            $this->createPost('newer-post', 'news', '2026-08-04 10:00:00', 'jane-doe'),
+            $this->createPost('other-author-post', 'news', '2026-08-09 10:00:00', 'john-doe'),
+        ];
+
+        $generator = $this->createGenerator(authors: [$author], posts: $posts);
+        $generator->write();
+
+        $urls = $this->loadSitemap()->url;
+        $this->assertSame('https://example.test/author/jane-doe/', (string) $urls[self::FIXED_URL_COUNT]->loc);
+        $this->assertSame(
+            '2026-08-04T10:00:00+00:00',
+            (string) $urls[self::FIXED_URL_COUNT]->lastmod
+        );
     }
 
     /**
@@ -197,7 +246,7 @@ class SitemapGeneratorTest extends UnitTest
         $postRepository->method('getPublishedPosts')->willReturn($posts);
 
         $categoryRepository = $this->createStub(CategoryRepository::class);
-        $categoryRepository->method('getCategories')->willReturn($categories);
+        $categoryRepository->method('getCategoriesWithPublishedPosts')->willReturn($categories);
 
         $authorRepository = $this->createStub(AuthorRepository::class);
         $authorRepository->method('getAuthorsWithPublishedPosts')->willReturn($authors);
@@ -215,14 +264,22 @@ class SitemapGeneratorTest extends UnitTest
     /**
      * @throws Exception
      */
-    private function createPost(string $slug, string $categorySlug, string $postDate = '2026-08-01 10:00:00'): Post
-    {
+    private function createPost(
+        string $slug,
+        string $categorySlug,
+        string $postDate = '2026-08-01 10:00:00',
+        string $authorSlug = 'author',
+    ): Post {
         $category = $this->createStub(Category::class);
         $category->method('getSlug')->willReturn($categorySlug);
+
+        $author = $this->createStub(Author::class);
+        $author->method('getSlug')->willReturn($authorSlug);
 
         $post = $this->createStub(Post::class);
         $post->method('getSlug')->willReturn($slug);
         $post->method('getCategory')->willReturn($category);
+        $post->method('getAuthor')->willReturn($author);
         $post->method('getPostDate')->willReturn(new DateTimeImmutable($postDate, new DateTimeZone('UTC')));
 
         return $post;
@@ -231,12 +288,10 @@ class SitemapGeneratorTest extends UnitTest
     /**
      * @throws Exception
      */
-    private function createCategory(string $slug, string $updated): Category
+    private function createCategory(string $slug): Category
     {
         $category = $this->createStub(Category::class);
         $category->method('getSlug')->willReturn($slug);
-        $category->method('getUpdated')->willReturn(new DateTimeImmutable($updated, new DateTimeZone('UTC')));
-        $category->method('getCreated')->willReturn(new DateTimeImmutable($updated, new DateTimeZone('UTC')));
 
         return $category;
     }
