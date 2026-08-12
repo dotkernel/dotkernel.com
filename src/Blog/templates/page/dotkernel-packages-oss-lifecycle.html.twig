@@ -30,12 +30,17 @@
             <main class="article">
                 <div class="packages-grid">
 
+                    {% set previousState = null %}
                     {% for package in packages %}
                         {% set state = lifecycleMeta[package.lifecycle] is defined ? package.lifecycle : 'unknown' %}
                         {% set meta = lifecycleMeta[state]|default({
                             label: package.lifecycle|capitalize,
                             title: 'This package does not declare a recognised lifecycle.',
                         }) %}
+                        {% if previousState is not null and previousState != state %}
+                            <hr class="packages-divider">
+                        {% endif %}
+                        {% set previousState = state %}
                         <div class="card package-card package-card--{{ state }}">
                             <div class="card-top">
                                 <div>

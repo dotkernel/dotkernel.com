@@ -792,6 +792,13 @@ html[data-theme="light"] .theme-toggle {
   gap: 18px;
 }
 
+.packages-divider {
+  grid-column: 1 / -1;
+  margin: 4px 0;
+  border: none;
+  border-top: 1px solid var(--border);
+}
+
 .package-card {
   border-top-width: 4px;
   transition: box-shadow .2s ease, transform .2s ease;
