@@ -86,6 +86,7 @@ return [
             'dotkernel-queue'    => 'dotkernel-queue',
             'dotkernel-light'    => 'dotkernel-light',
             'dotkernel-frontend' => 'dotkernel-frontend',
+            'dotkernel-boost'    => 'dotkernel-boost',
         ],
     ],
     'twig'   => [

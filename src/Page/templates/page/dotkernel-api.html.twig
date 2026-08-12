@@ -369,11 +369,12 @@
     <section style="background:var(--surface-2);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);">
         <div class="wrap">
             <div class="section-head">
-                <span class="eyebrow">Headless Platform</span>
+                <span class="eyebrow">The ecosystem</span>
                 <h2>Runs alone, or as one of three</h2>
                 <p>Dotkernel API is a complete application on its own. When you add Admin or Queue, all three declare the
                    same <code>Core</code> namespaces, so a <code>User</code> means the same thing to the endpoint that
-                   creates it, the admin screen that moderates it, and the worker that emails it.</p>
+                   creates it, the admin screen that moderates it, and the worker that emails it. The rest of the
+                   ecosystem is below.</p>
             </div>
 
             <div class="core-band">
@@ -391,12 +392,12 @@
                         <div><span class="kicker">Pair with · Back office</span><h3>Admin</h3></div>
                     </div>
                     <p class="lede">Manage the same data your API serves.</p>
-                    <p class="desc">A first-party application on the same Mezzio and Laminas foundation, with
-                        table-based CRUD screens, reports and graphs. Start with either one and add the other later.</p>
+                    <p class="desc">Table-based record management with RBAC guards, CSRF-protected forms and 2FA, over
+                        the same Core module. Start with either one and add the other later.</p>
                     <div class="card-btns">
+                        <a class="btn btn-primary btn-sm" href="{{ url('page::dotkernel-admin') }}">Read more</a>
                         <a class="btn btn-ghost btn-sm" href="https://github.com/dotkernel/admin" target="_blank" rel="noopener">GitHub</a>
                         <a class="btn btn-ghost btn-sm" href="https://admin7.dotkernel.net/" target="_blank" rel="noopener">Demo</a>
-                        <a class="btn btn-ghost btn-sm" href="https://docs.dotkernel.org/admin/" target="_blank" rel="noopener">Docs</a>
                     </div>
                 </div>
 
@@ -405,26 +406,59 @@
                         <div><span class="kicker">Pair with · Async work</span><h3>Queue</h3></div>
                     </div>
                     <p class="lede">Move slow work off the request cycle.</p>
-                    <p class="desc">Built on Symfony Messenger. A daemon stores incoming messages and processes them in
-                        order, with retries, IP whitelisting and a dead letter queue for what still fails.</p>
+                    <p class="desc">Background workers on Symfony Messenger - a TCP listener, Valkey streams, retries
+                        and a dead letter queue for what still fails.</p>
                     <div class="card-btns">
+                        <a class="btn btn-primary btn-sm" href="{{ url('page::dotkernel-queue') }}">Read more</a>
                         <a class="btn btn-ghost btn-sm" href="https://github.com/dotkernel/queue" target="_blank" rel="noopener">GitHub</a>
-                        <a class="btn btn-ghost btn-sm" href="https://docs.dotkernel.org/queue-documentation/" target="_blank" rel="noopener">Docs</a>
                     </div>
                 </div>
 
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Pair with · Components</span><h3>dot-* packages</h3></div>
+                        <div><span class="kicker">Instead · Server-rendered</span><h3>Frontend</h3></div>
                     </div>
-                    <p class="lede">Add a layer at a time, and nothing more.</p>
-                    <p class="desc">Authentication, RBAC, mail, logging, caching, CLI and more as small independent
-                        packages. Each one publishes its own support lifecycle.</p>
+                    <p class="lede">When your users want pages, not payloads.</p>
+                    <p class="desc">A web starter skeleton - user accounts, a contact form, sessions and RBAC-guarded
+                        controller actions, rendered on the server.</p>
                     <div class="card-btns">
-                        <a class="btn btn-ghost btn-sm" href="{{ url('page::dotkernel-packages-oss-lifecycle') }}">Packages lifecycle</a>
+                        <a class="btn btn-primary btn-sm" href="{{ url('page::dotkernel-frontend') }}">Read more</a>
+                        <a class="btn btn-ghost btn-sm" href="https://v5.dotkernel.net/" target="_blank" rel="noopener">Demo</a>
+                    </div>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Smaller · Minimal</span><h3>Light</h3></div>
+                    </div>
+                    <p class="lede">A presentation site with no API behind it.</p>
+                    <p class="desc">The smallest complete Mezzio application - routing, pipeline and Twig, six direct
+                        dependencies and no database layer.</p>
+                    <div class="card-btns">
+                        <a class="btn btn-primary btn-sm" href="{{ url('page::dotkernel-light') }}">Read more</a>
+                        <a class="btn btn-ghost btn-sm" href="https://light.dotkernel.net/" target="_blank" rel="noopener">Demo</a>
+                    </div>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Tooling · AI context</span><h3>Boost</h3></div>
+                    </div>
+                    <p class="lede">Teach your AI tools this architecture.</p>
+                    <p class="desc">Drop-in Claude Code configuration - ten commands, seventeen skills and permission
+                        guardrails that keep your secrets out of the context window.</p>
+                    <div class="card-btns">
+                        <a class="btn btn-primary btn-sm" href="{{ url('page::dotkernel-boost') }}">Read more</a>
+                        <a class="btn btn-ghost btn-sm" href="https://github.com/dotkernel/dotboost" target="_blank" rel="noopener">GitHub</a>
                     </div>
                 </div>
             </div>
+
+            <p style="margin-top:20px;font-size:13.5px;color:var(--text-dim);">
+                Every layer is also available on its own - see the
+                <a href="{{ url('page::dotkernel-packages-oss-lifecycle') }}">packages lifecycle</a> for the support
+                status of each <code>dot-*</code> package.
+            </p>
         </div>
     </section>
 

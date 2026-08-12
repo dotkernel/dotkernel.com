@@ -450,9 +450,9 @@
                     <p class="desc">A server-rendered web starter on Mezzio and Laminas - Twig views, forms, sessions
                         and RBAC-guarded routes, still standing on its own outside the platform.</p>
                     <div class="card-btns">
+                        <a class="btn btn-primary btn-sm" href="{{ url('page::dotkernel-frontend') }}">Read more</a>
                         <a class="btn btn-ghost btn-sm" href="https://github.com/dotkernel/frontend" target="_blank" rel="noopener">GitHub</a>
                         <a class="btn btn-ghost btn-sm" href="https://v5.dotkernel.net/" target="_blank" rel="noopener">Demo</a>
-                        <a class="btn btn-ghost btn-sm" href="https://docs.dotkernel.org/frontend/" target="_blank" rel="noopener">Docs</a>
                     </div>
                 </div>
 
@@ -479,6 +479,32 @@
                     <div class="card-btns">
                         <a class="btn btn-primary btn-sm" href="{{ url('page::dotkernel-admin') }}">Read more</a>
                         <a class="btn btn-ghost btn-sm" href="https://github.com/dotkernel/admin" target="_blank" rel="noopener">GitHub</a>
+                    </div>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Instead · Async work</span><h3>Queue</h3></div>
+                    </div>
+                    <p class="lede">You have work that outlives a request.</p>
+                    <p class="desc">Background workers on Symfony Messenger - a TCP listener, Valkey streams, retries
+                        and a dead letter queue for what still fails.</p>
+                    <div class="card-btns">
+                        <a class="btn btn-primary btn-sm" href="{{ url('page::dotkernel-queue') }}">Read more</a>
+                        <a class="btn btn-ghost btn-sm" href="https://github.com/dotkernel/queue" target="_blank" rel="noopener">GitHub</a>
+                    </div>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Tooling · AI context</span><h3>Boost</h3></div>
+                    </div>
+                    <p class="lede">Teach your AI tools this architecture.</p>
+                    <p class="desc">Drop-in Claude Code configuration - ten commands, seventeen skills and permission
+                        guardrails that keep your secrets out of the context window.</p>
+                    <div class="card-btns">
+                        <a class="btn btn-primary btn-sm" href="{{ url('page::dotkernel-boost') }}">Read more</a>
+                        <a class="btn btn-ghost btn-sm" href="https://github.com/dotkernel/dotboost" target="_blank" rel="noopener">GitHub</a>
                     </div>
                 </div>
             </div>
