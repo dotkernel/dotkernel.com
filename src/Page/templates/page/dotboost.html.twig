@@ -1,13 +1,13 @@
 {% extends '@layout/default.html.twig' %}
 
-{% set routeName = 'page::dotkernel-boost' %}
+{% set routeName = 'page::dotboost' %}
 {% set meta = {
-    title: 'Dotkernel Boost | Claude Code configuration for Dotkernel projects',
+    title: 'dotboost | Claude Code configuration for Dotkernel projects',
     description: 'dotboost is a drop-in .claude/ directory that teaches Claude Code the conventions of any Dotkernel '
         ~ 'application - ten commands, seventeen skills, six hooks, and permission guardrails that keep secrets out of the context.',
 } %}
 
-{% block title %}Dotkernel Boost{% endblock %}
+{% block title %}dotboost{% endblock %}
 
 {% block stylesheets %}
     <style>
@@ -30,7 +30,7 @@
         <div class="wrap hero-grid">
             <div>
                 <span class="eyebrow">Developer tooling · AI context</span>
-                <h1>Dotkernel Boost</h1>
+                <h1>Dotboost</h1>
                 <p class="sub">
                     Drop-in configuration that teaches Claude Code the conventions of any Dotkernel application - API,
                     Admin, Frontend, Light, Queue, or a project derived from one of them. Every skill detects the variant
@@ -77,7 +77,7 @@
                 <span class="eyebrow">What it is</span>
                 <h2>Not an application - a configuration payload</h2>
                 <p class="lede">
-                    dotboost is not itself a Dotkernel application. Its entire payload is the <code>.claude/</code>
+                    Dotboost is not itself a Dotkernel application. Its entire payload is the <code>.claude/</code>
                     directory: settings, hooks, a status line, a review subagent, ten <code>/dk-*</code> commands and
                     seventeen skills. You install it by copying that directory into the Dotkernel project you are
                     working on.
@@ -613,7 +613,7 @@ cp -r dotboost-main/.claude .claude</code>
                 <h2>Context your AI tools do not have to guess at.</h2>
             </div>
             <div>
-                <p class="about-text">dotboost is maintained by Borsan Sergiu and released as open source alongside the
+                <p class="about-text">Dotboost is maintained by Borsan Sergiu and released as open source alongside the
                     rest of the Dotkernel ecosystem. Treat the skills as living documents - the repository is where
                     corrections belong.</p>
                 <div class="about-cta">

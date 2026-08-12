@@ -1,6 +1,6 @@
 {% extends '@layout/default.html.twig' %}
 
-{% set routeName = 'page::dotkernel-frontend' %}
+{% set routeName = 'page::frontend' %}
 {% set meta = {
     title: 'Dotkernel Frontend | Server-rendered PHP web starter',
     description: 'Dotkernel Frontend is a web starter skeleton on Mezzio and Laminas - user accounts, a contact form, '
@@ -462,7 +462,7 @@
                     <p class="desc">The smallest complete Mezzio application - routing, pipeline and Twig, six direct
                         dependencies. Right for a presentation site.</p>
                     <div class="card-btns">
-                        <a class="btn btn-primary btn-sm" href="{{ url('page::dotkernel-light') }}">Read more</a>
+                        <a class="btn btn-primary btn-sm" href="{{ url('page::light') }}">Read more</a>
                         <a class="btn btn-ghost btn-sm" href="https://light.dotkernel.net/" target="_blank" rel="noopener">Demo</a>
                     </div>
                 </div>
@@ -475,7 +475,7 @@
                     <p class="desc">A REST API on a PSR-15 middleware pipeline, with OAuth 2.0, RBAC, HAL payloads and
                         an OpenAPI 3.0 specification wired up on install.</p>
                     <div class="card-btns">
-                        <a class="btn btn-primary btn-sm" href="{{ url('page::dotkernel-api') }}">Read more</a>
+                        <a class="btn btn-primary btn-sm" href="{{ url('page::api') }}">Read more</a>
                         <a class="btn btn-ghost btn-sm" href="https://api.dotkernel.net/" target="_blank" rel="noopener">Demo</a>
                     </div>
                 </div>
@@ -488,7 +488,7 @@
                     <p class="desc">Table-based record management with RBAC guards, CSRF-protected forms and 2FA, over a
                         Core module shared with API and Queue.</p>
                     <div class="card-btns">
-                        <a class="btn btn-primary btn-sm" href="{{ url('page::dotkernel-admin') }}">Read more</a>
+                        <a class="btn btn-primary btn-sm" href="{{ url('page::admin') }}">Read more</a>
                         <a class="btn btn-ghost btn-sm" href="https://admin7.dotkernel.net/" target="_blank" rel="noopener">Demo</a>
                     </div>
                 </div>
@@ -501,20 +501,20 @@
                     <p class="desc">Background workers on Symfony Messenger - a TCP listener, Valkey streams, retries
                         and a dead letter queue for what still fails.</p>
                     <div class="card-btns">
-                        <a class="btn btn-primary btn-sm" href="{{ url('page::dotkernel-queue') }}">Read more</a>
+                        <a class="btn btn-primary btn-sm" href="{{ url('page::queue') }}">Read more</a>
                         <a class="btn btn-ghost btn-sm" href="https://github.com/dotkernel/queue" target="_blank" rel="noopener">GitHub</a>
                     </div>
                 </div>
 
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Tooling · AI context</span><h3>Boost</h3></div>
+                        <div><span class="kicker">Tooling · AI context</span><h3>Dotboost</h3></div>
                     </div>
                     <p class="lede">Teach your AI tools this architecture.</p>
                     <p class="desc">Drop-in Claude Code configuration - ten commands, seventeen skills and permission
                         guardrails that keep your secrets out of the context window.</p>
                     <div class="card-btns">
-                        <a class="btn btn-primary btn-sm" href="{{ url('page::dotkernel-boost') }}">Read more</a>
+                        <a class="btn btn-primary btn-sm" href="{{ url('page::dotboost') }}">Read more</a>
                         <a class="btn btn-ghost btn-sm" href="https://github.com/dotkernel/dotboost" target="_blank" rel="noopener">GitHub</a>
                     </div>
                 </div>

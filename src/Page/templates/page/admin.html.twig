@@ -1,6 +1,6 @@
 {% extends '@layout/default.html.twig' %}
 
-{% set routeName = 'page::dotkernel-admin' %}
+{% set routeName = 'page::admin' %}
 {% set meta = {
     title: 'Dotkernel Admin | Open-source PHP admin application',
     description: 'Dotkernel Admin is an open-source admin application (skeleton) built on Mezzio, Laminas and Doctrine. '
@@ -498,7 +498,7 @@
                     <p class="desc">A REST API on a PSR-15 middleware pipeline, with OAuth 2.0, RBAC, HAL payloads and
                         an OpenAPI 3.0 specification wired up on install.</p>
                     <div class="card-btns">
-                        <a class="btn btn-primary btn-sm" href="{{ url('page::dotkernel-api') }}">Read more</a>
+                        <a class="btn btn-primary btn-sm" href="{{ url('page::api') }}">Read more</a>
                         <a class="btn btn-ghost btn-sm" href="https://github.com/dotkernel/api" target="_blank" rel="noopener">GitHub</a>
                         <a class="btn btn-ghost btn-sm" href="https://api.dotkernel.net/" target="_blank" rel="noopener">Demo</a>
                     </div>
@@ -512,7 +512,7 @@
                     <p class="desc">Background workers on Symfony Messenger - a TCP listener, Valkey streams, retries
                         and a dead letter queue for what still fails.</p>
                     <div class="card-btns">
-                        <a class="btn btn-primary btn-sm" href="{{ url('page::dotkernel-queue') }}">Read more</a>
+                        <a class="btn btn-primary btn-sm" href="{{ url('page::queue') }}">Read more</a>
                         <a class="btn btn-ghost btn-sm" href="https://github.com/dotkernel/queue" target="_blank" rel="noopener">GitHub</a>
                     </div>
                 </div>
@@ -525,7 +525,7 @@
                     <p class="desc">A web starter skeleton - user accounts, a contact form, sessions and RBAC-guarded
                         controller actions, rendered on the server.</p>
                     <div class="card-btns">
-                        <a class="btn btn-primary btn-sm" href="{{ url('page::dotkernel-frontend') }}">Read more</a>
+                        <a class="btn btn-primary btn-sm" href="{{ url('page::frontend') }}">Read more</a>
                         <a class="btn btn-ghost btn-sm" href="https://v5.dotkernel.net/" target="_blank" rel="noopener">Demo</a>
                     </div>
                 </div>
@@ -538,20 +538,20 @@
                     <p class="desc">The smallest complete Mezzio application - routing, pipeline and Twig, six direct
                         dependencies and no database layer.</p>
                     <div class="card-btns">
-                        <a class="btn btn-primary btn-sm" href="{{ url('page::dotkernel-light') }}">Read more</a>
+                        <a class="btn btn-primary btn-sm" href="{{ url('page::light') }}">Read more</a>
                         <a class="btn btn-ghost btn-sm" href="https://light.dotkernel.net/" target="_blank" rel="noopener">Demo</a>
                     </div>
                 </div>
 
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Tooling · AI context</span><h3>Boost</h3></div>
+                        <div><span class="kicker">Tooling · AI context</span><h3>Dotboost</h3></div>
                     </div>
                     <p class="lede">Teach your AI tools this architecture.</p>
                     <p class="desc">Drop-in Claude Code configuration - ten commands, seventeen skills and permission
                         guardrails that keep your secrets out of the context window.</p>
                     <div class="card-btns">
-                        <a class="btn btn-primary btn-sm" href="{{ url('page::dotkernel-boost') }}">Read more</a>
+                        <a class="btn btn-primary btn-sm" href="{{ url('page::dotboost') }}">Read more</a>
                         <a class="btn btn-ghost btn-sm" href="https://github.com/dotkernel/dotboost" target="_blank" rel="noopener">GitHub</a>
                     </div>
                 </div>
