@@ -9,6 +9,7 @@ use Light\Blog\Handler\GetCategoryCollectionHandler;
 use Light\Blog\Handler\GetCategoryResourceHandler;
 use Light\Blog\Handler\GetPostCollectionHandler;
 use Light\Blog\Handler\GetPostResourceHandler;
+use Light\Blog\Handler\GetTagResourceHandler;
 use Mezzio\Application;
 use Psr\Container\ContainerInterface;
 
@@ -24,6 +25,7 @@ class RoutesDelegator
         $app->get('/category/{slug}/', [GetCategoryResourceHandler::class], 'page::category-resource');
         $app->get('/categories/', [GetCategoryCollectionHandler::class], 'page::categories');
         $app->get('/author/{slug}/', [GetAuthorResourceHandler::class], 'page::author-resource');
+        $app->get('/tag/{slug}/', [GetTagResourceHandler::class], 'page::tag-resource');
         $app->get('/{categorySlug}/{slug}/', [GetPostResourceHandler::class], 'page::blog-resource');
         return $app;
     }

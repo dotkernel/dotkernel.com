@@ -1,3 +1,13 @@
+{% if article.postTags|length > 0 %}
+    <div class="d-flex flex-wrap gap-2 my-4">
+        {% for postTag in article.postTags %}
+            <a href="{{ url('page::tag-resource', {slug: postTag.tag.slug}) }}" class="tag-badge">
+                {{ postTag.tag.name }}
+            </a>
+        {% endfor %}
+    </div>
+{% endif %}
+
 {% if previousPost or nextPost %}
     <div class="post-nav">
         {% if previousPost %}

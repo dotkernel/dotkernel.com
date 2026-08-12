@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Light\Blog\Entity;
 
 use DateTimeImmutable;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Light\App\Entity\AbstractEntity;
 use Light\Blog\Enum\PostStatusEnum;
@@ -51,6 +53,17 @@ class Post extends AbstractEntity
 
     #[ORM\Column(name: 'opengraph_img', type: 'string', length: 255, nullable: true)]
     private ?string $openGraphImage = null;
+
+    /** @var Collection<int, PostTag> */
+    #[ORM\OneToMany(mappedBy: 'post', targetEntity: PostTag::class)]
+    private Collection $postTags;
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->postTags = new ArrayCollection();
+    }
 
     public function getTitle(): string
     {
@@ -150,6 +163,14 @@ class Post extends AbstractEntity
     public function setOpenGraphImage(?string $openGraphImage): void
     {
         $this->openGraphImage = $openGraphImage;
+    }
+
+    /**
+     * @return Collection<int, PostTag>
+     */
+    public function getPostTags(): Collection
+    {
+        return $this->postTags;
     }
 
     /**
