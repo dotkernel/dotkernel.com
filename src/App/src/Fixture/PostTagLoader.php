@@ -18,13 +18,17 @@ use function json_decode;
 
 class PostTagLoader extends Fixture implements DependentFixtureInterface
 {
+    public function __construct(
+        private readonly string $jsonFile = __DIR__ . '/articles_cleaned.json',
+    ) {
+    }
+
     public function load(ObjectManager $manager): void
     {
-        $jsonFile = __DIR__ . '/articles_cleaned.json';
-        $contents = file_get_contents($jsonFile);
+        $contents = file_get_contents($this->jsonFile);
 
         if ($contents === false) {
-            throw new RuntimeException("Unable to read file: {$jsonFile}");
+            throw new RuntimeException("Unable to read file: {$this->jsonFile}");
         }
 
         $categories = json_decode($contents, true);
