@@ -7,6 +7,7 @@ namespace Light\App\Service;
 use DateTimeInterface;
 use DOMDocument;
 use DOMElement;
+use Light\Blog\Entity\Post;
 use Light\Blog\Repository\AuthorRepository;
 use Light\Blog\Repository\CategoryRepository;
 use Light\Blog\Repository\PostRepository;
@@ -41,8 +42,11 @@ class SitemapGenerator
     public function write(): int
     {
         $posts      = $this->postRepository->getPublishedPosts();
-        $categories = $this->categoryRepository->getCategories();
+        $categories = $this->categoryRepository->getCategoriesWithPublishedPosts();
         $authors    = $this->authorRepository->getAuthorsWithPublishedPosts();
+
+        [$latestOverall, $latestByCategory, $latestByAuthor] = $this->buildLastmodIndex($posts);
+        $siteLastmod                                         = $latestOverall?->format(DateTimeInterface::W3C);
 
         $dom               = new DOMDocument('1.0', 'UTF-8');
         $dom->formatOutput = true;
@@ -52,13 +56,16 @@ class SitemapGenerator
 
         $count = 0;
 
-        $this->appendUrl($dom, $urlset, $this->baseUrl . '/');
+        $this->appendUrl($dom, $urlset, $this->baseUrl . '/', $siteLastmod);
         $count++;
 
-        $this->appendUrl($dom, $urlset, $this->baseUrl . '/blog/');
+        $this->appendUrl($dom, $urlset, $this->baseUrl . '/blog/', $siteLastmod);
         $count++;
 
-        $this->appendUrl($dom, $urlset, $this->baseUrl . '/categories/');
+        $this->appendUrl($dom, $urlset, $this->baseUrl . '/categories/', $siteLastmod);
+        $count++;
+
+        $this->appendUrl($dom, $urlset, $this->baseUrl . '/authors/', $siteLastmod);
         $count++;
 
         $this->appendUrl($dom, $urlset, $this->baseUrl . '/dotkernel-packages-oss-lifecycle/');
@@ -70,7 +77,7 @@ class SitemapGenerator
         }
 
         foreach ($categories as $category) {
-            $lastmod = $category->getUpdated() ?? $category->getCreated();
+            $lastmod = $latestByCategory[$category->getSlug()] ?? null;
             $this->appendUrl(
                 $dom,
                 $urlset,
@@ -81,7 +88,13 @@ class SitemapGenerator
         }
 
         foreach ($authors as $author) {
-            $this->appendUrl($dom, $urlset, sprintf('%s/author/%s/', $this->baseUrl, $author->getSlug()));
+            $lastmod = $latestByAuthor[$author->getSlug()] ?? null;
+            $this->appendUrl(
+                $dom,
+                $urlset,
+                sprintf('%s/author/%s/', $this->baseUrl, $author->getSlug()),
+                $lastmod?->format(DateTimeInterface::W3C)
+            );
             $count++;
         }
 
@@ -101,6 +114,37 @@ class SitemapGenerator
         }
 
         return $count;
+    }
+
+    /**
+     * @param array<int, Post> $posts
+     * @return array{0: ?DateTimeInterface, 1: array<string, DateTimeInterface>, 2: array<string, DateTimeInterface>}
+     */
+    private function buildLastmodIndex(array $posts): array
+    {
+        $latestOverall    = null;
+        $latestByCategory = [];
+        $latestByAuthor   = [];
+
+        foreach ($posts as $post) {
+            $postDate = $post->getPostDate();
+
+            if ($latestOverall === null || $postDate > $latestOverall) {
+                $latestOverall = $postDate;
+            }
+
+            $categorySlug = $post->getCategory()->getSlug();
+            if (! isset($latestByCategory[$categorySlug]) || $postDate > $latestByCategory[$categorySlug]) {
+                $latestByCategory[$categorySlug] = $postDate;
+            }
+
+            $authorSlug = $post->getAuthor()->getSlug();
+            if (! isset($latestByAuthor[$authorSlug]) || $postDate > $latestByAuthor[$authorSlug]) {
+                $latestByAuthor[$authorSlug] = $postDate;
+            }
+        }
+
+        return [$latestOverall, $latestByCategory, $latestByAuthor];
     }
 
     private function appendUrl(DOMDocument $dom, DOMElement $urlset, string $loc, ?string $lastmod = null): void

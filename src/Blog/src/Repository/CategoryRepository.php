@@ -26,6 +26,27 @@ class CategoryRepository extends AbstractRepository
         return $qb->getQuery()->getResult();
     }
 
+    /**
+     * @return array<Category>
+     */
+    public function getCategoriesWithPublishedPosts(): array
+    {
+        $publishedCategoryIds = $this->getQueryBuilder()
+            ->select('publishedCategory.id')
+            ->from(Post::class, 'post')
+            ->join('post.category', 'publishedCategory')
+            ->where('post.status = :published');
+
+        $qb = $this->getQueryBuilder()
+            ->select('categories')
+            ->from(Category::class, 'categories');
+
+        $qb->where($qb->expr()->in('categories.id', $publishedCategoryIds->getDQL()))
+            ->setParameter('published', PostStatusEnum::Published);
+
+        return $qb->getQuery()->getResult();
+    }
+
     public function getCategoryResource(string $slug): ?Category
     {
         $qb = $this->getQueryBuilder()
