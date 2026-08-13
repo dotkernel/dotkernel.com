@@ -57,8 +57,18 @@
             <div class="collapse navbar-collapse order-lg-1" id="mainNav">
                 <ul class="navbar-nav ms-auto align-items-lg-center">
                     <li class="nav-item"><a class="nav-link" href="https://docs.dotkernel.org/" target="_blank" rel="noopener">Documentation</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="productsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Products</a>
+                        <ul class="dropdown-menu" aria-labelledby="productsDropdown">
+                            <li><a class="dropdown-item" href="{{ url('page::api') }}">API</a></li>
+                            <li><a class="dropdown-item" href="{{ url('page::admin') }}">Admin</a></li>
+                            <li><a class="dropdown-item" href="{{ url('page::dotboost') }}">Dotboost</a></li>
+                            <li><a class="dropdown-item" href="{{ url('page::frontend') }}">Frontend</a></li>
+                            <li><a class="dropdown-item" href="{{ url('page::light') }}">Light</a></li>
+                            <li><a class="dropdown-item" href="{{ url('page::queue') }}">Queue</a></li>
+                        </ul>
+                    </li>
                     <li class="nav-item"><a class="nav-link" href="{{ url('page::dotkernel-packages-oss-lifecycle') }}">Packages Lifecycle</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ url('page::category-resource', {slug: 'how-to'}) }}">How to's</a></li>
                     <li class="nav-item"><a class="nav-link" href="https://github.com/orgs/dotkernel/discussions" target="_blank" rel="noopener">Discussion</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ url('page::blog') }}">Blog</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ url('page::categories') }}">Categories</a></li>
