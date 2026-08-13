@@ -28,6 +28,17 @@
                     {% endfor %}
                 </div>
             {% endif %}
+
+            {% if authors is defined and authors|length > 0 %}
+                <div class="d-flex flex-wrap gap-2 mt-4">
+                    {% for author in authors %}
+                        <a href="{{ url('page::author-resource', {slug: author.slug}) }}"
+                           class="badge bg-primary-subtle text-primary text-uppercase fw-bold text-decoration-none px-3 py-2 rounded-pill">
+                            {{ author.name }}
+                        </a>
+                    {% endfor %}
+                </div>
+            {% endif %}
         </div>
     </section>
 {% endblock %}

@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace Light\Blog\Handler;
 
+use Fig\Http\Message\StatusCodeInterface;
 use Laminas\Diactoros\Response\HtmlResponse;
 use Light\App\Helper\Paginator;
+use Light\Blog\Entity\Author;
 use Light\Blog\Repository\AuthorRepository;
 use Light\Blog\Repository\CategoryRepository;
 use Light\Blog\Repository\PostRepository;
@@ -28,10 +30,10 @@ class GetAuthorResourceHandler implements RequestHandlerInterface
     {
         $authorSlug = $request->getAttribute('slug');
         $author     = $this->authorRepository->getAuthorResource($authorSlug);
-        $categories = $this->categoryRepository->getCategories();
         if (! $author) {
-            return new HtmlResponse('Author not found', 404);
+            return $this->notFound($this->authorRepository->getAuthorsWithPublishedPosts());
         }
+        $categories = $this->categoryRepository->getCategories();
 
         $queryParams = $request->getQueryParams();
         $params      = Paginator::getParams($queryParams, 'posts.postDate');
@@ -47,6 +49,19 @@ class GetAuthorResourceHandler implements RequestHandlerInterface
                 'categories' => $categories,
                 'data'       => $data,
             ])
+        );
+    }
+
+    /**
+     * @param Author[] $authors
+     */
+    private function notFound(array $authors): HtmlResponse
+    {
+        return new HtmlResponse(
+            $this->template->render('error::404', [
+                'authors' => $authors,
+            ]),
+            StatusCodeInterface::STATUS_NOT_FOUND
         );
     }
 }
