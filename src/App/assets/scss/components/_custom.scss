@@ -571,6 +571,18 @@ html[data-theme="light"] .theme-toggle {
   gap: 18px;
 }
 
+// The hero artwork sits on its own full-width row under the hero grid, so the figure spans the
+// content width rather than the narrow right-hand column. Its SVG is drawn on a 1180-wide canvas.
+.hero-art-row {
+  margin-top: 46px;
+}
+
+@media (max-width: 980px) {
+  .hero-art-row {
+    margin-top: 36px;
+  }
+}
+
 .hero-art {
   position: relative;
   background: var(--surface);

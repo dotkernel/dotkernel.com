@@ -1,6 +1,6 @@
 # Dotkernel Light
 
-> Dotkernel Light is the technical blog for the Dotkernel headless PHP platform — a PSR-15 compliant application built on Mezzio and Laminas components. It publishes architecture write-ups, how-tos, and release notes for Dotkernel Admin, API, Frontend, and Light.
+> Dotkernel Light is the technical blog for the Dotkernel headless PHP platform — a PSR-15 compliant application built on Mezzio and Laminas components. It publishes architecture write-ups, how-tos, and release notes for the platform applications — Dotkernel API, Admin and Queue — and for the standalone Dotkernel Light skeleton.
 
 Content spans foundational PHP/middleware architecture (PSR-7, PSR-15, request lifecycle, dependency injection), practical how-tos (Doctrine migrations, CORS, authentication, caching), and the history/release notes of the Dotkernel ecosystem going back to 2008. Posts are organized by category and attributed to an author; URLs follow the pattern `/{category-slug}/{post-slug}/`.
 
@@ -8,8 +8,7 @@ Content spans foundational PHP/middleware architecture (PSR-7, PSR-15, request l
 
 - [Blog](https://www.dotkernel.com/blog/): full list of posts, most recent first, paginated
 - [Categories](https://www.dotkernel.com/categories/): all categories with post counts
-- [About](https://www.dotkernel.com/about/): what Dotkernel Light is
-- [Who We Are](https://www.dotkernel.com/who-we-are/): team/company background
+- [About](https://www.dotkernel.com/about/): the team behind Dotkernel — how the team works, its commitment to open source and the PHP community, and how it uses AI under guardrails
 - [OSS Package Lifecycle](https://www.dotkernel.com/dotkernel-packages-oss-lifecycle/): support/maintenance status of Dotkernel's open-source packages
 - [Contact](https://www.dotkernel.com/contact/)
 
