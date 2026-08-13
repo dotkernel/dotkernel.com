@@ -11,6 +11,7 @@ enum PostStatusEnum: string
     case Draft     = 'draft';
     case Published = 'published';
     case Private   = 'private';
+    case Archived  = 'archived';
 
     /**
      * @return non-empty-string[]

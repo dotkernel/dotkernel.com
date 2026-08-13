@@ -1,0 +1,33 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}410 Gone{% endblock %}
+{% block canonical %}{% endblock %}
+
+{% block content %}
+    <section class="hero">
+        <div class="wrap">
+            <span class="eyebrow">Oops! This is awkward.</span>
+            <h1>410</h1>
+            <p class="sub">
+                The content was misleading, old and obsolete, so we removed it.
+                It is gone for good and won't be coming back.
+            </p>
+
+            <div class="hero-ctas">
+                <a class="btn btn-primary" href="{{ path('app::index') }}">Back to Home</a>
+                <a class="btn btn-ghost" href="{{ url('page::blog') }}">Browse new posts</a>
+            </div>
+
+            {% if categories is defined and categories|length > 0 %}
+                <div class="d-flex flex-wrap gap-2 mt-4">
+                    {% for category in categories %}
+                        <a href="{{ url('page::category-resource', {slug: category.slug}) }}"
+                           class="badge bg-primary-subtle text-primary text-uppercase fw-bold text-decoration-none px-3 py-2 rounded-pill">
+                            {{ category.name }}
+                        </a>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}

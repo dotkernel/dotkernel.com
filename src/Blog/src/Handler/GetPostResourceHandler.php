@@ -7,6 +7,7 @@ namespace Light\Blog\Handler;
 use Fig\Http\Message\StatusCodeInterface;
 use Laminas\Diactoros\Response\HtmlResponse;
 use Light\Blog\Entity\Category;
+use Light\Blog\Enum\PostStatusEnum;
 use Light\Blog\Repository\CategoryRepository;
 use Light\Blog\Repository\PostRepository;
 use Mezzio\Template\TemplateRendererInterface;
@@ -31,6 +32,12 @@ class GetPostResourceHandler implements RequestHandlerInterface
         $categories   = $this->categoryRepository->getCategories();
         $article      = $this->articleRepository->getArticleResource($slug, $categorySlug);
         if ($article === null) {
+            return $this->notFound($categories);
+        }
+        if ($article->getStatus() === PostStatusEnum::Archived) {
+            return $this->gone($categories);
+        }
+        if ($article->getStatus() !== PostStatusEnum::Published) {
             return $this->notFound($categories);
         }
         $meta     = $article;
@@ -62,6 +69,19 @@ class GetPostResourceHandler implements RequestHandlerInterface
                 'categories' => $categories,
             ]),
             StatusCodeInterface::STATUS_NOT_FOUND
+        );
+    }
+
+    /**
+     * @param Category[] $categories
+     */
+    private function gone(array $categories): HtmlResponse
+    {
+        return new HtmlResponse(
+            $this->template->render('error::410', [
+                'categories' => $categories,
+            ]),
+            StatusCodeInterface::STATUS_GONE
         );
     }
 }

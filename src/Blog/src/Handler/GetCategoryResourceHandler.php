@@ -31,6 +31,9 @@ class GetCategoryResourceHandler implements RequestHandlerInterface
         if ($category === null) {
             return $this->notFound($categories);
         }
+        if (! $category->isVisible()) {
+            return $this->gone($categories);
+        }
         $meta = $category;
 
         $queryParams = $request->getQueryParams();
@@ -66,6 +69,19 @@ class GetCategoryResourceHandler implements RequestHandlerInterface
                 'categories' => $categories,
             ]),
             StatusCodeInterface::STATUS_NOT_FOUND
+        );
+    }
+
+    /**
+     * @param Category[] $categories
+     */
+    private function gone(array $categories): HtmlResponse
+    {
+        return new HtmlResponse(
+            $this->template->render('error::410', [
+                'categories' => $categories,
+            ]),
+            StatusCodeInterface::STATUS_GONE
         );
     }
 }
