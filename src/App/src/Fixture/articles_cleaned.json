@@ -7,7 +7,7 @@
             {
                 "post_title": "Dotkernel Database Naming Conventions for MySQL",
                 "post_date": "2010-03-10 16:56:24",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -21,7 +21,7 @@
             {
                 "post_title": "camelCase Table Names in MySQL on Windows",
                 "post_date": "2010-03-12 19:40:36",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -35,7 +35,7 @@
             {
                 "post_title": "Sending emails using Dot_Email component and Zend_Email",
                 "post_date": "2010-04-28 04:08:15",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -49,7 +49,7 @@
             {
                 "post_title": "Dotkernel 1.2.0 release",
                 "post_date": "2010-07-05 09:36:10",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "Teo",
                     "github": ""
@@ -63,7 +63,7 @@
             {
                 "post_title": "Dotkernel 1.2.2 release",
                 "post_date": "2010-07-30 05:10:12",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "Teo",
                     "github": ""
@@ -77,7 +77,7 @@
             {
                 "post_title": "Dotkernel 1.3.0 release",
                 "post_date": "2010-10-15 06:27:36",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "Teo",
                     "github": ""
@@ -91,7 +91,7 @@
             {
                 "post_title": "GeoIP: Ip Address Location In Dotkernel",
                 "post_date": "2010-10-19 10:07:43",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "Teo",
                     "github": ""
@@ -105,7 +105,7 @@
             {
                 "post_title": "WURFL Zend Framework Integration into Dotkernel",
                 "post_date": "2010-10-27 06:02:45",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "Teo",
                     "github": ""
@@ -119,7 +119,7 @@
             {
                 "post_title": "Dotkernel 1.3.2 release",
                 "post_date": "2010-12-23 11:30:20",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "Teo",
                     "github": ""
@@ -133,7 +133,7 @@
             {
                 "post_title": "Zend_Auth and Zend_Acl integrated in Dotkernel",
                 "post_date": "2011-06-16 08:55:28",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "Teo",
                     "github": ""
@@ -147,7 +147,7 @@
             {
                 "post_title": "Disable Wurfl redirect for mobile browsers",
                 "post_date": "2011-01-31 10:05:06",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "Adrian",
                     "github": ""
@@ -161,7 +161,7 @@
             {
                 "post_title": "Protecting admin folder with .htaccess in Plesk",
                 "post_date": "2011-06-15 06:14:08",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -188,7 +188,7 @@
             {
                 "post_title": "Adding a second caching layer to WURFL in Dotkernel using APC",
                 "post_date": "2011-10-14 10:18:04",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "Adrian",
                     "github": ""
@@ -202,7 +202,7 @@
             {
                 "post_title": "Zend Registry usage in Dotkernel",
                 "post_date": "2011-06-01 03:00:47",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "Adrian",
                     "github": ""
@@ -216,7 +216,7 @@
             {
                 "post_title": "WURFL PHP API license incompatible with Dotkernel",
                 "post_date": "2011-06-08 20:29:04",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -230,7 +230,7 @@
             {
                 "post_title": "Dotkernel 1.5.0 Released",
                 "post_date": "2011-06-15 12:07:08",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "Adrian",
                     "github": ""
@@ -244,7 +244,7 @@
             {
                 "post_title": "Detecting Mobile Devices in Dotkernel 1.6.0",
                 "post_date": "2012-05-18 16:35:47",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "deddu",
                     "github": ""
@@ -258,7 +258,7 @@
             {
                 "post_title": "Zend_Session usage in Dotkernel - Refactor of Dot_Session class",
                 "post_date": "2011-07-28 19:03:38",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -272,7 +272,7 @@
             {
                 "post_title": "Zend_Console implementation in Dotkernel",
                 "post_date": "2011-10-13 10:07:48",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "Adrian",
                     "github": ""
@@ -286,7 +286,7 @@
             {
                 "post_title": "Manual upgrade of WURFL xml file in Dotkernel",
                 "post_date": "2011-11-22 10:47:56",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -300,7 +300,7 @@
             {
                 "post_title": "How to Set a Persistent Connection to Database with Zend Framework Zend_Db adapter",
                 "post_date": "2012-02-16 10:58:17",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -314,7 +314,7 @@
             {
                 "post_title": "Zend Studio PHP Formatter file for Dotkernel coding standard.",
                 "post_date": "2012-03-02 11:08:16",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -328,7 +328,7 @@
             {
                 "post_title": "Zend Framework dropped integration of WURFL adapter",
                 "post_date": "2012-03-22 12:26:18",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -342,7 +342,7 @@
             {
                 "post_title": "Using  UTF8 charset in Dotkernel",
                 "post_date": "2012-04-07 23:49:34",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -384,7 +384,7 @@
             {
                 "post_title": "Highcharts Integration in Dotkernel 1.6.0",
                 "post_date": "2012-05-18 16:32:39",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "deddu",
                     "github": ""
@@ -398,7 +398,7 @@
             {
                 "post_title": "Wurfl Cloud Integration in Dotkernel 1.6.0",
                 "post_date": "2012-05-18 16:37:25",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "deddu",
                     "github": ""
@@ -412,7 +412,7 @@
             {
                 "post_title": "Scientia Mobile licensed its Wurfl Cloud PHP library to Dotkernel 1.6",
                 "post_date": "2012-05-25 18:36:47",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -426,7 +426,7 @@
             {
                 "post_title": "New Features in Zend Framework 1.12",
                 "post_date": "2012-06-18 13:44:26",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -440,7 +440,7 @@
             {
                 "post_title": "Dotkernel on Nginx",
                 "post_date": "2013-06-25 12:42:19",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -454,7 +454,7 @@
             {
                 "post_title": "PHP Formatter and Templates for Zend Studio 10.1",
                 "post_date": "2013-07-02 18:55:09",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -468,7 +468,7 @@
             {
                 "post_title": "Installing GeoIP extension in Zend Server 5.6 on Windows",
                 "post_date": "2013-07-31 13:00:28",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "deddu",
                     "github": ""
@@ -482,7 +482,7 @@
             {
                 "post_title": "Installing GeoIP extension in Zend Server 6 on Windows",
                 "post_date": "2013-07-31 17:16:27",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -510,7 +510,7 @@
             {
                 "post_title": "Implementing the new Password Hashing API from PHP 5.5 in Dotkernel",
                 "post_date": "2014-06-06 11:54:56",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -524,7 +524,7 @@
             {
                 "post_title": "Configuring the Cache in Dotkernel",
                 "post_date": "2015-01-29 10:08:15",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "Gabi DJ",
                     "github": "gabidj"
@@ -538,7 +538,7 @@
             {
                 "post_title": "Caching in Dotkernel using Zend Framework",
                 "post_date": "2015-01-29 10:08:22",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "Gabi DJ",
                     "github": "gabidj"
@@ -552,7 +552,7 @@
             {
                 "post_title": "Dotkernel Reserved Variable Names for Caching",
                 "post_date": "2015-01-29 10:08:17",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "Gabi DJ",
                     "github": "gabidj"
@@ -566,7 +566,7 @@
             {
                 "post_title": "GeoIP City Removed From Dotkernel",
                 "post_date": "2015-02-25 12:39:25",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "Gabi DJ",
                     "github": "gabidj"
@@ -580,7 +580,7 @@
             {
                 "post_title": "How to use Alerts in Dotkernel",
                 "post_date": "2015-04-29 12:20:32",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "Gabi DJ",
                     "github": "gabidj"
@@ -594,7 +594,7 @@
             {
                 "post_title": "Dotkernel 1.8.0 LTS Released",
                 "post_date": "2015-06-08 11:00:15",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "Gabi DJ",
                     "github": "gabidj"
@@ -608,7 +608,7 @@
             {
                 "post_title": "Dotkernel 1.8.1 + Upgrade from 1.8.0 Released",
                 "post_date": "2015-06-11 12:39:46",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "Gabi DJ",
                     "github": "gabidj"
@@ -622,7 +622,7 @@
             {
                 "post_title": "Adding Windows 10 OS and Browser detection in Dotkernel projects",
                 "post_date": "2015-09-08 11:25:39",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "Gabi DJ",
                     "github": "gabidj"
@@ -664,7 +664,7 @@
             {
                 "post_title": "Migration of Zend Framework 1 PEAR channel",
                 "post_date": "2016-05-11 11:30:20",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -810,7 +810,7 @@
             {
                 "post_title": "Dotkernel Coding Standard",
                 "post_date": "2008-03-28 15:44:51",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -824,7 +824,7 @@
             {
                 "post_title": "DotBoost Technologies : Products and Services North American Relaunch",
                 "post_date": "2010-01-28 10:41:05",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -838,7 +838,7 @@
             {
                 "post_title": "Dotkernel version 1.0 in action",
                 "post_date": "2009-10-02 16:08:47",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -852,7 +852,7 @@
             {
                 "post_title": "Dotkernel Template Engine",
                 "post_date": "2009-10-02 16:21:27",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -1018,7 +1018,7 @@
             {
                 "post_title": "Codelobster PHP Edition - Free PHP, HTML, CSS, JavaScript editor (IDE)",
                 "post_date": "2013-09-26 11:07:40",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "Stas",
                     "github": "stas@codelobster.com"
@@ -1053,7 +1053,7 @@
             {
                 "post_title": "Javascript: Email Validator",
                 "post_date": "2008-10-03 18:54:37",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -1091,7 +1091,7 @@
             {
                 "post_title": "WURFL PHP API libraries , GPL versions",
                 "post_date": "2011-06-14 16:49:36",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -1110,7 +1110,7 @@
             {
                 "post_title": "Zend Framework 1.12.4 Released with Security Fixes",
                 "post_date": "2014-03-06 20:11:56",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -1124,7 +1124,7 @@
             {
                 "post_title": "Zend_Mail and Zend_Http Security Fixes in Zend Framework 1.12.12",
                 "post_date": "2015-05-19 17:27:17",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -1152,7 +1152,7 @@
             {
                 "post_title": "Zend Framework as PEAR accessible repository on Plesk server",
                 "post_date": "2008-10-03 19:26:28",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -1179,7 +1179,7 @@
             {
                 "post_title": "Zend Framework 1.7.0 Released",
                 "post_date": "2008-11-17 16:58:06",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -1193,7 +1193,7 @@
             {
                 "post_title": "Scienta ZF Debug Bar: A very helpfull ZF debug tool",
                 "post_date": "2009-03-31 03:44:53",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -1228,7 +1228,7 @@
             {
                 "post_title": "PHP support back in Aptana 3.0",
                 "post_date": "2010-06-11 00:20:52",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -1288,7 +1288,7 @@
             {
                 "post_title": "End of Support for PHP 5.2.x Branch",
                 "post_date": "2010-07-22 16:53:04",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -1316,7 +1316,7 @@
             {
                 "post_title": "Using Aptana to connect to Dotkernel tracker (Mantis)",
                 "post_date": "2010-10-18 09:57:56",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "Teo",
                     "github": ""
@@ -1330,7 +1330,7 @@
             {
                 "post_title": "How To Upgrade Wamp to PHP 5.3.4",
                 "post_date": "2010-12-13 11:08:43",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -1344,7 +1344,7 @@
             {
                 "post_title": "PHP 5.3.6 released. No upgrade possible for WampServer.",
                 "post_date": "2011-03-18 17:10:42",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -1371,7 +1371,7 @@
             {
                 "post_title": "Zend Server 5.5 Quick Setup on Windows",
                 "post_date": "2011-09-07 19:14:18",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -1402,7 +1402,7 @@
             {
                 "post_title": "Remote connections to MySQL server on Plesk based servers",
                 "post_date": "2011-10-18 12:11:27",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -1416,7 +1416,7 @@
             {
                 "post_title": "Version Control Ignore Patterns in Zend Studio",
                 "post_date": "2013-04-10 22:30:42",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -1430,7 +1430,7 @@
             {
                 "post_title": "Welcome to the 10th Zend Certified Engineer in Dotboost Team",
                 "post_date": "2013-11-25 10:17:21",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -1444,7 +1444,7 @@
             {
                 "post_title": "Better Unicode Support in MySQL 5.5 UTF8MB4",
                 "post_date": "2014-05-06 19:43:03",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -1458,7 +1458,7 @@
             {
                 "post_title": "Using PHP 7 Express in Zend Studio 13",
                 "post_date": "2015-12-24 10:29:33",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "Gabi DJ",
                     "github": "gabidj"
@@ -1544,7 +1544,7 @@
             {
                 "post_title": "Aptana PHP installation in Aptana 2.x",
                 "post_date": "2009-12-01 17:34:34",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -2331,7 +2331,7 @@
             {
                 "post_title": "SVN Export in a virtual host",
                 "post_date": "2011-05-30 10:50:08",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "Adrian",
                     "github": ""
@@ -2345,7 +2345,7 @@
             {
                 "post_title": "Aptana - set SVN keywords",
                 "post_date": "2011-04-04 07:31:03",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "Teo",
                     "github": ""
@@ -2368,7 +2368,7 @@
             {
                 "post_title": "Golden Rules of Professional PHP Coding",
                 "post_date": "2011-06-12 19:23:00",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -2382,7 +2382,7 @@
             {
                 "post_title": "SVN keywords setup in  PHP IDE ( Zend  Studio)",
                 "post_date": "2013-02-21 11:50:07",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -2431,7 +2431,7 @@
             {
                 "post_title": "Multiple broadcast receivers in the same app, for the same action",
                 "post_date": "2011-07-22 12:50:03",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "n3vrax",
                     "github": "n3vrax"
@@ -2445,7 +2445,7 @@
             {
                 "post_title": "Listen for Android install referrer",
                 "post_date": "2011-07-24 13:01:43",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "n3vrax",
                     "github": "n3vrax"
