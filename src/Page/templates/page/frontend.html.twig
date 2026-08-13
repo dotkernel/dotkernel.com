@@ -47,6 +47,7 @@
                     </a>
                     <a class="btn btn-ghost" href="https://v5.dotkernel.net/" target="_blank" rel="noopener">Live demo</a>
                 </div>
+                {{ include('@partial/markdown-actions.html.twig', {markdown_url: absolute_url(asset('md-pages/frontend.md'))}) }}
                 <div class="badges mt-3">
                     <img alt="PHP version for dotkernel/frontend" loading="lazy" src="https://img.shields.io/packagist/dependency-v/dotkernel/frontend/php?style=flat&label=php">
                     <img alt="Latest release of dotkernel/frontend" loading="lazy" src="https://img.shields.io/packagist/v/dotkernel/frontend?style=flat">

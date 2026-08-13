@@ -43,7 +43,7 @@ class SitemapGeneratorFactory
             $authorRepository,
             $pageRoutes,
             $config['sitemap']['path'],
-            $config['application']['baseUrl'] ?? '',
+            $config['application']['url'] ?? '',
         );
     }
 }

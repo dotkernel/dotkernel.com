@@ -48,6 +48,7 @@
                     </a>
                     <a class="btn btn-ghost" href="https://admin7.dotkernel.net/" target="_blank" rel="noopener">Live demo</a>
                 </div>
+                {{ include('@partial/markdown-actions.html.twig', {markdown_url: absolute_url(asset('md-pages/admin.md'))}) }}
                 <div class="badges mt-3">
                     <img alt="PHP version for dotkernel/admin" loading="lazy" src="https://img.shields.io/packagist/dependency-v/dotkernel/admin/php?style=flat&label=php">
                     <img alt="Latest release of dotkernel/admin" loading="lazy" src="https://img.shields.io/packagist/v/dotkernel/admin?style=flat">

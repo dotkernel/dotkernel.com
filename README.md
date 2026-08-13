@@ -58,7 +58,7 @@ php bin/generate-llms-full
 
 - `bin/generate-feed` rewrites `public/feed.xml` from the published posts in the database.
 - `bin/sitemap` rewrites `public/sitemap.xml` from the published posts in the database.
-- `bin/generate-llms-full` rewrites `public/llms-full.txt` by concatenating `public/md-articles/index.md` and every other `public/md-articles/*/*.md` file, sorted by path. Requires the `llms.sourceDir` / `llms.outputFile` keys in `config/autoload/local.php` (see `local.php.dist`).
+- `bin/generate-llms-full` rewrites `public/llms-full.txt` by concatenating `public/md-articles/index.md` and every other `public/md-articles/*/*.md` file, sorted by path, then appending each `public/md-pages/*.md` file — the markdown versions of the static pages — labelled with a `md-pages/` prefix in the section header. Requires the `llms.sourceDir` / `llms.outputFile` keys in `config/autoload/local.php` (see `local.php.dist`); the `llms.pagesDir` key is optional, and omitting it leaves the page sections out.
 
 These three have no ordering dependency on each other, only on step 3 being done first.
 
@@ -75,4 +75,4 @@ None of this is wired into an automated deploy pipeline in this repository — t
     - Logs to `log/generate-packages.log`.
 - **`bin/generate-feed`** (RSS, `public/feed.xml`) — **manual only**, no cron. Run it as part of the publish flow in step 4, right after `bin/doctrine-fixtures`/`bin/create-uploads-dir`, whenever an article is added, edited, or its `post_status` changes.
 - **`bin/sitemap`** (`public/sitemap.xml`) — **manual only**, no cron. Same trigger as `bin/generate-feed`: re-run after any change to `articles_cleaned.json`.
-- **`bin/generate-llms-full`** (`public/llms-full.txt`) — **manual only**, no cron. Re-run after adding/editing a `.md` file under `public/md-articles/`, or after removing/renaming a draft's `.md` file (it doesn't check `post_status`, see step 1).
+- **`bin/generate-llms-full`** (`public/llms-full.txt`) — **manual only**, no cron. Re-run after adding/editing a `.md` file under `public/md-articles/` or `public/md-pages/`, or after removing/renaming a draft's `.md` file (it doesn't check `post_status`, see step 1). The `public/md-pages/*.md` files are hand-maintained alongside the templates in `src/Page/templates/page/` — editing a page template means updating its `.md` and re-running this.

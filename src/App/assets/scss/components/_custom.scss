@@ -533,6 +533,15 @@ html[data-theme="light"] .theme-toggle {
   flex-wrap: wrap;
 }
 
+// The markdown actions bar (@partial/markdown-actions.html.twig) hugs the right edge on blog
+// articles. Under the hero CTAs, or under the intro copy on a demo page, it lines up with them.
+.hero .md-actions-bar,
+.page-intro .md-actions-bar {
+  justify-content: flex-start;
+  margin-top: 16px;
+  margin-bottom: 0;
+}
+
 .hero-stack-note {
   margin-top: 34px;
   font-family: var(--mono);

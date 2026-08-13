@@ -22,9 +22,14 @@ $databases = [
     ],
 ];
 
+/**
+ * Exposed twice below, deliberately: as the `application` config key that PHP reads, and as
+ * the `app` Twig global that templates read. `url` is the single application URL - the artifact
+ * generators take it from config, the JSON-LD templates build absolute URLs from `app.url`.
+ */
 $app = [
-    'baseUrl' => $baseUrl,
-    'meta'    => [
+    'url'  => $baseUrl,
+    'meta' => [
         'title'       => 'Dotkernel | Headless Platform for modern web application',
         'description' => 'Dotkernel is a Headless Platform for building modern web applications '
             . 'using a collection of applications (skeletons).',
@@ -32,7 +37,6 @@ $app = [
         'type'        => 'website',
         'siteName'    => 'Dotkernel Light',
         'locale'      => 'en_US',
-        'url'         => $baseUrl,
         'twitterCard' => 'summary_large_image',
         'twitterSite' => '@dotkernel',
     ],
@@ -62,6 +66,8 @@ return [
     'llms'                 => [
         'sourceDir'  => realpath(__DIR__ . '/../../public/md-articles'),
         'outputFile' => realpath(__DIR__ . '/../../public/llms-full.txt'),
+        // Markdown versions of the static pages, appended after the articles. Optional.
+        'pagesDir' => realpath(__DIR__ . '/../../public/md-pages'),
     ],
     /**
      * Credentials for `bin/generate-packages`. Reading public repositories needs no token

@@ -1,12 +1,12 @@
-{% set organizationId = app.baseUrl ~ '/#organization' %}
+{% set organizationId = app.url ~ '/#organization' %}
 <script type="application/ld+json">
 {
     "@context": "https://schema.org",
     "@graph": [
         {
             "@type": "WebSite",
-            "@id": {{ (app.baseUrl ~ '/#website')|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }},
-            "url": {{ (app.baseUrl ~ '')|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }},
+            "@id": {{ (app.url ~ '/#website')|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }},
+            "url": {{ (app.url ~ '')|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }},
             "name": "Dotkernel",
             "description": {{ 'Dotkernel is a collection of open-source application skeletons built on Mezzio and Laminas - pre-configured and ready for anything from a presentation site to an enterprise-grade API.'|json_encode|raw }},
             "publisher": {
@@ -17,8 +17,8 @@
             "@type": "Organization",
             "@id": {{ organizationId|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }},
             "name": "Dotkernel",
-            "url": {{ (app.baseUrl ~ '')|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }},
-            "logo": {{ (app.baseUrl ~ asset('images/app/logo.png'))|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }},
+            "url": {{ (app.url ~ '')|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }},
+            "logo": {{ (app.url ~ asset('images/app/logo.png'))|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }},
             "sameAs": [
                 "https://github.com/dotkernel",
                 "https://packagist.org/packages/dotkernel/",
@@ -32,7 +32,7 @@
         },
         {
             "@type": "SoftwareApplication",
-            "@id": {{ (app.baseUrl ~ '/#api')|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }},
+            "@id": {{ (app.url ~ '/#api')|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }},
             "name": "Dotkernel API",
             "applicationCategory": "DeveloperApplication",
             "operatingSystem": "Cross-platform",
@@ -53,7 +53,7 @@
         },
         {
             "@type": "SoftwareApplication",
-            "@id": {{ (app.baseUrl ~ '/#admin')|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }},
+            "@id": {{ (app.url ~ '/#admin')|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }},
             "name": "Dotkernel Admin",
             "applicationCategory": "DeveloperApplication",
             "operatingSystem": "Cross-platform",
@@ -74,7 +74,7 @@
         },
         {
             "@type": "SoftwareApplication",
-            "@id": {{ (app.baseUrl ~ '/#queue')|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }},
+            "@id": {{ (app.url ~ '/#queue')|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }},
             "name": "Dotkernel Queue",
             "applicationCategory": "DeveloperApplication",
             "operatingSystem": "Cross-platform",
@@ -95,7 +95,7 @@
         },
         {
             "@type": "SoftwareApplication",
-            "@id": {{ (app.baseUrl ~ '/#light')|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }},
+            "@id": {{ (app.url ~ '/#light')|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }},
             "name": "Dotkernel Light",
             "applicationCategory": "DeveloperApplication",
             "operatingSystem": "Cross-platform",
@@ -116,7 +116,7 @@
         },
         {
             "@type": "SoftwareApplication",
-            "@id": {{ (app.baseUrl ~ '/#frontend')|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }},
+            "@id": {{ (app.url ~ '/#frontend')|json_encode(constant('JSON_UNESCAPED_SLASHES'))|raw }},
             "name": "Dotkernel Frontend",
             "applicationCategory": "DeveloperApplication",
             "operatingSystem": "Cross-platform",

@@ -4,42 +4,42 @@
         "@graph": [
             {
                 "@type": "TechArticle",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#article",
+                "@id": "{{ app.url ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#article",
                 "headline": {{ article.title|json_encode|raw }},
                 "description": {{ article.excerpt|json_encode|raw }},
-                "url": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
-                "mainEntityOfPage": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "url": "{{ app.url ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "mainEntityOfPage": "{{ app.url ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
                 "datePublished": "{{ article.postDate|date('c') }}",
                 "dateModified": "{{ article.postDate|date('c') }}",
-                "image": "{{ meta.openGraphImage ? app.baseUrl ~ meta.openGraphImage : app.meta.image }}",
+                "image": "{{ meta.openGraphImage ? app.url ~ meta.openGraphImage : app.meta.image }}",
                 "articleSection": {{ article.category.name|json_encode|raw }},
                 "author": {
                     "@type": "Person",
                     "name": {{ article.author.name|json_encode|raw }},
-                    "url": "{{ app.baseUrl ~ path('page::author-resource', {slug: article.author.slug}) }}"
+                    "url": "{{ app.url ~ path('page::author-resource', {slug: article.author.slug}) }}"
                 },
                 "publisher": {
                     "@type": "Organization",
                     "name": "Dotkernel",
-                    "url": "{{ app.baseUrl }}",
+                    "url": "{{ app.url }}",
                     "logo": {
                         "@type": "ImageObject",
-                        "url": "{{ app.baseUrl ~ asset('images/app/logo.png') }}"
+                        "url": "{{ app.url ~ asset('images/app/logo.png') }}"
                     }
                 }
             },
             {
                 "@type": "BreadcrumbList",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#breadcrumb",
+                "@id": "{{ app.url ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#breadcrumb",
                 "itemListElement": [
-                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ app.baseUrl }}" },
-                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ app.baseUrl ~ path('page::category-resource', {slug: article.category.slug}) }}" },
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ app.url }}" },
+                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ app.url ~ path('page::category-resource', {slug: article.category.slug}) }}" },
                     { "@type": "ListItem", "position": 3, "name": {{ article.title|json_encode|raw }} }
                 ]
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
+                "@id": "{{ app.url ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "What was announced for Zend Framework 1.12?", "acceptedAnswer": { "@type": "Answer", "text": "Matthew Weier O'Phinney announced the immediate availability of the first release candidate of the Zend Framework 1.12 series, 1.12.0RC1." } },
                     { "@type": "Question", "name": "What changed in Zend_Loader?", "acceptedAnswer": { "@type": "Answer", "text": "A number of autoloaders and autoloader facilities were back ported from ZF2, including Zend_Loader_StandardAutoloader, Zend_Loader_ClassMapAutoloader, and Zend_Loader_AutoloaderFactory, providing performant alternatives to the autoloading facilities already in the 1.X releases." } },

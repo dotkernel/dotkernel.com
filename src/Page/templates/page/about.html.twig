@@ -11,6 +11,7 @@
                 dolore magna aliqua.
                 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
                 consequat.</p>
+            {{ include('@partial/markdown-actions.html.twig', {markdown_url: absolute_url(asset('md-pages/about.md'))}) }}
         </div>
     </div>
 

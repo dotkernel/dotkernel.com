@@ -88,6 +88,7 @@
                     </a>
                     <a class="btn btn-ghost" href="{{ url('page::api') }}">Dotkernel API</a>
                 </div>
+                {{ include('@partial/markdown-actions.html.twig', {markdown_url: absolute_url(asset('md-pages/architecture.md'))}) }}
                 <div class="hero-stack-note">
                     <div><span>Contract</span> PSR-7 + PSR-15</div>
                     <div><span>Container</span> PSR-11</div>

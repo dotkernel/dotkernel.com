@@ -7495,6 +7495,36 @@ A: The official documentation is linked in the article at docs.dotkernel.com/Pre
 
 
 <!-- ============================================================ -->
+<!-- dotkernel/test-article.md -->
+<!-- ============================================================ -->
+
+---
+title: "Test article"
+description: "This is a test article used for fixture and testing purposes."
+author: "admin"
+date_published: "2026-08-06"
+canonical_url: "https://www.dotkernel.com/dotkernel/test-article/"
+category: "Dotkernel"
+language: "en"
+---
+
+# Test article
+
+## TL;DR
+
+This is a test article added to the dotkernel category for testing purposes.
+
+## Overview
+
+This is a test article used for fixture and testing purposes.
+
+## FAQ
+
+**Q: What is this article for?**
+A: This is a test article added to the Dotkernel category for fixture and testing purposes.
+
+
+<!-- ============================================================ -->
 <!-- dotkernel/using-dotkernel-with-composer-dependencies.md -->
 <!-- ============================================================ -->
 
@@ -15197,4 +15227,2223 @@ A: Yes, Zend Framework 1.12.13 was released on May 20, 2015, to fix a regression
 
 **Q: Where can you read the official announcements for these releases?**
 A: The 1.12.12 announcement is linked as "Zend Framework 1.12.12 Released", and the 1.12.13 regression fix announcement is linked as "Release Announcement".
+
+
+<!-- ============================================================ -->
+<!-- md-pages/about.md -->
+<!-- ============================================================ -->
+
+---
+title: "About Us"
+canonical_url: "https://www.dotkernel.com/about/"
+language: "en"
+---
+
+# demo page
+
+ABOUT US
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+## [heading](https://docs.mezzio.dev/mezzio/)
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+## [heading](https://github.com/laminas/laminas-diactoros)
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+## [heading](https://github.com/laminas/laminas-stratigility)
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+
+<!-- ============================================================ -->
+<!-- md-pages/admin.md -->
+<!-- ============================================================ -->
+
+---
+title: "Dotkernel Admin | Open-source PHP admin application"
+description: "Dotkernel Admin is an open-source admin application (skeleton) built on Mezzio, Laminas and Doctrine. Table-based record management, RBAC guards, CSRF-protected forms and 2FA, over the same Core as Dotkernel API."
+canonical_url: "https://www.dotkernel.com/admin/"
+language: "en"
+---
+
+# Dotkernel Admin
+
+Admin application · Server-rendered
+
+An open-source application skeleton for standing up the administration site behind your platform.
+A fast, reliable way to manage the records in your database with a simple table-based approach, and to build the reports and graphs that let you monitor what is happening - with the graphical components for an intuitive experience already in place.
+
+- [Read the docs](https://docs.dotkernel.org/admin-documentation/)
+- [View on GitHub](https://github.com/dotkernel/admin)
+- [Live demo](https://admin7.dotkernel.net/)
+
+| | |
+| --- | --- |
+| Runtime | Mezzio + Laminas |
+| Templating | Twig |
+| License | MIT |
+
+## Request lifecycle
+
+Session (`dot-session`) → Router (`dot-router`) → Authentication (`laminas-authentication`) → RBAC guard (`dot-rbac-guard`) → Your handler (PSR-15) → Response (Twig template).
+
+## The back office, not a framework to learn
+
+Dotkernel Admin is the complementary application of the Dotkernel Headless Platform: an independent app built on the same Mezzio and Laminas foundation as Dotkernel API, sharing the same tech stack so the two form one consistent system rather than two codebases that merely talk to each other.
+
+Authentication, role-based access control, CSRF-protected forms, validation, navigation and a dashboard are already assembled.
+What you add is your own screens for your own entities.
+
+Extending the power of Mezzio by Laminas.
+
+- Table-based record management
+- Every shipped form validated and CSRF-guarded
+- Shares the Core module with API
+- Twig templates, npm asset pipeline
+
+## The unglamorous parts, already done
+
+Everything below works in a fresh install.
+The default modules are configured; your custom functionality needs the same configuration entries, and the docs say exactly which ones.
+
+### RBAC guards — Security · Access control
+
+Permissions declared in config, enforced per route handler.
+
+`dot-rbac` and `dot-rbac-guard` work together: roles and their permissions live in `authorization.global.php`, while `authorization-guards.global.php` maps each route handler to the permissions it requires.
+Add a route, add its rule - access control never drifts into your handlers.
+
+### TOTP two-factor — Security · 2FA
+
+A password plus a code that expires in 30 seconds.
+
+`dot-totp` adds time-based one-time passwords following the industry standard: administrators authenticate with their password and a 6-digit code from an authenticator app.
+Installation is a documented set of forms, handlers, middleware and three new columns.
+
+- [Install guide](https://docs.dotkernel.org/admin-documentation/v7/tutorials/install-dot-totp/)
+
+### CSRF protection — Security · Forms
+
+A fresh token per render, on every form that ships.
+
+Built from the `laminas-form` CSRF element, the `laminas-session` CSRF validator and the `formElement` view helper.
+Tokens are not reusable between forms and expire after a configurable timeout, defaulting to one hour.
+
+### Forms & input filters — Input · Validation
+
+Validation rules that live beside the form, not in the handler.
+
+`laminas-form` bridges your domain models and the view layer, while `laminas-inputfilter` normalizes and validates the submitted set.
+Every form in the skeleton has its inputs filtered, so your own forms have a pattern to copy.
+
+### Doctrine ORM — Data · Persistence
+
+Migrations and fixtures, both driven from the CLI.
+
+Doctrine ORM 3 and DBAL 4 over MariaDB or PostgreSQL, with UUID identifiers via `ramsey/uuid-doctrine`.
+Generate a migration with `doctrine-migrations diff`, apply it with `migrate`, then seed the tables with `bin/doctrine fixtures:execute`.
+
+### Attribute injection — Wiring · DI
+
+Constructor injection declared where the constructor is.
+
+`dot-dependency-injection` reads an `#[Inject]` attribute on the constructor and resolves each listed dependency - including values from a configuration key, by dot notation.
+Register the class against `AttributedServiceFactory` and you are done writing factories by hand.
+
+### Menus & UI components — Interface · Navigation
+
+Configuration-driven menus, ready-made interface pieces.
+
+`dot-navigation` defines and parses the top menu from `navigation.global.php`.
+The `Page` module carries reusable dropdowns, modal popups, error displays and tooltips; the `Dashboard` module holds the landing page layout and its widgets.
+
+### Commands & lock files — Operations · CLI
+
+Cron-safe console commands out of the box.
+
+`dot-cli` builds the console application on top of laminas-cli, writing lock files into `data/lock` so a scheduled command cannot overlap with itself.
+GeoLite2 databases sync through `bin/cli.php geoip:synchronize`, quiet mode included for cron jobs.
+
+### Mail and error handling — Operations · Mail & logs
+
+Transactional mail configured in one file, errors in another.
+
+`dot-mail` handles sendmail or SMTP delivery, sender identity and CC lists from `mail.global.php`.
+`dot-errorhandler` writes daily log files to `log/`, with the format set in `error-handling.global.php`.
+
+## Modules you can name before you read them
+
+Admin follows PSR-4, with one folder per module.
+Each module keeps its handlers, input filters and services together, plus a `ConfigProvider` and a `RoutesDelegator` - so the second module you write looks like the first.
+
+### Shared domain layer
+
+`Core\Admin` `Core\App` `Core\Security` `Core\Setting` `Core\User`
+
+The Core module is a common codebase shared with the other applications in your project.
+Each submodule holds its entities, repositories and its own ConfigProvider, so a user means the same thing to the admin screen and to the API endpoint.
+
+### `Admin`
+
+Managing the users that hold the `admin` role - the accounts stored in the `admin` database table.
+
+### `User`
+
+Managing the platform's own users, stored separately in the `user` table.
+Two audiences, two models, no overloaded role column.
+
+### `App`
+
+Core application functionality: authentication, rendering and error reporting.
+
+### `Dashboard`
+
+The default landing page - its layout, widgets and rendering logic.
+
+### `Page`
+
+Reusable interface elements: dropdowns, modals, error displays, tooltips.
+
+### `Setting`
+
+Saving and reading display settings for the administration interface.
+
+## From clone to login page
+
+The full walkthrough, with expected output for every command, is in the documentation.
+This is the shape of it.
+
+### 1 · Clone the project
+
+Into an empty directory of your choosing.
+
+```shell
+git clone https://github.com/dotkernel/admin.git .
+```
+
+### 2 · Install dependencies
+
+Run it from the CLI so the setup prompts stay interactive.
+Decline the ConfigProvider injection - Dotkernel ships its own.
+
+```shell
+composer install
+```
+
+### 3 · Enable development mode
+
+For local work only.
+`composer development-status` tells you where you stand, and it must stay off in production.
+
+```shell
+composer development-enable
+```
+
+### 4 · Configure the database
+
+Fill in the credentials in `config/autoload/local.php`.
+Both a MariaDB and a PostgreSQL connection are pre-declared; one is active at a time.
+
+### 5 · Migrate and seed
+
+Migrations build the schema; fixtures populate the default roles, OAuth clients and accounts.
+
+```shell
+php ./vendor/bin/doctrine-migrations migrate
+php ./bin/doctrine fixtures:execute
+```
+
+### 6 · Build the assets
+
+`npm run watch` recompiles while you work; `npm run prod` minifies for release.
+
+```shell
+npm install && npm run prod
+```
+
+Open the virtual host in your browser and the Dotkernel Admin login page is waiting.
+If the fixtures ran, sign in with user `admin` and password `dotadmin` - the same credentials as the public demo, and the first thing to change before going live.
+
+## What the server needs
+
+| Component | Requirement |
+| --- | --- |
+| Operating system | A \*nix based system is strongly recommended for production. |
+| PHP | 8.2 or newer, mod_php or FCGI (FPM). `memory_limit` at least 128M; `upload_max_filesize` and `post_max_size` at least 100M depending on your data. |
+| Web server | Apache 2.2+ with `mod_rewrite` and `.htaccess` support (`AllowOverride All`) - a default `.htaccess` ships in `public/`. On Nginx, translate it into server configuration. |
+| Database | MariaDB 10.7, 10.11 LTS, 11.4 LTS and 11.8 LTS, or PostgreSQL 13 and above. **MySQL is not supported**, as it has no UUID support. |
+| Required extensions | `mbstring`, the CLI SAPI for cron jobs, and Composer available on `$PATH`. |
+| Recommended extensions | `opcache`; `pdo_mysql`, `pdo_pgsql` or `mysqli` to match your database; `dom` and `simplexml` for markup; `gd` and `exif` for images; `zlib`, `zip`, `bz2` for compression; `curl` when calling APIs; `sqlite3` for the test suite. |
+
+On Windows, WSL2 is the recommended development environment - Dotkernel provides an AlmaLinux distro implementation and an install script for the whole local stack.
+
+## The checklist nobody writes down
+
+Admin gives you the tools to build a safe application, and the documentation is explicit that some of them are yours to apply.
+These are the ones worth checking off before the first deploy.
+
+- [Security guide](https://docs.dotkernel.org/admin-documentation/v7/security/basic-security/)
+
+### Before you go to production
+
+- Change or remove the demo admin account - its identity and password are public.
+- Review `cookie_httponly`, `cookie_samesite` and `cookie_secure` in `session.global.php`.
+- Confirm development mode is off with `composer development-status`.
+- Set your allowed origins in `cors.global.php`.
+- Keep secrets in `*.local.php` - the `*.global.php` and `*.php.dist` files are committed.
+- Add CSRF fields and authorization rules to every form and route you add.
+- Watch dependencies on both sides: Composer advisories and `npm audit`.
+
+## Upgrades you can read before you run them
+
+Admin does not ship an automatic upgrade path, and that is deliberate: you implement the modifications listed for each release, in a codebase you already understand, instead of handing a migration script control over your customizations.
+
+A `CHANGELOG.md` in the project root lists implemented features in reverse chronological order, so it doubles as your version marker.
+From version 6.2 onward, the procedure is documented version to version, and releases are also published as an RSS feed.
+
+- [Releases](https://github.com/dotkernel/admin/releases)
+- [Upgrade guide](https://docs.dotkernel.org/admin-documentation/v7/upgrading/upgrading/)
+
+### Coming from Admin 6.x?
+
+Version 7 bumped dependencies, synchronised the Core module and refreshed the codebase to stay compatible with Dotkernel API v7 - the release that moved identifiers to native database UUIDs and dropped MySQL.
+
+Work through the pull requests listed for 7.0, then copy the release notes into your own changelog so your project keeps tracking upstream.
+
+## Better with an API in front of it
+
+Admin installs and runs on its own.
+Paired with Dotkernel API over the same `Core` namespaces, Admin manages the data while the API exposes it to third-party frontends and backends - and neither one disagrees about what an entity is.
+The rest of the ecosystem is below.
+
+### API — Pair with · HTTP surface
+
+Expose the data you manage here to any client.
+
+A REST API on a PSR-15 middleware pipeline, with OAuth 2.0, RBAC, HAL payloads and an OpenAPI 3.0 specification wired up on install.
+
+- [Read more](https://www.dotkernel.com/api/)
+- [GitHub](https://github.com/dotkernel/api)
+- [Demo](https://api.dotkernel.net/)
+
+### Queue — Pair with · Async work
+
+Queue a bulk operation from an admin screen.
+
+Background workers on Symfony Messenger - a TCP listener, Valkey streams, retries and a dead letter queue for what still fails.
+
+- [Read more](https://www.dotkernel.com/queue/)
+- [GitHub](https://github.com/dotkernel/queue)
+
+### Frontend — Instead · Public-facing
+
+The site your users log into, not your staff.
+
+A web starter skeleton - user accounts, a contact form, sessions and RBAC-guarded controller actions, rendered on the server.
+
+- [Read more](https://www.dotkernel.com/frontend/)
+- [Demo](https://v5.dotkernel.net/)
+
+### Light — Smaller · Minimal
+
+No records to manage, just pages.
+
+The smallest complete Mezzio application - routing, pipeline and Twig, six direct dependencies and no database layer.
+
+- [Read more](https://www.dotkernel.com/light/)
+- [Demo](https://light.dotkernel.net/)
+
+### Dotboost — Tooling · AI context
+
+Teach your AI tools this architecture.
+
+Drop-in Claude Code configuration - ten commands, seventeen skills and permission guardrails that keep your secrets out of the context window.
+
+- [Read more](https://www.dotkernel.com/dotboost/)
+- [GitHub](https://github.com/dotkernel/dotboost)
+
+New modules start with [dot-maker](https://docs.dotkernel.org/dot-maker/v1/overview/), which knows which files an Admin needs versus an API.
+Support status for every layer is on the [packages lifecycle](https://www.dotkernel.com/dotkernel-packages-oss-lifecycle/) page.
+
+## Open source, in production
+
+Try it with the demo, keep it under MIT.
+
+Sign in to the public demo with `admin` / `dotadmin` to see the interface before you install anything.
+Dotkernel Admin is developed and led by the dev team at Apidemia, and released as open source for the community.
+
+[Talk to us →](https://www.dotkernel.com/contact/)
+
+
+<!-- ============================================================ -->
+<!-- md-pages/api.md -->
+<!-- ============================================================ -->
+
+---
+title: "Dotkernel API | Open-source REST API skeleton for PHP"
+description: "Dotkernel API is an open-source REST API skeleton built on Mezzio, Laminas and Doctrine. OAuth2, RBAC, HAL, problem details and OpenAPI 3.0 come wired together on install. MIT licensed."
+canonical_url: "https://www.dotkernel.com/api/"
+language: "en"
+---
+
+# Dotkernel API
+
+REST API skeleton · PSR-15 middleware
+
+An open-source REST API skeleton for PHP, built on the Mezzio microframework and Laminas components over a Doctrine domain layer.
+OAuth 2.0, RBAC authorization, HAL payloads, standardized error responses and an OpenAPI 3.0 specification are assembled on install - not left as decisions for your first sprint.
+
+- [Read the docs](https://docs.dotkernel.org/api-documentation/)
+- [View on GitHub](https://github.com/dotkernel/api)
+- [Live demo](https://api.dotkernel.net/)
+
+| | |
+| --- | --- |
+| Runtime | Mezzio + Laminas |
+| Persistence | Doctrine ORM |
+| License | MIT |
+
+## Request lifecycle
+
+CORS (`mezzio-cors`) → Router (FastRoute) → Authentication (OAuth 2.0) → RBAC guard (per route name) → Your handler (PSR-15) → Response (HAL / problem+json).
+[All 19 stages](https://www.dotkernel.com/architecture/)
+
+## A REST API you own from the first commit
+
+Dotkernel API is the root of the Dotkernel Headless Platform: a REST API based on the Mezzio skeleton, using a PSR-compliant middleware stack as defined by the PHP Framework Interop Group.
+Rather than relying on elements built into a framework, business logic is built explicitly - from handlers to dependencies - so you keep full control over your business logic and data architecture.
+
+It scales down to a single microservice and up to an enterprise-grade API, and it has been developed and released continuously since 2018.
+
+Extending the power of Mezzio by Laminas.
+
+- Doctrine ORM, not Active Record
+- Explicit wiring, no runtime magic
+- Auth, docs and errors on install
+- MIT licensed, actively maintained
+
+## The parts every API needs, already connected
+
+Each of these is configured and working in a fresh install.
+Nothing here is a placeholder you have to research and assemble before you can serve your first authenticated endpoint.
+
+### OAuth 2.0 — Security · Authentication
+
+Bearer tokens, issued and validated by the API itself.
+
+Authentication runs on `mezzio-authentication-oauth2`, which wraps `league/oauth2-server` to provide OAuth 2.0 for PSR-7 / PSR-15 applications.
+Endpoints marked as authenticated require a valid Bearer token and answer `401 Unauthorized` without one.
+
+### RBAC per route — Security · Authorization
+
+Three levels of protection: none, authenticated, authorized.
+
+Roles and their permissions are declared in configuration and allocated per route name, with role inheritance supported.
+An authenticated request that lacks the required permission gets a `403 Forbidden` - decided by config, not scattered through your handlers.
+
+### OpenAPI 3.0 — Contract · Documentation
+
+A machine-readable contract, generated from the code that serves it.
+
+Every module documents its endpoints in an `OpenAPI.php` file, which `zircote/swagger-php` turns into a specification rendered through Swagger UI or Redoc.
+A Postman collection and environment ship alongside it, so every endpoint is ready to call by hand.
+
+### Doctrine ORM — Data · Persistence
+
+Your domain in entities, not in the query layer.
+
+Doctrine ORM handles persistence, so you can focus on object-oriented business logic and treat storage as a secondary concern.
+Migrations, fixtures via `dot-data-fixtures`, and multiple database connections are part of the setup.
+
+### HAL & problem details — Contract · Responses
+
+One predictable shape for resources, one for failures.
+
+Payloads are built with `mezzio-hal`, describing each resource together with its relational links and embedded child resources.
+Errors return problem details responses via `mezzio-problem-details`, giving clients standardized error codes system-wide.
+
+### Content negotiation — Contract · Negotiation
+
+Client and server agree on format and language up front.
+
+Content negotiation is implemented out of the box through the `Content-Type` and `Accept` headers, so diverse systems can consume the same API without custom glue on either side.
+CORS preflight requests are recognized and configured by `mezzio-cors`.
+
+### Error reporting endpoint — Operations · Feedback
+
+A channel for the bugs that never reach your logs.
+
+Frontend developers can report incorrect behaviour by posting to `/error-report` with a token header.
+The API validates the request against configured tokens, domains and IPs before logging it - useful precisely when nothing fatal was thrown.
+
+### Commands & file locker — Operations · CLI
+
+Scheduled work that refuses to trample itself.
+
+Console commands are registered through `dot-cli` on top of Symfony Console, and `php ./bin/cli.php route:list` prints every endpoint the application exposes.
+The file locker, enabled by default, writes a lock file per command so a second instance cannot start while the previous run is still going - the safeguard cron jobs usually lack.
+
+### Transactional email — Operations · Mail
+
+Account mail that works before you configure anything.
+
+`dot-mail` wraps Symfony Mailer with templated messages, so account activation and password reset send out of a fresh install.
+It joins the request flow only where it is needed - the rest of the pipeline is unchanged whether a route sends mail or not.
+
+### dot-maker — Productivity · Scaffolding
+
+New modules that already match the house style.
+
+`dot-maker` generates project files and directories following the Dotkernel structure, and knows which files each application type needs.
+It replaces hand-copied boilerplate with consistent, standardized scaffolding.
+
+- [Docs](https://docs.dotkernel.org/dot-maker/v1/overview/)
+
+## What version 7 changed
+
+The latest release moves identifiers to native database UUIDs and broadens platform support.
+
+### Native UUID v7
+
+Identifier columns use the database's `uuid` type instead of `binary`, with values generated by `ramsey/uuid`.
+You keep full control of the UUID version without depending on database extensions.
+
+### PostgreSQL support
+
+PostgreSQL joins the supported databases.
+Because native UUID is required, you need PostgreSQL or MariaDB 10.7 or later; MySQL is no longer supported, as it has no UUID data type.
+
+### PHP 8.5
+
+The API targets PHP 8.5, with Dotkernel Admin on 8.4.
+Dependencies are kept current, and the ecosystem's own packages track the versions Laminas and Doctrine support.
+
+### Table prefixes
+
+A configurable string can be prepended to every table name - the practical requirement when an API shares a database with an existing application.
+
+### Clearer database configuration
+
+Multi-connection setups spell out which connection is the default and how to switch to another, based on scenarios from real projects.
+
+### Shared Core module
+
+Common logic lives in a Core module kept as its own Git repository, which can be added as a submodule to any Dotkernel application so entities and queries stay consistent.
+
+## Evolution, not a wall of versions
+
+Dotkernel API favours an evolution pattern with a sunsetting mechanism over maintaining parallel API versions.
+The same codebase evolves gradually and clients are given notice, instead of every change forking into another branch you have to keep alive.
+
+The mechanism is `DeprecationMiddleware`: mark a handler with the `#[ResourceDeprecation]` attribute and the response carries `sunset` and `link` headers, so a client learns an endpoint is retiring from the endpoint itself rather than from a changelog it never read.
+
+Full versioning stays reserved for major, format-level changes - the cases where it genuinely earns its maintenance cost.
+The two approaches are not mutually exclusive.
+
+- [API evolution guide](https://docs.dotkernel.org/api-documentation/v6/tutorials/api-evolution/)
+- [Where it sits in the pipeline](https://www.dotkernel.com/architecture/)
+
+### Coming from Laminas API Tools?
+
+API Tools (formerly Apigility) is archived.
+Dotkernel API is an actively maintained alternative with a middleware architecture, a permissive MIT license and a Doctrine data layer.
+
+The comparison below is drawn from the full side-by-side write-up on our blog.
+
+## Dotkernel API vs Laminas API Tools
+
+| Feature | API Tools (formerly Apigility) | Dotkernel API |
+| --- | --- | --- |
+| First release | 2012 | 2018 |
+| Architecture | MVC, event driven | Middleware |
+| OSS lifecycle | Archived | Active |
+| PHP version | ≤ 8.2 | See the PHP version badge for `dotkernel/api` |
+| Style | REST, RPC | REST |
+| Change management | Versioning | Deprecations (API evolution) |
+| Documentation | Swagger (automated) | OpenAPI 3.0 (Swagger) and Postman (manual) |
+| License | BSD-3 | MIT |
+| Default DB layer | laminas-db | doctrine-orm 3.x |
+| Authorization | ACL | RBAC guard |
+| Authentication | HTTP Basic / Digest, OAuth 2.0 | OAuth 2.0 |
+| Endpoint generator | Yes | dot-maker |
+| PSR standards | PSR-7 | PSR-7, PSR-15 |
+
+Comparison drawn against Dotkernel API v7.
+Read the reasoning behind each row in [Dotkernel API versus Laminas API Tools](https://www.dotkernel.com/dotkernel-api/dotkernel-api-versus-laminas-api-tools/).
+
+## Runs alone, or as one of three
+
+Dotkernel API is a complete application on its own.
+When you add Admin or Queue, all three declare the same `Core` namespaces, so a `User` means the same thing to the endpoint that creates it, the admin screen that moderates it, and the worker that emails it.
+The rest of the ecosystem is below.
+
+### Shared domain layer
+
+`Core\App` `Core\Admin` `Core\User` `Core\Security` `Core\Setting`
+
+One set of entities and repositories, committed in each repository so a single-component start just works.
+Having many entities in Core does not oblige you to implement handlers for all of them - each application handles only what it needs.
+
+### Admin — Pair with · Back office
+
+Manage the same data your API serves.
+
+Table-based record management with RBAC guards, CSRF-protected forms and 2FA, over the same Core module.
+Start with either one and add the other later.
+
+- [Read more](https://www.dotkernel.com/admin/)
+- [GitHub](https://github.com/dotkernel/admin)
+- [Demo](https://admin7.dotkernel.net/)
+
+### Queue — Pair with · Async work
+
+Move slow work off the request cycle.
+
+Background workers on Symfony Messenger - a TCP listener, Valkey streams, retries and a dead letter queue for what still fails.
+
+- [Read more](https://www.dotkernel.com/queue/)
+- [GitHub](https://github.com/dotkernel/queue)
+
+### Frontend — Instead · Server-rendered
+
+When your users want pages, not payloads.
+
+A web starter skeleton - user accounts, a contact form, sessions and RBAC-guarded controller actions, rendered on the server.
+
+- [Read more](https://www.dotkernel.com/frontend/)
+- [Demo](https://v5.dotkernel.net/)
+
+### Light — Smaller · Minimal
+
+A presentation site with no API behind it.
+
+The smallest complete Mezzio application - routing, pipeline and Twig, six direct dependencies and no database layer.
+
+- [Read more](https://www.dotkernel.com/light/)
+- [Demo](https://light.dotkernel.net/)
+
+### Dotboost — Tooling · AI context
+
+Teach your AI tools this architecture.
+
+Drop-in Claude Code configuration - ten commands, seventeen skills and permission guardrails that keep your secrets out of the context window.
+
+- [Read more](https://www.dotkernel.com/dotboost/)
+- [GitHub](https://github.com/dotkernel/dotboost)
+
+Every layer is also available on its own - see the [packages lifecycle](https://www.dotkernel.com/dotkernel-packages-oss-lifecycle/) for the support status of each `dot-*` package.
+
+## Built on interfaces, checked on every change
+
+### [PSR-15 & PSR-7](https://www.php-fig.org/psr/psr-15/)
+
+Handlers implement `RequestHandlerInterface` and return `ResponseInterface`.
+The whole request path is middleware you can read top to bottom.
+
+### [PSR-11 & PSR-4](https://www.php-fig.org/psr/psr-11/)
+
+The application is container-based, with dependencies declared in each module's `ConfigProvider`, and classes located by autoloader.
+
+### [PSR-3 logging](https://www.php-fig.org/psr/psr-3/)
+
+Errors are logged through `LoggerInterface` via `dot-errorhandler`, centralizing how failures are recorded.
+
+### [PHPStan at level 8](https://phpstan.org/)
+
+Static analysis runs at a strict rule level, in line with the choice made by projects like Doctrine and Composer.
+
+### Functional & unit tests
+
+The skeleton ships with a test suite you extend rather than start, so new endpoints have somewhere to be tested from day one.
+
+### An active community
+
+Updates arrive with bugfixes and improvements from the PHP community, and breaking changes come with companion articles and upgrade steps.
+
+[Join the discussion →](https://github.com/orgs/dotkernel/discussions)
+
+## Install it and call an endpoint
+
+Create the project with Composer, point it at PostgreSQL or MariaDB 10.7+, run the migrations, and you have an authenticated REST API with a browsable OpenAPI specification.
+
+- [Installation guide](https://docs.dotkernel.org/api-documentation/)
+- [Try the demo](https://api.dotkernel.net/)
+
+### composer create-project dotkernel/api
+
+The installer walks through database credentials and the initial configuration.
+Follow the installation guide for the exact command and post-install steps for your target version, then use `dot-maker` to scaffold your first module.
+
+Questions along the way go to [Dotkernel Discussions](https://github.com/orgs/dotkernel/discussions) - the team answers issues on both Dotkernel and Laminas components.
+
+## Open source, in production
+
+An API foundation you can read, audit and keep.
+
+Dotkernel API is developed and led by the dev team at Apidemia - built first as an internal tool for handling complex architectures, released under MIT as our way of giving back to the community.
+
+[Talk to us →](https://www.dotkernel.com/contact/)
+
+
+<!-- ============================================================ -->
+<!-- md-pages/architecture.md -->
+<!-- ============================================================ -->
+
+---
+title: "Architecture | How a request moves through a Dotkernel application"
+description: "The PSR-15 middleware pipeline behind Dotkernel API, stage by stage: error boundary, routing, content negotiation, deprecation headers, OAuth 2.0, RBAC and dispatch - plus the library flow underneath it."
+canonical_url: "https://www.dotkernel.com/architecture/"
+language: "en"
+---
+
+# How a request moves through a Dotkernel application
+
+Architecture · PSR-15 pipeline
+
+Every Dotkernel application is a stack of PSR-15 middleware with no framework runtime hidden underneath it.
+A request enters at the error boundary, passes through routing, negotiation, authentication and authorization, and reaches your handler - and you can read every layer it crossed on the way.
+
+- [Read the docs](https://docs.dotkernel.org/api-documentation/)
+- [See pipeline.php](https://github.com/dotkernel/api/blob/7.0/config/pipeline.php)
+- [Dotkernel API](https://www.dotkernel.com/api/)
+
+| | |
+| --- | --- |
+| Contract | PSR-7 + PSR-15 |
+| Container | PSR-11 |
+| Logging | PSR-3 |
+
+## Five phases, 19 stages
+
+Error boundary (1 stage) → Request preparation (4 stages) → Routing (4 stages) → Contract & headers (4 stages) → Identity (2 stages) → Dispatch & fallback (4 stages).
+
+## Framework-less, not framework-free
+
+Dotkernel is an opinionated, framework-less tool aimed at intermediate-to-advanced programmers.
+Framework-less does not mean nothing is underneath: Mezzio and Laminas components are there, and they are excellent.
+It means there is no framework runtime deciding things on your behalf.
+The pipeline is a list you wrote, in a file you can open, executed top to bottom.
+
+That is the whole trade.
+You give up the convenience of conventions you never have to look at, and you get an application where every layer between the socket and your handler is named, ordered and yours to reorder.
+
+Extending the power of Mezzio by Laminas.
+
+- Gradual learning curve
+- Fine-tuned security
+- KISS, YAGNI, DRY
+- Long-term support
+
+## Nineteen stages, in the order they run
+
+This is the default pipeline of Dotkernel API, unedited.
+Each stage receives the request, may hand it onward, and may alter the response on the way back out - which is why the error boundary is first in and last out.
+
+Legend: Mezzio / Laminas component · Dotkernel.
+
+### Error boundary
+
+#### 01 · ProblemDetailsMiddleware — mezzio/mezzio-problem-details
+
+The outermost layer, deliberately.
+Anything thrown deeper in the stack is handed to `dot-errorhandler` for logging and comes back as a problem details response, so a failure reaches the client as a documented error shape rather than a stack trace.
+
+### Request preparation
+
+#### 02 · MalformedRequestBodyMiddleware — dotkernel/api
+
+Rejects a body that is not valid JSON up front, before any later stage tries to read it and fails in a less legible place.
+
+#### 03 · BodyParamsMiddleware — mezzio/mezzio-helpers
+
+Parses the raw request body into the parsed body according to its `Content-Type`.
+
+#### 04 · ServerUrlMiddleware — mezzio/mezzio-helpers
+
+Seeds the server URL helper with the current scheme and host, so anything generating a URL later produces an absolute one.
+
+#### 05 · CorsMiddleware — mezzio/mezzio-cors
+
+Recognises preflight requests and answers them, and attaches the configured CORS headers to everything else.
+It sits before routing so a preflight never needs a matched route.
+
+### Routing
+
+#### 06 · RouteMiddleware
+
+*mezzio/mezzio-router* — Route
+
+Matches the request against the route table and registers the `RouteResult` attribute.
+Everything below this line can ask which route was matched - and most of it does.
+
+#### 07 · ImplicitHeadMiddleware — mezzio/mezzio-router
+
+Answers `HEAD` for routes that only declare `GET`.
+
+#### 08 · ImplicitOptionsMiddleware — mezzio/mezzio-router
+
+Answers `OPTIONS` with the methods the matched path actually allows.
+
+#### 09 · MethodNotAllowedMiddleware — mezzio/mezzio-router
+
+Returns `405 Method Not Allowed` when the path matched but the method did not.
+Order matters here: it has to sit after both implicit handlers, or it would answer the requests they exist to serve.
+
+### Contract & headers
+
+#### 10 · ContentNegotiationMiddleware — dotkernel/api
+
+Reconciles the client's `Accept` and `Content-Type` with what the matched route is configured to serve, so diverse consumers share one API without custom glue.
+
+#### 11 · DeprecationMiddleware — dotkernel/api
+
+The mechanism behind API evolution.
+It reads the `#[ResourceDeprecation]` attribute off the handler and, when one is present, sets the `sunset` and `link` response headers - the client learns an endpoint is going away from the endpoint itself, rather than from a migration guide.
+
+#### 12 · ResponseHeaderMiddleware — dotkernel/dot-response-header
+
+Applies the headers you configure application-wide to every outgoing response, in one place instead of per handler.
+
+#### 13 · UrlHelperMiddleware — mezzio/mezzio-helpers
+
+Seeds the URL helper with the routing result, so handlers and HAL links can be generated relative to the route that was actually matched.
+
+### Identity
+
+#### 14 · AuthenticationMiddleware
+
+*dotkernel/api* — 401
+
+Validates the OAuth 2.0 Bearer token.
+Routes declared as authenticated answer `401 Unauthorized` without a valid one, and never reach the handler.
+
+#### 15 · AuthorizationMiddleware
+
+*dotkernel/api* — 403
+
+Checks the authenticated identity's role against the permissions allocated to the matched route name, and returns `403 Forbidden` when it falls short.
+The decision lives in configuration, not scattered through handlers.
+
+### Dispatch & fallback
+
+#### 16 · ResourceProviderMiddleware — dotkernel/api
+
+Reads the `#[Resource]` attribute on the handler's `handle()` method and loads the named entity through Doctrine using the route placeholder.
+The handler receives a resource rather than an identifier, and a record that does not exist becomes a `404` before your code runs.
+
+#### 17 · DispatchMiddleware — mezzio/mezzio-router
+
+Hands the request to the matched PSR-15 handler.
+This is your code - everything above was getting the request into a state where your handler only has to do its own job.
+
+#### 18 · ProblemDetailsNotFoundHandler — mezzio/mezzio-problem-details
+
+Reached only when nothing above returned a response: emits `404` in problem details form.
+
+#### 19 · GetNotFoundResourceHandler — dotkernel/api
+
+The last stage in the pipeline, shaping the not-found response for API clients.
+
+## The packages underneath, in the same order
+
+The same journey seen one level down - which library owns each step.
+The second column shows how little changes when a feature is added: sending an email inserts one package and leaves the rest of the flow alone.
+
+### Default flow
+
+A request that reads or writes data and returns a resource.
+
+1. Request
+2. mezzio/mezzio-problem-details
+3. dotkernel/dot-errorhandler
+4. mezzio/mezzio-cors
+5. mezzio/mezzio-router
+6. dotkernel/dot-response-header
+7. mezzio/mezzio-helpers
+8. mezzio/mezzio-authentication
+9. mezzio/mezzio-authorization
+10. mezzio/mezzio-router *dispatch*
+11. laminas/laminas-diactoros *not found*
+12. dotkernel/dot-dependency-injection
+13. doctrine/orm
+14. mezzio/mezzio-hal
+15. laminas/laminas-diactoros
+16. psr/http-message
+17. Response
+
+### Flow for sending an email
+
+Identical until the domain layer, where `dot-mail` joins in.
+
+1. Request
+2. mezzio/mezzio-problem-details
+3. dotkernel/dot-errorhandler
+4. mezzio/mezzio-cors
+5. mezzio/mezzio-router
+6. dotkernel/dot-response-header
+7. mezzio/mezzio-helpers
+8. mezzio/mezzio-authentication
+9. mezzio/mezzio-authorization
+10. mezzio/mezzio-router *dispatch*
+11. laminas/laminas-diactoros *not found*
+12. dotkernel/dot-dependency-injection
+13. doctrine/orm
+14. dotkernel/dot-mail *added*
+15. mezzio/mezzio-hal
+16. laminas/laminas-diactoros
+17. psr/http-message
+18. Response
+
+## Built on interfaces from the Framework Interop Group
+
+Dotkernel applications are collections of PSR-7 middleware.
+The standards below are not badges - they are the reason a package from one vendor drops into a pipeline built by another.
+
+### [PSR-7](https://www.php-fig.org/psr/psr-7/)
+
+HTTP messages are immutable value objects.
+Every stage above receives a request and returns a response, and neither is a global you have to guard.
+
+### [PSR-15](https://www.php-fig.org/psr/psr-15/)
+
+Middleware and request handlers share one interface, which is what makes the pipeline a plain ordered list rather than a framework-specific event graph.
+
+### [PSR-11](https://www.php-fig.org/psr/psr-11/)
+
+The application is container-based, with each module declaring its dependencies in a `ConfigProvider`.
+
+### [PSR-4](https://www.php-fig.org/psr/psr-4/)
+
+Classes are located by autoloader from their namespace, so where a file lives is never a question of configuration.
+
+### [PSR-3](https://www.php-fig.org/psr/psr-3/)
+
+Errors are logged through `LoggerInterface` via `dot-errorhandler`, reached from the error boundary at stage one.
+
+### Why it matters
+
+You can delete any stage in the pipeline, or write your own and pipe it in, without asking a framework's permission.
+That is the practical payoff of standardising on interfaces.
+
+[All PSR standards →](https://www.php-fig.org/psr/)
+
+## One pipeline shape, four applications
+
+The stages differ where the job differs - Frontend adds sessions and template rendering, Queue swaps HTTP dispatch for a message consumer - but the pattern is constant, and all four declare the same `Core` namespaces underneath.
+
+### Shared domain layer
+
+`Core\App` `Core\Admin` `Core\User` `Core\Security` `Core\Setting`
+
+Kept as its own Git repository and added as a submodule, so an entity means the same thing to the endpoint that creates it, the admin screen that moderates it and the worker that emails it.
+
+### [API](https://www.dotkernel.com/api/)
+
+The pipeline documented above, in full.
+
+### [Admin](https://www.dotkernel.com/admin/)
+
+Same shape, plus sessions, CSRF-protected forms and 2FA in the identity phase.
+
+### [Frontend](https://www.dotkernel.com/frontend/)
+
+Same shape, ending in server-rendered templates rather than HAL payloads.
+
+### [Queue](https://www.dotkernel.com/queue/)
+
+The same middleware thinking applied to messages instead of requests.
+
+## The pipeline is one file
+
+Everything on this page comes from `config/pipeline.php` - about ninety lines, most of them comments explaining where to add your own middleware.
+There is no generated layer between that file and what runs.
+
+- [Installation guide](https://docs.dotkernel.org/api-documentation/)
+- [Try the demo](https://api.dotkernel.net/)
+
+### php ./bin/cli.php route:list
+
+Once the pipeline has routed a request, the route table is the other half of the picture.
+This command lists every endpoint the application exposes, which is the fastest way to review an API you have just inherited.
+
+Database migrations are generated and run the same way, through the Doctrine console commands registered by `dot-cli`.
+
+## Open source, in production
+
+No layer you are not allowed to read.
+
+Dotkernel is developed and led by the dev team at Apidemia - built first as an internal tool for handling complex architectures, released under MIT as our way of giving back to the community.
+
+[Talk to us →](https://www.dotkernel.com/contact/)
+
+
+<!-- ============================================================ -->
+<!-- md-pages/dotboost.md -->
+<!-- ============================================================ -->
+
+---
+title: "dotboost | Claude Code configuration for Dotkernel projects"
+description: "dotboost is a drop-in .claude/ directory that teaches Claude Code the conventions of any Dotkernel application - ten commands, seventeen skills, six hooks, and permission guardrails that keep secrets out of the context."
+canonical_url: "https://www.dotkernel.com/dotboost/"
+language: "en"
+---
+
+# Dotboost
+
+Developer tooling · AI context
+
+Drop-in configuration that teaches Claude Code the conventions of any Dotkernel application - API, Admin, Frontend, Light, Queue, or a project derived from one of them.
+Every skill detects the variant first and applies the matching dialect, so generated code follows your architecture instead of guessing at it.
+
+- [View on GitHub](https://github.com/dotkernel/dotboost)
+- [Claude Code docs](https://docs.claude.com/en/docs/claude-code/overview)
+
+| | |
+| --- | --- |
+| Payload | One .claude/ directory |
+| Commands | Ten /dk-* |
+| Skills | Seventeen |
+
+## What happens in a session
+
+Session start (variant briefing) → Skill loads (by description) → Plan mode (proposes first) → Guard hooks (Edit · Bash) → Normalise (BOM · CRLF · EOF) → Lint (`php -l` · markdown).
+
+## Not an application - a configuration payload
+
+Dotboost is not itself a Dotkernel application.
+Its entire payload is the `.claude/` directory: settings, hooks, a status line, a review subagent, ten `/dk-*` commands and seventeen skills.
+You install it by copying that directory into the Dotkernel project you are working on.
+
+There is no routing table telling Claude which skill to pick - each one loads from its own description.
+Ask where a new Doctrine entity goes and it should reach for the module-structure skill rather than answering from general framework knowledge.
+
+Maintained by **Borsan Sergiu**.
+
+- Detects the variant before it answers
+- Secrets never enter the context window
+- Guards catch compound commands globs miss
+- Copy it in - nothing to build or install
+
+## The reason to adopt the file
+
+The permission rules in `settings.json` fall into four tiers.
+The first one is the headline: these are `Read` denies, not write protection, so the contents never enter the context window at all.
+
+### Your secrets — Tier · Never read
+
+Not redacted - never loaded.
+
+`.env`, every `*.local.php`, `config/autoload/local.php`, `local.test.php` and `data/oauth/`.
+Database credentials, OAuth signing keys and environment secrets stay out of the transcript.
+
+### Generated & vendored — Tier · Never written
+
+The files a diff should never touch by accident.
+
+Dependency manifests - `composer.json`, `composer.lock`, `package.json`, `package-lock.json` - plus `vendor/`, `node_modules/`, `data/`, `log/`, `public/uploads/` and anything under `Migration/`.
+
+### Installs & destructive git — Tier · Never run
+
+Commands that change your tree without a diff.
+
+`composer require`, `remove`, `update`, `install`, `global`; the npm, yarn and pnpm install verbs; `git push`, `reset --hard`, `clean`, `submodule`; and `rm -rf`.
+
+### Your call — Tier · Ask & allow
+
+Preference, not policy - override per machine.
+
+**Ask**: migrations, `bin/doctrine`, database clients, git commits and merges, pipeline and authorization config, the QA config files.
+**Allow**: the Composer QA scripts, `vendor/bin` tools, `php -l`, and read-only git.
+Layer changes in `settings.local.json`, never the shared file.
+
+### Where globs cannot see — Hooks · Six
+
+Path patterns miss what a shell can hide.
+
+`guard-bash.sh` inspects the command itself, so `cd src && composer require foo` is caught where a path-based rule would let it through.
+`guard-protected-paths.sh` covers edits, and redirects a blocked `*.local.php` edit to its `.dist` template.
+
+### Linters that do not rewrite — Hooks · Report only
+
+Deliberately no `phpcbf`, no `--fix`.
+
+`php-lint.sh` and `markdown-lint.sh` report and stop, because reformatting a file right after it is written invalidates the in-memory copy and breaks the next targeted edit.
+Bulk formatting belongs at the end of a task.
+Both skip silently when their tool is missing.
+
+`settings.json` is a committed file carrying opinions, not only guardrails: sessions start in **plan mode**, the terminal UI is full screen, the theme is dark, and Composer runs without a memory ceiling.
+Know what you are adopting.
+
+## Where the hooks overrule the tiers
+
+Some commands marked *ask* in `settings.json` are refused outright by `guard-bash.sh`, because the hook sees compound commands the permission globs cannot.
+The prompt you would expect never appears - you get a refusal.
+This is deliberate, and worth knowing before it surprises you.
+
+| Command | settings.json says | guard-bash.sh does |
+| --- | --- | --- |
+| git rebase | ask | blocks |
+| doctrine-migrations migrate / execute | ask | blocks |
+| fixtures:execute, schema:drop, schema:update | ask, via bin/cli.php | blocks |
+| composer development-enable / -disable | — | blocks |
+| pip install, git checkout --, git filter-branch | — | blocks |
+
+Everything else under *ask* - commits, database clients, the config and QA files - prompts as documented.
+To get a blocked command back you edit the hook; relaxing `settings.local.json` will not reach it.
+
+## Ten `/dk-*` commands
+
+Each one runs only when you ask for it.
+
+| Command | What it does |
+| --- | --- |
+| /dk-bootstrap | Fresh clone to a running install. |
+| /dk-module | Plan a new module - dot-maker first. |
+| /dk-route | Add a fully wired endpoint or page. |
+| /dk-trace | Trace a request through pipeline, handler and response. |
+| /dk-test | Write and run tests. |
+| /dk-document | Write or update a feature doc. |
+| /dk-check | Run and fix the QA gate. |
+| /dk-deprecate | Make an evolution-pattern breaking change. |
+| /dk-review | Pre-PR convention review - read-only by design. |
+| /dk-hygiene | Encoding and line-ending audit. |
+
+## Seventeen skills, loaded on demand
+
+Sixteen `dotkernel-*` skills plus `dependency-policy`.
+Each is a living document - when a review turns up the same mistake twice, that is a missing line in a skill.
+
+| Skill | Covers |
+| --- | --- |
+| application-variants | Detecting API vs Admin vs Frontend vs Light vs Queue. |
+| module-structure | Where code goes: application module vs Core, and the wiring. |
+| handler-naming | Both naming dialects, routes, authorization keys. |
+| doctrine-entities | Entities, enums and DBAL types, repositories, migrations. |
+| input-validation | InputFilters, Inputs, forms, CSRF, query whitelisting. |
+| responses | HAL and collections, or templates and redirects; errors. |
+| openapi | swagger-php attributes, for apps that publish OpenAPI. |
+| feature-docs | Feature docs: template, where they live, staleness. |
+| testing | Unit and functional patterns, test config, coverage matrix. |
+| evolution-pattern | Sunset headers instead of versioning. |
+| security | Auth, authorization, secrets, CORS, dependencies. |
+| dot-maker | `composer make …` and the manual steps after it. |
+| core-submodule | Core layering rules and git submodule mechanics. |
+| psr-standards | PSR-1/3/4/6/7/11/12/15/16/17 as applied here. |
+| qa-gate | cs-check, static analysis, tests, and forbidden "fixes". |
+| troubleshooting | A symptom to cause table. |
+| dependency-policy | The ladder from installed packages to hand-rolled code, and the proposal format. |
+
+A review subagent, `dotkernel-reviewer`, runs the convention review in its own context so the main one stays clean.
+
+## Never name a package from memory
+
+The ladder is: already in `composer.lock`, then `dotkernel/*`, then `laminas/*` and `mezzio/*`, then a vetted community package, and only then hand-rolled code.
+Stop at the first hit.
+
+A skill's description decides whether it *can* load, not whether Claude stops to think before naming a package.
+The rule that makes it reach for the skill has to be always loaded - which means it lives in your project's own `CLAUDE.md`, not in the skill.
+
+- [The block to paste](https://github.com/dotkernel/dotboost#add-this-to-your-projects-claudemd)
+
+### Three things about how that behaves
+
+- The `dotkernel/*` manifest is generated on first use, not shipped - the first package question runs the sync script itself. It needs `curl`, `jq` and network; without them Claude is told to call a package name **unverified** rather than assert it.
+- Neither that script nor `composer show --available` is in the allow or deny list, so both prompt. That is deliberate - expect a prompt the first time.
+- "How do I send mail from here?" is a package question. Implicit ones count.
+
+## Copy one directory into your project
+
+The payload has to sit at the root of your project.
+Two routes to the same files - pick whichever suits the machine you are on.
+
+### 1 · Clone it inside the project
+
+Shallow, because only the current state of `main` is any use in a target project.
+The clone goes away right after the copy.
+
+```shell
+git clone --depth 1 \
+  https://github.com/dotkernel/dotboost.git .dotboost
+cp -r .dotboost/.claude .claude
+rm -rf .dotboost
+```
+
+### 1b · Or download the zip
+
+No git needed, which is the point.
+The archive unpacks to `dotboost-main/` and does carry the dotfiles.
+
+```shell
+curl -L -o dotboost.zip https://github.com/\
+dotkernel/dotboost/archive/refs/heads/main.zip
+unzip -q dotboost.zip
+cp -r dotboost-main/.claude .claude
+```
+
+### 2 · Restore the executable bits
+
+Nothing is committed executable, and a zip extracted on Windows carries no permission bits at all.
+The sync script is the one called by its own name.
+
+```shell
+chmod +x .claude/hooks/*.sh .claude/statusline.sh \
+  .claude/skills/dependency-policy/scripts/*.sh
+```
+
+### 3 · Keep local overrides out of git
+
+Then copy the example file if you want personal settings that survive an update.
+
+```shell
+echo '.claude/settings.local.json' \
+  >> .git/info/exclude
+```
+
+### 4 · Optional: markdown linting
+
+Not bundled - install it yourself, globally or as a project devDependency.
+Until the binary resolves, the hook exits silently.
+
+```shell
+npm install -g markdownlint-cli2
+```
+
+### 5 · Paste the CLAUDE.md block
+
+The dependency policy and, if you want feature docs actually read, the feature-docs block alongside it.
+
+If the project already has its own `.claude/settings.json` or `.claude/commands/`, merge by hand rather than running `cp -r` blind - same-named files are overwritten.
+To update later, run the whole install again over the top; anything you changed in the project's copy is lost, which is exactly why personal changes belong in `settings.local.json`.
+
+## The parts you notice on day two
+
+### Feature documentation — Docs · /dk-document
+
+The part a cleared session cannot reconstruct from `src/`.
+
+One markdown file per feature - what it does, why, the routes and the roles that reach them, the data added, how to exercise it.
+Where it lands is detected, not assumed: `documentation/features/` when that directory exists, `docs/features/` otherwise, never a second documentation root beside an existing one.
+The frontmatter is load-bearing - `/dk-review` greps `routes:` and `handlers:` to decide whether a new route in the diff is documented.
+
+### Real usage, not guesses — Status line
+
+The same numbers `/usage` reports.
+
+5h and 7d account usage in the status bar, read from the rate-limit payload Claude Code 2.1+ passes on stdin.
+Pure bash and awk - no `jq`, no python, no transcript scanning or guessed token budgets, so it works in Git Bash on Windows.
+
+### A briefing, every time — Session start
+
+What it detected, before you ask anything.
+
+Which variant, the root namespace, the authorization style, the branch, which config files are still missing - and a CRLF warning when it finds one.
+The same hook prints the feature-docs directory and a doc count, so the files are discoverable even without the CLAUDE.md block.
+
+### CRLF, handled — Windows · Line endings
+
+Dotkernel repos ship `* text eol=lf`.
+
+Belt and braces, configure the client so nothing converts: `core.autocrlf false`, `core.eol lf`, `core.safecrlf warn`.
+Already committed CRLF? Renormalise once with `git add --renormalize .`.
+`normalize-file.sh` keeps new writes clean.
+
+## Every variant, one payload
+
+The application-variants skill detects which Dotkernel application it is looking at - including a project derived from one - and every other skill applies the matching dialect.
+Handler naming, response shape and authorization keys all differ between them, which is the whole reason the detection runs first.
+
+### Detected variants
+
+`API` `Admin` `Frontend` `Light` `Queue`
+
+Before adapting the skills to a new Dotkernel application, the advice from its maintainer is to spend an hour reading that repo and correcting them against what is actually there.
+A skill written from framework docs rather than the codebase produces confident wrong answers, which is worse than no skill.
+
+### API — Variant · Detected
+
+Handlers, HAL collections, OpenAPI attributes.
+
+A REST API on a PSR-15 middleware pipeline, with OAuth 2.0, RBAC, HAL payloads and an OpenAPI 3.0 specification wired up on install.
+
+- [Read more](https://www.dotkernel.com/api/)
+- [GitHub](https://github.com/dotkernel/api)
+
+### Admin — Variant · Detected
+
+Forms, CSRF, route-name authorization keys.
+
+Table-based record management with RBAC guards, CSRF-protected forms and 2FA, over the shared Core module.
+
+- [Read more](https://www.dotkernel.com/admin/)
+- [GitHub](https://github.com/dotkernel/admin)
+
+### Frontend — Variant · Detected
+
+Action controllers and action-level guards.
+
+A web starter skeleton - user accounts, a contact form, sessions and RBAC-guarded controller actions, rendered on the server.
+
+- [Read more](https://www.dotkernel.com/frontend/)
+- [GitHub](https://github.com/dotkernel/frontend)
+
+### Light — Variant · Detected
+
+Minimal modules, config-declared template routes.
+
+The smallest complete Mezzio application - routing, pipeline and Twig, six direct dependencies and no database layer.
+
+- [Read more](https://www.dotkernel.com/light/)
+- [GitHub](https://github.com/dotkernel/light)
+
+### Queue — Variant · Detected
+
+Message handlers and background workers.
+
+Background workers on Symfony Messenger - a TCP listener, Valkey streams, retries and a dead letter queue for what still fails.
+
+- [Read more](https://www.dotkernel.com/queue/)
+- [GitHub](https://github.com/dotkernel/queue)
+
+## Open source, in production
+
+Context your AI tools do not have to guess at.
+
+Dotboost is maintained by Borsan Sergiu and released as open source alongside the rest of the Dotkernel ecosystem.
+Treat the skills as living documents - the repository is where corrections belong.
+
+[Read the full README →](https://github.com/dotkernel/dotboost)
+
+
+<!-- ============================================================ -->
+<!-- md-pages/frontend.md -->
+<!-- ============================================================ -->
+
+---
+title: "Dotkernel Frontend | Server-rendered PHP web starter"
+description: "Dotkernel Frontend is a web starter skeleton on Mezzio and Laminas - user accounts, a contact form, RBAC guards, CSRF-protected forms, flash messages and GDPR account anonymization, server-rendered in Twig."
+canonical_url: "https://www.dotkernel.com/frontend/"
+language: "en"
+---
+
+# Dotkernel Frontend
+
+Web starter · Server-rendered
+
+A web starter skeleton on the Mezzio microframework and Laminas components, for the applications people log into.
+User accounts, a working contact form and a content page ship as proof of concept - real, running features whose only job is to show you where your own code goes.
+
+- [Read the docs](https://docs.dotkernel.org/frontend/)
+- [View on GitHub](https://github.com/dotkernel/frontend)
+- [Live demo](https://v5.dotkernel.net/)
+
+| | |
+| --- | --- |
+| Runtime | Mezzio + Laminas |
+| Pattern | Action controllers |
+| Templating | Twig |
+
+## Request lifecycle
+
+Session (`dot-session`) → Router (FastRoute) → Authentication (User identity) → RBAC guard (route + action) → Controller action (`dot-controller`) → Response (Twig + flash).
+
+## The web application half of the stack
+
+Frontend is the skeleton for a server-rendered application with users in it.
+Where Light gives you pages, Frontend gives you the machinery around them: sessions, authentication, registration, validated forms, flash messages between redirects, and role-based access to individual controller actions.
+
+The shipped features - contact us, a generic content page, user accounts - are deliberately presented as building blocks rather than a finished product.
+They exist to showcase the file architecture and to be copied.
+
+Extending the power of Mezzio by Laminas.
+
+- User accounts, from register to unregister
+- Action controllers, not request handlers
+- CSRF and reCAPTCHA on public forms
+- GDPR anonymization out of the box
+
+## Everything a logged-in site needs first
+
+These are the parts you would otherwise spend your first two weeks assembling, already working together in a fresh install.
+
+### Registration & login — Users · Accounts
+
+The whole account lifecycle, already routed.
+
+Login, registration and account management, including avatar upload, password change and unregistering.
+Password reset and account activation emails are part of the flow, which is why the skeleton stores a name and an email address and nothing more.
+
+### Guards per action — Security · Access control
+
+Permissions applied to individual controller actions.
+
+`dot-rbac-guard` and `dot-rbac` read roles and permissions from `authorization.global.php`, then `authorization-guards.global.php` maps rules onto a route and a named list of its actions - or an empty list to cover all of them.
+Fine-grained without being scattered.
+
+### CSRF tokens — Security · Forms
+
+A new token per render, validated on submit.
+
+Built from the `laminas-form` CSRF element, a `laminas-session` CSRF validator in the input filter, and the `formElement` view helper in the template.
+Tokens expire after a configurable timeout - one hour by default - and are never reusable between forms.
+
+### Contact form with reCAPTCHA — Public · Contact
+
+A public form that does not become a spam relay.
+
+The contact form uses Google reCAPTCHA, with the site and secret keys read from local configuration and the message recipients - `to` and any number of `cc` addresses - configured alongside them.
+Whitelist `localhost` while developing, and take it out again for production.
+
+### Flash messages — UX · Feedback
+
+The message survives the redirect.
+
+`dot-flashmessenger` carries session messages across redirects - the small piece that makes post-then-redirect flows feel finished.
+`dot-session` extends laminas-session underneath, configured in `session.global.php`.
+
+### Attribute injection — Wiring · DI
+
+Constructor injection declared on the constructor.
+
+`dot-dependency-injection` reads an `#[Inject]` attribute and resolves each listed dependency - a service, the whole `config` array, or a single key by dot notation.
+Register the class against `AttributedServiceFactory` and stop writing factories.
+
+### Doctrine ORM — Data · Persistence
+
+Migrations and fixtures, driven from the CLI.
+
+Doctrine through `roave/psr-container-doctrine`, with UUIDs as a field type via `ramsey/uuid-doctrine`.
+Migrations live in `data/doctrine/migrations`; `bin/doctrine fixtures:execute` seeds the default roles.
+
+### Headers & CORS — Delivery · HTTP
+
+Response headers declared per route.
+
+`dot-response-header` sets custom headers per route from `response-header.global.php`, while `mezzio-cors` handles origins, headers and cookies from `cors.global.php`.
+
+### Menus, templates, i18n — Content · Presentation
+
+Navigation from configuration, translation when you need it.
+
+`dot-navigation` defines and parses menus inside templates from configuration.
+`dot-twigrenderer` adds Dotkernel's Twig extensions, and `laminas-i18n` is present for a complete translation suite.
+The `Plugin` module carries dynamic forms and templates.
+
+## Account anonymization, not just deletion
+
+Under the GDPR, a company recording personal data from EU citizens must delete it on request - or anonymize it, which the European Commission accepts as an alternative.
+Frontend implements the second option, because deleting a user row is rarely what your foreign keys want.
+
+The skeleton stores only what it needs to run those flows: first name, last name and the email address used as the identity, for password reset and account activation.
+Anonymizing replaces exactly those.
+
+- [Anonymization reference](https://docs.dotkernel.org/frontend/v5/reference/account-anonymization/)
+
+### What anonymization changes
+
+- First and last name become `anonymous` plus the current UNIX timestamp - for example `anonymous1725980747`.
+- The email becomes the same value plus whatever you set in `userAnonymizeAppend` - `anonymous1725980747@example.com`.
+- The avatar image and its database record are deleted.
+
+Point `userAnonymizeAppend` at a domain you control and it doubles as a catch-all address, if your mail provider supports one.
+Leave it empty and the local part stands alone.
+
+## Five modules, PSR-4 throughout
+
+Each module keeps its controllers, entities, repositories and services together, alongside a `ConfigProvider` and a `RoutesDelegator` - so a new feature has an obvious shape before you write it.
+
+### `User`
+
+Login, registration and account management - the largest module, and the one worth reading first.
+
+### `App`
+
+Core functionality: authentication, rendering and error reporting.
+
+### `Contact`
+
+The contact us form, from validation through to the outgoing mail.
+
+### `Page`
+
+Displaying a page - the minimal case, for static copy.
+
+### `Plugin`
+
+Plugin functionality for dynamic forms and templates.
+
+### Module contents
+
+`Controller`, `Entity`, `Repository` and `Service` folders, plus `InputFilter`, `EventListener`, `Helper`, `Command` or `Factory` as needed.
+
+## From clone to welcome page
+
+The documentation walks through every command with its expected output.
+This is the sequence.
+
+### 1 · Clone into an empty folder
+
+Git refuses a non-empty directory, and you need write permissions on it.
+
+```shell
+git clone https://github.com/dotkernel/frontend.git .
+```
+
+### 2 · Install dependencies
+
+From the CLI, so the prompts stay interactive.
+Decline the config provider injection - Frontend ships its own.
+
+```shell
+composer install
+```
+
+### 3 · Enable development mode
+
+Sets debug on, configuration caching off, and clears any existing cache.
+
+```shell
+composer development-enable
+```
+
+### 4 · Prepare the config files
+
+Copy the `.dist` files into place - `local.php`, `development.local.php`, `mail.local.php`, `debugbar.local.php` - then fill in the database, SMTP and reCAPTCHA details.
+
+### 5 · Migrate and seed
+
+Migrations build the schema and are logged so none runs twice; the fixtures populate the default user roles.
+
+```shell
+php vendor/bin/doctrine-migrations migrate
+php bin/doctrine fixtures:execute
+```
+
+### 6 · Fix permissions and open it
+
+Three writable paths cover almost every first-run error.
+
+```shell
+chmod -R 777 data log public/uploads
+```
+
+Two local-only notes worth keeping: `session.cookie_secure` has to be `false` in your own `local.php` - never in `local.php.dist`, where it stays `true` for production - and a stale `data/cache/config-cache.php` is loaded regardless of `ConfigAggregator::ENABLE_CACHE`, so clear it with `bin/clear-config-cache.php` when services go missing.
+Duplicating `local.test.php.dist` gives your tests an in-memory database.
+
+## What the server needs
+
+| Component | Requirement |
+| --- | --- |
+| Operating system | A \*nix based system is strongly recommended for production. |
+| PHP | 8.2 or newer, mod_php or FCGI (FPM). `memory_limit` at least 128M; `upload_max_filesize` and `post_max_size` at least 100M depending on your data. |
+| Web server | Apache 2.2+ with `mod_rewrite` and `.htaccess` support (`AllowOverride All`); a default `.htaccess` ships in `public/`. On Nginx, translate it into server configuration. |
+| Database | Tested with MariaDB 10.11 LTS and 11.4 LTS, and with MySQL 8.4 LTS. For MySQL 8.4, `my.cnf` needs `mysql_native_password=ON`. |
+| Required extensions | `mbstring`, the CLI SAPI for cron jobs, and Composer on `$PATH`. |
+| Recommended extensions | `opcache`; `pdo_mysql` or `mysqli`; `dom` and `simplexml` for markup; `gd` and `exif` for images; `zlib`, `zip`, `bz2` for compression; `curl` when calling APIs; `sqlite3` for the test suite. |
+
+Note that Frontend still supports MySQL - unlike API and Admin v7, which require native UUID support and therefore PostgreSQL or MariaDB 10.7+.
+
+## Where Frontend sits
+
+Frontend stands on its own, outside the Headless Platform.
+It is the right starting point when your users log in and your pages are rendered on the server - and the wrong one in both directions from there.
+
+### Light — Smaller · Minimal
+
+No users, no database, no forms to protect.
+
+The smallest complete Mezzio application - routing, pipeline and Twig, six direct dependencies.
+Right for a presentation site.
+
+- [Read more](https://www.dotkernel.com/light/)
+- [Demo](https://light.dotkernel.net/)
+
+### API — Different · HTTP surface
+
+Your frontend is someone else's framework.
+
+A REST API on a PSR-15 middleware pipeline, with OAuth 2.0, RBAC, HAL payloads and an OpenAPI 3.0 specification wired up on install.
+
+- [Read more](https://www.dotkernel.com/api/)
+- [Demo](https://api.dotkernel.net/)
+
+### Admin — Bigger · Platform
+
+You need a back office over a shared domain.
+
+Table-based record management with RBAC guards, CSRF-protected forms and 2FA, over a Core module shared with API and Queue.
+
+- [Read more](https://www.dotkernel.com/admin/)
+- [Demo](https://admin7.dotkernel.net/)
+
+### Queue — Alongside · Async work
+
+Move the registration email off the request.
+
+Background workers on Symfony Messenger - a TCP listener, Valkey streams, retries and a dead letter queue for what still fails.
+
+- [Read more](https://www.dotkernel.com/queue/)
+- [GitHub](https://github.com/dotkernel/queue)
+
+### Dotboost — Tooling · AI context
+
+Teach your AI tools this architecture.
+
+Drop-in Claude Code configuration - ten commands, seventeen skills and permission guardrails that keep your secrets out of the context window.
+
+- [Read more](https://www.dotkernel.com/dotboost/)
+- [GitHub](https://github.com/dotkernel/dotboost)
+
+## Open source, in production
+
+Accounts, forms and compliance - already handled.
+
+Dotkernel Frontend is developed and led by the dev team at Apidemia and released as open source for the community.
+Try the demo to see the account flows before you install anything.
+
+[Talk to us →](https://www.dotkernel.com/contact/)
+
+
+<!-- ============================================================ -->
+<!-- md-pages/light.md -->
+<!-- ============================================================ -->
+
+---
+title: "Dotkernel Light | Minimal PSR-15 site skeleton for PHP"
+description: "Dotkernel Light is a minimal PSR-15 application skeleton on Mezzio and Laminas, for presentation sites and small services. Six direct dependencies, Twig templating, Vite assets, no database layer."
+canonical_url: "https://www.dotkernel.com/light/"
+language: "en"
+---
+
+# Dotkernel Light
+
+Minimal skeleton · PSR-15
+
+A PSR-15 compliant application skeleton on the Mezzio microframework and Laminas components, designed as a minimal project for generating a simple website - a presentation site, a landing page, a small service.
+Six direct dependencies, two modules, and nothing to delete before you start.
+
+- [Read the docs](https://docs.dotkernel.org/light-documentation/)
+- [View on GitHub](https://github.com/dotkernel/light)
+- [Live demo](https://light.dotkernel.net/)
+
+| | |
+| --- | --- |
+| Runtime | Mezzio + Laminas |
+| Templating | Twig |
+| Direct deps | Six |
+
+## Request lifecycle
+
+`index.php` (bootstrap) → Container (factories · aliases) → Routing (FastRoute) → Pipeline (`pipeline.php`) → Handler (PSR-15) → Twig (layout · blocks) → Emitter (HtmlResponse).
+
+## The smallest complete Mezzio application
+
+Light is what remains when you take a real PSR-15 application and remove everything a presentation site does not need.
+There is no ORM, no authentication stack, no admin scaffolding - not disabled, simply not installed.
+What you get is routing, a middleware pipeline, Twig, and error logging.
+
+That makes it two things at once: a genuine starting point for a small site, and the clearest way to read how a Mezzio application is put together, because there is almost nothing else in the way.
+
+Extending the power of Mezzio by Laminas.
+
+- Six direct dependencies
+- No database layer to configure
+- A new page is one config line and one template
+- Twig layout, Vite asset pipeline
+
+## Six packages, and you can name all of them
+
+This is the entire direct dependency list.
+Every one of them is doing a job you would have had to solve anyway.
+
+### [mezzio/mezzio](https://github.com/mezzio/mezzio)
+
+The PSR-15 middleware microframework the whole application runs on.
+
+### [mezzio-fastroute](https://github.com/mezzio/mezzio-fastroute)
+
+FastRoute integration - matches the URL and method against your registered routes.
+
+### [mezzio-twigrenderer](https://github.com/mezzio/mezzio-twigrenderer)
+
+Twig integration for Mezzio.
+Every template is a `.html.twig` file.
+
+### [dot-errorhandler](https://github.com/dotkernel/dot-errorhandler)
+
+Logging error handler for middleware applications - daily log files, configured in one place.
+
+### [laminas-config-aggregator](https://github.com/laminas/laminas-config-aggregator)
+
+Collects and merges configuration from every source into one array.
+
+### [laminas-component-installer](https://github.com/laminas/laminas-component-installer)
+
+The Composer plugin that injects modules and config providers during installation.
+
+Two modules ship in `src/`: `App` for core functionality - rendering and error reporting - and `Page` for displaying a page.
+Each module keeps its `Handler`, `Factory` and `Service` folders next to a `ConfigProvider` and a `RoutesDelegator`, following PSR-4.
+
+## A request, end to end
+
+Eleven steps from the browser to the rendered page, with nothing hidden behind a kernel.
+This is the sequence you can follow in the source.
+
+| # | Step | What happens |
+| --- | --- | --- |
+| 1 | HTTP request | `public/index.php` bootstraps the application, loads configuration, and creates the Mezzio application instance. |
+| 2 | Service container | Factories, aliases and delegators are registered; every service is configured and ready to use. |
+| 3 | Route registration | All available routes and their allowed methods are read and registered dynamically, managed by FastRoute. |
+| 4 | Middleware pipeline | `config/pipeline.php` defines the order middleware runs in, and so how requests travel and responses come back. |
+| 5 | Routing | FastRoute matches the URL and method against the registered routes to find the handler. |
+| 6 | Handler invocation | The matched route name is pulled off the request and passed to the renderer - `page::about` becomes the template to render. |
+| 7 | Custom logic | Your business logic runs in the handler, calling whatever services it needs. |
+| 8 | Template rendering | Twig loads the template, applies the layout, renders the blocks and includes the partials. |
+| 9 | Response creation | An `HtmlResponse` is built with status, headers and the rendered HTML body. |
+| 10 | Response pipeline | The response flows back out through the middleware stack, which can still change headers, cookies or compression. |
+| 11 | Response emitter | The final response is sent to the browser. |
+
+Handlers, not controllers - that is what keeps the application PSR-15 compliant.
+Each module's `RoutesDelegator` reads the route config from the container and registers the routes it finds, so adding a page never means touching the framework.
+
+## Adding a page is two files
+
+Routes live in configuration as `slug => template` pairs.
+Append a line, create the matching Twig template in `src/Page/templates/page/`, and add a link to the menu in the layout.
+The handler works out which template to render from the matched route name, so there is no handler to write.
+
+Want your templates in more than one folder?
+Add another entry under `paths` in the Page module's `ConfigProvider` - the key does not have to match the folder name.
+
+- [Creating pages](https://docs.dotkernel.org/light-documentation/v1/how-tos/create-pages/)
+
+### One route, one template
+
+In `config/autoload/local.php`, under the `routes` → `page` key:
+
+```php
+'example-page' => 'example-template',
+```
+
+Then create the template it names:
+
+```text
+src/Page/templates/page/example-template.html.twig
+```
+
+The key is the page slug, the value is the template.
+Your new page answers at `/page/example-page`, under the route name `page::example-template`.
+
+## Assets, menus and social cards
+
+The parts you actually edit on a presentation site, and where each of them lives.
+
+### Asset pipeline — Build · Vite
+
+One command while you work, one before you ship.
+
+Vite concatenates and compresses CSS and JavaScript, preprocesses SCSS, and copies fonts and images - avoiding the network bottleneck of many separate files.
+`npm run watch` recompiles on change; `npm run build` compiles once.
+Node.js v20 is the minimum supported version.
+
+### assets → public — Build · Source of truth
+
+Edit the source, never the output.
+
+Images, fonts, JavaScript and SCSS live in `src/App/assets/`.
+The build deletes and rebuilds `css`, `js`, `fonts` and `images` under `public/` - anything you edit there by hand is lost on the next run.
+Everything else in `public/` is left alone.
+
+### Cache busting — Build · Caching
+
+The oldest bug in web deployment, solved in one character.
+
+Browsers cache your built CSS and JS, so a deploy can leave visitors on the old file.
+Add a version parameter to the asset URL in the layout - `app.css?v=3` - and increment it whenever you commit a change to that file.
+
+### Menu and footer — Content · Navigation
+
+Plain Twig in one layout file.
+
+The top menu is the list under `id="navbarHeader"` in `src/App/templates/layout/default.html.twig`; each `li` is one item, and items can be grouped into dropdowns or styled as buttons.
+The footer is the `app-footer` element in the same file.
+
+### Twitter & OpenGraph — Content · Sharing
+
+Cards for when your pages get posted elsewhere.
+
+Add the card meta tags to the layout head, generating URLs with the same helper the canonical block uses - `{{ url(routeName ?? null) }}` - which also keeps mistyped URLs from breaking the page.
+
+### Errors and logs — Operations · Logs
+
+A log file per day, from the first request.
+
+`dot-errorhandler` writes daily files into `log/`, in the format set under the `stream` key of `error-handling.global.php`.
+Development mode adds the error handlers you want locally and nowhere else.
+
+## Running in minutes, honestly
+
+No database to create, no fixtures to seed.
+Clone, install, set a URL, open it.
+
+### 1 · Clone into an empty folder
+
+Git refuses a directory that is not empty, and you need write permissions on it.
+
+```shell
+git clone https://github.com/dotkernel/light.git .
+```
+
+### 2 · Install dependencies
+
+Run it from the CLI so the prompts stay interactive.
+Decline the config provider injection - Light already includes its own.
+
+```shell
+composer install
+```
+
+### 3 · Enable development mode
+
+Local work only.
+`composer development-status` reports where you stand.
+
+```shell
+composer development-enable
+```
+
+### 4 · Set the base URL
+
+Point `$baseUrl` in `config/autoload/local.php` at your virtual host.
+
+### 5 · Fix the writable folders
+
+The two directories the application writes to.
+Most first-run errors are this and nothing else.
+
+```shell
+chmod -R 777 ./data ./log
+```
+
+### 6 · Open it in a browser
+
+The Dotkernel Light welcome page is waiting.
+Errors about missing services usually mean a stale config cache.
+
+```shell
+php ./bin/clear-config-cache.php
+```
+
+A cached `data/cache/config-cache.php` is loaded regardless of the `ConfigAggregator::ENABLE_CACHE` setting - which is exactly why clearing it fixes so much.
+On Windows, WSL2 with AlmaLinux is the recommended development environment.
+
+## What the server needs
+
+| Component | Requirement |
+| --- | --- |
+| Operating system | A \*nix based system is strongly recommended for production. |
+| PHP | 8.2, 8.3 or 8.4, with mod_php or FCGI (FPM). `memory_limit` at least 128M. |
+| Web server | Apache 2.2+ with `mod_rewrite` and `.htaccess` support (`AllowOverride All`); a default `.htaccess` ships in `public/`. On Nginx, translate it into server configuration. |
+| Database | None. Light has no persistence layer - which is the point. |
+| Required extensions | `mbstring`, plus Composer available on `$PATH`. |
+| Recommended extensions | `opcache`; `dom` and `simplexml` for markup; `gd` and `exif` for images; `zlib`, `zip`, `bz2` for compression; `curl` if you call APIs. |
+
+## When Light is the wrong answer
+
+Light sits outside the Headless Platform on purpose.
+It has no sessions, no forms, no authentication and no database - so the moment you need those, start from a skeleton that already has them rather than growing them here.
+
+### Frontend — Instead · Full-stack web
+
+You need logins, forms and sessions.
+
+A server-rendered web starter on Mezzio and Laminas - Twig views, forms, sessions and RBAC-guarded routes, still standing on its own outside the platform.
+
+- [Read more](https://www.dotkernel.com/frontend/)
+- [GitHub](https://github.com/dotkernel/frontend)
+- [Demo](https://v5.dotkernel.net/)
+
+### API — Instead · HTTP surface
+
+You are serving clients, not pages.
+
+A REST API on a PSR-15 middleware pipeline, with OAuth 2.0, RBAC, HAL payloads and an OpenAPI 3.0 specification wired up on install.
+
+- [Read more](https://www.dotkernel.com/api/)
+- [GitHub](https://github.com/dotkernel/api)
+
+### Admin — Instead · Back office
+
+You need to manage records, not publish copy.
+
+Table-based record management with RBAC guards, CSRF-protected forms and 2FA, over a Core module shared with the rest of the platform.
+
+- [Read more](https://www.dotkernel.com/admin/)
+- [GitHub](https://github.com/dotkernel/admin)
+
+### Queue — Instead · Async work
+
+You have work that outlives a request.
+
+Background workers on Symfony Messenger - a TCP listener, Valkey streams, retries and a dead letter queue for what still fails.
+
+- [Read more](https://www.dotkernel.com/queue/)
+- [GitHub](https://github.com/dotkernel/queue)
+
+### dotboost — Tooling · AI context
+
+Teach your AI tools this architecture.
+
+Drop-in Claude Code configuration - ten commands, seventeen skills and permission guardrails that keep your secrets out of the context window.
+
+- [Read more](https://www.dotkernel.com/dotboost/)
+- [GitHub](https://github.com/dotkernel/dotboost)
+
+## Open source, in production
+
+Small enough to read, real enough to ship.
+
+Dotkernel Light is developed and led by the dev team at Apidemia, and released as open source for the community.
+If you want to see the whole application before you commit to it, that is the entire promise of this skeleton.
+
+[Talk to us →](https://www.dotkernel.com/contact/)
+
+
+<!-- ============================================================ -->
+<!-- md-pages/queue.md -->
+<!-- ============================================================ -->
+
+---
+title: "Dotkernel Queue | Asynchronous task queue for PHP"
+description: "Dotkernel Queue runs time-consuming work on background workers instead of inside the request cycle. A Swoole TCP daemon, Valkey streams and Symfony Messenger, with retries, a dead letter queue and reporting commands."
+canonical_url: "https://www.dotkernel.com/queue/"
+language: "en"
+---
+
+# Dotkernel Queue
+
+Background workers · Symfony Messenger
+
+Some operations are time-consuming and resource-intensive, and they have no business inside a request.
+Dotkernel Queue accepts them over a TCP connection, stores them, and runs them on background workers - so your platform answers the next request instead of waiting for a video to finish encoding.
+
+- [Read the docs](https://docs.dotkernel.org/queue-documentation/)
+- [View on GitHub](https://github.com/dotkernel/queue)
+
+| | |
+| --- | --- |
+| Listener | Swoole on TCP |
+| Store | Valkey streams |
+| Worker | Symfony Messenger |
+
+## Message lifecycle
+
+Your application (JSON payload) → TCP :8556 (IP whitelisted) → Swoole daemon (accepts & stores) → messages stream (Valkey · FIFO) → Messenger worker (your handler) → failed stream (after 3 retries).
+
+## A separate machine for the slow work
+
+Dotkernel Queue is built on **Symfony Messenger**, integrated into Mezzio and Laminas applications through the `netglue/laminas-messenger` adapter for the Laminas Service Manager container.
+Work runs decoupled from the regular request-response cycle, on background workers that can live on their own hardware.
+
+The main platform returns its response and stays responsive to new requests.
+Tasks with long execution times are scheduled to run when resources are available, oldest first.
+
+Extending the power of Mezzio by Laminas.
+
+- High request rate without overloading
+- FIFO - the oldest message runs first
+- Retries with exponential backoff
+- Failures parked, never blocking the queue
+
+## Work that should never block a response
+
+Tasks suited to the queue take extended periods to execute and may be interrupted by PHP limits such as `max_execution_time`; depend on external systems that add authentication delays, slow replies, or fail outright when a server is offline; or simply are not part of the PHP response at all.
+
+### Data processing
+
+Big data analytics, scientific simulations, mathematical computations - anything where the data size or the algorithm sets the clock.
+
+### File & media processing
+
+Video and image processing, compressing and decompressing large files.
+
+### Networking
+
+Uploading and downloading large files, where bandwidth rather than your code is the limit.
+
+### Database operations
+
+Imports, exports and migrations that would otherwise hold a web request open.
+
+### System & infrastructure
+
+OS updates, software compilation, CI pipelines triggered from your application.
+
+### Transactional email
+
+The classic case: hand the message to the queue and let the worker compose and send it while the server moves to the next task.
+
+[Sending emails →](https://docs.dotkernel.org/queue-documentation/v2/how-to/send-emails/)
+
+## Two daemons, one stream
+
+A listener that accepts messages fast, and a worker that processes them carefully.
+They are separate systemd services, so you can restart either one without losing the other.
+
+### The TCP listener — Ingest · Swoole
+
+Accepts connections and gets out of the way.
+
+An active daemon listens for TCP connections on a port - 8556 by default - and stores incoming messages immediately.
+This supports a large number of requests per second without overloading, because accepting a message is all it does.
+
+### The messages stream — Store · Valkey
+
+An open-source key/value datastore built for this shape of work.
+
+Messages land in the `messages` stream, the main queue.
+The worker consumes from it in FIFO order - the oldest request first, then newer ones - and processes each according to your application logic.
+Valkey is BSD-licensed and handles caching, message queues, and primary datastore workloads.
+
+### The worker — Process · Messenger
+
+Your handler, running outside the request cycle.
+
+A Messenger worker consumes the stream and hands each message to your handler.
+Because it is a separate service on a separate machine if you want one, a slow job costs you worker time rather than user-facing latency.
+
+### Dead letter queue — Resilience · DLQ
+
+Failures get parked, not retried forever.
+
+Each transport defines a retry strategy.
+When a message exceeds its allowed retries it is forwarded automatically to the failure transport and stored in the `failed` stream - so a message that cannot succeed never blocks the ones behind it.
+
+### Whitelisted senders — Security · Firewall
+
+The port is open to your servers, not to the internet.
+
+The documented setup adds a firewall rich rule that accepts traffic on the queue's port only from the source addresses you name.
+Fast to evaluate, and a small attack surface for a service that takes instructions.
+
+### Metrics you can query — Observability · Logs
+
+Logging that answers the operational questions.
+
+Processed and failed messages are logged, which is what makes the reporting commands possible: queue length, processing time per job, error rates, and throughput in jobs per second.
+
+## Backoff, configured in one place
+
+The transport's `retry_strategy` decides how hard the worker tries before a message is handed to the dead letter queue.
+These are the shipped defaults.
+
+| Setting | Default | What it controls |
+| --- | --- | --- |
+| `max_retries` | 3 | Attempts before the message moves to the failure transport. |
+| `delay` | 1000 | Initial wait before retrying a failed message, in milliseconds. |
+| `multiplier` | 2 | Each retry's delay is multiplied by this factor - exponential backoff. |
+| `max_delay` | 0 | Ceiling on the wait between retries; 0 means unlimited or default behaviour. |
+| `failure_transport` | `failed` | Where messages go once they exceed the retry limit. |
+
+Both transports are Redis-protocol DSNs pointing at a stream - `messages` for new work, `failed` for what could not be processed - with the serializer configurable per transport.
+
+## Console commands, over CLI or TCP
+
+The same three commands answer from the shell on the queue server or from a socket on another machine.
+Every flag is optional; when both `--start` and `--end` are given, `--limit` is ignored.
+
+| Command | Returns | Invocation |
+| --- | --- | --- |
+| `failed` | Log entries for messages that failed to process. | `php bin/cli.php failed --start="yyyy-mm-dd" --end="yyyy-mm-dd" --limit=int` |
+| `processed` | Log entries for messages processed successfully. | `php bin/cli.php processed --start="yyyy-mm-dd" --end="yyyy-mm-dd" --limit=int` |
+| `inventory` | Everything currently queued in the `messages` stream. | `php bin/cli.php inventory` |
+| `control` | A test message, logged as processed - the quickest end-to-end check. | `echo "control" \| socat -t1 - TCP:host:port` |
+
+Valkey itself stays inspectable: `valkey-cli` gives you `PING`, `INFO`, `KEYS *`, and stream commands such as `XRANGE streamName - +` to read entries oldest to newest, or `XTRIM streamName MAXLEN 0` to empty a stream while keeping the key.
+
+## Two ways to hand over a message
+
+The **procedural** approach opens a TCP connection, writes the JSON payload, and closes the socket.
+It is simple and quick to implement - and harder to reuse as the project grows.
+Make sure the message ends with a newline, or the server will keep waiting for the rest of it.
+
+The **object-oriented** approach wraps the queue in a service - a small `NotificationSystem` module under Core, built on `clue/socket-raw`, with its connection details injected from configuration.
+Handlers then inject the service and call a method that describes the intent, not the transport.
+
+- [Integration guide](https://docs.dotkernel.org/queue-documentation/v2/how-to/communication-with-queue/)
+
+### Smoke-test the listener
+
+From your local machine, with the daemon running and your IP whitelisted:
+
+```shell
+echo "Hello" | socat -T1 - TCP:SERVER-IP:8556
+```
+
+The `-T1` timeout is optional but wise: without it, a server that never replies leaves `socat` waiting indefinitely.
+
+## A queue server, from a bare box
+
+The documented path is AlmaLinux 9 or 10 with root access, adapted accordingly for other operating systems.
+Everything runs as a non-root user.
+
+### 1 · Prepare the server
+
+Update the OS, create a user with sudo permissions, and install the utilities you will need - including `socat` for testing.
+
+```shell
+dnf update -y && useradd dotkernel
+```
+
+### 2 · Install the runtime
+
+PHP from the Remi repository, plus the Swoole and Redis PECL extensions.
+Verify both are loaded before moving on.
+
+```shell
+dnf module enable php:remi-8.5
+dnf install php-pecl-swoole6 php-pecl-redis
+```
+
+### 3 · Install Valkey
+
+Enable and start the service, then confirm it answers.
+
+```shell
+dnf install valkey
+valkey-cli ping
+```
+
+### 4 · Clone and configure
+
+Clone the queue branch, then copy each `.dist` configuration file into place - local, log, messenger and swoole - and fill them in.
+
+```shell
+git clone -b default-queue https://github.com/dotkernel/queue.git
+composer install --no-dev
+```
+
+### 5 · Register the daemons
+
+Set the paths in the shipped unit files, copy them into `/etc/systemd/system/`, then enable and start both.
+
+```shell
+systemctl enable --now swoole.service
+systemctl enable --now messenger.service
+```
+
+### 6 · Close the door
+
+Allow SSH before starting the firewall, then permit the queue port only from the addresses that should reach it.
+
+```shell
+firewall-cmd --permanent --add-rich-rule='rule family="ipv4" source address="YOUR_IP" port port="8556" protocol="tcp" accept'
+```
+
+Full commands, expected output and the reasoning behind each step are in the [server setup](https://docs.dotkernel.org/queue-documentation/v2/server-setup/) and [installation](https://docs.dotkernel.org/queue-documentation/v2/installation/) guides.
+
+## The third deployable
+
+Queue processes work produced by the rest of the platform.
+Share the `Core` module with it - copied in or added as a submodule - and your worker has the same entities, services and mail configuration as the application that queued the job.
+
+### Shared domain layer
+
+`Core\Admin` `Core\App` `Core\Security` `Core\Setting` `Core\User`
+
+Keep Core in sync between the main project and the queue and every class, service and configuration needed for message processing is already there - which is what makes a worker able to compose an email from your own templates.
+
+### API — Pair with · HTTP surface
+
+Dispatch work from an endpoint, answer immediately.
+
+A REST API on a PSR-15 middleware pipeline, with OAuth 2.0, RBAC, HAL payloads and an OpenAPI 3.0 specification wired up on install.
+
+- [Read more](https://www.dotkernel.com/api/)
+- [GitHub](https://github.com/dotkernel/api)
+
+### Admin — Pair with · Back office
+
+Queue a bulk operation from an admin screen.
+
+Table-based record management with RBAC guards, CSRF-protected forms and 2FA, over the same Core module.
+
+- [Read more](https://www.dotkernel.com/admin/)
+- [GitHub](https://github.com/dotkernel/admin)
+
+### Frontend — Pair with · Public-facing
+
+Queue the email your signup form triggers.
+
+A web starter skeleton - user accounts, a contact form, sessions and RBAC-guarded controller actions, rendered on the server.
+
+- [Read more](https://www.dotkernel.com/frontend/)
+- [Demo](https://v5.dotkernel.net/)
+
+### Light — Smaller · Minimal
+
+A site with nothing to run in the background.
+
+The smallest complete Mezzio application - routing, pipeline and Twig, six direct dependencies and no database layer.
+
+- [Read more](https://www.dotkernel.com/light/)
+- [Demo](https://light.dotkernel.net/)
+
+### Dotboost — Tooling · AI context
+
+Teach your AI tools this architecture.
+
+Drop-in Claude Code configuration - ten commands, seventeen skills and permission guardrails that keep your secrets out of the context window.
+
+- [Read more](https://www.dotkernel.com/dotboost/)
+- [GitHub](https://github.com/dotkernel/dotboost)
+
+The queue's own dependencies are the same small `dot-*` components the rest of the platform uses - each publishing its own support status on the [packages lifecycle](https://www.dotkernel.com/dotkernel-packages-oss-lifecycle/) page.
+
+## Open source, in production
+
+Let the slow work happen somewhere else.
+
+Dotkernel Queue is developed and led by the dev team at Apidemia - built to keep real platforms responsive under real load, and released as open source for the community.
+
+[Talk to us →](https://www.dotkernel.com/contact/)
+
+
+<!-- ============================================================ -->
+<!-- md-pages/who-we-are.md -->
+<!-- ============================================================ -->
+
+---
+title: "Who We Are"
+canonical_url: "https://www.dotkernel.com/who-we-are/"
+language: "en"
+---
+
+# demo page
+
+WHO WE ARE
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+## [heading](https://docs.mezzio.dev/mezzio/)
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+## [heading](https://github.com/laminas/laminas-diactoros)
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+## [heading](https://github.com/laminas/laminas-stratigility)
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
