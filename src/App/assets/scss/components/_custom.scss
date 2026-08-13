@@ -500,6 +500,79 @@ html[data-theme="light"] .theme-toggle {
 }
 
 /* ============================================================
+   Hero artwork
+
+   Per-page line-art figure stacked above the pipeline box. The SVG is
+   inlined in each template so it inherits the theme through currentColor
+   and the shared tokens - an <img>-loaded SVG cannot follow the
+   data-theme toggle.
+   ============================================================ */
+
+.hero-visual {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.hero-art {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 22px 24px 18px;
+  margin: 0;
+  color: var(--text-dim);
+
+  figcaption {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 14px;
+  }
+
+  svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.25;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .art-accent {
+    stroke: var(--teal);
+  }
+
+  .art-hot {
+    stroke: var(--brand-red);
+  }
+
+  .art-fill {
+    fill: var(--teal-dim);
+    stroke: var(--teal);
+  }
+
+  .art-dot {
+    fill: var(--teal);
+    stroke: none;
+  }
+
+  .art-dash {
+    stroke-dasharray: 4 4;
+    opacity: 0.75;
+  }
+
+  .art-faint {
+    opacity: 0.45;
+  }
+}
+
+/* ============================================================
    Pipeline
    ============================================================ */
 

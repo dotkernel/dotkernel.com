@@ -61,17 +61,32 @@
                 </div>
             </div>
 
-            <div class="pipeline">
-                <div class="pipeline-label"><span>Request lifecycle</span></div>
-                <div class="pipeline-track">
-                    <div class="pl-packet" aria-hidden="true"></div>
-                    <div class="pl-step"><span class="name">index.php</span><span class="tag">bootstrap</span></div>
-                    <div class="pl-step"><span class="name">Container</span><span class="tag">factories · aliases</span></div>
-                    <div class="pl-step"><span class="name">Routing</span><span class="tag">FastRoute</span></div>
-                    <div class="pl-step"><span class="name">Pipeline</span><span class="tag">pipeline.php</span></div>
-                    <div class="pl-step"><span class="name">Handler</span><span class="tag">PSR-15</span></div>
-                    <div class="pl-step"><span class="name">Twig</span><span class="tag">layout · blocks</span></div>
-                    <div class="pl-step"><span class="name">Emitter</span><span class="tag">HtmlResponse</span></div>
+            <div class="hero-visual">
+                <figure class="hero-art">
+                    <figcaption>Six direct dependencies</figcaption>
+                    <svg viewBox="0 0 360 170" role="img" aria-label="Six dependencies inside an otherwise empty application boundary">
+                        <rect class="art-dash" x="48" y="26" width="264" height="118" rx="12"/>
+                        <circle class="art-dot" cx="120" cy="66" r="6"/>
+                        <circle class="art-dot" cx="180" cy="66" r="6"/>
+                        <circle class="art-dot" cx="240" cy="66" r="6"/>
+                        <circle class="art-dot" cx="120" cy="106" r="6"/>
+                        <circle class="art-dot" cx="180" cy="106" r="6"/>
+                        <circle class="art-dot" cx="240" cy="106" r="6"/>
+                    </svg>
+                </figure>
+
+                <div class="pipeline">
+                    <div class="pipeline-label"><span>Request lifecycle</span></div>
+                    <div class="pipeline-track">
+                        <div class="pl-packet" aria-hidden="true"></div>
+                        <div class="pl-step"><span class="name">index.php</span><span class="tag">bootstrap</span></div>
+                        <div class="pl-step"><span class="name">Container</span><span class="tag">factories · aliases</span></div>
+                        <div class="pl-step"><span class="name">Routing</span><span class="tag">FastRoute</span></div>
+                        <div class="pl-step"><span class="name">Pipeline</span><span class="tag">pipeline.php</span></div>
+                        <div class="pl-step"><span class="name">Handler</span><span class="tag">PSR-15</span></div>
+                        <div class="pl-step"><span class="name">Twig</span><span class="tag">layout · blocks</span></div>
+                        <div class="pl-step"><span class="name">Emitter</span><span class="tag">HtmlResponse</span></div>
+                    </div>
                 </div>
             </div>
         </div>

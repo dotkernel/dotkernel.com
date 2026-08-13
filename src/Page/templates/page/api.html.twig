@@ -62,16 +62,40 @@
                 </div>
             </div>
 
-            <div class="pipeline">
-                <div class="pipeline-label"><span>Request lifecycle</span></div>
-                <div class="pipeline-track">
-                    <div class="pl-packet" aria-hidden="true"></div>
-                    <div class="pl-step"><span class="name">CORS</span><span class="tag">mezzio-cors</span></div>
-                    <div class="pl-step"><span class="name">Router</span><span class="tag">FastRoute</span></div>
-                    <div class="pl-step"><span class="name">Authentication</span><span class="tag">OAuth 2.0</span></div>
-                    <div class="pl-step"><span class="name">RBAC guard</span><span class="tag">per route name</span></div>
-                    <div class="pl-step"><span class="name">Your handler</span><span class="tag">PSR-15</span></div>
-                    <div class="pl-step"><span class="name">Response</span><span class="tag">HAL / problem+json</span></div>
+            <div class="hero-visual">
+                <figure class="hero-art">
+                    <figcaption>One resource, its links</figcaption>
+                    <svg viewBox="0 0 360 170" role="img" aria-label="A resource envelope whose links branch out to embedded resources">
+                        <rect x="14" y="28" width="164" height="114" rx="10"/>
+                        <line class="art-faint" x1="14" y1="62" x2="178" y2="62"/>
+                        <line x1="32" y1="45" x2="86" y2="45"/>
+                        <rect class="art-fill" x="32" y="80" width="9" height="9" rx="2"/>
+                        <line class="art-faint" x1="50" y1="84.5" x2="120" y2="84.5"/>
+                        <rect class="art-fill" x="32" y="108" width="9" height="9" rx="2"/>
+                        <line class="art-faint" x1="50" y1="112.5" x2="146" y2="112.5"/>
+                        <path class="art-accent" d="M178 84 C 224 84 232 42 286 42"/>
+                        <path class="art-accent" d="M178 90 C 230 90 240 88 286 88"/>
+                        <path class="art-accent" d="M178 112 C 226 112 236 134 286 134"/>
+                        <circle class="art-accent" cx="298" cy="42" r="11"/>
+                        <circle class="art-accent" cx="298" cy="88" r="11"/>
+                        <circle class="art-accent" cx="298" cy="134" r="11"/>
+                    </svg>
+                </figure>
+
+                <div class="pipeline">
+                    <div class="pipeline-label">
+                        <span>Request lifecycle</span>
+                        <span><a href="{{ url('page::architecture') }}">All 19 stages →</a></span>
+                    </div>
+                    <div class="pipeline-track">
+                        <div class="pl-packet" aria-hidden="true"></div>
+                        <div class="pl-step"><span class="name">CORS</span><span class="tag">mezzio-cors</span></div>
+                        <div class="pl-step"><span class="name">Router</span><span class="tag">FastRoute</span></div>
+                        <div class="pl-step"><span class="name">Authentication</span><span class="tag">OAuth 2.0</span></div>
+                        <div class="pl-step"><span class="name">RBAC guard</span><span class="tag">per route name</span></div>
+                        <div class="pl-step"><span class="name">Your handler</span><span class="tag">PSR-15</span></div>
+                        <div class="pl-step"><span class="name">Response</span><span class="tag">HAL / problem+json</span></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -227,9 +251,22 @@
                     </div>
                     <p class="lede">Scheduled work that refuses to trample itself.</p>
                     <p class="desc">
-                        Console commands are registered through <code>dot-cli</code> on top of Symfony Console. The file
-                        locker, enabled by default, writes a lock file per command so a second instance cannot start
-                        while the previous run is still going - the safeguard cron jobs usually lack.
+                        Console commands are registered through <code>dot-cli</code> on top of Symfony Console, and
+                        <code>php ./bin/cli.php route:list</code> prints every endpoint the application exposes. The
+                        file locker, enabled by default, writes a lock file per command so a second instance cannot
+                        start while the previous run is still going - the safeguard cron jobs usually lack.
+                    </p>
+                </div>
+
+                <div class="card" style="--accent:var(--brand-red)">
+                    <div class="card-top">
+                        <div><span class="kicker">Operations · Mail</span><h3>Transactional email</h3></div>
+                    </div>
+                    <p class="lede">Account mail that works before you configure anything.</p>
+                    <p class="desc">
+                        <code>dot-mail</code> wraps Symfony Mailer with templated messages, so account activation and
+                        password reset send out of a fresh install. It joins the request flow only where it is needed -
+                        the rest of the pipeline is unchanged whether a route sends mail or not.
                     </p>
                 </div>
 
@@ -306,11 +343,18 @@
                     change forking into another branch you have to keep alive.
                 </p>
                 <p class="lede">
+                    The mechanism is <code>DeprecationMiddleware</code>: mark a handler with the
+                    <code>#[ResourceDeprecation]</code> attribute and the response carries <code>sunset</code> and
+                    <code>link</code> headers, so a client learns an endpoint is retiring from the endpoint itself
+                    rather than from a changelog it never read.
+                </p>
+                <p class="lede">
                     Full versioning stays reserved for major, format-level changes - the cases where it genuinely earns
                     its maintenance cost. The two approaches are not mutually exclusive.
                 </p>
                 <div class="hero-ctas">
                     <a class="btn btn-ghost" href="https://docs.dotkernel.org/api-documentation/v6/tutorials/api-evolution/" target="_blank" rel="noopener">API evolution guide</a>
+                    <a class="btn btn-ghost" href="{{ url('page::architecture') }}">Where it sits in the pipeline</a>
                 </div>
             </div>
             <div class="callout">

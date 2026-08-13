@@ -60,16 +60,36 @@
                 </div>
             </div>
 
-            <div class="pipeline">
-                <div class="pipeline-label"><span>Request lifecycle</span></div>
-                <div class="pipeline-track">
-                    <div class="pl-packet" aria-hidden="true"></div>
-                    <div class="pl-step"><span class="name">Session</span><span class="tag">dot-session</span></div>
-                    <div class="pl-step"><span class="name">Router</span><span class="tag">FastRoute</span></div>
-                    <div class="pl-step"><span class="name">Authentication</span><span class="tag">User identity</span></div>
-                    <div class="pl-step"><span class="name">RBAC guard</span><span class="tag">route + action</span></div>
-                    <div class="pl-step"><span class="name">Controller action</span><span class="tag">dot-controller</span></div>
-                    <div class="pl-step"><span class="name">Response</span><span class="tag">Twig + flash</span></div>
+            <div class="hero-visual">
+                <figure class="hero-art">
+                    <figcaption>Composed on the server</figcaption>
+                    <svg viewBox="0 0 360 170" role="img" aria-label="A browser window receiving a page already composed by the server">
+                        <line class="art-accent" x1="14" y1="85" x2="62" y2="85"/>
+                        <path class="art-accent" d="M56 79 l7 6 l-7 6"/>
+                        <rect x="80" y="20" width="266" height="130" rx="10"/>
+                        <line x1="80" y1="50" x2="346" y2="50"/>
+                        <circle class="art-faint" cx="96" cy="35" r="3.5"/>
+                        <circle class="art-faint" cx="108" cy="35" r="3.5"/>
+                        <circle class="art-faint" cx="120" cy="35" r="3.5"/>
+                        <rect class="art-faint" x="138" y="29" width="120" height="12" rx="6"/>
+                        <rect class="art-fill" x="96" y="66" width="112" height="66" rx="6"/>
+                        <line class="art-accent" x1="224" y1="74" x2="330" y2="74"/>
+                        <line class="art-accent" x1="224" y1="92" x2="330" y2="92"/>
+                        <line class="art-accent" x1="224" y1="110" x2="296" y2="110"/>
+                    </svg>
+                </figure>
+
+                <div class="pipeline">
+                    <div class="pipeline-label"><span>Request lifecycle</span></div>
+                    <div class="pipeline-track">
+                        <div class="pl-packet" aria-hidden="true"></div>
+                        <div class="pl-step"><span class="name">Session</span><span class="tag">dot-session</span></div>
+                        <div class="pl-step"><span class="name">Router</span><span class="tag">FastRoute</span></div>
+                        <div class="pl-step"><span class="name">Authentication</span><span class="tag">User identity</span></div>
+                        <div class="pl-step"><span class="name">RBAC guard</span><span class="tag">route + action</span></div>
+                        <div class="pl-step"><span class="name">Controller action</span><span class="tag">dot-controller</span></div>
+                        <div class="pl-step"><span class="name">Response</span><span class="tag">Twig + flash</span></div>
+                    </div>
                 </div>
             </div>
         </div>

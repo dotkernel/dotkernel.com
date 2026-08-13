@@ -1,0 +1,643 @@
+{% extends '@layout/default.html.twig' %}
+
+{% set routeName = 'page::architecture' %}
+{% set meta = {
+    title: 'Architecture | How a request moves through a Dotkernel application',
+    description: 'The PSR-15 middleware pipeline behind Dotkernel API, stage by stage: error boundary, routing, '
+        ~ 'content negotiation, deprecation headers, OAuth 2.0, RBAC and dispatch - plus the library flow underneath it.',
+} %}
+
+{% block title %}Architecture{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        /* Middleware and library flow diagrams - scoped to this page, uses the shared theme tokens. */
+        .flow-legend { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-bottom: 28px; font-family: var(--mono); font-size: 12px; color: var(--text-dim); }
+        .flow-legend span { display: inline-flex; align-items: center; gap: 7px; }
+        .flow-legend i { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; font-style: normal; }
+        .flow-legend .k-mezzio { background: var(--periwinkle); }
+        .flow-legend .k-dotkernel { background: var(--brand-red); }
+        .flow-legend .k-other { background: var(--text-dim); }
+
+        .mwflow { position: relative; padding-left: 30px; }
+        .mwflow:before { content: ""; position: absolute; top: 6px; bottom: 6px; left: 10px; width: 2px; background: linear-gradient(180deg, var(--sage), var(--brand-red)); opacity: .45; }
+        .mw-phase { position: relative; margin: 30px 0 14px; font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--teal); }
+        .mw-phase:first-child { margin-top: 0; }
+        .mw-phase:before { content: ""; position: absolute; left: -25px; top: 4px; width: 7px; height: 7px; border-radius: 2px; background: var(--teal); }
+        .mw-step { position: relative; background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--periwinkle); border-radius: 10px; padding: 16px 20px; margin-bottom: 10px; }
+        .mw-step.is-dk { border-left-color: var(--brand-red); }
+        .mw-step:before { content: ""; position: absolute; left: -25px; top: 24px; width: 9px; height: 9px; border-radius: 50%; background: var(--bg); border: 2px solid var(--teal); }
+        .mw-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 12px; }
+        .mw-name { font-family: var(--mono); font-size: 14px; font-weight: 500; color: var(--text); }
+        .mw-vendor { font-family: var(--mono); font-size: 10.5px; color: var(--text-dim); }
+        .mw-chip { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--teal); background: var(--teal-dim); border: 1px solid var(--teal); border-radius: 999px; padding: 2px 9px; }
+        .mw-step p { margin: 9px 0 0; font-size: 14.5px; line-height: 1.65; color: var(--text-muted); }
+        .mw-num { position: absolute; right: 18px; top: 15px; font-family: var(--mono); font-size: 11px; color: var(--text-dim); }
+
+        .libflow-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+        .libflow { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 26px 24px; }
+        .libflow h4 { font-family: var(--mono); font-size: 15px; color: var(--text); margin: 0 0 6px; }
+        .libflow > p.libflow-sub { margin: 0 0 20px; font-size: 13.5px; color: var(--text-dim); line-height: 1.6; }
+        .lib-node { display: flex; align-items: center; justify-content: space-between; gap: 12px; background: var(--surface-2); border: 1px solid var(--border-soft); border-left: 3px solid var(--periwinkle); border-radius: 8px; padding: 10px 14px; font-family: var(--mono); font-size: 12.5px; color: var(--text); }
+        .lib-node.is-dk { border-left-color: var(--brand-red); }
+        .lib-node.is-edge { border-left-color: var(--text-dim); color: var(--text-dim); letter-spacing: .1em; text-transform: uppercase; font-size: 11px; }
+        .lib-node.is-new { border-left-color: var(--teal); background: var(--teal-dim); }
+        .lib-node em { font-style: normal; font-size: 10.5px; color: var(--text-dim); }
+        .lib-arrow { height: 12px; margin: 3px 0 3px 20px; border-left: 2px dotted var(--border); }
+
+        .applies-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 26px; }
+        .applies { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px 18px; }
+        .applies h4 { font-family: var(--mono); font-size: 14px; margin: 0 0 8px; }
+        .applies p { margin: 0; font-size: 13.5px; line-height: 1.6; color: var(--text-muted); }
+
+        @media (max-width: 900px) {
+            .libflow-grid { grid-template-columns: 1fr; }
+            .applies-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 560px) {
+            .applies-grid { grid-template-columns: 1fr; }
+            .mwflow { padding-left: 22px; }
+            .mwflow:before { left: 5px; }
+            .mw-step:before, .mw-phase:before { left: -21px; }
+            .mw-num { display: none; }
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+
+    <section class="hero">
+        <div class="wrap hero-grid">
+            <div>
+                <span class="eyebrow">Architecture · PSR-15 pipeline</span>
+                <h1>How a request moves through a Dotkernel application</h1>
+                <p class="sub">
+                    Every Dotkernel application is a stack of PSR-15 middleware with no framework runtime hidden
+                    underneath it. A request enters at the error boundary, passes through routing, negotiation,
+                    authentication and authorization, and reaches your handler - and you can read every layer it
+                    crossed on the way.
+                </p>
+                <div class="hero-ctas">
+                    <a class="btn btn-primary" href="https://docs.dotkernel.org/api-documentation/" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                        Read the docs
+                    </a>
+                    <a class="btn btn-ghost" href="https://github.com/dotkernel/api/blob/7.0/config/pipeline.php" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.1.83-.27.83-.58v-2.17c-3.34.73-4.04-1.42-4.04-1.42-.55-1.4-1.34-1.77-1.34-1.77-1.08-.75.09-.73.09-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.84 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.53.12-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.65.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .31.22.69.83.57A12 12 0 0 0 12 .5z"/></svg>
+                        See pipeline.php
+                    </a>
+                    <a class="btn btn-ghost" href="{{ url('page::api') }}">Dotkernel API</a>
+                </div>
+                <div class="hero-stack-note">
+                    <div><span>Contract</span> PSR-7 + PSR-15</div>
+                    <div><span>Container</span> PSR-11</div>
+                    <div><span>Logging</span> PSR-3</div>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <figure class="hero-art">
+                    <figcaption>Nineteen stages, folded</figcaption>
+                    <svg viewBox="0 0 360 170" role="img" aria-label="Nineteen pipeline stages folded into three rows">
+                        <path class="art-accent" d="M24 44 H286 A20 20 0 0 1 286 84 H74 A20 20 0 0 0 74 124 H336"/>
+                        <line class="art-hot" x1="24" y1="36" x2="24" y2="52"/>
+                        <line x1="68" y1="38" x2="68" y2="50"/>
+                        <line x1="112" y1="38" x2="112" y2="50"/>
+                        <line x1="156" y1="38" x2="156" y2="50"/>
+                        <line x1="200" y1="38" x2="200" y2="50"/>
+                        <line x1="244" y1="38" x2="244" y2="50"/>
+                        <line x1="286" y1="38" x2="286" y2="50"/>
+                        <line x1="270" y1="78" x2="270" y2="90"/>
+                        <line x1="226" y1="78" x2="226" y2="90"/>
+                        <line x1="182" y1="78" x2="182" y2="90"/>
+                        <line x1="138" y1="78" x2="138" y2="90"/>
+                        <line x1="94" y1="78" x2="94" y2="90"/>
+                        <line x1="74" y1="78" x2="74" y2="90"/>
+                        <line x1="118" y1="118" x2="118" y2="130"/>
+                        <line x1="162" y1="118" x2="162" y2="130"/>
+                        <line x1="206" y1="118" x2="206" y2="130"/>
+                        <circle class="art-dot" cx="250" cy="124" r="5"/>
+                        <line x1="294" y1="118" x2="294" y2="130"/>
+                        <line x1="336" y1="118" x2="336" y2="130"/>
+                    </svg>
+                </figure>
+
+                <div class="pipeline">
+                    <div class="pipeline-label"><span>Five phases</span><span>19 stages</span></div>
+                    <div class="pipeline-track">
+                        <div class="pl-packet" aria-hidden="true"></div>
+                        <div class="pl-step"><span class="name">Error boundary</span><span class="tag">1 stage</span></div>
+                        <div class="pl-step"><span class="name">Request preparation</span><span class="tag">4 stages</span></div>
+                        <div class="pl-step"><span class="name">Routing</span><span class="tag">4 stages</span></div>
+                        <div class="pl-step"><span class="name">Contract &amp; headers</span><span class="tag">4 stages</span></div>
+                        <div class="pl-step"><span class="name">Identity</span><span class="tag">2 stages</span></div>
+                        <div class="pl-step"><span class="name">Dispatch &amp; fallback</span><span class="tag">4 stages</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="what-is-platform">
+        <div class="wrap split">
+            <div>
+                <span class="eyebrow">The premise</span>
+                <h2>Framework-less, not framework-free</h2>
+                <p class="lede">
+                    Dotkernel is an opinionated, framework-less tool aimed at intermediate-to-advanced programmers.
+                    Framework-less does not mean nothing is underneath: Mezzio and Laminas components are there, and
+                    they are excellent. It means there is no framework runtime deciding things on your behalf. The
+                    pipeline is a list you wrote, in a file you can open, executed top to bottom.
+                </p>
+                <p class="lede">
+                    That is the whole trade. You give up the convenience of conventions you never have to look at,
+                    and you get an application where every layer between the socket and your handler is named,
+                    ordered and yours to reorder.
+                </p>
+                <div class="extending">
+                    Extending the power of
+                    <div class="extending-logo">
+                        <img src="{{ asset('images/app/content/mezzio-by-laminas.svg') }}" alt="Mezzio by Laminas" loading="lazy">
+                    </div>
+                </div>
+            </div>
+            <div class="traits">
+                <div class="trait">
+                    <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/traffic-sign-50.svg') }}" alt="" loading="lazy">
+                    <p>Gradual learning curve</p>
+                </div>
+
+                <div class="trait">
+                    <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/success-50.svg') }}" alt="" loading="lazy">
+                    <p>Fine-tuned security</p>
+                </div>
+
+                <div class="trait">
+                    <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/speed-radar-50.svg') }}" alt="" loading="lazy">
+                    <p>KISS, YAGNI, DRY</p>
+                </div>
+
+                <div class="trait">
+                    <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/maintenance.svg') }}" alt="" loading="lazy">
+                    <p>Long-term support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="background:var(--surface-2);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Middleware flow</span>
+                <h2>Nineteen stages, in the order they run</h2>
+                <p>This is the default pipeline of Dotkernel API, unedited. Each stage receives the request, may hand
+                   it onward, and may alter the response on the way back out - which is why the error boundary is
+                   first in and last out.</p>
+            </div>
+
+            <div class="flow-legend">
+                <span><i class="k-mezzio"></i> Mezzio / Laminas component</span>
+                <span><i class="k-dotkernel"></i> Dotkernel</span>
+            </div>
+
+            <div class="mwflow">
+
+                <div class="mw-phase">Error boundary</div>
+
+                <div class="mw-step">
+                    <span class="mw-num">01</span>
+                    <div class="mw-head">
+                        <span class="mw-name">ProblemDetailsMiddleware</span>
+                        <span class="mw-vendor">mezzio/mezzio-problem-details</span>
+                    </div>
+                    <p>The outermost layer, deliberately. Anything thrown deeper in the stack is handed to
+                       <code>dot-errorhandler</code> for logging and comes back as a problem details response, so a
+                       failure reaches the client as a documented error shape rather than a stack trace.</p>
+                </div>
+
+                <div class="mw-phase">Request preparation</div>
+
+                <div class="mw-step is-dk">
+                    <span class="mw-num">02</span>
+                    <div class="mw-head">
+                        <span class="mw-name">MalformedRequestBodyMiddleware</span>
+                        <span class="mw-vendor">dotkernel/api</span>
+                    </div>
+                    <p>Rejects a body that is not valid JSON up front, before any later stage tries to read it and
+                       fails in a less legible place.</p>
+                </div>
+
+                <div class="mw-step">
+                    <span class="mw-num">03</span>
+                    <div class="mw-head">
+                        <span class="mw-name">BodyParamsMiddleware</span>
+                        <span class="mw-vendor">mezzio/mezzio-helpers</span>
+                    </div>
+                    <p>Parses the raw request body into the parsed body according to its <code>Content-Type</code>.</p>
+                </div>
+
+                <div class="mw-step">
+                    <span class="mw-num">04</span>
+                    <div class="mw-head">
+                        <span class="mw-name">ServerUrlMiddleware</span>
+                        <span class="mw-vendor">mezzio/mezzio-helpers</span>
+                    </div>
+                    <p>Seeds the server URL helper with the current scheme and host, so anything generating a URL
+                       later produces an absolute one.</p>
+                </div>
+
+                <div class="mw-step">
+                    <span class="mw-num">05</span>
+                    <div class="mw-head">
+                        <span class="mw-name">CorsMiddleware</span>
+                        <span class="mw-vendor">mezzio/mezzio-cors</span>
+                    </div>
+                    <p>Recognises preflight requests and answers them, and attaches the configured CORS headers to
+                       everything else. It sits before routing so a preflight never needs a matched route.</p>
+                </div>
+
+                <div class="mw-phase">Routing</div>
+
+                <div class="mw-step">
+                    <span class="mw-num">06</span>
+                    <div class="mw-head">
+                        <span class="mw-name">RouteMiddleware</span>
+                        <span class="mw-vendor">mezzio/mezzio-router</span>
+                        <span class="mw-chip">Route</span>
+                    </div>
+                    <p>Matches the request against the route table and registers the <code>RouteResult</code>
+                       attribute. Everything below this line can ask which route was matched - and most of it does.</p>
+                </div>
+
+                <div class="mw-step">
+                    <span class="mw-num">07</span>
+                    <div class="mw-head">
+                        <span class="mw-name">ImplicitHeadMiddleware</span>
+                        <span class="mw-vendor">mezzio/mezzio-router</span>
+                    </div>
+                    <p>Answers <code>HEAD</code> for routes that only declare <code>GET</code>.</p>
+                </div>
+
+                <div class="mw-step">
+                    <span class="mw-num">08</span>
+                    <div class="mw-head">
+                        <span class="mw-name">ImplicitOptionsMiddleware</span>
+                        <span class="mw-vendor">mezzio/mezzio-router</span>
+                    </div>
+                    <p>Answers <code>OPTIONS</code> with the methods the matched path actually allows.</p>
+                </div>
+
+                <div class="mw-step">
+                    <span class="mw-num">09</span>
+                    <div class="mw-head">
+                        <span class="mw-name">MethodNotAllowedMiddleware</span>
+                        <span class="mw-vendor">mezzio/mezzio-router</span>
+                    </div>
+                    <p>Returns <code>405 Method Not Allowed</code> when the path matched but the method did not. Order
+                       matters here: it has to sit after both implicit handlers, or it would answer the requests they
+                       exist to serve.</p>
+                </div>
+
+                <div class="mw-phase">Contract &amp; headers</div>
+
+                <div class="mw-step is-dk">
+                    <span class="mw-num">10</span>
+                    <div class="mw-head">
+                        <span class="mw-name">ContentNegotiationMiddleware</span>
+                        <span class="mw-vendor">dotkernel/api</span>
+                    </div>
+                    <p>Reconciles the client's <code>Accept</code> and <code>Content-Type</code> with what the matched
+                       route is configured to serve, so diverse consumers share one API without custom glue.</p>
+                </div>
+
+                <div class="mw-step is-dk">
+                    <span class="mw-num">11</span>
+                    <div class="mw-head">
+                        <span class="mw-name">DeprecationMiddleware</span>
+                        <span class="mw-vendor">dotkernel/api</span>
+                    </div>
+                    <p>The mechanism behind API evolution. It reads the <code>#[ResourceDeprecation]</code> attribute
+                       off the handler and, when one is present, sets the <code>sunset</code> and <code>link</code>
+                       response headers - the client learns an endpoint is going away from the endpoint itself,
+                       rather than from a migration guide.</p>
+                </div>
+
+                <div class="mw-step is-dk">
+                    <span class="mw-num">12</span>
+                    <div class="mw-head">
+                        <span class="mw-name">ResponseHeaderMiddleware</span>
+                        <span class="mw-vendor">dotkernel/dot-response-header</span>
+                    </div>
+                    <p>Applies the headers you configure application-wide to every outgoing response, in one place
+                       instead of per handler.</p>
+                </div>
+
+                <div class="mw-step">
+                    <span class="mw-num">13</span>
+                    <div class="mw-head">
+                        <span class="mw-name">UrlHelperMiddleware</span>
+                        <span class="mw-vendor">mezzio/mezzio-helpers</span>
+                    </div>
+                    <p>Seeds the URL helper with the routing result, so handlers and HAL links can be generated
+                       relative to the route that was actually matched.</p>
+                </div>
+
+                <div class="mw-phase">Identity</div>
+
+                <div class="mw-step is-dk">
+                    <span class="mw-num">14</span>
+                    <div class="mw-head">
+                        <span class="mw-name">AuthenticationMiddleware</span>
+                        <span class="mw-vendor">dotkernel/api</span>
+                        <span class="mw-chip">401</span>
+                    </div>
+                    <p>Validates the OAuth 2.0 Bearer token. Routes declared as authenticated answer
+                       <code>401 Unauthorized</code> without a valid one, and never reach the handler.</p>
+                </div>
+
+                <div class="mw-step is-dk">
+                    <span class="mw-num">15</span>
+                    <div class="mw-head">
+                        <span class="mw-name">AuthorizationMiddleware</span>
+                        <span class="mw-vendor">dotkernel/api</span>
+                        <span class="mw-chip">403</span>
+                    </div>
+                    <p>Checks the authenticated identity's role against the permissions allocated to the matched route
+                       name, and returns <code>403 Forbidden</code> when it falls short. The decision lives in
+                       configuration, not scattered through handlers.</p>
+                </div>
+
+                <div class="mw-phase">Dispatch &amp; fallback</div>
+
+                <div class="mw-step is-dk">
+                    <span class="mw-num">16</span>
+                    <div class="mw-head">
+                        <span class="mw-name">ResourceProviderMiddleware</span>
+                        <span class="mw-vendor">dotkernel/api</span>
+                    </div>
+                    <p>Reads the <code>#[Resource]</code> attribute on the handler's <code>handle()</code> method and
+                       loads the named entity through Doctrine using the route placeholder. The handler receives a
+                       resource rather than an identifier, and a record that does not exist becomes a
+                       <code>404</code> before your code runs.</p>
+                </div>
+
+                <div class="mw-step">
+                    <span class="mw-num">17</span>
+                    <div class="mw-head">
+                        <span class="mw-name">DispatchMiddleware</span>
+                        <span class="mw-vendor">mezzio/mezzio-router</span>
+                    </div>
+                    <p>Hands the request to the matched PSR-15 handler. This is your code - everything above was
+                       getting the request into a state where your handler only has to do its own job.</p>
+                </div>
+
+                <div class="mw-step">
+                    <span class="mw-num">18</span>
+                    <div class="mw-head">
+                        <span class="mw-name">ProblemDetailsNotFoundHandler</span>
+                        <span class="mw-vendor">mezzio/mezzio-problem-details</span>
+                    </div>
+                    <p>Reached only when nothing above returned a response: emits <code>404</code> in problem details
+                       form.</p>
+                </div>
+
+                <div class="mw-step is-dk">
+                    <span class="mw-num">19</span>
+                    <div class="mw-head">
+                        <span class="mw-name">GetNotFoundResourceHandler</span>
+                        <span class="mw-vendor">dotkernel/api</span>
+                    </div>
+                    <p>The last stage in the pipeline, shaping the not-found response for API clients.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Library flow</span>
+                <h2>The packages underneath, in the same order</h2>
+                <p>The same journey seen one level down - which library owns each step. The second column shows how
+                   little changes when a feature is added: sending an email inserts one package and leaves the rest
+                   of the flow alone.</p>
+            </div>
+
+            <div class="libflow-grid">
+                <div class="libflow">
+                    <h4>Default flow</h4>
+                    <p class="libflow-sub">A request that reads or writes data and returns a resource.</p>
+
+                    <div class="lib-node is-edge">Request</div>
+                    <div class="lib-arrow"></div>
+                    <div class="lib-node">mezzio/mezzio-problem-details</div>
+                    <div class="lib-arrow"></div>
+                    <div class="lib-node is-dk">dotkernel/dot-errorhandler</div>
+                    <div class="lib-arrow"></div>
+                    <div class="lib-node">mezzio/mezzio-cors</div>
+                    <div class="lib-arrow"></div>
+                    <div class="lib-node">mezzio/mezzio-router</div>
+                    <div class="lib-arrow"></div>
+                    <div class="lib-node is-dk">dotkernel/dot-response-header</div>
+                    <div class="lib-arrow"></div>
+                    <div class="lib-node">mezzio/mezzio-helpers</div>
+                    <div class="lib-arrow"></div>
+                    <div class="lib-node">mezzio/mezzio-authentication</div>
+                    <div class="lib-arrow"></div>
+                    <div class="lib-node">mezzio/mezzio-authorization</div>
+                    <div class="lib-arrow"></div>
+                    <div class="lib-node">mezzio/mezzio-router <em>dispatch</em></div>
+                    <div class="lib-arrow"></div>
+                    <div class="lib-node">laminas/laminas-diactoros <em>not found</em></div>
+                    <div class="lib-arrow"></div>
+                    <div class="lib-node is-dk">dotkernel/dot-dependency-injection</div>
+                    <div class="lib-arrow"></div>
+                    <div class="lib-node">doctrine/orm</div>
+                    <div class="lib-arrow"></div>
+                    <div class="lib-node">mezzio/mezzio-hal</div>
+                    <div class="lib-arrow"></div>
+                    <div class="lib-node">laminas/laminas-diactoros</div>
+                    <div class="lib-arrow"></div>
+                    <div class="lib-node">psr/http-message</div>
+                    <div class="lib-arrow"></div>
+                    <div class="lib-node is-edge">Response</div>
+                </div>
+
+                <div class="libflow">
+                    <h4>Flow for sending an email</h4>
+                    <p class="libflow-sub">Identical until the domain layer, where <code>dot-mail</code> joins in.</p>
+
+                    <div class="lib-node is-edge">Request</div>
+                    <div class="lib-arrow"></div>
+                    <div class="lib-node">mezzio/mezzio-problem-details</div>
+                    <div class="lib-arrow"></div>
+                    <div class="lib-node is-dk">dotkernel/dot-errorhandler</div>
+                    <div class="lib-arrow"></div>
+                    <div class="lib-node">mezzio/mezzio-cors</div>
+                    <div class="lib-arrow"></div>
+                    <div class="lib-node">mezzio/mezzio-router</div>
+                    <div class="lib-arrow"></div>
+                    <div class="lib-node is-dk">dotkernel/dot-response-header</div>
+                    <div class="lib-arrow"></div>
+                    <div class="lib-node">mezzio/mezzio-helpers</div>
+                    <div class="lib-arrow"></div>
+                    <div class="lib-node">mezzio/mezzio-authentication</div>
+                    <div class="lib-arrow"></div>
+                    <div class="lib-node">mezzio/mezzio-authorization</div>
+                    <div class="lib-arrow"></div>
+                    <div class="lib-node">mezzio/mezzio-router <em>dispatch</em></div>
+                    <div class="lib-arrow"></div>
+                    <div class="lib-node">laminas/laminas-diactoros <em>not found</em></div>
+                    <div class="lib-arrow"></div>
+                    <div class="lib-node is-dk">dotkernel/dot-dependency-injection</div>
+                    <div class="lib-arrow"></div>
+                    <div class="lib-node">doctrine/orm</div>
+                    <div class="lib-arrow"></div>
+                    <div class="lib-node is-new">dotkernel/dot-mail <em>added</em></div>
+                    <div class="lib-arrow"></div>
+                    <div class="lib-node">mezzio/mezzio-hal</div>
+                    <div class="lib-arrow"></div>
+                    <div class="lib-node">laminas/laminas-diactoros</div>
+                    <div class="lib-arrow"></div>
+                    <div class="lib-node">psr/http-message</div>
+                    <div class="lib-arrow"></div>
+                    <div class="lib-node is-edge">Response</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="background:var(--surface-2);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Standards</span>
+                <h2>Built on interfaces from the Framework Interop Group</h2>
+                <p>Dotkernel applications are collections of PSR-7 middleware. The standards below are not badges -
+                   they are the reason a package from one vendor drops into a pipeline built by another.</p>
+            </div>
+
+            <div class="standards-grid">
+                <div class="standard">
+                    <h4><a href="https://www.php-fig.org/psr/psr-7/" target="_blank" rel="noopener">PSR-7</a></h4>
+                    <p>HTTP messages are immutable value objects. Every stage above receives a request and returns a
+                       response, and neither is a global you have to guard.</p>
+                </div>
+                <div class="standard">
+                    <h4><a href="https://www.php-fig.org/psr/psr-15/" target="_blank" rel="noopener">PSR-15</a></h4>
+                    <p>Middleware and request handlers share one interface, which is what makes the pipeline a plain
+                       ordered list rather than a framework-specific event graph.</p>
+                </div>
+                <div class="standard">
+                    <h4><a href="https://www.php-fig.org/psr/psr-11/" target="_blank" rel="noopener">PSR-11</a></h4>
+                    <p>The application is container-based, with each module declaring its dependencies in a
+                       <code>ConfigProvider</code>.</p>
+                </div>
+                <div class="standard">
+                    <h4><a href="https://www.php-fig.org/psr/psr-4/" target="_blank" rel="noopener">PSR-4</a></h4>
+                    <p>Classes are located by autoloader from their namespace, so where a file lives is never a
+                       question of configuration.</p>
+                </div>
+                <div class="standard">
+                    <h4><a href="https://www.php-fig.org/psr/psr-3/" target="_blank" rel="noopener">PSR-3</a></h4>
+                    <p>Errors are logged through <code>LoggerInterface</code> via <code>dot-errorhandler</code>,
+                       reached from the error boundary at stage one.</p>
+                </div>
+                <div class="standard">
+                    <h4>Why it matters</h4>
+                    <p>You can delete any stage in the pipeline, or write your own and pipe it in, without asking a
+                       framework's permission. That is the practical payoff of standardising on interfaces.</p>
+                    <div class="get-started">
+                        <a href="https://www.php-fig.org/psr/" target="_blank" rel="noopener">All PSR standards →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Across the platform</span>
+                <h2>One pipeline shape, four applications</h2>
+                <p>The stages differ where the job differs - Frontend adds sessions and template rendering, Queue
+                   swaps HTTP dispatch for a message consumer - but the pattern is constant, and all four declare the
+                   same <code>Core</code> namespaces underneath.</p>
+            </div>
+
+            <div class="core-band">
+                <span class="core-band-label">Shared domain layer</span>
+                <code>Core\App</code> <code>Core\Admin</code> <code>Core\User</code>
+                <code>Core\Security</code> <code>Core\Setting</code>
+                <p>Kept as its own Git repository and added as a submodule, so an entity means the same thing to the
+                   endpoint that creates it, the admin screen that moderates it and the worker that emails it.</p>
+            </div>
+
+            <div class="applies-grid">
+                <div class="applies">
+                    <h4><a href="{{ url('page::api') }}">API</a></h4>
+                    <p>The pipeline documented above, in full.</p>
+                </div>
+                <div class="applies">
+                    <h4><a href="{{ url('page::admin') }}">Admin</a></h4>
+                    <p>Same shape, plus sessions, CSRF-protected forms and 2FA in the identity phase.</p>
+                </div>
+                <div class="applies">
+                    <h4><a href="{{ url('page::frontend') }}">Frontend</a></h4>
+                    <p>Same shape, ending in server-rendered templates rather than HAL payloads.</p>
+                </div>
+                <div class="applies">
+                    <h4><a href="{{ url('page::queue') }}">Queue</a></h4>
+                    <p>The same middleware thinking applied to messages instead of requests.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="background:var(--surface-2);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);">
+        <div class="wrap split">
+            <div>
+                <span class="eyebrow">Read it yourself</span>
+                <h2>The pipeline is one file</h2>
+                <p class="lede">
+                    Everything on this page comes from <code>config/pipeline.php</code> - about ninety lines, most of
+                    them comments explaining where to add your own middleware. There is no generated layer between
+                    that file and what runs.
+                </p>
+                <div class="hero-ctas">
+                    <a class="btn btn-primary" href="https://docs.dotkernel.org/api-documentation/" target="_blank" rel="noopener">Installation guide</a>
+                    <a class="btn btn-ghost" href="https://api.dotkernel.net/" target="_blank" rel="noopener">Try the demo</a>
+                </div>
+            </div>
+            <div class="callout">
+                <h4>php ./bin/cli.php route:list</h4>
+                <p>
+                    Once the pipeline has routed a request, the route table is the other half of the picture. This
+                    command lists every endpoint the application exposes, which is the fastest way to review an API
+                    you have just inherited.
+                </p>
+                <p>
+                    Database migrations are generated and run the same way, through the Doctrine console commands
+                    registered by <code>dot-cli</code>.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-band">
+        <div class="wrap about-inner">
+            <div>
+                <span class="eyebrow">Open source, in production</span>
+                <h2>No layer you are not allowed to read.</h2>
+            </div>
+            <div>
+                <p class="about-text">Dotkernel is developed and led by the dev team at Apidemia - built first as an
+                    internal tool for handling complex architectures, released under MIT as our way of giving back to
+                    the community.</p>
+                <div class="about-cta">
+                    <a class="btn btn-ghost" href="{{ url('page::contact') }}">Talk to us →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
