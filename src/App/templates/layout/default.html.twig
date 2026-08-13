@@ -84,6 +84,38 @@
 </main>
 <footer>
     <div class="wrap">
+        {# Mirrors the top menu: the Products dropdown, then the remaining menu items. #}
+        <nav class="footer-nav" aria-label="Footer">
+            <div class="footer-col">
+                <p class="footer-col-title">Products</p>
+                <ul>
+                    <li><a href="{{ url('page::api') }}">API</a></li>
+                    <li><a href="{{ url('page::admin') }}">Admin</a></li>
+                    <li><a href="{{ url('page::dotboost') }}">Dotboost</a></li>
+                    <li><a href="{{ url('page::frontend') }}">Frontend</a></li>
+                    <li><a href="{{ url('page::light') }}">Light</a></li>
+                    <li><a href="{{ url('page::queue') }}">Queue</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <p class="footer-col-title">Resources</p>
+                <ul>
+                    <li><a href="https://docs.dotkernel.org/" target="_blank" rel="noopener">Documentation</a></li>
+                    <li><a href="{{ url('page::dotkernel-packages-oss-lifecycle') }}">Packages Lifecycle</a></li>
+                    <li><a href="{{ url('page::architecture') }}">Architecture</a></li>
+                    <li><a href="{{ url('page::categories') }}">Categories</a></li>
+                    <li><a href="{{ url('page::blog') }}">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <p class="footer-col-title">More</p>
+                <ul>
+                    <li><a href="https://github.com/orgs/dotkernel/discussions" target="_blank" rel="noopener">Discussion</a></li>
+                    <li><a href="{{ url('page::about') }}">About</a></li>
+                    <li><a href="{{ url('page::contact') }}">Contact us</a></li>
+                </ul>
+            </div>
+        </nav>
         <div class="footer-top">
             <div class="footer-copy">
                 &copy; 2009 - 2016 Dotboost Technologies Inc.<br>

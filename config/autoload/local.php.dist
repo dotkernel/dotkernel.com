@@ -86,6 +86,8 @@ return [
     // and is routed in Light\App\RoutesDelegator. Re-adding it here registers the path twice.
     'routes' => [
         'page' => [
+            // Linked from the footer on every page, so this route must stay registered.
+            'about'        => 'about',
             'contact'      => 'contact',
             'api'          => 'api',
             'admin'        => 'admin',

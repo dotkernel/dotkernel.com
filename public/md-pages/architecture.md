@@ -236,9 +236,9 @@ That is the practical payoff of standardising on interfaces.
 
 [All PSR standards →](https://www.php-fig.org/psr/)
 
-## One pipeline shape, four applications
+## One pipeline shape, three applications
 
-The stages differ where the job differs - Frontend adds sessions and template rendering, Queue swaps HTTP dispatch for a message consumer - but the pattern is constant, and all four declare the same `Core` namespaces underneath.
+The stages differ where the job differs - Admin adds sessions and CSRF-protected forms, Queue swaps HTTP dispatch for a message consumer - but the pattern is constant, and all three declare the same `Core` namespaces underneath.
 
 ### Shared domain layer
 
@@ -253,10 +253,6 @@ The pipeline documented above, in full.
 ### [Admin](https://www.dotkernel.com/admin/)
 
 Same shape, plus sessions, CSRF-protected forms and 2FA in the identity phase.
-
-### [Frontend](https://www.dotkernel.com/frontend/)
-
-Same shape, ending in server-rendered templates rather than HAL payloads.
 
 ### [Queue](https://www.dotkernel.com/queue/)
 

@@ -45,7 +45,7 @@
         .lib-node em { font-style: normal; font-size: 10.5px; color: var(--text-dim); }
         .lib-arrow { height: 12px; margin: 3px 0 3px 20px; border-left: 2px dotted var(--border); }
 
-        .applies-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 26px; }
+        .applies-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 26px; }
         .applies { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px 18px; }
         .applies h4 { font-family: var(--mono); font-size: 14px; margin: 0 0 8px; }
         .applies p { margin: 0; font-size: 13.5px; line-height: 1.6; color: var(--text-muted); }
@@ -560,10 +560,10 @@
         <div class="wrap">
             <div class="section-head">
                 <span class="eyebrow">Across the platform</span>
-                <h2>One pipeline shape, four applications</h2>
-                <p>The stages differ where the job differs - Frontend adds sessions and template rendering, Queue
-                   swaps HTTP dispatch for a message consumer - but the pattern is constant, and all four declare the
-                   same <code>Core</code> namespaces underneath.</p>
+                <h2>One pipeline shape, three applications</h2>
+                <p>The stages differ where the job differs - Admin adds sessions and CSRF-protected forms, Queue
+                   swaps HTTP dispatch for a message consumer - but the pattern is constant, and all three declare
+                   the same <code>Core</code> namespaces underneath.</p>
             </div>
 
             <div class="core-band">
@@ -582,10 +582,6 @@
                 <div class="applies">
                     <h4><a href="{{ url('page::admin') }}">Admin</a></h4>
                     <p>Same shape, plus sessions, CSRF-protected forms and 2FA in the identity phase.</p>
-                </div>
-                <div class="applies">
-                    <h4><a href="{{ url('page::frontend') }}">Frontend</a></h4>
-                    <p>Same shape, ending in server-rendered templates rather than HAL payloads.</p>
                 </div>
                 <div class="applies">
                     <h4><a href="{{ url('page::queue') }}">Queue</a></h4>

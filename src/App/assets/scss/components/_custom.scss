@@ -817,7 +817,7 @@ html[data-theme="light"] .theme-toggle {
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 22px 18px;
-  text-align: left;
+  text-align: center;
 
   .icon {
     margin-bottom: 12px;
@@ -1275,6 +1275,53 @@ footer {
   padding: 50px 0 40px;
 }
 
+// Link columns mirroring the top menu, above the copyright/social row.
+.footer-nav {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 30px;
+  padding-bottom: 34px;
+  margin-bottom: 34px;
+  border-bottom: 1px solid var(--border-soft);
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li + li {
+    margin-top: 10px;
+  }
+
+  a {
+    font-size: 13.5px;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color .15s ease;
+
+    &:hover {
+      color: var(--text);
+    }
+  }
+}
+
+.footer-col-title {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin: 0 0 14px;
+}
+
+@media (max-width: 700px) {
+  .footer-nav {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+}
+
 .footer-top {
   display: flex;
   justify-content: space-between;
@@ -1434,6 +1481,7 @@ footer {
 .icon-lg {
   width: 50px;
   height: 50px;
+  margin: auto;
 }
 
 .icon-jetbrains {
