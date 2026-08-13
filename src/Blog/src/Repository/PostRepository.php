@@ -37,9 +37,7 @@ class PostRepository extends AbstractRepository
             ->select('articles')
             ->from(Post::class, 'articles')
             ->where('articles.slug = :slug')
-            ->andWhere('articles.status = :published')
-            ->setParameter('slug', $slug)
-            ->setParameter('published', PostStatusEnum::Published);
+            ->setParameter('slug', $slug);
 
         if ($categorySlug !== null) {
             $qb->leftJoin('articles.category', 'category')
