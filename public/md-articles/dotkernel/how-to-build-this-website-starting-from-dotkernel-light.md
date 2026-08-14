@@ -1,14 +1,14 @@
 ---
-title: "How I built this website starting from Dotkernel Light"
+title: "How to build this website starting from Dotkernel Light"
 description: "How this blog itself came together: starting from the Dotkernel Light starter project, then following the Tutorial 101 to add Doctrine ORM and load real data into the database."
 author: "stefan"
 date_published: "2026-08-14"
-canonical_url: "https://www.dotkernel.com/dotkernel/how-i-built-this-website-starting-from-dotkernel-light/"
+canonical_url: "https://www.dotkernel.com/dotkernel/how-to-build-this-website-starting-from-dotkernel-light/"
 category: "Dotkernel"
 language: "en"
 ---
 
-# How I built this website starting from Dotkernel Light
+# How to build this website starting from Dotkernel Light
 
 ## TL;DR
 
@@ -28,7 +28,7 @@ At that point you have routing, templating and a working request lifecycle, but 
 
 ## Adding Doctrine, following Tutorial 101
 
-This project needed one: categories, authors, tags, and posts, all queryable and paginated. Rather than wiring Doctrine ORM in from scratch, I followed the official [Tutorial 101](https://docs.dotkernel.org/tutorial-101/v1/introduction/), which walks through exactly this on top of a fresh Dotkernel Light install:
+This project needed one: categories, authors, tags, and posts, all queryable and paginated. Rather than wiring Doctrine ORM in from scratch, the official [Tutorial 101](https://docs.dotkernel.org/tutorial-101/v1/introduction/) was followed, which walks through exactly this on top of a fresh Dotkernel Light install:
 
 1. Installing Doctrine ORM and wiring it into the container.
 2. Defining entities and generating migrations to create the schema.
