@@ -4,42 +4,42 @@
         "@graph": [
             {
                 "@type": "TechArticle",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#article",
+                "@id": "{{ app.url ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#article",
                 "headline": {{ article.title|json_encode|raw }},
                 "description": {{ article.excerpt|json_encode|raw }},
-                "url": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
-                "mainEntityOfPage": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "url": "{{ app.url ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "mainEntityOfPage": "{{ app.url ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
                 "datePublished": "{{ article.postDate|date('c') }}",
                 "dateModified": "{{ article.postDate|date('c') }}",
-                "image": "{{ meta.openGraphImage ? app.baseUrl ~ meta.openGraphImage : app.meta.image }}",
+                "image": "{{ meta.openGraphImage ? app.url ~ meta.openGraphImage : app.meta.image }}",
                 "articleSection": {{ article.category.name|json_encode|raw }},
                 "author": {
                     "@type": "Person",
                     "name": {{ article.author.name|json_encode|raw }},
-                    "url": "{{ app.baseUrl ~ path('page::author-resource', {slug: article.author.slug}) }}"
+                    "url": "{{ app.url ~ path('page::author-resource', {slug: article.author.slug}) }}"
                 },
                 "publisher": {
                     "@type": "Organization",
                     "name": "Dotkernel",
-                    "url": "{{ app.baseUrl }}",
+                    "url": "{{ app.url }}",
                     "logo": {
                         "@type": "ImageObject",
-                        "url": "{{ app.baseUrl ~ asset('images/app/logo.png') }}"
+                        "url": "{{ app.url ~ asset('images/app/logo.png') }}"
                     }
                 }
             },
             {
                 "@type": "BreadcrumbList",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#breadcrumb",
+                "@id": "{{ app.url ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#breadcrumb",
                 "itemListElement": [
-                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ app.baseUrl }}" },
-                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ app.baseUrl ~ path('page::category-resource', {slug: article.category.slug}) }}" },
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ app.url }}" },
+                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ app.url ~ path('page::category-resource', {slug: article.category.slug}) }}" },
                     { "@type": "ListItem", "position": 3, "name": {{ article.title|json_encode|raw }} }
                 ]
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
+                "@id": "{{ app.url ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "Why did the WURFL PHP API license become incompatible with Dotkernel?", "acceptedAnswer": { "@type": "Answer", "text": "The WURFL PHP API used to be licensed under GNU/GPL, compatible with both Zend Framework's new BSD license and Dotkernel's OSL 3.0 license. On June 6th, 2011, version 1.3.0 of the library changed its license to AGPL, turning it into a trial-only library for product evaluation, which is incompatible with keeping Dotkernel free." } },
                     { "@type": "Question", "name": "Which version introduced the license change, and when?", "acceptedAnswer": { "@type": "Answer", "text": "Version 1.3.0 of the WURFL PHP API, released June 6th, 2011, changed the license from GNU/GPL to AGPL. Dotkernel had updated to this version in its 1.5.0 release candidate without noticing the license change." } },

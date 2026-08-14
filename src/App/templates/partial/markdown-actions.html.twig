@@ -1,4 +1,8 @@
-{% set markdown_url = url('app::markdown-article', {categorySlug: article.category.slug, slug: article.slug}) %}
+{# Callers pass either `markdown_url` (static pages, under public/md-pages/) or `article` (blog posts,
+   served by app::markdown-article). Both must resolve to an absolute URL - claude.ai fetches it. #}
+{% set markdown_url = markdown_url is defined
+    ? markdown_url
+    : url('app::markdown-article', {categorySlug: article.category.slug, slug: article.slug}) %}
 {% set claude_prompt = 'Read from ' ~ markdown_url ~ ' so I can ask questions about it.' %}
 <div class="md-actions-bar">
     <div class="md-actions">

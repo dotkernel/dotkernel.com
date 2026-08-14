@@ -2,8 +2,8 @@
     {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
-        "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#article",
-        "mainEntityOfPage": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+        "@id": "{{ app.url ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#article",
+        "mainEntityOfPage": "{{ app.url ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
         "headline": "{{ article.title }}",
         "description": "{{ article.excerpt }}",
         "datePublished": "{{ article.postDate|date('c') }}",
@@ -12,15 +12,15 @@
         "author": {
             "@type": "Person",
             "name": "{{ article.author.name }}",
-            "url": "{{ app.baseUrl ~ path('page::author-resource', {slug: article.author.slug}) }}"
+            "url": "{{ app.url ~ path('page::author-resource', {slug: article.author.slug}) }}"
         },
         "publisher": {
             "@type": "Organization",
             "name": "Dotkernel",
-            "url": "{{ app.baseUrl }}",
+            "url": "{{ app.url }}",
             "logo": {
                 "@type": "ImageObject",
-                "url": "{{ app.baseUrl ~ asset('images/app/logo.png') }}"
+                "url": "{{ app.url ~ asset('images/app/logo.png') }}"
             }
         }
     }

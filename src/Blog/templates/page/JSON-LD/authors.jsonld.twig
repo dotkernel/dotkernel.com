@@ -2,11 +2,11 @@
     {
         "@context": "https://schema.org",
         "@type": "CollectionPage",
-        "@id": "{{ app.baseUrl ~ path('page::authors') }}#webpage",
-        "url": "{{ app.baseUrl ~ path('page::authors') }}",
+        "@id": "{{ app.url ~ path('page::authors') }}#webpage",
+        "url": "{{ app.url ~ path('page::authors') }}",
         "name": "Authors",
         "description": "Browse Dotkernel blog posts by author.",
-        "isPartOf": { "@id": "{{ app.baseUrl }}#website" },
+        "isPartOf": { "@id": "{{ app.url }}#website" },
         "mainEntity": {
             "@type": "ItemList",
             "itemListElement": [
@@ -14,7 +14,7 @@
                 {
                     "@type": "ListItem",
                     "position": {{ loop.index }},
-                    "url": "{{ app.baseUrl ~ path('page::author-resource', {slug: author.slug}) }}",
+                    "url": "{{ app.url ~ path('page::author-resource', {slug: author.slug}) }}",
                     "name": "{{ author.name }}"
                 }
                 {% endfor %}

@@ -16,7 +16,9 @@ class LlmsFullGeneratorFactory
         return new LlmsFullGenerator(
             $config['llms']['sourceDir'],
             $config['llms']['outputFile'],
-            $config['application']['baseUrl'] ?? '',
+            $config['application']['url'] ?? '',
+            // Optional: a config predating the static-page markdown simply skips those sections.
+            $config['llms']['pagesDir'] ?? null,
         );
     }
 }
