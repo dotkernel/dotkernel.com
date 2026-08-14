@@ -1,0 +1,51 @@
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "TechArticle",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#article",
+                "headline": {{ article.title|json_encode|raw }},
+                "description": {{ article.excerpt|json_encode|raw }},
+                "url": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "mainEntityOfPage": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "datePublished": "{{ article.postDate|date('c') }}",
+                "dateModified": "{{ article.postDate|date('c') }}",
+                "image": "{{ meta.openGraphImage ? app.baseUrl ~ meta.openGraphImage : app.meta.image }}",
+                "articleSection": {{ article.category.name|json_encode|raw }},
+                "author": {
+                    "@type": "Person",
+                    "name": {{ article.author.name|json_encode|raw }},
+                    "url": "{{ app.baseUrl ~ path('page::author-resource', {slug: article.author.slug}) }}"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Dotkernel",
+                    "url": "{{ app.baseUrl }}",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ app.baseUrl ~ asset('images/app/logo.png') }}"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#breadcrumb",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ app.baseUrl }}" },
+                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ app.baseUrl ~ path('page::category-resource', {slug: article.category.slug}) }}" },
+                    { "@type": "ListItem", "position": 3, "name": {{ article.title|json_encode|raw }} }
+                ]
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
+                "mainEntity": [
+                    { "@type": "Question", "name": "What is Dotkernel Light?", "acceptedAnswer": { "@type": "Answer", "text": "A minimal Mezzio-based starter project for building a simple website — routing (FastRoute), templating (Twig) and PSR-7 (Laminas Diactoros) out of the box, without a database layer." } },
+                    { "@type": "Question", "name": "Why was Doctrine added on top?", "acceptedAnswer": { "@type": "Answer", "text": "Dotkernel Light doesn't include persistence by default. This blog needed categories, authors, tags and posts stored and queried from a database, so Doctrine ORM was added following the official Tutorial 101." } },
+                    { "@type": "Question", "name": "Where does the article content come from?", "acceptedAnswer": { "@type": "Answer", "text": "From src/App/src/Fixture/articles_cleaned.json, loaded into the database via php bin/doctrine-fixtures." } }
+                ]
+            }
+        ]
+    }
+</script>
