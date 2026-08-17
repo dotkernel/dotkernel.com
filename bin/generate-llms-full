@@ -15,7 +15,7 @@ $llmsFullGenerator  = $container->get(LlmsFullGenerator::class);
 $count = $llmsFullGenerator->write();
 
 printf(
-    "Done. %d article%s written to %s%s",
+    "Done. %d section%s written to %s%s",
     $count,
     $count === 1 ? '' : 's',
     $llmsFullGenerator->getOutputFile(),

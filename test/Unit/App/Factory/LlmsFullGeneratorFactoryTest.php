@@ -1,0 +1,106 @@
+<?php
+
+declare(strict_types=1);
+
+namespace LightTest\Unit\App\Factory;
+
+use Light\App\Factory\LlmsFullGeneratorFactory;
+use Light\App\Service\LlmsFullGenerator;
+use LightTest\Unit\UnitTest;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\MockObject\Exception;
+use Psr\Container\ContainerInterface;
+use ReflectionProperty;
+
+class LlmsFullGeneratorFactoryTest extends UnitTest
+{
+    /**
+     * @throws Exception
+     */
+    public function testInvokeAppliesTheConfiguredValues(): void
+    {
+        $generator = (new LlmsFullGeneratorFactory())($this->createContainer([
+            'llms'        => [
+                'sourceDir'  => '/tmp/md-articles',
+                'outputFile' => '/tmp/llms-full.txt',
+                'pagesDir'   => '/tmp/md-pages',
+            ],
+            'application' => ['url' => 'https://example.test'],
+        ]));
+
+        $this->assertSame('/tmp/llms-full.txt', $generator->getOutputFile());
+        $this->assertSame('/tmp/md-articles', $this->readProperty($generator, 'sourceDir'));
+        $this->assertSame('/tmp/md-pages', $this->readProperty($generator, 'pagesDir'));
+        $this->assertSame('https://example.test', $this->readProperty($generator, 'baseUrl'));
+    }
+
+    /**
+     * The pages directory postdates the rest of the config, so a `local.php` written before it
+     * must still build a working generator - one that simply leaves the page sections out.
+     *
+     * @throws Exception
+     */
+    public function testInvokeLeavesThePagesDirectoryUnsetWhenItIsNotConfigured(): void
+    {
+        $generator = (new LlmsFullGeneratorFactory())($this->createContainer([
+            'llms'        => [
+                'sourceDir'  => '/tmp/md-articles',
+                'outputFile' => '/tmp/llms-full.txt',
+            ],
+            'application' => ['url' => 'https://example.test'],
+        ]));
+
+        $this->assertNull($this->readProperty($generator, 'pagesDir'));
+    }
+
+    /**
+     * The application URL is read from `application.url` - the site's single URL key. A config
+     * without it must not blow up, because the placeholder substitution is optional.
+     *
+     * @param array<string, mixed> $application
+     * @throws Exception
+     */
+    #[DataProvider('missingUrlProvider')]
+    public function testInvokeFallsBackToAnEmptyBaseUrl(array $application): void
+    {
+        $generator = (new LlmsFullGeneratorFactory())($this->createContainer([
+            'llms'        => [
+                'sourceDir'  => '/tmp/md-articles',
+                'outputFile' => '/tmp/llms-full.txt',
+            ],
+            'application' => $application,
+        ]));
+
+        $this->assertSame('', $this->readProperty($generator, 'baseUrl'));
+    }
+
+    /**
+     * @return array<string, array{array<string, mixed>}>
+     */
+    public static function missingUrlProvider(): array
+    {
+        return [
+            'application section is empty' => [[]],
+            'url is null'                  => [['url' => null]],
+            // `baseUrl` was replaced by `url`; a stale key must not be picked up.
+            'only the retired baseUrl key' => [['baseUrl' => 'https://stale.test']],
+        ];
+    }
+
+    /**
+     * @param array<string, mixed> $config
+     * @throws Exception
+     */
+    private function createContainer(array $config): ContainerInterface
+    {
+        $container = $this->createStub(ContainerInterface::class);
+        $container->method('get')->willReturn($config);
+
+        return $container;
+    }
+
+    private function readProperty(LlmsFullGenerator $generator, string $name): mixed
+    {
+        return (new ReflectionProperty(LlmsFullGenerator::class, $name))->getValue($generator);
+    }
+}

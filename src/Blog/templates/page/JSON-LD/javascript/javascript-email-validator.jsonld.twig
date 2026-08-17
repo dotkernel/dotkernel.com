@@ -4,42 +4,42 @@
         "@graph": [
             {
                 "@type": "TechArticle",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#article",
+                "@id": "{{ app.url ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#article",
                 "headline": {{ article.title|json_encode|raw }},
                 "description": {{ article.excerpt|json_encode|raw }},
-                "url": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
-                "mainEntityOfPage": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "url": "{{ app.url ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                "mainEntityOfPage": "{{ app.url ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
                 "datePublished": "{{ article.postDate|date('c') }}",
                 "dateModified": "{{ article.postDate|date('c') }}",
-                "image": "{{ meta.openGraphImage ? app.baseUrl ~ meta.openGraphImage : app.meta.image }}",
+                "image": "{{ meta.openGraphImage ? app.url ~ meta.openGraphImage : app.meta.image }}",
                 "articleSection": {{ article.category.name|json_encode|raw }},
                 "author": {
                     "@type": "Person",
                     "name": {{ article.author.name|json_encode|raw }},
-                    "url": "{{ app.baseUrl ~ path('page::author-resource', {slug: article.author.slug}) }}"
+                    "url": "{{ app.url ~ path('page::author-resource', {slug: article.author.slug}) }}"
                 },
                 "publisher": {
                     "@type": "Organization",
                     "name": "Dotkernel",
-                    "url": "{{ app.baseUrl }}",
+                    "url": "{{ app.url }}",
                     "logo": {
                         "@type": "ImageObject",
-                        "url": "{{ app.baseUrl ~ asset('images/app/logo.png') }}"
+                        "url": "{{ app.url ~ asset('images/app/logo.png') }}"
                     }
                 }
             },
             {
                 "@type": "BreadcrumbList",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#breadcrumb",
+                "@id": "{{ app.url ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#breadcrumb",
                 "itemListElement": [
-                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ app.baseUrl }}" },
-                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ app.baseUrl ~ path('page::category-resource', {slug: article.category.slug}) }}" },
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ app.url }}" },
+                    { "@type": "ListItem", "position": 2, "name": {{ article.category.name|json_encode|raw }}, "item": "{{ app.url ~ path('page::category-resource', {slug: article.category.slug}) }}" },
                     { "@type": "ListItem", "position": 3, "name": {{ article.title|json_encode|raw }} }
                 ]
             },
             {
                 "@type": "FAQPage",
-                "@id": "{{ app.baseUrl ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
+                "@id": "{{ app.url ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     { "@type": "Question", "name": "What problem does this email validator solve?", "acceptedAnswer": { "@type": "Answer", "text": "Common email regex patterns fail to allow the plus (+) character in the username and the dash (-) character anywhere in the address or domain. The plus sign is used by many people, especially on Gmail, for categorization, and dashes commonly appear in domain names, so a validator that rejects them is too strict." } },
                     { "@type": "Question", "name": "What is the suggested regex solution?", "acceptedAnswer": { "@type": "Answer", "text": "The article proposes the regular expression ^+(\\.+)*@+(\\.+)*\\.({2,})$ (case-insensitive) as a replacement that permits both the plus and dash characters in the appropriate parts of the address." } },

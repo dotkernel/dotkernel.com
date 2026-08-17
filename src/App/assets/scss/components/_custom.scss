@@ -284,6 +284,34 @@ header {
   }
 }
 
+// Products dropdown
+.navbar-nav .dropdown-menu {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 6px;
+  min-width: 190px;
+
+  .dropdown-item {
+    font-size: 14.5px;
+    color: var(--text-muted);
+    border-radius: calc(var(--radius) / 2);
+    padding: 8px 12px;
+    transition: background .15s ease, color .15s ease;
+
+    &:hover,
+    &:focus {
+      background: var(--surface-2);
+      color: var(--text);
+    }
+  }
+}
+
+.navbar-nav .dropdown-toggle::after {
+  margin-left: .4em;
+  vertical-align: .15em;
+}
+
 .nav-cta {
   font-family: var(--mono);
   font-size: 13.5px;
@@ -340,6 +368,26 @@ html[data-theme="dark"] .navbar-toggler-icon {
       padding: 14px 0;
       border-bottom: 1px solid var(--border-soft);
       font-size: 16px;
+    }
+
+    // collapsed navbar renders the dropdown inline, not as a floating card
+    .dropdown-menu {
+      background: transparent;
+      border: 0;
+      border-bottom: 1px solid var(--border-soft);
+      border-radius: 0;
+      padding: 0 0 6px 14px;
+      margin: 0;
+
+      .dropdown-item {
+        padding: 11px 0;
+        font-size: 15px;
+
+        &:hover,
+        &:focus {
+          background: transparent;
+        }
+      }
     }
 
     .nav-cta {
@@ -485,6 +533,15 @@ html[data-theme="light"] .theme-toggle {
   flex-wrap: wrap;
 }
 
+// The markdown actions bar (@partial/markdown-actions.html.twig) hugs the right edge on blog
+// articles. Under the hero CTAs, or under the intro copy on a demo page, it lines up with them.
+.hero .md-actions-bar,
+.page-intro .md-actions-bar {
+  justify-content: flex-start;
+  margin-top: 16px;
+  margin-bottom: 0;
+}
+
 .hero-stack-note {
   margin-top: 34px;
   font-family: var(--mono);
@@ -512,6 +569,18 @@ html[data-theme="light"] .theme-toggle {
   display: flex;
   flex-direction: column;
   gap: 18px;
+}
+
+// The hero artwork sits on its own full-width row under the hero grid, so the figure spans the
+// content width rather than the narrow right-hand column. Its SVG is drawn on a 1180-wide canvas.
+.hero-art-row {
+  margin-top: 46px;
+}
+
+@media (max-width: 980px) {
+  .hero-art-row {
+    margin-top: 36px;
+  }
 }
 
 .hero-art {
@@ -760,7 +829,7 @@ html[data-theme="light"] .theme-toggle {
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 22px 18px;
-  text-align: left;
+  text-align: center;
 
   .icon {
     margin-bottom: 12px;
@@ -1218,6 +1287,53 @@ footer {
   padding: 50px 0 40px;
 }
 
+// Link columns mirroring the top menu, above the copyright/social row.
+.footer-nav {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 30px;
+  padding-bottom: 34px;
+  margin-bottom: 34px;
+  border-bottom: 1px solid var(--border-soft);
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li + li {
+    margin-top: 10px;
+  }
+
+  a {
+    font-size: 13.5px;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color .15s ease;
+
+    &:hover {
+      color: var(--text);
+    }
+  }
+}
+
+.footer-col-title {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin: 0 0 14px;
+}
+
+@media (max-width: 700px) {
+  .footer-nav {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+}
+
 .footer-top {
   display: flex;
   justify-content: space-between;
@@ -1377,6 +1493,7 @@ footer {
 .icon-lg {
   width: 50px;
   height: 50px;
+  margin: auto;
 }
 
 .icon-jetbrains {

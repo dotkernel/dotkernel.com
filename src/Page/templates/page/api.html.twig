@@ -49,6 +49,7 @@
                     </a>
                     <a class="btn btn-ghost" href="https://api.dotkernel.net/" target="_blank" rel="noopener">Live demo</a>
                 </div>
+                {{ include('@partial/markdown-actions.html.twig', {markdown_url: absolute_url(asset('md-pages/api.md'))}) }}
                 <div class="badges mt-3">
                     <img alt="PHP version for dotkernel/api" loading="lazy" src="https://img.shields.io/packagist/dependency-v/dotkernel/api/php?style=flat&label=php">
                     <img alt="Latest release of dotkernel/api" loading="lazy" src="https://img.shields.io/packagist/v/dotkernel/api?style=flat">
@@ -63,25 +64,6 @@
             </div>
 
             <div class="hero-visual">
-                <figure class="hero-art">
-                    <figcaption>One resource, its links</figcaption>
-                    <svg viewBox="0 0 360 170" role="img" aria-label="A resource envelope whose links branch out to embedded resources">
-                        <rect x="14" y="28" width="164" height="114" rx="10"/>
-                        <line class="art-faint" x1="14" y1="62" x2="178" y2="62"/>
-                        <line x1="32" y1="45" x2="86" y2="45"/>
-                        <rect class="art-fill" x="32" y="80" width="9" height="9" rx="2"/>
-                        <line class="art-faint" x1="50" y1="84.5" x2="120" y2="84.5"/>
-                        <rect class="art-fill" x="32" y="108" width="9" height="9" rx="2"/>
-                        <line class="art-faint" x1="50" y1="112.5" x2="146" y2="112.5"/>
-                        <path class="art-accent" d="M178 84 C 224 84 232 42 286 42"/>
-                        <path class="art-accent" d="M178 90 C 230 90 240 88 286 88"/>
-                        <path class="art-accent" d="M178 112 C 226 112 236 134 286 134"/>
-                        <circle class="art-accent" cx="298" cy="42" r="11"/>
-                        <circle class="art-accent" cx="298" cy="88" r="11"/>
-                        <circle class="art-accent" cx="298" cy="134" r="11"/>
-                    </svg>
-                </figure>
-
                 <div class="pipeline">
                     <div class="pipeline-label">
                         <span>Request lifecycle</span>
@@ -98,6 +80,36 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="wrap hero-art-row">
+            <figure class="hero-art">
+                <figcaption>One resource, its links</figcaption>
+                <svg viewBox="0 0 1180 200" role="img" aria-label="A resource envelope on the left whose links fan out to four embedded resources">
+                    <rect x="20" y="34" width="300" height="132" rx="12"/>
+                    <line class="art-faint" x1="20" y1="74" x2="320" y2="74"/>
+                    <line x1="44" y1="54" x2="130" y2="54"/>
+                    <rect class="art-fill" x="44" y="98" width="10" height="10" rx="2"/>
+                    <line class="art-faint" x1="66" y1="103" x2="200" y2="103"/>
+                    <rect class="art-fill" x="44" y="130" width="10" height="10" rx="2"/>
+                    <line class="art-faint" x1="66" y1="135" x2="250" y2="135"/>
+                    <path class="art-accent" d="M320 78 C 380 78 380 46 440 46"/>
+                    <path class="art-accent" d="M320 92 C 400 92 420 84 620 84"/>
+                    <path class="art-accent" d="M320 106 C 420 106 460 122 800 122"/>
+                    <path class="art-accent" d="M320 120 C 440 120 480 160 980 160"/>
+                    <rect class="art-accent" x="440" y="22" width="150" height="48" rx="8"/>
+                    <line class="art-faint" x1="462" y1="40" x2="556" y2="40"/>
+                    <line class="art-faint" x1="462" y1="54" x2="524" y2="54"/>
+                    <rect class="art-accent" x="620" y="60" width="150" height="48" rx="8"/>
+                    <line class="art-faint" x1="642" y1="78" x2="736" y2="78"/>
+                    <line class="art-faint" x1="642" y1="92" x2="704" y2="92"/>
+                    <rect class="art-accent" x="800" y="98" width="150" height="48" rx="8"/>
+                    <line class="art-faint" x1="822" y1="116" x2="916" y2="116"/>
+                    <line class="art-faint" x1="822" y1="130" x2="884" y2="130"/>
+                    <rect class="art-accent" x="980" y="136" width="150" height="48" rx="8"/>
+                    <line class="art-faint" x1="1002" y1="154" x2="1096" y2="154"/>
+                    <line class="art-faint" x1="1002" y1="168" x2="1064" y2="168"/>
+                </svg>
+            </figure>
         </div>
     </section>
 

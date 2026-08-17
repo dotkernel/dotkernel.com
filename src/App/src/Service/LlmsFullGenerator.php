@@ -8,6 +8,7 @@ use RuntimeException;
 
 use function array_map;
 use function array_merge;
+use function basename;
 use function count;
 use function file_get_contents;
 use function file_put_contents;
@@ -24,15 +25,21 @@ use function trim;
  * Concatenates every article under the markdown source directory into a single
  * plain-text file for LLM consumption, in the same format as llms.txt/llms-full.txt
  * conventions (index.md first, then every other article sorted by relative path).
+ *
+ * When a pages directory is configured, the flat `*.md` files in it - the markdown
+ * versions of the static pages - are appended after the articles, labelled with a
+ * `md-pages/` prefix so their origin stays readable in the output.
  */
 readonly class LlmsFullGenerator
 {
-    private const SEPARATOR = '<!-- ============================================================ -->';
+    private const SEPARATOR  = '<!-- ============================================================ -->';
+    private const PAGES_ROOT = 'md-pages';
 
     public function __construct(
         private string $sourceDir,
         private string $outputFile,
         private string $baseUrl,
+        private ?string $pagesDir = null,
     ) {
     }
 
@@ -43,11 +50,11 @@ readonly class LlmsFullGenerator
 
     public function write(): int
     {
-        $relativePaths = $this->collectRelativePaths();
+        $entries = $this->collectEntries();
 
         $sections = array_map(
-            fn (string $relativePath): string => $this->buildSection($relativePath),
-            $relativePaths
+            fn (array $entry): string => $this->buildSection($entry['file'], $entry['label']),
+            $entries
         );
 
         $written = implode("\n\n\n", $sections) . "\n\n";
@@ -56,13 +63,15 @@ readonly class LlmsFullGenerator
             throw new RuntimeException('Unable to write llms-full.txt.');
         }
 
-        return count($relativePaths);
+        return count($entries);
     }
 
     /**
-     * @return list<string>
+     * Absolute file path plus the label written into each section header.
+     *
+     * @return list<array{file: string, label: string}>
      */
-    private function collectRelativePaths(): array
+    private function collectEntries(): array
     {
         $categoryFiles = glob($this->sourceDir . '/*/*.md') ?: [];
         $categoryFiles = array_map(
@@ -71,14 +80,46 @@ readonly class LlmsFullGenerator
         );
         sort($categoryFiles);
 
-        $paths = is_file($this->sourceDir . '/index.md') ? ['index.md'] : [];
+        $labels = is_file($this->sourceDir . '/index.md') ? ['index.md'] : [];
+        $labels = array_merge($labels, $categoryFiles);
 
-        return array_merge($paths, $categoryFiles);
+        $entries = array_map(
+            fn (string $label): array => [
+                'file'  => $this->sourceDir . '/' . $label,
+                'label' => $label,
+            ],
+            $labels
+        );
+
+        return array_merge($entries, $this->collectPageEntries());
     }
 
-    private function buildSection(string $relativePath): string
+    /**
+     * The flat `*.md` files in the pages directory, appended after the articles.
+     *
+     * @return list<array{file: string, label: string}>
+     */
+    private function collectPageEntries(): array
     {
-        $contents = file_get_contents($this->sourceDir . '/' . $relativePath);
+        if ($this->pagesDir === null) {
+            return [];
+        }
+
+        $pageFiles = glob($this->pagesDir . '/*.md') ?: [];
+        sort($pageFiles);
+
+        return array_map(
+            fn (string $path): array => [
+                'file'  => $path,
+                'label' => self::PAGES_ROOT . '/' . basename($path),
+            ],
+            $pageFiles
+        );
+    }
+
+    private function buildSection(string $file, string $relativePath): string
+    {
+        $contents = file_get_contents($file);
         if ($contents === false) {
             throw new RuntimeException("Unable to read file: {$relativePath}");
         }
