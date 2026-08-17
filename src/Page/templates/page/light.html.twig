@@ -22,12 +22,24 @@
         .spec-table td.is-step { font-family: var(--mono); font-size: 12.5px; color: var(--teal); white-space: nowrap; }
         .spec-note { margin-top: 14px; font-size: 13.5px; color: var(--text-dim); }
         .step-cmd { display: block; margin-top: 12px; font-family: var(--mono); font-size: 12.5px; color: var(--teal); overflow-x: auto; }
+
+        /* Monitor illustration in the hero - scoped to this page. */
+        .hero-monitor { display: block; width: 100%; max-width: 300px; height: auto; margin: 10px auto 4px; }
+        .hero-monitor .mon-bezel { fill: var(--surface-2); stroke: var(--border); stroke-width: 2; }
+        .hero-monitor .mon-screen { fill: var(--bg); stroke: var(--border); stroke-width: 1; }
+        .hero-monitor .mon-topbar { fill: var(--border-soft); }
+        .hero-monitor .mon-title { font-family: var(--mono); font-weight: 700; font-size: 13px; fill: var(--page-accent, var(--sage)); }
+        .hero-monitor .mon-line { stroke-linecap: round; }
+        .hero-monitor .mon-line--nav { stroke: var(--text-dim); stroke-width: 2; opacity: .55; }
+        .hero-monitor .mon-line--heading { stroke: var(--text); stroke-width: 5; }
+        .hero-monitor .mon-line--text { stroke: var(--text-dim); stroke-width: 2.5; }
+        .hero-monitor .mon-stand { fill: var(--border); }
     </style>
 {% endblock %}
 
 {% block content %}
 
-    <section class="hero">
+    <section class="hero" style="--page-accent:var(--sage); --page-accent-dim:var(--sage-dim)">
         <div class="wrap hero-grid">
             <div>
                 <span class="eyebrow">Minimal skeleton · PSR-15</span>
@@ -35,7 +47,7 @@
                 <p class="sub">
                     A PSR-15 compliant application skeleton on the Mezzio microframework and Laminas components,
                     designed as a minimal project for generating a simple website - a presentation site, a landing page,
-                    a small service. Six direct dependencies, two modules, and nothing to delete before you start.
+                    a small service. <strong>Six direct dependencies</strong>, <strong>two modules</strong>, and nothing to delete before you start.
                 </p>
                 <div class="hero-ctas">
                     <a class="btn btn-primary" href="https://docs.dotkernel.org/light-documentation/" target="_blank" rel="noopener">
@@ -64,17 +76,23 @@
 
             <div class="hero-visual">
                 <div class="pipeline">
-                    <div class="pipeline-label"><span>Request lifecycle</span></div>
-                    <div class="pipeline-track">
-                        <div class="pl-packet" aria-hidden="true"></div>
-                        <div class="pl-step"><span class="name">index.php</span><span class="tag">bootstrap</span></div>
-                        <div class="pl-step"><span class="name">Container</span><span class="tag">factories · aliases</span></div>
-                        <div class="pl-step"><span class="name">Routing</span><span class="tag">FastRoute</span></div>
-                        <div class="pl-step"><span class="name">Pipeline</span><span class="tag">pipeline.php</span></div>
-                        <div class="pl-step"><span class="name">Handler</span><span class="tag">PSR-15</span></div>
-                        <div class="pl-step"><span class="name">Twig</span><span class="tag">layout · blocks</span></div>
-                        <div class="pl-step"><span class="name">Emitter</span><span class="tag">HtmlResponse</span></div>
-                    </div>
+                    <div class="pipeline-label"><span>What you get, out of the box</span></div>
+                    <svg class="hero-monitor" viewBox="0 0 300 224" role="img" aria-label="A computer monitor showing a simple homepage titled My Site, with short lines suggesting a nav bar and body text">
+                        <rect class="mon-bezel" x="20" y="16" width="260" height="170" rx="12"/>
+                        <rect class="mon-screen" x="28" y="24" width="244" height="154" rx="4"/>
+                        <rect class="mon-topbar" x="28" y="24" width="244" height="24"/>
+                        <text class="mon-title" x="40" y="40">My Site</text>
+                        <line class="mon-line mon-line--nav" x1="190" y1="36" x2="208" y2="36"/>
+                        <line class="mon-line mon-line--nav" x1="214" y1="36" x2="232" y2="36"/>
+                        <line class="mon-line mon-line--nav" x1="238" y1="36" x2="256" y2="36"/>
+                        <line class="mon-line mon-line--heading" x1="40" y1="72" x2="170" y2="72"/>
+                        <line class="mon-line mon-line--text" x1="40" y1="94" x2="248" y2="94"/>
+                        <line class="mon-line mon-line--text" x1="40" y1="108" x2="224" y2="108"/>
+                        <line class="mon-line mon-line--text" x1="40" y1="122" x2="236" y2="122"/>
+                        <line class="mon-line mon-line--text" x1="40" y1="136" x2="180" y2="136"/>
+                        <rect class="mon-stand" x="142" y="186" width="16" height="20"/>
+                        <rect class="mon-stand" x="110" y="206" width="80" height="8" rx="4"/>
+                    </svg>
                 </div>
             </div>
         </div>

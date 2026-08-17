@@ -21,20 +21,35 @@
         .spec-table td { color: var(--text); }
         .spec-note { margin-top: 14px; font-size: 13.5px; color: var(--text-dim); }
         .step-cmd { display: block; margin-top: 12px; font-family: var(--mono); font-size: 12.5px; color: var(--teal); overflow-x: auto; }
+
+        /* Line chart in the hero - three sample metrics, scoped to this page. */
+        .line-chart { display: block; width: 100%; height: auto; margin-top: 4px; }
+        .line-chart .chart-grid { stroke: var(--border-soft); stroke-width: 1; }
+        .line-chart .chart-axis { stroke: var(--border); stroke-width: 1; }
+        .line-chart .chart-line { fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+        .line-chart .chart-line--down { stroke: #22A06B; }
+        .line-chart .chart-line--volatile { stroke: #2F80ED; }
+        .line-chart .chart-line--up { stroke: #E53935; }
+        .chart-legend { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 14px; font-family: var(--mono); font-size: 11px; color: var(--text-dim); }
+        .chart-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+        .chart-legend-item i { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+        .chart-legend-item.chart-line--down i { background: #22A06B; }
+        .chart-legend-item.chart-line--volatile i { background: #2F80ED; }
+        .chart-legend-item.chart-line--up i { background: #E53935; }
     </style>
 {% endblock %}
 
 {% block content %}
 
-    <section class="hero">
+    <section class="hero" style="--page-accent:var(--sage); --page-accent-dim:var(--sage-dim)">
         <div class="wrap hero-grid">
             <div>
                 <span class="eyebrow">Admin application · Server-rendered</span>
                 <h1>Dotkernel Admin</h1>
                 <p class="sub">
                     An open-source application skeleton for standing up the administration site behind your platform.
-                    A fast, reliable way to manage the records in your database with a simple table-based approach, and
-                    to build the reports and graphs that let you monitor what is happening - with the graphical
+                    A fast, reliable way to manage the records in your <strong>database</strong> with a simple table-based approach, and
+                    to build the <strong>reports and graphs</strong> that let you monitor what is happening - with the graphical
                     components for an intuitive experience already in place.
                 </p>
                 <div class="hero-ctas">
@@ -64,15 +79,22 @@
 
             <div class="hero-visual">
                 <div class="pipeline">
-                    <div class="pipeline-label"><span>Request lifecycle</span></div>
-                    <div class="pipeline-track">
-                        <div class="pl-packet" aria-hidden="true"></div>
-                        <div class="pl-step"><span class="name">Session</span><span class="tag">dot-session</span></div>
-                        <div class="pl-step"><span class="name">Router</span><span class="tag">dot-router</span></div>
-                        <div class="pl-step"><span class="name">Authentication</span><span class="tag">laminas-authentication</span></div>
-                        <div class="pl-step"><span class="name">RBAC guard</span><span class="tag">dot-rbac-guard</span></div>
-                        <div class="pl-step"><span class="name">Your handler</span><span class="tag">PSR-15</span></div>
-                        <div class="pl-step"><span class="name">Response</span><span class="tag">Twig template</span></div>
+                    <div class="pipeline-label"><span>What you can monitor</span></div>
+                    <svg class="line-chart" viewBox="0 0 400 200" role="img" aria-label="Line chart of three sample metrics: a slowly declining error rate, a volatile requests-per-minute count, and steadily rising active users">
+                        <line class="chart-grid" x1="20" y1="20" x2="380" y2="20"/>
+                        <line class="chart-grid" x1="20" y1="65" x2="380" y2="65"/>
+                        <line class="chart-grid" x1="20" y1="110" x2="380" y2="110"/>
+                        <line class="chart-grid" x1="20" y1="155" x2="380" y2="155"/>
+                        <line class="chart-axis" x1="20" y1="20" x2="20" y2="180"/>
+                        <line class="chart-axis" x1="20" y1="180" x2="380" y2="180"/>
+                        <polyline class="chart-line chart-line--down" points="20,50 71,58 123,66 174,75 226,85 277,96 329,106 380,118"/>
+                        <polyline class="chart-line chart-line--volatile" points="20,100 71,40 123,150 174,60 226,170 277,50 329,130 380,90"/>
+                        <polyline class="chart-line chart-line--up" points="20,170 71,155 123,140 174,120 226,100 277,80 329,60 380,35"/>
+                    </svg>
+                    <div class="chart-legend">
+                        <span class="chart-legend-item chart-line--down"><i></i>Error rate</span>
+                        <span class="chart-legend-item chart-line--volatile"><i></i>Requests / min</span>
+                        <span class="chart-legend-item chart-line--up"><i></i>Active users</span>
                     </div>
                 </div>
             </div>

@@ -61,20 +61,26 @@
             .mw-step:before, .mw-phase:before { left: -21px; }
             .mw-num { display: none; }
         }
+
+        /* Building-blocks tower in the hero - scoped to this page. */
+        .blocks-tower { display: flex; flex-direction: column; align-items: center; gap: 4px; margin-top: 10px; }
+        .block { width: 100%; padding: 13px 18px; border-radius: 6px; color: var(--on-accent); display: flex; justify-content: space-between; align-items: center; gap: 10px; box-shadow: inset 0 -3px 0 rgba(0, 0, 0, .18); text-shadow: 0 1px 2px rgba(0, 0, 0, .35); }
+        .block .name { font-family: var(--mono); font-size: 13px; font-weight: 600; }
+        .block .tag { font-family: var(--mono); font-size: 10.5px; opacity: .85; white-space: nowrap; }
     </style>
 {% endblock %}
 
 {% block content %}
 
-    <section class="hero">
+    <section class="hero" style="--page-accent:var(--sage); --page-accent-dim:var(--sage-dim)">
         <div class="wrap hero-grid">
             <div>
                 <span class="eyebrow">Architecture · PSR-15 pipeline</span>
                 <h1>How a request moves through a Dotkernel application</h1>
                 <p class="sub">
-                    Every Dotkernel application is a stack of PSR-15 middleware with no framework runtime hidden
-                    underneath it. A request enters at the error boundary, passes through routing, negotiation,
-                    authentication and authorization, and reaches your handler - and you can read every layer it
+                    Every Dotkernel application is a stack of <strong>PSR-15 middleware</strong> with no framework runtime hidden
+                    underneath it. A request enters at the <strong>error boundary</strong>, passes through routing, negotiation,
+                    <strong>authentication and authorization</strong>, and reaches your handler - and you can read every layer it
                     crossed on the way.
                 </p>
                 <div class="hero-ctas">
@@ -99,14 +105,13 @@
             <div class="hero-visual">
                 <div class="pipeline">
                     <div class="pipeline-label"><span>Five phases</span><span>19 stages</span></div>
-                    <div class="pipeline-track">
-                        <div class="pl-packet" aria-hidden="true"></div>
-                        <div class="pl-step"><span class="name">Error boundary</span><span class="tag">1 stage</span></div>
-                        <div class="pl-step"><span class="name">Request preparation</span><span class="tag">4 stages</span></div>
-                        <div class="pl-step"><span class="name">Routing</span><span class="tag">4 stages</span></div>
-                        <div class="pl-step"><span class="name">Contract &amp; headers</span><span class="tag">4 stages</span></div>
-                        <div class="pl-step"><span class="name">Identity</span><span class="tag">2 stages</span></div>
-                        <div class="pl-step"><span class="name">Dispatch &amp; fallback</span><span class="tag">4 stages</span></div>
+                    <div class="blocks-tower">
+                        <div class="block" style="width:100%; background:var(--brand-red)"><span class="name">Error boundary</span><span class="tag">1 stage</span></div>
+                        <div class="block" style="width:84%; background:var(--periwinkle)"><span class="name">Request preparation</span><span class="tag">4 stages</span></div>
+                        <div class="block" style="width:96%; background:var(--teal)"><span class="name">Routing</span><span class="tag">4 stages</span></div>
+                        <div class="block" style="width:72%; background:var(--rose)"><span class="name">Contract &amp; headers</span><span class="tag">4 stages</span></div>
+                        <div class="block" style="width:90%; background:var(--sage)"><span class="name">Identity</span><span class="tag">2 stages</span></div>
+                        <div class="block" style="width:100%; background:var(--brand-red)"><span class="name">Dispatch &amp; fallback</span><span class="tag">4 stages</span></div>
                     </div>
                 </div>
             </div>
