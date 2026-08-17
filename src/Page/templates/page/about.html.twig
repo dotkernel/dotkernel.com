@@ -9,16 +9,30 @@
 
 {% block title %}About Us{% endblock %}
 
+{% block stylesheets %}
+    <style>
+        /* Pyramid layout in the hero - scoped to this page. */
+        .pyramid { display: flex; flex-direction: column-reverse; align-items: center; margin-top: 10px; }
+        .pyramid-item { width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px 18px; display: flex; align-items: center; gap: 12px; }
+        .pyramid-item .pyr-icon { flex-shrink: 0; width: 22px; height: 22px; }
+        .pyramid-item .pyr-icon * { fill: none; stroke: var(--page-accent, var(--sage)); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+        .pyramid-item .pyr-text { display: flex; flex-direction: column; gap: 2px; }
+        .pyramid-item .name { font-family: var(--mono); font-size: 13.5px; font-weight: 600; color: var(--text); }
+        .pyramid-item .tag { font-family: var(--mono); font-size: 10.5px; color: var(--text-dim); }
+        .pyramid-arrow { width: 18px; height: 14px; margin: 6px 0; fill: none; stroke: var(--text-dim); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+{% endblock %}
+
 {% block content %}
 
-    <section class="hero">
+    <section class="hero" style="--page-accent:var(--sage); --page-accent-dim:var(--sage-dim)">
         <div class="wrap hero-grid">
             <div>
                 <span class="eyebrow">About us · Apidemia</span>
                 <h1>The team behind Dotkernel</h1>
                 <p class="sub">
                     Dotkernel started as an internal tool for handling complex architectures, built because we needed
-                    it ourselves. We released it under MIT because the PHP community gave us the components it stands
+                    it ourselves. We released it under <strong>MIT</strong> because the <strong>PHP community</strong> gave us the components it stands
                     on. Everything here is made by a team that has to live with its own decisions.
                 </p>
                 <div class="hero-ctas">
@@ -40,14 +54,41 @@
             <div class="hero-visual">
                 <div class="pipeline">
                     <div class="pipeline-label"><span>How a change ships</span></div>
-                    <div class="pipeline-track">
-                        <div class="pl-packet" aria-hidden="true"></div>
-                        <div class="pl-step"><span class="name">Propose</span><span class="tag">plan before code</span></div>
-                        <div class="pl-step"><span class="name">Build</span><span class="tag">house structure</span></div>
-                        <div class="pl-step"><span class="name">Review</span><span class="tag">another pair of eyes</span></div>
-                        <div class="pl-step"><span class="name">QA gate</span><span class="tag">cs · PHPStan · tests</span></div>
-                        <div class="pl-step"><span class="name">Document</span><span class="tag">for the next person</span></div>
-                        <div class="pl-step"><span class="name">Release</span><span class="tag">MIT, in public</span></div>
+                    <div class="pyramid">
+                        <div class="pyramid-item" style="width:100%">
+                            <svg class="pyr-icon" viewBox="0 0 20 20"><path d="M10 3a5 5 0 0 0-3 9c.6.5 1 1.2 1 2h4c0-.8.4-1.5 1-2a5 5 0 0 0-3-9z"/><line x1="8" y1="17" x2="12" y2="17"/><line x1="8.5" y1="19" x2="11.5" y2="19"/></svg>
+                            <div class="pyr-text"><span class="name">Propose</span><span class="tag">plan before code</span></div>
+                        </div>
+                        <svg class="pyramid-arrow" viewBox="0 0 20 12"><path d="M2 10 L10 2 L18 10"/></svg>
+
+                        <div class="pyramid-item" style="width:88%">
+                            <svg class="pyr-icon" viewBox="0 0 20 20"><rect x="6" y="4" width="8" height="5" rx="1"/><rect x="3" y="11" width="7" height="5" rx="1"/><rect x="11" y="11" width="6" height="5" rx="1"/></svg>
+                            <div class="pyr-text"><span class="name">Build</span><span class="tag">house structure</span></div>
+                        </div>
+                        <svg class="pyramid-arrow" viewBox="0 0 20 12"><path d="M2 10 L10 2 L18 10"/></svg>
+
+                        <div class="pyramid-item" style="width:76%">
+                            <svg class="pyr-icon" viewBox="0 0 20 20"><circle cx="8.5" cy="8.5" r="5.5"/><line x1="13" y1="13" x2="17.5" y2="17.5"/></svg>
+                            <div class="pyr-text"><span class="name">Review</span><span class="tag">another pair of eyes</span></div>
+                        </div>
+                        <svg class="pyramid-arrow" viewBox="0 0 20 12"><path d="M2 10 L10 2 L18 10"/></svg>
+
+                        <div class="pyramid-item" style="width:64%">
+                            <svg class="pyr-icon" viewBox="0 0 20 20"><path d="M10 2l7 3v6c0 4-3 6.5-7 7-4-.5-7-3-7-7V5z"/><path d="M7 10l2.2 2.2L13.5 8"/></svg>
+                            <div class="pyr-text"><span class="name">QA gate</span><span class="tag">cs · PHPStan · tests</span></div>
+                        </div>
+                        <svg class="pyramid-arrow" viewBox="0 0 20 12"><path d="M2 10 L10 2 L18 10"/></svg>
+
+                        <div class="pyramid-item" style="width:52%">
+                            <svg class="pyr-icon" viewBox="0 0 20 20"><rect x="5" y="2" width="10" height="16" rx="1.5"/><line x1="8" y1="7" x2="12" y2="7"/><line x1="8" y1="10.5" x2="12" y2="10.5"/><line x1="8" y1="14" x2="11" y2="14"/></svg>
+                            <div class="pyr-text"><span class="name">Document</span><span class="tag">for the next person</span></div>
+                        </div>
+                        <svg class="pyramid-arrow" viewBox="0 0 20 12"><path d="M2 10 L10 2 L18 10"/></svg>
+
+                        <div class="pyramid-item" style="width:40%">
+                            <svg class="pyr-icon" viewBox="0 0 20 20"><path d="M5 15h10"/><path d="M10 13V3"/><path d="M6.5 7.5L10 3l3.5 4.5"/></svg>
+                            <div class="pyr-text"><span class="name">Release</span><span class="tag">MIT, in public</span></div>
+                        </div>
                     </div>
                 </div>
             </div>

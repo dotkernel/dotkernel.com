@@ -21,20 +21,25 @@
         .spec-table td { color: var(--text); }
         .spec-note { margin-top: 14px; font-size: 13.5px; color: var(--text-dim); }
         .step-cmd { display: block; margin-top: 12px; font-family: var(--mono); font-size: 12.5px; color: var(--teal); overflow-x: auto; }
+
+        /* Backlog bars in the hero - scoped to this page. */
+        .load-bars { display: flex; align-items: flex-end; justify-content: center; gap: 22px; height: 150px; margin-top: 14px; padding: 0 6px; }
+        .load-bar { position: relative; width: 44px; border-radius: 6px 6px 3px 3px; overflow: hidden; }
+        .load-bar-fill { position: absolute; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, .35); }
     </style>
 {% endblock %}
 
 {% block content %}
 
-    <section class="hero">
+    <section class="hero" style="--page-accent:var(--sage); --page-accent-dim:var(--sage-dim)">
         <div class="wrap hero-grid">
             <div>
                 <span class="eyebrow">Background workers · Symfony Messenger</span>
                 <h1>Dotkernel Queue</h1>
                 <p class="sub">
                     Some operations are time-consuming and resource-intensive, and they have no business inside a
-                    request. Dotkernel Queue accepts them over a TCP connection, stores them, and runs them on
-                    background workers - so your platform answers the next request instead of waiting for a video to
+                    request. Dotkernel Queue accepts them over a <strong>TCP connection</strong>, stores them, and runs them on
+                    <strong>background workers</strong> - so your platform answers the next request instead of waiting for a video to
                     finish encoding.
                 </p>
                 <div class="hero-ctas">
@@ -63,15 +68,13 @@
 
             <div class="hero-visual">
                 <div class="pipeline">
-                    <div class="pipeline-label"><span>Message lifecycle</span></div>
-                    <div class="pipeline-track">
-                        <div class="pl-packet" aria-hidden="true"></div>
-                        <div class="pl-step"><span class="name">Your application</span><span class="tag">JSON payload</span></div>
-                        <div class="pl-step"><span class="name">TCP :8556</span><span class="tag">IP whitelisted</span></div>
-                        <div class="pl-step"><span class="name">Swoole daemon</span><span class="tag">accepts &amp; stores</span></div>
-                        <div class="pl-step"><span class="name">messages stream</span><span class="tag">Valkey · FIFO</span></div>
-                        <div class="pl-step"><span class="name">Messenger worker</span><span class="tag">your handler</span></div>
-                        <div class="pl-step"><span class="name">failed stream</span><span class="tag">after 3 retries</span></div>
+                    <div class="pipeline-label"><span>Backlog across five workers</span></div>
+                    <div class="load-bars">
+                        <div class="load-bar" style="height:64px; background:var(--teal)"></div>
+                        <div class="load-bar" style="height:104px; background:var(--rose)"></div>
+                        <div class="load-bar" style="height:84px; background:var(--sage)"><span class="load-bar-fill" style="height:75%"></span></div>
+                        <div class="load-bar" style="height:128px; background:var(--periwinkle)"><span class="load-bar-fill" style="height:50%"></span></div>
+                        <div class="load-bar" style="height:56px; background:var(--brand-red)"><span class="load-bar-fill" style="height:25%"></span></div>
                     </div>
                 </div>
             </div>
