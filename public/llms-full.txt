@@ -88,7 +88,7 @@ Dotkernel is an open-source project created and led by the dev team at Apidemia 
 - GitHub organization: https://github.com/dotkernel
 - Blog: https://www.dotkernel.com/blog/
 - Categories: https://www.dotkernel.com/categories/
-- Contact: http://www.dotkernel.com/contact/
+- Contact: https://www.dotkernel.com/contact/
 
 
 <!-- ============================================================ -->
