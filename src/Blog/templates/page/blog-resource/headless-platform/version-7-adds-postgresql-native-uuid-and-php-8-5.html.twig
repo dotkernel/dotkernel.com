@@ -29,7 +29,7 @@
 
 <p class="mb-3">The most important change in v7 is the introduction of support for native UUID. We use the package <a href="https://github.com/ramsey/uuid" rel="noreferrer noopener" target="_blank">ramsey/uuid</a> to generate the uuid and then store it in the database. In this way we have full control over the UUID version in use. This solution means you don't depend on extensions or a particular version of the database.</p>
 
-<blockquote><p class="mb-3">To ensure you have support for the <code>UUID</code> data type, you must use PostgreSQL or MariaDB v10.7 or later.</p>
+<blockquote><p class="mb-3">To ensure you have support for the <code>UUID</code> data type, you must use PostgreSQL or MariaDB v11.4 or later.</p>
 </blockquote>
 
 <p class="mb-3">This also brings along a less-impactful change that still deserves mentioning: the table columns named <code>uuid</code> have been renamed to <code>id</code>.</p>
@@ -67,7 +67,7 @@
     <details class="acc">
         <summary>Which databases support the UUID data type required by v7? <span class="chev">+</span></summary>
         <div class="acc-body">
-            <p class="mb-0">You must use PostgreSQL or MariaDB v10.7 or later to have support for the UUID data type.</p>
+            <p class="mb-0">You must use PostgreSQL or MariaDB v11.4 or later to have support for the UUID data type.</p>
         </div>
     </details>
     <details class="acc">
