@@ -1,51 +1,40 @@
 {% extends '@layout/blog-post.html.twig' %}
 
 {% block body %}
+<h2>What is the meaning behind 'Dotkernel'?</h2>
+
+    <p>The name <strong>Dotkernel</strong> symbiotically combines the string <strong>Dot, </strong>as a representation of the Internet, and <strong>Kernel</strong>, the quintessential components of any IT application.</p>
+    <p>In other words, <strong>Dotkernel</strong> aims to become the starting point for development Internet applications and hence ensure increased development productivity and run-time performance.</p>
+
+<h2>What was Dotkernel 1?</h2>
+
+    <p>Dotkernel 1 was a <strong><em>PHP</em> <em>Application Framework</em></strong>, built on top of Zend Framework 1 (ZF1).</p>
+
+    <p>It had the first public release in July 2010.
+    It was tightly coupled with <strong>Zend Framework 1</strong> and adds a set of custom or external features (such as Router, Template Engine, etc.).
+    It was composed of <strong>Zend Framework 1</strong> and a set of custom or external features (such as Router, Template Engine, etc.).
+        Dotkernel 1 architecture was based on <strong>MVC</strong>.</p>
+
+    <p>The latest version is <strong>1.8 Long Term Support</strong>.
+        It will not be getting any new releases, only bugfixes.</p>
+
 <h2>What is Dotkernel?</h2>
-The name <strong>Dotkernel</strong> symbiotically  combines the string  <strong>Dot, </strong>as a
-representation of the Internet, and <strong>Kernel</strong>, the quintessence of any IT application.
 
-In other words <strong>Dotkernel</strong> wishes to be, with modesty, the central part of
-the Internet development and hence ensuring increased development
-productivity and run-time performance.
-<h2>What is Dotkernel 1?</h2>
-Dotkernel 1 is an <strong><em>PHP</em> <em>Application Framework</em></strong>, built on top of Zend Framework 1 (ZF1).
+    <p>A <strong>collection</strong> of PSR-15 Middleware applications built on top of the <a href="https://docs.mezzio.dev/mezzio/v3/getting-started/quick-start/" target="_blank" rel="noopener noreferrer"><strong>Mezzio</strong></a> microframework.
+    It is composed of a set of custom and extended <a href="https://docs.laminas.dev/" target="_blank" rel="noopener noreferrer"><strong>Laminas</strong></a> components.</p>
+    <p>Dotkernel architecture is based on <strong>Middleware</strong>.
+        Dotkernel implements the following PSR's, where applicable: PSR-7, PSR-11, PSR-15, PSR-3, PSR-4, PSR-6, PSR-13, PSR-14, PSR-17, PSR-18, PSR-20.</p>
 
-It has the first public release  on July 2010.
+    <p>Currently, there are three applications:</p>
 
-It is tight coupled with <strong>Zend Framework 1</strong> , and add a set of custom or
-external features (such as Router, Template Engine, etc.).
+    <p>- API<br>
+    - Admin<br>
+    - Queue</p>
 
-It is composed of <strong>Zend Framework 1</strong> and a set of custom or external features (such as Router, Template Engine, etc.).
-Dotkernel 1 architecture is based on <strong>MVC</strong>.
+<h2>Dotkernel = Dotkernel 1 or the new Dotkernel?</h2>
 
-Latest version is <strong>1.8 Long Term Support</strong>.
-Will no be released a new version anymore, only bugfixes.
-<h2>What is Dotkernel 3?</h2>
-A <strong>collection</strong> of PSR-7 Middleware applications built on top of <a href="https://docs.zendframework.com/zend-expressive/" target="_blank" rel="noopener noreferrer"><strong>Zend Expressive</strong></a> microframework.
-
-It is composed of a set of custom and extended <a href="https://framework.zend.com/" target="_blank" rel="noopener noreferrer"><strong>Zend Framework 3</strong></a> components.
-
-Dotkernel 3 architecture is based on <strong>Middleware</strong>.
-
-Dotkernel implements the following PSR's: PSR-1, PSR-2, PSR-4, PSR-7, PSR-11.
-
-Currently there are 2 applications: Frontend, Admin and a 3rd one is under development: API
-<h2>Dotkernel = Dotkernel 1 or Dotkernel 3?</h2>
-In posts older than 2017 <strong>Dotkernel 1</strong> was referred as <strong>Dotkernel </strong>because it was the only Dotkernel version.
-
-Since the release of <strong>Dotkernel 3, </strong>is reffered to as <strong>Dotkernel 3 </strong>or <strong>Dotkernel</strong>.
-
-All future references to Dotkernel 1 will be explicitly made.
-<h3>As of Dotkernel 3 release:</h3>
-Dotkernel 1 = Dot Kernel 1
-
-Dotkernel 3 = Dotkernel 3
-<h4><strong>Dotkernel = Dotkernel 3</strong></h4>
-&nbsp;
-
-&nbsp;
-<h2></h2>
+    <p>In posts older than 2017 <strong>Dotkernel 1</strong> was referred to as <strong>Dotkernel </strong>because it was the only Dotkernel version.
+        Since the release of newer versions, we have dropped the number at the end, so currently we refer to our platform as 'Dotkernel'.</p>
 
 <h2 id="user-content-faq">Frequently Asked Questions</h2>
 
@@ -53,7 +42,7 @@ Dotkernel 3 = Dotkernel 3
     <details class="acc" open>
         <summary>What does the name "Dotkernel" mean? <span class="chev">+</span></summary>
         <div class="acc-body">
-            <p class="mb-0">It combines "Dot", as a representation of the Internet, with "Kernel", the quintessence of any IT application, reflecting the aim of being a central part of Internet development.</p>
+            <p class="mb-0">It combines "Dot", as a representation of the Internet, with "kernel", the quintessence of any IT application, reflecting the aim of being a central part of Internet development.</p>
         </div>
     </details>
     <details class="acc">
@@ -63,15 +52,15 @@ Dotkernel 3 = Dotkernel 3
         </div>
     </details>
     <details class="acc">
-        <summary>What is Dotkernel 3? <span class="chev">+</span></summary>
+        <summary>What is Dotkernel? <span class="chev">+</span></summary>
         <div class="acc-body">
-            <p class="mb-0">A collection of PSR-7 Middleware applications built on top of the Zend Expressive microframework, composed of a set of custom and extended Zend Framework 3 components, with an architecture based on Middleware. It implements PSR-1, PSR-2, PSR-4, PSR-7, and PSR-11.</p>
+            <p class="mb-0">A collection of PSR-15 Middleware applications built on top of the Mezzio microframework. It implements PSR-7, PSR-11, PSR-15, PSR-3, PSR-4, PSR-6, PSR-13, PSR-14, PSR-17, PSR-18, PSR-20.</p>
         </div>
     </details>
     <details class="acc">
-        <summary>How many applications make up Dotkernel 3? <span class="chev">+</span></summary>
+        <summary>How many applications make up Dotkernel? <span class="chev">+</span></summary>
         <div class="acc-body">
-            <p class="mb-0">At the time of the article, there were two available applications, Frontend and Admin, with a third one, API, under development.</p>
+            <p class="mb-0">At the time of the article, there were three available applications, API, Admin and Queue.</p>
         </div>
     </details>
     <details class="acc">
