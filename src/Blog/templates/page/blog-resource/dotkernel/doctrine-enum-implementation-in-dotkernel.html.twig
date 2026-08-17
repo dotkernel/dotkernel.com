@@ -41,7 +41,7 @@ class Card
     public Suit $suit;
 }</pre>
 
-<blockquote><p class="mb-3">Note that the type <code>Types::ENUM</code> part is still required if we want to have an actual <code>enum</code> column in MySQL/MariaDB. We still default to <code>Types::STRING</code> or <code>TYPES::INTEGER</code> for columns types with a PHP enum as this is the more portable solution and the safer default.</p>
+<blockquote><p class="mb-3">Note that the type <code>Types::ENUM</code> part is still required if we want to have an actual <code>enum</code> column in MariaDB. We still default to <code>Types::STRING</code> or <code>TYPES::INTEGER</code> for columns types with a PHP enum as this is the more portable solution and the safer default.</p>
 </blockquote>
 
 <h2><a href="#dotkernels-approach"></a>Dotkernel's approach</h2>
@@ -245,7 +245,7 @@ new setup: status ENUM(\'active\', \'pending\') DEFAULT \'pending\' NOT NULL</pr
     <details class="acc">
         <summary>Does Types::ENUM still fall back to a string or integer database column? <span class="chev">+</span></summary>
         <div class="acc-body">
-            <p class="mb-0">The article notes that Doctrine still defaults to Types::STRING or Types::INTEGER for columns backed by a PHP enum, as this is considered the more portable and safer default; Types::ENUM is required if you want an actual enum column in MySQL/MariaDB.</p>
+            <p class="mb-0">The article notes that Doctrine still defaults to Types::STRING or Types::INTEGER for columns backed by a PHP enum, as this is considered the more portable and safer default; Types::ENUM is required if you want an actual enum column in MariaDB.</p>
         </div>
     </details>
     <details class="acc">

@@ -2856,7 +2856,7 @@
                 "isObsolete": false,
                 "opengraph_img": "/opengraph/article/twitter-card-headless-v7.png",
                 "excerpt": "The Dotkernel Headless Platform has seen new releases for both API and Admin. The Admin codebase has received an overall facelift, as well as updates to retain compatibility with API v7.",
-                "tl_dr": "Dotkernel API v7 adds support for native UUID v7, PostgreSQL, PHP 8.5 (8.4 for Admin), database table prefixes, and improved database configuration, while replacing the binary data type for id columns with uuid.\nIt drops the Evolution pattern's Method Deprecation support and MySQL, since MySQL doesn't support the UUID data type.\nUUIDs are generated with the ramsey/uuid package, previously uuid-named table columns are now called id, and PostgreSQL or MariaDB v10.7+ is required for UUID support.",
+                "tl_dr": "Dotkernel API v7 adds support for native UUID v7, PostgreSQL, PHP 8.5, database table prefixes, and improved database configuration, while replacing the binary data type for id columns with uuid.\nIt drops the Evolution pattern's Method Deprecation support and MySQL, since MySQL doesn't support the UUID data type.\nUUIDs are generated with the ramsey/uuid package, previously uuid-named table columns are now called id, and PostgreSQL or MariaDB v11.4+ is required for UUID support.",
                 "tags": []
             },
             {
