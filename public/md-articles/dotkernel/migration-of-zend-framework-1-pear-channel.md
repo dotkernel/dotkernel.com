@@ -65,5 +65,5 @@ A: Using the PEAR installer: remove the installed package with `pear uninstall z
 
 ## Resources
 
-- [PEAR channel for Zend Framework 1](http://pear.dotkernel.com/)
+- PEAR channel for Zend Framework 1
 - [@dotkernel on Twitter](https://twitter.com/dotkernel)

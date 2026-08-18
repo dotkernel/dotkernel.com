@@ -16,7 +16,7 @@ Dotkernel is sunsetting its unofficial PEAR channel for Zend Framework 1, which 
 The main reasons are that upgrading PEAR to work with PHP 8 is too painful, and the channel currently runs on an LXC container with CentOS 7, which doesn't work on the latest Proxmox version, making the upgrade to AlmaLinux not worth the effort.
 The post closes by thanking PEAR for its historical contribution to the PHP ecosystem.
 
-The unofficial [PEAR channel for Zend Framework 1](http://pear.dotkernel.com/) was created in [2016](https://www.dotkernel.com/dotkernel/migration-of-zend-framework-1-pear-channel/), at the time when [PEAR](https://pear.php.net/) was still used a lot.
+The unofficial PEAR channel for Zend Framework 1 was created in [2016](https://www.dotkernel.com/dotkernel/migration-of-zend-framework-1-pear-channel/), at the time when [PEAR](https://pear.php.net/) was still used a lot.
 
 Due to the fact that it is a pain to upgrade PEAR to work with PHP 8, we must sunset the channel.
 

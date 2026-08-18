@@ -87,5 +87,5 @@ Both of these methods handle strings by putting them between single quotes.
 
 ## Resources
 
-- [SQL Injection Protection in PHP With PDO (ezinearticles.com)](http://ezinearticles.com/?SQL-Injection-Protection-in-PHP-With-PDO&id=1815110)
-- [Zend Webinar: Secure Application Development with the ZF](http://www.zend.com/webinar/Framework/70170000000bEs9-webinar-secure-application-development-with-the-ZF-20100505.flv)
+- SQL Injection Protection in PHP With PDO (ezinearticles.com)
+- Zend Webinar: Secure Application Development with the ZF

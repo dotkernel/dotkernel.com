@@ -21,7 +21,7 @@ Branch 3.0 is now the default branch, requiring Mezzio ^3.2, PHP ^7.4, Doctrine 
 Dotkernel is a collection of PSR-7 Middleware applications built on top of the [Mezzio microframework and using Laminas components](https://getlaminas.org/).
 Dotkernel Admin is a basic admin panel, based on Bootstrap ^4.5.0, using Doctrine and performing basic CRUD operations over a database.
 You can clone it from [GitHub](https://github.com/dotkernel/admin).
-Live demo: [admin.dotkernel.net](https://admin.dotkernel.net)
+Live demo: admin.dotkernel.net
 
 ### Changelog
 

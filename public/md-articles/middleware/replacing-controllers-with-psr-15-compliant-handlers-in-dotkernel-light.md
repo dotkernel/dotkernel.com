@@ -145,4 +145,4 @@ A: Not necessarily - in Dotkernel Light most static-page actions were combined i
 - [Dotkernel Light](https://github.com/dotkernel/light)
 - [PR for replacing controllers with handlers](https://github.com/dotkernel/light/pull/33)
 - [Mezzio features](https://docs.mezzio.dev/mezzio/v3/getting-started/features/)
-- [Single Action Handlers in PHP Frameworks](https://dev.to/ilyasdeckers/single-action-handlers-in-php-frameworks-3jai)
+- Single Action Handlers in PHP Frameworks

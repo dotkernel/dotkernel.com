@@ -60,7 +60,7 @@ Doctrine hydration cache is a feature that stores the results of data hydration,
             <h2>How to use</h2>
         <p class="mb-3">To enable caching for entities, need to add the &nbsp;<code>#</code> attribute like in the following example:</p>
 <pre>#<br>#<br>#<br>class Admin extends AbstractEntity implements AdminInterface<br>{<br>}</pre>
-<p class="mb-3">For further details about the cache mode please refer to the <a href="https://www.doctrine-project.org/projects/doctrine-orm/en/3.0/reference/second-level-cache.html" target="_blank" rel="noopener">official documentation</a>.</p>
+<p class="mb-3">For further details about the cache mode please refer to the official documentation.</p>
 <p class="mb-3">When querying data, you can have Doctrine cache your results. You do this by calling the <code>setCacheable</code> method on the query builder.</p>
 <pre>$this-&gt;getQueryBuilder()<br>     -&gt;select('admin')<br>     -&gt;from(Admin::class, 'admin')<br>     -&gt;setCacheable(true)<br>     -&gt;getQuery()<br>     -&gt;getResult();</pre>
 <p class="mb-3">Caching is not limited to entities alone. Objects can be cached too. Check the <a href="https://symfony.com/doc/current/components/cache.html#basic-usage-psr-6" target="_blank" rel="noopener">basic cache usage</a> for this purpose.</p>

@@ -84,7 +84,7 @@ npm run prod
    ```shell
    vendor/bin/phinx create --configuration=config/migrations.php  RememberUserSchema
    ```
-3. Modify the generated migration file as in [user_remember_schema](https://github.com/dotkernel/frontend/blob/3.0/data/database/migrations/20220621062142_remember_user_schema.php), then run it against the database:
+3. Modify the generated migration file as in user_remember_schema, then run it against the database:
    ```shell
    vendor/bin/phinx migrate --configuration=config/migrations.php
    ```
@@ -131,7 +131,7 @@ A: Add the CSS to src/App/assets/scss/components/_profile.scss, then run npm run
 
 - [Dotkernel Frontend on GitHub](https://github.com/dotkernel/frontend)
 - [UserRememberMe entity example](https://github.com/dotkernel/frontend/blob/3.0/src/User/src/Entity/UserRememberMe.php)
-- [Remember user schema migration example](https://github.com/dotkernel/frontend/blob/3.0/data/database/migrations/20220621062142_remember_user_schema.php)
+- Remember user schema migration example
 - [RememberMeMiddleware example](https://github.com/dotkernel/frontend/blob/3.0/src/App/src/Middleware/RememberMeMiddleware.php)
 - [pipeline.php example](https://github.com/dotkernel/frontend/blob/3.0/config/pipeline.php)
 - [UserService example](https://github.com/dotkernel/frontend/blob/3.0/src/User/src/Service/UserService.php)

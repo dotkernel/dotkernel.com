@@ -31,7 +31,7 @@ There should be an admin account with the following credentials:
 - Username: admin
 - Password: dotadmin
 
-Head over to [https://admin4.dotkernel.net/](https://admin4.dotkernel.net/) and see for yourself.
+Head over to https://admin4.dotkernel.net/ and see for yourself.
 
 ## Dotkernel Admin V4 Features
 

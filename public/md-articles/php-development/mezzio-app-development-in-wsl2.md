@@ -17,8 +17,8 @@ This article runs through the steps of installing a Mezzio application (Dotkerne
 ## Steps
 
 1. Make sure WSL2 is installed on your machine, following the [WSL2 installation guide](https://github.com/dotkernel/development/blob/main/wsl/README.md).
-2. Install Ubuntu 20.04 LTS inside WSL2, as described in the [Ubuntu 20 setup guide](https://github.com/dotkernel/development/blob/main/wsl/os/ubuntu20/README.md).
-3. Create a virtual host for your project using the [virtual hosts guide](https://github.com/dotkernel/development/blob/main/wsl/os/ubuntu20/README.md#create-virtual-hosts).
+2. Install Ubuntu 20.04 LTS inside WSL2, as described in the Ubuntu 20 setup guide.
+3. Create a virtual host for your project using the virtual hosts guide.
 4. Using your terminal, move into the virtual host directory you just created:
 
    ```shell
@@ -26,7 +26,7 @@ This article runs through the steps of installing a Mezzio application (Dotkerne
    ```
 
 Install Dotkernel API by following the [Dotkernel API guide](https://github.com/dotkernel/api).
-Make sure the `data` and `log` directories are writable by changing their permissions, as described in the [common permission issues guide](https://github.com/dotkernel/development/blob/main/wsl/HELP.md#fix-common-permission-issues).
+Make sure the `data` and `log` directories are writable by changing their permissions, as described in the common permission issues guide.
 5. Set up PHPStorm to work with WSL2 files, as described in the [JetBrains WSL development environment article](https://www.jetbrains.com/help/phpstorm/how-to-use-wsl-development-environment-in-product.html).
 
 ## Note
@@ -57,8 +57,8 @@ A: There is a guide for AlmaLinux 8 as well, but it is not fully functional beca
 ## Resources
 
 - [WSL2 installation guide](https://github.com/dotkernel/development/blob/main/wsl/README.md)
-- [Ubuntu 20 setup inside WSL2](https://github.com/dotkernel/development/blob/main/wsl/os/ubuntu20/README.md)
-- [Create virtual hosts guide](https://github.com/dotkernel/development/blob/main/wsl/os/ubuntu20/README.md#create-virtual-hosts)
+- Ubuntu 20 setup inside WSL2
+- Create virtual hosts guide
 - [Dotkernel API installation guide](https://github.com/dotkernel/api)
-- [Fix common permission issues](https://github.com/dotkernel/development/blob/main/wsl/HELP.md#fix-common-permission-issues)
+- Fix common permission issues
 - [Using WSL development environment in PHPStorm](https://www.jetbrains.com/help/phpstorm/how-to-use-wsl-development-environment-in-product.html)

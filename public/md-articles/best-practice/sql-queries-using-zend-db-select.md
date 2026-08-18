@@ -127,7 +127,7 @@ A: Before fetching it, echo the query to visualize it: echo $select->__toString(
 
 ## Resources
 
-- [Zend_Db](http://framework.zend.com/manual/en/zend.db.adapter.html)
+- Zend_Db
 - [What are returning the FETCH functions from Zend_Db](http://www.dotkernel.com/best-practice/sql-fetch-zend-db/)
 - [Subqueries with Zend_Db](http://www.dotkernel.com/best-practice/subqueris-with-zend-db/)
 - [INSERT, UPDATE, DELETE statements with Zend_Db](http://www.dotkernel.com/best-practice/iud-statements-with-zend-d/)
