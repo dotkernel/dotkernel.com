@@ -104,7 +104,7 @@ class Admin extends AbstractEntity implements AdminInterface
 }
 ```
 
-For further details about the cache mode please refer to the official documentation.
+For further details about the cache mode please refer to the [official documentation](https://www.doctrine-project.org/projects/doctrine-orm/en/latest/reference/second-level-cache.html).
 When querying data, you can have Doctrine cache your results.
 You do this by calling the `setCacheable` method on the query builder.
 

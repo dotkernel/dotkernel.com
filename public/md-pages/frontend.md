@@ -116,7 +116,7 @@ Frontend implements the second option, because deleting a user row is rarely wha
 The skeleton stores only what it needs to run those flows: first name, last name and the email address used as the identity, for password reset and account activation.
 Anonymizing replaces exactly those.
 
-- Anonymization reference
+- [Anonymization reference](https://docs.dotkernel.org/frontend-documentation/v5/reference/account-anonymization/)
 
 ### What anonymization changes
 

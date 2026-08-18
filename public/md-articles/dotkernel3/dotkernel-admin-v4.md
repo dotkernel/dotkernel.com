@@ -31,7 +31,7 @@ There should be an admin account with the following credentials:
 - Username: admin
 - Password: dotadmin
 
-Head over to https://admin4.dotkernel.net/ and see for yourself.
+Head over to [https://admin7.dotkernel.net/](https://admin7.dotkernel.net/) and see for yourself.
 
 ## Dotkernel Admin V4 Features
 
@@ -226,7 +226,7 @@ Note: you'll find in the `#tableToolbar` buttons that toggle a modal for adding/
 A: Dotkernel Admin V4 was officially released on 19 July 2022. It's Dotkernel's PSR-7 Admin, an application based on Mezzio, mainly for managing and displaying tabular data from one or more database components.
 
 **Q: What are the demo credentials for trying out Dotkernel Admin V4?**
-A: Username admin and password dotadmin, on the demo at https://admin4.dotkernel.net/.
+A: Username admin and password dotadmin, on the demo at https://admin7.dotkernel.net/.
 
 **Q: What PHP version does Dotkernel Admin V4 support?**
 A: Full support for PHP 8.1, with a minimum requirement of PHP 7.4.

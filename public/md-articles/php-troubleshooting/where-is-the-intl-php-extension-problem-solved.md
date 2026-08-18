@@ -19,7 +19,7 @@ This article explains what Intl is used for, why it might be missing depending o
 
 PHP packages, frameworks, libraries, and scripts might require different PHP extensions.
 In this case, the Intl extension is needed to work with Internationalization Functions.
-See What is Internationalization? for background.
+See [What is Internationalization?](https://www.w3.org/International/questions/qa-i18n) for background.
 Have you seen any of these error messages?
 
 - Zend InputFilter requires intl PHP extension
@@ -32,7 +32,7 @@ Parts of this tutorial can also serve as a guide for installing or enabling othe
 
 > Internationalization extension (further referred to as Intl) is a wrapper for the ICU library, enabling PHP programmers to perform various locale-aware operations including but not limited to formatting, transliteration, encoding conversion, and calendar operations.
 
-Source: PHP Documentation
+Source: [PHP Documentation](https://www.php.net/manual/en/book.intl.php)
 
 > This extension may be installed using the bundled version as of PHP 5.3.0, or as a PECL extension as of PHP 5.2.0. In other words, there are two methods to install the intl extension.
 

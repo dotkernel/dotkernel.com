@@ -5,25 +5,25 @@ Following the preview article about <a title="Protection against SQL Injection u
 What you should know about their methods is:
 <!--more-->
 <ul>
-    <li><em>query (mixed $sql,  [mixed $bind  = array()])</em>
+    <li><em><a title="details" href="https://docs.laminas.dev/laminas-db/adapter/#query-execution" target="_blank" rel="noopener noreferrer">query</a> (mixed $sql,  [mixed $bind  = array()])</em>
 <ul>
     <li>use prepare statements internally</li>
     <li>but SQL Injection is still possible if $sql is dynamically created</li>
 </ul>
 </li>
-    <li><em>fetchAll (string|Zend_Db_Select $sql, ,  )</em>
+    <li><em><a title="details" href="https://docs.laminas.dev/laminas-db/adapter/#query-execution" target="_blank" rel="noopener noreferrer">fetchAll</a> (string|Zend_Db_Select $sql, ,  )</em>
 <ul>
     <li>all the fetch methods are using prepared statements internally</li>
     <li>but SQL Injection is still possible if $sql is dynamically created</li>
 </ul>
 </li>
-    <li><em>insert (mixed $table,   $bind)</em>
+    <li><em><a title="details" href="https://docs.laminas.dev/laminas-db/sql/#insert" target="_blank" rel="noopener noreferrer">insert</a> (mixed $table,   $bind)</em>
 <ul>
     <li>use prepare statements internally</li>
     <li>so, SQL Injection is not possible</li>
 </ul>
 </li>
-    <li><em>update (mixed $table,   $bind, [mixed $where = ''])</em>
+    <li><em><a title="details" href="https://docs.laminas.dev/laminas-db/sql/#update" target="_blank" rel="noopener noreferrer">update</a> (mixed $table,   $bind, [mixed $where = ''])</em>
 <ul>
     <li>use prepare statements internally</li>
 </ul>
@@ -31,7 +31,7 @@ What you should know about their methods is:
     <li>but SQL Injection may be possible if $where is created dynamically</li>
 </ul>
 </li>
-    <li><em>delete (mixed $table,  [mixed $where  = ''])</em>
+    <li><em><a title="details" href="https://docs.laminas.dev/laminas-db/sql/#delete" target="_blank" rel="noopener noreferrer">delete</a> (mixed $table,  [mixed $where  = ''])</em>
 <ul>
     <li>SQL Injection may be possible if $where is created dynamically</li>
 </ul>
