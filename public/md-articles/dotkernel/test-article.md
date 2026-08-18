@@ -12,7 +12,7 @@ language: "en"
 
 ## TL;DR
 
-This is a test article added to the dotkernel category for testing purposes.
+This is a test article added to the dotkernel category for testing purposes. This article is now updated.
 
 ## Overview
 

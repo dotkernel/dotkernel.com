@@ -67,9 +67,10 @@ class PostLoader extends Fixture implements DependentFixtureInterface
                 }
 
                 $status = match ($articleData['post_status']) {
-                    'publish' => PostStatusEnum::Published,
-                    'private' => PostStatusEnum::Private,
-                    default   => PostStatusEnum::Draft,
+                    'publish'  => PostStatusEnum::Published,
+                    'private'  => PostStatusEnum::Private,
+                    'archived' => PostStatusEnum::Archived,
+                    default    => PostStatusEnum::Draft,
                 };
 
                 $rawDate  = $articleData['post_date'] ?? '';
