@@ -986,7 +986,7 @@
                 "isObsolete": false,
                 "opengraph_img": "/opengraph/article/twitter-card-symfony-mailer.png",
                 "excerpt": "This is a test article used for fixture and testing purposes.",
-                "tl_dr": "This is a test article added to the dotkernel category for testing purposes.",
+                "tl_dr": "This is a test article added to the dotkernel category for testing purposes. It has since been archived.",
                 "tags": []
             }
         ]
