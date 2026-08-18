@@ -85,6 +85,20 @@ Steps to edit an existing article (change its status, text, or both) and get the
    - `src/Blog/templates/page/JSON-LD/{category-slug}/{article-slug}.jsonld.twig` (only if it has hardcoded text outside of `article.*`/`meta.*` variables — most of its fields pull straight from the database and update automatically)
 3. **Re-run the same commands as step 3 and step 4 above** (`bin/doctrine-fixtures`, then `bin/generate-feed` / `bin/sitemap` / `bin/generate-llms-full`) so the database and the generated artifacts reflect the change. `bin/create-uploads-dir` only needs to run again if you added a new image.
 
+## How to move an article to a different category
+
+An article's category isn't a field on the article itself — it's whichever top-level category object its entry sits under in `articles_cleaned.json`. Moving it is a structural move, not a value change, and the article's page/JSON-LD templates are resolved dynamically off the *current* category at render time (`GetPostResourceHandler` renders `page::blog-resource/{article.category.slug}/{article.slug}`, and the layout includes `@jsonld/{article.category.slug}/{article.slug}.jsonld.twig`) — there's no fallback if a file is missing at that path, so skipping any of the steps below leaves the article **404**ing at both the old and the new URL.
+
+1. **Cut the article's JSON object from its current category's `articles` array and paste it into the target category's `articles` array**, in `src/App/src/Fixture/articles_cleaned.json`. The target category must already exist as a top-level entry. Nothing else in the object needs to change — `PostLoader` matches the existing `Post` by slug and updates its category on the next run.
+2. **Physically move the three per-article files** from the old `{category-slug}` folder to the new one, keeping the same filename:
+   - `public/md-articles/{old-category-slug}/{article-slug}.md` → `public/md-articles/{new-category-slug}/{article-slug}.md`
+   - `src/Blog/templates/page/blog-resource/{old-category-slug}/{article-slug}.html.twig` → `.../{new-category-slug}/{article-slug}.html.twig`
+   - `src/Blog/templates/page/JSON-LD/{old-category-slug}/{article-slug}.jsonld.twig` → `.../{new-category-slug}/{article-slug}.jsonld.twig`
+3. **Check the moved `.html.twig` for a hardcoded `json_ld` block override.** Most articles leave that block untouched, so it resolves dynamically via the layout — but a few hardcode a literal path (e.g. `{% block json_ld %}{{ include('@jsonld/some-category/some-slug.jsonld.twig') }}{% endblock %}`). If yours does, update that literal path to the new category too.
+4. **Re-run `bin/doctrine-fixtures`**, then the 3 generators (`bin/generate-feed`, `bin/sitemap`, `bin/generate-llms-full`), same as any other update.
+
+Note: this changes the article's URL (`/{categorySlug}/{slug}/`), so the old URL will start 404ing — there is no redirect set up for a category move in this app.
+
 ## 5. Scheduled jobs (cron)
 
 - **`bin/generate-packages`** — the only script here actually wired into a cron job. It rebuilds the Dotkernel packages listing from the GitHub organisation, which changes independently of this repo, so it runs on a schedule instead of at deploy time:
