@@ -21,19 +21,32 @@
         .spec-table td { color: var(--text); }
         .spec-note { margin-top: 14px; font-size: 13.5px; color: var(--text-dim); }
         .step-cmd { display: block; margin-top: 12px; font-family: var(--mono); font-size: 12.5px; color: var(--teal); overflow-x: auto; }
+
+        /* Three site-type icons in the hero - scoped to this page. */
+        .web-icons { display: flex; gap: 14px; margin-top: 6px; }
+        .web-icon { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+        .web-icon svg { width: 100%; height: auto; display: block; }
+        .web-icon span { font-family: var(--mono); font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--text-dim); }
+        .wi-frame { fill: var(--surface); stroke: var(--border); stroke-width: 1.5; }
+        .wi-chrome { stroke: var(--border); stroke-width: 1; }
+        .wi-dot { fill: var(--border); }
+        .wi-thumb { fill: var(--border-soft); }
+        .wi-title { stroke: var(--page-accent, var(--sage)); stroke-width: 3; stroke-linecap: round; }
+        .wi-text { stroke: var(--text-dim); stroke-width: 1.5; opacity: .65; stroke-linecap: round; }
+        .wi-body { stroke: var(--text-dim); stroke-width: 2; opacity: .8; stroke-linecap: round; }
     </style>
 {% endblock %}
 
 {% block content %}
 
-    <section class="hero">
+    <section class="hero" style="--page-accent:var(--sage); --page-accent-dim:var(--sage-dim)">
         <div class="wrap hero-grid">
             <div>
                 <span class="eyebrow">Web starter · Server-rendered</span>
                 <h1>Dotkernel Frontend</h1>
                 <p class="sub">
                     A web starter skeleton on the Mezzio microframework and Laminas components, for the applications
-                    people log into. User accounts, a working contact form and a content page ship as proof of concept -
+                    people log into. <strong>User accounts</strong>, a working <strong>contact form</strong> and a <strong>content page</strong> ship as proof of concept -
                     real, running features whose only job is to show you where your own code goes.
                 </p>
                 <div class="hero-ctas">
@@ -63,38 +76,68 @@
 
             <div class="hero-visual">
                 <div class="pipeline">
-                    <div class="pipeline-label"><span>Request lifecycle</span></div>
-                    <div class="pipeline-track">
-                        <div class="pl-packet" aria-hidden="true"></div>
-                        <div class="pl-step"><span class="name">Session</span><span class="tag">dot-session</span></div>
-                        <div class="pl-step"><span class="name">Router</span><span class="tag">FastRoute</span></div>
-                        <div class="pl-step"><span class="name">Authentication</span><span class="tag">User identity</span></div>
-                        <div class="pl-step"><span class="name">RBAC guard</span><span class="tag">route + action</span></div>
-                        <div class="pl-step"><span class="name">Controller action</span><span class="tag">dot-controller</span></div>
-                        <div class="pl-step"><span class="name">Response</span><span class="tag">Twig + flash</span></div>
+                    <div class="pipeline-label"><span>What you could build on it</span></div>
+                    <div class="web-icons">
+                        <div class="web-icon">
+                            <svg viewBox="0 0 100 84" role="img" aria-label="A blog homepage, with a featured image next to a title and paragraph text below">
+                                <rect class="wi-frame" x="2" y="2" width="96" height="80" rx="8"/>
+                                <circle class="wi-dot" cx="11" cy="11" r="2"/>
+                                <circle class="wi-dot" cx="17" cy="11" r="2"/>
+                                <circle class="wi-dot" cx="23" cy="11" r="2"/>
+                                <line class="wi-chrome" x1="2" y1="19" x2="98" y2="19"/>
+                                <rect class="wi-thumb" x="10" y="27" width="34" height="26" rx="2"/>
+                                <line class="wi-title" x1="50" y1="34" x2="90" y2="34"/>
+                                <line class="wi-text" x1="50" y1="42" x2="78" y2="42"/>
+                                <line class="wi-body" x1="10" y1="61" x2="90" y2="61"/>
+                                <line class="wi-body" x1="10" y1="69" x2="70" y2="69"/>
+                                <line class="wi-body" x1="10" y1="76" x2="82" y2="76"/>
+                            </svg>
+                            <span>Blog</span>
+                        </div>
+                        <div class="web-icon">
+                            <svg viewBox="0 0 100 84" role="img" aria-label="An online marketplace homepage, with a grid of six product tiles">
+                                <rect class="wi-frame" x="2" y="2" width="96" height="80" rx="8"/>
+                                <circle class="wi-dot" cx="11" cy="11" r="2"/>
+                                <circle class="wi-dot" cx="17" cy="11" r="2"/>
+                                <circle class="wi-dot" cx="23" cy="11" r="2"/>
+                                <line class="wi-chrome" x1="2" y1="19" x2="98" y2="19"/>
+                                <rect class="wi-thumb" x="8" y="26" width="24" height="18" rx="2"/>
+                                <line class="wi-text" x1="9" y1="49" x2="27" y2="49"/>
+                                <rect class="wi-thumb" x="38" y="26" width="24" height="18" rx="2"/>
+                                <line class="wi-text" x1="39" y1="49" x2="57" y2="49"/>
+                                <rect class="wi-thumb" x="68" y="26" width="24" height="18" rx="2"/>
+                                <line class="wi-text" x1="69" y1="49" x2="87" y2="49"/>
+                                <rect class="wi-thumb" x="8" y="55" width="24" height="18" rx="2"/>
+                                <line class="wi-text" x1="9" y1="78" x2="27" y2="78"/>
+                                <rect class="wi-thumb" x="38" y="55" width="24" height="18" rx="2"/>
+                                <line class="wi-text" x1="39" y1="78" x2="57" y2="78"/>
+                                <rect class="wi-thumb" x="68" y="55" width="24" height="18" rx="2"/>
+                                <line class="wi-text" x1="69" y1="78" x2="87" y2="78"/>
+                            </svg>
+                            <span>Marketplace</span>
+                        </div>
+                        <div class="web-icon">
+                            <svg viewBox="0 0 100 84" role="img" aria-label="A social media homepage feed, with an avatar and name above a post, and a partial second post below">
+                                <rect class="wi-frame" x="2" y="2" width="96" height="80" rx="8"/>
+                                <circle class="wi-dot" cx="11" cy="11" r="2"/>
+                                <circle class="wi-dot" cx="17" cy="11" r="2"/>
+                                <circle class="wi-dot" cx="23" cy="11" r="2"/>
+                                <line class="wi-chrome" x1="2" y1="19" x2="98" y2="19"/>
+                                <circle class="wi-thumb" cx="15" cy="30" r="7"/>
+                                <line class="wi-title" x1="27" y1="27" x2="62" y2="27"/>
+                                <line class="wi-text" x1="27" y1="34" x2="48" y2="34"/>
+                                <rect class="wi-thumb" x="8" y="42" width="84" height="20" rx="2"/>
+                                <line class="wi-body" x1="8" y1="68" x2="24" y2="68"/>
+                                <line class="wi-body" x1="30" y1="68" x2="46" y2="68"/>
+                                <line class="wi-body" x1="52" y1="68" x2="68" y2="68"/>
+                                <circle class="wi-thumb" cx="15" cy="78" r="4"/>
+                                <line class="wi-text" x1="23" y1="77" x2="55" y2="77"/>
+                            </svg>
+                            <span>Social feed</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="wrap hero-art-row">
-            <figure class="hero-art">
-                <figcaption>Composed on the server</figcaption>
-                <svg viewBox="0 0 1180 200" role="img" aria-label="A browser window receiving a page already composed by the server">
-                    <line class="art-accent" x1="20" y1="100" x2="120" y2="100"/>
-                    <path class="art-accent" d="M112 92 l9 8 l-9 8"/>
-                    <rect x="150" y="20" width="1010" height="160" rx="12"/>
-                    <line x1="150" y1="58" x2="1160" y2="58"/>
-                    <circle class="art-faint" cx="176" cy="39" r="4"/>
-                    <circle class="art-faint" cx="192" cy="39" r="4"/>
-                    <circle class="art-faint" cx="208" cy="39" r="4"/>
-                    <rect class="art-faint" x="232" y="32" width="420" height="14" rx="7"/>
-                    <rect class="art-fill" x="176" y="82" width="260" height="76" rx="8"/>
-                    <line class="art-accent" x1="470" y1="92" x2="1120" y2="92"/>
-                    <line class="art-accent" x1="470" y1="114" x2="1120" y2="114"/>
-                    <line class="art-accent" x1="470" y1="136" x2="1000" y2="136"/>
-                    <line class="art-faint" x1="470" y1="158" x2="860" y2="158"/>
-                </svg>
-            </figure>
         </div>
     </section>
 
@@ -440,7 +483,7 @@
                         </tr>
                         <tr>
                             <th scope="row">Database</th>
-                            <td>Tested with MariaDB 10.11 LTS and 11.4 LTS, and with MySQL 8.4 LTS. For MySQL 8.4,
+                            <td>Tested with MariaDB 11.4 LTS, 11.8 LTS and 12.3 LTS, and with PostgreSQL 13 and above,
                                 <code>my.cnf</code> needs <code>mysql_native_password=ON</code>.</td>
                         </tr>
                         <tr>
@@ -461,7 +504,7 @@
             </div>
             <p class="spec-note">
                 Note that Frontend still supports MySQL - unlike API and Admin v7, which require native UUID support and
-                therefore PostgreSQL or MariaDB 10.7+.
+                therefore PostgreSQL 13+ or MariaDB 11.4+.
             </p>
         </div>
     </section>

@@ -22,20 +22,32 @@
         .spec-table td.is-ours { border-left: 2px solid var(--brand-red); }
         .spec-table img { vertical-align: middle; }
         .spec-note { margin-top: 14px; font-size: 13.5px; color: var(--text-dim); }
+
+        /* API hub-and-spoke diagram in the hero - scoped to this page. */
+        .api-hub { display: block; width: 100%; max-width: 380px; height: auto; margin: 6px auto 0; }
+        .api-hub .hub-line { stroke: var(--border); stroke-width: 1.5; }
+        .api-hub .hub-dot { fill: var(--page-accent, var(--sage)); stroke: none; }
+        .api-hub .hub-box { fill: var(--page-accent, var(--sage)); }
+        .api-hub .hub-box-text { font-family: var(--mono); font-weight: 700; font-size: 20px; fill: var(--on-accent); text-anchor: middle; }
+        .api-hub .hub-badge { fill: var(--surface); stroke: var(--border); stroke-width: 1.5; }
+        .api-hub .hub-icon { fill: none; stroke: var(--text-dim); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+        .api-hub .hub-icon-fill { fill: var(--text-dim); stroke: none; }
+        .api-hub .hub-label { font-family: var(--mono); font-size: 9.5px; letter-spacing: .04em; text-transform: uppercase; fill: var(--text-dim); text-anchor: middle; }
+        .api-hub .hub-question { font-family: var(--mono); font-weight: 700; font-size: 20px; fill: var(--text-dim); text-anchor: middle; }
     </style>
 {% endblock %}
 
 {% block content %}
 
-    <section class="hero">
+    <section class="hero" style="--page-accent:var(--sage); --page-accent-dim:var(--sage-dim)">
         <div class="wrap hero-grid">
             <div>
                 <span class="eyebrow">REST API skeleton · PSR-15 middleware</span>
                 <h1>Dotkernel API</h1>
                 <p class="sub">
                     An open-source REST API skeleton for PHP, built on the Mezzio microframework and Laminas components
-                    over a Doctrine domain layer. OAuth 2.0, RBAC authorization, HAL payloads, standardized error
-                    responses and an OpenAPI 3.0 specification are assembled on install - not left as decisions for
+                    over a Doctrine domain layer. <strong>OAuth 2.0</strong>, <strong>RBAC authorization</strong>, HAL payloads, standardized error
+                    responses and an <strong>OpenAPI 3.0</strong> specification are assembled on install - not left as decisions for
                     your first sprint.
                 </p>
                 <div class="hero-ctas">
@@ -66,50 +78,96 @@
             <div class="hero-visual">
                 <div class="pipeline">
                     <div class="pipeline-label">
-                        <span>Request lifecycle</span>
+                        <span>What talks to the API</span>
                         <span><a href="{{ url('page::architecture') }}">All 19 stages →</a></span>
                     </div>
-                    <div class="pipeline-track">
-                        <div class="pl-packet" aria-hidden="true"></div>
-                        <div class="pl-step"><span class="name">CORS</span><span class="tag">mezzio-cors</span></div>
-                        <div class="pl-step"><span class="name">Router</span><span class="tag">FastRoute</span></div>
-                        <div class="pl-step"><span class="name">Authentication</span><span class="tag">OAuth 2.0</span></div>
-                        <div class="pl-step"><span class="name">RBAC guard</span><span class="tag">per route name</span></div>
-                        <div class="pl-step"><span class="name">Your handler</span><span class="tag">PSR-15</span></div>
-                        <div class="pl-step"><span class="name">Response</span><span class="tag">HAL / problem+json</span></div>
-                    </div>
+                    <svg class="api-hub" viewBox="0 0 400 410" role="img" aria-label="A central API box with in and out connections to a cloud, a computer, a database, a gear, a question mark, a wrench, a person, and a smartphone">
+                        <line class="hub-line" x1="200" y1="200" x2="200" y2="50"/>
+                        <line class="hub-line" x1="200" y1="200" x2="306" y2="94"/>
+                        <line class="hub-line" x1="200" y1="200" x2="350" y2="200"/>
+                        <line class="hub-line" x1="200" y1="200" x2="306" y2="306"/>
+                        <line class="hub-line" x1="200" y1="200" x2="200" y2="350"/>
+                        <line class="hub-line" x1="200" y1="200" x2="94" y2="306"/>
+                        <line class="hub-line" x1="200" y1="200" x2="50" y2="200"/>
+                        <line class="hub-line" x1="200" y1="200" x2="94" y2="94"/>
+
+                        <circle class="hub-dot" cx="200" cy="125" r="3"/>
+                        <circle class="hub-dot" cx="253" cy="147" r="3"/>
+                        <circle class="hub-dot" cx="275" cy="200" r="3"/>
+                        <circle class="hub-dot" cx="253" cy="253" r="3"/>
+                        <circle class="hub-dot" cx="200" cy="275" r="3"/>
+                        <circle class="hub-dot" cx="147" cy="253" r="3"/>
+                        <circle class="hub-dot" cx="125" cy="200" r="3"/>
+                        <circle class="hub-dot" cx="147" cy="147" r="3"/>
+
+                        <rect class="hub-box" x="170" y="170" width="60" height="60" rx="10"/>
+                        <text class="hub-box-text" x="200" y="207">API</text>
+
+                        <circle class="hub-badge" cx="200" cy="50" r="28"/>
+                        <g class="hub-icon" transform="translate(200,50)">
+                            <path d="M -6,-4 C -6,-7 -3,-9 0,-9 C 3,-9 6,-7 6,-4 C 9,-4 11,-2 11,1 C 11,3.5 9,5 6,5 L -8,5 C -11,5 -13,3 -13,0 C -13,-2.5 -11,-4.5 -8,-4.5 C -7.3,-4.5 -6.6,-4.3 -6,-4 Z"/>
+                        </g>
+                        <text class="hub-label" x="200" y="94">Cloud</text>
+
+                        <circle class="hub-badge" cx="306" cy="94" r="28"/>
+                        <g class="hub-icon" transform="translate(306,94)">
+                            <rect x="-10" y="-8" width="20" height="13" rx="1.5"/>
+                            <line x1="0" y1="5" x2="0" y2="8"/>
+                            <line x1="-6" y1="9" x2="6" y2="9"/>
+                        </g>
+                        <text class="hub-label" x="306" y="138">Client</text>
+
+                        <circle class="hub-badge" cx="350" cy="200" r="28"/>
+                        <g class="hub-icon" transform="translate(350,200)">
+                            <ellipse cx="0" cy="-7" rx="9" ry="3"/>
+                            <path d="M -9,-7 L -9,7 A 9,3 0 0 0 9,7 L 9,-7"/>
+                            <path d="M -9,-1.7 A 9,3 0 0 0 9,-1.7"/>
+                        </g>
+                        <text class="hub-label" x="350" y="244">Database</text>
+
+                        <circle class="hub-badge" cx="306" cy="306" r="28"/>
+                        <g class="hub-icon" transform="translate(306,306)">
+                            <circle r="6"/>
+                            <circle r="2.5" class="hub-icon-fill"/>
+                            <line x1="6" y1="0" x2="9.5" y2="0"/>
+                            <line x1="4.24" y1="4.24" x2="6.72" y2="6.72"/>
+                            <line x1="0" y1="6" x2="0" y2="9.5"/>
+                            <line x1="-4.24" y1="4.24" x2="-6.72" y2="6.72"/>
+                            <line x1="-6" y1="0" x2="-9.5" y2="0"/>
+                            <line x1="-4.24" y1="-4.24" x2="-6.72" y2="-6.72"/>
+                            <line x1="0" y1="-6" x2="0" y2="-9.5"/>
+                            <line x1="4.24" y1="-4.24" x2="6.72" y2="-6.72"/>
+                        </g>
+                        <text class="hub-label" x="306" y="350">Config</text>
+
+                        <circle class="hub-badge" cx="200" cy="350" r="28"/>
+                        <text class="hub-question" x="200" y="359">?</text>
+                        <text class="hub-label" x="200" y="394">Support</text>
+
+                        <circle class="hub-badge" cx="94" cy="306" r="28"/>
+                        <g class="hub-icon" transform="translate(94,306)">
+                            <line x1="-8" y1="8" x2="5" y2="-5" stroke-width="3.2"/>
+                            <circle cx="8" cy="-8" r="5" stroke-width="2.2"/>
+                            <line x1="8" y1="-13" x2="8" y2="-9" stroke-width="2.2"/>
+                        </g>
+                        <text class="hub-label" x="94" y="350">Tools</text>
+
+                        <circle class="hub-badge" cx="50" cy="200" r="28"/>
+                        <g class="hub-icon" transform="translate(50,200)">
+                            <circle cx="0" cy="-4" r="5"/>
+                            <path d="M -9,10 C -9,2 9,2 9,10"/>
+                        </g>
+                        <text class="hub-label" x="50" y="244">Users</text>
+
+                        <circle class="hub-badge" cx="94" cy="94" r="28"/>
+                        <g class="hub-icon" transform="translate(94,94)">
+                            <rect x="-6" y="-11" width="12" height="22" rx="2.5"/>
+                            <line x1="-3" y1="8" x2="3" y2="8"/>
+                        </g>
+                        <text class="hub-label" x="94" y="138">Mobile</text>
+                    </svg>
                 </div>
             </div>
-        </div>
-        <div class="wrap hero-art-row">
-            <figure class="hero-art">
-                <figcaption>One resource, its links</figcaption>
-                <svg viewBox="0 0 1180 200" role="img" aria-label="A resource envelope on the left whose links fan out to four embedded resources">
-                    <rect x="20" y="34" width="300" height="132" rx="12"/>
-                    <line class="art-faint" x1="20" y1="74" x2="320" y2="74"/>
-                    <line x1="44" y1="54" x2="130" y2="54"/>
-                    <rect class="art-fill" x="44" y="98" width="10" height="10" rx="2"/>
-                    <line class="art-faint" x1="66" y1="103" x2="200" y2="103"/>
-                    <rect class="art-fill" x="44" y="130" width="10" height="10" rx="2"/>
-                    <line class="art-faint" x1="66" y1="135" x2="250" y2="135"/>
-                    <path class="art-accent" d="M320 78 C 380 78 380 46 440 46"/>
-                    <path class="art-accent" d="M320 92 C 400 92 420 84 620 84"/>
-                    <path class="art-accent" d="M320 106 C 420 106 460 122 800 122"/>
-                    <path class="art-accent" d="M320 120 C 440 120 480 160 980 160"/>
-                    <rect class="art-accent" x="440" y="22" width="150" height="48" rx="8"/>
-                    <line class="art-faint" x1="462" y1="40" x2="556" y2="40"/>
-                    <line class="art-faint" x1="462" y1="54" x2="524" y2="54"/>
-                    <rect class="art-accent" x="620" y="60" width="150" height="48" rx="8"/>
-                    <line class="art-faint" x1="642" y1="78" x2="736" y2="78"/>
-                    <line class="art-faint" x1="642" y1="92" x2="704" y2="92"/>
-                    <rect class="art-accent" x="800" y="98" width="150" height="48" rx="8"/>
-                    <line class="art-faint" x1="822" y1="116" x2="916" y2="116"/>
-                    <line class="art-faint" x1="822" y1="130" x2="884" y2="130"/>
-                    <rect class="art-accent" x="980" y="136" width="150" height="48" rx="8"/>
-                    <line class="art-faint" x1="1002" y1="154" x2="1096" y2="154"/>
-                    <line class="art-faint" x1="1002" y1="168" x2="1064" y2="168"/>
-                </svg>
-            </figure>
         </div>
     </section>
 
@@ -317,12 +375,12 @@
                 </div>
                 <div class="standard">
                     <h4>PostgreSQL support</h4>
-                    <p>PostgreSQL joins the supported databases. Because native UUID is required, you need PostgreSQL or
-                       MariaDB 10.7 or later; MySQL is no longer supported, as it has no UUID data type.</p>
+                    <p>PostgreSQL joins the supported databases. Because native UUID is required, you need at least PostgreSQL 13 or
+                       MariaDB 11.4; MySQL is no longer supported, as it has no UUID data type.</p>
                 </div>
                 <div class="standard">
                     <h4>PHP 8.5</h4>
-                    <p>The API targets PHP 8.5, with Dotkernel Admin on 8.4. Dependencies are kept current, and the
+                    <p>The API and Admin target PHP 8.5. Dependencies are kept current, and the
                        ecosystem's own packages track the versions Laminas and Doctrine support.</p>
                 </div>
                 <div class="standard">
@@ -433,13 +491,17 @@
                    ecosystem is below.</p>
             </div>
 
-            <div class="core-band">
-                <span class="core-band-label">Shared domain layer</span>
-                <code>Core\App</code> <code>Core\Admin</code> <code>Core\User</code>
-                <code>Core\Security</code> <code>Core\Setting</code>
-                <p>One set of entities and repositories, committed in each repository so a single-component start just
-                   works. Having many entities in Core does not oblige you to implement handlers for all of them -
-                   each application handles only what it needs.</p>
+            <div class="core-band row align-items-center gy-3">
+                <div class="col-12 col-lg-6">
+                    <span class="core-band-label my-2">Shared domain layer</span><br>
+                    <code>Core\App</code> <code>Core\Admin</code> <code>Core\User</code>
+                    <code>Core\Security</code> <code>Core\Setting</code>
+                </div>
+                <div class="col-12 col-lg-6 border-start ps-lg-4">
+                    <p>One set of entities and repositories, committed in each repository so a single-component start just
+                       works. Having many entities in Core does not oblige you to implement handlers for all of them -
+                       each application handles only what it needs.</p>
+                </div>
             </div>
 
             <div class="products-grid">
@@ -569,7 +631,7 @@
                 <span class="eyebrow">Get started</span>
                 <h2>Install it and call an endpoint</h2>
                 <p class="lede">
-                    Create the project with Composer, point it at PostgreSQL or MariaDB 10.7+, run the migrations, and
+                    Create the project with Composer, point it at PostgreSQL 13+ or MariaDB 11.4+, run the migrations, and
                     you have an authenticated REST API with a browsable OpenAPI specification.
                 </p>
                 <div class="hero-ctas">

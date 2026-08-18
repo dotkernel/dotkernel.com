@@ -96,6 +96,7 @@ return [
             'frontend'     => 'frontend',
             'dotboost'     => 'dotboost',
             'architecture' => 'architecture',
+            'wsl2'         => 'wsl2',
         ],
     ],
     'twig'   => [

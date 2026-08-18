@@ -22,12 +22,21 @@
         .spec-table td.is-step { font-family: var(--mono); font-size: 12.5px; color: var(--teal); white-space: nowrap; }
         .spec-note { margin-top: 14px; font-size: 13.5px; color: var(--text-dim); }
         .step-cmd { display: block; margin-top: 12px; font-family: var(--mono); font-size: 12.5px; color: var(--teal); overflow-x: auto; }
+
+        /* Request flow and dependency chips in the hero - scoped to this page. */
+        .light-flow { display: block; width: 100%; height: auto; margin-top: 6px; }
+        .light-flow .lf-box { fill: var(--surface-2); stroke: var(--border-soft); stroke-width: 1.25; }
+        .light-flow .lf-line { stroke: var(--border-soft); stroke-width: 1.5; }
+        .light-flow .lf-arrow { fill: var(--border-soft); }
+        .light-flow .lf-label { font-family: var(--mono); font-size: 10px; font-weight: 600; fill: var(--text); text-anchor: middle; }
+        .dep-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+        .dep-chip { font-family: var(--mono); font-size: 11px; color: var(--sage); background: var(--sage-dim); border: 1px solid var(--sage); border-radius: 6px; padding: 5px 10px; }
     </style>
 {% endblock %}
 
 {% block content %}
 
-    <section class="hero">
+    <section class="hero" style="--page-accent:var(--sage); --page-accent-dim:var(--sage-dim)">
         <div class="wrap hero-grid">
             <div>
                 <span class="eyebrow">Minimal skeleton · PSR-15</span>
@@ -35,7 +44,7 @@
                 <p class="sub">
                     A PSR-15 compliant application skeleton on the Mezzio microframework and Laminas components,
                     designed as a minimal project for generating a simple website - a presentation site, a landing page,
-                    a small service. Six direct dependencies, two modules, and nothing to delete before you start.
+                    a small service. <strong>Six direct dependencies</strong>, <strong>two modules</strong>, and nothing to delete before you start.
                 </p>
                 <div class="hero-ctas">
                     <a class="btn btn-primary" href="https://docs.dotkernel.org/light-documentation/" target="_blank" rel="noopener">
@@ -64,38 +73,44 @@
 
             <div class="hero-visual">
                 <div class="pipeline">
-                    <div class="pipeline-label"><span>Request lifecycle</span></div>
-                    <div class="pipeline-track">
-                        <div class="pl-packet" aria-hidden="true"></div>
-                        <div class="pl-step"><span class="name">index.php</span><span class="tag">bootstrap</span></div>
-                        <div class="pl-step"><span class="name">Container</span><span class="tag">factories · aliases</span></div>
-                        <div class="pl-step"><span class="name">Routing</span><span class="tag">FastRoute</span></div>
-                        <div class="pl-step"><span class="name">Pipeline</span><span class="tag">pipeline.php</span></div>
-                        <div class="pl-step"><span class="name">Handler</span><span class="tag">PSR-15</span></div>
-                        <div class="pl-step"><span class="name">Twig</span><span class="tag">layout · blocks</span></div>
-                        <div class="pl-step"><span class="name">Emitter</span><span class="tag">HtmlResponse</span></div>
+                    <div class="pipeline-label"><span>Straightforward request</span></div>
+                    <svg class="light-flow" viewBox="0 0 400 90" role="img" aria-label="A request flowing through Router, Pipeline and Twig render to Response">
+                        <defs>
+                            <marker id="lf-arrowhead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                <path d="M0,0 L10,5 L0,10 Z" class="lf-arrow"/>
+                            </marker>
+                        </defs>
+
+                        <line class="lf-line" x1="74" y1="45" x2="89" y2="45" marker-end="url(#lf-arrowhead)"/>
+                        <line class="lf-line" x1="153" y1="45" x2="168" y2="45" marker-end="url(#lf-arrowhead)"/>
+                        <line class="lf-line" x1="232" y1="45" x2="247" y2="45" marker-end="url(#lf-arrowhead)"/>
+                        <line class="lf-line" x1="311" y1="45" x2="326" y2="45" marker-end="url(#lf-arrowhead)"/>
+
+                        <rect class="lf-box" x="10" y="25" width="64" height="40" rx="8"/>
+                        <text class="lf-label" x="42" y="49">Request</text>
+
+                        <rect class="lf-box" x="89" y="25" width="64" height="40" rx="8"/>
+                        <text class="lf-label" x="121" y="49">Router</text>
+
+                        <rect class="lf-box" x="168" y="25" width="64" height="40" rx="8"/>
+                        <text class="lf-label" x="200" y="49">Pipeline</text>
+
+                        <rect class="lf-box" x="247" y="25" width="64" height="40" rx="8"/>
+                        <text class="lf-label" x="279" y="49">Twig</text>
+
+                        <rect class="lf-box" x="326" y="25" width="64" height="40" rx="8"/>
+                        <text class="lf-label" x="358" y="49">Response</text>
+                    </svg>
+                    <div class="dep-chips">
+                        <span class="dep-chip">mezzio</span>
+                        <span class="dep-chip">fastroute</span>
+                        <span class="dep-chip">twigrenderer</span>
+                        <span class="dep-chip">errorhandler</span>
+                        <span class="dep-chip">config-aggregator</span>
+                        <span class="dep-chip">component-installer</span>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="wrap hero-art-row">
-            <figure class="hero-art">
-                <figcaption>Six direct dependencies</figcaption>
-                <svg viewBox="0 0 1180 200" role="img" aria-label="Six direct dependencies inside an otherwise empty application boundary">
-                    <rect class="art-dash" x="20" y="28" width="1140" height="144" rx="14"/>
-                    <circle class="art-dot" cx="180" cy="100" r="8"/>
-                    <circle class="art-dot" cx="356" cy="100" r="8"/>
-                    <circle class="art-dot" cx="532" cy="100" r="8"/>
-                    <circle class="art-dot" cx="708" cy="100" r="8"/>
-                    <circle class="art-dot" cx="884" cy="100" r="8"/>
-                    <circle class="art-dot" cx="1060" cy="100" r="8"/>
-                    <line class="art-faint" x1="188" y1="100" x2="348" y2="100"/>
-                    <line class="art-faint" x1="364" y1="100" x2="524" y2="100"/>
-                    <line class="art-faint" x1="540" y1="100" x2="700" y2="100"/>
-                    <line class="art-faint" x1="716" y1="100" x2="876" y2="100"/>
-                    <line class="art-faint" x1="892" y1="100" x2="1052" y2="100"/>
-                </svg>
-            </figure>
         </div>
     </section>
 
@@ -423,7 +438,7 @@
                         </tr>
                         <tr>
                             <th scope="row">PHP</th>
-                            <td>8.2, 8.3 or 8.4, with mod_php or FCGI (FPM). <code>memory_limit</code> at least
+                            <td>8.2+ with mod_php or FCGI (FPM). <code>memory_limit</code> at least
                                 128M.</td>
                         </tr>
                         <tr>

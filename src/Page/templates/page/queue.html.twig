@@ -21,20 +21,37 @@
         .spec-table td { color: var(--text); }
         .spec-note { margin-top: 14px; font-size: 13.5px; color: var(--text-dim); }
         .step-cmd { display: block; margin-top: 12px; font-family: var(--mono); font-size: 12.5px; color: var(--teal); overflow-x: auto; }
+
+        /* Message-journey diagram in the hero - scoped to this page. */
+        .flow-diagram { display: block; width: 100%; height: auto; margin-top: 4px; }
+        .flow-diagram .flow-box { fill: var(--surface); stroke: var(--border); stroke-width: 1.25; }
+        .flow-diagram .flow-line { stroke: var(--border-soft); stroke-width: 1.5; fill: none; }
+        .flow-diagram .flow-arrowhead { fill: var(--border-soft); }
+        .flow-diagram .flow-msg { stroke: var(--text-dim); stroke-width: 1.25; opacity: .45; }
+        .flow-diagram .flow-dot { fill: var(--sage); }
+        .flow-diagram .flow-worker { fill: var(--sage-dim); stroke: var(--sage); stroke-width: 1.25; }
+        .flow-diagram .flow-success { fill: var(--surface); stroke: var(--sage); stroke-width: 1.5; }
+        .flow-diagram .flow-check { stroke: var(--sage); stroke-width: 2; fill: none; }
+        .flow-diagram .flow-dash { stroke: var(--brand-red); stroke-width: 1.5; fill: none; stroke-dasharray: 4 4; opacity: .85; }
+        .flow-diagram .flow-dlq { fill: var(--surface); stroke: var(--brand-red); stroke-width: 1.25; }
+        .flow-diagram .flow-dlq-arrowhead { fill: var(--brand-red); }
+        .flow-diagram .flow-label { font-family: var(--mono); font-size: 11px; font-weight: 600; fill: var(--text); text-anchor: middle; }
+        .flow-diagram .flow-label-sm { font-size: 10px; }
+        .flow-diagram .flow-sub { font-family: var(--mono); font-size: 8.5px; letter-spacing: .04em; text-transform: uppercase; fill: var(--text-dim); text-anchor: middle; }
     </style>
 {% endblock %}
 
 {% block content %}
 
-    <section class="hero">
+    <section class="hero" style="--page-accent:var(--sage); --page-accent-dim:var(--sage-dim)">
         <div class="wrap hero-grid">
             <div>
                 <span class="eyebrow">Background workers · Symfony Messenger</span>
                 <h1>Dotkernel Queue</h1>
                 <p class="sub">
                     Some operations are time-consuming and resource-intensive, and they have no business inside a
-                    request. Dotkernel Queue accepts them over a TCP connection, stores them, and runs them on
-                    background workers - so your platform answers the next request instead of waiting for a video to
+                    request. Dotkernel Queue accepts them over a <strong>TCP connection</strong>, stores them, and runs them on
+                    <strong>background workers</strong> - so your platform answers the next request instead of waiting for a video to
                     finish encoding.
                 </p>
                 <div class="hero-ctas">
@@ -63,40 +80,55 @@
 
             <div class="hero-visual">
                 <div class="pipeline">
-                    <div class="pipeline-label"><span>Message lifecycle</span></div>
-                    <div class="pipeline-track">
-                        <div class="pl-packet" aria-hidden="true"></div>
-                        <div class="pl-step"><span class="name">Your application</span><span class="tag">JSON payload</span></div>
-                        <div class="pl-step"><span class="name">TCP :8556</span><span class="tag">IP whitelisted</span></div>
-                        <div class="pl-step"><span class="name">Swoole daemon</span><span class="tag">accepts &amp; stores</span></div>
-                        <div class="pl-step"><span class="name">messages stream</span><span class="tag">Valkey · FIFO</span></div>
-                        <div class="pl-step"><span class="name">Messenger worker</span><span class="tag">your handler</span></div>
-                        <div class="pl-step"><span class="name">failed stream</span><span class="tag">after 3 retries</span></div>
-                    </div>
+                    <div class="pipeline-label"><span>A message's journey</span></div>
+                    <svg class="flow-diagram" viewBox="0 0 360 400" role="img" aria-label="A TCP listener feeding a Valkey stream into a pool of workers, which mark a message processed or, after retries, send it to a dead letter queue">
+                        <defs>
+                            <marker id="flow-arrowhead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                <path d="M0,0 L10,5 L0,10 Z" class="flow-arrowhead"/>
+                            </marker>
+                            <marker id="flow-dlq-arrowhead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                <path d="M0,0 L10,5 L0,10 Z" class="flow-dlq-arrowhead"/>
+                            </marker>
+                        </defs>
+
+                        <line class="flow-line" x1="180" y1="56" x2="180" y2="82" marker-end="url(#flow-arrowhead)"/>
+                        <line class="flow-line" x1="180" y1="170" x2="180" y2="196" marker-end="url(#flow-arrowhead)"/>
+                        <line class="flow-line" x1="180" y1="262" x2="180" y2="298" marker-end="url(#flow-arrowhead)"/>
+                        <path class="flow-dash" d="M300,220 C344,250 344,286 312,306" marker-end="url(#flow-dlq-arrowhead)"/>
+                        <text class="flow-sub" x="330" y="207">retries</text>
+
+                        <rect class="flow-box" x="90" y="10" width="180" height="46" rx="10"/>
+                        <text class="flow-label" x="180" y="30">TCP listener</text>
+                        <text class="flow-sub" x="180" y="43">Swoole</text>
+
+                        <rect class="flow-box" x="60" y="82" width="240" height="88" rx="12"/>
+                        <text class="flow-label" x="180" y="99">Valkey stream</text>
+                        <circle class="flow-dot" cx="82" cy="116" r="3"/>
+                        <line class="flow-msg" x1="94" y1="116" x2="286" y2="116"/>
+                        <circle class="flow-dot" cx="82" cy="134" r="3"/>
+                        <line class="flow-msg" x1="94" y1="134" x2="286" y2="134"/>
+                        <circle class="flow-dot" cx="82" cy="152" r="3"/>
+                        <line class="flow-msg" x1="94" y1="152" x2="286" y2="152"/>
+
+                        <rect class="flow-box" x="60" y="196" width="240" height="66" rx="12"/>
+                        <text class="flow-label" x="180" y="214">Workers</text>
+                        <text class="flow-sub" x="180" y="227">Symfony Messenger</text>
+                        <rect class="flow-worker" x="140" y="238" width="20" height="20" rx="3"/>
+                        <rect class="flow-worker" x="170" y="238" width="20" height="20" rx="3"/>
+                        <rect class="flow-worker" x="200" y="238" width="20" height="20" rx="3"/>
+
+                        <circle class="flow-success" cx="180" cy="320" r="20"/>
+                        <path class="flow-check" d="M171,321 L177,328 L190,309"/>
+                        <text class="flow-label" x="180" y="354">Processed</text>
+                        <text class="flow-sub" x="180" y="366">acked &amp; removed</text>
+
+                        <rect class="flow-dlq" x="270" y="306" width="80" height="60" rx="10"/>
+                        <text class="flow-label flow-label-sm" x="310" y="330">Dead letter</text>
+                        <text class="flow-label flow-label-sm" x="310" y="344">queue</text>
+                        <text class="flow-sub" x="310" y="380">what still fails</text>
+                    </svg>
                 </div>
             </div>
-        </div>
-        <div class="wrap hero-art-row">
-            <figure class="hero-art">
-                <figcaption>Stream, worker, dead letter</figcaption>
-                <svg viewBox="0 0 1180 200" role="img" aria-label="Messages flowing along a stream into a worker, with one diverted to a dead letter queue">
-                    <line x1="20" y1="40" x2="820" y2="40"/>
-                    <line x1="20" y1="104" x2="820" y2="104"/>
-                    <rect class="art-fill" x="70" y="62" width="20" height="20" rx="3"/>
-                    <rect class="art-fill" x="210" y="62" width="20" height="20" rx="3"/>
-                    <rect class="art-fill" x="350" y="62" width="20" height="20" rx="3"/>
-                    <rect class="art-fill" x="490" y="62" width="20" height="20" rx="3"/>
-                    <rect class="art-hot" x="630" y="62" width="20" height="20" rx="3"/>
-                    <rect class="art-fill" x="740" y="62" width="20" height="20" rx="3"/>
-                    <line class="art-accent" x1="820" y1="70" x2="886" y2="70"/>
-                    <path class="art-accent" d="M878 62 l9 8 l-9 8"/>
-                    <rect class="art-accent" x="900" y="34" width="240" height="72" rx="10"/>
-                    <line class="art-faint" x1="928" y1="60" x2="1112" y2="60"/>
-                    <line class="art-faint" x1="928" y1="82" x2="1056" y2="82"/>
-                    <path class="art-dash art-hot" d="M640 84 C 640 140 660 156 720 160"/>
-                    <rect class="art-dash art-hot" x="760" y="138" width="380" height="44" rx="8"/>
-                </svg>
-            </figure>
         </div>
     </section>
 
@@ -480,13 +512,17 @@
                    configuration as the application that queued the job.</p>
             </div>
 
-            <div class="core-band">
-                <span class="core-band-label">Shared domain layer</span>
-                <code>Core\Admin</code> <code>Core\App</code> <code>Core\Security</code>
-                <code>Core\Setting</code> <code>Core\User</code>
-                <p>Keep Core in sync between the main project and the queue and every class, service and configuration
-                   needed for message processing is already there - which is what makes a worker able to compose an
-                   email from your own templates.</p>
+            <div class="core-band row align-items-center gy-3">
+                <div class="col-12 col-lg-6">
+                    <span class="core-band-label my-2">Shared domain layer</span><br>
+                    <code>Core\Admin</code> <code>Core\App</code> <code>Core\Security</code>
+                    <code>Core\Setting</code> <code>Core\User</code>
+                </div>
+                <div class="col-12 col-lg-6 border-start ps-lg-4">
+                    <p>Keep Core in sync between the main project and the queue and every class, service and configuration
+                       needed for message processing is already there - which is what makes a worker able to compose an
+                       email from your own templates.</p>
+                </div>
             </div>
 
             <div class="products-grid">

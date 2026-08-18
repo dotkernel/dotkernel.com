@@ -21,20 +21,39 @@
         .spec-table td { color: var(--text); }
         .spec-note { margin-top: 14px; font-size: 13.5px; color: var(--text-dim); }
         .step-cmd { display: block; margin-top: 12px; font-family: var(--mono); font-size: 12.5px; color: var(--teal); overflow-x: auto; white-space: pre; }
+
+        /* Radial diagram in the hero - six session steps as squares around a central AI box. */
+        .ai-ring { position: relative; width: 100%; max-width: 340px; aspect-ratio: 1; margin: 10px auto 6px; }
+        .ai-core {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 92px; height: 92px; border-radius: 14px;
+            background: var(--page-accent, var(--sage)); color: var(--on-accent);
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--mono); font-weight: 700; font-size: 22px; letter-spacing: .04em;
+            box-shadow: 0 0 0 8px var(--page-accent-dim, var(--sage-dim));
+        }
+        .ai-node {
+            position: absolute; transform: translate(-50%, -50%); width: 96px;
+            display: flex; flex-direction: column; gap: 3px; text-align: center;
+            background: var(--surface-2); border: 1px solid var(--border-soft); border-radius: 10px;
+            padding: 10px 8px;
+        }
+        .ai-node .name { font-family: var(--mono); font-size: 11.5px; font-weight: 500; color: var(--text); }
+        .ai-node .tag { font-family: var(--mono); font-size: 9.5px; color: var(--text-dim); }
     </style>
 {% endblock %}
 
 {% block content %}
 
-    <section class="hero">
+    <section class="hero" style="--page-accent:var(--sage); --page-accent-dim:var(--sage-dim)">
         <div class="wrap hero-grid">
             <div>
                 <span class="eyebrow">Developer tooling · AI context</span>
                 <h1>Dotboost</h1>
                 <p class="sub">
-                    Drop-in configuration that teaches Claude Code the conventions of any Dotkernel application - API,
+                    Drop-in configuration that teaches <strong>Claude Code</strong> the conventions of any Dotkernel application - API,
                     Admin, Frontend, Light, Queue, or a project derived from one of them. Every skill detects the variant
-                    first and applies the matching dialect, so generated code follows your architecture instead of
+                    first and applies the <strong>matching dialect</strong>, so generated code follows your architecture instead of
                     guessing at it.
                 </p>
                 <div class="hero-ctas">
@@ -60,39 +79,17 @@
             <div class="hero-visual">
                 <div class="pipeline">
                     <div class="pipeline-label"><span>What happens in a session</span></div>
-                    <div class="pipeline-track">
-                        <div class="pl-packet" aria-hidden="true"></div>
-                        <div class="pl-step"><span class="name">Session start</span><span class="tag">variant briefing</span></div>
-                        <div class="pl-step"><span class="name">Skill loads</span><span class="tag">by description</span></div>
-                        <div class="pl-step"><span class="name">Plan mode</span><span class="tag">proposes first</span></div>
-                        <div class="pl-step"><span class="name">Guard hooks</span><span class="tag">Edit · Bash</span></div>
-                        <div class="pl-step"><span class="name">Normalise</span><span class="tag">BOM · CRLF · EOF</span></div>
-                        <div class="pl-step"><span class="name">Lint</span><span class="tag">php -l · markdown</span></div>
+                    <div class="ai-ring">
+                        <div class="ai-core">AI</div>
+                        <div class="ai-node" style="top:12%; left:50%"><span class="name">Session start</span><span class="tag">variant briefing</span></div>
+                        <div class="ai-node" style="top:31%; left:83%"><span class="name">Skill loads</span><span class="tag">by description</span></div>
+                        <div class="ai-node" style="top:69%; left:83%"><span class="name">Plan mode</span><span class="tag">proposes first</span></div>
+                        <div class="ai-node" style="top:88%; left:50%"><span class="name">Guard hooks</span><span class="tag">Edit · Bash</span></div>
+                        <div class="ai-node" style="top:69%; left:17%"><span class="name">Normalise</span><span class="tag">BOM · CRLF · EOF</span></div>
+                        <div class="ai-node" style="top:31%; left:17%"><span class="name">Lint</span><span class="tag">php -l · markdown</span></div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="wrap hero-art-row">
-            <figure class="hero-art">
-                <figcaption>Loaded into context</figcaption>
-                <svg viewBox="0 0 1180 200" role="img" aria-label="Commands, skills and hooks loading into a context window">
-                    <rect class="art-fill" x="20" y="42" width="18" height="18" rx="3"/>
-                    <rect class="art-fill" x="20" y="91" width="18" height="18" rx="3"/>
-                    <rect class="art-fill" x="20" y="140" width="18" height="18" rx="3"/>
-                    <line class="art-faint" x1="48" y1="51" x2="150" y2="51"/>
-                    <line class="art-faint" x1="48" y1="100" x2="150" y2="100"/>
-                    <line class="art-faint" x1="48" y1="149" x2="150" y2="149"/>
-                    <path d="M170 51 C 300 51 320 88 430 94"/>
-                    <path d="M170 100 h260"/>
-                    <path d="M170 149 C 300 149 320 112 430 106"/>
-                    <path class="art-accent" d="M500 24 h-70 v152 h70"/>
-                    <path class="art-accent" d="M1090 24 h70 v152 h-70"/>
-                    <line class="art-faint" x1="500" y1="56" x2="1080" y2="56"/>
-                    <line class="art-faint" x1="500" y1="82" x2="1010" y2="82"/>
-                    <line class="art-faint" x1="500" y1="108" x2="1060" y2="108"/>
-                    <line class="art-faint" x1="500" y1="134" x2="940" y2="134"/>
-                </svg>
-            </figure>
         </div>
     </section>
 
@@ -529,14 +526,18 @@ cp -r dotboost-main/.claude .claude</code>
                    detection runs first.</p>
             </div>
 
-            <div class="core-band">
-                <span class="core-band-label">Detected variants</span>
-                <code>API</code> <code>Admin</code> <code>Frontend</code>
-                <code>Light</code> <code>Queue</code>
-                <p>Before adapting the skills to a new Dotkernel application, the advice from its maintainer is to spend
-                   an hour reading that repo and correcting them against what is actually there. A skill written from
-                   framework docs rather than the codebase produces confident wrong answers, which is worse than no
-                   skill.</p>
+            <div class="core-band row align-items-center gy-3">
+                <div class="col-12 col-lg-6">
+                    <span class="core-band-label my-2">Detected variants</span><br>
+                    <code>API</code> <code>Admin</code> <code>Frontend</code>
+                    <code>Light</code> <code>Queue</code>
+                </div>
+                <div class="col-12 col-lg-6 border-start ps-lg-4">
+                    <p>Before adapting the skills to a new Dotkernel application, the advice from its maintainer is to spend
+                       an hour reading that repo and correcting them against what is actually there. A skill written from
+                       framework docs rather than the codebase produces confident wrong answers, which is worse than no
+                       skill.</p>
+                </div>
             </div>
 
             <div class="products-grid" style="margin-top:26px;">

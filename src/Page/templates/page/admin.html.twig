@@ -21,20 +21,37 @@
         .spec-table td { color: var(--text); }
         .spec-note { margin-top: 14px; font-size: 13.5px; color: var(--text-dim); }
         .step-cmd { display: block; margin-top: 12px; font-family: var(--mono); font-size: 12.5px; color: var(--teal); overflow-x: auto; }
+
+        /* Guarded record table in the hero - scoped to this page. */
+        .mock-table { width: 100%; border-collapse: collapse; margin-top: 6px; font-size: 13px; }
+        .mock-table th, .mock-table td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border-soft); }
+        .mock-table thead th { font-family: var(--mono); font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--text-dim); }
+        .mock-table tbody tr:last-child td { border-bottom: 0; }
+        .mock-table td { color: var(--text); }
+        .mock-pill { display: inline-block; padding: 3px 9px; border-radius: 999px; font-family: var(--mono); font-size: 10.5px; }
+        .mock-pill--ok { background: var(--sage-dim); color: var(--sage); }
+        .mock-pill--muted { background: var(--surface-2); color: var(--text-dim); }
+        .mock-table-action { font-family: var(--mono); font-size: 11px; color: var(--teal); white-space: nowrap; }
+        .mock-table-locked td { color: var(--text-dim); }
+        .mock-table-locked .mock-table-action { display: flex; align-items: center; gap: 5px; color: var(--brand-red); }
+        .mock-lock { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+        .mock-guards { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+        .mock-guard { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; background: var(--surface-2); border: 1px solid var(--border-soft); border-radius: 8px; font-family: var(--mono); font-size: 10.5px; color: var(--text-dim); }
+        .mock-guard-icon { width: 14px; height: 14px; fill: none; stroke: var(--sage); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
     </style>
 {% endblock %}
 
 {% block content %}
 
-    <section class="hero">
+    <section class="hero" style="--page-accent:var(--sage); --page-accent-dim:var(--sage-dim)">
         <div class="wrap hero-grid">
             <div>
                 <span class="eyebrow">Admin application · Server-rendered</span>
                 <h1>Dotkernel Admin</h1>
                 <p class="sub">
                     An open-source application skeleton for standing up the administration site behind your platform.
-                    A fast, reliable way to manage the records in your database with a simple table-based approach, and
-                    to build the reports and graphs that let you monitor what is happening - with the graphical
+                    A fast, reliable way to manage the records in your <strong>database</strong> with a simple table-based approach, and
+                    to build the <strong>reports and graphs</strong> that let you monitor what is happening - with the graphical
                     components for an intuitive experience already in place.
                 </p>
                 <div class="hero-ctas">
@@ -64,44 +81,47 @@
 
             <div class="hero-visual">
                 <div class="pipeline">
-                    <div class="pipeline-label"><span>Request lifecycle</span></div>
-                    <div class="pipeline-track">
-                        <div class="pl-packet" aria-hidden="true"></div>
-                        <div class="pl-step"><span class="name">Session</span><span class="tag">dot-session</span></div>
-                        <div class="pl-step"><span class="name">Router</span><span class="tag">dot-router</span></div>
-                        <div class="pl-step"><span class="name">Authentication</span><span class="tag">laminas-authentication</span></div>
-                        <div class="pl-step"><span class="name">RBAC guard</span><span class="tag">dot-rbac-guard</span></div>
-                        <div class="pl-step"><span class="name">Your handler</span><span class="tag">PSR-15</span></div>
-                        <div class="pl-step"><span class="name">Response</span><span class="tag">Twig template</span></div>
+                    <div class="pipeline-label"><span>Table-based management</span></div>
+                    <table class="mock-table" aria-label="Sample record table showing a user list with roles, statuses and an edit action that is blocked by an RBAC guard for a viewer role">
+                        <thead>
+                            <tr><th>Record</th><th>Role</th><th>Status</th><th></th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>B. Johnson</td>
+                                <td>Editor</td>
+                                <td><span class="mock-pill mock-pill--ok">Active</span></td>
+                                <td class="mock-table-action">Edit</td>
+                            </tr>
+                            <tr>
+                                <td>J. Doe</td>
+                                <td>Admin</td>
+                                <td><span class="mock-pill mock-pill--ok">Active</span></td>
+                                <td class="mock-table-action">Edit</td>
+                            </tr>
+                            <tr class="mock-table-locked">
+                                <td>Z. Miller</td>
+                                <td>Viewer</td>
+                                <td><span class="mock-pill mock-pill--muted">Suspended</span></td>
+                                <td class="mock-table-action">
+                                    <svg class="mock-lock" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+                                    RBAC
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="mock-guards">
+                        <div class="mock-guard">
+                            <svg class="mock-guard-icon" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6"/><path d="M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/></svg>
+                            <span>Full CRUD</span>
+                        </div>
+                        <div class="mock-guard">
+                            <svg class="mock-guard-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="9" width="4" height="4"/><rect x="10" y="9" width="4" height="4"/><rect x="17" y="9" width="4" height="4"/></svg>
+                            <span>2FA</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="wrap hero-art-row">
-            <figure class="hero-art">
-                <figcaption>Guarded record table</figcaption>
-                <svg viewBox="0 0 1180 200" role="img" aria-label="A wide record table in which one row is gated by a role check">
-                    <rect x="20" y="24" width="1140" height="152" rx="12"/>
-                    <rect class="art-fill" x="20" y="94" width="1140" height="40"/>
-                    <line x1="20" y1="66" x2="1160" y2="66"/>
-                    <line class="art-faint" x1="20" y1="94" x2="1160" y2="94"/>
-                    <line class="art-faint" x1="20" y1="134" x2="1160" y2="134"/>
-                    <line class="art-faint" x1="300" y1="24" x2="300" y2="176"/>
-                    <line class="art-faint" x1="620" y1="24" x2="620" y2="176"/>
-                    <line class="art-faint" x1="880" y1="24" x2="880" y2="176"/>
-                    <line class="art-faint" x1="48" y1="45" x2="180" y2="45"/>
-                    <line class="art-faint" x1="330" y1="45" x2="500" y2="45"/>
-                    <line class="art-faint" x1="650" y1="45" x2="790" y2="45"/>
-                    <line class="art-faint" x1="910" y1="45" x2="1010" y2="45"/>
-                    <path class="art-accent" d="M64 102 l12 4 v9 c0 7 -5 12 -12 15 c-7 -3 -12 -8 -12 -15 v-9 z"/>
-                    <line class="art-accent" x1="330" y1="114" x2="500" y2="114"/>
-                    <line class="art-accent" x1="650" y1="114" x2="790" y2="114"/>
-                    <line class="art-accent" x1="910" y1="114" x2="1010" y2="114"/>
-                    <line class="art-faint" x1="48" y1="156" x2="180" y2="156"/>
-                    <line class="art-faint" x1="330" y1="156" x2="500" y2="156"/>
-                    <line class="art-faint" x1="650" y1="156" x2="790" y2="156"/>
-                </svg>
-            </figure>
         </div>
     </section>
 
@@ -290,13 +310,17 @@
                    second module you write looks like the first.</p>
             </div>
 
-            <div class="core-band">
-                <span class="core-band-label">Shared domain layer</span>
-                <code>Core\Admin</code> <code>Core\App</code> <code>Core\Security</code>
-                <code>Core\Setting</code> <code>Core\User</code>
-                <p>The Core module is a common codebase shared with the other applications in your project. Each
-                   submodule holds its entities, repositories and its own ConfigProvider, so a user means the same
-                   thing to the admin screen and to the API endpoint.</p>
+            <div class="core-band row align-items-center gy-3">
+                <div class="col-12 col-lg-6">
+                    <span class="core-band-label my-2">Shared domain layer</span><br>
+                    <code>Core\Admin</code> <code>Core\App</code> <code>Core\Security</code>
+                    <code>Core\Setting</code> <code>Core\User</code>
+                </div>
+                <div class="col-12 col-lg-6 border-start ps-lg-4">
+                    <p>The Core module is a common codebase shared with the other applications in your project. Each
+                       submodule holds its entities, repositories and its own ConfigProvider, so a user means the same
+                       thing to the admin screen and to the API endpoint.</p>
+                </div>
             </div>
 
             <div class="standards-grid">
@@ -417,7 +441,7 @@
                         </tr>
                         <tr>
                             <th scope="row">Database</th>
-                            <td>MariaDB 10.7, 10.11 LTS, 11.4 LTS and 11.8 LTS, or PostgreSQL 13 and above.
+                            <td>MariaDB 11.4 LTS, 11.8 LTS and 12.3 LTS, or PostgreSQL 13 and above.
                                 <strong>MySQL is not supported</strong>, as it has no UUID support.</td>
                         </tr>
                         <tr>
