@@ -85,7 +85,4 @@ To avoid this, you should use the correct prepared statements from Zend Framewor
 A: Zend_Db has two escaping methods that can be used: quote() and quoteIdentifier().
 Both of these methods handle strings by putting them between single quotes.
 
-## Resources
 
-- SQL Injection Protection in PHP With PDO (ezinearticles.com)
-- Zend Webinar: Secure Application Development with the ZF
