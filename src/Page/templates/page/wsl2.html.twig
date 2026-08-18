@@ -1,0 +1,372 @@
+{% extends '@layout/default.html.twig' %}
+
+{% set routeName = 'page::wsl2' %}
+{% set meta = {
+    title: 'Development Environment | AlmaLinux 10 on WSL 2',
+    description: 'AlmaLinux 10 on WSL 2 for a RHEL-compatible local stack. One Ansible playbook installs PHP, Apache, '
+        ~ 'MariaDB, Composer, Node.js and phpMyAdmin, and provisions a virtualhost for every project you add.',
+} %}
+
+{% block title %}Development Environment{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        /* Requirement and provisioning tables - scoped to this page, uses the shared theme tokens. */
+        .spec-table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius); }
+        .spec-table { width: 100%; border-collapse: collapse; font-size: 14.5px; background: var(--surface); }
+        .spec-table th, .spec-table td { padding: 13px 18px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--border); }
+        .spec-table thead th { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--text-dim); background: var(--surface-2); }
+        .spec-table tbody tr:last-child th, .spec-table tbody tr:last-child td { border-bottom: 0; }
+        .spec-table tbody th { font-weight: 500; color: var(--text-muted); white-space: nowrap; }
+        .spec-table td { color: var(--text); }
+        .spec-note { margin-top: 14px; font-size: 13.5px; color: var(--text-dim); }
+        .step-cmd { display: block; margin-top: 12px; font-family: var(--mono); font-size: 12.5px; color: var(--teal); overflow-x: auto; }
+
+        /* Windows/AlmaLinux boundary diagram in the hero - scoped to this page. */
+        .ws-flow { display: block; width: 100%; height: auto; margin-top: 6px; }
+        .ws-flow .ws-panel { stroke-width: 1.25; }
+        .ws-flow .ws-panel--win { fill: var(--periwinkle-dim); stroke: var(--periwinkle); }
+        .ws-flow .ws-panel--alma { fill: var(--sage-dim); stroke: var(--sage); }
+        .ws-flow .ws-panel-label { font-family: var(--mono); font-size: 10.5px; letter-spacing: .04em; text-transform: uppercase; fill: var(--text-dim); text-anchor: middle; }
+        .ws-flow .ws-boundary { stroke: var(--border); stroke-width: 1.5; stroke-dasharray: 5 5; }
+        .ws-flow .ws-boundary-label { font-family: var(--mono); font-size: 9.5px; font-weight: 600; letter-spacing: .06em; fill: var(--text-dim); text-anchor: middle; }
+        .ws-flow .ws-box { fill: var(--surface); stroke: var(--border-soft); stroke-width: 1.25; }
+        .ws-flow .ws-line { stroke: var(--border-soft); stroke-width: 1.5; }
+        .ws-flow .ws-arrow { fill: var(--border-soft); }
+        .ws-flow .ws-label { font-family: var(--mono); font-size: 10px; font-weight: 600; fill: var(--text); text-anchor: middle; }
+        .ws-flow .ws-comp { fill: var(--surface); stroke: var(--border-soft); stroke-width: 1.25; }
+        .ws-flow .ws-comp-label { font-family: var(--mono); font-size: 9.5px; font-weight: 500; fill: var(--text); text-anchor: middle; }
+    </style>
+{% endblock %}
+
+{% block content %}
+
+    <section class="hero" style="--page-accent:var(--sage); --page-accent-dim:var(--sage-dim)">
+        <div class="wrap hero-grid">
+            <div>
+                <span class="eyebrow">Development environment · AlmaLinux 10 · WSL2</span>
+                <h1>AlmaLinux development, one playbook away on WSL2</h1>
+                <p class="sub">
+                    Dotkernel's local environment runs <strong>AlmaLinux 10</strong> - inside <strong>WSL 2</strong> on Windows, or on bare
+                    metal with no WSL at all. One <strong>Ansible</strong> playbook installs PHP, Apache, MariaDB, Composer, Node.js and
+                    phpMyAdmin, and every project gets its own <code>*.localhost</code> virtualhost without touching a hosts file.
+                </p>
+                <div class="hero-ctas">
+                    <a class="btn btn-primary" href="https://docs.dotkernel.org/development/v2/" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                        Read the docs
+                    </a>
+                    <a class="btn btn-ghost" href="https://github.com/dotkernel/development/tree/alma-linux-10" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.1.83-.27.83-.58v-2.17c-3.34.73-4.04-1.42-4.04-1.42-.55-1.4-1.34-1.77-1.34-1.77-1.08-.75.09-.73.09-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.84 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.53.12-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.65.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .31.22.69.83.57A12 12 0 0 0 12 .5z"/></svg>
+                        View on GitHub
+                    </a>
+                </div>
+                {{ include('@partial/markdown-actions.html.twig', {markdown_url: absolute_url(asset('md-pages/wsl2.md'))}) }}
+                <div class="hero-stack-note">
+                    <div><span>Distro</span> AlmaLinux 10</div>
+                    <div><span>Provisioning</span> Ansible</div>
+                    <div><span>Host</span> WSL 2 or bare metal</div>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="pipeline">
+                    <div class="pipeline-label"><span>Windows host, Linux environment</span></div>
+                    <svg class="ws-flow" viewBox="0 0 400 200" role="img" aria-label="Two panels, Windows on the left with Terminal and IDE boxes, and AlmaLinux 10 on the right listing the components one playbook installs - web server, database, PHP, Node.js, Git and Composer, and Ansible - separated by a WSL 2 boundary">
+                        <defs>
+                            <marker id="ws-arrowhead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                <path d="M0,0 L10,5 L0,10 Z" class="ws-arrow"/>
+                            </marker>
+                        </defs>
+
+                        <rect class="ws-panel ws-panel--win" x="10" y="10" width="140" height="180" rx="14"/>
+                        <text class="ws-panel-label" x="80" y="34">Windows</text>
+
+                        <rect class="ws-panel ws-panel--alma" x="190" y="10" width="200" height="180" rx="14"/>
+                        <text class="ws-panel-label" x="290" y="34">AlmaLinux 10</text>
+
+                        <line class="ws-boundary" x1="170" y1="10" x2="170" y2="190"/>
+                        <text class="ws-boundary-label" x="170" y="53" transform="rotate(-90 170 53)">WSL 2</text>
+
+                        <line class="ws-line" x1="130" y1="84" x2="230" y2="84" marker-end="url(#ws-arrowhead)"/>
+
+                        <rect class="ws-box" x="30" y="62" width="100" height="44" rx="8"/>
+                        <text class="ws-label" x="80" y="88">Terminal</text>
+
+                        <rect class="ws-box" x="30" y="126" width="100" height="44" rx="8"/>
+                        <text class="ws-label" x="80" y="152">IDE</text>
+
+                        <rect class="ws-comp" x="230" y="46" width="120" height="20" rx="5"/>
+                        <text class="ws-comp-label" x="290" y="60">Web server</text>
+
+                        <rect class="ws-comp" x="230" y="70" width="120" height="20" rx="5"/>
+                        <text class="ws-comp-label" x="290" y="84">Database</text>
+
+                        <rect class="ws-comp" x="230" y="94" width="120" height="20" rx="5"/>
+                        <text class="ws-comp-label" x="290" y="108">PHP</text>
+
+                        <rect class="ws-comp" x="230" y="118" width="120" height="20" rx="5"/>
+                        <text class="ws-comp-label" x="290" y="132">Node.js</text>
+
+                        <rect class="ws-comp" x="230" y="142" width="120" height="20" rx="5"/>
+                        <text class="ws-comp-label" x="290" y="156">Git &amp; Composer</text>
+
+                        <rect class="ws-comp" x="230" y="166" width="120" height="20" rx="5"/>
+                        <text class="ws-comp-label" x="290" y="180">Ansible</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="what-is-platform">
+        <div class="wrap split">
+            <div>
+                <span class="eyebrow">What it is</span>
+                <h2>The same OS family your servers run</h2>
+                <p class="lede">
+                    AlmaLinux is a RHEL-compatible distribution, so the packages, package manager and service
+                    conventions you use locally - <code>dnf</code>, <code>systemd</code> and the rest - are the ones you will see again in
+                    staging and production. WSL 2 puts that distro on a Windows machine without a second computer or a
+                    Windows-native rebuild of every tool.
+                </p>
+                <p class="lede">
+                    Everything here also runs the same way without WSL, directly on a bare AlmaLinux 10 host - the
+                    Ansible playbooks do not know or care which one they are provisioning.
+                </p>
+            </div>
+            <div class="traits">
+                <div class="trait">
+                    <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/success-50.svg') }}" alt="" loading="lazy">
+                    <p>RHEL-compatible, matches production</p>
+                </div>
+
+                <div class="trait">
+                    <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/speed-radar-50.svg') }}" alt="" loading="lazy">
+                    <p>One playbook, the whole stack</p>
+                </div>
+
+                <div class="trait">
+                    <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/traffic-sign-50.svg') }}" alt="" loading="lazy">
+                    <p>Virtualhosts without touching hosts file</p>
+                </div>
+
+                <div class="trait">
+                    <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/maintenance.svg') }}" alt="" loading="lazy">
+                    <p>Aliases for switching PHP &amp; Node versions</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="background:var(--surface-2);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Setup</span>
+                <h2>Three steps to a running shell</h2>
+                <p>Each step runs in a different place - Windows Terminal for the first two, the AlmaLinux 10 shell for
+                   the third. The full walkthrough, prompts and all, is in the docs.</p>
+            </div>
+
+            <div class="standards-grid">
+                <div class="standard">
+                    <h4>1 · Terminal &amp; requirements</h4>
+                    <p>Install Windows Terminal, then confirm WSL 2 is enabled - Hyper-V, Virtual Machine Platform and
+                       Windows Subsystem for Linux, all turned on in Windows features.</p>
+                    <code class="step-cmd">wsl -v</code>
+                </div>
+                <div class="standard">
+                    <h4>2 · Install AlmaLinux 10</h4>
+                    <p>Stop any other running distro, then install AlmaLinux 10 and create your Unix username and
+                       password when prompted.</p>
+                    <code class="step-cmd">wsl --install -d AlmaLinux-10</code>
+                </div>
+                <div class="standard">
+                    <h4>3 · Setup packages</h4>
+                    <p>Clone <code>dotkernel/development</code>, fill in <code>config.yml</code> with your Git identity and MariaDB
+                       root password, and let Ansible provision the rest.</p>
+                    <code class="step-cmd">ansible-playbook -i hosts install.yml --ask-become-pass</code>
+                </div>
+            </div>
+
+            <p class="spec-note">
+                Not using WSL? Skip straight to Setup Packages on a bare AlmaLinux 10 host - the same playbook runs
+                there unchanged.
+            </p>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Provisioning</span>
+                <h2>What one playbook installs</h2>
+                <p><code>install.yml</code> reads <code>config.yml</code> once and provisions every one of these - safe to re-run if a
+                   step fails partway through.</p>
+            </div>
+
+            <div class="spec-table-wrap">
+                <table class="spec-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Component</th>
+                            <th scope="col">What you get</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Web server</th>
+                            <td>Apache, with virtualhosts routed automatically under <code>*.localhost</code>.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Database</th>
+                            <td>MariaDB 11.4 LTS, plus phpMyAdmin for browsing it.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">PHP</th>
+                            <td>8.4 by default via the Remi repository; <code>php81</code> … <code>php85</code> aliases switch
+                                versions.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Node.js</th>
+                            <td>22 by default via NodeSource; <code>node18</code> … <code>node24</code> aliases switch versions.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Git &amp; Composer</th>
+                            <td>Your Git identity from <code>config.yml</code>, and the latest Composer, kept current with
+                                <code>composer self-update</code>.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Ansible</th>
+                            <td><code>community.general</code> and <code>community.mysql</code> collections - the same tool that just
+                                installed itself.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section style="background:var(--surface-2);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);">
+        <div class="wrap split">
+            <div>
+                <span class="eyebrow">Virtualhosts</span>
+                <h2>Every project, its own subdomain</h2>
+                <p class="lede">
+                    <code>api.dotkernel.localhost</code> and <code>frontend.dotkernel.localhost</code> can point at two different
+                    projects on the same machine, and Apache routes both without a single edit to the Windows hosts
+                    file - any <code>*.localhost</code> domain is routed automatically.
+                </p>
+                <p class="lede">
+                    List the domains you want under <code>config.yml</code>'s <code>virtualhosts</code> key and run the playbook.
+                    Existing entries are left untouched, so you keep adding to the same file as your project grows.
+                </p>
+                <div class="hero-ctas">
+                    <a class="btn btn-ghost" href="https://docs.dotkernel.org/development/v2/virtualhosts/overview/" target="_blank" rel="noopener">Read the virtualhosts docs</a>
+                </div>
+            </div>
+            <div class="callout">
+                <h4>One playbook, every domain</h4>
+                <p>In <code>development/wsl/config.yml</code>, under <code>virtualhosts</code>:</p>
+                <code class="step-cmd">api.dotkernel.localhost</code>
+                <p>Then provision it:</p>
+                <code class="step-cmd">ansible-playbook -i hosts create-virtualhost.yml --ask-become-pass</code>
+                <p>
+                    Files go under <code>/var/www/api.dotkernel.localhost/html</code>, with the document root at
+                    <code>html/public</code>.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">FAQ</span>
+                <h2>Common questions</h2>
+                <p>The short version of the full FAQ - see the docs for the rest.</p>
+            </div>
+            <div class="components-grid">
+                <div>
+                    <details class="acc" open>
+                        <summary>How do I switch PHP versions? <span class="chev">+</span></summary>
+                        <div class="acc-body">
+                            <p>Run <code>sudo dnf module switch-to php:remi-{major}.{minor} -y</code>, or use one of the
+                               predefined aliases: <code>php81</code>, <code>php82</code>, <code>php83</code>, <code>php84</code> or
+                               <code>php85</code>.</p>
+                        </div>
+                    </details>
+                    <details class="acc">
+                        <summary>How do I switch Node.js versions? <span class="chev">+</span></summary>
+                        <div class="acc-body">
+                            <p>Use one of the predefined aliases - <code>node18</code>, <code>node20</code>, <code>node22</code> or
+                               <code>node24</code> - which reinstall Node.js from NodeSource at that major version.</p>
+                        </div>
+                    </details>
+                    <details class="acc">
+                        <summary>How do I fix permission issues? <span class="chev">+</span></summary>
+                        <div class="acc-body">
+                            <p>Local development only: <code>chmod -R 777 data</code>, <code>log</code> or
+                               <code>public/uploads</code>, whichever directory the error names.</p>
+                        </div>
+                    </details>
+                    <details class="acc">
+                        <summary>Where are the error logs? <span class="chev">+</span></summary>
+                        <div class="acc-body">
+                            <p>Apache: <code>/var/log/httpd/error_log</code>. PHP-FPM: <code>/var/log/php-fpm/error.log</code> and
+                               <code>www-error.log</code>.</p>
+                        </div>
+                    </details>
+                </div>
+                <div>
+                    <details class="acc">
+                        <summary>How do I update Composer? <span class="chev">+</span></summary>
+                        <div class="acc-body">
+                            <p><code>sudo /usr/local/bin/composer self-update</code>, then confirm with
+                               <code>composer --version</code>.</p>
+                        </div>
+                    </details>
+                    <details class="acc">
+                        <summary>How do I create command aliases? <span class="chev">+</span></summary>
+                        <div class="acc-body">
+                            <p>Add <code>alias name="command"</code> to <code>.bash_profile</code> in your home directory, then run
+                               it like any other command.</p>
+                        </div>
+                    </details>
+                    <details class="acc">
+                        <summary>How do I delete a virtualhost? <span class="chev">+</span></summary>
+                        <div class="acc-body">
+                            <p>Remove its folder under <code>/var/www/</code>, its Apache config and enabled-site symlink, then
+                               <code>sudo systemctl restart httpd</code>.</p>
+                        </div>
+                    </details>
+                    <details class="acc">
+                        <summary>Can I run this without WSL? <span class="chev">+</span></summary>
+                        <div class="acc-body">
+                            <p>Yes - every instruction here works the same way on a bare AlmaLinux 10 host.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-band">
+        <div class="wrap about-inner">
+            <div>
+                <span class="eyebrow">Built for how the platform ships</span>
+                <h2>Provision once, match production everywhere.</h2>
+            </div>
+            <div>
+                <p class="about-text">
+                    The WSL 2 + AlmaLinux 10 setup is maintained by the same team behind the rest of the Headless
+                    Platform, so the local environment stays in step with what actually runs in production - not a
+                    Docker approximation of it.
+                </p>
+                <div class="about-cta">
+                    <a class="btn btn-ghost" href="{{ url('page::contact') }}">Talk to us →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
