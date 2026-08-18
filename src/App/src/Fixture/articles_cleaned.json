@@ -978,7 +978,7 @@
             {
                 "post_title": "Test article",
                 "post_date": "2026-08-06 00:00:00",
-                "post_status": "publish",
+                "post_status": "draft",
                 "author": {
                     "display_name": "stefan",
                     "github": "OStefan2001"
@@ -988,6 +988,37 @@
                 "excerpt": "This is a test article used for fixture and testing purposes.",
                 "tl_dr": "This is a test article added to the dotkernel category for testing purposes. This article is now updated.",
                 "tags": []
+            },
+            {
+                "post_title": "How to build this website starting from Dotkernel Light",
+                "post_date": "2026-08-14 00:00:00",
+                "post_status": "publish",
+                "author": {
+                    "display_name": "stefan",
+                    "github": "OStefan2001"
+                },
+                "isObsolete": false,
+                "opengraph_img": null,
+                "excerpt": "How this blog itself came together: starting from the Dotkernel Light starter project, then following the Tutorial 101 to add Doctrine ORM and load real data into the database.",
+                "tl_dr": "This project started from the Dotkernel Light starter (Mezzio, Twig, FastRoute, PSR-7 via Laminas Diactoros) as a bare-bones website skeleton.\nFollowing the official Tutorial 101, Doctrine ORM was added on top: entities for posts, categories, authors and tags, migrations to create the schema, and fixtures to load real content into the database.\nThe result is this: a Dotkernel Light project turned into a fully data-driven site.",
+                "tags": [
+                    {
+                        "name": "dotkernel light",
+                        "slug": "dotkernel-light"
+                    },
+                    {
+                        "name": "doctrine",
+                        "slug": "doctrine"
+                    },
+                    {
+                        "name": "tutorial 101",
+                        "slug": "tutorial-101"
+                    },
+                    {
+                        "name": "getting started",
+                        "slug": "getting-started"
+                    }
+                ]
             }
         ]
     },
