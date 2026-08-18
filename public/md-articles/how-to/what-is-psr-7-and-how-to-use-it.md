@@ -200,7 +200,7 @@ $body->rewind(); // or $body->seek(0);
 $bodyText = $body->getContends();
 ```
 
-More information can be found in the PSR-7 article in [Dotkernel3 documentation portal](https://docs.dotkernel.com/).
+More information can be found in the [PSR-7 article](https://www.php-fig.org/psr/psr-7/) in Dotkernel3 documentation portal.
 
 Sources: [PSR-7: HTTP messages](http://www.php-fig.org/psr/psr-7/), [zend-diactoros](https://zendframework.github.io/zend-diactoros/)
 
