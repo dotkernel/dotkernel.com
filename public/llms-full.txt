@@ -10307,7 +10307,7 @@ language: "en"
 
 ## TL;DR
 
-Dotkernel API v7 adds support for native UUID v7, PostgreSQL, PHP 8.5 (8.4 for Admin), database table prefixes, and improved database configuration, while replacing the `binary` data type for `id` columns with `uuid`.
+Dotkernel API v7 adds support for native UUID v7, PostgreSQL, PHP 8.5, database table prefixes, and improved database configuration, while replacing the `binary` data type for `id` columns with `uuid`.
 It drops the Evolution pattern's Method Deprecation support and MySQL, since MySQL doesn't support the UUID data type.
 UUIDs are generated with the ramsey/uuid package, previously `uuid`-named table columns are now called `id`, and PostgreSQL or MariaDB v10.7+ is required for UUID support.
 
@@ -10319,7 +10319,7 @@ New features are:
 
 - Support for `UUID` v7 using the native `UUID` data type.
 - Support for PostgreSQL.
-- Support for PHP 8.5 for API and 8.4 for Admin.
+- Support for PHP 8.5.
 - Support for database table prefix (string prepended to the name of every table in a database).
 - Improved database configuration.
 - The replacement of the `binary` data type for `id` (index) columns, in favor of `uuid`.

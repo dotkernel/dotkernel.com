@@ -58,7 +58,9 @@ class PostRepository extends AbstractRepository
             ->select('posts')
             ->from(Post::class, 'posts')
             ->where('posts.author = :author')
+            ->andWhere('posts.status = :published')
             ->setParameter('author', $author)
+            ->setParameter('published', PostStatusEnum::Published)
             ->orderBy('posts.postDate', $params['dir'])
             ->setFirstResult($params['offset'])
             ->setMaxResults($params['limit']);
