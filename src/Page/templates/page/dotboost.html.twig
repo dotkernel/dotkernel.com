@@ -91,28 +91,6 @@
                 </div>
             </div>
         </div>
-        <div class="wrap hero-art-row">
-            <figure class="hero-art">
-                <figcaption>Loaded into context</figcaption>
-                <svg viewBox="0 0 1180 200" role="img" aria-label="Commands, skills and hooks loading into a context window">
-                    <rect class="art-fill" x="20" y="42" width="18" height="18" rx="3"/>
-                    <rect class="art-fill" x="20" y="91" width="18" height="18" rx="3"/>
-                    <rect class="art-fill" x="20" y="140" width="18" height="18" rx="3"/>
-                    <line class="art-faint" x1="48" y1="51" x2="150" y2="51"/>
-                    <line class="art-faint" x1="48" y1="100" x2="150" y2="100"/>
-                    <line class="art-faint" x1="48" y1="149" x2="150" y2="149"/>
-                    <path d="M170 51 C 300 51 320 88 430 94"/>
-                    <path d="M170 100 h260"/>
-                    <path d="M170 149 C 300 149 320 112 430 106"/>
-                    <path class="art-accent" d="M500 24 h-70 v152 h70"/>
-                    <path class="art-accent" d="M1090 24 h70 v152 h-70"/>
-                    <line class="art-faint" x1="500" y1="56" x2="1080" y2="56"/>
-                    <line class="art-faint" x1="500" y1="82" x2="1010" y2="82"/>
-                    <line class="art-faint" x1="500" y1="108" x2="1060" y2="108"/>
-                    <line class="art-faint" x1="500" y1="134" x2="940" y2="134"/>
-                </svg>
-            </figure>
-        </div>
     </section>
 
     <section class="what-is-platform">
@@ -548,14 +526,18 @@ cp -r dotboost-main/.claude .claude</code>
                    detection runs first.</p>
             </div>
 
-            <div class="core-band">
-                <span class="core-band-label">Detected variants</span>
-                <code>API</code> <code>Admin</code> <code>Frontend</code>
-                <code>Light</code> <code>Queue</code>
-                <p>Before adapting the skills to a new Dotkernel application, the advice from its maintainer is to spend
-                   an hour reading that repo and correcting them against what is actually there. A skill written from
-                   framework docs rather than the codebase produces confident wrong answers, which is worse than no
-                   skill.</p>
+            <div class="core-band row align-items-center gy-3">
+                <div class="col-12 col-lg-6">
+                    <span class="core-band-label my-2">Detected variants</span><br>
+                    <code>API</code> <code>Admin</code> <code>Frontend</code>
+                    <code>Light</code> <code>Queue</code>
+                </div>
+                <div class="col-12 col-lg-6 border-start ps-lg-4">
+                    <p>Before adapting the skills to a new Dotkernel application, the advice from its maintainer is to spend
+                       an hour reading that repo and correcting them against what is actually there. A skill written from
+                       framework docs rather than the codebase produces confident wrong answers, which is worse than no
+                       skill.</p>
+                </div>
             </div>
 
             <div class="products-grid" style="margin-top:26px;">
