@@ -48,4 +48,4 @@ A: The official documentation is linked in the article at docs.dotkernel.com/Pre
 ## Resources
 
 - [Twig Templating Engine](https://twig.symfony.com/)
-- [Dotkernel Templates documentation](https://docs.dotkernel.com/Prerequisites/Templates)
+- Dotkernel Templates documentation
