@@ -169,36 +169,6 @@
                 </div>
             </div>
         </div>
-        <div class="wrap hero-art-row">
-            <figure class="hero-art">
-                <figcaption>One resource, its links</figcaption>
-                <svg viewBox="0 0 1180 200" role="img" aria-label="A resource envelope on the left whose links fan out to four embedded resources">
-                    <rect x="20" y="34" width="300" height="132" rx="12"/>
-                    <line class="art-faint" x1="20" y1="74" x2="320" y2="74"/>
-                    <line x1="44" y1="54" x2="130" y2="54"/>
-                    <rect class="art-fill" x="44" y="98" width="10" height="10" rx="2"/>
-                    <line class="art-faint" x1="66" y1="103" x2="200" y2="103"/>
-                    <rect class="art-fill" x="44" y="130" width="10" height="10" rx="2"/>
-                    <line class="art-faint" x1="66" y1="135" x2="250" y2="135"/>
-                    <path class="art-accent" d="M320 78 C 380 78 380 46 440 46"/>
-                    <path class="art-accent" d="M320 92 C 400 92 420 84 620 84"/>
-                    <path class="art-accent" d="M320 106 C 420 106 460 122 800 122"/>
-                    <path class="art-accent" d="M320 120 C 440 120 480 160 980 160"/>
-                    <rect class="art-accent" x="440" y="22" width="150" height="48" rx="8"/>
-                    <line class="art-faint" x1="462" y1="40" x2="556" y2="40"/>
-                    <line class="art-faint" x1="462" y1="54" x2="524" y2="54"/>
-                    <rect class="art-accent" x="620" y="60" width="150" height="48" rx="8"/>
-                    <line class="art-faint" x1="642" y1="78" x2="736" y2="78"/>
-                    <line class="art-faint" x1="642" y1="92" x2="704" y2="92"/>
-                    <rect class="art-accent" x="800" y="98" width="150" height="48" rx="8"/>
-                    <line class="art-faint" x1="822" y1="116" x2="916" y2="116"/>
-                    <line class="art-faint" x1="822" y1="130" x2="884" y2="130"/>
-                    <rect class="art-accent" x="980" y="136" width="150" height="48" rx="8"/>
-                    <line class="art-faint" x1="1002" y1="154" x2="1096" y2="154"/>
-                    <line class="art-faint" x1="1002" y1="168" x2="1064" y2="168"/>
-                </svg>
-            </figure>
-        </div>
     </section>
 
     <section class="what-is-platform">
@@ -410,7 +380,7 @@
                 </div>
                 <div class="standard">
                     <h4>PHP 8.5</h4>
-                    <p>The API targets PHP 8.5, with Dotkernel Admin on 8.4. Dependencies are kept current, and the
+                    <p>The API and Admin target PHP 8.5. Dependencies are kept current, and the
                        ecosystem's own packages track the versions Laminas and Doctrine support.</p>
                 </div>
                 <div class="standard">
@@ -521,13 +491,17 @@
                    ecosystem is below.</p>
             </div>
 
-            <div class="core-band">
-                <span class="core-band-label">Shared domain layer</span>
-                <code>Core\App</code> <code>Core\Admin</code> <code>Core\User</code>
-                <code>Core\Security</code> <code>Core\Setting</code>
-                <p>One set of entities and repositories, committed in each repository so a single-component start just
-                   works. Having many entities in Core does not oblige you to implement handlers for all of them -
-                   each application handles only what it needs.</p>
+            <div class="core-band row align-items-center gy-3">
+                <div class="col-12 col-lg-6">
+                    <span class="core-band-label my-2">Shared domain layer</span><br>
+                    <code>Core\App</code> <code>Core\Admin</code> <code>Core\User</code>
+                    <code>Core\Security</code> <code>Core\Setting</code>
+                </div>
+                <div class="col-12 col-lg-6 border-start ps-lg-4">
+                    <p>One set of entities and repositories, committed in each repository so a single-component start just
+                       works. Having many entities in Core does not oblige you to implement handlers for all of them -
+                       each application handles only what it needs.</p>
+                </div>
             </div>
 
             <div class="products-grid">

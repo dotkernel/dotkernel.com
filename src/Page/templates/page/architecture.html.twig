@@ -580,12 +580,16 @@
                    the same <code>Core</code> namespaces underneath.</p>
             </div>
 
-            <div class="core-band">
-                <span class="core-band-label">Shared domain layer</span>
-                <code>Core\App</code> <code>Core\Admin</code> <code>Core\User</code>
-                <code>Core\Security</code> <code>Core\Setting</code>
-                <p>Kept as its own Git repository and added as a submodule, so an entity means the same thing to the
-                   endpoint that creates it, the admin screen that moderates it and the worker that emails it.</p>
+            <div class="core-band row align-items-center gy-3">
+                <div class="col-12 col-lg-6">
+                    <span class="core-band-label my-2">Shared domain layer</span><br>
+                    <code>Core\App</code> <code>Core\Admin</code> <code>Core\User</code>
+                    <code>Core\Security</code> <code>Core\Setting</code>
+                </div>
+                <div class="col-12 col-lg-6 border-start ps-lg-4">
+                    <p>Kept as its own Git repository and added as a submodule, so an entity means the same thing to the
+                       endpoint that creates it, the admin screen that moderates it and the worker that emails it.</p>
+                </div>
             </div>
 
             <div class="applies-grid">
