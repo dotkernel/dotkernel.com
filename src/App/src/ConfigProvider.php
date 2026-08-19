@@ -20,6 +20,7 @@ use Light\App\Factory\GetPackagesViewHandlerFactory;
 use Light\App\Factory\GetSitemapViewHandlerFactory;
 use Light\App\Factory\GitHubClientFactory;
 use Light\App\Factory\LlmsFullGeneratorFactory;
+use Light\App\Factory\LlmsGeneratorFactory;
 use Light\App\Factory\PackageGeneratorFactory;
 use Light\App\Factory\SitemapGeneratorFactory;
 use Light\App\Handler\GetFeedViewHandler;
@@ -32,6 +33,7 @@ use Light\App\Service\FeedGenerator;
 use Light\App\Service\GitHubClient;
 use Light\App\Service\GitHubClientInterface;
 use Light\App\Service\LlmsFullGenerator;
+use Light\App\Service\LlmsGenerator;
 use Light\App\Service\PackageGenerator;
 use Light\App\Service\SitemapGenerator;
 use Mezzio\Application;
@@ -141,6 +143,7 @@ class ConfigProvider
                 GitHubClient::class                   => GitHubClientFactory::class,
                 PackageGenerator::class               => PackageGeneratorFactory::class,
                 LlmsFullGenerator::class              => LlmsFullGeneratorFactory::class,
+                LlmsGenerator::class                  => LlmsGeneratorFactory::class,
             ],
             'aliases'    => [
                 EntityManager::class          => 'doctrine.entity_manager.orm_default',

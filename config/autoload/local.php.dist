@@ -67,7 +67,9 @@ return [
         'sourceDir'  => realpath(__DIR__ . '/../../public/md-articles'),
         'outputFile' => realpath(__DIR__ . '/../../public/llms-full.txt'),
         // Markdown versions of the static pages, appended after the articles. Optional.
-        'pagesDir' => realpath(__DIR__ . '/../../public/md-pages'),
+        'pagesDir'  => realpath(__DIR__ . '/../../public/md-pages'),
+        // Short, categorized index of the blog, written by bin/generate-llms.
+        'indexFile' => realpath(__DIR__ . '/../../public/llms.txt'),
     ],
     /**
      * Credentials for `bin/generate-packages`. Reading public repositories needs no token
