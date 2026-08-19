@@ -32,6 +32,7 @@ class LlmsGeneratorTest extends UnitTest
 {
     private string $workDir;
     private string $sourceDir;
+    private string $pagesDir;
     private string $outputFile;
 
     protected function setUp(): void
@@ -46,9 +47,11 @@ class LlmsGeneratorTest extends UnitTest
         );
 
         $this->sourceDir  = $this->workDir . DIRECTORY_SEPARATOR . 'md-articles';
+        $this->pagesDir   = $this->workDir . DIRECTORY_SEPARATOR . 'md-pages';
         $this->outputFile = $this->workDir . DIRECTORY_SEPARATOR . 'llms.txt';
 
         mkdir($this->sourceDir, 0775, true);
+        mkdir($this->pagesDir, 0775, true);
     }
 
     protected function tearDown(): void
@@ -266,6 +269,101 @@ class LlmsGeneratorTest extends UnitTest
     /**
      * @throws Exception
      */
+    public function testWriteOmitsThePagesSectionWhenNoPagesDirectoryIsConfigured(): void
+    {
+        $this->writePage('api', 'Dotkernel API | Tagline');
+
+        $this->createGenerator(pagesDir: null)->write();
+
+        $this->assertStringNotContainsString('## Pages', $this->writtenOutput());
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testWriteOmitsThePagesSectionWhenThePagesDirectoryIsEmpty(): void
+    {
+        $this->createGenerator()->write();
+
+        $this->assertStringNotContainsString('## Pages', $this->writtenOutput());
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testWriteIncludesEachPageSortedAlphabeticallyByTitle(): void
+    {
+        $this->writePage('api', 'Zebra page | Some tagline');
+        $this->writePage('admin', 'Alpha page | Some tagline');
+
+        $this->createGenerator(baseUrl: 'https://example.test')->write();
+
+        $output  = $this->writtenOutput();
+        $alphaAt = mb_strpos($output, '[Alpha page]');
+        $zebraAt = mb_strpos($output, '[Zebra page]');
+
+        $this->assertStringContainsString('## Pages', $output);
+        $this->assertNotFalse($alphaAt);
+        $this->assertNotFalse($zebraAt);
+        $this->assertLessThan($zebraAt, $alphaAt);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testWriteTrimsThePageTitleAtTheTaglineSeparator(): void
+    {
+        $this->writePage('api', 'Dotkernel API | Open-source REST API skeleton for PHP', 'The description.');
+
+        $this->createGenerator(baseUrl: 'https://example.test')->write();
+
+        $this->assertStringContainsString(
+            '- [Dotkernel API](https://example.test/api/): The description.',
+            $this->writtenOutput()
+        );
+        $this->assertStringNotContainsString('Open-source REST API skeleton for PHP]', $this->writtenOutput());
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testWriteSkipsAPageMissingATitleOrDescription(): void
+    {
+        $this->writePage('api', 'Dotkernel API | Tagline', null);
+        $this->writePage('admin', 'Dotkernel Admin | Tagline', 'Has a description.');
+
+        $this->createGenerator()->write();
+
+        $output = $this->writtenOutput();
+        $this->assertStringNotContainsString('[Dotkernel API]', $output);
+        $this->assertStringContainsString('[Dotkernel Admin]', $output);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testWritePlacesThePagesSectionBetweenDocsAndCategories(): void
+    {
+        $this->writePage('api', 'Dotkernel API | Tagline');
+        $posts = [$this->createPost('A post', 'a-post', 'dotkernel', 'Dotkernel')];
+
+        $this->createGenerator($posts)->write();
+
+        $output       = $this->writtenOutput();
+        $docsAt       = mb_strpos($output, '## Docs');
+        $pagesAt      = mb_strpos($output, '## Pages');
+        $categoriesAt = mb_strpos($output, '## Categories');
+
+        $this->assertNotFalse($docsAt);
+        $this->assertNotFalse($pagesAt);
+        $this->assertNotFalse($categoriesAt);
+        $this->assertLessThan($pagesAt, $docsAt);
+        $this->assertLessThan($categoriesAt, $pagesAt);
+    }
+
+    /**
+     * @throws Exception
+     */
     public function testWriteOverwritesAnExistingOutputFile(): void
     {
         file_put_contents($this->outputFile, 'stale content');
@@ -298,6 +396,7 @@ class LlmsGeneratorTest extends UnitTest
         array $posts = [],
         ?string $outputFile = null,
         string $baseUrl = 'https://example.test',
+        ?string $pagesDir = '',
     ): LlmsGenerator {
         $postRepository = $this->createStub(PostRepository::class);
         $postRepository->method('getPublishedPosts')->willReturn($posts);
@@ -307,6 +406,7 @@ class LlmsGeneratorTest extends UnitTest
             $this->sourceDir,
             $outputFile ?? $this->outputFile,
             $baseUrl,
+            $pagesDir === '' ? $this->pagesDir : $pagesDir,
         );
     }
 
@@ -344,6 +444,15 @@ class LlmsGeneratorTest extends UnitTest
             $directory . DIRECTORY_SEPARATOR . $slug . '.md',
             sprintf("---\ntitle: \"%s\"\ndescription: \"%s\"\n---\n\nBody.\n", $title, $description)
         );
+    }
+
+    private function writePage(string $slug, string $title, ?string $description = 'A description.'): void
+    {
+        $frontMatter = $description === null
+            ? sprintf("---\ntitle: \"%s\"\n---\n\nBody.\n", $title)
+            : sprintf("---\ntitle: \"%s\"\ndescription: \"%s\"\n---\n\nBody.\n", $title, $description);
+
+        file_put_contents($this->pagesDir . DIRECTORY_SEPARATOR . $slug . '.md', $frontMatter);
     }
 
     private function writtenOutput(): string

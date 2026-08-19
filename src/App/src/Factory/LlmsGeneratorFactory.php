@@ -24,6 +24,7 @@ class LlmsGeneratorFactory
             $config['llms']['sourceDir'],
             $config['llms']['indexFile'],
             $config['application']['url'] ?? '',
+            $config['llms']['pagesDir'] ?? null,
         );
     }
 }
