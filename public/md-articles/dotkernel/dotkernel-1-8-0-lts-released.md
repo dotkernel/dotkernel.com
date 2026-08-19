@@ -37,20 +37,20 @@ The framework now supports APC and File Caching, with all XML and config files c
 
 ### Easier request handling
 
-A new class, `Dot_Request`, gives control over the request data before use — for example, so that `$_SERVER`, `$_GET`, and `$_POST` are only accessed from within controllers.
+A new class, `Dot_Request`, gives control over the request data before use - for example, so that `$_SERVER`, `$_GET`, and `$_POST` are only accessed from within controllers.
 
 ### Features added
 
-- API with Rate Limit — a simple API with single-key authentication and a basic rate limit implementation (configurable in `/configs/application.ini`, section `params.api`)
-- Cache System — built on Zend_Cache backends, providing caching within Dotkernel and in library code
+- API with Rate Limit - a simple API with single-key authentication and a basic rate limit implementation (configurable in `/configs/application.ini`, section `params.api`)
+- Cache System - built on Zend_Cache backends, providing caching within Dotkernel and in library code
 
 ### Other changes
 
-- Removed WURFL integration — mobile device detection is now handled separately; WURFL can be added as a plugin
-- Removed support for multiple SMTP transporters — it can be added as a plugin
+- Removed WURFL integration - mobile device detection is now handled separately; WURFL can be added as a plugin
+- Removed support for multiple SMTP transporters - it can be added as a plugin
 - Security scan in the Admin Dashboard, showing recommended (especially security-related) settings
 - Admin failed-login notifications are now sent to all developers listed in `devEmails` (within the `settings` table), not just the first admin
-- Alert System — alerts can be sent to all developers to notify them if something goes wrong
+- Alert System - alerts can be sent to all developers to notify them if something goes wrong
 
 ### Bug fixes
 

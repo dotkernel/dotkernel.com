@@ -1,6 +1,6 @@
 # Dotkernel Light
 
-> Dotkernel Light is the technical blog for the Dotkernel headless PHP platform — a PSR-15 compliant application built on Mezzio and Laminas components. It publishes architecture write-ups, how-tos, and release notes for the platform applications — Dotkernel API, Admin and Queue — and for the standalone Dotkernel Light skeleton.
+> Dotkernel Light is the technical blog for the Dotkernel headless PHP platform - a PSR-15 compliant application built on Mezzio and Laminas components. It publishes architecture write-ups, how-tos, and release notes for the platform applications - Dotkernel API, Admin and Queue - and for the standalone Dotkernel Light skeleton.
 
 Content spans foundational PHP/middleware architecture (PSR-7, PSR-15, request lifecycle, dependency injection), practical how-tos (Doctrine migrations, CORS, authentication, caching), and the history/release notes of the Dotkernel ecosystem going back to 2008. Posts are organized by category and attributed to an author; URLs follow the pattern `/{category-slug}/{post-slug}/`.
 
@@ -8,7 +8,7 @@ Content spans foundational PHP/middleware architecture (PSR-7, PSR-15, request l
 
 - [Blog](https://www.dotkernel.com/blog/): full list of posts, most recent first, paginated
 - [Categories](https://www.dotkernel.com/categories/): all categories with post counts
-- [About](https://www.dotkernel.com/about/): the team behind Dotkernel — how the team works, its commitment to open source and the PHP community, and how it uses AI under guardrails
+- [About](https://www.dotkernel.com/about/): the team behind Dotkernel - how the team works, its commitment to open source and the PHP community, and how it uses AI under guardrails
 - [OSS Package Lifecycle](https://www.dotkernel.com/dotkernel-packages-oss-lifecycle/): support/maintenance status of Dotkernel's open-source packages
 - [Contact](https://www.dotkernel.com/contact/)
 
@@ -16,7 +16,7 @@ Content spans foundational PHP/middleware architecture (PSR-7, PSR-15, request l
 
 ## Dotkernel (19 posts)
 
-*the core framework — releases, caching, sessions, auth, WURFL/device detection*
+*the core framework - releases, caching, sessions, auth, WURFL/device detection*
 
 - [Adding a CORS implementation to Zend Expressive](https://www.dotkernel.com/dotkernel/adding-a-cors-implementation-to-zend-expressive/): A guide on how to add a CORS implementation to an existing Dotkernel3 project using Tuupola's Cors Middleware package.
 - [Adding Composer support in your Dotkernel project](https://www.dotkernel.com/dotkernel/adding-composer-support-in-your-dotkernel-project/): The steps needed to add Composer support to a Dotkernel 1.x project, or 'composify' it.
@@ -53,7 +53,7 @@ Content spans foundational PHP/middleware architecture (PSR-7, PSR-15, request l
 
 ## How to's (14 posts)
 
-*practical guides — migrations, CORS, PSR-7, routing*
+*practical guides - migrations, CORS, PSR-7, routing*
 
 - [CORS policy setup in Dotkernel using mezzio-cors](https://www.dotkernel.com/how-to/cors-policy-setup-in-dotkernel-using-mezzio-cors/): A walkthrough of fixing the classic 'No Access-Control-Allow-Origin header' CORS error in a Dotkernel application by installing and configuring the mezzio-cors package.
 - [Creating admin accounts in Dotkernel API](https://www.dotkernel.com/how-to/creating-admin-accounts-in-dotkernel-api/): How to create admin accounts in Dotkernel API v3 and later, using either the protected POST /admin endpoint or the admin:create terminal command.
@@ -86,7 +86,7 @@ Content spans foundational PHP/middleware architecture (PSR-7, PSR-15, request l
 
 ## Dotkernel API (10 posts)
 
-*REST API package — auth, content negotiation, OpenAPI*
+*REST API package - auth, content negotiation, OpenAPI*
 
 - [API Client Migration: From Postman to Bruno](https://www.dotkernel.com/dotkernel-api/api-client-migration-from-postman-to-bruno/): Why the Dotkernel team is considering switching their API testing client from Postman to the offline-focused, Git-native Bruno.
 - [API Endpoint to Collect Client Errors](https://www.dotkernel.com/dotkernel-api/api-endpoint-to-collect-client-errors/): How Dotkernel API's error-report endpoint lets frontend clients submit and log errors that occur on the user's machine.

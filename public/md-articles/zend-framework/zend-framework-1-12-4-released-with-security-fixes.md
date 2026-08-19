@@ -38,4 +38,4 @@ A: Matthew Weier O'Phinney announced the release of ZF 1.12.4, along with 2.1.6 
 A: Yes, the ZF PEAR channel was updated to the latest 1.12.4 release, upgradable via "pear upgrade zend/zend".
 
 **Q: Was there a follow-up issue after the 1.12.4 release?**
-A: Yes — per the March 7, 2014 edit, Zend Framework 1.12.5 was released in order to fix a backward compatibility issue introduced in the 1.12.4 release.
+A: Yes - per the March 7, 2014 edit, Zend Framework 1.12.5 was released in order to fix a backward compatibility issue introduced in the 1.12.4 release.

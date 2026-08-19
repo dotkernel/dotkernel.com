@@ -34,7 +34,7 @@ Add the update site: [http://download.eclipse.org/tools/mylyn/update/e3.4/](http
 7. From the Task Repository window, right click and select Add Task Repository -> Mantis -> Next.
 Server: [http://www.dotkernel.net/api/soap/mantisconnect.php](http://www.dotkernel.net/api/soap/mantisconnect.php).
 Label: Dotkernel Tracker (or a custom string).
-User ID: your username from [http://www.dotkernel.net/](http://www.dotkernel.net/) — if you don't have an account, [sign up here](http://www.dotkernel.net/signup_page.php).
+User ID: your username from [http://www.dotkernel.net/](http://www.dotkernel.net/) - if you don't have an account, [sign up here](http://www.dotkernel.net/signup_page.php).
 8. To check if your connection works, click Validate Settings, then Finish.
 9. A popup will ask if you want to create a query; click Yes.
 10. Select project: Dotkernel.

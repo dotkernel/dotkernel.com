@@ -32,7 +32,7 @@ The admin site was redesigned, with new themes and a dropdown menu, along with a
 
 ### Model inheritance
 
-Previously there was a lot of code duplication in models — for example, a `getUserById` function might exist separately in both the admin and frontend User models.
+Previously there was a lot of code duplication in models - for example, a `getUserById` function might exist separately in both the admin and frontend User models.
 To solve this, a `Dot_Model` class was introduced along with a way to define global models inherited by both admin and frontend.
 A `User` class in the admin only holds admin-specific methods, a `User` class in the frontend only holds frontend-specific methods, and both inherit a shared `Dot_Model_User` class containing the common code.
 

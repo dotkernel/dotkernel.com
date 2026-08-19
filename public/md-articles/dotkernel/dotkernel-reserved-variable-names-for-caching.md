@@ -1,6 +1,6 @@
 ---
 title: "Dotkernel Reserved Variable Names for Caching"
-description: "A reference of the variables Dotkernel caches — router, ACL role, menu, options, and browser/OS data — and the cache keys they use."
+description: "A reference of the variables Dotkernel caches - router, ACL role, menu, options, and browser/OS data - and the cache keys they use."
 author: "Gabi DJ"
 date_published: "2015-01-29"
 canonical_url: "https://www.dotkernel.com/dotkernel/dotkernel-reserved-variable-names-for-caching/"
@@ -40,10 +40,10 @@ A: The role.xml file (used by Dot_Auth, from /configs/acl/role.xml, to define us
 A: The menu.xml from the current module is cached as `admin_menu` and `frontend_menu`.
 
 **Q: What naming pattern do cached options use?**
-A: `option_MODULE_CONTROLLER`, where MODULE is the current module and CONTROLLER is the current controller or "seo" — for example `option_admin_Admin`, `option_frontend_Page`, and `option_admin_seo` (seo is lowercase).
+A: `option_MODULE_CONTROLLER`, where MODULE is the current module and CONTROLLER is the current controller or "seo" - for example `option_admin_Admin`, `option_frontend_Page`, and `option_admin_seo` (seo is lowercase).
 
 **Q: What happens if you change browser.xml, os.xml, or other cached config files?**
-A: The change won't take effect on its own, since values like browser_xml and os_xml remain cached — you must clear the cache or rewrite that value in cache to see the change take effect.
+A: The change won't take effect on its own, since values like browser_xml and os_xml remain cached - you must clear the cache or rewrite that value in cache to see the change take effect.
 
 ## Resources
 

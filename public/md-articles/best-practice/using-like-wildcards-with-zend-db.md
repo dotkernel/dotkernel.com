@@ -155,4 +155,4 @@ A: Build the first condition with quoteInto, then append further ones with quote
 ", $pattern), as in the example matching 'gallery' or 'folder' in the source field.
 
 **Q: How does NOT LIKE differ from LIKE?**
-A: NOT LIKE negates the pattern match — for example, id NOT LIKE '1_' returns ids that don't start with 1 or don't have exactly 2 digits, and NOT LIKE conditions can be chained with AND to exclude several patterns at once.
+A: NOT LIKE negates the pattern match - for example, id NOT LIKE '1_' returns ids that don't start with 1 or don't have exactly 2 digits, and NOT LIKE conditions can be chained with AND to exclude several patterns at once.

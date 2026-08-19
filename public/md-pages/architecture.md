@@ -52,26 +52,26 @@ Legend: Mezzio / Laminas component · Dotkernel.
 
 ### Error boundary
 
-#### 01 · ProblemDetailsMiddleware — mezzio/mezzio-problem-details
+#### 01 · ProblemDetailsMiddleware - mezzio/mezzio-problem-details
 
 The outermost layer, deliberately.
 Anything thrown deeper in the stack is handed to `dot-errorhandler` for logging and comes back as a problem details response, so a failure reaches the client as a documented error shape rather than a stack trace.
 
 ### Request preparation
 
-#### 02 · MalformedRequestBodyMiddleware — dotkernel/api
+#### 02 · MalformedRequestBodyMiddleware - dotkernel/api
 
 Rejects a body that is not valid JSON up front, before any later stage tries to read it and fails in a less legible place.
 
-#### 03 · BodyParamsMiddleware — mezzio/mezzio-helpers
+#### 03 · BodyParamsMiddleware - mezzio/mezzio-helpers
 
 Parses the raw request body into the parsed body according to its `Content-Type`.
 
-#### 04 · ServerUrlMiddleware — mezzio/mezzio-helpers
+#### 04 · ServerUrlMiddleware - mezzio/mezzio-helpers
 
 Seeds the server URL helper with the current scheme and host, so anything generating a URL later produces an absolute one.
 
-#### 05 · CorsMiddleware — mezzio/mezzio-cors
+#### 05 · CorsMiddleware - mezzio/mezzio-cors
 
 Recognises preflight requests and answers them, and attaches the configured CORS headers to everything else.
 It sits before routing so a preflight never needs a matched route.
@@ -80,40 +80,40 @@ It sits before routing so a preflight never needs a matched route.
 
 #### 06 · RouteMiddleware
 
-*mezzio/mezzio-router* — Route
+*mezzio/mezzio-router* - Route
 
 Matches the request against the route table and registers the `RouteResult` attribute.
 Everything below this line can ask which route was matched - and most of it does.
 
-#### 07 · ImplicitHeadMiddleware — mezzio/mezzio-router
+#### 07 · ImplicitHeadMiddleware - mezzio/mezzio-router
 
 Answers `HEAD` for routes that only declare `GET`.
 
-#### 08 · ImplicitOptionsMiddleware — mezzio/mezzio-router
+#### 08 · ImplicitOptionsMiddleware - mezzio/mezzio-router
 
 Answers `OPTIONS` with the methods the matched path actually allows.
 
-#### 09 · MethodNotAllowedMiddleware — mezzio/mezzio-router
+#### 09 · MethodNotAllowedMiddleware - mezzio/mezzio-router
 
 Returns `405 Method Not Allowed` when the path matched but the method did not.
 Order matters here: it has to sit after both implicit handlers, or it would answer the requests they exist to serve.
 
 ### Contract & headers
 
-#### 10 · ContentNegotiationMiddleware — dotkernel/api
+#### 10 · ContentNegotiationMiddleware - dotkernel/api
 
 Reconciles the client's `Accept` and `Content-Type` with what the matched route is configured to serve, so diverse consumers share one API without custom glue.
 
-#### 11 · DeprecationMiddleware — dotkernel/api
+#### 11 · DeprecationMiddleware - dotkernel/api
 
 The mechanism behind API evolution.
 It reads the `#[ResourceDeprecation]` attribute off the handler and, when one is present, sets the `sunset` and `link` response headers - the client learns an endpoint is going away from the endpoint itself, rather than from a migration guide.
 
-#### 12 · ResponseHeaderMiddleware — dotkernel/dot-response-header
+#### 12 · ResponseHeaderMiddleware - dotkernel/dot-response-header
 
 Applies the headers you configure application-wide to every outgoing response, in one place instead of per handler.
 
-#### 13 · UrlHelperMiddleware — mezzio/mezzio-helpers
+#### 13 · UrlHelperMiddleware - mezzio/mezzio-helpers
 
 Seeds the URL helper with the routing result, so handlers and HAL links can be generated relative to the route that was actually matched.
 
@@ -121,35 +121,35 @@ Seeds the URL helper with the routing result, so handlers and HAL links can be g
 
 #### 14 · AuthenticationMiddleware
 
-*dotkernel/api* — 401
+*dotkernel/api* - 401
 
 Validates the OAuth 2.0 Bearer token.
 Routes declared as authenticated answer `401 Unauthorized` without a valid one, and never reach the handler.
 
 #### 15 · AuthorizationMiddleware
 
-*dotkernel/api* — 403
+*dotkernel/api* - 403
 
 Checks the authenticated identity's role against the permissions allocated to the matched route name, and returns `403 Forbidden` when it falls short.
 The decision lives in configuration, not scattered through handlers.
 
 ### Dispatch & fallback
 
-#### 16 · ResourceProviderMiddleware — dotkernel/api
+#### 16 · ResourceProviderMiddleware - dotkernel/api
 
 Reads the `#[Resource]` attribute on the handler's `handle()` method and loads the named entity through Doctrine using the route placeholder.
 The handler receives a resource rather than an identifier, and a record that does not exist becomes a `404` before your code runs.
 
-#### 17 · DispatchMiddleware — mezzio/mezzio-router
+#### 17 · DispatchMiddleware - mezzio/mezzio-router
 
 Hands the request to the matched PSR-15 handler.
 This is your code - everything above was getting the request into a state where your handler only has to do its own job.
 
-#### 18 · ProblemDetailsNotFoundHandler — mezzio/mezzio-problem-details
+#### 18 · ProblemDetailsNotFoundHandler - mezzio/mezzio-problem-details
 
 Reached only when nothing above returned a response: emits `404` in problem details form.
 
-#### 19 · GetNotFoundResourceHandler — dotkernel/api
+#### 19 · GetNotFoundResourceHandler - dotkernel/api
 
 The last stage in the pipeline, shaping the not-found response for API clients.
 

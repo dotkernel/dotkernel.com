@@ -1,5 +1,5 @@
 ---
-title: "Dotkernel — A Headless Platform for Modern Web Applications"
+title: "Dotkernel - A Headless Platform for Modern Web Applications"
 description: "Dotkernel is a collection of open-source PHP application skeletons built on Mezzio and Laminas, ranging from a minimal presentation-site skeleton to a full headless platform (API, Admin, Queue) for enterprise-grade applications."
 url: "https://www.dotkernel.com/"
 language: "en"
@@ -31,7 +31,7 @@ keywords: ["headless platform", "PHP", "Mezzio", "Laminas", "PSR-15 middleware",
 ## TL;DR
 
 Dotkernel is a collection of open-source PHP application skeletons built on Mezzio and Laminas, licensed MIT.
-Its headless platform combines three components — **API**, **Admin**, and **Queue** — that can be adopted separately or together.
+Its headless platform combines three components - **API**, **Admin**, and **Queue** - that can be adopted separately or together.
 Two additional skeletons, **Light** and **Frontend**, stand outside the platform for simpler or frontend-only use cases.
 
 ## Key facts

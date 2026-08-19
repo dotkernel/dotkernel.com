@@ -13,7 +13,7 @@ language: "en"
 ## TL;DR
 
 DML (Data Manipulation Language) statements change data values in database tables.
-This article, continuing the Zend_Db series, shows how the three primary DML statements — INSERT, UPDATE, and DELETE — are written in raw SQL and translated into Zend_Db method calls.
+This article, continuing the Zend_Db series, shows how the three primary DML statements - INSERT, UPDATE, and DELETE - are written in raw SQL and translated into Zend_Db method calls.
 
 ## Connecting to the database
 

@@ -18,7 +18,7 @@ The result is that `(int)((0.7+0.1)*10)` evaluates to 7 instead of the mathemati
 
 ## The problem
 
-While using floating-point arithmetic you might have noticed that not all calculation results are as expected — this can usually be observed when casting values.
+While using floating-point arithmetic you might have noticed that not all calculation results are as expected - this can usually be observed when casting values.
 
 The output for `(0.7 + 0.1) * 10` is:
 
@@ -62,13 +62,13 @@ Using an IEEE 754 converter, it turns out that:
 - 0.1 is actually represented as 0.10000000149011612
 
 Adding these two values gives 0.7999999895691871.
-Multiplying by 10 gives 7.999999895691871, which when cast to int is 7 — the same way 3.5 is 3 when cast to int.
+Multiplying by 10 gives 7.999999895691871, which when cast to int is 7 - the same way 3.5 is 3 when cast to int.
 
 The 0.6 example still shows 7 because 0.6 is actually represented as 0.6000000238418579, and (0.6000000238418579 + 0.10000000149011612) * 10 is 7.00000025331974.
 
 ## But still ...
 
-If you use echo and var_dump, or apply mathematical operations, PHP automatically adjusts the values — but intval and casting to int work on the underlying bits before those values were adjusted:
+If you use echo and var_dump, or apply mathematical operations, PHP automatically adjusts the values - but intval and casting to int work on the underlying bits before those values were adjusted:
 
 ```php
 var_dump((0.7+0.1)*10); # float(8)

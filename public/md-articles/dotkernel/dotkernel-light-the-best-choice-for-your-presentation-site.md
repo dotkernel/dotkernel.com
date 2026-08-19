@@ -13,7 +13,7 @@ language: "en"
 ## TL;DR
 
 Dotkernel Light is a lightweight starting point for a project when you want full control over its functionality, and it grows into something more complex as you add packages.
-It comes with routing, templating, error handling, and tests/code quality checks out of the box, but strips out everything a presentation site doesn't need — database, sessions/cookies/flash messages, auth, dependency injection, mail, navigation, CORS, forms, the user/contact/plugin modules.
+It comes with routing, templating, error handling, and tests/code quality checks out of the box, but strips out everything a presentation site doesn't need - database, sessions/cookies/flash messages, auth, dependency injection, mail, navigation, CORS, forms, the user/contact/plugin modules.
 
 ## What's included vs. removed
 
@@ -46,7 +46,7 @@ public function examplePageAction(): ResponseInterface
 
    The URL for this example page would be `/page/example-page`.
 
-2. Create the matching template in `src/Page/templates/page/` — for the example above, `src/Page/templates/page/example-template.html.twig`.
+2. Create the matching template in `src/Page/templates/page/` - for the example above, `src/Page/templates/page/example-template.html.twig`.
 Put the page copy inside the `content` block:
 
 ```twig
@@ -153,6 +153,6 @@ A: Both live in src/App/templates/layout/default.html.twig: the top menu items a
 
 ## Resources
 
-- [dotkernel.org](https://www.dotkernel.org) — a working example
+- [dotkernel.org](https://www.dotkernel.org) - a working example
 - [Dotkernel Light](https://github.com/dotkernel/light)
 - [More from Dotkernel](https://github.com/dotkernel)

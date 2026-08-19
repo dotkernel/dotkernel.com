@@ -12,18 +12,18 @@ language: "en"
 
 ## TL;DR
 
-Laminas MVC is retiring, following Zend Framework and Apigility before it, but this doesn't mean everything with a Laminas logo is going away — Mezzio, built on Laminas components, is the fully-functional successor.
+Laminas MVC is retiring, following Zend Framework and Apigility before it, but this doesn't mean everything with a Laminas logo is going away - Mezzio, built on Laminas components, is the fully-functional successor.
 Maintaining legacy MVC platforms is costly and risky long-term, since the architecture of today and tomorrow is middleware-based, and Apidemia offers a proven, phased migration process to move legacy platforms to Mezzio.
 
 ## A Bit of History
 
 It all started with the announcement: Laminas MVC Is Retiring.
-Some people wrongfully thought everything with a Laminas logo is going away — not so.
+Some people wrongfully thought everything with a Laminas logo is going away - not so.
 Read on for a bit of history about Zend and Laminas, what it means to migrate your platform, and why it's a decision that should not be taken lightly.
 
-Laminas MVC is not even the first framework that has reached its end of life — look at Zend Framework and Apigility.
+Laminas MVC is not even the first framework that has reached its end of life - look at Zend Framework and Apigility.
 Letting go of a flagship product is a difficult decision, but it's made easier when you leave a solid alternative in its wake.
-The developers who worked on Laminas MVC already had something better and fully-functional in place — the Mezzio microframework, built using Laminas components.
+The developers who worked on Laminas MVC already had something better and fully-functional in place - the Mezzio microframework, built using Laminas components.
 It has itself gone through rigorous development and testing since being released in 2015, when it was known as Zend Expressive, then was renamed into Mezzio to get to its current state.
 
 ## What Is the Issue with Legacy Platforms?
@@ -62,11 +62,11 @@ Over the long run, the Apidemia team offers support and training.
 
 This is the simplified task list:
 
-- Code audit & migration strategy — to understand the code and see what goes where.
-- Partial or full migration to Laminas or PSR-compliant frameworks, like Mezzio or Symfony — this decision impacts both time to implement and cost, negotiated with the client.
-- Refactoring and decoupling legacy modules — the old code must go and be replaced with the new.
-- Unit testing and CI/CD pipeline setup — a vital step to ensure things function the same way in the destination platform.
-- Post-migration support and team training — this step depends on the level of collaboration between the original developers and the Apidemia team, so the more closely they work together, the easier it is to onboard the devs for the long run.
+- Code audit & migration strategy - to understand the code and see what goes where.
+- Partial or full migration to Laminas or PSR-compliant frameworks, like Mezzio or Symfony - this decision impacts both time to implement and cost, negotiated with the client.
+- Refactoring and decoupling legacy modules - the old code must go and be replaced with the new.
+- Unit testing and CI/CD pipeline setup - a vital step to ensure things function the same way in the destination platform.
+- Post-migration support and team training - this step depends on the level of collaboration between the original developers and the Apidemia team, so the more closely they work together, the easier it is to onboard the devs for the long run.
 
 ## FAQ
 

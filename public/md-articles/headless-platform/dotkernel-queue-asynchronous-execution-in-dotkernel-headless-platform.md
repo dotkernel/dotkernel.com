@@ -53,11 +53,11 @@ Tasks delegated to the queue typically:
 
 Categories of tasks that can take an extended time to finish:
 
-- **Data Processing** — big data analytics, scientific simulations, or mathematical computations.
-- **File Handling & Media Processing** — video and image processing, or compression/decompression of large files.
-- **Networking** — sending email, newsletters, notifications using 3rd party providers.
-- **Database Operations** — imports/exports or migrations.
-- **System & Infrastructure Tasks** — OS updates, software compilation, CI pipelines.
+- **Data Processing** - big data analytics, scientific simulations, or mathematical computations.
+- **File Handling & Media Processing** - video and image processing, or compression/decompression of large files.
+- **Networking** - sending email, newsletters, notifications using 3rd party providers.
+- **Database Operations** - imports/exports or migrations.
+- **System & Infrastructure Tasks** - OS updates, software compilation, CI pipelines.
 
 Reasons for long execution times include: data size (gigabytes, terabytes, etc.), complex algorithms, hardware limitations (CPU speed, memory, storage, network bandwidth), and external dependencies (waiting on APIs or human input).
 
@@ -91,14 +91,14 @@ After configuring the number of retries, additional handling of failed messages 
 
 Logs enable developers to investigate metrics via console commands, including:
 
-- Queue length — how many jobs are in the to-do list.
+- Queue length - how many jobs are in the to-do list.
 - Processing time per job.
-- Error rates — how many messages failed.
-- Throughput — jobs/sec processed.
+- Error rates - how many messages failed.
+- Throughput - jobs/sec processed.
 
 ### Dead Letter Queue (DLQ)
 
-A Dead-Letter Queue is a separate message queue that temporarily stores messages that failed execution due to errors — for example, incomplete messages, or a 3rd party receiver unable to process the request or unavailable.
+A Dead-Letter Queue is a separate message queue that temporarily stores messages that failed execution due to errors - for example, incomplete messages, or a 3rd party receiver unable to process the request or unavailable.
 Certain errors may move messages into the DLQ on the first try, keeping the main queue from being overwhelmed or blocked by messages that will never be processed in their current state.
 It also gives troubleshooters a central location to identify causes of errors, apply fixes, and then either manually push the messages back into the main queue or delete them.
 
@@ -109,13 +109,13 @@ Ways to improve Dotkernel Queue are being explored, with new features added as n
 ### Priorities
 
 Currently the queue works on the FIFO method described above.
-Priorities would determine how soon a task begins execution — immediately or delayed — since certain tasks may be fast enough to handle as they come in, while others are purposefully pushed further down the line.
+Priorities would determine how soon a task begins execution - immediately or delayed - since certain tasks may be fast enough to handle as they come in, while others are purposefully pushed further down the line.
 Priorities are set to be integrated into Dotkernel Queue in the near future.
 
 ### Parallel Execution
 
 Execution is currently made for each task one at a time.
-Parallel execution of operations via multiple workers is being investigated, where applicable — for example, preprocessing a report could run in parallel with sending emails, since they are separate systems (email processing is external, while the report uses data from the internal database).
+Parallel execution of operations via multiple workers is being investigated, where applicable - for example, preprocessing a report could run in parallel with sending emails, since they are separate systems (email processing is external, while the report uses data from the internal database).
 
 ## FAQ
 

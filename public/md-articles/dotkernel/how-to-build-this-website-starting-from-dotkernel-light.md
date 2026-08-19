@@ -18,13 +18,13 @@ The result is this: a Dotkernel Light project turned into a fully data-driven si
 
 ## Starting from Dotkernel Light
 
-This blog didn't start as a blog. It started as a bare [Dotkernel Light](https://docs.dotkernel.org/light-documentation/) installation — a minimal starter project built on Mezzio, with Twig for templating, FastRoute for routing, PSR-7 via Laminas Diactoros, and a PSR-11 container using Laminas Service Manager. No database, no posts, just the skeleton for a simple website.
+This blog didn't start as a blog. It started as a bare [Dotkernel Light](https://docs.dotkernel.org/light-documentation/) installation - a minimal starter project built on Mezzio, with Twig for templating, FastRoute for routing, PSR-7 via Laminas Diactoros, and a PSR-11 container using Laminas Service Manager. No database, no posts, just the skeleton for a simple website.
 
 ```
 git clone https://github.com/dotkernel/light.git dotkernel-light
 ```
 
-At that point you have routing, templating and a working request lifecycle, but nothing to persist. Dotkernel Light is deliberately unopinionated about storage — it's up to the project to add a persistence layer if it needs one.
+At that point you have routing, templating and a working request lifecycle, but nothing to persist. Dotkernel Light is deliberately unopinionated about storage - it's up to the project to add a persistence layer if it needs one.
 
 ## Adding Doctrine, following Tutorial 101
 
@@ -38,12 +38,12 @@ Following that path is what turned this project's `Category`, `Author`, `Tag` an
 
 ## Where the data comes from
 
-The actual content — every article, its author, its category and tags — is authored as data in `src/App/src/Fixture/articles_cleaned.json` and loaded into the database with `php bin/doctrine-fixtures`. That file wasn't written from scratch: it was built from what already existed in dotkernel.com's own database, cleaned up and reshaped into fixture data so it could be loaded into this project's schema. Doctrine takes care of turning that into rows; the entities and repositories added while following Tutorial 101 take care of turning those rows back into the pages you're browsing right now.
+The actual content - every article, its author, its category and tags - is authored as data in `src/App/src/Fixture/articles_cleaned.json` and loaded into the database with `php bin/doctrine-fixtures`. That file wasn't written from scratch: it was built from what already existed in dotkernel.com's own database, cleaned up and reshaped into fixture data so it could be loaded into this project's schema. Doctrine takes care of turning that into rows; the entities and repositories added while following Tutorial 101 take care of turning those rows back into the pages you're browsing right now.
 
 ## FAQ
 
 **Q: What is Dotkernel Light?**
-A: A minimal Mezzio-based starter project for building a simple website — routing (FastRoute), templating (Twig) and PSR-7 (Laminas Diactoros) out of the box, without a database layer.
+A: A minimal Mezzio-based starter project for building a simple website - routing (FastRoute), templating (Twig) and PSR-7 (Laminas Diactoros) out of the box, without a database layer.
 
 **Q: Why was Doctrine added on top?**
 A: Dotkernel Light doesn't include persistence by default. This blog needed categories, authors, tags and posts stored and queried from a database, so Doctrine ORM was added following the official Tutorial 101.

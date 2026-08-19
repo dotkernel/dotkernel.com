@@ -17,8 +17,8 @@ It covers how dot-errorhandler was built, how to configure it, and how it was te
 
 ## The two error handlers
 
-- **The plain `ErrorHandler`** — a copy of Zend Expressive's `Zend\Stratigility\Middleware\ErrorHandler` (copied because that class is `final`).
-- **The logging `LogErrorHandler`** — the same as above, but with added logging support via the container.
+- **The plain `ErrorHandler`** - a copy of Zend Expressive's `Zend\Stratigility\Middleware\ErrorHandler` (copied because that class is `final`).
+- **The logging `LogErrorHandler`** - the same as above, but with added logging support via the container.
 
 Both error handlers have factories registered for easier use with the Container.
 
@@ -38,7 +38,7 @@ As a fallback, the plain error handler is selected by default, and this can be o
 Important notes:
 
 - This assumes the project already has a configured logger, as described in the "Logging with dot-log in Zend Expressive and Dotkernel" article, with the logger named `default_logger` (as used in the package's config example).
-- Although the config key is `dot_log`, the dot-log abstract factory responds to the `dot-log` selector — the container key to ask for is `dot-log.default_logger`.
+- Although the config key is `dot_log`, the dot-log abstract factory responds to the `dot-log` selector - the container key to ask for is `dot-log.default_logger`.
 - dot-errorhandler is meant to be a silent logger for staging and production environments.
 To test it, development mode should be disabled, otherwise whoops will catch the errors and show them to the developer instead.
 Any custom error handler can be used as long as it implements the provided `ErrorHandlerInterface`.
@@ -62,7 +62,7 @@ An out-of-the-box config was provided within the error handler's config director
 
 Errors were triggered in the following ways to test the handlers:
 
-- Throwing Exceptions — the most common case.
+- Throwing Exceptions - the most common case.
 - Raising errors, such as triggering warning/error messages, for example:
   - dividing numbers by zero (e.g. `16/0`)
   - casting arrays to strings (e.g. `$string = 'hello' . $array`)

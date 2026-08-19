@@ -12,7 +12,7 @@ language: "en"
 
 ## TL;DR
 Dotkernel Application Framework bundles a WURFL XML file, but it's the last GPL version (from June 2011).
-Because of a license change to that WURFL file, Dotkernel will no longer upgrade the bundled file — it must be upgraded manually.
+Because of a license change to that WURFL file, Dotkernel will no longer upgrade the bundled file - it must be upgraded manually.
 
 ## Steps to manually upgrade
 

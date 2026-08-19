@@ -13,7 +13,7 @@ language: "en"
 ## TL;DR
 
 The Laminas Technical Steering Committee decided on 2023-12-04 to abandon laminas/laminas-mail.
-Dotkernel responded by replacing it with symfony/mailer inside the dotkernel/dot-mail package (version 5), aiming for minimal impact on existing projects — calls to send mail stay the same, though mime and imap related functionality is removed.
+Dotkernel responded by replacing it with symfony/mailer inside the dotkernel/dot-mail package (version 5), aiming for minimal impact on existing projects - calls to send mail stay the same, though mime and imap related functionality is removed.
 
 ## What prompted the change
 

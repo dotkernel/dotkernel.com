@@ -20,7 +20,7 @@ Dotkernel had updated to this version in the 1.5.0 release candidate without not
 
 We integrated the WURFL PHP API into the Dotkernel code base a long time ago.
 At that time its license was GNU/GPL, perfectly compatible with the Zend Framework license (new BSD) and Dotkernel (OSL 3.0).
-On June 6th, 2011, the WURFL PHP API library was updated to version 1.3.0, and Dotkernel followed suit in its 1.5.0 release candidate, without noticing that the license had changed from GNU/GPL to AGPL — suddenly turning it into a "trial only" library for "Product evaluation" only.
+On June 6th, 2011, the WURFL PHP API library was updated to version 1.3.0, and Dotkernel followed suit in its 1.5.0 release candidate, without noticing that the license had changed from GNU/GPL to AGPL - suddenly turning it into a "trial only" library for "Product evaluation" only.
 
 See the [official announcement](http://www.scientiamobile.com/site/page/view/products#licenses).
 
@@ -31,7 +31,7 @@ The only things to do at this stage are:
 
 - Remove WURFL PHP API library version 1.3.0 from the Dotkernel code base.
 - Integrate back version 1.2.1, which is still GNU/GPL.
-- Keep collecting device information and contributing to the WURFL XML data, which remains free — this data file is and must be the industry standard.
+- Keep collecting device information and contributing to the WURFL XML data, which remains free - this data file is and must be the industry standard.
 - Consider forking WURFL PHP API 1.2.1 to a new library.
 - Consider changing the library's name to avoid trademark issues.
 

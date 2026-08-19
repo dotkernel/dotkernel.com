@@ -62,7 +62,7 @@ Generates temporary, unique 6-digit codes that change every 30 seconds, via an A
 
 ## Installation steps
 
-### Step 1 — Install the package
+### Step 1 - Install the package
 
 Prerequisite: a working Dotkernel Admin installation.
 
@@ -70,7 +70,7 @@ Prerequisite: a working Dotkernel Admin installation.
 composer require dotkernel/dot-totp
 ```
 
-### Step 2 — Add the integration files
+### Step 2 - Add the integration files
 
 Following the Dotkernel file structure, add the files below (downloadable from the [official code examples](https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp)):
 
@@ -95,11 +95,11 @@ Middleware:
 - `src/App/src/Middleware/CancelUrlMiddleware.php`
 - `src/App/src/Middleware/TotpMiddleware.php`
 
-### Step 3 — Apply the entity trait and migrate the database
+### Step 3 - Apply the entity trait and migrate the database
 
 Apply the trait at `src/Core/src/App/src/Entity/TotpTrait.php` to any entity that requires 2FA, then migrate the new columns onto that entity's table: `totpSecret`, `totp_enabled`, and `recovery_codes`.
 
-### Step 4 — Register the remaining snippets
+### Step 4 - Register the remaining snippets
 
 The `_misc` folder in the code examples contains four required additions:
 
@@ -152,5 +152,5 @@ A: You need to migrate three new columns onto the entity that uses the TotpTrait
 
 - dot-totp on GitHub: https://github.com/dotkernel/dot-totp
 - Dotkernel Admin on GitHub: https://github.com/dotkernel/admin
-- Official tutorial — Installing dot-totp into Dotkernel Admin: https://docs.dotkernel.org/admin-documentation/v7/tutorials/install-dot-totp/
+- Official tutorial - Installing dot-totp into Dotkernel Admin: https://docs.dotkernel.org/admin-documentation/v7/tutorials/install-dot-totp/
 - Complete code examples: https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp

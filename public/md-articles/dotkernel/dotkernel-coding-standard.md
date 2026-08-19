@@ -28,7 +28,7 @@ Dotkernel uses camel naming conventions, with these Dotkernel-specific rules:
 | Interfaces | End with the string "Interface" | `Dot_Db_Interface` |
 | Filenames | Always use the `.php` extension, no fancy extensions | `.php`, not `.inc` |
 
-## Control statements — brace placement
+## Control statements - brace placement
 
 Every opening curly brace `{` starts on its own new line after the statement, and its matching closing brace `}` is also placed on its own new line, aligned in the same column as the opening brace, for better indentation of the code.
 
@@ -70,9 +70,9 @@ A: Every opening curly brace starts on its own new line after the statement, and
 
 - Zend Framework: http://framework.zend.com/
 - ZF Coding Standard: http://framework.zend.com/manual/en/coding-standard.php-file-formatting.html
-- ZF Coding Standard — Indentation: http://framework.zend.com/manual/en/coding-standard.php-file-formatting.html#coding-standard.php-file-formatting.indentation
-- ZF Coding Standard — Naming Conventions: http://framework.zend.com/manual/en/coding-standard.naming-conventions.html
-- ZF Coding Standard — Classes: http://framework.zend.com/manual/en/coding-standard.naming-conventions.html#coding-standard.naming-conventions.classes
-- ZF Coding Standard — Interfaces: http://framework.zend.com/manual/en/coding-standard.naming-conventions.html#coding-standard.naming-conventions.interfaces
-- ZF Coding Standard — Filenames: http://framework.zend.com/manual/en/coding-standard.naming-conventions.html#coding-standard.naming-conventions.filenames
-- ZF Coding Standard — Control Statements: http://framework.zend.com/manual/en/coding-standard.coding-style.html#coding-standard.coding-style.control-statements
+- ZF Coding Standard - Indentation: http://framework.zend.com/manual/en/coding-standard.php-file-formatting.html#coding-standard.php-file-formatting.indentation
+- ZF Coding Standard - Naming Conventions: http://framework.zend.com/manual/en/coding-standard.naming-conventions.html
+- ZF Coding Standard - Classes: http://framework.zend.com/manual/en/coding-standard.naming-conventions.html#coding-standard.naming-conventions.classes
+- ZF Coding Standard - Interfaces: http://framework.zend.com/manual/en/coding-standard.naming-conventions.html#coding-standard.naming-conventions.interfaces
+- ZF Coding Standard - Filenames: http://framework.zend.com/manual/en/coding-standard.naming-conventions.html#coding-standard.naming-conventions.filenames
+- ZF Coding Standard - Control Statements: http://framework.zend.com/manual/en/coding-standard.coding-style.html#coding-standard.coding-style.control-statements

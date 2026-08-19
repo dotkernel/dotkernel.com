@@ -30,7 +30,7 @@ See more on the reasoning behind this change [here](http://www.brandonsavage.net
 2. Remove the `settings.admin.salt = 5F6WQ9U3YT` variable from `application.ini`.
 3. Apply the [patch](http://www.dotkernel.com/download/?did=40).
 4. If you have trouble applying the patch, compare the files and see the log/diff in [websvn](http://websvn.dotkernel.net/comp.php?repname=Dotkernel&compare[]=/@796&compare[]=/@797).
-5. Run the conversion script — details are in the file `Console/Controller.php`, at line 47.
+5. Run the conversion script - details are in the file `Console/Controller.php`, at line 47.
 6. Admin passwords cannot be converted, so they need to be recreated manually.
 
 ## FAQ

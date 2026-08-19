@@ -27,7 +27,7 @@ In order to make a fresh installation of Zend Server 5.5.0 on Windows 7 usable a
    - Set error reporting: display_errors to on, and error_reporting to -1.
 3. Enable APC.
    - APC is listed as enabled in the Zend Server admin interface, but the app dll file is missing, so APC isn't actually working.
-   - Download the latest php_apc dll file from [here](http://windows.php.net/downloads/pecl/releases/apc/) — at the time of writing, php_apc-3.1.5-5.3-nts-vc9-x86.zip was the latest non-thread-safe VC9 build available.
+   - Download the latest php_apc dll file from [here](http://windows.php.net/downloads/pecl/releases/apc/) - at the time of writing, php_apc-3.1.5-5.3-nts-vc9-x86.zip was the latest non-thread-safe VC9 build available.
    - Extract php_apc.dll to ZEND_INSTALATION_PATH/ZendServer/lib/phpext/.
    - Open the php.ini file from ZEND_INSTALATION_PATH/ZendServer/etc/php.ini and add the line extension=php_apc.dll.
    - Restart the Apache service.

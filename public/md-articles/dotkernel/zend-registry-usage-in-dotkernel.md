@@ -12,7 +12,7 @@ language: "en"
 
 ## TL;DR
 
-In Dotkernel, `Zend_Registry` holds a fixed set of request-scoped variables — from timing and configuration to the database adapter and session object — and can be read either as a full instance or one value at a time.
+In Dotkernel, `Zend_Registry` holds a fixed set of request-scoped variables - from timing and configuration to the database adapter and session object - and can be read either as a full instance or one value at a time.
 
 ## Variables stored in Zend_Registry
 
