@@ -46,7 +46,7 @@
     <section class="hero" style="--page-accent:var(--sage); --page-accent-dim:var(--sage-dim)">
         <div class="wrap hero-grid">
             <div>
-                <span class="eyebrow">Background workers · Symfony Messenger</span>
+                <span class="eyebrow">Background workers . Symfony Messenger</span>
                 <h1>Dotkernel Queue</h1>
                 <p class="sub">
                     Some operations are time-consuming and resource-intensive, and they have no business inside a
@@ -216,7 +216,7 @@
                     <p>The classic case: hand the message to the queue and let the worker compose and send it while the
                        server moves to the next task.</p>
                     <div class="get-started">
-                        <a href="https://docs.dotkernel.org/queue-documentation/v2/how-to/send-emails/" target="_blank" rel="noopener">Sending emails →</a>
+                        <a href="https://docs.dotkernel.org/queue-documentation/v2/how-to/send-emails/" target="_blank" rel="noopener">Sending emails -></a>
                     </div>
                 </div>
             </div>
@@ -235,7 +235,7 @@
             <div class="products-grid">
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Ingest · Swoole</span><h3>The TCP listener</h3></div>
+                        <div><span class="kicker">Ingest . Swoole</span><h3>The TCP listener</h3></div>
                     </div>
                     <p class="lede">Accepts connections and gets out of the way.</p>
                     <p class="desc">
@@ -247,7 +247,7 @@
 
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Store · Valkey</span><h3>The messages stream</h3></div>
+                        <div><span class="kicker">Store . Valkey</span><h3>The messages stream</h3></div>
                     </div>
                     <p class="lede">An open-source key/value datastore built for this shape of work.</p>
                     <p class="desc">
@@ -260,7 +260,7 @@
 
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Process · Messenger</span><h3>The worker</h3></div>
+                        <div><span class="kicker">Process . Messenger</span><h3>The worker</h3></div>
                     </div>
                     <p class="lede">Your handler, running outside the request cycle.</p>
                     <p class="desc">
@@ -272,7 +272,7 @@
 
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Resilience · DLQ</span><h3>Dead letter queue</h3></div>
+                        <div><span class="kicker">Resilience . DLQ</span><h3>Dead letter queue</h3></div>
                     </div>
                     <p class="lede">Failures get parked, not retried forever.</p>
                     <p class="desc">
@@ -284,7 +284,7 @@
 
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Security · Firewall</span><h3>Whitelisted senders</h3></div>
+                        <div><span class="kicker">Security . Firewall</span><h3>Whitelisted senders</h3></div>
                     </div>
                     <p class="lede">The port is open to your servers, not to the internet.</p>
                     <p class="desc">
@@ -296,7 +296,7 @@
 
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Observability · Logs</span><h3>Metrics you can query</h3></div>
+                        <div><span class="kicker">Observability . Logs</span><h3>Metrics you can query</h3></div>
                     </div>
                     <p class="lede">Logging that answers the operational questions.</p>
                     <p class="desc">
@@ -457,36 +457,36 @@
 
             <div class="standards-grid">
                 <div class="standard">
-                    <h4>1 · Prepare the server</h4>
+                    <h4>1 . Prepare the server</h4>
                     <p>Update the OS, create a user with sudo permissions, and install the utilities you will need -
                        including <code>socat</code> for testing.</p>
                     <code class="step-cmd">dnf update -y &amp;&amp; useradd dotkernel</code>
                 </div>
                 <div class="standard">
-                    <h4>2 · Install the runtime</h4>
+                    <h4>2 . Install the runtime</h4>
                     <p>PHP from the Remi repository, plus the Swoole and Redis PECL extensions. Verify both are loaded
                        before moving on.</p>
                     <code class="step-cmd">dnf module enable php:remi-8.5<br>dnf install php-pecl-swoole6 php-pecl-redis</code>
                 </div>
                 <div class="standard">
-                    <h4>3 · Install Valkey</h4>
+                    <h4>3 . Install Valkey</h4>
                     <p>Enable and start the service, then confirm it answers.</p>
                     <code class="step-cmd">dnf install valkey<br>valkey-cli ping</code>
                 </div>
                 <div class="standard">
-                    <h4>4 · Clone and configure</h4>
+                    <h4>4 . Clone and configure</h4>
                     <p>Clone the queue branch, then copy each <code>.dist</code> configuration file into place - local,
                        log, messenger and swoole - and fill them in.</p>
                     <code class="step-cmd">git clone -b default-queue https://github.com/dotkernel/queue.git<br>composer install --no-dev</code>
                 </div>
                 <div class="standard">
-                    <h4>5 · Register the daemons</h4>
+                    <h4>5 . Register the daemons</h4>
                     <p>Set the paths in the shipped unit files, copy them into <code>/etc/systemd/system/</code>, then
                        enable and start both.</p>
                     <code class="step-cmd">systemctl enable --now swoole.service<br>systemctl enable --now messenger.service</code>
                 </div>
                 <div class="standard">
-                    <h4>6 · Close the door</h4>
+                    <h4>6 . Close the door</h4>
                     <p>Allow SSH before starting the firewall, then permit the queue port only from the addresses that
                        should reach it.</p>
                     <code class="step-cmd">firewall-cmd --permanent --add-rich-rule='rule family="ipv4" source address="YOUR_IP" port port="8556" protocol="tcp" accept'</code>
@@ -528,7 +528,7 @@
             <div class="products-grid">
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Pair with · HTTP surface</span><h3>API</h3></div>
+                        <div><span class="kicker">Pair with . HTTP surface</span><h3>API</h3></div>
                     </div>
                     <p class="lede">Dispatch work from an endpoint, answer immediately.</p>
                     <p class="desc">A REST API on a PSR-15 middleware pipeline, with OAuth 2.0, RBAC, HAL payloads and
@@ -541,7 +541,7 @@
 
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Pair with · Back office</span><h3>Admin</h3></div>
+                        <div><span class="kicker">Pair with . Back office</span><h3>Admin</h3></div>
                     </div>
                     <p class="lede">Queue a bulk operation from an admin screen.</p>
                     <p class="desc">Table-based record management with RBAC guards, CSRF-protected forms and 2FA, over
@@ -554,7 +554,7 @@
 
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Pair with · Public-facing</span><h3>Frontend</h3></div>
+                        <div><span class="kicker">Pair with . Public-facing</span><h3>Frontend</h3></div>
                     </div>
                     <p class="lede">Queue the email your signup form triggers.</p>
                     <p class="desc">A web starter skeleton - user accounts, a contact form, sessions and RBAC-guarded
@@ -567,7 +567,7 @@
 
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Smaller · Minimal</span><h3>Light</h3></div>
+                        <div><span class="kicker">Smaller . Minimal</span><h3>Light</h3></div>
                     </div>
                     <p class="lede">A site with nothing to run in the background.</p>
                     <p class="desc">The smallest complete Mezzio application - routing, pipeline and Twig, six direct
@@ -580,7 +580,7 @@
 
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Tooling · AI context</span><h3>Dotboost</h3></div>
+                        <div><span class="kicker">Tooling . AI context</span><h3>Dotboost</h3></div>
                     </div>
                     <p class="lede">Teach your AI tools this architecture.</p>
                     <p class="desc">Drop-in Claude Code configuration - ten commands, seventeen skills and permission
@@ -613,7 +613,7 @@
                             <div class="post-date">{{ post.postDate|date('M d, Y') }}</div>
                             <h3>{{ post.title }}</h3>
                             <p>{{ post.excerpt }}</p>
-                            <span class="read-more">Read more →</span>
+                            <span class="read-more">Read more -></span>
                         </a>
                     {% else %}
                         <p class="text-muted text-center mb-0">No recent posts.</p>
@@ -633,7 +633,7 @@
                 <p class="about-text">Dotkernel Queue is developed and led by the dev team at Apidemia - built to keep
                     real platforms responsive under real load, and released as open source for the community.</p>
                 <div class="about-cta">
-                    <a class="btn btn-ghost" href="{{ url('page::contact') }}">Talk to us →</a>
+                    <a class="btn btn-ghost" href="{{ url('page::contact') }}">Talk to us -></a>
                 </div>
             </div>
         </div>

@@ -7,7 +7,7 @@ language: "en"
 
 # Dotkernel API
 
-REST API skeleton · PSR-15 middleware
+REST API skeleton . PSR-15 middleware
 
 An open-source REST API skeleton for PHP, built on the Mezzio microframework and Laminas components over a Doctrine domain layer.
 OAuth 2.0, RBAC authorization, HAL payloads, standardized error responses and an OpenAPI 3.0 specification are assembled on install - not left as decisions for your first sprint.
@@ -24,7 +24,7 @@ OAuth 2.0, RBAC authorization, HAL payloads, standardized error responses and an
 
 ## Request lifecycle
 
-CORS (`mezzio-cors`) → Router (FastRoute) → Authentication (OAuth 2.0) → RBAC guard (per route name) → Your handler (PSR-15) → Response (HAL / problem+json).
+CORS (`mezzio-cors`) -> Router (FastRoute) -> Authentication (OAuth 2.0) -> RBAC guard (per route name) -> Your handler (PSR-15) -> Response (HAL / problem+json).
 [All 19 stages](https://www.dotkernel.com/architecture/)
 
 ## A REST API you own from the first commit
@@ -46,70 +46,70 @@ Extending the power of Mezzio by Laminas.
 Each of these is configured and working in a fresh install.
 Nothing here is a placeholder you have to research and assemble before you can serve your first authenticated endpoint.
 
-### OAuth 2.0 - Security · Authentication
+### OAuth 2.0 - Security . Authentication
 
 Bearer tokens, issued and validated by the API itself.
 
 Authentication runs on `mezzio-authentication-oauth2`, which wraps `league/oauth2-server` to provide OAuth 2.0 for PSR-7 / PSR-15 applications.
 Endpoints marked as authenticated require a valid Bearer token and answer `401 Unauthorized` without one.
 
-### RBAC per route - Security · Authorization
+### RBAC per route - Security . Authorization
 
 Three levels of protection: none, authenticated, authorized.
 
 Roles and their permissions are declared in configuration and allocated per route name, with role inheritance supported.
 An authenticated request that lacks the required permission gets a `403 Forbidden` - decided by config, not scattered through your handlers.
 
-### OpenAPI 3.0 - Contract · Documentation
+### OpenAPI 3.0 - Contract . Documentation
 
 A machine-readable contract, generated from the code that serves it.
 
 Every module documents its endpoints in an `OpenAPI.php` file, which `zircote/swagger-php` turns into a specification rendered through Swagger UI or Redoc.
 A Postman collection and environment ship alongside it, so every endpoint is ready to call by hand.
 
-### Doctrine ORM - Data · Persistence
+### Doctrine ORM - Data . Persistence
 
 Your domain in entities, not in the query layer.
 
 Doctrine ORM handles persistence, so you can focus on object-oriented business logic and treat storage as a secondary concern.
 Migrations, fixtures via `dot-data-fixtures`, and multiple database connections are part of the setup.
 
-### HAL & problem details - Contract · Responses
+### HAL & problem details - Contract . Responses
 
 One predictable shape for resources, one for failures.
 
 Payloads are built with `mezzio-hal`, describing each resource together with its relational links and embedded child resources.
 Errors return problem details responses via `mezzio-problem-details`, giving clients standardized error codes system-wide.
 
-### Content negotiation - Contract · Negotiation
+### Content negotiation - Contract . Negotiation
 
 Client and server agree on format and language up front.
 
 Content negotiation is implemented out of the box through the `Content-Type` and `Accept` headers, so diverse systems can consume the same API without custom glue on either side.
 CORS preflight requests are recognized and configured by `mezzio-cors`.
 
-### Error reporting endpoint - Operations · Feedback
+### Error reporting endpoint - Operations . Feedback
 
 A channel for the bugs that never reach your logs.
 
 Frontend developers can report incorrect behaviour by posting to `/error-report` with a token header.
 The API validates the request against configured tokens, domains and IPs before logging it - useful precisely when nothing fatal was thrown.
 
-### Commands & file locker - Operations · CLI
+### Commands & file locker - Operations . CLI
 
 Scheduled work that refuses to trample itself.
 
 Console commands are registered through `dot-cli` on top of Symfony Console, and `php ./bin/cli.php route:list` prints every endpoint the application exposes.
 The file locker, enabled by default, writes a lock file per command so a second instance cannot start while the previous run is still going - the safeguard cron jobs usually lack.
 
-### Transactional email - Operations · Mail
+### Transactional email - Operations . Mail
 
 Account mail that works before you configure anything.
 
 `dot-mail` wraps Symfony Mailer with templated messages, so account activation and password reset send out of a fresh install.
 It joins the request flow only where it is needed - the rest of the pipeline is unchanged whether a route sends mail or not.
 
-### dot-maker - Productivity · Scaffolding
+### dot-maker - Productivity . Scaffolding
 
 New modules that already match the house style.
 
@@ -203,7 +203,7 @@ The rest of the ecosystem is below.
 One set of entities and repositories, committed in each repository so a single-component start just works.
 Having many entities in Core does not oblige you to implement handlers for all of them - each application handles only what it needs.
 
-### Admin - Pair with · Back office
+### Admin - Pair with . Back office
 
 Manage the same data your API serves.
 
@@ -214,7 +214,7 @@ Start with either one and add the other later.
 - [GitHub](https://github.com/dotkernel/admin)
 - [Demo](https://admin7.dotkernel.net/)
 
-### Queue - Pair with · Async work
+### Queue - Pair with . Async work
 
 Move slow work off the request cycle.
 
@@ -223,7 +223,7 @@ Background workers on Symfony Messenger - a TCP listener, Valkey streams, retrie
 - [Read more](https://www.dotkernel.com/queue/)
 - [GitHub](https://github.com/dotkernel/queue)
 
-### Frontend - Instead · Server-rendered
+### Frontend - Instead . Server-rendered
 
 When your users want pages, not payloads.
 
@@ -232,7 +232,7 @@ A web starter skeleton - user accounts, a contact form, sessions and RBAC-guarde
 - [Read more](https://www.dotkernel.com/frontend/)
 - [Demo](https://v5.dotkernel.net/)
 
-### Light - Smaller · Minimal
+### Light - Smaller . Minimal
 
 A presentation site with no API behind it.
 
@@ -241,7 +241,7 @@ The smallest complete Mezzio application - routing, pipeline and Twig, six direc
 - [Read more](https://www.dotkernel.com/light/)
 - [Demo](https://light.dotkernel.net/)
 
-### Dotboost - Tooling · AI context
+### Dotboost - Tooling . AI context
 
 Teach your AI tools this architecture.
 
@@ -279,7 +279,7 @@ The skeleton ships with a test suite you extend rather than start, so new endpoi
 
 Updates arrive with bugfixes and improvements from the PHP community, and breaking changes come with companion articles and upgrade steps.
 
-[Join the discussion →](https://github.com/orgs/dotkernel/discussions)
+[Join the discussion ->](https://github.com/orgs/dotkernel/discussions)
 
 ## Install it and call an endpoint
 
@@ -301,4 +301,4 @@ An API foundation you can read, audit and keep.
 
 Dotkernel API is developed and led by the dev team at Apidemia - built first as an internal tool for handling complex architectures, released under MIT as our way of giving back to the community.
 
-[Talk to us →](https://www.dotkernel.com/contact/)
+[Talk to us ->](https://www.dotkernel.com/contact/)
