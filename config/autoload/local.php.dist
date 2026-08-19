@@ -21,6 +21,7 @@ $databases = [
         'collate'  => 'utf8mb4_general_ci',
     ],
 ];
+$org       = 'dotkernel';
 
 /**
  * Exposed twice below, deliberately: as the `application` config key that PHP reads, and as
@@ -77,9 +78,12 @@ return [
      * Non-credential settings (ignore list, output path) live in `packages.global.php`.
      */
     'github'  => [
-        'userAgent'  => 'dotkernel.com',
-        'authBearer' => '',
-        'org'        => 'dotkernel',
+        'userAgent'      => '',
+        'authBearer'     => '',
+        'repoResultFile' => date('Ymd') . "-$org-repos" . '.json',
+        'propResultFile' => date('Ymd') . "-$org-prop" . '.json',
+        'cachePath'      => realpath(__DIR__ . "/../../data/cache/package-info"),
+        'org'            => $org,
     ],
     'sitemap' => [
         'path' => realpath(__DIR__ . '/../../public/sitemap.xml'),
