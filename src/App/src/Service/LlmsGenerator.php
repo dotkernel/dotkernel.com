@@ -20,7 +20,6 @@ use function trim;
 use function uasort;
 use function usort;
 
-
 class LlmsGenerator
 {
     /** @var list<non-empty-string> */
@@ -76,7 +75,6 @@ class LlmsGenerator
 
     public function write(): int
     {
-
         $postsByCategory = $this->groupPublishedPostsByCategory();
 
         $sections = [];
@@ -103,14 +101,14 @@ class LlmsGenerator
     }
 
     /**
-     * @return array<non-empty-string, list<array{post: Post, title: string, description: string}>>
+     * @return array<string, list<array{post: Post, title: string, description: string}>>
      */
     private function groupPublishedPostsByCategory(): array
     {
         $byCategory = [];
         foreach ($this->postRepository->getPublishedPosts() as $post) {
-            $slug         = $post->getCategory()->getSlug();
-            $frontMatter  = $this->resolveFrontMatter($slug, $post);
+            $slug                = $post->getCategory()->getSlug();
+            $frontMatter         = $this->resolveFrontMatter($slug, $post);
             $byCategory[$slug][] = [
                 'post'        => $post,
                 'title'       => $frontMatter['title'],
