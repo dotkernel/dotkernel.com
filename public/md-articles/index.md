@@ -47,7 +47,7 @@ Two additional skeletons, **Light** and **Frontend**, stand outside the platform
 
 ## Request lifecycle
 
-Router (FastRoute) → Authentication (dot-authentication) → RBAC guard (dot-rbac-guard) → your PSR-15 handler → Response (Diactoros).
+Router (FastRoute) -> Authentication (dot-authentication) -> RBAC guard (dot-rbac-guard) -> your PSR-15 handler -> Response (Diactoros).
 
 ## The headless platform: three applications, one platform
 

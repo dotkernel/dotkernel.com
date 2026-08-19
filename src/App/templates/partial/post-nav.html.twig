@@ -18,7 +18,7 @@
         {% endif %}
         {% if nextPost %}
             <a href="{{ url('page::blog-resource', {categorySlug: nextPost.category.slug, slug: nextPost.slug}) }}" class="next-post">
-                <span class="direction">Newer post →</span>
+                <span class="direction">Newer post -></span>
                 <span class="title">{{ nextPost.title }}</span>
             </a>
         {% endif %}

@@ -34,7 +34,7 @@
                             <h4>{{ post.title }}</h4>
                             <p>{{ post.excerpt|length > 200 ? post.excerpt|slice(0, 200)|trim ~ '…' : post.excerpt }}</p>
                             <span class="post-date">{{ post.postDate|date('M d, Y') }}</span>
-                            <span class="read-more">Read more →</span>
+                            <span class="read-more">Read more -></span>
                         </a>
                     {% else %}
                         <div class="card posts-empty">

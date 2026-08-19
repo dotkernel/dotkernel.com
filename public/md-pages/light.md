@@ -7,7 +7,7 @@ language: "en"
 
 # Dotkernel Light
 
-Minimal skeleton · PSR-15
+Minimal skeleton . PSR-15
 
 A PSR-15 compliant application skeleton on the Mezzio microframework and Laminas components, designed as a minimal project for generating a simple website - a presentation site, a landing page, a small service.
 Six direct dependencies, two modules, and nothing to delete before you start.
@@ -24,7 +24,7 @@ Six direct dependencies, two modules, and nothing to delete before you start.
 
 ## Request lifecycle
 
-`index.php` (bootstrap) → Container (factories · aliases) → Routing (FastRoute) → Pipeline (`pipeline.php`) → Handler (PSR-15) → Twig (layout · blocks) → Emitter (HtmlResponse).
+`index.php` (bootstrap) -> Container (factories . aliases) -> Routing (FastRoute) -> Pipeline (`pipeline.php`) -> Handler (PSR-15) -> Twig (layout . blocks) -> Emitter (HtmlResponse).
 
 ## The smallest complete Mezzio application
 
@@ -109,7 +109,7 @@ Add another entry under `paths` in the Page module's `ConfigProvider` - the key 
 
 ### One route, one template
 
-In `config/autoload/local.php`, under the `routes` → `page` key:
+In `config/autoload/local.php`, under the `routes` -> `page` key:
 
 ```php
 'example-page' => 'example-template',
@@ -128,7 +128,7 @@ Your new page answers at `/page/example-page`, under the route name `page::examp
 
 The parts you actually edit on a presentation site, and where each of them lives.
 
-### Asset pipeline — Build · Vite
+### Asset pipeline — Build . Vite
 
 One command while you work, one before you ship.
 
@@ -136,7 +136,7 @@ Vite concatenates and compresses CSS and JavaScript, preprocesses SCSS, and copi
 `npm run watch` recompiles on change; `npm run build` compiles once.
 Node.js v20 is the minimum supported version.
 
-### assets → public — Build · Source of truth
+### assets -> public — Build . Source of truth
 
 Edit the source, never the output.
 
@@ -144,27 +144,27 @@ Images, fonts, JavaScript and SCSS live in `src/App/assets/`.
 The build deletes and rebuilds `css`, `js`, `fonts` and `images` under `public/` - anything you edit there by hand is lost on the next run.
 Everything else in `public/` is left alone.
 
-### Cache busting — Build · Caching
+### Cache busting — Build . Caching
 
 The oldest bug in web deployment, solved in one character.
 
 Browsers cache your built CSS and JS, so a deploy can leave visitors on the old file.
 Add a version parameter to the asset URL in the layout - `app.css?v=3` - and increment it whenever you commit a change to that file.
 
-### Menu and footer — Content · Navigation
+### Menu and footer — Content . Navigation
 
 Plain Twig in one layout file.
 
 The top menu is the list under `id="navbarHeader"` in `src/App/templates/layout/default.html.twig`; each `li` is one item, and items can be grouped into dropdowns or styled as buttons.
 The footer is the `app-footer` element in the same file.
 
-### Twitter & OpenGraph — Content · Sharing
+### Twitter & OpenGraph — Content . Sharing
 
 Cards for when your pages get posted elsewhere.
 
 Add the card meta tags to the layout head, generating URLs with the same helper the canonical block uses - `{{ url(routeName ?? null) }}` - which also keeps mistyped URLs from breaking the page.
 
-### Errors and logs — Operations · Logs
+### Errors and logs — Operations . Logs
 
 A log file per day, from the first request.
 
@@ -176,7 +176,7 @@ Development mode adds the error handlers you want locally and nowhere else.
 No database to create, no fixtures to seed.
 Clone, install, set a URL, open it.
 
-### 1 · Clone into an empty folder
+### 1 . Clone into an empty folder
 
 Git refuses a directory that is not empty, and you need write permissions on it.
 
@@ -184,7 +184,7 @@ Git refuses a directory that is not empty, and you need write permissions on it.
 git clone https://github.com/dotkernel/light.git .
 ```
 
-### 2 · Install dependencies
+### 2 . Install dependencies
 
 Run it from the CLI so the prompts stay interactive.
 Decline the config provider injection - Light already includes its own.
@@ -193,7 +193,7 @@ Decline the config provider injection - Light already includes its own.
 composer install
 ```
 
-### 3 · Enable development mode
+### 3 . Enable development mode
 
 Local work only.
 `composer development-status` reports where you stand.
@@ -202,11 +202,11 @@ Local work only.
 composer development-enable
 ```
 
-### 4 · Set the base URL
+### 4 . Set the base URL
 
 Point `$baseUrl` in `config/autoload/local.php` at your virtual host.
 
-### 5 · Fix the writable folders
+### 5 . Fix the writable folders
 
 The two directories the application writes to.
 Most first-run errors are this and nothing else.
@@ -215,7 +215,7 @@ Most first-run errors are this and nothing else.
 chmod -R 777 ./data ./log
 ```
 
-### 6 · Open it in a browser
+### 6 . Open it in a browser
 
 The Dotkernel Light welcome page is waiting.
 Errors about missing services usually mean a stale config cache.
@@ -243,7 +243,7 @@ On Windows, WSL2 with AlmaLinux is the recommended development environment.
 Light sits outside the Headless Platform on purpose.
 It has no sessions, no forms, no authentication and no database - so the moment you need those, start from a skeleton that already has them rather than growing them here.
 
-### Frontend — Instead · Full-stack web
+### Frontend — Instead . Full-stack web
 
 You need logins, forms and sessions.
 
@@ -253,7 +253,7 @@ A server-rendered web starter on Mezzio and Laminas - Twig views, forms, session
 - [GitHub](https://github.com/dotkernel/frontend)
 - [Demo](https://v5.dotkernel.net/)
 
-### API — Instead · HTTP surface
+### API — Instead . HTTP surface
 
 You are serving clients, not pages.
 
@@ -262,7 +262,7 @@ A REST API on a PSR-15 middleware pipeline, with OAuth 2.0, RBAC, HAL payloads a
 - [Read more](https://www.dotkernel.com/api/)
 - [GitHub](https://github.com/dotkernel/api)
 
-### Admin — Instead · Back office
+### Admin — Instead . Back office
 
 You need to manage records, not publish copy.
 
@@ -271,7 +271,7 @@ Table-based record management with RBAC guards, CSRF-protected forms and 2FA, ov
 - [Read more](https://www.dotkernel.com/admin/)
 - [GitHub](https://github.com/dotkernel/admin)
 
-### Queue — Instead · Async work
+### Queue — Instead . Async work
 
 You have work that outlives a request.
 
@@ -280,7 +280,7 @@ Background workers on Symfony Messenger - a TCP listener, Valkey streams, retrie
 - [Read more](https://www.dotkernel.com/queue/)
 - [GitHub](https://github.com/dotkernel/queue)
 
-### dotboost — Tooling · AI context
+### dotboost — Tooling . AI context
 
 Teach your AI tools this architecture.
 
@@ -296,4 +296,4 @@ Small enough to read, real enough to ship.
 Dotkernel Light is developed and led by the dev team at Apidemia, and released as open source for the community.
 If you want to see the whole application before you commit to it, that is the entire promise of this skeleton.
 
-[Talk to us →](https://www.dotkernel.com/contact/)
+[Talk to us ->](https://www.dotkernel.com/contact/)

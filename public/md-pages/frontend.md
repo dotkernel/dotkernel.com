@@ -7,7 +7,7 @@ language: "en"
 
 # Dotkernel Frontend
 
-Web starter · Server-rendered
+Web starter . Server-rendered
 
 A web starter skeleton on the Mezzio microframework and Laminas components, for the applications people log into.
 User accounts, a working contact form and a content page ship as proof of concept - real, running features whose only job is to show you where your own code goes.
@@ -24,7 +24,7 @@ User accounts, a working contact form and a content page ship as proof of concep
 
 ## Request lifecycle
 
-Session (`dot-session`) → Router (FastRoute) → Authentication (User identity) → RBAC guard (route + action) → Controller action (`dot-controller`) → Response (Twig + flash).
+Session (`dot-session`) -> Router (FastRoute) -> Authentication (User identity) -> RBAC guard (route + action) -> Controller action (`dot-controller`) -> Response (Twig + flash).
 
 ## The web application half of the stack
 
@@ -45,62 +45,62 @@ Extending the power of Mezzio by Laminas.
 
 These are the parts you would otherwise spend your first two weeks assembling, already working together in a fresh install.
 
-### Registration & login — Users · Accounts
+### Registration & login — Users . Accounts
 
 The whole account lifecycle, already routed.
 
 Login, registration and account management, including avatar upload, password change and unregistering.
 Password reset and account activation emails are part of the flow, which is why the skeleton stores a name and an email address and nothing more.
 
-### Guards per action — Security · Access control
+### Guards per action — Security . Access control
 
 Permissions applied to individual controller actions.
 
 `dot-rbac-guard` and `dot-rbac` read roles and permissions from `authorization.global.php`, then `authorization-guards.global.php` maps rules onto a route and a named list of its actions - or an empty list to cover all of them.
 Fine-grained without being scattered.
 
-### CSRF tokens — Security · Forms
+### CSRF tokens — Security . Forms
 
 A new token per render, validated on submit.
 
 Built from the `laminas-form` CSRF element, a `laminas-session` CSRF validator in the input filter, and the `formElement` view helper in the template.
 Tokens expire after a configurable timeout - one hour by default - and are never reusable between forms.
 
-### Contact form with reCAPTCHA — Public · Contact
+### Contact form with reCAPTCHA — Public . Contact
 
 A public form that does not become a spam relay.
 
 The contact form uses Google reCAPTCHA, with the site and secret keys read from local configuration and the message recipients - `to` and any number of `cc` addresses - configured alongside them.
 Whitelist `localhost` while developing, and take it out again for production.
 
-### Flash messages — UX · Feedback
+### Flash messages — UX . Feedback
 
 The message survives the redirect.
 
 `dot-flashmessenger` carries session messages across redirects - the small piece that makes post-then-redirect flows feel finished.
 `dot-session` extends laminas-session underneath, configured in `session.global.php`.
 
-### Attribute injection — Wiring · DI
+### Attribute injection — Wiring . DI
 
 Constructor injection declared on the constructor.
 
 `dot-dependency-injection` reads an `#[Inject]` attribute and resolves each listed dependency - a service, the whole `config` array, or a single key by dot notation.
 Register the class against `AttributedServiceFactory` and stop writing factories.
 
-### Doctrine ORM — Data · Persistence
+### Doctrine ORM — Data . Persistence
 
 Migrations and fixtures, driven from the CLI.
 
 Doctrine through `roave/psr-container-doctrine`, with UUIDs as a field type via `ramsey/uuid-doctrine`.
 Migrations live in `data/doctrine/migrations`; `bin/doctrine fixtures:execute` seeds the default roles.
 
-### Headers & CORS — Delivery · HTTP
+### Headers & CORS — Delivery . HTTP
 
 Response headers declared per route.
 
 `dot-response-header` sets custom headers per route from `response-header.global.php`, while `mezzio-cors` handles origins, headers and cookies from `cors.global.php`.
 
-### Menus, templates, i18n — Content · Presentation
+### Menus, templates, i18n — Content . Presentation
 
 Navigation from configuration, translation when you need it.
 
@@ -160,7 +160,7 @@ Plugin functionality for dynamic forms and templates.
 The documentation walks through every command with its expected output.
 This is the sequence.
 
-### 1 · Clone into an empty folder
+### 1 . Clone into an empty folder
 
 Git refuses a non-empty directory, and you need write permissions on it.
 
@@ -168,7 +168,7 @@ Git refuses a non-empty directory, and you need write permissions on it.
 git clone https://github.com/dotkernel/frontend.git .
 ```
 
-### 2 · Install dependencies
+### 2 . Install dependencies
 
 From the CLI, so the prompts stay interactive.
 Decline the config provider injection - Frontend ships its own.
@@ -177,7 +177,7 @@ Decline the config provider injection - Frontend ships its own.
 composer install
 ```
 
-### 3 · Enable development mode
+### 3 . Enable development mode
 
 Sets debug on, configuration caching off, and clears any existing cache.
 
@@ -185,11 +185,11 @@ Sets debug on, configuration caching off, and clears any existing cache.
 composer development-enable
 ```
 
-### 4 · Prepare the config files
+### 4 . Prepare the config files
 
 Copy the `.dist` files into place - `local.php`, `development.local.php`, `mail.local.php`, `debugbar.local.php` - then fill in the database, SMTP and reCAPTCHA details.
 
-### 5 · Migrate and seed
+### 5 . Migrate and seed
 
 Migrations build the schema and are logged so none runs twice; the fixtures populate the default user roles.
 
@@ -198,7 +198,7 @@ php vendor/bin/doctrine-migrations migrate
 php bin/doctrine fixtures:execute
 ```
 
-### 6 · Fix permissions and open it
+### 6 . Fix permissions and open it
 
 Three writable paths cover almost every first-run error.
 
@@ -227,7 +227,7 @@ Note that Frontend still supports MySQL - unlike API and Admin v7, which require
 Frontend stands on its own, outside the Headless Platform.
 It is the right starting point when your users log in and your pages are rendered on the server - and the wrong one in both directions from there.
 
-### Light — Smaller · Minimal
+### Light — Smaller . Minimal
 
 No users, no database, no forms to protect.
 
@@ -237,7 +237,7 @@ Right for a presentation site.
 - [Read more](https://www.dotkernel.com/light/)
 - [Demo](https://light.dotkernel.net/)
 
-### API — Different · HTTP surface
+### API — Different . HTTP surface
 
 Your frontend is someone else's framework.
 
@@ -246,7 +246,7 @@ A REST API on a PSR-15 middleware pipeline, with OAuth 2.0, RBAC, HAL payloads a
 - [Read more](https://www.dotkernel.com/api/)
 - [Demo](https://api.dotkernel.net/)
 
-### Admin — Bigger · Platform
+### Admin — Bigger . Platform
 
 You need a back office over a shared domain.
 
@@ -255,7 +255,7 @@ Table-based record management with RBAC guards, CSRF-protected forms and 2FA, ov
 - [Read more](https://www.dotkernel.com/admin/)
 - [Demo](https://admin7.dotkernel.net/)
 
-### Queue — Alongside · Async work
+### Queue — Alongside . Async work
 
 Move the registration email off the request.
 
@@ -264,7 +264,7 @@ Background workers on Symfony Messenger - a TCP listener, Valkey streams, retrie
 - [Read more](https://www.dotkernel.com/queue/)
 - [GitHub](https://github.com/dotkernel/queue)
 
-### Dotboost — Tooling · AI context
+### Dotboost — Tooling . AI context
 
 Teach your AI tools this architecture.
 
@@ -280,4 +280,4 @@ Accounts, forms and compliance - already handled.
 Dotkernel Frontend is developed and led by the dev team at Apidemia and released as open source for the community.
 Try the demo to see the account flows before you install anything.
 
-[Talk to us →](https://www.dotkernel.com/contact/)
+[Talk to us ->](https://www.dotkernel.com/contact/)

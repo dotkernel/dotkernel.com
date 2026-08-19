@@ -50,7 +50,7 @@ The mantissa is the number the exponent is multiplied by, and its value is 1 + 1
 
 For example, take the number 3.5: 3.5 = sign(1) * exponent(2) * mantissa(1.75).
 
-Mantissa: 1 + 11000000000000000000000 → 1/(2^0) + 1/(2^1) + 1/(2^2) + 0*(2^3) + ... + 0*(2^23) → 1 + 0.5 + 0.25 → 1.75
+Mantissa: 1 + 11000000000000000000000 -> 1/(2^0) + 1/(2^1) + 1/(2^2) + 0*(2^3) + ... + 0*(2^23) -> 1 + 0.5 + 0.25 -> 1.75
 
 Some numbers cannot be represented exactly (such as 0.99999999).
 
