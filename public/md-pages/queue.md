@@ -7,7 +7,7 @@ language: "en"
 
 # Dotkernel Queue
 
-Background workers · Symfony Messenger
+Background workers . Symfony Messenger
 
 Some operations are time-consuming and resource-intensive, and they have no business inside a request.
 Dotkernel Queue accepts them over a TCP connection, stores them, and runs them on background workers - so your platform answers the next request instead of waiting for a video to finish encoding.
@@ -23,7 +23,7 @@ Dotkernel Queue accepts them over a TCP connection, stores them, and runs them o
 
 ## Message lifecycle
 
-Your application (JSON payload) → TCP :8556 (IP whitelisted) → Swoole daemon (accepts & stores) → messages stream (Valkey · FIFO) → Messenger worker (your handler) → failed stream (after 3 retries).
+Your application (JSON payload) -> TCP :8556 (IP whitelisted) -> Swoole daemon (accepts & stores) -> messages stream (Valkey . FIFO) -> Messenger worker (your handler) -> failed stream (after 3 retries).
 
 ## A separate machine for the slow work
 
@@ -68,21 +68,21 @@ OS updates, software compilation, CI pipelines triggered from your application.
 
 The classic case: hand the message to the queue and let the worker compose and send it while the server moves to the next task.
 
-[Sending emails →](https://docs.dotkernel.org/queue-documentation/v2/how-to/send-emails/)
+[Sending emails ->](https://docs.dotkernel.org/queue-documentation/v2/how-to/send-emails/)
 
 ## Two daemons, one stream
 
 A listener that accepts messages fast, and a worker that processes them carefully.
 They are separate systemd services, so you can restart either one without losing the other.
 
-### The TCP listener - Ingest · Swoole
+### The TCP listener - Ingest . Swoole
 
 Accepts connections and gets out of the way.
 
 An active daemon listens for TCP connections on a port - 8556 by default - and stores incoming messages immediately.
 This supports a large number of requests per second without overloading, because accepting a message is all it does.
 
-### The messages stream - Store · Valkey
+### The messages stream - Store . Valkey
 
 An open-source key/value datastore built for this shape of work.
 
@@ -90,28 +90,28 @@ Messages land in the `messages` stream, the main queue.
 The worker consumes from it in FIFO order - the oldest request first, then newer ones - and processes each according to your application logic.
 Valkey is BSD-licensed and handles caching, message queues, and primary datastore workloads.
 
-### The worker - Process · Messenger
+### The worker - Process . Messenger
 
 Your handler, running outside the request cycle.
 
 A Messenger worker consumes the stream and hands each message to your handler.
 Because it is a separate service on a separate machine if you want one, a slow job costs you worker time rather than user-facing latency.
 
-### Dead letter queue - Resilience · DLQ
+### Dead letter queue - Resilience . DLQ
 
 Failures get parked, not retried forever.
 
 Each transport defines a retry strategy.
 When a message exceeds its allowed retries it is forwarded automatically to the failure transport and stored in the `failed` stream - so a message that cannot succeed never blocks the ones behind it.
 
-### Whitelisted senders - Security · Firewall
+### Whitelisted senders - Security . Firewall
 
 The port is open to your servers, not to the internet.
 
 The documented setup adds a firewall rich rule that accepts traffic on the queue's port only from the source addresses you name.
 Fast to evaluate, and a small attack surface for a service that takes instructions.
 
-### Metrics you can query - Observability · Logs
+### Metrics you can query - Observability . Logs
 
 Logging that answers the operational questions.
 
@@ -172,7 +172,7 @@ The `-T1` timeout is optional but wise: without it, a server that never replies 
 The documented path is AlmaLinux 9 or 10 with root access, adapted accordingly for other operating systems.
 Everything runs as a non-root user.
 
-### 1 · Prepare the server
+### 1 . Prepare the server
 
 Update the OS, create a user with sudo permissions, and install the utilities you will need - including `socat` for testing.
 
@@ -180,7 +180,7 @@ Update the OS, create a user with sudo permissions, and install the utilities yo
 dnf update -y && useradd dotkernel
 ```
 
-### 2 · Install the runtime
+### 2 . Install the runtime
 
 PHP from the Remi repository, plus the Swoole and Redis PECL extensions.
 Verify both are loaded before moving on.
@@ -190,7 +190,7 @@ dnf module enable php:remi-8.5
 dnf install php-pecl-swoole6 php-pecl-redis
 ```
 
-### 3 · Install Valkey
+### 3 . Install Valkey
 
 Enable and start the service, then confirm it answers.
 
@@ -199,7 +199,7 @@ dnf install valkey
 valkey-cli ping
 ```
 
-### 4 · Clone and configure
+### 4 . Clone and configure
 
 Clone the queue branch, then copy each `.dist` configuration file into place - local, log, messenger and swoole - and fill them in.
 
@@ -208,7 +208,7 @@ git clone -b default-queue https://github.com/dotkernel/queue.git
 composer install --no-dev
 ```
 
-### 5 · Register the daemons
+### 5 . Register the daemons
 
 Set the paths in the shipped unit files, copy them into `/etc/systemd/system/`, then enable and start both.
 
@@ -217,7 +217,7 @@ systemctl enable --now swoole.service
 systemctl enable --now messenger.service
 ```
 
-### 6 · Close the door
+### 6 . Close the door
 
 Allow SSH before starting the firewall, then permit the queue port only from the addresses that should reach it.
 
@@ -238,7 +238,7 @@ Share the `Core` module with it - copied in or added as a submodule - and your w
 
 Keep Core in sync between the main project and the queue and every class, service and configuration needed for message processing is already there - which is what makes a worker able to compose an email from your own templates.
 
-### API - Pair with · HTTP surface
+### API - Pair with . HTTP surface
 
 Dispatch work from an endpoint, answer immediately.
 
@@ -247,7 +247,7 @@ A REST API on a PSR-15 middleware pipeline, with OAuth 2.0, RBAC, HAL payloads a
 - [Read more](https://www.dotkernel.com/api/)
 - [GitHub](https://github.com/dotkernel/api)
 
-### Admin - Pair with · Back office
+### Admin - Pair with . Back office
 
 Queue a bulk operation from an admin screen.
 
@@ -256,7 +256,7 @@ Table-based record management with RBAC guards, CSRF-protected forms and 2FA, ov
 - [Read more](https://www.dotkernel.com/admin/)
 - [GitHub](https://github.com/dotkernel/admin)
 
-### Frontend - Pair with · Public-facing
+### Frontend - Pair with . Public-facing
 
 Queue the email your signup form triggers.
 
@@ -265,7 +265,7 @@ A web starter skeleton - user accounts, a contact form, sessions and RBAC-guarde
 - [Read more](https://www.dotkernel.com/frontend/)
 - [Demo](https://v5.dotkernel.net/)
 
-### Light - Smaller · Minimal
+### Light - Smaller . Minimal
 
 A site with nothing to run in the background.
 
@@ -274,7 +274,7 @@ The smallest complete Mezzio application - routing, pipeline and Twig, six direc
 - [Read more](https://www.dotkernel.com/light/)
 - [Demo](https://light.dotkernel.net/)
 
-### Dotboost - Tooling · AI context
+### Dotboost - Tooling . AI context
 
 Teach your AI tools this architecture.
 
@@ -291,4 +291,4 @@ Let the slow work happen somewhere else.
 
 Dotkernel Queue is developed and led by the dev team at Apidemia - built to keep real platforms responsive under real load, and released as open source for the community.
 
-[Talk to us →](https://www.dotkernel.com/contact/)
+[Talk to us ->](https://www.dotkernel.com/contact/)

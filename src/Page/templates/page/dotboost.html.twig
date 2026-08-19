@@ -48,7 +48,7 @@
     <section class="hero" style="--page-accent:var(--sage); --page-accent-dim:var(--sage-dim)">
         <div class="wrap hero-grid">
             <div>
-                <span class="eyebrow">Developer tooling · AI context</span>
+                <span class="eyebrow">Developer tooling . AI context</span>
                 <h1>Dotboost</h1>
                 <p class="sub">
                     Drop-in configuration that teaches <strong>Claude Code</strong> the conventions of any Dotkernel application - API,
@@ -84,9 +84,9 @@
                         <div class="ai-node" style="top:12%; left:50%"><span class="name">Session start</span><span class="tag">variant briefing</span></div>
                         <div class="ai-node" style="top:31%; left:83%"><span class="name">Skill loads</span><span class="tag">by description</span></div>
                         <div class="ai-node" style="top:69%; left:83%"><span class="name">Plan mode</span><span class="tag">proposes first</span></div>
-                        <div class="ai-node" style="top:88%; left:50%"><span class="name">Guard hooks</span><span class="tag">Edit · Bash</span></div>
-                        <div class="ai-node" style="top:69%; left:17%"><span class="name">Normalise</span><span class="tag">BOM · CRLF · EOF</span></div>
-                        <div class="ai-node" style="top:31%; left:17%"><span class="name">Lint</span><span class="tag">php -l · markdown</span></div>
+                        <div class="ai-node" style="top:88%; left:50%"><span class="name">Guard hooks</span><span class="tag">Edit . Bash</span></div>
+                        <div class="ai-node" style="top:69%; left:17%"><span class="name">Normalise</span><span class="tag">BOM . CRLF . EOF</span></div>
+                        <div class="ai-node" style="top:31%; left:17%"><span class="name">Lint</span><span class="tag">php -l . markdown</span></div>
                     </div>
                 </div>
             </div>
@@ -153,7 +153,7 @@
             <div class="products-grid">
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Tier · Never read</span><h3>Your secrets</h3></div>
+                        <div><span class="kicker">Tier . Never read</span><h3>Your secrets</h3></div>
                     </div>
                     <p class="lede">Not redacted - never loaded.</p>
                     <p class="desc">
@@ -166,7 +166,7 @@
 
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Tier · Never written</span><h3>Generated &amp; vendored</h3></div>
+                        <div><span class="kicker">Tier . Never written</span><h3>Generated &amp; vendored</h3></div>
                     </div>
                     <p class="lede">The files a diff should never touch by accident.</p>
                     <p class="desc">
@@ -179,7 +179,7 @@
 
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Tier · Never run</span><h3>Installs &amp; destructive git</h3></div>
+                        <div><span class="kicker">Tier . Never run</span><h3>Installs &amp; destructive git</h3></div>
                     </div>
                     <p class="lede">Commands that change your tree without a diff.</p>
                     <p class="desc">
@@ -192,7 +192,7 @@
 
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Tier · Ask &amp; allow</span><h3>Your call</h3></div>
+                        <div><span class="kicker">Tier . Ask &amp; allow</span><h3>Your call</h3></div>
                     </div>
                     <p class="lede">Preference, not policy - override per machine.</p>
                     <p class="desc">
@@ -206,7 +206,7 @@
 
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Hooks · Six</span><h3>Where globs cannot see</h3></div>
+                        <div><span class="kicker">Hooks . Six</span><h3>Where globs cannot see</h3></div>
                     </div>
                     <p class="lede">Path patterns miss what a shell can hide.</p>
                     <p class="desc">
@@ -219,7 +219,7 @@
 
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Hooks · Report only</span><h3>Linters that do not rewrite</h3></div>
+                        <div><span class="kicker">Hooks . Report only</span><h3>Linters that do not rewrite</h3></div>
                     </div>
                     <p class="lede">Deliberately no <code>phpcbf</code>, no <code>--fix</code>.</p>
                     <p class="desc">
@@ -399,7 +399,7 @@
 
             <div class="standards-grid">
                 <div class="standard">
-                    <h4>1 · Clone it inside the project</h4>
+                    <h4>1 . Clone it inside the project</h4>
                     <p>Shallow, because only the current state of <code>main</code> is any use in a target project. The
                        clone goes away right after the copy.</p>
                     <code class="step-cmd">git clone --depth 1 \
@@ -408,7 +408,7 @@ cp -r .dotboost/.claude .claude
 rm -rf .dotboost</code>
                 </div>
                 <div class="standard">
-                    <h4>1b · Or download the zip</h4>
+                    <h4>1b . Or download the zip</h4>
                     <p>No git needed, which is the point. The archive unpacks to <code>dotboost-main/</code> and does
                        carry the dotfiles.</p>
                     <code class="step-cmd">curl -L -o dotboost.zip https://github.com/\
@@ -417,26 +417,26 @@ unzip -q dotboost.zip
 cp -r dotboost-main/.claude .claude</code>
                 </div>
                 <div class="standard">
-                    <h4>2 · Restore the executable bits</h4>
+                    <h4>2 . Restore the executable bits</h4>
                     <p>Nothing is committed executable, and a zip extracted on Windows carries no permission bits at
                        all. The sync script is the one called by its own name.</p>
                     <code class="step-cmd">chmod +x .claude/hooks/*.sh .claude/statusline.sh \
   .claude/skills/dependency-policy/scripts/*.sh</code>
                 </div>
                 <div class="standard">
-                    <h4>3 · Keep local overrides out of git</h4>
+                    <h4>3 . Keep local overrides out of git</h4>
                     <p>Then copy the example file if you want personal settings that survive an update.</p>
                     <code class="step-cmd">echo '.claude/settings.local.json' \
   &gt;&gt; .git/info/exclude</code>
                 </div>
                 <div class="standard">
-                    <h4>4 · Optional: markdown linting</h4>
+                    <h4>4 . Optional: markdown linting</h4>
                     <p>Not bundled - install it yourself, globally or as a project devDependency. Until the binary
                        resolves, the hook exits silently.</p>
                     <code class="step-cmd">npm install -g markdownlint-cli2</code>
                 </div>
                 <div class="standard">
-                    <h4>5 · Paste the CLAUDE.md block</h4>
+                    <h4>5 . Paste the CLAUDE.md block</h4>
                     <p>The dependency policy and, if you want feature docs actually read, the feature-docs block
                        alongside it.</p>
                 </div>
@@ -462,7 +462,7 @@ cp -r dotboost-main/.claude .claude</code>
             <div class="products-grid">
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Docs · /dk-document</span><h3>Feature documentation</h3></div>
+                        <div><span class="kicker">Docs . /dk-document</span><h3>Feature documentation</h3></div>
                     </div>
                     <p class="lede">The part a cleared session cannot reconstruct from <code>src/</code>.</p>
                     <p class="desc">
@@ -501,7 +501,7 @@ cp -r dotboost-main/.claude .claude</code>
 
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Windows · Line endings</span><h3>CRLF, handled</h3></div>
+                        <div><span class="kicker">Windows . Line endings</span><h3>CRLF, handled</h3></div>
                     </div>
                     <p class="lede">Dotkernel repos ship <code>* text eol=lf</code>.</p>
                     <p class="desc">
@@ -543,7 +543,7 @@ cp -r dotboost-main/.claude .claude</code>
             <div class="products-grid" style="margin-top:26px;">
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Variant · Detected</span><h3>API</h3></div>
+                        <div><span class="kicker">Variant . Detected</span><h3>API</h3></div>
                     </div>
                     <p class="lede">Handlers, HAL collections, OpenAPI attributes.</p>
                     <p class="desc">A REST API on a PSR-15 middleware pipeline, with OAuth 2.0, RBAC, HAL payloads and
@@ -556,7 +556,7 @@ cp -r dotboost-main/.claude .claude</code>
 
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Variant · Detected</span><h3>Admin</h3></div>
+                        <div><span class="kicker">Variant . Detected</span><h3>Admin</h3></div>
                     </div>
                     <p class="lede">Forms, CSRF, route-name authorization keys.</p>
                     <p class="desc">Table-based record management with RBAC guards, CSRF-protected forms and 2FA, over
@@ -569,7 +569,7 @@ cp -r dotboost-main/.claude .claude</code>
 
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Variant · Detected</span><h3>Frontend</h3></div>
+                        <div><span class="kicker">Variant . Detected</span><h3>Frontend</h3></div>
                     </div>
                     <p class="lede">Action controllers and action-level guards.</p>
                     <p class="desc">A web starter skeleton - user accounts, a contact form, sessions and RBAC-guarded
@@ -582,7 +582,7 @@ cp -r dotboost-main/.claude .claude</code>
 
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Variant · Detected</span><h3>Light</h3></div>
+                        <div><span class="kicker">Variant . Detected</span><h3>Light</h3></div>
                     </div>
                     <p class="lede">Minimal modules, config-declared template routes.</p>
                     <p class="desc">The smallest complete Mezzio application - routing, pipeline and Twig, six direct
@@ -595,7 +595,7 @@ cp -r dotboost-main/.claude .claude</code>
 
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Variant · Detected</span><h3>Queue</h3></div>
+                        <div><span class="kicker">Variant . Detected</span><h3>Queue</h3></div>
                     </div>
                     <p class="lede">Message handlers and background workers.</p>
                     <p class="desc">Background workers on Symfony Messenger - a TCP listener, Valkey streams, retries
@@ -622,7 +622,7 @@ cp -r dotboost-main/.claude .claude</code>
                             <div class="post-date">{{ post.postDate|date('M d, Y') }}</div>
                             <h3>{{ post.title }}</h3>
                             <p>{{ post.excerpt }}</p>
-                            <span class="read-more">Read more →</span>
+                            <span class="read-more">Read more -></span>
                         </a>
                     {% else %}
                         <p class="text-muted text-center mb-0">No recent posts.</p>
@@ -643,7 +643,7 @@ cp -r dotboost-main/.claude .claude</code>
                     rest of the Dotkernel ecosystem. Treat the skills as living documents - the repository is where
                     corrections belong.</p>
                 <div class="about-cta">
-                    <a class="btn btn-ghost" href="https://github.com/dotkernel/dotboost" target="_blank" rel="noopener">Read the full README →</a>
+                    <a class="btn btn-ghost" href="https://github.com/dotkernel/dotboost" target="_blank" rel="noopener">Read the full README -></a>
                 </div>
             </div>
         </div>

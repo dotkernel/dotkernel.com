@@ -39,7 +39,7 @@
     <section class="hero" style="--page-accent:var(--sage); --page-accent-dim:var(--sage-dim)">
         <div class="wrap hero-grid">
             <div>
-                <span class="eyebrow">Minimal skeleton · PSR-15</span>
+                <span class="eyebrow">Minimal skeleton . PSR-15</span>
                 <h1>Dotkernel Light</h1>
                 <p class="sub">
                     A PSR-15 compliant application skeleton on the Mezzio microframework and Laminas components,
@@ -266,7 +266,7 @@
             </div>
             <div class="callout">
                 <h4>One route, one template</h4>
-                <p>In <code>config/autoload/local.php</code>, under the <code>routes</code> → <code>page</code> key:</p>
+                <p>In <code>config/autoload/local.php</code>, under the <code>routes</code> -> <code>page</code> key:</p>
                 <code class="step-cmd">'example-page' =&gt; 'example-template',</code>
                 <p>Then create the template it names:</p>
                 <code class="step-cmd">src/Page/templates/page/example-template.html.twig</code>
@@ -289,7 +289,7 @@
             <div class="products-grid">
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Build · Vite</span><h3>Asset pipeline</h3></div>
+                        <div><span class="kicker">Build . Vite</span><h3>Asset pipeline</h3></div>
                     </div>
                     <p class="lede">One command while you work, one before you ship.</p>
                     <p class="desc">
@@ -302,7 +302,7 @@
 
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Build · Source of truth</span><h3>assets → public</h3></div>
+                        <div><span class="kicker">Build . Source of truth</span><h3>assets -> public</h3></div>
                     </div>
                     <p class="lede">Edit the source, never the output.</p>
                     <p class="desc">
@@ -315,7 +315,7 @@
 
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Build · Caching</span><h3>Cache busting</h3></div>
+                        <div><span class="kicker">Build . Caching</span><h3>Cache busting</h3></div>
                     </div>
                     <p class="lede">The oldest bug in web deployment, solved in one character.</p>
                     <p class="desc">
@@ -327,7 +327,7 @@
 
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Content · Navigation</span><h3>Menu and footer</h3></div>
+                        <div><span class="kicker">Content . Navigation</span><h3>Menu and footer</h3></div>
                     </div>
                     <p class="lede">Plain Twig in one layout file.</p>
                     <p class="desc">
@@ -340,7 +340,7 @@
 
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Content · Sharing</span><h3>Twitter &amp; OpenGraph</h3></div>
+                        <div><span class="kicker">Content . Sharing</span><h3>Twitter &amp; OpenGraph</h3></div>
                     </div>
                     <p class="lede">Cards for when your pages get posted elsewhere.</p>
                     <p class="desc">
@@ -352,7 +352,7 @@
 
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Operations · Logs</span><h3>Errors and logs</h3></div>
+                        <div><span class="kicker">Operations . Logs</span><h3>Errors and logs</h3></div>
                     </div>
                     <p class="lede">A log file per day, from the first request.</p>
                     <p class="desc">
@@ -375,33 +375,33 @@
 
             <div class="standards-grid">
                 <div class="standard">
-                    <h4>1 · Clone into an empty folder</h4>
+                    <h4>1 . Clone into an empty folder</h4>
                     <p>Git refuses a directory that is not empty, and you need write permissions on it.</p>
                     <code class="step-cmd">git clone https://github.com/dotkernel/light.git .</code>
                 </div>
                 <div class="standard">
-                    <h4>2 · Install dependencies</h4>
+                    <h4>2 . Install dependencies</h4>
                     <p>Run it from the CLI so the prompts stay interactive. Decline the config provider injection -
                        Light already includes its own.</p>
                     <code class="step-cmd">composer install</code>
                 </div>
                 <div class="standard">
-                    <h4>3 · Enable development mode</h4>
+                    <h4>3 . Enable development mode</h4>
                     <p>Local work only. <code>composer development-status</code> reports where you stand.</p>
                     <code class="step-cmd">composer development-enable</code>
                 </div>
                 <div class="standard">
-                    <h4>4 · Set the base URL</h4>
+                    <h4>4 . Set the base URL</h4>
                     <p>Point <code>$baseUrl</code> in <code>config/autoload/local.php</code> at your virtual host.</p>
                 </div>
                 <div class="standard">
-                    <h4>5 · Fix the writable folders</h4>
+                    <h4>5 . Fix the writable folders</h4>
                     <p>The two directories the application writes to. Most first-run errors are this and nothing
                        else.</p>
                     <code class="step-cmd">chmod -R 777 ./data ./log</code>
                 </div>
                 <div class="standard">
-                    <h4>6 · Open it in a browser</h4>
+                    <h4>6 . Open it in a browser</h4>
                     <p>The Dotkernel Light welcome page is waiting. Errors about missing services usually mean a stale
                        config cache.</p>
                     <code class="step-cmd">php ./bin/clear-config-cache.php</code>
@@ -481,7 +481,7 @@
             <div class="products-grid">
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Instead · Full-stack web</span><h3>Frontend</h3></div>
+                        <div><span class="kicker">Instead . Full-stack web</span><h3>Frontend</h3></div>
                     </div>
                     <p class="lede">You need logins, forms and sessions.</p>
                     <p class="desc">A server-rendered web starter on Mezzio and Laminas - Twig views, forms, sessions
@@ -495,7 +495,7 @@
 
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Instead · HTTP surface</span><h3>API</h3></div>
+                        <div><span class="kicker">Instead . HTTP surface</span><h3>API</h3></div>
                     </div>
                     <p class="lede">You are serving clients, not pages.</p>
                     <p class="desc">A REST API on a PSR-15 middleware pipeline, with OAuth 2.0, RBAC, HAL payloads and
@@ -508,7 +508,7 @@
 
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Instead · Back office</span><h3>Admin</h3></div>
+                        <div><span class="kicker">Instead . Back office</span><h3>Admin</h3></div>
                     </div>
                     <p class="lede">You need to manage records, not publish copy.</p>
                     <p class="desc">Table-based record management with RBAC guards, CSRF-protected forms and 2FA, over a
@@ -521,7 +521,7 @@
 
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Instead · Async work</span><h3>Queue</h3></div>
+                        <div><span class="kicker">Instead . Async work</span><h3>Queue</h3></div>
                     </div>
                     <p class="lede">You have work that outlives a request.</p>
                     <p class="desc">Background workers on Symfony Messenger - a TCP listener, Valkey streams, retries
@@ -534,7 +534,7 @@
 
                 <div class="card" style="--accent:var(--brand-red)">
                     <div class="card-top">
-                        <div><span class="kicker">Tooling · AI context</span><h3>dotboost</h3></div>
+                        <div><span class="kicker">Tooling . AI context</span><h3>dotboost</h3></div>
                     </div>
                     <p class="lede">Teach your AI tools this architecture.</p>
                     <p class="desc">Drop-in Claude Code configuration - ten commands, seventeen skills and permission
@@ -561,7 +561,7 @@
                             <div class="post-date">{{ post.postDate|date('M d, Y') }}</div>
                             <h3>{{ post.title }}</h3>
                             <p>{{ post.excerpt }}</p>
-                            <span class="read-more">Read more →</span>
+                            <span class="read-more">Read more -></span>
                         </a>
                     {% else %}
                         <p class="text-muted text-center mb-0">No recent posts.</p>
@@ -582,7 +582,7 @@
                     open source for the community. If you want to see the whole application before you commit to it,
                     that is the entire promise of this skeleton.</p>
                 <div class="about-cta">
-                    <a class="btn btn-ghost" href="{{ url('page::contact') }}">Talk to us →</a>
+                    <a class="btn btn-ghost" href="{{ url('page::contact') }}">Talk to us -></a>
                 </div>
             </div>
         </div>

@@ -7,7 +7,7 @@ language: "en"
 
 # Dotkernel Admin
 
-Admin application · Server-rendered
+Admin application . Server-rendered
 
 An open-source application skeleton for standing up the administration site behind your platform.
 A fast, reliable way to manage the records in your database with a simple table-based approach, and to build the reports and graphs that let you monitor what is happening - with the graphical components for an intuitive experience already in place.
@@ -24,7 +24,7 @@ A fast, reliable way to manage the records in your database with a simple table-
 
 ## Request lifecycle
 
-Session (`dot-session`) → Router (`dot-router`) → Authentication (`laminas-authentication`) → RBAC guard (`dot-rbac-guard`) → Your handler (PSR-15) → Response (Twig template).
+Session (`dot-session`) -> Router (`dot-router`) -> Authentication (`laminas-authentication`) -> RBAC guard (`dot-rbac-guard`) -> Your handler (PSR-15) -> Response (Twig template).
 
 ## The back office, not a framework to learn
 
@@ -45,14 +45,14 @@ Extending the power of Mezzio by Laminas.
 Everything below works in a fresh install.
 The default modules are configured; your custom functionality needs the same configuration entries, and the docs say exactly which ones.
 
-### RBAC guards - Security · Access control
+### RBAC guards - Security . Access control
 
 Permissions declared in config, enforced per route handler.
 
 `dot-rbac` and `dot-rbac-guard` work together: roles and their permissions live in `authorization.global.php`, while `authorization-guards.global.php` maps each route handler to the permissions it requires.
 Add a route, add its rule - access control never drifts into your handlers.
 
-### TOTP two-factor - Security · 2FA
+### TOTP two-factor - Security . 2FA
 
 A password plus a code that expires in 30 seconds.
 
@@ -61,49 +61,49 @@ Installation is a documented set of forms, handlers, middleware and three new co
 
 - [Install guide](https://docs.dotkernel.org/admin-documentation/v7/tutorials/install-dot-totp/)
 
-### CSRF protection - Security · Forms
+### CSRF protection - Security . Forms
 
 A fresh token per render, on every form that ships.
 
 Built from the `laminas-form` CSRF element, the `laminas-session` CSRF validator and the `formElement` view helper.
 Tokens are not reusable between forms and expire after a configurable timeout, defaulting to one hour.
 
-### Forms & input filters - Input · Validation
+### Forms & input filters - Input . Validation
 
 Validation rules that live beside the form, not in the handler.
 
 `laminas-form` bridges your domain models and the view layer, while `laminas-inputfilter` normalizes and validates the submitted set.
 Every form in the skeleton has its inputs filtered, so your own forms have a pattern to copy.
 
-### Doctrine ORM - Data · Persistence
+### Doctrine ORM - Data . Persistence
 
 Migrations and fixtures, both driven from the CLI.
 
 Doctrine ORM 3 and DBAL 4 over MariaDB or PostgreSQL, with UUID identifiers via `ramsey/uuid-doctrine`.
 Generate a migration with `doctrine-migrations diff`, apply it with `migrate`, then seed the tables with `bin/doctrine fixtures:execute`.
 
-### Attribute injection - Wiring · DI
+### Attribute injection - Wiring . DI
 
 Constructor injection declared where the constructor is.
 
 `dot-dependency-injection` reads an `#[Inject]` attribute on the constructor and resolves each listed dependency - including values from a configuration key, by dot notation.
 Register the class against `AttributedServiceFactory` and you are done writing factories by hand.
 
-### Menus & UI components - Interface · Navigation
+### Menus & UI components - Interface . Navigation
 
 Configuration-driven menus, ready-made interface pieces.
 
 `dot-navigation` defines and parses the top menu from `navigation.global.php`.
 The `Page` module carries reusable dropdowns, modal popups, error displays and tooltips; the `Dashboard` module holds the landing page layout and its widgets.
 
-### Commands & lock files - Operations · CLI
+### Commands & lock files - Operations . CLI
 
 Cron-safe console commands out of the box.
 
 `dot-cli` builds the console application on top of laminas-cli, writing lock files into `data/lock` so a scheduled command cannot overlap with itself.
 GeoLite2 databases sync through `bin/cli.php geoip:synchronize`, quiet mode included for cron jobs.
 
-### Mail and error handling - Operations · Mail & logs
+### Mail and error handling - Operations . Mail & logs
 
 Transactional mail configured in one file, errors in another.
 
@@ -152,7 +152,7 @@ Saving and reading display settings for the administration interface.
 The full walkthrough, with expected output for every command, is in the documentation.
 This is the shape of it.
 
-### 1 · Clone the project
+### 1 . Clone the project
 
 Into an empty directory of your choosing.
 
@@ -160,7 +160,7 @@ Into an empty directory of your choosing.
 git clone https://github.com/dotkernel/admin.git .
 ```
 
-### 2 · Install dependencies
+### 2 . Install dependencies
 
 Run it from the CLI so the setup prompts stay interactive.
 Decline the ConfigProvider injection - Dotkernel ships its own.
@@ -169,7 +169,7 @@ Decline the ConfigProvider injection - Dotkernel ships its own.
 composer install
 ```
 
-### 3 · Enable development mode
+### 3 . Enable development mode
 
 For local work only.
 `composer development-status` tells you where you stand, and it must stay off in production.
@@ -178,12 +178,12 @@ For local work only.
 composer development-enable
 ```
 
-### 4 · Configure the database
+### 4 . Configure the database
 
 Fill in the credentials in `config/autoload/local.php`.
 Both a MariaDB and a PostgreSQL connection are pre-declared; one is active at a time.
 
-### 5 · Migrate and seed
+### 5 . Migrate and seed
 
 Migrations build the schema; fixtures populate the default roles, OAuth clients and accounts.
 
@@ -192,7 +192,7 @@ php ./vendor/bin/doctrine-migrations migrate
 php ./bin/doctrine fixtures:execute
 ```
 
-### 6 · Build the assets
+### 6 . Build the assets
 
 `npm run watch` recompiles while you work; `npm run prod` minifies for release.
 
@@ -255,7 +255,7 @@ Admin installs and runs on its own.
 Paired with Dotkernel API over the same `Core` namespaces, Admin manages the data while the API exposes it to third-party frontends and backends - and neither one disagrees about what an entity is.
 The rest of the ecosystem is below.
 
-### API - Pair with · HTTP surface
+### API - Pair with . HTTP surface
 
 Expose the data you manage here to any client.
 
@@ -265,7 +265,7 @@ A REST API on a PSR-15 middleware pipeline, with OAuth 2.0, RBAC, HAL payloads a
 - [GitHub](https://github.com/dotkernel/api)
 - [Demo](https://api.dotkernel.net/)
 
-### Queue - Pair with · Async work
+### Queue - Pair with . Async work
 
 Queue a bulk operation from an admin screen.
 
@@ -274,7 +274,7 @@ Background workers on Symfony Messenger - a TCP listener, Valkey streams, retrie
 - [Read more](https://www.dotkernel.com/queue/)
 - [GitHub](https://github.com/dotkernel/queue)
 
-### Frontend - Instead · Public-facing
+### Frontend - Instead . Public-facing
 
 The site your users log into, not your staff.
 
@@ -283,7 +283,7 @@ A web starter skeleton - user accounts, a contact form, sessions and RBAC-guarde
 - [Read more](https://www.dotkernel.com/frontend/)
 - [Demo](https://v5.dotkernel.net/)
 
-### Light - Smaller · Minimal
+### Light - Smaller . Minimal
 
 No records to manage, just pages.
 
@@ -292,7 +292,7 @@ The smallest complete Mezzio application - routing, pipeline and Twig, six direc
 - [Read more](https://www.dotkernel.com/light/)
 - [Demo](https://light.dotkernel.net/)
 
-### Dotboost - Tooling · AI context
+### Dotboost - Tooling . AI context
 
 Teach your AI tools this architecture.
 
@@ -311,4 +311,4 @@ Try it with the demo, keep it under MIT.
 Sign in to the public demo with `admin` / `dotadmin` to see the interface before you install anything.
 Dotkernel Admin is developed and led by the dev team at Apidemia, and released as open source for the community.
 
-[Talk to us →](https://www.dotkernel.com/contact/)
+[Talk to us ->](https://www.dotkernel.com/contact/)
