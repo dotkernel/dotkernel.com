@@ -1,0 +1,23 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+use Light\App\Service\LlmsGenerator;
+
+chdir(__DIR__ . '/../');
+
+require 'vendor/autoload.php';
+
+$container      = require 'config/container.php';
+$llmsGenerator  = $container->get(LlmsGenerator::class);
+
+$count = $llmsGenerator->write();
+
+printf(
+    "Done. %d categor%s written to %s%s",
+    $count,
+    $count === 1 ? 'y' : 'ies',
+    $llmsGenerator->getOutputFile(),
+    PHP_EOL
+);
