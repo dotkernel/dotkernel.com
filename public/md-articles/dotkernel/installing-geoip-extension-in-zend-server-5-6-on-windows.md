@@ -43,7 +43,7 @@ Example values:
 
 5. In the Zend Server interface, restart PHP, turn on the geoip extension from **Server Setup -> Extension**, and restart PHP again.
 
-   If you get an error loading the geoip extension, you picked the wrong dll — try one of the others.
+   If you get an error loading the geoip extension, you picked the wrong dll - try one of the others.
 
    Otherwise, the extension is loaded and the test script from step 1 will output `true`.
 

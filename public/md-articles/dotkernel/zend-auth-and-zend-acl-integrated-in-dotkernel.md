@@ -35,13 +35,13 @@ private function _getAuthAdapter($who)
 
 ACL roles (user types) and permissions are configured in the `configs/acl/role.xml` file.
 In Dotkernel there are 3 roles: `guest`, `user`, and `admin`.
-The resources for ACL are taken from `configs/router.xml` — see the `controllers` tag.
+The resources for ACL are taken from `configs/router.xml` - see the `controllers` tag.
 
 ## Dot_Acl
 
 The `Dot_Acl` class:
 
-- Controls user access (ACL — Access Controller Layer).
+- Controls user access (ACL - Access Controller Layer).
 - Is used for setting and checking the permissions of a user.
 - Uses Zend_Acl for checking if a role (user) has access to a resource (controller).
 

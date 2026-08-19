@@ -45,14 +45,14 @@ Extending the power of Mezzio by Laminas.
 Everything below works in a fresh install.
 The default modules are configured; your custom functionality needs the same configuration entries, and the docs say exactly which ones.
 
-### RBAC guards — Security · Access control
+### RBAC guards - Security · Access control
 
 Permissions declared in config, enforced per route handler.
 
 `dot-rbac` and `dot-rbac-guard` work together: roles and their permissions live in `authorization.global.php`, while `authorization-guards.global.php` maps each route handler to the permissions it requires.
 Add a route, add its rule - access control never drifts into your handlers.
 
-### TOTP two-factor — Security · 2FA
+### TOTP two-factor - Security · 2FA
 
 A password plus a code that expires in 30 seconds.
 
@@ -61,49 +61,49 @@ Installation is a documented set of forms, handlers, middleware and three new co
 
 - [Install guide](https://docs.dotkernel.org/admin-documentation/v7/tutorials/install-dot-totp/)
 
-### CSRF protection — Security · Forms
+### CSRF protection - Security · Forms
 
 A fresh token per render, on every form that ships.
 
 Built from the `laminas-form` CSRF element, the `laminas-session` CSRF validator and the `formElement` view helper.
 Tokens are not reusable between forms and expire after a configurable timeout, defaulting to one hour.
 
-### Forms & input filters — Input · Validation
+### Forms & input filters - Input · Validation
 
 Validation rules that live beside the form, not in the handler.
 
 `laminas-form` bridges your domain models and the view layer, while `laminas-inputfilter` normalizes and validates the submitted set.
 Every form in the skeleton has its inputs filtered, so your own forms have a pattern to copy.
 
-### Doctrine ORM — Data · Persistence
+### Doctrine ORM - Data · Persistence
 
 Migrations and fixtures, both driven from the CLI.
 
 Doctrine ORM 3 and DBAL 4 over MariaDB or PostgreSQL, with UUID identifiers via `ramsey/uuid-doctrine`.
 Generate a migration with `doctrine-migrations diff`, apply it with `migrate`, then seed the tables with `bin/doctrine fixtures:execute`.
 
-### Attribute injection — Wiring · DI
+### Attribute injection - Wiring · DI
 
 Constructor injection declared where the constructor is.
 
 `dot-dependency-injection` reads an `#[Inject]` attribute on the constructor and resolves each listed dependency - including values from a configuration key, by dot notation.
 Register the class against `AttributedServiceFactory` and you are done writing factories by hand.
 
-### Menus & UI components — Interface · Navigation
+### Menus & UI components - Interface · Navigation
 
 Configuration-driven menus, ready-made interface pieces.
 
 `dot-navigation` defines and parses the top menu from `navigation.global.php`.
 The `Page` module carries reusable dropdowns, modal popups, error displays and tooltips; the `Dashboard` module holds the landing page layout and its widgets.
 
-### Commands & lock files — Operations · CLI
+### Commands & lock files - Operations · CLI
 
 Cron-safe console commands out of the box.
 
 `dot-cli` builds the console application on top of laminas-cli, writing lock files into `data/lock` so a scheduled command cannot overlap with itself.
 GeoLite2 databases sync through `bin/cli.php geoip:synchronize`, quiet mode included for cron jobs.
 
-### Mail and error handling — Operations · Mail & logs
+### Mail and error handling - Operations · Mail & logs
 
 Transactional mail configured in one file, errors in another.
 
@@ -255,7 +255,7 @@ Admin installs and runs on its own.
 Paired with Dotkernel API over the same `Core` namespaces, Admin manages the data while the API exposes it to third-party frontends and backends - and neither one disagrees about what an entity is.
 The rest of the ecosystem is below.
 
-### API — Pair with · HTTP surface
+### API - Pair with · HTTP surface
 
 Expose the data you manage here to any client.
 
@@ -265,7 +265,7 @@ A REST API on a PSR-15 middleware pipeline, with OAuth 2.0, RBAC, HAL payloads a
 - [GitHub](https://github.com/dotkernel/api)
 - [Demo](https://api.dotkernel.net/)
 
-### Queue — Pair with · Async work
+### Queue - Pair with · Async work
 
 Queue a bulk operation from an admin screen.
 
@@ -274,7 +274,7 @@ Background workers on Symfony Messenger - a TCP listener, Valkey streams, retrie
 - [Read more](https://www.dotkernel.com/queue/)
 - [GitHub](https://github.com/dotkernel/queue)
 
-### Frontend — Instead · Public-facing
+### Frontend - Instead · Public-facing
 
 The site your users log into, not your staff.
 
@@ -283,7 +283,7 @@ A web starter skeleton - user accounts, a contact form, sessions and RBAC-guarde
 - [Read more](https://www.dotkernel.com/frontend/)
 - [Demo](https://v5.dotkernel.net/)
 
-### Light — Smaller · Minimal
+### Light - Smaller · Minimal
 
 No records to manage, just pages.
 
@@ -292,7 +292,7 @@ The smallest complete Mezzio application - routing, pipeline and Twig, six direc
 - [Read more](https://www.dotkernel.com/light/)
 - [Demo](https://light.dotkernel.net/)
 
-### Dotboost — Tooling · AI context
+### Dotboost - Tooling · AI context
 
 Teach your AI tools this architecture.
 

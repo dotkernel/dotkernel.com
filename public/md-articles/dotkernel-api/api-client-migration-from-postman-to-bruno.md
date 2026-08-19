@@ -17,7 +17,7 @@ Bruno wins on offline access, version control via Git, performance, and (arguabl
 
 ## Why We Switched to the Offline-Focused Bruno
 
-Every API developer needs a reliable client for testing and interacting with the API — ideally free, able to store and share endpoint collections easily with a team, fast, and secure.
+Every API developer needs a reliable client for testing and interacting with the API - ideally free, able to store and share endpoint collections easily with a team, fast, and secure.
 Postman has been the team's go-to tool for years, but they are now considering Bruno, part of a general trend in the PHP community toward local-first, Git-native developer tools.
 
 ## Comparing Postman to Bruno
@@ -40,12 +40,12 @@ Bruno stores collections in Git, so everything is offline, which the team consid
 
 Bruno is only one of several alternatives to Postman:
 
-- Hoppscotch — runs in the browser or as a PWA
-- Insomnia — clear UI and large plugin ecosystem
-- HTTPie — focuses on terminal-based workflows
-- Thunder Client — built into Visual Studio Code
-- Apidog — covers the whole API lifecycle
-- Yaak — minimal and fast desktop client
+- Hoppscotch - runs in the browser or as a PWA
+- Insomnia - clear UI and large plugin ecosystem
+- HTTPie - focuses on terminal-based workflows
+- Thunder Client - built into Visual Studio Code
+- Apidog - covers the whole API lifecycle
+- Yaak - minimal and fast desktop client
 
 Any of them can get the job done; the decision comes down to choosing a simple, reliable tool for the foreseeable future.
 

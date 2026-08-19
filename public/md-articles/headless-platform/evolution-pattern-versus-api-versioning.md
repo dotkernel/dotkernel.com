@@ -25,7 +25,7 @@ API versioning specifically assigns versions to an API so it can change without 
 
 ## When to use an Evolution Pattern versus Versioning
 
-Technically, the two concepts are not in conflict — an evolution pattern keeps the same codebase and announces breaking changes via mechanisms like sunsetting, while API versioning maintains multiple versions of an API so that changes don't affect clients using older versions.
+Technically, the two concepts are not in conflict - an evolution pattern keeps the same codebase and announces breaking changes via mechanisms like sunsetting, while API versioning maintains multiple versions of an API so that changes don't affect clients using older versions.
 A platform can use both strategies together if it suits its needs. The responsibility falls on the team to decide where to invest development and maintenance costs.
 
 | Problem | Potential Solution | Strategy |

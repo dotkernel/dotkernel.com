@@ -48,7 +48,7 @@ If you have the bundled PHP version, the extension might exist but not be enable
 ### For Linux-Based Server (Assuming You Have Root Access)
 
 - Make sure the php_intl.so file exists within your PHP extensions directory.
-Find the extensions directory by using `phpinfo()`, or by running: `php -r "echo ini_get('extension_dir');"` — both options get the extension_dir right from the PHP runtime configuration.
+Find the extensions directory by using `phpinfo()`, or by running: `php -r "echo ini_get('extension_dir');"` - both options get the extension_dir right from the PHP runtime configuration.
 - If the file exists:
   - Search for the config file (php.ini, usually /etc/php.ini) and open it.
   - Make sure the line "extension=php_intl.so" exists and is not commented out.
@@ -56,7 +56,7 @@ Find the extensions directory by using `phpinfo()`, or by running: `php -r "echo
   - Check if the extension is enabled using `phpinfo()`.
 - If the file doesn't exist:
   - Check your PHP version by running the `php -v` command.
-  - For PHP 5, install the php-intl package using your [package manager](https://en.wikipedia.org/wiki/Package_manager#Front-ends_for_locally_compiled_packages) — most commonly `apt-get install php-intl` (Ubuntu-based) or `yum install php-intl` (CentOS).
+  - For PHP 5, install the php-intl package using your [package manager](https://en.wikipedia.org/wiki/Package_manager#Front-ends_for_locally_compiled_packages) - most commonly `apt-get install php-intl` (Ubuntu-based) or `yum install php-intl` (CentOS).
   - For PHP 7, install the php7.x-intl package (depending on your PHP version).
   - Repeat the steps for the case in which the file exists.
 
@@ -91,7 +91,7 @@ A: Typical errors include "Zend InputFilter requires intl PHP extension" and "Th
 A: Intl (Internationalization extension) is a wrapper for the ICU library that lets PHP programmers perform locale-aware operations, including formatting, transliteration, encoding conversion, and calendar operations. It can be installed bundled since PHP 5.3.0, or as a separate PECL extension since PHP 5.2.0.
 
 **Q: How do you find your PHP extensions directory?**
-A: You can find the extension_dir either by calling phpinfo() or by running the command php -r "echo ini_get('extension_dir');" — both read the value straight from the PHP runtime configuration.
+A: You can find the extension_dir either by calling phpinfo() or by running the command php -r "echo ini_get('extension_dir');" - both read the value straight from the PHP runtime configuration.
 
 **Q: How do you enable the Intl extension on a Linux server if the file already exists?**
 A: Confirm php_intl.so exists in your extensions directory, open the php.ini config file (usually /etc/php.ini), make sure the line "extension=php_intl.so" exists and isn't commented out, restart the web server (e.g. sudo service httpd restart), and verify with phpinfo().

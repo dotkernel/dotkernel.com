@@ -21,10 +21,10 @@ The logic lives in `library/Dot/Geoip.php`, inside the `getCountryByIp` function
 The function first reads the session variable used to remember possible error messages, and initializes the country as 'unknown' in case it isn't found.
 It then runs through four if/else branches:
 
-1. **`mod_geoip` PECL extension is not installed** — it uses the existing `externals/geoip/GeoIP.dat` file bundled with Dotkernel (downloadable from MaxMind if you don't have it).
-2. **`mod_geoip` is installed and `GeoIP.dat` exists** (`geoip_db_avail(GEOIP_COUNTRY_EDITION)`) — it uses the built-in PHP functions `geoip_country_code_by_name` and `geoip_country_name_by_name` to get the country code and name.
-3. **`mod_geoip` is installed, `GeoIP.dat` doesn't exist, but `GeoIpCity.dat` exists** — it uses the PHP function `geoip_record_by_name` to get the country code and name.
-4. **`mod_geoip` is installed, but neither `GeoIP.dat` nor `GeoIPCity.dat` exist** — same behavior as case 1: it uses `externals/geoip/GeoIP.dat` from the Dotkernel framework.
+1. **`mod_geoip` PECL extension is not installed** - it uses the existing `externals/geoip/GeoIP.dat` file bundled with Dotkernel (downloadable from MaxMind if you don't have it).
+2. **`mod_geoip` is installed and `GeoIP.dat` exists** (`geoip_db_avail(GEOIP_COUNTRY_EDITION)`) - it uses the built-in PHP functions `geoip_country_code_by_name` and `geoip_country_name_by_name` to get the country code and name.
+3. **`mod_geoip` is installed, `GeoIP.dat` doesn't exist, but `GeoIpCity.dat` exists** - it uses the PHP function `geoip_record_by_name` to get the country code and name.
+4. **`mod_geoip` is installed, but neither `GeoIP.dat` nor `GeoIPCity.dat` exist** - same behavior as case 1: it uses `externals/geoip/GeoIP.dat` from the Dotkernel framework.
 
 ```php
 /**

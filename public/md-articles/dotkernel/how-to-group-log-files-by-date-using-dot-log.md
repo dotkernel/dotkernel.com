@@ -24,7 +24,7 @@ If it's not installed, follow the steps in [Logging with dot-log in Zend Express
 composer update dotkernel/dot-log
 ```
 
-If your application logs messages to a single file with a static name (e.g. `log/dk.log`), you can skip the rest of this guide — logging will work as before.
+If your application logs messages to a single file with a static name (e.g. `log/dk.log`), you can skip the rest of this guide - logging will work as before.
 
 ## Configuring the logger with Dotkernel
 
@@ -89,7 +89,7 @@ If it looks like:
    php bin/clear-config-cache.php
    ```
 
-If the log path uses other date format specifiers, adapt them accordingly — the full list is in the [PHP date() manual](https://www.php.net/manual/en/datetime.format.php).
+If the log path uses other date format specifiers, adapt them accordingly - the full list is in the [PHP date() manual](https://www.php.net/manual/en/datetime.format.php).
 
 ## Configuring the logger without Dotkernel
 
@@ -111,7 +111,7 @@ If it looks like:
 
 4. Make sure you clear your application's config before usage.
 
-As before, adapt any other date format specifiers as needed — see the [PHP date() manual](https://www.php.net/manual/en/datetime.format.php).
+As before, adapt any other date format specifiers as needed - see the [PHP date() manual](https://www.php.net/manual/en/datetime.format.php).
 
 ## FAQ
 
@@ -122,7 +122,7 @@ A: Version 3.1.1 adds the ability to use datetime formatter strings directly in 
 A: Make sure you're using the latest version of dot-log by running `composer update dotkernel/dot-log`.
 
 **Q: Do I need to change anything if my logs are already written to a single static file?**
-A: No. If your application logs messages in a single file with a static name (e.g. log/dk.log), you can skip the rest of the article — logging will work as before.
+A: No. If your application logs messages in a single file with a static name (e.g. log/dk.log), you can skip the rest of the article - logging will work as before.
 
 **Q: How do I group log files by date when using Dotkernel?**
 A: In `config/autoload/error-handling.global.php`, locate every log writer by navigating to `dot_log->loggers->default_logger->writers` and replace a stream value like `sprintf('%s/../../log/error-log-%s.log', __DIR__, date('Y-m-d'))` with `__DIR__ . '/../../log/error-log-{Y}-{m}-{d}.log'`.

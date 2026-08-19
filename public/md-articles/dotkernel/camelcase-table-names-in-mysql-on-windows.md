@@ -10,7 +10,7 @@ language: "en"
 
 # camelCase Table Names in MySQL on Windows
 
-If you are using a WAMP stack, like WAMP or XAMPP, and try to create a table in camelCase (example: `adminLogin`), you will notice that camelCase is not working — the table name will be lowercase: `adminlogin`.
+If you are using a WAMP stack, like WAMP or XAMPP, and try to create a table in camelCase (example: `adminLogin`), you will notice that camelCase is not working - the table name will be lowercase: `adminlogin`.
 
 In order to fix this, add the following line to your `my.cnf` file:
 

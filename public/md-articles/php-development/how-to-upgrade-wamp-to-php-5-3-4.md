@@ -18,7 +18,7 @@ A step-by-step guide to manually upgrading the PHP version used by a WAMP server
 
 1. Stop the WAMP server.
 2. Go to [windows.php.net](http://windows.php.net/download/) and download the latest ZIPPED package for PHP 5.3.4.
-Make sure it is the **VC6 Thread Safe build** — do not download the installer.
+Make sure it is the **VC6 Thread Safe build** - do not download the installer.
 3. Create a folder `php5.3.4` inside `wamp/bin/php`.
 4. Extract the downloaded zip into the newly created `php5.3.4` folder.
 5. Copy the files `php.ini`, `phpForApache.ini`, and `wampserver.conf` from your existing PHP 5.3 folder (e.g. `wamp/bin/php/php5.3.3`) to the new `php5.3.4` folder.

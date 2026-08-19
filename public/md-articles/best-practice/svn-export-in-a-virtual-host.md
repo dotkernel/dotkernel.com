@@ -32,9 +32,9 @@ Where:
 |---|---|
 | `-r revisionNumber` | Optional. Exports a specific revision. By default, the latest revision is used. |
 | `repositoryUrl` | The repository URL (e.g. `http://example.com/repos/project-name/trunk/`). Remember to add `/trunk/`, or change it appropriately for a branch or tag. |
-| `targetDirectory` — `./` | The current directory. |
-| `targetDirectory` — `./project-name` | Exports to the `project-name` subdirectory. |
-| `targetDirectory` — `/var/www/vhosts/example.com/httpdocs` | Exports to an absolute path. |
+| `targetDirectory` - `./` | The current directory. |
+| `targetDirectory` - `./project-name` | Exports to the `project-name` subdirectory. |
+| `targetDirectory` - `/var/www/vhosts/example.com/httpdocs` | Exports to an absolute path. |
 | `--force` | Optional. By default SVN will not export into an existing directory; this overrides that. **Be careful, this option can overwrite files.** |
 
 4. For more information, run `svn help export`.

@@ -31,7 +31,7 @@ WURFL also has cache providers for APC and memcache, which were tried, but the r
 
 ## The solution
 
-The team realized their approach was wrong for their use case — the WURFL entry for a device has lots of fields that weren't actually used.
+The team realized their approach was wrong for their use case - the WURFL entry for a device has lots of fields that weren't actually used.
 
 The solution was adding a **second cache layer** on top of WURFL's own cache, which only cached the fields that were actually needed. This second layer used **APC**, storing arrays of data in **User Cache Entries**.
 

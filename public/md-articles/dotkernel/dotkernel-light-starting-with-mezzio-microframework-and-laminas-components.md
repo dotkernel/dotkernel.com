@@ -21,7 +21,7 @@ Dotkernel Light is designed to be a fast-start example of using the Mezzio micro
 Its purpose is to present the newbie developer with as few moving parts as possible, while also giving the more advanced developer a starting point with full control of the platform's functionality.
 
 Light retains the modern architecture of Mezzio microframework and several Laminas components used in Dotkernel Frontend.
-The low number of out-of-the-box components encourages active exploration of the functionality required by your application — you add only the packages your application needs.
+The low number of out-of-the-box components encourages active exploration of the functionality required by your application - you add only the packages your application needs.
 
 ## Components and functionality
 

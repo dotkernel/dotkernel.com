@@ -18,7 +18,7 @@ The fix, shipped in Dotkernel 1.5.1, removed the `regenerateID()` call and added
 
 ## The bug
 
-We found a strange behaviour of sessions in one of our projects, running Dotkernel version 1.5.0 — similar to [one described here](http://trac.elgg.org/ticket/2677).
+We found a strange behaviour of sessions in one of our projects, running Dotkernel version 1.5.0 - similar to [one described here](http://trac.elgg.org/ticket/2677).
 In unknown circumstances, and only in IE 8 and IE9, the session cookie is not saved on the client machine, and the user needs to log in over and over again.
 It was reproduced once on the staging server, and the only way to fix it at the time was to open a new tab with the same page.
 
@@ -37,7 +37,7 @@ Quote from the [ZF documentation](http://framework.zend.com/manual/1.11/en/zend.
 
 The **regenerateID()** call was removed, and 2 new settings were added in application.ini related to session:
 
-- **use_only_cookies** — must be **ON** at all times in order to avoid session fixation.
+- **use_only_cookies** - must be **ON** at all times in order to avoid session fixation.
 - **remember_me_seconds**.
 
 These bug fixes were included in the new Dotkernel version 1.5.1.

@@ -46,26 +46,26 @@ Maintained by **Borsan Sergiu**.
 The permission rules in `settings.json` fall into four tiers.
 The first one is the headline: these are `Read` denies, not write protection, so the contents never enter the context window at all.
 
-### Your secrets — Tier · Never read
+### Your secrets - Tier · Never read
 
 Not redacted - never loaded.
 
 `.env`, every `*.local.php`, `config/autoload/local.php`, `local.test.php` and `data/oauth/`.
 Database credentials, OAuth signing keys and environment secrets stay out of the transcript.
 
-### Generated & vendored — Tier · Never written
+### Generated & vendored - Tier · Never written
 
 The files a diff should never touch by accident.
 
 Dependency manifests - `composer.json`, `composer.lock`, `package.json`, `package-lock.json` - plus `vendor/`, `node_modules/`, `data/`, `log/`, `public/uploads/` and anything under `Migration/`.
 
-### Installs & destructive git — Tier · Never run
+### Installs & destructive git - Tier · Never run
 
 Commands that change your tree without a diff.
 
 `composer require`, `remove`, `update`, `install`, `global`; the npm, yarn and pnpm install verbs; `git push`, `reset --hard`, `clean`, `submodule`; and `rm -rf`.
 
-### Your call — Tier · Ask & allow
+### Your call - Tier · Ask & allow
 
 Preference, not policy - override per machine.
 
@@ -73,14 +73,14 @@ Preference, not policy - override per machine.
 **Allow**: the Composer QA scripts, `vendor/bin` tools, `php -l`, and read-only git.
 Layer changes in `settings.local.json`, never the shared file.
 
-### Where globs cannot see — Hooks · Six
+### Where globs cannot see - Hooks · Six
 
 Path patterns miss what a shell can hide.
 
 `guard-bash.sh` inspects the command itself, so `cd src && composer require foo` is caught where a path-based rule would let it through.
 `guard-protected-paths.sh` covers edits, and redirects a blocked `*.local.php` edit to its `.dist` template.
 
-### Linters that do not rewrite — Hooks · Report only
+### Linters that do not rewrite - Hooks · Report only
 
 Deliberately no `phpcbf`, no `--fix`.
 
@@ -102,8 +102,8 @@ This is deliberate, and worth knowing before it surprises you.
 | git rebase | ask | blocks |
 | doctrine-migrations migrate / execute | ask | blocks |
 | fixtures:execute, schema:drop, schema:update | ask, via bin/cli.php | blocks |
-| composer development-enable / -disable | — | blocks |
-| pip install, git checkout --, git filter-branch | — | blocks |
+| composer development-enable / -disable | - | blocks |
+| pip install, git checkout --, git filter-branch | - | blocks |
 
 Everything else under *ask* - commits, database clients, the config and QA files - prompts as documented.
 To get a blocked command back you edit the hook; relaxing `settings.local.json` will not reach it.
@@ -234,7 +234,7 @@ To update later, run the whole install again over the top; anything you changed 
 
 ## The parts you notice on day two
 
-### Feature documentation — Docs · /dk-document
+### Feature documentation - Docs · /dk-document
 
 The part a cleared session cannot reconstruct from `src/`.
 
@@ -242,21 +242,21 @@ One markdown file per feature - what it does, why, the routes and the roles that
 Where it lands is detected, not assumed: `documentation/features/` when that directory exists, `docs/features/` otherwise, never a second documentation root beside an existing one.
 The frontmatter is load-bearing - `/dk-review` greps `routes:` and `handlers:` to decide whether a new route in the diff is documented.
 
-### Real usage, not guesses — Status line
+### Real usage, not guesses - Status line
 
 The same numbers `/usage` reports.
 
 5h and 7d account usage in the status bar, read from the rate-limit payload Claude Code 2.1+ passes on stdin.
 Pure bash and awk - no `jq`, no python, no transcript scanning or guessed token budgets, so it works in Git Bash on Windows.
 
-### A briefing, every time — Session start
+### A briefing, every time - Session start
 
 What it detected, before you ask anything.
 
 Which variant, the root namespace, the authorization style, the branch, which config files are still missing - and a CRLF warning when it finds one.
 The same hook prints the feature-docs directory and a doc count, so the files are discoverable even without the CLAUDE.md block.
 
-### CRLF, handled — Windows · Line endings
+### CRLF, handled - Windows · Line endings
 
 Dotkernel repos ship `* text eol=lf`.
 
@@ -276,7 +276,7 @@ Handler naming, response shape and authorization keys all differ between them, w
 Before adapting the skills to a new Dotkernel application, the advice from its maintainer is to spend an hour reading that repo and correcting them against what is actually there.
 A skill written from framework docs rather than the codebase produces confident wrong answers, which is worse than no skill.
 
-### API — Variant · Detected
+### API - Variant · Detected
 
 Handlers, HAL collections, OpenAPI attributes.
 
@@ -285,7 +285,7 @@ A REST API on a PSR-15 middleware pipeline, with OAuth 2.0, RBAC, HAL payloads a
 - [Read more](https://www.dotkernel.com/api/)
 - [GitHub](https://github.com/dotkernel/api)
 
-### Admin — Variant · Detected
+### Admin - Variant · Detected
 
 Forms, CSRF, route-name authorization keys.
 
@@ -294,7 +294,7 @@ Table-based record management with RBAC guards, CSRF-protected forms and 2FA, ov
 - [Read more](https://www.dotkernel.com/admin/)
 - [GitHub](https://github.com/dotkernel/admin)
 
-### Frontend — Variant · Detected
+### Frontend - Variant · Detected
 
 Action controllers and action-level guards.
 
@@ -303,7 +303,7 @@ A web starter skeleton - user accounts, a contact form, sessions and RBAC-guarde
 - [Read more](https://www.dotkernel.com/frontend/)
 - [GitHub](https://github.com/dotkernel/frontend)
 
-### Light — Variant · Detected
+### Light - Variant · Detected
 
 Minimal modules, config-declared template routes.
 
@@ -312,7 +312,7 @@ The smallest complete Mezzio application - routing, pipeline and Twig, six direc
 - [Read more](https://www.dotkernel.com/light/)
 - [GitHub](https://github.com/dotkernel/light)
 
-### Queue — Variant · Detected
+### Queue - Variant · Detected
 
 Message handlers and background workers.
 

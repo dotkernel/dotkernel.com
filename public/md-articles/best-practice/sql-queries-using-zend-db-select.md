@@ -23,7 +23,7 @@ $db = Zend_Db::factory('Pdo_Mysql', $dbConnect);
 
 ## SELECT query - WHERE clause
 
-The following two classical SQL queries are equivalent — the first is a simple comma join, the second uses INNER JOIN — but the result is the same:
+The following two classical SQL queries are equivalent - the first is a simple comma join, the second uses INNER JOIN - but the result is the same:
 
 ```sql
 SELECT a.id, a.name, b.order_id

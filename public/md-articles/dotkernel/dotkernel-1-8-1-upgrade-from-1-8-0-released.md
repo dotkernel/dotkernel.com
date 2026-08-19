@@ -17,7 +17,7 @@ A dedicated upgrade package is available for users coming from 1.8.0.
 
 ## What's new
 
-- Enhanced Cache Support — you can use tags in your cache system if the host supports it
+- Enhanced Cache Support - you can use tags in your cache system if the host supports it
 
 ## Download links
 

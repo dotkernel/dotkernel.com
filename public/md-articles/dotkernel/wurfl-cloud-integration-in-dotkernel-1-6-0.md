@@ -51,4 +51,4 @@ A: Change the user agent in your browser to a mobile device and access your proj
 ## Resources
 
 - Register for a Wurfl Cloud account: https://www.scientiamobile.com/register
-- Related post — Detecting Mobile Devices in Dotkernel 1.6.0: http://www.dotkernel.com/?p=1465
+- Related post - Detecting Mobile Devices in Dotkernel 1.6.0: http://www.dotkernel.com/?p=1465

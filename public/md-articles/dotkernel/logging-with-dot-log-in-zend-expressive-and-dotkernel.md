@@ -21,7 +21,7 @@ See the [zend-log documentation](https://zendframework.github.io/zend-log/) for 
 - If there's no entry for the dot-log config provider, add `\Dot\Log\ConfigProvider::class`.
 - Make sure it's added before application-specific components, e.g. `Frontend\App\ConfigProvider::class`, `Admin\App\ConfigProvider::class`, `MyProject\ConfigProvider::class`.
 - Inside `Dot\Log\ConfigProvider`, the dependencies section registers an abstract factory, `LoggerAbstractServiceFactory::class`.
-This class responds to "selectors" instead of class names — instead of requesting `Zend\Log\Logger::class` from the container, you request `dot-log.my_logger` (or just `my_logger` if using zend-log).
+This class responds to "selectors" instead of class names - instead of requesting `Zend\Log\Logger::class` from the container, you request `dot-log.my_logger` (or just `my_logger` if using zend-log).
 - Create a `log.global.php` file within `/config/autoload`, returning an empty array to start.
 
 ## Configuring the logger
@@ -34,7 +34,7 @@ In `log.global.php`:
 2. Inside it, add a `loggers` key.
 3. Inside that, add the logger name key (`my_logger`) with an empty array.
 
-For the logger to actually log somewhere, a writer is required — without one, log calls are received but there's nowhere to write the message.
+For the logger to actually log somewhere, a writer is required - without one, log calls are received but there's nowhere to write the message.
 
 ## Configuring the writer(s)
 
@@ -46,9 +46,9 @@ In the simplest example, all log messages are written to one file, e.g. `/data/l
 
 Notes on writer configuration:
 
-- The writer key name (e.g. `FileWriter`) is optional — otherwise the writers array would be enumerative instead of associative.
+- The writer key name (e.g. `FileWriter`) is optional - otherwise the writers array would be enumerative instead of associative.
 - The writer's `name` key is a developer-provided name for that writer and is **mandatory**.
-- The writer's `priority` key doesn't affect which errors get written — it's only a way to organize writers (e.g. 1 - FILE, 2 - SQL, 3 - E-mail), reflecting that writing to a file is the most reliable since SQL or e-mail servers can be external and offline.
+- The writer's `priority` key doesn't affect which errors get written - it's only a way to organize writers (e.g. 1 - FILE, 2 - SQL, 3 - E-mail), reflecting that writing to a file is the most reliable since SQL or e-mail servers can be external and offline.
 The priority key is optional.
 - To write to a file, the `stream` key must be present in the writer's `options` array (required only when writing to streams/files).
 
@@ -79,12 +79,12 @@ More on filters: [zend-log filters documentation](https://zendframework.github.i
 
 ## (Optional) Configuring the formatter
 
-The logged value isn't limited to a string — arrays can be logged too, and for readability they can be serialized. Zend Log provides String, XML, JSON and FirePHP formatting.
+The logged value isn't limited to a string - arrays can be logged too, and for readability they can be serialized. Zend Log provides String, XML, JSON and FirePHP formatting.
 
 The formatter config accepts:
 
-- `name` — the formatter class (must implement `Zend\Log\Formatter\FormatterInterface`)
-- `options` — options passed to the formatter constructor, if required
+- `name` - the formatter class (must implement `Zend\Log\Formatter\FormatterInterface`)
+- `options` - options passed to the formatter constructor, if required
 
 More on formatters: [Simple](https://zendframework.github.io/zend-log/formatters/#simple-formatting), [JSON](https://zendframework.github.io/zend-log/formatters/#formatting-to-json), [XML](https://zendframework.github.io/zend-log/formatters/#formatting-to-xml), [FirePHP](https://zendframework.github.io/zend-log/formatters/#formatting-to-firephp).
 
@@ -136,7 +136,7 @@ Loggers must have at least one writer, and the writer's "name" key is mandatory 
 
 **Q: What does a filter do, and how are log levels ordered?**
 A: A filter prevents a message from being written to the log.
-Per PSR-3, the log levels in order of priority/importance are emergency (0), alert (1), critical (2), error (3), warn (4), notice (5), info (6), and debug (7) — the operator for "more important" messages is `<=` because a smaller number represents a more important message.
+Per PSR-3, the log levels in order of priority/importance are emergency (0), alert (1), critical (2), error (3), warn (4), notice (5), info (6), and debug (7) - the operator for "more important" messages is `<=` because a smaller number represents a more important message.
 
 **Q: What does the formatter configuration control?**
 A: The formatter accepts a "name" (a class implementing Zend\Log\Formatter\FormatterInterface) and "options" to pass to that formatter's constructor.

@@ -35,7 +35,7 @@ To check and modify the PHP Interpreter:
 - Right click the project.
 - Type "interpreter".
 - The PHP -> Interpreter option should show up.
-- If you only need a specific interpreter for a specific project, check "Enable Project specific settings" — this way you won't affect the other projects in the current workspace.
+- If you only need a specific interpreter for a specific project, check "Enable Project specific settings" - this way you won't affect the other projects in the current workspace.
 
 The PHP 7 Express feature should now show up.
 

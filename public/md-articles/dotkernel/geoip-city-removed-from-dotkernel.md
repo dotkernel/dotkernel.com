@@ -65,7 +65,7 @@ Use this fix only if you don't intend to use GeoIP City.
 ## Recommendation
 
 Special coding is recommended for using GeoIP City and the GeoIP extension in general.
-Note that GeoIP is an obsolete extension — MaxMind recommends using GeoIP2 instead.
+Note that GeoIP is an obsolete extension - MaxMind recommends using GeoIP2 instead.
 
 ## FAQ
 

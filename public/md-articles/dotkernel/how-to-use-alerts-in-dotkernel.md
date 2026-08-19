@@ -11,14 +11,14 @@ language: "en"
 # How to use Alerts in Dotkernel
 
 ## TL;DR
-Alerts (Dot_Alert's) are e-mails usually sent to site developers using PHP's `mail()`, meant only to notify a developer that something is wrong — not for regular mail.
+Alerts (Dot_Alert's) are e-mails usually sent to site developers using PHP's `mail()`, meant only to notify a developer that something is wrong - not for regular mail.
 Dot_Alert resembles Dot_Email: it has a sender, subject, destination and message, and can be sent.
 This guide walks through Dotkernel's existing example, where an Alert notifies the developer when an e-mail fails to send.
 
 ## What Dot_Alert is for
 
 Alerts should only notify a developer: *"Hey, something's wrong here, you might want to know this!"*
-The Dot_Alert class resembles Dot_Email — like a mail message, an alert has at least a sender, a subject, a destination and a message, and it can be sent.
+The Dot_Alert class resembles Dot_Email - like a mail message, an alert has at least a sender, a subject, a destination and a message, and it can be sent.
 
 ## Example: notifying a developer of a failed e-mail send
 
@@ -101,7 +101,7 @@ $alert->send();
 
 **Q: What is a Dot_Alert used for?**
 A: Alerts (Dot_Alert's) are e-mails usually sent to the site developers using PHP's mail() function.
-They shouldn't be used to send regular mail — they only notify the developer that something is wrong.
+They shouldn't be used to send regular mail - they only notify the developer that something is wrong.
 
 **Q: What does the Dot_Alert class resemble, and what does an alert contain?**
 A: Dot_Alert resembles Dot_Email.

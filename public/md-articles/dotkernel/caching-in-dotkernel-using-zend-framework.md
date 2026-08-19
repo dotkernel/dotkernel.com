@@ -22,7 +22,7 @@ See [Configuring the Cache in Dotkernel](http://www.dotkernel.com/dotkernel/conf
 
 ## 2. Using the cache
 
-The cache is automatically loaded during initialization and stored in the Registry — loading it manually is not needed because it's already loaded on kernel initialization (see `Dot_Kernel::initialize($startTime)`).
+The cache is automatically loaded during initialization and stored in the Registry - loading it manually is not needed because it's already loaded on kernel initialization (see `Dot_Kernel::initialize($startTime)`).
 If you want to use caching outside of that normal initialization, load it with:
 
 ```php

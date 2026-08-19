@@ -23,7 +23,7 @@ It relies on only a handful of Zend Framework classes.
 | `Zend_Config` | Provides multiple backends for configuration storage and a simple, intuitive, object-oriented interface for accessing it. Dotkernel stores configuration as simple PHP arrays, wrapped by Zend_Config. |
 | `Zend_Db` and `Zend_Db_Table` | A classic implementation of the Table Data Gateway and Row Data Gateway design patterns, for easy and intuitive access to database tables and rows, and an entry point for custom business logic. |
 | `Zend_Mail` | Generalized functionality to compose and send text and MIME-compliant multipart e-mail, via the default Zend_Mail_Transport_Sendmail transport or via Zend_Mail_Transport_Smtp. |
-| `Zend_Registry` | A container for storing objects and values in the application space, so the same object is always available throughout the application — an alternative to global storage. |
+| `Zend_Registry` | A container for storing objects and values in the application space, so the same object is always available throughout the application - an alternative to global storage. |
 | `Zend_Validate` | Provides a set of commonly needed validators, plus a simple validator chaining mechanism so multiple validators can be applied to a single datum in a user-defined order. |
 
 ## FAQ
