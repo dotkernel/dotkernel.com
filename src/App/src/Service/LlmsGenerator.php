@@ -9,9 +9,12 @@ use Light\Blog\Repository\PostRepository;
 use RuntimeException;
 
 use function array_key_exists;
+use function basename;
 use function count;
+use function explode;
 use function file_get_contents;
 use function file_put_contents;
+use function glob;
 use function implode;
 use function preg_match;
 use function sprintf;
@@ -65,6 +68,7 @@ class LlmsGenerator
         private readonly string $sourceDir,
         private readonly string $outputFile,
         private readonly string $baseUrl,
+        private readonly ?string $pagesDir = null,
     ) {
     }
 
@@ -91,7 +95,10 @@ class LlmsGenerator
             $sections[] = $this->buildCategorySection($slug, $posts);
         }
 
-        $written = $this->buildHeader() . implode("\n", $sections);
+        $written = $this->buildHeader()
+            . $this->buildPagesSection()
+            . "## Categories\n\n"
+            . implode("\n", $sections);
 
         if (file_put_contents($this->outputFile, $written) === false) {
             throw new RuntimeException('Unable to write llms.txt.');
@@ -163,53 +170,98 @@ class LlmsGenerator
      */
     private function resolveFrontMatter(string $categorySlug, Post $post): array
     {
-        $result   = ['title' => $post->getTitle(), 'description' => $post->getExcerpt()];
         $path     = sprintf('%s/%s/%s.md', $this->sourceDir, $categorySlug, $post->getSlug());
         $contents = @file_get_contents($path);
 
-        if ($contents === false) {
-            return $result;
+        return [
+            'title'       => $contents === false
+                ? $post->getTitle()
+                : $this->extractFrontMatterField($contents, 'title') ?? $post->getTitle(),
+            'description' => $contents === false
+                ? $post->getExcerpt()
+                : $this->extractFrontMatterField($contents, 'description') ?? $post->getExcerpt(),
+        ];
+    }
+
+    private function buildPagesSection(): string
+    {
+        if ($this->pagesDir === null) {
+            return '';
         }
 
-        if (preg_match('/^title:\s*"(.*)"\s*$/m', $contents, $matches) === 1) {
-            $result['title'] = trim($matches[1]);
+        $pages = [];
+        foreach (glob($this->pagesDir . '/*.md') ?: [] as $path) {
+            $contents = file_get_contents($path);
+            if ($contents === false) {
+                continue;
+            }
+
+            $title       = $this->extractFrontMatterField($contents, 'title');
+            $description = $this->extractFrontMatterField($contents, 'description');
+            if ($title === null || $description === null) {
+                continue;
+            }
+
+            $pages[] = [
+                'title'       => trim(explode('|', $title, 2)[0]),
+                'slug'        => basename($path, '.md'),
+                'description' => $description,
+            ];
         }
 
-        if (preg_match('/^description:\s*"(.*)"\s*$/m', $contents, $matches) === 1) {
-            $result['description'] = trim($matches[1]);
+        if ($pages === []) {
+            return '';
         }
 
-        return $result;
+        usort($pages, static fn (array $a, array $b): int => strcasecmp($a['title'], $b['title']));
+
+        $lines = ['## Pages', ''];
+        foreach ($pages as $page) {
+            $lines[] = sprintf(
+                '- [%s](%s/%s/): %s',
+                $page['title'],
+                $this->baseUrl,
+                $page['slug'],
+                $page['description'],
+            );
+        }
+
+        return implode("\n", $lines) . "\n\n";
+    }
+
+    private function extractFrontMatterField(string $contents, string $field): ?string
+    {
+        if (preg_match(sprintf('/^%s:\s*"(.*)"\s*$/m', $field), $contents, $matches) === 1) {
+            return trim($matches[1]);
+        }
+
+        return null;
     }
 
     private function buildHeader(): string
     {
-        return <<<HEADER
-        # Dotkernel Light
+        $intro = '> Dotkernel Light is the technical blog for the Dotkernel headless PHP platform - a PSR-15 '
+            . 'compliant application built on Mezzio and Laminas components. It publishes architecture '
+            . 'write-ups, how-tos, and release notes for the platform applications - Dotkernel API, Admin '
+            . 'and Queue - and for the standalone Dotkernel Light skeleton.';
 
-        > Dotkernel Light is the technical blog for the Dotkernel headless PHP platform - a PSR-15 compliant 
-        application built on Mezzio and Laminas components. It publishes architecture write-ups, how-tos, 
-        and release notes for the platform applications - Dotkernel API, Admin and Queue - and for the standalone 
-        Dotkernel Light skeleton.
+        $body = 'Content spans foundational PHP/middleware architecture (PSR-7, PSR-15, request lifecycle, '
+            . 'dependency injection), practical how-tos (Doctrine migrations, CORS, authentication, caching), '
+            . 'and the history/release notes of the Dotkernel ecosystem going back to 2008. Posts are organized '
+            . 'by category and attributed to an author; URLs follow the pattern `/{category-slug}/{post-slug}/`.';
 
-        Content spans foundational PHP/middleware architecture (PSR-7, PSR-15, request lifecycle, dependency injection),
-         practical how-tos (Doctrine migrations, CORS, authentication, caching), and the history/release notes of the 
-         Dotkernel ecosystem going back to 2008. Posts are organized by category and attributed to an author; 
-         URLs follow the pattern `/{category-slug}/{post-slug}/`.
+        $about = 'the team behind Dotkernel - how the team works, its commitment to open source and the PHP '
+            . 'community, and how it uses AI under guardrails';
 
-        ## Docs
-
-        - [Blog]({$this->baseUrl}/blog/): full list of posts, most recent first, paginated
-        - [Categories]({$this->baseUrl}/categories/): all categories with post counts
-        - [About]({$this->baseUrl}/about/): the team behind Dotkernel - how the team works, its commitment to open 
-        source and the PHP community, and how it uses AI under guardrails
-        - [OSS Package Lifecycle]({$this->baseUrl}/dotkernel-packages-oss-lifecycle/): support/maintenance status of 
-        Dotkernel's open-source packages
-        - [Contact]({$this->baseUrl}/contact/)
-
-        ## Categories
-
-
-        HEADER;
+        return "# Dotkernel Light\n\n"
+            . $intro . "\n\n"
+            . $body . "\n\n"
+            . "## Docs\n\n"
+            . "- [Blog]({$this->baseUrl}/blog/): full list of posts, most recent first, paginated\n"
+            . "- [Categories]({$this->baseUrl}/categories/): all categories with post counts\n"
+            . "- [About]({$this->baseUrl}/about/): {$about}\n"
+            . "- [OSS Package Lifecycle]({$this->baseUrl}/dotkernel-packages-oss-lifecycle/): "
+            . "support/maintenance status of Dotkernel's open-source packages\n"
+            . "- [Contact]({$this->baseUrl}/contact/)\n\n";
     }
 }

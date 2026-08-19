@@ -24,13 +24,33 @@ class LlmsGeneratorFactoryTest extends UnitTest
             'llms'        => [
                 'sourceDir' => '/tmp/md-articles',
                 'indexFile' => '/tmp/llms.txt',
+                'pagesDir'  => '/tmp/md-pages',
             ],
             'application' => ['url' => 'https://example.test'],
         ]));
 
         $this->assertSame('/tmp/llms.txt', $generator->getOutputFile());
         $this->assertSame('/tmp/md-articles', $this->readProperty($generator, 'sourceDir'));
+        $this->assertSame('/tmp/md-pages', $this->readProperty($generator, 'pagesDir'));
         $this->assertSame('https://example.test', $this->readProperty($generator, 'baseUrl'));
+    }
+
+    /**
+     * A config predating the static-page markdown simply skips that section.
+     *
+     * @throws Exception
+     */
+    public function testInvokeLeavesThePagesDirectoryUnsetWhenItIsNotConfigured(): void
+    {
+        $generator = (new LlmsGeneratorFactory())($this->createContainer([
+            'llms'        => [
+                'sourceDir' => '/tmp/md-articles',
+                'indexFile' => '/tmp/llms.txt',
+            ],
+            'application' => ['url' => 'https://example.test'],
+        ]));
+
+        $this->assertNull($this->readProperty($generator, 'pagesDir'));
     }
 
     /**
