@@ -187,16 +187,24 @@ class LlmsGenerator
         return <<<HEADER
         # Dotkernel Light
 
-        > Dotkernel Light is the technical blog for the Dotkernel headless PHP platform - a PSR-15 compliant application built on Mezzio and Laminas components. It publishes architecture write-ups, how-tos, and release notes for the platform applications - Dotkernel API, Admin and Queue - and for the standalone Dotkernel Light skeleton.
+        > Dotkernel Light is the technical blog for the Dotkernel headless PHP platform - a PSR-15 compliant 
+        application built on Mezzio and Laminas components. It publishes architecture write-ups, how-tos, 
+        and release notes for the platform applications - Dotkernel API, Admin and Queue - and for the standalone 
+        Dotkernel Light skeleton.
 
-        Content spans foundational PHP/middleware architecture (PSR-7, PSR-15, request lifecycle, dependency injection), practical how-tos (Doctrine migrations, CORS, authentication, caching), and the history/release notes of the Dotkernel ecosystem going back to 2008. Posts are organized by category and attributed to an author; URLs follow the pattern `/{category-slug}/{post-slug}/`.
+        Content spans foundational PHP/middleware architecture (PSR-7, PSR-15, request lifecycle, dependency injection),
+         practical how-tos (Doctrine migrations, CORS, authentication, caching), and the history/release notes of the 
+         Dotkernel ecosystem going back to 2008. Posts are organized by category and attributed to an author; 
+         URLs follow the pattern `/{category-slug}/{post-slug}/`.
 
         ## Docs
 
         - [Blog]({$this->baseUrl}/blog/): full list of posts, most recent first, paginated
         - [Categories]({$this->baseUrl}/categories/): all categories with post counts
-        - [About]({$this->baseUrl}/about/): the team behind Dotkernel - how the team works, its commitment to open source and the PHP community, and how it uses AI under guardrails
-        - [OSS Package Lifecycle]({$this->baseUrl}/dotkernel-packages-oss-lifecycle/): support/maintenance status of Dotkernel's open-source packages
+        - [About]({$this->baseUrl}/about/): the team behind Dotkernel - how the team works, its commitment to open 
+        source and the PHP community, and how it uses AI under guardrails
+        - [OSS Package Lifecycle]({$this->baseUrl}/dotkernel-packages-oss-lifecycle/): support/maintenance status of 
+        Dotkernel's open-source packages
         - [Contact]({$this->baseUrl}/contact/)
 
         ## Categories
