@@ -62,7 +62,7 @@ Dotkernel will not include the package in its applications by default while it l
 
 ## Resources
 
-- [LGPL v3 license](https://www.gnu.org/licenses/lgpl-3.0.en.html)
+- [LGPL v3 license](https://opensource.org/license/lgpl-3-0)
 - [MIT license](https://opensource.org/license/mit)
 - [matomo/device-detector](https://github.com/matomo-org/device-detector)
 - [dotkernel/dot-user-agent-sniffer](https://github.com/dotkernel/dot-user-agent-sniffer)

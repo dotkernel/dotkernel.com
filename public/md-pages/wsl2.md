@@ -12,7 +12,7 @@ Development environment · AlmaLinux 10 · WSL2
 Dotkernel's local environment runs AlmaLinux 10 - inside WSL 2 on Windows, or on bare metal with no WSL at all.
 One Ansible playbook installs PHP, Apache, MariaDB, Composer, Node.js and phpMyAdmin, and every project gets its own `*.localhost` virtualhost without touching a hosts file.
 
-- [Read the docs](https://docs.dotkernel.org/development/v2/)
+- [Read the docs](https://docs.dotkernel.org/development/v2/terminal/)
 - [View on GitHub](https://github.com/dotkernel/development/tree/alma-linux-10)
 
 | | |
