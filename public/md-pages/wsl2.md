@@ -7,7 +7,7 @@ language: "en"
 
 # Development Environment
 
-Development environment · AlmaLinux 10 · WSL2
+Development environment . AlmaLinux 10 . WSL2
 
 Dotkernel's local environment runs AlmaLinux 10 - inside WSL 2 on Windows, or on bare metal with no WSL at all.
 One Ansible playbook installs PHP, Apache, MariaDB, Composer, Node.js and phpMyAdmin, and every project gets its own `*.localhost` virtualhost without touching a hosts file.
@@ -23,7 +23,7 @@ One Ansible playbook installs PHP, Apache, MariaDB, Composer, Node.js and phpMyA
 
 ## Terminal to running stack
 
-Terminal → WSL 2 → AlmaLinux → Ansible → Ready.
+Terminal -> WSL 2 -> AlmaLinux -> Ansible -> Ready.
 
 ## The same OS family your servers run
 
@@ -42,7 +42,7 @@ Everything here also runs the same way without WSL, directly on a bare AlmaLinux
 Each step runs in a different place - Windows Terminal for the first two, the AlmaLinux 10 shell for the third.
 The full walkthrough, prompts and all, is in the docs.
 
-### 1 · Terminal & requirements
+### 1 . Terminal & requirements
 
 Install Windows Terminal, then confirm WSL 2 is enabled - Hyper-V, Virtual Machine Platform and Windows Subsystem for Linux, all turned on in Windows features.
 
@@ -50,7 +50,7 @@ Install Windows Terminal, then confirm WSL 2 is enabled - Hyper-V, Virtual Machi
 wsl -v
 ```
 
-### 2 · Install AlmaLinux 10
+### 2 . Install AlmaLinux 10
 
 Stop any other running distro, then install AlmaLinux 10 and create your Unix username and password when prompted.
 
@@ -58,7 +58,7 @@ Stop any other running distro, then install AlmaLinux 10 and create your Unix us
 wsl --install -d AlmaLinux-10
 ```
 
-### 3 · Setup packages
+### 3 . Setup packages
 
 Clone `dotkernel/development`, fill in `config.yml` with your Git identity and MariaDB root password, and let Ansible provision the rest.
 
@@ -148,4 +148,4 @@ Built for how the platform ships.
 
 The WSL 2 + AlmaLinux 10 setup is maintained by the same team behind the rest of the Headless Platform, so the local environment stays in step with what actually runs in production - not a Docker approximation of it.
 
-[Talk to us →](https://www.dotkernel.com/contact/)
+[Talk to us ->](https://www.dotkernel.com/contact/)

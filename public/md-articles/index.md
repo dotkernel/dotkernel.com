@@ -47,7 +47,7 @@ Two additional skeletons, **Light** and **Frontend**, stand outside the platform
 
 ## Request lifecycle
 
-Router (FastRoute) → Authentication (dot-authentication) → RBAC guard (dot-rbac-guard) → your PSR-15 handler → Response (Diactoros).
+Router (FastRoute) -> Authentication (dot-authentication) -> RBAC guard (dot-rbac-guard) -> your PSR-15 handler -> Response (Diactoros).
 
 ## The headless platform: three applications, one platform
 
@@ -84,4 +84,4 @@ Dotkernel is an open-source project created and led by the dev team at Apidemia 
 - GitHub organization: https://github.com/dotkernel
 - Blog: https://www.dotkernel.com/blog/
 - Categories: https://www.dotkernel.com/categories/
-- Contact: {{base_url}}/contact/
+- Contact: https://www.dotkernel.com/contact/
