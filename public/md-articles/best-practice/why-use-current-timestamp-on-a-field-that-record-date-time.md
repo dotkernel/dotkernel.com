@@ -45,7 +45,7 @@ DEFAULT and ON UPDATE clauses can be used together or separately, depending on y
 - With a constant `DEFAULT` value, the column has the given default and is not automatically initialized to the current timestamp.
 If the column also has an `ON UPDATE CURRENT_TIMESTAMP` clause, it is automatically updated; otherwise, it has a constant default and is not automatically updated.
 
-For more details, check out the MySQL Manual.
+For more details, check out the [MySQL Manual](https://dev.mysql.com/doc/refman/8.0/en/timestamp.html).
 
 Note: only one timestamp field can be `DEFAULT CURRENT_TIMESTAMP` in a table.
 

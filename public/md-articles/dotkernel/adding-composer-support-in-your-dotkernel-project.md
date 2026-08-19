@@ -109,4 +109,3 @@ A: The article states it works for any Dotkernel 1.x version, as long as the ser
 ## Resources
 
 - [Composer install / PHP dependency manager tutorial](https://www.codementor.io/php/tutorial/composer-install-php-dependency-manager)
-- [Using Dotkernel with Composer dependencies](http://www.dotkernel.com/dotkernel/using-dotkernel-…ser-dependencies/)

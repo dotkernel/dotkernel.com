@@ -16,7 +16,7 @@ CURRENT_TIMESTAMP is also a solution for  <em>updating </em>date and time field
     <li>With no <code>DEFAULT</code> clause and with an <code>ON UPDATE CURRENT_TIMESTAMP</code> clause, the column has a default of 0 and is automatically updated.</li>
     <li>With a constant <code>DEFAULT</code> value, the column has the given default and is not automatically initialized to the current timestamp. If the column also has an <code>ON UPDATE CURRENT_TIMESTAMP</code> clause, it is automatically updated; otherwise, it has a constant default and is not automatically updated.</li>
 </ul>
-For more details check out <a href="http://dev.mysql.com/doc/refman/5.0/en/timestamp.html">MySQL Manual</a>
+For more details check out <a href="https://dev.mysql.com/doc/refman/8.0/en/timestamp.html">MySQL Manual</a>
 
 <strong>Note*:</strong> Only one timestamp field can be <code>DEFAULT CURRENT_TIMESTAMP</code> in a table.
 

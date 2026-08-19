@@ -23,7 +23,7 @@ Note: a 2024 follow-up article covers the same topic using Symfony Cache instead
 
 Using an ORM in production without any sort of cache strategy is a very bad move.
 The database server chokes; lots of CPU cycles wasted only to generate metadata and queries over and over again at each request; the system slows down and so on.
-Following [Doctrine documentation](https://www.doctrine-project.org/projects/doctrine-orm/en/2.7/reference/caching.html#integrating-with-the-orm), we choose to configure the Doctrine cache system through psr/container.
+Following [Doctrine documentation](https://www.doctrine-project.org/projects/doctrine-orm/en/latest/reference/caching.html#integrating-with-the-orm), we choose to configure the Doctrine cache system through psr/container.
 The main parts we are going to use are `query_cache`, `metadata_cache` and `result_cache`.
 As cache type we choose `PhpFileCache` and for result cache we are setting a lifetime of 3600 seconds.
 
@@ -181,5 +181,5 @@ A: Enable result and/or query cache on the query builder's query before passing 
 
 ## Resources
 
-- [Doctrine Advanced Configuration](https://www.doctrine-project.org/projects/doctrine-orm/en/2.7/reference/advanced-configuration.html)
-- [Doctrine Caching Documentation](https://www.doctrine-project.org/projects/doctrine-orm/en/2.7/reference/caching.html)
+- [Doctrine Advanced Configuration](https://www.doctrine-project.org/projects/doctrine-orm/en/latest/reference/advanced-configuration.html)
+- [Doctrine Caching Documentation](https://www.doctrine-project.org/projects/doctrine-orm/en/latest/reference/caching.html)

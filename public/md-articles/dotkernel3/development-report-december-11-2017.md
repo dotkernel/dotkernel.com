@@ -39,8 +39,3 @@ A: Release notes were added for Dotkernel3 frontend and admin, a Webpack tutoria
 **Q: Who was credited as a contributor in this report?**
 A: JapSeyz was thanked as a contributor.
 
-## Resources
-
-- [Release Notes](https://docs.dotkernel.com/Overview/Release-Notes.html)
-- [Webpack tutorial](https://docs.dotkernel.com/Prerequisites/Webpack.html)
-- [Api Endpoint Documentation Guidelines](https://docs.dotkernel.com/Guidelines/Documentation-Guidelines/Api-Endpoint.html)

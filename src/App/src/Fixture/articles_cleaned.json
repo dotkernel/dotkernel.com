@@ -695,7 +695,7 @@
                 "post_status": "publish",
                 "author": {
                     "display_name": "Jesper",
-                    "github": "jesper@apidemia.dk"
+                    "github": null
                 },
                 "isObsolete": false,
                 "opengraph_img": null,
@@ -911,7 +911,7 @@
                 "post_status": "publish",
                 "author": {
                     "display_name": "Claudiu Pintiuta",
-                    "github": "claudiu@rospace.com"
+                    "github": "pinclau"
                 },
                 "isObsolete": false,
                 "opengraph_img": "/opengraph/article/twitter-card.png",
@@ -1052,7 +1052,7 @@
                 "post_status": "archived",
                 "author": {
                     "display_name": "Stas",
-                    "github": "stas@codelobster.com"
+                    "github": null
                 },
                 "isObsolete": false,
                 "opengraph_img": null,
@@ -1698,7 +1698,7 @@
                 "post_status": "publish",
                 "author": {
                     "display_name": "Jesper",
-                    "github": "jesper@apidemia.dk"
+                    "github": null
                 },
                 "isObsolete": false,
                 "opengraph_img": null,
@@ -1712,7 +1712,7 @@
                 "post_status": "publish",
                 "author": {
                     "display_name": "Jesper",
-                    "github": "jesper@apidemia.dk"
+                    "github": null
                 },
                 "isObsolete": false,
                 "opengraph_img": null,
@@ -2011,7 +2011,7 @@
             {
                 "post_title": "Development Report December 11, 2017",
                 "post_date": "2017-12-15 06:19:24",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "Gabi DJ",
                     "github": "gabidj"

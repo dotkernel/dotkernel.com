@@ -174,3 +174,9 @@ Content spans foundational PHP/middleware architecture (PSR-7, PSR-15, request l
 *open-source license comparisons*
 
 - [MIT versus LGPL in practice: Dotkernel case](https://www.dotkernel.com/licensing/mit-versus-lgpl-in-practice-dotkernel-case/): How Dotkernel handled discovering an LGPL v3 dependency in one of its MIT-licensed packages.
+
+## Design Patterns (1 post)
+
+*naming conventions for PSR-15 handlers*
+
+- [Naming pattern for PSR-15 handlers in Dotkernel applications](https://www.dotkernel.com/design-pattern/naming-pattern-for-psr-15-handlers-in-dotkernel-applications/): The PSR-15 handler naming pattern adopted in Dotkernel Admin v6, and planned for Frontend and Light, meant to stay clear as a project's size and number of contributors grow.

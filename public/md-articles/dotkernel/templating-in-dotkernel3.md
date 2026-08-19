@@ -43,9 +43,8 @@ A: The previous templating engine, although solid and robust, was also 10 years 
 A: Templates can now be written as HTML code with extra Twig tags, and Twig includes features such as layouts, loops, variables, and escaping, giving the familiarity of HTML with the overview and convenience of PHP.
 
 **Q: Where can I read the official Twig templating documentation for Dotkernel?**
-A: The official documentation is linked in the article at docs.dotkernel.com/Prerequisites/Templates.
+A: The official documentation is available at [twig.symfony.com](https://twig.symfony.com/).
 
 ## Resources
 
 - [Twig Templating Engine](https://twig.symfony.com/)
-- [Dotkernel Templates documentation](https://docs.dotkernel.com/Prerequisites/Templates)
