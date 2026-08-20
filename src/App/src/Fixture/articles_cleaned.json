@@ -998,7 +998,7 @@
                     "github": "OStefan2001"
                 },
                 "isObsolete": false,
-                "opengraph_img": null,
+                "opengraph_img": "/opengraph/article/twitter-card-build-dotkernel.png",
                 "excerpt": "How this blog itself came together: starting from the Dotkernel Light starter project, then following the Tutorial 101 to add Doctrine ORM and load real data into the database.",
                 "tl_dr": "This project started from the Dotkernel Light starter (Mezzio, Twig, FastRoute, PSR-7 via Laminas Diactoros) as a bare-bones website skeleton.\nFollowing the official Tutorial 101, Doctrine ORM was added on top: entities for posts, categories, authors and tags, migrations to create the schema, and fixtures to load real content into the database.\nThe result is this: a Dotkernel Light project turned into a fully data-driven site.",
                 "tags": [
