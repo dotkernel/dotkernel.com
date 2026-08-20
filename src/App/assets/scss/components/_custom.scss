@@ -519,9 +519,10 @@ html[data-theme="light"] .theme-toggle {
 
   p.sub {
     font-size: 18px;
-    margin-top: 20px;
-    max-width: 520px;
+    max-width: 547px;
     color: var(--text-muted);
+    margin: 20px auto;
+    text-align: center;
 
     strong {
       color: var(--page-accent, var(--teal));
@@ -537,8 +538,25 @@ html[data-theme="light"] .theme-toggle {
   align-items: center;
 }
 
+/* ============================================================
+   Error pages
+   ============================================================ */
+
+h1.error-code {
+  text-align: center;
+}
+
+.hero h1.error-code {
+  font-size: 88px;
+}
+
+.page-intro h1.error-code {
+  font-size: 80px;
+}
+
 .hero-ctas {
   display: flex;
+  justify-content: center;
   gap: 14px;
   margin-top: 32px;
   flex-wrap: wrap;
@@ -1458,6 +1476,10 @@ footer {
 
   .hero h1 {
     font-size: 32px;
+  }
+
+  .hero h1.error-code {
+    font-size: 64px;
   }
 
   .products-grid {
