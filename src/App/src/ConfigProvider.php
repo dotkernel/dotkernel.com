@@ -23,11 +23,13 @@ use Light\App\Factory\LlmsFullGeneratorFactory;
 use Light\App\Factory\LlmsGeneratorFactory;
 use Light\App\Factory\PackageGeneratorFactory;
 use Light\App\Factory\SitemapGeneratorFactory;
+use Light\App\Factory\TrailingSlashMiddlewareFactory;
 use Light\App\Handler\GetFeedViewHandler;
 use Light\App\Handler\GetIndexViewHandler;
 use Light\App\Handler\GetMarkdownArticleHandler;
 use Light\App\Handler\GetPackagesViewHandler;
 use Light\App\Handler\GetSitemapViewHandler;
+use Light\App\Middleware\TrailingSlashMiddleware;
 use Light\App\Resolver\EntityListenerResolver;
 use Light\App\Service\FeedGenerator;
 use Light\App\Service\GitHubClient;
@@ -144,6 +146,7 @@ class ConfigProvider
                 PackageGenerator::class               => PackageGeneratorFactory::class,
                 LlmsFullGenerator::class              => LlmsFullGeneratorFactory::class,
                 LlmsGenerator::class                  => LlmsGeneratorFactory::class,
+                TrailingSlashMiddleware::class        => TrailingSlashMiddlewareFactory::class,
             ],
             'aliases'    => [
                 EntityManager::class          => 'doctrine.entity_manager.orm_default',
