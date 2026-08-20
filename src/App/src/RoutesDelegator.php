@@ -34,20 +34,6 @@ class RoutesDelegator
             GetPackagesViewHandler::TEMPLATE
         );
 
-        $app->get('/{wpPath:wp-.*}', function () {
-            return new RedirectResponse('/', 301);
-        });
-
-        $app->get('/{first}', function ($request) {
-            $uri = $request->getUri();
-            return new RedirectResponse((string) $uri . '/', 301);
-        });
-
-        $app->get('/{first}/{second}', function ($request) {
-            $uri = $request->getUri();
-            return new RedirectResponse((string) $uri . '/', 301);
-        });
-
         return $app;
     }
 }
