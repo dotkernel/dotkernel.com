@@ -41,7 +41,7 @@ Add a new entry to the category's `articles` array in `src/App/src/Fixture/artic
 | `"archived"` | `PostStatusEnum::Archived` | Not published: excluded from listings/feed/sitemap, but its own page returns `410 Gone` instead of `404` — use this for content that existed and was intentionally removed (outdated articles, leftover test content, etc.), as opposed to content that was never public. |
 | anything else (including `"draft"`) | `PostStatusEnum::Draft` | Not published: excluded from listings/feed/sitemap, its own page returns `404`. This is also the fallback for typos in `post_status`. |
 
-After changing `post_status`, follow the same steps: re-run `bin/doctrine-fixtures`, then `bin/generate-feed` and `bin/sitemap`. This applies generally, not just to status changes — **any** edit to `articles_cleaned.json` (title, excerpt, status, date, etc.) needs `bin/doctrine-fixtures` re-run to update the database, followed by re-running the 3 generators in step 4 so `feed.xml`/`sitemap.xml`/`llms-full.txt` reflect it. One exception: `bin/generate-llms-full` reads straight from the `.md` files on disk and does **not** check `post_status` at all — a non-published article's `.md` file will still be included in `llms-full.txt` unless you also remove or rename that file.
+After changing `post_status`, follow the same steps: re-run `bin/doctrine-fixtures`, then `bin/generate-feed` and `bin/sitemap`. This applies generally, not just to status changes — **any** edit to `articles_cleaned.json` (title, excerpt, status, date, etc.) needs `bin/doctrine-fixtures` re-run to update the database, followed by re-running the 4 generators in step 4 so `feed.xml`/`sitemap.xml`/`llms.txt`/`llms-full.txt` reflect it. One exception: `bin/generate-llms-full` reads straight from the `.md` files on disk and does **not** check `post_status` at all — a non-published article's `.md` file will still be included in `llms-full.txt` unless you also remove or rename that file.
 
 ## 2. Create the templates
 
@@ -68,24 +68,18 @@ php bin/create-uploads-dir
 ```shell
 php bin/generate-feed
 php bin/sitemap
+php bin/generate-llms
 php bin/generate-llms-full
 ```
 
 - `bin/generate-feed` rewrites `public/feed.xml` from the published posts in the database.
 - `bin/sitemap` rewrites `public/sitemap.xml` from the published posts in the database.
+- `bin/generate-llms` rewrites `public/llms.txt`, the short curated index (one line per article, grouped by category) — built from the published posts in the database, grouped by category (known categories first, in a fixed order, then any remaining categories by post count) and sorted alphabetically by title within each category. Requires the `llms.sourceDir` / `llms.indexFile` keys in `config/autoload/local.php` (see `local.php.dist`); the `llms.pagesDir` key is optional, same as for `bin/generate-llms-full` below.
 - `bin/generate-llms-full` rewrites `public/llms-full.txt` by concatenating `public/md-articles/index.md` and every other `public/md-articles/*/*.md` file, sorted by path, then appending each `public/md-pages/*.md` file — the markdown versions of the static pages — labelled with a `md-pages/` prefix in the section header. Requires the `llms.sourceDir` / `llms.outputFile` keys in `config/autoload/local.php` (see `local.php.dist`); the `llms.pagesDir` key is optional, and omitting it leaves the page sections out.
 
-These three have no ordering dependency on each other, only on step 3 being done first.
+These four have no ordering dependency on each other, only on step 3 being done first.
 
-**`public/llms.txt` is not part of this - it is edited by hand, not generated.** It's a separate, curated index (one line per article, grouped by category) distinct from the full-text `llms-full.txt`. Whenever an article is added, add a matching entry under its category:
-
-```markdown
-- [Your article title](https://www.dotkernel.com/{category-slug}/{article-slug}/): One-sentence description, similar to the excerpt.
-```
-
-Also bump that category's post count in its heading (e.g. `## Dotkernel (65 posts)`). Entries are ordered alphabetically by title within each category.
-
-None of this is wired into an automated deploy pipeline in this repository - there is no `deploy` script or CI job that runs these `bin/` scripts. `public/feed.xml`, `public/sitemap.xml`, and `public/llms-full.txt` are committed generated artifacts, so re-running these scripts leaves them modified in git until committed.
+None of this is wired into an automated deploy pipeline in this repository - there is no `deploy` script or CI job that runs these `bin/` scripts. **This must be run manually as part of every deploy** whenever `articles_cleaned.json` changed since the last deploy. `public/feed.xml`, `public/sitemap.xml`, `public/llms.txt`, and `public/llms-full.txt` are committed generated artifacts, so re-running these scripts leaves them modified in git until committed.
 
 ## How to update an article
 
