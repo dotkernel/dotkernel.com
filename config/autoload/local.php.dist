@@ -36,7 +36,7 @@ $app = [
             . 'using a collection of applications (skeletons).',
         'image'       => $baseUrl . '/uploads/opengraph/dotkernel.png',
         'type'        => 'website',
-        'siteName'    => 'Dotkernel Light',
+        'siteName'    => 'Dotkernel',
         'locale'      => 'en_US',
         'twitterCard' => 'summary_large_image',
         'twitterSite' => '@dotkernel',
