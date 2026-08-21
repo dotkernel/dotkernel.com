@@ -1329,15 +1329,26 @@ footer {
   padding: 50px 0 40px;
 }
 
+.footer-logo {
+  margin-bottom: 40px;
+
+  .logo-full {
+    height: 52px;
+  }
+}
+
 .footer-announcement {
-  padding-bottom: 34px;
-  margin-bottom: 34px;
-  border-bottom: 1px solid var(--border-soft);
+  background: #fff;
+  border: 1px solid var(--border-soft);
+  border-left: 3px solid var(--teal);
+  border-radius: var(--radius);
+  padding: 32px 40px;
+  margin-bottom: 40px;
 
   p {
     margin-top: 10px;
     font-size: 14px;
-    color: var(--text-muted);
+    color: rgba(11, 11, 11, .65);
   }
 }
 
