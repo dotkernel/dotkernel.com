@@ -3,18 +3,28 @@
         "@context": "https://schema.org",
         "@type": "CollectionPage",
         "@id": "{{ app.url ~ path('page::category-resource', {slug: category.slug}) }}#webpage",
-        "url": "{{ app.url ~ path('page::category-resource', {slug: category.slug}) }}",
         "name": "{{ category.name }}",
+        "description": "Blog posts from the '{{ category.name }}' category.",
+        "url": "{{ app.url ~ path('page::category-resource', {slug: category.slug}) }}",
         "isPartOf": { "@id": "{{ app.url }}#website" },
         "mainEntity": {
             "@type": "ItemList",
+            "name": "Posts in '{{ category.name }}'",
+            "numberOfItems": {{ data.items|length }},
             "itemListElement": [
                 {% for article in data.items %}{% if not loop.first %},{% endif %}
                 {
                     "@type": "ListItem",
                     "position": {{ loop.index }},
-                    "url": "{{ app.url ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
-                    "name": "{{ article.title }}"
+                    "item": {
+                        "@type": "BlogPosting",
+                        "url": "{{ app.url ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
+                        "heading": "{{ article.title }}",
+                        "author": {
+                            "@type": "Person",
+                            "name": "{{ article.author.name }}"
+                        }
+                    }
                 }
                 {% endfor %}
             ]
