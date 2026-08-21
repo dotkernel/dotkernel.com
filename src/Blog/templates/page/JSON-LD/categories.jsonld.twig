@@ -3,22 +3,23 @@
         "@context": "https://schema.org",
         "@type": "CollectionPage",
         "@id": "{{ app.url ~ path('page::categories') }}#webpage",
-        "url": "{{ app.url ~ path('page::categories') }}",
         "name": "Categories",
         "description": "Browse Dotkernel blog posts by category.",
+        "url": "{{ app.url ~ path('page::categories') }}",
+        "numberOfItems": {{ categories|length }},
         "isPartOf": { "@id": "{{ app.url }}#website" },
-        "mainEntity": {
-            "@type": "ItemList",
-            "itemListElement": [
-                {% for category in categories %}{% if not loop.first %},{% endif %}
-                {
-                    "@type": "ListItem",
-                    "position": {{ loop.index }},
+        "itemListElement": [
+            {% for category in categories %}{% if not loop.first %},{% endif %}
+            {
+                "@type": "ListItem",
+                "position": {{ loop.index }},
+                "item": {
+                    "@type": "CollectionPage",
                     "url": "{{ app.url ~ path('page::category-resource', {slug: category.slug}) }}",
                     "name": "{{ category.name }}"
                 }
-                {% endfor %}
-            ]
-        }
+            }
+            {% endfor %}
+        ]
     }
 </script>

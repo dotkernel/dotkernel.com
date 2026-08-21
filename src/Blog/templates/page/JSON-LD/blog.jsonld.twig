@@ -3,22 +3,27 @@
         "@context": "https://schema.org",
         "@type": "CollectionPage",
         "@id": "{{ app.url ~ path('page::blog') }}#webpage",
-        "url": "{{ app.url ~ path('page::blog') }}",
         "name": "Blog",
         "description": "Latest articles from the Dotkernel blog.",
+        "url": "{{ app.url ~ path('page::blog') }}",
+        "numberOfItems": {{ data.items|length }},
         "isPartOf": { "@id": "{{ app.url }}#website" },
-        "mainEntity": {
-            "@type": "ItemList",
-            "itemListElement": [
-                {% for article in data.items %}{% if not loop.first %},{% endif %}
-                {
-                    "@type": "ListItem",
-                    "position": {{ loop.index }},
+        "itemListElement": [
+            {% for article in data.items %}{% if not loop.first %},{% endif %}
+            {
+                "@type": "ListItem",
+                "position": {{ loop.index }},
+                "item": {
+                    "@type": "BlogPosting",
                     "url": "{{ app.url ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
-                    "name": "{{ article.title }}"
+                    "headline": "{{ article.title }}",
+                    "author": {
+                        "@type": "Person",
+                        "name": "{{ article.author.name }}"
+                    }
                 }
-                {% endfor %}
-            ]
-        }
+            }
+            {% endfor %}
+        ]
     }
 </script>
