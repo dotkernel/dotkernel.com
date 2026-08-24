@@ -1330,16 +1330,6 @@ footer {
   position: relative;
   overflow: hidden;
 
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    background: url("/images/app/content/workers.jpg") center / cover no-repeat;
-    opacity: .06;
-    pointer-events: none;
-  }
-
   .wrap {
     position: relative;
     z-index: 1;
@@ -1359,12 +1349,29 @@ footer {
 }
 
 .footer-announcement {
-  background: #fff;
+  position: relative;
+  overflow: hidden;
   border: 1px solid var(--border-soft);
   border-left: 3px solid var(--teal);
   border-radius: var(--radius);
   padding: 32px 40px;
   margin-bottom: 40px;
+  background: #fff;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: url("/images/app/content/workers.jpg") center / cover no-repeat;
+    opacity: .15;
+    pointer-events: none;
+  }
+
+  > * {
+    position: relative;
+    z-index: 1;
+  }
 
   p {
     margin-top: 10px;
