@@ -141,5 +141,13 @@
 </footer>
 <script src="{{ asset('js/app.js') }}"></script>
 {% block javascript %}{% endblock %}
+<script>
+    (function() {
+        var script = document.createElement('script');
+        script.setAttribute('data-project-id', '91c34972-ca8d-433c-b511-dbdfa902f237');
+        script.src = 'https://ingest.promptwatch.com/js/client.min.js';
+        document.head.appendChild(script);
+    })();
+</script>
 </body>
 </html>
