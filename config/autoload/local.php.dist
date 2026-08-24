@@ -29,8 +29,8 @@ $org       = 'dotkernel';
  * generators take it from config, the JSON-LD templates build absolute URLs from `app.url`.
  */
 $app = [
-    'url'  => $baseUrl,
-    'meta' => [
+    'url'        => $baseUrl,
+    'meta'       => [
         'title'       => 'Dotkernel | Headless Platform for modern web application',
         'description' => 'Dotkernel is a Headless Platform for building modern web applications '
             . 'using a collection of applications (skeletons).',
@@ -40,6 +40,9 @@ $app = [
         'locale'      => 'en_US',
         'twitterCard' => 'summary_large_image',
         'twitterSite' => '@dotkernel',
+    ],
+    'promptwatch' => [
+        'enabled' => false,
     ],
 ];
 
