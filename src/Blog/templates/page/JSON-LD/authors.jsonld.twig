@@ -3,9 +3,10 @@
         "@context": "https://schema.org",
         "@type": "CollectionPage",
         "@id": "{{ app.url ~ path('page::authors') }}#webpage",
-        "url": "{{ app.url ~ path('page::authors') }}",
         "name": "Authors",
         "description": "Browse Dotkernel blog posts by author.",
+        "url": "{{ app.url ~ path('page::authors') }}",
+        "numberOfItems": {{ authors|length }},
         "isPartOf": { "@id": "{{ app.url }}#website" },
         "mainEntity": {
             "@type": "ItemList",
@@ -14,8 +15,11 @@
                 {
                     "@type": "ListItem",
                     "position": {{ loop.index }},
-                    "url": "{{ app.url ~ path('page::author-resource', {slug: author.slug}) }}",
-                    "name": "{{ author.name }}"
+                    "item": {
+                        "@type": "Person",
+                        "url": "{{ app.url ~ path('page::author-resource', {slug: author.slug}) }}",
+                        "name": "{{ author.name }}"
+                    }
                 }
                 {% endfor %}
             ]

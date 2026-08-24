@@ -7,13 +7,13 @@
     <section class="hero">
         <div class="wrap">
             <span class="eyebrow">Oops! This is awkward.</span>
-            <h1>404</h1>
-            <p class="sub">
-                You are looking for something that doesn't exist or may have moved.
-                Check out one of the categories below, or head back home.
+            <h1 class="error-code">404</h1>
+            <p class="sub error-sub">
+                You are looking for something that doesn't exist or may have moved.<br>
+                Return to the homepage below, or head to the Blog.
             </p>
 
-            <div class="hero-ctas">
+            <div class="hero-ctas error-buttons">
                 <a class="btn btn-primary" href="{{ path('app::index') }}">Back to Home</a>
                 <a class="btn btn-ghost" href="{{ url('page::blog') }}">Browse new posts</a>
             </div>

@@ -13,13 +13,19 @@
         },
         "hasPart": {
             "@type": "ItemList",
+            "name": "Blog posts by {{ author.name }}",
+            "description": "A list of blog posts written by {{ author.name }}.",
+            "numberOfItems": {{ data.items|length }},
             "itemListElement": [
                 {% for post in data.items %}{% if not loop.first %},{% endif %}
                 {
                     "@type": "ListItem",
                     "position": {{ loop.index }},
-                    "url": "{{ app.url ~ path('page::blog-resource', {categorySlug: post.category.slug, slug: post.slug}) }}",
-                    "name": "{{ post.title }}"
+                    "item": {
+                        "@type": "BlogPosting",
+                        "headline": "{{ post.title }}",
+                        "url": "{{ app.url ~ path('page::blog-resource', {categorySlug: post.category.slug, slug: post.slug}) }}"
+                    }
                 }
                 {% endfor %}
             ]

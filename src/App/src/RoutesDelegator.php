@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Light\App;
 
-use Laminas\Diactoros\Response\RedirectResponse;
 use Light\App\Handler\GetFeedViewHandler;
 use Light\App\Handler\GetIndexViewHandler;
 use Light\App\Handler\GetMarkdownArticleHandler;
@@ -33,16 +32,6 @@ class RoutesDelegator
             [GetPackagesViewHandler::class],
             GetPackagesViewHandler::TEMPLATE
         );
-
-        $app->get('/{first}', function ($request) {
-            $uri = $request->getUri();
-            return new RedirectResponse((string) $uri . '/', 301);
-        });
-
-        $app->get('/{first}/{second}', function ($request) {
-            $uri = $request->getUri();
-            return new RedirectResponse((string) $uri . '/', 301);
-        });
 
         return $app;
     }
