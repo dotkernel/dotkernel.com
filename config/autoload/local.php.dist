@@ -34,7 +34,7 @@ $app = [
         'title'       => 'Dotkernel | Headless Platform for modern web application',
         'description' => 'Dotkernel is a Headless Platform for building modern web applications '
             . 'using a collection of applications (skeletons).',
-        'image'       => $baseUrl . '/uploads/opengraph/dotkernel.png',
+        'image'       => $baseUrl . '/opengraph/dotkernel.png',
         'type'        => 'website',
         'siteName'    => 'Dotkernel',
         'locale'      => 'en_US',
