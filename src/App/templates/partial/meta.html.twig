@@ -5,7 +5,7 @@
     <meta name="theme-color" content="#ffffff">
     <title>{{ meta.title ?? meta.name ?? app.meta.title }}</title>
     <meta name="description"         content="{{ (meta.description ?? meta.excerpt ?? app.meta.description) }}"/>
-    <meta property="og:title"        content="{{ meta.title ?? app.meta.title }}"/>
+    <meta property="og:title"        content="{{ meta.title ?? meta.name ?? app.meta.title }}"/>
     <meta property="og:description"  content="{{ (meta.description ?? meta.excerpt ?? app.meta.description) }}"/>
     <meta property="og:image"        content="{{ ogImage ? (app.url ~ ogImage) : app.meta.image }}"/>
     <meta property="og:type"         content="{{ meta.type ?? app.meta.type }}"/>
@@ -16,4 +16,4 @@
     <meta name="twitter:site"        content="{{ app.meta.twitterSite }}"/>
     <meta name="twitter:title"       content="{{ meta.title ?? meta.name ?? app.meta.title }}"/>
     <meta name="twitter:description" content="{{ (meta.description ?? meta.excerpt ?? app.meta.description) }}"/>
-    <meta name="twitter:image"       content="{{ meta.image ?? app.meta.image }}"/>
+    <meta name="twitter:image"       content="{{ ogImage ? (app.url ~ ogImage) : app.meta.image }}"/>
