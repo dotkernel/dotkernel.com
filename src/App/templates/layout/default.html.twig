@@ -141,6 +141,7 @@
 </footer>
 <script src="{{ asset('js/app.js') }}"></script>
 {% block javascript %}{% endblock %}
+{% if app.promptwatch.enabled %}
 <script>
     (function() {
         var script = document.createElement('script');
@@ -149,5 +150,6 @@
         document.head.appendChild(script);
     })();
 </script>
+{% endif %}
 </body>
 </html>
