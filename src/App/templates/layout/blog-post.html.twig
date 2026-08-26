@@ -4,6 +4,10 @@
 
 {% block title %}{{ article.title }}{% endblock %}
 
+{% block head_links %}
+    <link rel="alternate" type="text/markdown" href="{{ url('app::markdown-article', {categorySlug: article.category.slug, slug: article.slug}) }}">
+{% endblock %}
+
 {% block page_title %}
     {{ include('@partial/title-section.html.twig', {
         back_href: url('page::blog'),
