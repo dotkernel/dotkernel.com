@@ -55,6 +55,14 @@ return [
                 'value'     => $app['meta']['siteName'],
                 'overwrite' => true,
             ],
+            'X-Llms-Txt'   => [
+                'value'     => '/llms.txt',
+                'overwrite' => true,
+            ],
+            'Link'         => [
+                'value'     => '</llms.txt>; rel="llms-txt", </llms-full.txt>; rel="llms-full-txt"',
+                'overwrite' => true,
+            ],
         ],
     ],
     'doctrine'             => [
