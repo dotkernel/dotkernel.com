@@ -22,6 +22,12 @@ entities:
   - name: "Mezzio"
     type: "SoftwareFramework"
     url: "https://github.com/mezzio/mezzio-skeleton"
+  - name: "Dotkernel Development Environment"
+    type: "SoftwareApplication"
+    url: "https://github.com/dotkernel/development"
+  - name: "Dotboost"
+    type: "SoftwareApplication"
+    url: "https://github.com/dotkernel/dotboost"
 standards: ["PSR-7", "PSR-11", "PSR-15"]
 keywords: ["headless platform", "PHP", "Mezzio", "Laminas", "PSR-15 middleware", "REST API", "admin panel", "task queue", "open source"]
 ---
@@ -55,9 +61,9 @@ API, Admin, and Queue are designed to integrate into a single, unified headless 
 
 | Component | Role | Repository |
 |---|---|---|
-| **API** | Framework-less, opinionated toolkit for shipping REST APIs; an alternative to legacy Laminas API Tools (Apigility) | https://github.com/dotkernel/api |
+| **API** | REST APIs on a readable PSR-15 middleware pipeline - no kernel, no facades, no runtime magic. OAuth2, RBAC, and OpenAPI included | https://github.com/dotkernel/api |
 | **Admin** | Table-based backend for managing platform records, plus tools to build reports and dashboards | https://github.com/dotkernel/admin |
-| **Queue** | Asynchronous task queuing built on Symfony Messenger, wired into the Laminas Service Manager container via netglue/laminas-messenger | https://github.com/dotkernel/queue |
+| **Queue** | Background job processing for the platform - dispatch work from API or Admin and run it in a separate worker, built on Symfony Messenger | https://github.com/dotkernel/queue |
 
 ## Skeletons outside the platform
 
@@ -65,8 +71,17 @@ Not every project needs a headless platform - these two stand on their own.
 
 | Skeleton | Purpose | Repository |
 |---|---|---|
-| **Light** | Minimal, PSR-15 compliant skeleton built for learning purposes - a didactic example, not a platform component | https://github.com/dotkernel/light |
-| **Frontend** | Standalone skeleton for building frontend applications on Mezzio and Laminas, separate from the headless platform | https://github.com/dotkernel/frontend |
+| **Light** | The smallest complete Mezzio application - PSR-15 pipeline, routing, and templating, nothing to strip out. A real starting point for a simple site | https://github.com/dotkernel/light |
+| **Frontend** | A web starter skeleton for full-stack applications on Mezzio and Laminas - server-rendered Twig views, forms, sessions, and RBAC-guarded routes | https://github.com/dotkernel/frontend |
+
+## Developer tooling
+
+A production-like environment on your machine, and the context your AI tools need to write Dotkernel code.
+
+| Tool | Purpose | Repository |
+|---|---|---|
+| **Development Environment** | AlmaLinux on WSL2 for a RHEL-compatible local stack. One install script configures PHP, Apache, MariaDB, Git, Composer, Node.js, and phpMyAdmin | https://github.com/dotkernel/development |
+| **Dotboost** | Dotkernel context for AI coding tools - current standards, architectural patterns, and framework idioms, so generated code matches the ecosystem instead of guessing at it | https://github.com/dotkernel/dotboost |
 
 ## Components (dot-* packages)
 
