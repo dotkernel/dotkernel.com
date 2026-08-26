@@ -6,6 +6,8 @@ namespace LightTest\Unit\Blog\Handler;
 
 use Doctrine\ORM\Query;
 use Doctrine\ORM\Tools\Pagination\Paginator as DoctrinePaginator;
+use Fig\Http\Message\StatusCodeInterface;
+use Laminas\Diactoros\Response\HtmlResponse;
 use Laminas\Diactoros\ServerRequest;
 use Light\Blog\Entity\Author;
 use Light\Blog\Entity\Category;
@@ -13,6 +15,7 @@ use Light\Blog\Handler\GetAuthorResourceHandler;
 use Light\Blog\Repository\AuthorRepository;
 use Light\Blog\Repository\CategoryRepository;
 use Light\Blog\Repository\PostRepository;
+use Light\Blog\Service\BlogServiceInterface;
 use LightTest\Unit\UnitTest;
 use Mezzio\Template\TemplateRendererInterface;
 use PHPUnit\Framework\MockObject\Exception;
@@ -55,7 +58,16 @@ class GetAuthorResourceHandlerTest extends UnitTest
                 return '<html lang="en"></html>';
             });
 
-        $handler  = new GetAuthorResourceHandler($template, $authorRepository, $postRepository, $categoryRepository);
+        $blogService = $this->createMock(BlogServiceInterface::class);
+        $blogService->expects($this->never())->method('authorNotFound');
+
+        $handler  = new GetAuthorResourceHandler(
+            $template,
+            $authorRepository,
+            $postRepository,
+            $categoryRepository,
+            $blogService,
+        );
         $response = $handler->handle((new ServerRequest())->withAttribute('slug', 'gabi'));
 
         $this->assertSame(200, $response->getStatusCode());
@@ -80,16 +92,21 @@ class GetAuthorResourceHandlerTest extends UnitTest
         $postRepository->expects($this->never())->method('getArticleByAuthor');
 
         $template = $this->createMock(TemplateRendererInterface::class);
-        $template->expects($this->once())->method('render')
-            ->willReturnCallback(function (string $name, mixed $parameters = []) use ($authors): string {
-                $this->assertSame('error::404', $name);
-                $this->assertIsArray($parameters);
-                $this->assertSame($authors, $parameters['authors']);
+        $template->expects($this->never())->method('render');
 
-                return '<html lang="en"></html>';
-            });
+        $blogService = $this->createMock(BlogServiceInterface::class);
+        $blogService->expects($this->once())
+            ->method('authorNotFound')
+            ->with($authors)
+            ->willReturn(new HtmlResponse('<html lang="en"></html>', StatusCodeInterface::STATUS_NOT_FOUND));
 
-        $handler  = new GetAuthorResourceHandler($template, $authorRepository, $postRepository, $categoryRepository);
+        $handler  = new GetAuthorResourceHandler(
+            $template,
+            $authorRepository,
+            $postRepository,
+            $categoryRepository,
+            $blogService,
+        );
         $response = $handler->handle((new ServerRequest())->withAttribute('slug', 'adminxx'));
 
         $this->assertSame(404, $response->getStatusCode());

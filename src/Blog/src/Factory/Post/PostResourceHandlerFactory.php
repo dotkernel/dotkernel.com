@@ -7,6 +7,7 @@ namespace Light\Blog\Factory\Post;
 use Light\Blog\Handler\GetPostResourceHandler;
 use Light\Blog\Repository\CategoryRepository;
 use Light\Blog\Repository\PostRepository;
+use Light\Blog\Service\BlogServiceInterface;
 use Mezzio\Template\TemplateRendererInterface;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
@@ -25,10 +26,17 @@ class PostResourceHandlerFactory
         $repository         = $container->get(PostRepository::class);
         $categoryRepository = $container->get(CategoryRepository::class);
         $template           = $container->get(TemplateRendererInterface::class);
+        $blogService        = $container->get(BlogServiceInterface::class);
 
         assert($repository instanceof PostRepository);
         assert($template instanceof TemplateRendererInterface);
+        assert($blogService instanceof BlogServiceInterface);
 
-        return new GetPostResourceHandler($template, $repository, $categoryRepository);
+        return new GetPostResourceHandler(
+            $template,
+            $repository,
+            $categoryRepository,
+            $blogService
+        );
     }
 }

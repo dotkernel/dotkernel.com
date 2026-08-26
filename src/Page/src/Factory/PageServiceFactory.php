@@ -15,6 +15,8 @@ class PageServiceFactory
      */
     public function __invoke(ContainerInterface $container, string $requestedName): PageServiceInterface
     {
-        return new PageService();
+        $config = $container->get('config');
+
+        return new PageService($config['llms']['pagesDir']);
     }
 }

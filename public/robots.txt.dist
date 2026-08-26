@@ -7,3 +7,6 @@ Disallow: /
 # To be used in PRODUCTION 
 User-Agent: *
 Allow: /
+
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
+Sitemap: https://www.dotkernel.com/sitemap.xml

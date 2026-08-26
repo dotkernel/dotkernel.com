@@ -26,6 +26,8 @@ class GetIndexViewHandlerFactory
         $template       = $container->get(TemplateRendererInterface::class);
         assert($template instanceof TemplateRendererInterface);
 
-        return new GetIndexViewHandler($template, $postRepository);
+        $config = $container->get('config');
+
+        return new GetIndexViewHandler($template, $postRepository, $config['llms']['pagesDir']);
     }
 }
