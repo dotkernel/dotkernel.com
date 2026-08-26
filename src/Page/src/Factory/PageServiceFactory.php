@@ -8,8 +8,6 @@ use Light\Page\Service\PageService;
 use Light\Page\Service\PageServiceInterface;
 use Psr\Container\ContainerInterface;
 
-use function getcwd;
-
 class PageServiceFactory
 {
     /**
@@ -17,6 +15,8 @@ class PageServiceFactory
      */
     public function __invoke(ContainerInterface $container, string $requestedName): PageServiceInterface
     {
-        return new PageService(getcwd() . '/public/md-pages');
+        $config = $container->get('config');
+
+        return new PageService($config['llms']['pagesDir']);
     }
 }
