@@ -12,6 +12,7 @@ use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
 
 use function assert;
+use function getcwd;
 
 class GetIndexViewHandlerFactory
 {
@@ -26,6 +27,6 @@ class GetIndexViewHandlerFactory
         $template       = $container->get(TemplateRendererInterface::class);
         assert($template instanceof TemplateRendererInterface);
 
-        return new GetIndexViewHandler($template, $postRepository);
+        return new GetIndexViewHandler($template, $postRepository, getcwd() . '/public/md-pages');
     }
 }

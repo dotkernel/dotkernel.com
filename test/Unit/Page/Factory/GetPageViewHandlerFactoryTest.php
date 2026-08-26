@@ -8,6 +8,7 @@ use Light\Blog\Repository\CategoryRepository;
 use Light\Blog\Repository\PostRepository;
 use Light\Page\Factory\GetPageViewHandlerFactory;
 use Light\Page\Handler\GetPageViewHandler;
+use Light\Page\Service\PageServiceInterface;
 use LightTest\Unit\UnitTest;
 use Mezzio\Template\TemplateRendererInterface;
 use PHPUnit\Framework\MockObject\Exception;
@@ -19,20 +20,22 @@ class GetPageViewHandlerFactoryTest extends UnitTest
     /**
      * @throws Exception
      */
-    public function testInvokeInjectsTheRendererAndBothRepositories(): void
+    public function testInvokeInjectsTheRendererBothRepositoriesAndThePageService(): void
     {
         $template           = $this->createStub(TemplateRendererInterface::class);
         $categoryRepository = $this->createStub(CategoryRepository::class);
         $postRepository     = $this->createStub(PostRepository::class);
+        $pageService        = $this->createStub(PageServiceInterface::class);
 
         $handler = (new GetPageViewHandlerFactory())(
-            $this->createContainer($template, $categoryRepository, $postRepository),
+            $this->createContainer($template, $categoryRepository, $postRepository, $pageService),
             GetPageViewHandler::class
         );
 
         $this->assertSame($template, $this->readProperty($handler, 'template'));
         $this->assertSame($categoryRepository, $this->readProperty($handler, 'categoryRepository'));
         $this->assertSame($postRepository, $this->readProperty($handler, 'postRepository'));
+        $this->assertSame($pageService, $this->readProperty($handler, 'pageService'));
     }
 
     /**
@@ -42,6 +45,7 @@ class GetPageViewHandlerFactoryTest extends UnitTest
         TemplateRendererInterface $template,
         CategoryRepository $categoryRepository,
         PostRepository $postRepository,
+        PageServiceInterface $pageService,
     ): ContainerInterface {
         $container = $this->createStub(ContainerInterface::class);
         $container
@@ -49,6 +53,7 @@ class GetPageViewHandlerFactoryTest extends UnitTest
             ->willReturnCallback(fn (string $id): mixed => match ($id) {
                 TemplateRendererInterface::class => $template,
                 CategoryRepository::class        => $categoryRepository,
+                PageServiceInterface::class      => $pageService,
                 default                          => $postRepository,
             });
 

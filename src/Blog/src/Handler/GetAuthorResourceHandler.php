@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace Light\Blog\Handler;
 
-use Fig\Http\Message\StatusCodeInterface;
 use Laminas\Diactoros\Response\HtmlResponse;
 use Light\App\Helper\Paginator;
-use Light\Blog\Entity\Author;
 use Light\Blog\Repository\AuthorRepository;
 use Light\Blog\Repository\CategoryRepository;
 use Light\Blog\Repository\PostRepository;
+use Light\Blog\Service\BlogServiceInterface;
 use Mezzio\Template\TemplateRendererInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -23,6 +22,7 @@ class GetAuthorResourceHandler implements RequestHandlerInterface
         protected AuthorRepository $authorRepository,
         protected PostRepository $postRepository,
         protected CategoryRepository $categoryRepository,
+        protected BlogServiceInterface $blogService,
     ) {
     }
 
@@ -31,7 +31,7 @@ class GetAuthorResourceHandler implements RequestHandlerInterface
         $authorSlug = $request->getAttribute('slug');
         $author     = $this->authorRepository->getAuthorResource($authorSlug);
         if (! $author) {
-            return $this->notFound($this->authorRepository->getAuthorsWithPublishedPosts());
+            return $this->blogService->authorNotFound($this->authorRepository->getAuthorsWithPublishedPosts());
         }
         $categories = $this->categoryRepository->getCategories();
 
@@ -49,19 +49,6 @@ class GetAuthorResourceHandler implements RequestHandlerInterface
                 'categories' => $categories,
                 'data'       => $data,
             ])
-        );
-    }
-
-    /**
-     * @param Author[] $authors
-     */
-    private function notFound(array $authors): HtmlResponse
-    {
-        return new HtmlResponse(
-            $this->template->render('error::404', [
-                'authors' => $authors,
-            ]),
-            StatusCodeInterface::STATUS_NOT_FOUND
         );
     }
 }

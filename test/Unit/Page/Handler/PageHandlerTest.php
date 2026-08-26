@@ -8,6 +8,7 @@ use Laminas\Diactoros\Response\HtmlResponse;
 use Light\Blog\Repository\CategoryRepository;
 use Light\Blog\Repository\PostRepository;
 use Light\Page\Handler\GetPageViewHandler;
+use Light\Page\Service\PageServiceInterface;
 use LightTest\Unit\UnitTest;
 use Mezzio\Router\RouteResult;
 use Mezzio\Template\TemplateRendererInterface;
@@ -55,11 +56,18 @@ class PageHandlerTest extends UnitTest
             ->method('getAttribute')
             ->willReturn($routeResult);
 
+        $request
+            ->method('getHeaderLine')
+            ->willReturn('');
+
         $template
             ->method('render')
             ->willReturn('<p>' . $routeName . '</p>');
 
-        $handler = new GetPageViewHandler($template, $categoryRepository, $postRepository);
+        $pageService = $this->createStub(PageServiceInterface::class);
+        $pageService->method('resolveMarkdownFilePath')->willReturn(null);
+
+        $handler = new GetPageViewHandler($template, $categoryRepository, $postRepository, $pageService);
 
         $response = $handler->handle($request);
 

@@ -9,6 +9,7 @@ use Light\Blog\DBAL\Types\PostStatusEnumType;
 use Light\Blog\Factory\Author\AuthorCollectionHandlerFactory;
 use Light\Blog\Factory\Author\AuthorResourceHandlerFactory;
 use Light\Blog\Factory\Author\AuthorResourceRepositoryFactory;
+use Light\Blog\Factory\BlogServiceFactory;
 use Light\Blog\Factory\Category\CategoryCollectionHandlerFactory;
 use Light\Blog\Factory\Category\CategoryCollectionRepositoryFactory;
 use Light\Blog\Factory\Category\CategoryResourceHandlerFactory;
@@ -28,6 +29,8 @@ use Light\Blog\Repository\AuthorRepository;
 use Light\Blog\Repository\CategoryRepository;
 use Light\Blog\Repository\PostRepository;
 use Light\Blog\Repository\TagRepository;
+use Light\Blog\Service\BlogService;
+use Light\Blog\Service\BlogServiceInterface;
 use Mezzio\Application;
 
 class ConfigProvider
@@ -51,6 +54,7 @@ class ConfigProvider
      * @return array{
      *     delegators: array<class-string, array<class-string>>,
      *     factories: array<class-string, class-string>,
+     *     aliases: array<class-string, class-string>,
      * }
      */
     private function getDependencies(): array
@@ -73,6 +77,10 @@ class ConfigProvider
                 GetAuthorCollectionHandler::class   => AuthorCollectionHandlerFactory::class,
                 TagRepository::class                => TagResourceRepositoryFactory::class,
                 GetTagResourceHandler::class        => TagResourceHandlerFactory::class,
+                BlogService::class                  => BlogServiceFactory::class,
+            ],
+            'aliases'    => [
+                BlogServiceInterface::class => BlogService::class,
             ],
         ];
     }

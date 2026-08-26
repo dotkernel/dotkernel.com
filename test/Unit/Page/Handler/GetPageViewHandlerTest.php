@@ -10,11 +10,17 @@ use Light\Blog\Entity\Post;
 use Light\Blog\Repository\CategoryRepository;
 use Light\Blog\Repository\PostRepository;
 use Light\Page\Handler\GetPageViewHandler;
+use Light\Page\Service\PageServiceInterface;
 use LightTest\Unit\UnitTest;
 use Mezzio\Router\RouteResult;
 use Mezzio\Template\TemplateRendererInterface;
 use PHPUnit\Framework\MockObject\Exception;
 use Psr\Http\Message\ServerRequestInterface;
+
+use function file_put_contents;
+use function sys_get_temp_dir;
+use function uniqid;
+use function unlink;
 
 class GetPageViewHandlerTest extends UnitTest
 {
@@ -105,33 +111,83 @@ class GetPageViewHandlerTest extends UnitTest
     /**
      * @throws Exception
      */
+    public function testHandleReturnsTheMarkdownFileWhenAcceptRequestsIt(): void
+    {
+        $markdownFile = sys_get_temp_dir() . '/' . uniqid('dk-page-', true) . '.md';
+        file_put_contents($markdownFile, '# Dotkernel API');
+
+        $pageService = $this->createMock(PageServiceInterface::class);
+        $pageService
+            ->expects($this->once())
+            ->method('resolveMarkdownFilePath')
+            ->with('page::api')
+            ->willReturn($markdownFile);
+
+        $postRepository = $this->createMock(PostRepository::class);
+        $postRepository->expects($this->never())->method('getRecentPosts');
+
+        $response = $this->createHandler(postRepository: $postRepository, pageService: $pageService)
+            ->handle($this->createRequest('page::api', accept: 'text/markdown'));
+
+        $this->assertSame(StatusCodeInterface::STATUS_OK, $response->getStatusCode());
+        $this->assertStringContainsString('text/markdown', $response->getHeaderLine('Content-Type'));
+        $this->assertSame('# Dotkernel API', (string) $response->getBody());
+
+        unlink($markdownFile);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testHandleFallsBackToHtmlWhenNoMarkdownFileExistsForTheRequestedPage(): void
+    {
+        $pageService = $this->createStub(PageServiceInterface::class);
+        $pageService->method('resolveMarkdownFilePath')->willReturn(null);
+
+        $response = $this->createHandler(pageService: $pageService)
+            ->handle($this->createRequest('page::contact', accept: 'text/markdown'));
+
+        $this->assertStringContainsString('text/html', $response->getHeaderLine('Content-Type'));
+    }
+
+    /**
+     * @throws Exception
+     */
     private function createHandler(
         ?TemplateRendererInterface $template = null,
         ?CategoryRepository $categoryRepository = null,
         ?PostRepository $postRepository = null,
+        ?PageServiceInterface $pageService = null,
     ): GetPageViewHandler {
         if (! $template instanceof TemplateRendererInterface) {
             $template = $this->createStub(TemplateRendererInterface::class);
             $template->method('render')->willReturn('');
         }
 
+        if (! $pageService instanceof PageServiceInterface) {
+            $pageService = $this->createStub(PageServiceInterface::class);
+            $pageService->method('resolveMarkdownFilePath')->willReturn(null);
+        }
+
         return new GetPageViewHandler(
             $template,
             $categoryRepository ?? $this->createStub(CategoryRepository::class),
             $postRepository ?? $this->createStub(PostRepository::class),
+            $pageService,
         );
     }
 
     /**
      * @throws Exception
      */
-    private function createRequest(string $routeName): ServerRequestInterface
+    private function createRequest(string $routeName, string $accept = ''): ServerRequestInterface
     {
         $routeResult = $this->createStub(RouteResult::class);
         $routeResult->method('getMatchedRouteName')->willReturn($routeName);
 
         $request = $this->createStub(ServerRequestInterface::class);
         $request->method('getAttribute')->willReturn($routeResult);
+        $request->method('getHeaderLine')->willReturn($accept);
 
         return $request;
     }

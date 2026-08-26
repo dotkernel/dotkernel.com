@@ -9,6 +9,9 @@ use Light\Page\Service\PageService;
 use LightTest\Unit\UnitTest;
 use PHPUnit\Framework\MockObject\Exception;
 use Psr\Container\ContainerInterface;
+use ReflectionProperty;
+
+use function getcwd;
 
 class PageServiceFactoryTest extends UnitTest
 {
@@ -24,6 +27,10 @@ class PageServiceFactoryTest extends UnitTest
 
         // The declared return type is the interface; what matters is which implementation it builds.
         $this->assertInstanceOf(PageService::class, $service);
+        $this->assertSame(
+            getcwd() . '/public/md-pages',
+            (new ReflectionProperty(PageService::class, 'mdPagesPath'))->getValue($service)
+        );
     }
 
     /**
