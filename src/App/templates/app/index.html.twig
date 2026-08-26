@@ -1,6 +1,7 @@
 {% extends '@layout/default.html.twig' %}
 {% block json_ld %} {{ include('@jsonld/index.jsonld.twig') }} {% endblock %}
 {% block title %}A PSR-15 compliant application{% endblock %}
+{% block head_links %}<link rel="alternate" type="text/markdown" href="/md-pages/index.md">{% endblock %}
 
 {% block content %}
 
