@@ -7,6 +7,7 @@ namespace Light\Blog\Factory\Tag;
 use Light\Blog\Handler\GetTagResourceHandler;
 use Light\Blog\Repository\CategoryRepository;
 use Light\Blog\Repository\TagRepository;
+use Light\Blog\Service\BlogServiceInterface;
 use Mezzio\Template\TemplateRendererInterface;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
@@ -25,11 +26,13 @@ class TagResourceHandlerFactory
         $repository         = $container->get(TagRepository::class);
         $template           = $container->get(TemplateRendererInterface::class);
         $categoryRepository = $container->get(CategoryRepository::class);
+        $blogService        = $container->get(BlogServiceInterface::class);
 
         assert($repository instanceof TagRepository);
         assert($template instanceof TemplateRendererInterface);
         assert($categoryRepository instanceof CategoryRepository);
+        assert($blogService instanceof BlogServiceInterface);
 
-        return new GetTagResourceHandler($template, $repository, $categoryRepository);
+        return new GetTagResourceHandler($template, $repository, $categoryRepository, $blogService);
     }
 }

@@ -6,15 +6,19 @@ namespace Light\Blog\Handler;
 
 use Fig\Http\Message\StatusCodeInterface;
 use Laminas\Diactoros\Response\HtmlResponse;
-use Light\Blog\Entity\Category;
+use Laminas\Diactoros\Response\TextResponse;
 use Light\Blog\Enum\PostStatusEnum;
 use Light\Blog\Repository\CategoryRepository;
 use Light\Blog\Repository\PostRepository;
+use Light\Blog\Service\BlogServiceInterface;
 use Mezzio\Template\TemplateRendererInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Throwable;
+
+use function file_get_contents;
+use function str_contains;
 
 class GetPostResourceHandler implements RequestHandlerInterface
 {
@@ -22,23 +26,36 @@ class GetPostResourceHandler implements RequestHandlerInterface
         private readonly TemplateRendererInterface $template,
         private readonly PostRepository $articleRepository,
         private readonly CategoryRepository $categoryRepository,
+        private readonly BlogServiceInterface $blogService,
     ) {
     }
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $slug         = $request->getAttribute('slug');
-        $categorySlug = $request->getAttribute('categorySlug');
-        $categories   = $this->categoryRepository->getCategories();
-        $article      = $this->articleRepository->getArticleResource($slug, $categorySlug);
+        $slug         = (string) $request->getAttribute('slug');
+        $categorySlug = (string) $request->getAttribute('categorySlug');
+
+        if (str_contains($request->getHeaderLine('Accept'), 'text/markdown')) {
+            $markdownFile = $this->blogService->resolveMarkdownFilePath($categorySlug, $slug);
+            if ($markdownFile !== null) {
+                return new TextResponse(
+                    (string) file_get_contents($markdownFile),
+                    StatusCodeInterface::STATUS_OK,
+                    ['Content-Type' => 'text/markdown; charset=utf-8'],
+                );
+            }
+        }
+
+        $categories = $this->categoryRepository->getCategories();
+        $article    = $this->articleRepository->getArticleResource($slug, $categorySlug);
         if ($article === null) {
-            return $this->notFound($categories);
+            return $this->blogService->notFound($categories);
         }
         if ($article->getStatus() === PostStatusEnum::Archived) {
-            return $this->gone($categories);
+            return $this->blogService->gone($categories);
         }
         if ($article->getStatus() !== PostStatusEnum::Published) {
-            return $this->notFound($categories);
+            return $this->blogService->notFound($categories);
         }
         $meta     = $article;
         $adjacent = $this->articleRepository->getAdjacentPosts($article);
@@ -55,33 +72,7 @@ class GetPostResourceHandler implements RequestHandlerInterface
             );
             return new HtmlResponse($html);
         } catch (Throwable $e) {
-            return $this->notFound($categories);
+            return $this->blogService->notFound($categories);
         }
-    }
-
-    /**
-     * @param Category[] $categories
-     */
-    private function notFound(array $categories): HtmlResponse
-    {
-        return new HtmlResponse(
-            $this->template->render('error::404', [
-                'categories' => $categories,
-            ]),
-            StatusCodeInterface::STATUS_NOT_FOUND
-        );
-    }
-
-    /**
-     * @param Category[] $categories
-     */
-    private function gone(array $categories): HtmlResponse
-    {
-        return new HtmlResponse(
-            $this->template->render('error::410', [
-                'categories' => $categories,
-            ]),
-            StatusCodeInterface::STATUS_GONE
-        );
     }
 }

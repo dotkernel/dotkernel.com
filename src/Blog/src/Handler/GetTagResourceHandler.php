@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace Light\Blog\Handler;
 
-use Fig\Http\Message\StatusCodeInterface;
 use Laminas\Diactoros\Response\HtmlResponse;
 use Light\App\Helper\Paginator;
-use Light\Blog\Entity\Category;
 use Light\Blog\Repository\CategoryRepository;
 use Light\Blog\Repository\TagRepository;
+use Light\Blog\Service\BlogServiceInterface;
 use Mezzio\Template\TemplateRendererInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -22,6 +21,7 @@ class GetTagResourceHandler implements RequestHandlerInterface
         protected TemplateRendererInterface $template,
         protected TagRepository $tagRepository,
         protected CategoryRepository $categoryRepository,
+        protected BlogServiceInterface $blogService,
     ) {
     }
 
@@ -31,7 +31,7 @@ class GetTagResourceHandler implements RequestHandlerInterface
         $categories = $this->categoryRepository->getCategories();
         $tag        = $this->tagRepository->getTagResource($tagSlug);
         if ($tag === null) {
-            return $this->notFound($categories);
+            return $this->blogService->notFound($categories);
         }
         $meta = $tag;
 
@@ -54,20 +54,7 @@ class GetTagResourceHandler implements RequestHandlerInterface
             );
             return new HtmlResponse($html);
         } catch (Throwable $e) {
-            return $this->notFound($categories);
+            return $this->blogService->notFound($categories);
         }
-    }
-
-    /**
-     * @param Category[] $categories
-     */
-    private function notFound(array $categories): HtmlResponse
-    {
-        return new HtmlResponse(
-            $this->template->render('error::404', [
-                'categories' => $categories,
-            ]),
-            StatusCodeInterface::STATUS_NOT_FOUND
-        );
     }
 }

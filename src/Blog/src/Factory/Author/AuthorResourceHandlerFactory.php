@@ -8,6 +8,7 @@ use Light\Blog\Handler\GetAuthorResourceHandler;
 use Light\Blog\Repository\AuthorRepository;
 use Light\Blog\Repository\CategoryRepository;
 use Light\Blog\Repository\PostRepository;
+use Light\Blog\Service\BlogServiceInterface;
 use Mezzio\Template\TemplateRendererInterface;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
@@ -27,11 +28,13 @@ class AuthorResourceHandlerFactory
         $template           = $container->get(TemplateRendererInterface::class);
         $postRepository     = $container->get(PostRepository::class);
         $categoryRepository = $container->get(CategoryRepository::class);
+        $blogService        = $container->get(BlogServiceInterface::class);
 
         assert($repository instanceof AuthorRepository);
         assert($template instanceof TemplateRendererInterface);
         assert($postRepository instanceof PostRepository);
+        assert($blogService instanceof BlogServiceInterface);
 
-        return new GetAuthorResourceHandler($template, $repository, $postRepository, $categoryRepository);
+        return new GetAuthorResourceHandler($template, $repository, $postRepository, $categoryRepository, $blogService);
     }
 }

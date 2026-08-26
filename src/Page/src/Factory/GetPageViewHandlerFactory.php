@@ -7,6 +7,7 @@ namespace Light\Page\Factory;
 use Light\Blog\Repository\CategoryRepository;
 use Light\Blog\Repository\PostRepository;
 use Light\Page\Handler\GetPageViewHandler;
+use Light\Page\Service\PageServiceInterface;
 use Mezzio\Template\TemplateRendererInterface;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
@@ -27,7 +28,14 @@ class GetPageViewHandlerFactory
         $categoryRepository = $container->get(CategoryRepository::class);
         $template           = $container->get(TemplateRendererInterface::class);
         assert($template instanceof TemplateRendererInterface);
+        $pageService = $container->get(PageServiceInterface::class);
+        assert($pageService instanceof PageServiceInterface);
 
-        return new GetPageViewHandler($template, $categoryRepository, $postRepository);
+        return new GetPageViewHandler(
+            $template,
+            $categoryRepository,
+            $postRepository,
+            $pageService
+        );
     }
 }
