@@ -6,6 +6,7 @@ namespace LightTest\Unit\App\Factory;
 
 use Light\App\Factory\LlmsFullGeneratorFactory;
 use Light\App\Service\LlmsFullGenerator;
+use Light\Blog\Repository\PostRepository;
 use LightTest\Unit\UnitTest;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\Exception;
@@ -94,7 +95,12 @@ class LlmsFullGeneratorFactoryTest extends UnitTest
     private function createContainer(array $config): ContainerInterface
     {
         $container = $this->createStub(ContainerInterface::class);
-        $container->method('get')->willReturn($config);
+        $container
+            ->method('get')
+            ->willReturnCallback(fn (string $id): mixed => match ($id) {
+                'config' => $config,
+                default  => $this->createStub(PostRepository::class),
+            });
 
         return $container;
     }
