@@ -56,6 +56,10 @@ class PageHandlerTest extends UnitTest
             ->method('getAttribute')
             ->willReturn($routeResult);
 
+        $request
+            ->method('getHeaderLine')
+            ->willReturn('');
+
         $template
             ->method('render')
             ->willReturn('<p>' . $routeName . '</p>');
