@@ -12,7 +12,6 @@ use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
 
 use function assert;
-use function getcwd;
 
 class GetMarkdownArticleHandlerFactory
 {
@@ -28,6 +27,8 @@ class GetMarkdownArticleHandlerFactory
         $categoryRepository = $container->get(CategoryRepository::class);
         assert($categoryRepository instanceof CategoryRepository);
 
-        return new GetMarkdownArticleHandler($template, $categoryRepository, getcwd() . '/public/md-articles');
+        $config = $container->get('config');
+
+        return new GetMarkdownArticleHandler($template, $categoryRepository, $config['llms']['sourceDir']);
     }
 }

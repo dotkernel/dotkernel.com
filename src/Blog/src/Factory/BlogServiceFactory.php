@@ -12,7 +12,6 @@ use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
 
 use function assert;
-use function getcwd;
 
 class BlogServiceFactory
 {
@@ -25,6 +24,8 @@ class BlogServiceFactory
         $template = $container->get(TemplateRendererInterface::class);
         assert($template instanceof TemplateRendererInterface);
 
-        return new BlogService($template, getcwd() . '/public/md-articles');
+        $config = $container->get('config');
+
+        return new BlogService($template, $config['llms']['sourceDir']);
     }
 }
