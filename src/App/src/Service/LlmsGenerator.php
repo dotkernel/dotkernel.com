@@ -69,6 +69,7 @@ class LlmsGenerator
         private readonly string $outputFile,
         private readonly string $baseUrl,
         private readonly ?string $pagesDir = null,
+        private readonly string $title = 'Dotkernel',
     ) {
     }
 
@@ -138,7 +139,7 @@ class LlmsGenerator
     {
         $category = $entries[0]['post']->getCategory();
         $heading  = sprintf(
-            '## %s (%d post%s)',
+            '### %s (%d post%s)',
             $category->getName(),
             count($entries),
             count($entries) === 1 ? '' : 's',
@@ -153,7 +154,7 @@ class LlmsGenerator
 
         foreach ($entries as $entry) {
             $lines[] = sprintf(
-                '- [%s](%s/%s/%s/): %s',
+                '- [%s](%s/%s/%s.md): %s',
                 $entry['title'],
                 $this->baseUrl,
                 $slug,
@@ -218,7 +219,7 @@ class LlmsGenerator
         $lines = ['## Pages', ''];
         foreach ($pages as $page) {
             $lines[] = sprintf(
-                '- [%s](%s/%s/): %s',
+                '- [%s](%s/md-pages/%s.md): %s',
                 $page['title'],
                 $this->baseUrl,
                 $page['slug'],
@@ -240,7 +241,7 @@ class LlmsGenerator
 
     private function buildHeader(): string
     {
-        $intro = '> Dotkernel Light is the technical blog for the Dotkernel headless PHP platform - a PSR-15 '
+        $intro = '> Dotkernel is the technical blog for the Dotkernel headless PHP platform - a PSR-15 '
             . 'compliant application built on Mezzio and Laminas components. It publishes architecture '
             . 'write-ups, how-tos, and release notes for the platform applications - Dotkernel API, Admin '
             . 'and Queue - and for the standalone Dotkernel Light skeleton.';
@@ -253,7 +254,7 @@ class LlmsGenerator
         $about = 'the team behind Dotkernel - how the team works, its commitment to open source and the PHP '
             . 'community, and how it uses AI under guardrails';
 
-        return "# Dotkernel Light\n\n"
+        return "# {$this->title}\n\n"
             . $intro . "\n\n"
             . $body . "\n\n"
             . "## Docs\n\n"

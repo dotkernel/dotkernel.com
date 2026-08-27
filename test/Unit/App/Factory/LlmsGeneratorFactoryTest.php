@@ -26,13 +26,36 @@ class LlmsGeneratorFactoryTest extends UnitTest
                 'indexFile' => '/tmp/llms.txt',
                 'pagesDir'  => '/tmp/md-pages',
             ],
-            'application' => ['url' => 'https://example.test'],
+            'application' => [
+                'url'  => 'https://example.test',
+                'meta' => ['title' => 'Custom Title'],
+            ],
         ]));
 
         $this->assertSame('/tmp/llms.txt', $generator->getOutputFile());
         $this->assertSame('/tmp/md-articles', $this->readProperty($generator, 'sourceDir'));
         $this->assertSame('/tmp/md-pages', $this->readProperty($generator, 'pagesDir'));
         $this->assertSame('https://example.test', $this->readProperty($generator, 'baseUrl'));
+        $this->assertSame('Custom Title', $this->readProperty($generator, 'title'));
+    }
+
+    /**
+     * A config without a meta title (e.g. the `application.meta` section is absent) simply
+     * keeps the historical default.
+     *
+     * @throws Exception
+     */
+    public function testInvokeFallsBackToTheDefaultTitleWhenItIsNotConfigured(): void
+    {
+        $generator = (new LlmsGeneratorFactory())($this->createContainer([
+            'llms'        => [
+                'sourceDir' => '/tmp/md-articles',
+                'indexFile' => '/tmp/llms.txt',
+            ],
+            'application' => ['url' => 'https://example.test'],
+        ]));
+
+        $this->assertSame('Dotkernel', $this->readProperty($generator, 'title'));
     }
 
     /**
