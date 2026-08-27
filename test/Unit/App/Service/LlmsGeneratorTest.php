@@ -87,9 +87,19 @@ class LlmsGeneratorTest extends UnitTest
         $this->assertSame(0, $this->createGenerator()->write());
 
         $output = $this->writtenOutput();
-        $this->assertStringStartsWith('# Dotkernel Light', $output);
+        $this->assertStringStartsWith('# Dotkernel', $output);
         $this->assertStringContainsString('## Categories', $output);
         $this->assertStringNotContainsString('##  (', $output);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testWriteUsesTheConfiguredTitleAsTheHeading(): void
+    {
+        $this->createGenerator(title: 'Custom Blog Title')->write();
+
+        $this->assertStringStartsWith('# Custom Blog Title', $this->writtenOutput());
     }
 
     /**
@@ -211,14 +221,14 @@ class LlmsGeneratorTest extends UnitTest
     /**
      * @throws Exception
      */
-    public function testWriteBuildsEachPostLinkFromTheBaseUrlCategorySlugAndPostSlug(): void
+    public function testWriteBuildsEachPostLinkFromTheBaseUrlCategorySlugAndPostSlugAsMarkdown(): void
     {
         $posts = [$this->createPost('A post', 'a-post', 'dotkernel', 'Dotkernel')];
 
         $this->createGenerator($posts, baseUrl: 'https://example.test')->write();
 
         $this->assertStringContainsString(
-            '[A post](https://example.test/dotkernel/a-post/):',
+            '[A post](https://example.test/dotkernel/a-post.md):',
             $this->writtenOutput()
         );
     }
@@ -318,7 +328,7 @@ class LlmsGeneratorTest extends UnitTest
         $this->createGenerator(baseUrl: 'https://example.test')->write();
 
         $this->assertStringContainsString(
-            '- [Dotkernel API](https://example.test/api/): The description.',
+            '- [Dotkernel API](https://example.test/md-pages/api.md): The description.',
             $this->writtenOutput()
         );
         $this->assertStringNotContainsString('Open-source REST API skeleton for PHP]', $this->writtenOutput());
@@ -397,6 +407,7 @@ class LlmsGeneratorTest extends UnitTest
         ?string $outputFile = null,
         string $baseUrl = 'https://example.test',
         ?string $pagesDir = '',
+        string $title = 'Dotkernel',
     ): LlmsGenerator {
         $postRepository = $this->createStub(PostRepository::class);
         $postRepository->method('getPublishedPosts')->willReturn($posts);
@@ -407,6 +418,7 @@ class LlmsGeneratorTest extends UnitTest
             $outputFile ?? $this->outputFile,
             $baseUrl,
             $pagesDir === '' ? $this->pagesDir : $pagesDir,
+            $title,
         );
     }
 

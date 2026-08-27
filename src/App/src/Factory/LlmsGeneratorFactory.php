@@ -25,6 +25,7 @@ class LlmsGeneratorFactory
             $config['llms']['indexFile'],
             $config['application']['url'] ?? '',
             $config['llms']['pagesDir'] ?? null,
+            $config['application']['meta']['title'] ?? 'Dotkernel',
         );
     }
 }
