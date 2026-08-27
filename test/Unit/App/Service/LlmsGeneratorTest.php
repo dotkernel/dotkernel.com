@@ -328,7 +328,7 @@ class LlmsGeneratorTest extends UnitTest
         $this->createGenerator(baseUrl: 'https://example.test')->write();
 
         $this->assertStringContainsString(
-            '- [Dotkernel API](https://example.test/api/): The description.',
+            '- [Dotkernel API](https://example.test/md-pages/api.md): The description.',
             $this->writtenOutput()
         );
         $this->assertStringNotContainsString('Open-source REST API skeleton for PHP]', $this->writtenOutput());
