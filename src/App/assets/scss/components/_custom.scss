@@ -790,9 +790,10 @@ h1.error-code {
 
 @media (prefers-reduced-motion: reduce) {
   .pl-packet {
-    animation: none;
     top: 8px;
+    left: 2.7px;
     opacity: 1;
+    z-index: 1;
   }
 
   html {

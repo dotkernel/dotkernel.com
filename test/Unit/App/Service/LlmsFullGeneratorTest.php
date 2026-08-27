@@ -5,7 +5,11 @@ declare(strict_types=1);
 namespace LightTest\Unit\App\Service;
 
 use Light\App\Service\LlmsFullGenerator;
+use Light\Blog\Entity\Category;
+use Light\Blog\Entity\Post;
+use Light\Blog\Repository\PostRepository;
 use LightTest\Unit\UnitTest;
+use PHPUnit\Framework\MockObject\Exception;
 use RuntimeException;
 
 use function array_diff;
@@ -68,6 +72,9 @@ class LlmsFullGeneratorTest extends UnitTest
         $this->assertSame($this->outputFile, $this->createGenerator()->getOutputFile());
     }
 
+    /**
+     * @throws Exception
+     */
     public function testWriteReturnsTheNumberOfSectionsWritten(): void
     {
         $this->writeIndex();
@@ -75,35 +82,52 @@ class LlmsFullGeneratorTest extends UnitTest
         $this->writeArticle('news', 'second');
         $this->writePage('api');
 
-        $this->assertSame(4, $this->createGenerator()->write());
+        $posts = [$this->createPost('news', 'first'), $this->createPost('news', 'second')];
+
+        $this->assertSame(4, $this->createGenerator($posts)->write());
     }
 
+    /**
+     * @throws Exception
+     */
     public function testWritePlacesTheIndexFirst(): void
     {
         $this->writeIndex();
         $this->writeArticle('news', 'a-post');
 
-        $this->createGenerator()->write();
+        $this->createGenerator([$this->createPost('news', 'a-post')])->write();
 
         $this->assertSame(['index.md', 'news/a-post.md'], $this->sectionLabels());
     }
 
+    /**
+     * @throws Exception
+     */
     public function testWriteOmitsTheIndexWhenItDoesNotExist(): void
     {
         $this->writeArticle('news', 'a-post');
 
-        $this->createGenerator()->write();
+        $this->createGenerator([$this->createPost('news', 'a-post')])->write();
 
         $this->assertSame(['news/a-post.md'], $this->sectionLabels());
     }
 
+    /**
+     * @throws Exception
+     */
     public function testWriteSortsArticlesByRelativePath(): void
     {
         $this->writeArticle('zebra', 'last');
         $this->writeArticle('alpha', 'first');
         $this->writeArticle('alpha', 'second');
 
-        $this->createGenerator()->write();
+        $posts = [
+            $this->createPost('zebra', 'last'),
+            $this->createPost('alpha', 'first'),
+            $this->createPost('alpha', 'second'),
+        ];
+
+        $this->createGenerator($posts)->write();
 
         $this->assertSame(
             ['alpha/first.md', 'alpha/second.md', 'zebra/last.md'],
@@ -111,6 +135,33 @@ class LlmsFullGeneratorTest extends UnitTest
         );
     }
 
+    /**
+     * @throws Exception
+     */
+    public function testWriteOnlyIncludesArticlesForPostsReturnedAsPublished(): void
+    {
+        $this->writeArticle('news', 'published-post');
+        $this->writeArticle('news', 'unpublished-post');
+
+        $this->createGenerator([$this->createPost('news', 'published-post')])->write();
+
+        $this->assertSame(['news/published-post.md'], $this->sectionLabels());
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testWriteThrowsWhenAPublishedPostHasNoMatchingMarkdownFile(): void
+    {
+        $this->expectException(RuntimeException::class);
+        $this->expectExceptionMessage('Missing markdown file for published post: news/missing-post.md');
+
+        $this->createGenerator([$this->createPost('news', 'missing-post')])->write();
+    }
+
+    /**
+     * @throws Exception
+     */
     public function testWriteAppendsPagesAfterTheArticles(): void
     {
         $this->writeIndex();
@@ -118,7 +169,7 @@ class LlmsFullGeneratorTest extends UnitTest
         $this->writePage('api');
         $this->writePage('admin');
 
-        $this->createGenerator()->write();
+        $this->createGenerator([$this->createPost('news', 'a-post')])->write();
 
         $this->assertSame(
             ['index.md', 'news/a-post.md', 'md-pages/admin.md', 'md-pages/api.md'],
@@ -126,12 +177,15 @@ class LlmsFullGeneratorTest extends UnitTest
         );
     }
 
+    /**
+     * @throws Exception
+     */
     public function testWriteLeavesPagesOutWhenNoPagesDirectoryIsConfigured(): void
     {
         $this->writeArticle('news', 'a-post');
         $this->writePage('api');
 
-        $this->createGenerator(pagesDir: null)->write();
+        $this->createGenerator([$this->createPost('news', 'a-post')], pagesDir: null)->write();
 
         $this->assertSame(['news/a-post.md'], $this->sectionLabels());
     }
@@ -147,11 +201,9 @@ class LlmsFullGeneratorTest extends UnitTest
         $this->assertSame(['md-pages/api.md'], $this->sectionLabels());
     }
 
-    public function testWriteIgnoresNonMarkdownFiles(): void
+    public function testWriteIgnoresNonMarkdownFilesInThePagesDirectory(): void
     {
         file_put_contents($this->sourceDir . '/index.md', 'index body');
-        mkdir($this->sourceDir . DIRECTORY_SEPARATOR . 'news', 0775, true);
-        file_put_contents($this->sourceDir . '/news/notes.txt', 'not markdown');
         file_put_contents($this->pagesDir . '/notes.txt', 'not markdown');
 
         $this->createGenerator()->write();
@@ -224,13 +276,16 @@ class LlmsFullGeneratorTest extends UnitTest
         $this->assertStringNotContainsString('stale content', $this->writtenOutput());
     }
 
+    /**
+     * @throws Exception
+     */
     public function testWriteIsIdempotent(): void
     {
         $this->writeIndex();
         $this->writeArticle('news', 'a-post');
         $this->writePage('api');
 
-        $generator = $this->createGenerator();
+        $generator = $this->createGenerator([$this->createPost('news', 'a-post')]);
         $generator->write();
         $first = $this->writtenOutput();
         $generator->write();
@@ -277,6 +332,65 @@ class LlmsFullGeneratorTest extends UnitTest
     }
 
     /**
+     * @throws Exception
+     */
+    public function testWriteStripsTheFaqSectionFromAnArticle(): void
+    {
+        $this->writeArticle('news', 'a-post', "# A post\n\nBody text.\n\n## FAQ\n\n**Q: Question?**\nA: Answer.\n");
+
+        $this->createGenerator([$this->createPost('news', 'a-post')])->write();
+
+        $output = $this->writtenOutput();
+        $this->assertStringContainsString('Body text.', $output);
+        $this->assertStringNotContainsString('## FAQ', $output);
+        $this->assertStringNotContainsString('Question?', $output);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testWriteKeepsAnySectionThatFollowsTheFaqSection(): void
+    {
+        $this->writeArticle(
+            'news',
+            'a-post',
+            "# A post\n\n## FAQ\n\n**Q: Question?**\nA: Answer.\n\n## Resources\n\n- A link\n"
+        );
+
+        $this->createGenerator([$this->createPost('news', 'a-post')])->write();
+
+        $output = $this->writtenOutput();
+        $this->assertStringNotContainsString('## FAQ', $output);
+        $this->assertStringContainsString('## Resources', $output);
+        $this->assertStringContainsString('- A link', $output);
+    }
+
+    public function testWriteStripsTheFaqSectionFromAPageToo(): void
+    {
+        file_put_contents($this->pagesDir . '/api.md', "# API\n\n## FAQ\n\n**Q: Question?**\nA: Answer.\n");
+
+        $this->createGenerator()->write();
+
+        $output = $this->writtenOutput();
+        $this->assertStringNotContainsString('## FAQ', $output);
+        $this->assertStringNotContainsString('Question?', $output);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testWriteDoesNotStripAHeadingThatIsNotExactlyFaq(): void
+    {
+        $this->writeArticle('news', 'a-post', "# A post\n\n## Common questions\n\nStill here.\n");
+
+        $this->createGenerator([$this->createPost('news', 'a-post')])->write();
+
+        $output = $this->writtenOutput();
+        $this->assertStringContainsString('## Common questions', $output);
+        $this->assertStringContainsString('Still here.', $output);
+    }
+
+    /**
      * The failure paths under test make `file_get_contents`/`file_put_contents` emit a PHP warning
      * before returning false. That warning is the documented behaviour of the code being exercised,
      * not a problem with the test, so it is swallowed to keep the suite output clean.
@@ -292,12 +406,21 @@ class LlmsFullGeneratorTest extends UnitTest
         }
     }
 
+    /**
+     * @param list<Post> $posts
+     * @throws Exception
+     */
     private function createGenerator(
-        ?string $pagesDir = '',
-        string $baseUrl = 'https://example.test',
+        array $posts = [],
         ?string $outputFile = null,
+        string $baseUrl = 'https://example.test',
+        ?string $pagesDir = '',
     ): LlmsFullGenerator {
+        $postRepository = $this->createStub(PostRepository::class);
+        $postRepository->method('getPublishedPosts')->willReturn($posts);
+
         return new LlmsFullGenerator(
+            $postRepository,
             $this->sourceDir,
             $outputFile ?? $this->outputFile,
             $baseUrl,
@@ -305,19 +428,34 @@ class LlmsFullGeneratorTest extends UnitTest
         );
     }
 
+    /**
+     * @throws Exception
+     */
+    private function createPost(string $categorySlug, string $slug): Post
+    {
+        $category = $this->createStub(Category::class);
+        $category->method('getSlug')->willReturn($categorySlug);
+
+        $post = $this->createStub(Post::class);
+        $post->method('getSlug')->willReturn($slug);
+        $post->method('getCategory')->willReturn($category);
+
+        return $post;
+    }
+
     private function writeIndex(): void
     {
         file_put_contents($this->sourceDir . DIRECTORY_SEPARATOR . 'index.md', '# Index');
     }
 
-    private function writeArticle(string $category, string $slug): void
+    private function writeArticle(string $category, string $slug, ?string $body = null): void
     {
         $directory = $this->sourceDir . DIRECTORY_SEPARATOR . $category;
         if (! is_dir($directory)) {
             mkdir($directory, 0775, true);
         }
 
-        file_put_contents($directory . DIRECTORY_SEPARATOR . $slug . '.md', sprintf('# %s', $slug));
+        file_put_contents($directory . DIRECTORY_SEPARATOR . $slug . '.md', $body ?? sprintf('# %s', $slug));
     }
 
     private function writePage(string $slug): void

@@ -1,10 +1,10 @@
 RewriteEngine On
 
-# Block known spam/probe queries on the root URL -> 404
-RewriteCond %{REQUEST_URI} ^/$
+# Block known spam/probe queries on any URL -> 404
+RewriteCond %{REQUEST_URI} ^/
 RewriteCond %{QUERY_STRING} ^post_type=wfacp_checkout$ [OR]
-RewriteCond %{QUERY_STRING} ^rest_route
-RewriteRule ^$ - [R=404,L]
+RewriteCond %{QUERY_STRING} rest_route
+RewriteRule .* - [R=404,L]
 
 # The following rule allows authentication to work with fast-cgi
 RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]

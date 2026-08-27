@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Light\App\Service;
 
+use Light\Blog\Entity\Post;
+use Light\Blog\Repository\PostRepository;
 use RuntimeException;
 
 use function array_map;
@@ -15,20 +17,15 @@ use function file_put_contents;
 use function glob;
 use function implode;
 use function is_file;
-use function ltrim;
+use function preg_replace;
 use function sort;
 use function sprintf;
 use function str_replace;
 use function trim;
 
 /**
- * Concatenates every article under the markdown source directory into a single
- * plain-text file for LLM consumption, in the same format as llms.txt/llms-full.txt
- * conventions (index.md first, then every other article sorted by relative path).
- *
- * When a pages directory is configured, the flat `*.md` files in it - the markdown
- * versions of the static pages - are appended after the articles, labelled with a
- * `md-pages/` prefix so their origin stays readable in the output.
+ * Generate llms-full.txt from index, published articles, pages
+ * FAQ is removed
  */
 readonly class LlmsFullGenerator
 {
@@ -36,6 +33,7 @@ readonly class LlmsFullGenerator
     private const PAGES_ROOT = 'md-pages';
 
     public function __construct(
+        private PostRepository $postRepository,
         private string $sourceDir,
         private string $outputFile,
         private string $baseUrl,
@@ -73,25 +71,35 @@ readonly class LlmsFullGenerator
      */
     private function collectEntries(): array
     {
-        $categoryFiles = glob($this->sourceDir . '/*/*.md') ?: [];
-        $categoryFiles = array_map(
-            fn (string $path): string => ltrim(str_replace($this->sourceDir, '', $path), '/'),
-            $categoryFiles
+        $articleLabels = array_map(
+            fn (Post $post): string => sprintf('%s/%s.md', $post->getCategory()->getSlug(), $post->getSlug()),
+            $this->postRepository->getPublishedPosts()
         );
-        sort($categoryFiles);
+        sort($articleLabels);
 
         $labels = is_file($this->sourceDir . '/index.md') ? ['index.md'] : [];
-        $labels = array_merge($labels, $categoryFiles);
+        $labels = array_merge($labels, $articleLabels);
 
         $entries = array_map(
             fn (string $label): array => [
-                'file'  => $this->sourceDir . '/' . $label,
+                'file'  => $this->resolveArticleFile($label),
                 'label' => $label,
             ],
             $labels
         );
 
         return array_merge($entries, $this->collectPageEntries());
+    }
+
+    private function resolveArticleFile(string $label): string
+    {
+        $file = $this->sourceDir . '/' . $label;
+
+        if (! is_file($file)) {
+            throw new RuntimeException("Missing markdown file for published post: {$label}");
+        }
+
+        return $file;
     }
 
     /**
@@ -125,6 +133,7 @@ readonly class LlmsFullGenerator
         }
 
         $contents = str_replace('{{base_url}}', $this->baseUrl, $contents);
+        $contents = $this->stripFaqSection($contents);
 
         return sprintf(
             "%s\n<!-- %s -->\n%s\n\n%s",
@@ -133,5 +142,15 @@ readonly class LlmsFullGenerator
             self::SEPARATOR,
             trim($contents)
         );
+    }
+
+    /**
+     * Removes the FAQ section, leaves the rest of the content
+     */
+    private function stripFaqSection(string $contents): string
+    {
+        $contents = preg_replace('/^## FAQ\s*$.*?(?=^## |\z)/ms', '', $contents) ?? $contents;
+
+        return preg_replace('/\n{3,}/', "\n\n", $contents) ?? $contents;
     }
 }
