@@ -29,19 +29,26 @@ class LlmsGenerator
     private const CATEGORY_ORDER = [
         'dotkernel',
         'php-development',
-        'how-to',
-        'best-practice',
         'dotkernel-api',
         'dotkernel3',
         'headless-platform',
-        'zend-framework',
-        'javascript',
         'middleware',
         'architecture',
-        'php-troubleshooting',
-        'phpstorm',
-        'licensing',
         'design-pattern',
+    ];
+
+    /**
+     * Categories for `## Optional` section
+     *
+     * @var list<non-empty-string>
+     */
+    private const OPTIONAL_CATEGORIES = [
+        'best-practice',
+        'how-to',
+        'javascript',
+        'php-troubleshooting',
+        'licensing',
+        'phpstorm',
     ];
 
     /** @var array<non-empty-string, non-empty-string> */
@@ -91,6 +98,19 @@ class LlmsGenerator
             unset($postsByCategory[$slug]);
         }
 
+        $optionalLines         = [];
+        $optionalCategoryCount = 0;
+        foreach (self::OPTIONAL_CATEGORIES as $slug) {
+            if (! isset($postsByCategory[$slug])) {
+                continue;
+            }
+            $optionalCategoryCount++;
+            foreach ($postsByCategory[$slug] as $entry) {
+                $optionalLines[] = $this->buildPostLink($slug, $entry);
+            }
+            unset($postsByCategory[$slug]);
+        }
+
         uasort($postsByCategory, static fn (array $a, array $b): int => count($b) - count($a));
         foreach ($postsByCategory as $slug => $posts) {
             $sections[] = $this->buildCategorySection($slug, $posts);
@@ -98,14 +118,17 @@ class LlmsGenerator
 
         $written = $this->buildHeader()
             . $this->buildPagesSection()
-            . "## Categories\n\n"
             . implode("\n", $sections);
+
+        if ($optionalLines !== []) {
+            $written .= "\n## Optional\n\n" . implode("\n", $optionalLines) . "\n";
+        }
 
         if (file_put_contents($this->outputFile, $written) === false) {
             throw new RuntimeException('Unable to write llms.txt.');
         }
 
-        return count($sections);
+        return count($sections) + $optionalCategoryCount;
     }
 
     /**
@@ -139,7 +162,7 @@ class LlmsGenerator
     {
         $category = $entries[0]['post']->getCategory();
         $heading  = sprintf(
-            '### %s (%d post%s)',
+            '## %s (%d post%s)',
             $category->getName(),
             count($entries),
             count($entries) === 1 ? '' : 's',
@@ -153,17 +176,25 @@ class LlmsGenerator
         }
 
         foreach ($entries as $entry) {
-            $lines[] = sprintf(
-                '- [%s](%s/%s/%s.md): %s',
-                $entry['title'],
-                $this->baseUrl,
-                $slug,
-                $entry['post']->getSlug(),
-                $entry['description'],
-            );
+            $lines[] = $this->buildPostLink($slug, $entry);
         }
 
         return implode("\n", $lines) . "\n";
+    }
+
+    /**
+     * @param array{post: Post, title: string, description: string} $entry
+     */
+    private function buildPostLink(string $slug, array $entry): string
+    {
+        return sprintf(
+            '- [%s](%s/%s/%s.md): %s',
+            $entry['title'],
+            $this->baseUrl,
+            $slug,
+            $entry['post']->getSlug(),
+            $entry['description'],
+        );
     }
 
     /**
@@ -219,7 +250,7 @@ class LlmsGenerator
         $lines = ['## Pages', ''];
         foreach ($pages as $page) {
             $lines[] = sprintf(
-                '- [%s](%s/md-pages/%s.md): %s',
+                '- [%s](%s/%s.md): %s',
                 $page['title'],
                 $this->baseUrl,
                 $page['slug'],
@@ -260,7 +291,6 @@ class LlmsGenerator
             . "## Docs\n\n"
             . "- [Blog]({$this->baseUrl}/blog/): full list of posts, most recent first, paginated\n"
             . "- [Categories]({$this->baseUrl}/categories/): all categories with post counts\n"
-            . "- [About]({$this->baseUrl}/about/): {$about}\n"
             . "- [OSS Package Lifecycle]({$this->baseUrl}/dotkernel-packages-oss-lifecycle/): "
             . "support/maintenance status of Dotkernel's open-source packages\n"
             . "- [Contact]({$this->baseUrl}/contact/)\n\n";

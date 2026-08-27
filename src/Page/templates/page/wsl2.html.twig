@@ -10,7 +10,7 @@
 
 {% block title %}Development Environment{% endblock %}
 
-{% block head_links %}<link rel="alternate" type="text/markdown" href="/md-pages/wsl2.md">{% endblock %}
+{% block head_links %}<link rel="alternate" type="text/markdown" href="/wsl2.md">{% endblock %}
 
 {% block stylesheets %}
     <style>
@@ -64,7 +64,7 @@
                         View on GitHub
                     </a>
                 </div>
-                {{ include('@partial/markdown-actions.html.twig', {markdown_url: absolute_url(asset('md-pages/wsl2.md'))}) }}
+                {{ include('@partial/markdown-actions.html.twig', {markdown_url: absolute_url(asset('wsl2.md'))}) }}
                 <div class="hero-stack-note">
                     <div><span>Distro</span> AlmaLinux 10</div>
                     <div><span>Provisioning</span> Ansible</div>

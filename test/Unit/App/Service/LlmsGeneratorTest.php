@@ -46,12 +46,12 @@ class LlmsGeneratorTest extends UnitTest
             bin2hex(random_bytes(8))
         );
 
-        $this->sourceDir  = $this->workDir . DIRECTORY_SEPARATOR . 'md-articles';
-        $this->pagesDir   = $this->workDir . DIRECTORY_SEPARATOR . 'md-pages';
+        $this->sourceDir = $this->workDir . DIRECTORY_SEPARATOR . 'md-articles';
+        // Mirrors production: page markdown files live at the public root, alongside md-articles/.
+        $this->pagesDir   = $this->workDir;
         $this->outputFile = $this->workDir . DIRECTORY_SEPARATOR . 'llms.txt';
 
         mkdir($this->sourceDir, 0775, true);
-        mkdir($this->pagesDir, 0775, true);
     }
 
     protected function tearDown(): void
@@ -88,8 +88,9 @@ class LlmsGeneratorTest extends UnitTest
 
         $output = $this->writtenOutput();
         $this->assertStringStartsWith('# Dotkernel', $output);
-        $this->assertStringContainsString('## Categories', $output);
-        $this->assertStringNotContainsString('##  (', $output);
+        $this->assertStringContainsString('## Docs', $output);
+        $this->assertStringNotContainsString(' post)', $output);
+        $this->assertStringNotContainsString(' posts)', $output);
     }
 
     /**
@@ -148,6 +149,74 @@ class LlmsGeneratorTest extends UnitTest
         $this->assertNotFalse($smallAt);
         $this->assertLessThan($bigAt, $dotkernelAt);
         $this->assertLessThan($smallAt, $bigAt);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testWriteMovesAnOptionalCategoryPostToATrailingOptionalSectionWithoutAHeading(): void
+    {
+        $posts = [
+            $this->createPost('Curated post', 'curated-post', 'dotkernel', 'Dotkernel'),
+            $this->createPost('JS post', 'js-post', 'javascript', 'Javascript'),
+        ];
+
+        $this->createGenerator($posts)->write();
+
+        $output      = $this->writtenOutput();
+        $dotkernelAt = mb_strpos($output, '## Dotkernel (');
+        $optionalAt  = mb_strpos($output, '## Optional');
+        $jsPostAt    = mb_strpos($output, '[JS post]');
+
+        $this->assertNotFalse($dotkernelAt);
+        $this->assertNotFalse($optionalAt);
+        $this->assertNotFalse($jsPostAt);
+        $this->assertLessThan($optionalAt, $dotkernelAt);
+        $this->assertLessThan($jsPostAt, $optionalAt);
+        $this->assertStringNotContainsString('## Javascript', $output);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testWriteOmitsTheOptionalSectionWhenNoOptionalCategoryHasPublishedPosts(): void
+    {
+        $posts = [$this->createPost('Curated post', 'curated-post', 'dotkernel', 'Dotkernel')];
+
+        $this->createGenerator($posts)->write();
+
+        $this->assertStringNotContainsString('## Optional', $this->writtenOutput());
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testWriteOmitsTheCategoryTitleAndBlurbForAnOptionalCategory(): void
+    {
+        $posts = [$this->createPost('JS post', 'js-post', 'javascript', 'Javascript')];
+
+        $this->createGenerator($posts)->write();
+
+        $output = $this->writtenOutput();
+        $this->assertStringContainsString(
+            '- [JS post](https://example.test/javascript/js-post.md): An excerpt.',
+            $output
+        );
+        $this->assertStringNotContainsString('## Javascript', $output);
+        $this->assertStringNotContainsString('frontend/JS topics', $output);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testWriteReturnsTheNumberOfCategorySectionsWrittenIncludingTheOptionalSection(): void
+    {
+        $posts = [
+            $this->createPost('Curated post', 'curated-post', 'dotkernel', 'Dotkernel'),
+            $this->createPost('JS post', 'js-post', 'javascript', 'Javascript'),
+        ];
+
+        $this->assertSame(2, $this->createGenerator($posts)->write());
     }
 
     /**
@@ -328,7 +397,7 @@ class LlmsGeneratorTest extends UnitTest
         $this->createGenerator(baseUrl: 'https://example.test')->write();
 
         $this->assertStringContainsString(
-            '- [Dotkernel API](https://example.test/md-pages/api.md): The description.',
+            '- [Dotkernel API](https://example.test/api.md): The description.',
             $this->writtenOutput()
         );
         $this->assertStringNotContainsString('Open-source REST API skeleton for PHP]', $this->writtenOutput());
@@ -352,23 +421,23 @@ class LlmsGeneratorTest extends UnitTest
     /**
      * @throws Exception
      */
-    public function testWritePlacesThePagesSectionBetweenDocsAndCategories(): void
+    public function testWritePlacesThePagesSectionBetweenDocsAndTheFirstCategorySection(): void
     {
         $this->writePage('api', 'Dotkernel API | Tagline');
         $posts = [$this->createPost('A post', 'a-post', 'dotkernel', 'Dotkernel')];
 
         $this->createGenerator($posts)->write();
 
-        $output       = $this->writtenOutput();
-        $docsAt       = mb_strpos($output, '## Docs');
-        $pagesAt      = mb_strpos($output, '## Pages');
-        $categoriesAt = mb_strpos($output, '## Categories');
+        $output      = $this->writtenOutput();
+        $docsAt      = mb_strpos($output, '## Docs');
+        $pagesAt     = mb_strpos($output, '## Pages');
+        $dotkernelAt = mb_strpos($output, '## Dotkernel (');
 
         $this->assertNotFalse($docsAt);
         $this->assertNotFalse($pagesAt);
-        $this->assertNotFalse($categoriesAt);
+        $this->assertNotFalse($dotkernelAt);
         $this->assertLessThan($pagesAt, $docsAt);
-        $this->assertLessThan($categoriesAt, $pagesAt);
+        $this->assertLessThan($dotkernelAt, $pagesAt);
     }
 
     /**

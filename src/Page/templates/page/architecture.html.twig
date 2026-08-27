@@ -10,7 +10,7 @@
 
 {% block title %}Architecture{% endblock %}
 
-{% block head_links %}<link rel="alternate" type="text/markdown" href="/md-pages/architecture.md">{% endblock %}
+{% block head_links %}<link rel="alternate" type="text/markdown" href="/architecture.md">{% endblock %}
 
 {% block stylesheets %}
     <style>
@@ -97,7 +97,7 @@
                     </a>
                     <a class="btn btn-ghost" href="{{ url('page::api') }}">Dotkernel API</a>
                 </div>
-                {{ include('@partial/markdown-actions.html.twig', {markdown_url: absolute_url(asset('md-pages/architecture.md'))}) }}
+                {{ include('@partial/markdown-actions.html.twig', {markdown_url: absolute_url(asset('architecture.md'))}) }}
                 <div class="hero-stack-note">
                     <div><span>Contract</span> PSR-7 + PSR-15</div>
                     <div><span>Container</span> PSR-11</div>

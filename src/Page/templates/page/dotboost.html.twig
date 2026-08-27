@@ -10,7 +10,7 @@
 
 {% block title %}dotboost{% endblock %}
 
-{% block head_links %}<link rel="alternate" type="text/markdown" href="/md-pages/dotboost.md">{% endblock %}
+{% block head_links %}<link rel="alternate" type="text/markdown" href="/dotboost.md">{% endblock %}
 
 {% block stylesheets %}
     <style>
@@ -66,7 +66,7 @@
                     </a>
                     <a class="btn btn-ghost" href="https://docs.claude.com/en/docs/claude-code/overview" target="_blank" rel="noopener">Claude Code docs</a>
                 </div>
-                {{ include('@partial/markdown-actions.html.twig', {markdown_url: absolute_url(asset('md-pages/dotboost.md'))}) }}
+                {{ include('@partial/markdown-actions.html.twig', {markdown_url: absolute_url(asset('dotboost.md'))}) }}
                 <div class="badges mt-3">
                     <img alt="License of dotkernel/dotboost" loading="lazy" src="https://img.shields.io/github/license/dotkernel/dotboost?style=flat">
                     <img alt="GitHub stars for dotkernel/dotboost" loading="lazy" src="https://img.shields.io/github/stars/dotkernel/dotboost?style=flat&label=%E2%98%85">
