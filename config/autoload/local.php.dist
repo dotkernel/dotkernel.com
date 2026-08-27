@@ -79,7 +79,7 @@ return [
         'sourceDir'  => realpath(__DIR__ . '/../../public/md-articles'),
         'outputFile' => realpath(__DIR__ . '/../../public/llms-full.txt'),
         // Markdown versions of the static pages, appended after the articles. Optional.
-        'pagesDir' => realpath(__DIR__ . '/../../public/md-pages'),
+        'pagesDir' => realpath(__DIR__ . '/../../public'),
         // Short, categorized index of the blog, written by bin/generate-llms.
         'indexFile' => realpath(__DIR__ . '/../../public/llms.txt'),
     ],

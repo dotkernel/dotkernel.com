@@ -52,12 +52,12 @@ class LlmsFullGeneratorTest extends UnitTest
             bin2hex(random_bytes(8))
         );
 
-        $this->sourceDir  = $this->workDir . DIRECTORY_SEPARATOR . 'md-articles';
-        $this->pagesDir   = $this->workDir . DIRECTORY_SEPARATOR . 'md-pages';
+        $this->sourceDir = $this->workDir . DIRECTORY_SEPARATOR . 'md-articles';
+        // Mirrors production: page markdown files live at the public root, alongside md-articles/.
+        $this->pagesDir   = $this->workDir;
         $this->outputFile = $this->workDir . DIRECTORY_SEPARATOR . 'llms-full.txt';
 
         mkdir($this->sourceDir, 0775, true);
-        mkdir($this->pagesDir, 0775, true);
     }
 
     protected function tearDown(): void
@@ -172,7 +172,7 @@ class LlmsFullGeneratorTest extends UnitTest
         $this->createGenerator([$this->createPost('news', 'a-post')])->write();
 
         $this->assertSame(
-            ['index.md', 'news/a-post.md', 'md-pages/admin.md', 'md-pages/api.md'],
+            ['index.md', 'news/a-post.md', 'admin.md', 'api.md'],
             $this->sectionLabels()
         );
     }
@@ -198,7 +198,7 @@ class LlmsFullGeneratorTest extends UnitTest
 
         $this->createGenerator()->write();
 
-        $this->assertSame(['md-pages/api.md'], $this->sectionLabels());
+        $this->assertSame(['api.md'], $this->sectionLabels());
     }
 
     public function testWriteIgnoresNonMarkdownFilesInThePagesDirectory(): void
@@ -218,7 +218,7 @@ class LlmsFullGeneratorTest extends UnitTest
         $this->createGenerator()->write();
 
         $this->assertStringContainsString(
-            sprintf("%s\n<!-- md-pages/api.md -->\n%s\n\n", self::SEPARATOR, self::SEPARATOR),
+            sprintf("%s\n<!-- api.md -->\n%s\n\n", self::SEPARATOR, self::SEPARATOR),
             $this->writtenOutput()
         );
     }
@@ -322,7 +322,7 @@ class LlmsFullGeneratorTest extends UnitTest
         }
 
         $this->expectException(RuntimeException::class);
-        $this->expectExceptionMessage('Unable to read file: md-pages/api.md');
+        $this->expectExceptionMessage('Unable to read file: api.md');
 
         try {
             $this->writeSilencingPhpWarnings($this->createGenerator());

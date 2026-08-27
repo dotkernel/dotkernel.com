@@ -10,7 +10,7 @@
 
 {% block title %}Dotkernel Light{% endblock %}
 
-{% block head_links %}<link rel="alternate" type="text/markdown" href="/md-pages/light.md">{% endblock %}
+{% block head_links %}<link rel="alternate" type="text/markdown" href="/light.md">{% endblock %}
 
 {% block stylesheets %}
     <style>
@@ -60,7 +60,7 @@
                     </a>
                     <a class="btn btn-ghost" href="https://light.dotkernel.net/" target="_blank" rel="noopener">Live demo</a>
                 </div>
-                {{ include('@partial/markdown-actions.html.twig', {markdown_url: absolute_url(asset('md-pages/light.md'))}) }}
+                {{ include('@partial/markdown-actions.html.twig', {markdown_url: absolute_url(asset('light.md'))}) }}
                 <div class="badges mt-3">
                     <img alt="PHP version for dotkernel/light" loading="lazy" src="https://img.shields.io/packagist/dependency-v/dotkernel/light/php?style=flat&label=php">
                     <img alt="Latest release of dotkernel/light" loading="lazy" src="https://img.shields.io/packagist/v/dotkernel/light?style=flat">

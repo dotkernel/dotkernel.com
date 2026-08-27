@@ -10,7 +10,7 @@
 
 {% block title %}Dotkernel Queue{% endblock %}
 
-{% block head_links %}<link rel="alternate" type="text/markdown" href="/md-pages/queue.md">{% endblock %}
+{% block head_links %}<link rel="alternate" type="text/markdown" href="/queue.md">{% endblock %}
 
 {% block stylesheets %}
     <style>
@@ -67,7 +67,7 @@
                         View on GitHub
                     </a>
                 </div>
-                {{ include('@partial/markdown-actions.html.twig', {markdown_url: absolute_url(asset('md-pages/queue.md'))}) }}
+                {{ include('@partial/markdown-actions.html.twig', {markdown_url: absolute_url(asset('queue.md'))}) }}
                 <div class="badges mt-3">
                     <img alt="PHP version for dotkernel/queue" loading="lazy" src="https://img.shields.io/packagist/dependency-v/dotkernel/queue/php?style=flat&label=php">
                     <img alt="Latest release of dotkernel/queue" loading="lazy" src="https://img.shields.io/packagist/v/dotkernel/queue?style=flat">
