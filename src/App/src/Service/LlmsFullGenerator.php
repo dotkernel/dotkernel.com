@@ -29,8 +29,7 @@ use function trim;
  */
 readonly class LlmsFullGenerator
 {
-    private const SEPARATOR  = '<!-- ============================================================ -->';
-    private const PAGES_ROOT = 'md-pages';
+    private const SEPARATOR = '<!-- ============================================================ -->';
 
     public function __construct(
         private PostRepository $postRepository,
@@ -119,7 +118,7 @@ readonly class LlmsFullGenerator
         return array_map(
             fn (string $path): array => [
                 'file'  => $path,
-                'label' => self::PAGES_ROOT . '/' . basename($path),
+                'label' => basename($path),
             ],
             $pageFiles
         );

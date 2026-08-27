@@ -10,7 +10,7 @@
 
 {% block title %}Dotkernel API{% endblock %}
 
-{% block head_links %}<link rel="alternate" type="text/markdown" href="/md-pages/api.md">{% endblock %}
+{% block head_links %}<link rel="alternate" type="text/markdown" href="/api.md">{% endblock %}
 
 {% block stylesheets %}
     <style>
@@ -64,7 +64,7 @@
                     </a>
                     <a class="btn btn-ghost" href="https://api.dotkernel.net/" target="_blank" rel="noopener">Live demo</a>
                 </div>
-                {{ include('@partial/markdown-actions.html.twig', {markdown_url: absolute_url(asset('md-pages/api.md'))}) }}
+                {{ include('@partial/markdown-actions.html.twig', {markdown_url: absolute_url(asset('api.md'))}) }}
                 <div class="badges mt-3">
                     <img alt="PHP version for dotkernel/api" loading="lazy" src="https://img.shields.io/packagist/dependency-v/dotkernel/api/php?style=flat&label=php">
                     <img alt="Latest release of dotkernel/api" loading="lazy" src="https://img.shields.io/packagist/v/dotkernel/api?style=flat">

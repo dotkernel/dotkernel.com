@@ -10,7 +10,7 @@
 
 {% block title %}About Us{% endblock %}
 
-{% block head_links %}<link rel="alternate" type="text/markdown" href="/md-pages/about.md">{% endblock %}
+{% block head_links %}<link rel="alternate" type="text/markdown" href="/about.md">{% endblock %}
 
 {% block stylesheets %}
     <style>
@@ -46,7 +46,7 @@
                     </a>
                     <a class="btn btn-ghost" href="https://github.com/orgs/dotkernel/discussions" target="_blank" rel="noopener">Join the discussion</a>
                 </div>
-                {{ include('@partial/markdown-actions.html.twig', {markdown_url: absolute_url(asset('md-pages/about.md'))}) }}
+                {{ include('@partial/markdown-actions.html.twig', {markdown_url: absolute_url(asset('about.md'))}) }}
                 <div class="hero-stack-note">
                     <div><span>Team</span> Apidemia</div>
                     <div><span>License</span> MIT</div>

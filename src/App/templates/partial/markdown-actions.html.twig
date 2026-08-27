@@ -1,4 +1,4 @@
-{# Callers pass either `markdown_url` (static pages, under public/md-pages/) or `article` (blog posts,
+{# Callers pass either `markdown_url` (static pages, under public/) or `article` (blog posts,
    served by app::markdown-article). Both must resolve to an absolute URL - claude.ai fetches it. #}
 {% set markdown_url = markdown_url is defined
     ? markdown_url

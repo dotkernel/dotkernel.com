@@ -356,7 +356,7 @@
             {
                 "post_title": "Commitment  to PHP -  new Zend Certified Engineers - ZCE - in our team",
                 "post_date": "2012-04-20 11:27:16",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -370,7 +370,7 @@
             {
                 "post_title": "Forcing UTF8 connections and character set in MySQL",
                 "post_date": "2012-05-09 10:28:05",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -496,7 +496,7 @@
             {
                 "post_title": "Avoid routing through bootstrap of non existent files",
                 "post_date": "2013-11-29 11:09:25",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -636,7 +636,7 @@
             {
                 "post_title": "Adding Composer support in your Dotkernel project",
                 "post_date": "2016-04-04 09:00:29",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Gabi DJ",
                     "github": "gabidj"
@@ -650,7 +650,7 @@
             {
                 "post_title": "Using Dotkernel with Composer Dependencies",
                 "post_date": "2016-04-04 09:10:44",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Gabi DJ",
                     "github": "gabidj"
@@ -678,7 +678,7 @@
             {
                 "post_title": "Disambiguation: Dotkernel 1 and Dotkernel 3",
                 "post_date": "2017-04-24 05:29:24",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Gabi DJ",
                     "github": "gabidj"
@@ -692,7 +692,7 @@
             {
                 "post_title": "Templating in Dotkernel3",
                 "post_date": "2017-12-20 02:17:31",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Jesper",
                     "github": null
@@ -706,7 +706,7 @@
             {
                 "post_title": "Logging with dot-log in Zend Expressive and Dotkernel",
                 "post_date": "2018-11-13 10:55:08",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Gabi DJ",
                     "github": "gabidj"
@@ -720,7 +720,7 @@
             {
                 "post_title": "Handling and Logging errors with dot-errorhandler and dot-log",
                 "post_date": "2018-11-27 08:18:01",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Gabi DJ",
                     "github": "gabidj"
@@ -759,7 +759,7 @@
             {
                 "post_title": "Adding a CORS implementation to Zend Expressive",
                 "post_date": "2019-04-08 13:11:10",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Gabi DJ",
                     "github": "gabidj"
@@ -866,7 +866,7 @@
             {
                 "post_title": "How to group log files by date using dot-log",
                 "post_date": "2021-04-26 13:16:53",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Alex Karajos",
                     "github": "alexmerlin"
@@ -880,7 +880,7 @@
             {
                 "post_title": "Autologin using Cookie / Remember Me in Dotkernel",
                 "post_date": "2022-07-18 09:12:59",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "SergiuB",
                     "github": "kakapiciu"
@@ -894,7 +894,7 @@
             {
                 "post_title": "Doctrine cache using symfony/cache",
                 "post_date": "2024-02-27 16:09:58",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "MarioRadu",
                     "github": "marioradu05"
@@ -908,7 +908,7 @@
             {
                 "post_title": "Dependency Injection made easy in Laminas/Mezzio applications",
                 "post_date": "2024-06-20 09:46:39",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Claudiu Pintiuta",
                     "github": "pinclau"
@@ -922,7 +922,7 @@
             {
                 "post_title": "Dotkernel Light - Starting with Mezzio microframework and Laminas components",
                 "post_date": "2024-10-03 14:44:13",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
@@ -936,7 +936,7 @@
             {
                 "post_title": "Dotkernel Light: the best choice for your presentation site",
                 "post_date": "2024-10-14 10:19:01",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
@@ -950,7 +950,7 @@
             {
                 "post_title": "Doctrine enum implementation in Dotkernel",
                 "post_date": "2024-11-05 11:56:22",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
@@ -964,7 +964,7 @@
             {
                 "post_title": "Replacing laminas-mail with Symfony mailer in dot-mail",
                 "post_date": "2025-01-08 11:11:12",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
@@ -992,7 +992,7 @@
             {
                 "post_title": "How to build this website starting from Dotkernel Light",
                 "post_date": "2026-08-14 00:00:00",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "stefan",
                     "github": "OStefan2001"
@@ -1030,7 +1030,7 @@
             {
                 "post_title": "Intro to jQuery",
                 "post_date": "2011-06-01 09:30:38",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Adrian",
                     "github": ""
@@ -1169,7 +1169,7 @@
             {
                 "post_title": "Zend Framework 1 End-of-Life",
                 "post_date": "2016-06-28 11:22:06",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -1238,7 +1238,7 @@
             {
                 "post_title": "Sunsetting PEAR Channel for Zend Framework 1",
                 "post_date": "2022-11-11 12:55:22",
-                "post_status": "publish",
+                "post_status": "archived",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -1273,7 +1273,7 @@
             {
                 "post_title": "Protection against SQL Injection using  PDO and Zend Framework",
                 "post_date": "2010-06-16 11:21:40",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -1296,7 +1296,7 @@
             {
                 "post_title": "Protection against SQL Injection using PDO and Zend Framework - part 2",
                 "post_date": "2010-06-18 08:37:19",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Teo",
                     "github": ""
@@ -1333,7 +1333,7 @@
             {
                 "post_title": "PHP Environment : Development Staging Production",
                 "post_date": "2010-07-30 07:21:55",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Teo",
                     "github": ""
@@ -1528,7 +1528,7 @@
             {
                 "post_title": "Floating-Point Arithmetic - Why is (int)((0.7+0.1)*10) = 7 ?",
                 "post_date": "2016-01-26 10:28:39",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Gabi DJ",
                     "github": "gabidj"
@@ -1589,7 +1589,7 @@
             {
                 "post_title": "Database seeding: Doctrine data fixtures vs Phinx",
                 "post_date": "2022-08-31 09:28:49",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "MarioRadu",
                     "github": "marioradu05"
@@ -1603,7 +1603,7 @@
             {
                 "post_title": "Mezzio app development in WSL2",
                 "post_date": "2022-09-08 10:51:09",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Alex Karajos",
                     "github": "alexmerlin"
@@ -1617,7 +1617,7 @@
             {
                 "post_title": "AlmaLinux 9 in WSL2 : install PHP, Apache, MariaDB, Composer, PhpMyadmin",
                 "post_date": "2022-12-14 10:04:15",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Alex Karajos",
                     "github": "alexmerlin"
@@ -1631,7 +1631,7 @@
             {
                 "post_title": "Static Analysis - Replacing Psalm with PHPStan",
                 "post_date": "2024-11-22 10:42:47",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
@@ -1652,7 +1652,7 @@
             {
                 "post_title": "What is PSR-7 and how to use it",
                 "post_date": "2017-05-15 10:19:14",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Gabi DJ",
                     "github": "gabidj"
@@ -1695,7 +1695,7 @@
             {
                 "post_title": "Database migrations and how to use them",
                 "post_date": "2017-08-28 11:31:39",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Jesper",
                     "github": null
@@ -1709,7 +1709,7 @@
             {
                 "post_title": "Using the URLGenerator work in FastRoute",
                 "post_date": "2017-09-04 17:22:37",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Jesper",
                     "github": null
@@ -1723,7 +1723,7 @@
             {
                 "post_title": "Migrating Dotkernel 3 from Zend Expressive 2 to Zend Expressive 3",
                 "post_date": "2018-06-13 12:16:37",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Gabi DJ",
                     "github": "gabidj"
@@ -1737,7 +1737,7 @@
             {
                 "post_title": "Doctrine Cache in Mezzio and Dotkernel",
                 "post_date": "2020-09-22 10:31:14",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -1768,7 +1768,7 @@
             {
                 "post_title": "CORS policy setup in Dotkernel using mezzio-cors",
                 "post_date": "2021-04-28 08:06:17",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Alex Karajos",
                     "github": "alexmerlin"
@@ -1782,7 +1782,7 @@
             {
                 "post_title": "Replacing dot-console with dot-cli based on laminas-cli",
                 "post_date": "2021-06-09 09:47:15",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Alex Karajos",
                     "github": "alexmerlin"
@@ -1796,7 +1796,7 @@
             {
                 "post_title": "List available endpoints in  Dotkernel API using dot-cli",
                 "post_date": "2021-06-29 09:17:18",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Alex Karajos",
                     "github": "alexmerlin"
@@ -1810,7 +1810,7 @@
             {
                 "post_title": "Creating admin accounts in Dotkernel API",
                 "post_date": "2021-07-09 09:13:39",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Alex Karajos",
                     "github": "alexmerlin"
@@ -1824,7 +1824,7 @@
             {
                 "post_title": "Using Postman for documentation  in Dotkernel API 3",
                 "post_date": "2021-06-14 10:07:02",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Alex Karajos",
                     "github": "alexmerlin"
@@ -1838,7 +1838,7 @@
             {
                 "post_title": "Generating a doctrine migration without dropping custom tables",
                 "post_date": "2021-07-29 09:13:57",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Alex Karajos",
                     "github": "alexmerlin"
@@ -1852,7 +1852,7 @@
             {
                 "post_title": "What is cross origin token redemption?",
                 "post_date": "2023-01-27 13:46:31",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Alex Karajos",
                     "github": "alexmerlin"
@@ -1875,7 +1875,7 @@
             {
                 "post_title": "Implementation of SEO friendly URL in an generic Laminas Mezzio app",
                 "post_date": "2023-06-30 09:27:30",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "MarioRadu",
                     "github": "marioradu05"
@@ -1889,7 +1889,7 @@
             {
                 "post_title": "Installing AlmaLinux 10 in WSL2: PHP, MariaDB, Composer, PhpMyadmin",
                 "post_date": "2025-06-19 17:22:34",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
@@ -1910,7 +1910,7 @@
             {
                 "post_title": "Where is the intl PHP extension? Problem solved!",
                 "post_date": "2016-12-14 11:36:11",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Gabi DJ",
                     "github": "gabidj"
@@ -1953,7 +1953,7 @@
             {
                 "post_title": "[FIX] Installing PEAR packages with PHP 7.2",
                 "post_date": "2018-05-18 11:19:49",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Gabi DJ",
                     "github": "gabidj"
@@ -2042,7 +2042,7 @@
             {
                 "post_title": "Dotkernel3 - Stable Release version 1.0",
                 "post_date": "2018-06-27 11:46:06",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Gabi DJ",
                     "github": "gabidj"
@@ -2056,7 +2056,7 @@
             {
                 "post_title": "Dotkernel Frontend version 3  launched",
                 "post_date": "2020-05-19 15:15:21",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -2070,7 +2070,7 @@
             {
                 "post_title": "Dotkernel Admin version 3  launched",
                 "post_date": "2020-07-30 09:35:04",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -2084,7 +2084,7 @@
             {
                 "post_title": "Dotkernel Admin V4",
                 "post_date": "2022-07-27 09:11:49",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "SergiuB",
                     "github": "kakapiciu"
@@ -2098,7 +2098,7 @@
             {
                 "post_title": "Dotkernel API: architecture and components",
                 "post_date": "2023-03-29 10:59:39",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "SergiuB",
                     "github": "kakapiciu"
@@ -2121,7 +2121,7 @@
             {
                 "post_title": "PHP 8.3 support in Dotkernel Admin",
                 "post_date": "2024-02-06 11:45:23",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
@@ -2135,7 +2135,7 @@
             {
                 "post_title": "PHP 8.3 support in Dotkernel Frontend",
                 "post_date": "2024-02-14 10:03:14",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
@@ -2149,7 +2149,7 @@
             {
                 "post_title": "PHP 8.3 support in Dotkernel API",
                 "post_date": "2024-04-03 09:19:39",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
@@ -2170,7 +2170,7 @@
             {
                 "post_title": "Handling dynamic routing using FastRoute in Dotkernel",
                 "post_date": "2025-02-26 11:02:13",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
@@ -2184,7 +2184,7 @@
             {
                 "post_title": "Replacing controllers with PSR-15 compliant handlers in Dotkernel Light",
                 "post_date": "2025-03-03 10:59:08",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
@@ -2198,7 +2198,7 @@
             {
                 "post_title": "Dotkernel Light improvements: PSR-15 Handlers, Vite, PHPStan",
                 "post_date": "2025-05-02 12:12:43",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
@@ -2217,9 +2217,9 @@
         "isVisible": true,
         "articles": [
             {
-                "post_title": "SQL queries using Zend_Db – SELECT",
+                "post_title": "SQL queries using Zend_Db - SELECT",
                 "post_date": "2010-06-15 08:34:34",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Teo",
                     "github": ""
@@ -2242,7 +2242,7 @@
             {
                 "post_title": "What are returning the FETCH functions from Zend_Db",
                 "post_date": "2010-06-15 09:36:20",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Teo",
                     "github": ""
@@ -2265,7 +2265,7 @@
             {
                 "post_title": "Subqueries with Zend_Db",
                 "post_date": "2010-06-15 10:00:45",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Teo",
                     "github": ""
@@ -2288,7 +2288,7 @@
             {
                 "post_title": "INSERT, UPDATE, DELETE statements with Zend_Db",
                 "post_date": "2010-06-16 04:58:13",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Teo",
                     "github": ""
@@ -2311,7 +2311,7 @@
             {
                 "post_title": "Why use CURRENT_TIMESTAMP on a field that record date/time?",
                 "post_date": "2010-06-29 11:04:05",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Teo",
                     "github": ""
@@ -2325,7 +2325,7 @@
             {
                 "post_title": "Using LIKE wildcards with Zend_Db",
                 "post_date": "2010-09-10 08:39:56",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Teo",
                     "github": ""
@@ -2348,7 +2348,7 @@
             {
                 "post_title": "htaccess 301 redirect non-www to www",
                 "post_date": "2011-03-14 12:18:09",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -2427,7 +2427,7 @@
             {
                 "post_title": "ZF Is Retired. Laminas MVC Is Retiring. Consider It Solved",
                 "post_date": "2025-07-17 10:03:26",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
@@ -2441,7 +2441,7 @@
             {
                 "post_title": "Basic Security in Dotkernel Headless Platform",
                 "post_date": "2025-10-14 10:49:15",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
@@ -2497,7 +2497,7 @@
             {
                 "post_title": "Dotkernel API Client Side  Authorization",
                 "post_date": "2019-08-05 11:38:26",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -2511,7 +2511,7 @@
             {
                 "post_title": "Dotkernel API Server Side Authorization",
                 "post_date": "2019-09-05 12:03:05",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Alex Karajos",
                     "github": "alexmerlin"
@@ -2525,7 +2525,7 @@
             {
                 "post_title": "How to implement MailChimp in Dotkernel API",
                 "post_date": "2020-01-04 10:29:42",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Alex Karajos",
                     "github": "alexmerlin"
@@ -2539,7 +2539,7 @@
             {
                 "post_title": "Dotkernel API 1.0.0 Released",
                 "post_date": "2019-12-15 10:27:48",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Alex Karajos",
                     "github": "alexmerlin"
@@ -2553,7 +2553,7 @@
             {
                 "post_title": "API Endpoint to Collect Client Errors",
                 "post_date": "2022-11-07 10:37:56",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "SergiuB",
                     "github": "kakapiciu"
@@ -2567,7 +2567,7 @@
             {
                 "post_title": "Dotkernel API versus Laminas API Tools",
                 "post_date": "2024-06-03 12:09:10",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
@@ -2581,7 +2581,7 @@
             {
                 "post_title": "OpenAPI implementation in Dotkernel API",
                 "post_date": "2024-07-30 09:15:43",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
@@ -2595,7 +2595,7 @@
             {
                 "post_title": "Error reporting endpoint in Dotkernel API",
                 "post_date": "2024-08-29 15:35:59",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
@@ -2609,7 +2609,7 @@
             {
                 "post_title": "Content Negotiation in Dotkernel REST API",
                 "post_date": "2024-11-27 10:23:41",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
@@ -2623,7 +2623,7 @@
             {
                 "post_title": "API Client Migration: From Postman to Bruno",
                 "post_date": "2026-03-25 11:56:31",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
@@ -2644,7 +2644,7 @@
             {
                 "post_title": "Code Quality: How to setup phpcs in PHPStorm",
                 "post_date": "2024-01-05 10:34:28",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Alex Karajos",
                     "github": "alexmerlin"
@@ -2665,7 +2665,7 @@
             {
                 "post_title": "MIT versus LGPL in practice: Dotkernel case",
                 "post_date": "2024-04-15 09:59:06",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
@@ -2711,7 +2711,7 @@
             {
                 "post_title": "Understanding Middleware",
                 "post_date": "2025-05-22 09:10:43",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
@@ -2725,7 +2725,7 @@
             {
                 "post_title": "ConfigProvider - Bootstrap Modern PHP Applications",
                 "post_date": "2025-08-20 11:49:32",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
@@ -2739,7 +2739,7 @@
             {
                 "post_title": "Request Lifecycle for a Mezzio-Based Application",
                 "post_date": "2026-05-26 12:11:23",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
@@ -2760,7 +2760,7 @@
             {
                 "post_title": "Naming pattern for PSR-15 handlers in Dotkernel applications",
                 "post_date": "2025-04-17 09:16:22",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
@@ -2781,7 +2781,7 @@
             {
                 "post_title": "Dotkernel Headless Platform - The Whats, Hows and Whys",
                 "post_date": "2025-06-13 09:38:16",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
@@ -2795,7 +2795,7 @@
             {
                 "post_title": "Shared Core Submodule in Dotkernel Headless Platform",
                 "post_date": "2025-07-04 10:24:04",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
@@ -2809,7 +2809,7 @@
             {
                 "post_title": "Dotkernel API v6: The root of Dotkernel Headless Platform",
                 "post_date": "2025-07-22 15:27:38",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
@@ -2823,7 +2823,7 @@
             {
                 "post_title": "Complementary Admin in Dotkernel Headless Platform",
                 "post_date": "2025-08-06 10:41:45",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
@@ -2837,7 +2837,7 @@
             {
                 "post_title": "Dotkernel Queue - Asynchronous Execution in Dotkernel Headless Platform",
                 "post_date": "2025-09-04 09:25:35",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
@@ -2851,7 +2851,7 @@
             {
                 "post_title": "DotMaker - Generate common code in Dotkernel",
                 "post_date": "2025-09-12 12:01:08",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
@@ -2865,7 +2865,7 @@
             {
                 "post_title": "Evolution Pattern versus API Versioning",
                 "post_date": "2025-12-09 10:19:16",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
@@ -2879,7 +2879,7 @@
             {
                 "post_title": "Version 7 adds PostgreSQL, Native UUID and PHP 8.5",
                 "post_date": "2025-12-12 10:45:35",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
@@ -2893,7 +2893,7 @@
             {
                 "post_title": "Implementing Time-based One-Time Password (TOTP) in Dotkernel",
                 "post_date": "2026-04-03 12:12:11",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
