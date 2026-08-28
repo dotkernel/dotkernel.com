@@ -9,6 +9,7 @@ use Light\Blog\Repository\PostRepository;
 use RuntimeException;
 
 use function array_key_exists;
+use function array_merge;
 use function basename;
 use function count;
 use function explode;
@@ -28,16 +29,16 @@ class LlmsGenerator
 {
     /** @var list<non-empty-string> */
     private const CATEGORY_ORDER = [
+        'headless-platform',
+        'dotkernel-api',
+        'architecture',
+        'how-to',
+        'middleware',
+        'best-practice',
+        'design-pattern',
+        'dotkernel3',
         'dotkernel',
         'php-development',
-        'dotkernel-api',
-        'dotkernel3',
-        'headless-platform',
-        'middleware',
-        'architecture',
-        'design-pattern',
-        'how-to',
-        'best-practice',
     ];
 
     /**
@@ -50,11 +51,40 @@ class LlmsGenerator
         'php-troubleshooting',
         'licensing',
         'phpstorm',
+        'zend-framework',
+    ];
+
+    /**
+     * Individual posts demoted to `## Optional`, keyed by category slug - for a single article
+     * that doesn't warrant moving its whole category into `OPTIONAL_CATEGORIES`.
+     *
+     * @var array<non-empty-string, list<non-empty-string>>
+     */
+    private const array OPTIONAL_POSTS = [
+        'dotkernel'       => [
+            'commitment-to-php-new-zend-certified-engineers-zce-in-our-team',
+            'adding-composer-support-in-your-dotkernel-project',
+            'using-dotkernel-with-composer-dependencies',
+            'forcing-utf8-connections-and-character-set-in-mysql',
+            'adding-a-cors-implementation-to-zend-expressive',
+        ],
+        'best-practice'   => [
+            'insert-update-delete-statements-with-zend-db',
+            'sql-queries-using-zend-db-select',
+            'subqueries-with-zend-db',
+            'using-like-wildcards-with-zend-db',
+            'what-are-returning-the-fetch-functions-from-zend-db',
+        ],
+        'php-development' => [
+            'almalinux-9-in-wsl2-install-php-apache-mariadb-composer-phpmyadmin',
+            'mezzio-app-development-in-wsl2',
+        ],
     ];
 
     /** @var array<non-empty-string, non-empty-string> */
     private const CATEGORY_BLURBS = [
-        'dotkernel'           => 'the core framework - releases, caching, sessions, auth, WURFL/device detection',
+        'dotkernel'           => 'the core framework - dot-* components (caching, logging, mail, dependency injection),'
+            . ' Doctrine integration, and getting started with Dotkernel Light',
         'php-development'     => 'general PHP tooling, environments, IDEs, security',
         'how-to'              => 'practical guides - migrations, CORS, PSR-7, routing',
         'best-practice'       => 'coding standards and database access patterns',
@@ -89,6 +119,15 @@ class LlmsGenerator
      */
     private const string OSS_LIFECYCLE_SLUG = 'dotkernel-packages-oss-lifecycle';
 
+    /**
+     * The Contact page has no `public/contact.md` counterpart to source a title/description
+     * from, so it is hardcoded directly into `## Pages` instead.
+     */
+    private const string CONTACT_TITLE       = 'Contact';
+    private const string CONTACT_PATH        = 'contact/';
+    private const string CONTACT_DESCRIPTION = 'Get in touch, report a security issue, or find where to ask a '
+        . 'question and contribute to the project.';
+
     public function __construct(
         private readonly PostRepository $postRepository,
         private readonly string $sourceDir,
@@ -108,16 +147,20 @@ class LlmsGenerator
     {
         $postsByCategory = $this->groupPublishedPostsByCategory();
 
-        $sections = [];
+        $sections      = [];
+        $optionalLines = [];
         foreach (self::CATEGORY_ORDER as $slug) {
             if (! isset($postsByCategory[$slug])) {
                 continue;
             }
-            $sections[] = $this->buildCategorySection($slug, $postsByCategory[$slug]);
+            [$entries, $demoted] = $this->splitOptionalPosts($slug, $postsByCategory[$slug]);
+            $optionalLines       = array_merge($optionalLines, $demoted);
+            if ($entries !== []) {
+                $sections[] = $this->buildCategorySection($slug, $entries);
+            }
             unset($postsByCategory[$slug]);
         }
 
-        $optionalLines         = [];
         $optionalCategoryCount = 0;
         foreach (self::OPTIONAL_CATEGORIES as $slug) {
             if (! isset($postsByCategory[$slug])) {
@@ -132,7 +175,11 @@ class LlmsGenerator
 
         uasort($postsByCategory, static fn (array $a, array $b): int => count($b) - count($a));
         foreach ($postsByCategory as $slug => $posts) {
-            $sections[] = $this->buildCategorySection($slug, $posts);
+            [$entries, $demoted] = $this->splitOptionalPosts($slug, $posts);
+            $optionalLines       = array_merge($optionalLines, $demoted);
+            if ($entries !== []) {
+                $sections[] = $this->buildCategorySection($slug, $entries);
+            }
         }
 
         $written = $this->buildHeader()
@@ -176,15 +223,38 @@ class LlmsGenerator
 
     /**
      * @param list<array{post: Post, title: string, description: string}> $entries
+     * @return array{0: list<array{post: Post, title: string, description: string}>, 1: list<string>}
+     */
+    private function splitOptionalPosts(string $slug, array $entries): array
+    {
+        $optionalSlugs = self::OPTIONAL_POSTS[$slug] ?? [];
+        if ($optionalSlugs === []) {
+            return [$entries, []];
+        }
+
+        $kept     = [];
+        $optional = [];
+        foreach ($entries as $entry) {
+            if (in_array($entry['post']->getSlug(), $optionalSlugs, true)) {
+                $optional[] = $this->buildOptionalPostLink($slug, $entry);
+                continue;
+            }
+
+            $kept[] = $entry;
+        }
+
+        return [$kept, $optional];
+    }
+
+    /**
+     * @param list<array{post: Post, title: string, description: string}> $entries
      */
     private function buildCategorySection(string $slug, array $entries): string
     {
         $category = $entries[0]['post']->getCategory();
         $heading  = sprintf(
-            '## %s (%d post%s)',
-            $category->getName(),
-            count($entries),
-            count($entries) === 1 ? '' : 's',
+            '## %s',
+            $category->getName()
         );
 
         $lines = [$heading, ''];
@@ -256,7 +326,13 @@ class LlmsGenerator
             return '';
         }
 
-        $pages = [];
+        $pages = [
+            [
+                'title'       => self::CONTACT_TITLE,
+                'path'        => self::CONTACT_PATH,
+                'description' => self::CONTACT_DESCRIPTION,
+            ],
+        ];
         foreach (glob($this->pagesDir . '/*.md') ?: [] as $path) {
             $slug = basename($path, '.md');
             if ($slug === self::OSS_LIFECYCLE_SLUG || in_array($slug, self::DOCS_PAGES, true)) {
@@ -276,13 +352,9 @@ class LlmsGenerator
 
             $pages[] = [
                 'title'       => trim(explode('|', $title, 2)[0]),
-                'slug'        => $slug,
+                'path'        => $slug . '.md',
                 'description' => $description,
             ];
-        }
-
-        if ($pages === []) {
-            return '';
         }
 
         usort($pages, static fn (array $a, array $b): int => strcasecmp($a['title'], $b['title']));
@@ -290,10 +362,10 @@ class LlmsGenerator
         $lines = ['## Pages', ''];
         foreach ($pages as $page) {
             $lines[] = sprintf(
-                '- [%s](%s/%s.md): %s',
+                '- [%s](%s/%s): %s',
                 $page['title'],
                 $this->baseUrl,
-                $page['slug'],
+                $page['path'],
                 $page['description'],
             );
         }
@@ -357,9 +429,6 @@ class LlmsGenerator
             . 'and the history/release notes of the Dotkernel ecosystem going back to 2008. Posts are organized '
             . 'by category and attributed to an author; URLs follow the pattern `/{category-slug}/{post-slug}/`. '
             . 'Each post also has a Markdown version at `/{category-slug}/{post-slug}.md`.';
-
-        $about = 'the team behind Dotkernel - how the team works, its commitment to open source and the PHP '
-            . 'community, and how it uses AI under guardrails';
 
         return "# {$this->title}\n\n"
             . $intro . "\n\n"

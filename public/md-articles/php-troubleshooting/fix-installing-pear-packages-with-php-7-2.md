@@ -1,5 +1,5 @@
 ---
-title: "[FIX] Installing PEAR packages with PHP 7.2"
+title: "FIX: Installing PEAR packages with PHP 7.2"
 description: "How to fix the 'Cannot use result of built-in function in write context' PEAR error on PHP 7.2 by patching Archive_Tar's func_get_args() call, and how to reinstall the affected packages afterward."
 author: "Gabi DJ"
 date_published: "2018-05-18"
@@ -8,7 +8,7 @@ category: "PHP Troubleshooting"
 language: "en"
 ---
 
-# [FIX] Installing PEAR packages with PHP 7.2
+# FIX: Installing PEAR packages with PHP 7.2
 
 ## TL;DR
 
