@@ -1169,7 +1169,7 @@
             {
                 "post_title": "Zend Framework 1 End-of-Life",
                 "post_date": "2016-06-28 11:22:06",
-                "post_status": "archived",
+                "post_status": "published",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -1238,7 +1238,7 @@
             {
                 "post_title": "Sunsetting PEAR Channel for Zend Framework 1",
                 "post_date": "2022-11-11 12:55:22",
-                "post_status": "archived",
+                "post_status": "published",
                 "author": {
                     "display_name": "arhimede",
                     "github": "arhimede"
@@ -1951,7 +1951,7 @@
                 ]
             },
             {
-                "post_title": "[FIX] Installing PEAR packages with PHP 7.2",
+                "post_title": "FIX: Installing PEAR packages with PHP 7.2",
                 "post_date": "2018-05-18 11:19:49",
                 "post_status": "published",
                 "author": {

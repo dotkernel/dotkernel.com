@@ -117,8 +117,8 @@ class LlmsGeneratorTest extends UnitTest
         $this->createGenerator($posts)->write();
 
         $output      = $this->writtenOutput();
-        $dotkernelAt = mb_strpos($output, '## Dotkernel (');
-        $phpDevAt    = mb_strpos($output, '## PHP Development (');
+        $dotkernelAt = mb_strpos($output, '## Dotkernel');
+        $phpDevAt    = mb_strpos($output, '## PHP Development');
 
         $this->assertNotFalse($dotkernelAt);
         $this->assertNotFalse($phpDevAt);
@@ -140,9 +140,9 @@ class LlmsGeneratorTest extends UnitTest
         $this->createGenerator($posts)->write();
 
         $output      = $this->writtenOutput();
-        $dotkernelAt = mb_strpos($output, '## Dotkernel (');
-        $bigAt       = mb_strpos($output, '## Extra Big (2 posts)');
-        $smallAt     = mb_strpos($output, '## Extra Small (1 post)');
+        $dotkernelAt = mb_strpos($output, '## Dotkernel');
+        $bigAt       = mb_strpos($output, '## Extra Big');
+        $smallAt     = mb_strpos($output, '## Extra Small');
 
         $this->assertNotFalse($dotkernelAt);
         $this->assertNotFalse($bigAt);
@@ -164,7 +164,7 @@ class LlmsGeneratorTest extends UnitTest
         $this->createGenerator($posts)->write();
 
         $output      = $this->writtenOutput();
-        $dotkernelAt = mb_strpos($output, '## Dotkernel (');
+        $dotkernelAt = mb_strpos($output, '## Dotkernel');
         $optionalAt  = mb_strpos($output, '## Optional');
         $jsPostAt    = mb_strpos($output, '[JS post]');
 
@@ -254,7 +254,7 @@ class LlmsGeneratorTest extends UnitTest
         $this->createGenerator($posts)->write();
 
         $this->assertStringContainsString(
-            "## Dotkernel (1 post)\n\n*the core framework",
+            "## Dotkernel\n\n*the core framework",
             $this->writtenOutput()
         );
     }
@@ -269,22 +269,24 @@ class LlmsGeneratorTest extends UnitTest
         $this->createGenerator($posts)->write();
 
         $this->assertStringContainsString(
-            "## Unlisted (1 post)\n\n- [A post]",
+            "## Unlisted\n\n- [A post]",
             $this->writtenOutput()
         );
     }
 
     /**
+     * Category headings no longer carry a post count, regardless of how many posts they hold.
+     *
      * @throws Exception
      */
-    public function testWriteUsesSingularPostWordingForACategoryWithExactlyOnePost(): void
+    public function testWriteCategoryHeadingHasNoPostCount(): void
     {
         $posts = [$this->createPost('A post', 'a-post', 'dotkernel', 'Dotkernel')];
 
         $this->createGenerator($posts)->write();
 
-        $this->assertStringContainsString('## Dotkernel (1 post)', $this->writtenOutput());
-        $this->assertStringNotContainsString('(1 posts)', $this->writtenOutput());
+        $this->assertStringContainsString("## Dotkernel\n", $this->writtenOutput());
+        $this->assertStringNotContainsString('## Dotkernel (', $this->writtenOutput());
     }
 
     /**
@@ -360,13 +362,20 @@ class LlmsGeneratorTest extends UnitTest
     }
 
     /**
+     * The hardcoded Contact entry has no source file, so it still renders even when the
+     * directory otherwise has nothing to glob - and nothing else does, in that case.
+     *
      * @throws Exception
      */
-    public function testWriteOmitsThePagesSectionWhenThePagesDirectoryIsEmpty(): void
+    public function testWritePagesSectionContainsOnlyContactWhenThePagesDirectoryIsEmpty(): void
     {
         $this->createGenerator()->write();
 
-        $this->assertStringNotContainsString('## Pages', $this->writtenOutput());
+        $this->assertStringContainsString(
+            "## Pages\n\n- [Contact](https://example.test/contact/): Get in touch, report a security issue, "
+            . "or find where to ask a question and contribute to the project.\n\n",
+            $this->writtenOutput()
+        );
     }
 
     /**
@@ -433,7 +442,7 @@ class LlmsGeneratorTest extends UnitTest
         $output      = $this->writtenOutput();
         $docsAt      = mb_strpos($output, '## Docs');
         $pagesAt     = mb_strpos($output, '## Pages');
-        $dotkernelAt = mb_strpos($output, '## Dotkernel (');
+        $dotkernelAt = mb_strpos($output, '## Dotkernel');
 
         $this->assertNotFalse($docsAt);
         $this->assertNotFalse($pagesAt);
