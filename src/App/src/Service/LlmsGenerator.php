@@ -16,6 +16,7 @@ use function file_get_contents;
 use function file_put_contents;
 use function glob;
 use function implode;
+use function in_array;
 use function preg_match;
 use function sprintf;
 use function strcasecmp;
@@ -35,6 +36,8 @@ class LlmsGenerator
         'middleware',
         'architecture',
         'design-pattern',
+        'how-to',
+        'best-practice',
     ];
 
     /**
@@ -43,8 +46,6 @@ class LlmsGenerator
      * @var list<non-empty-string>
      */
     private const OPTIONAL_CATEGORIES = [
-        'best-practice',
-        'how-to',
         'javascript',
         'php-troubleshooting',
         'licensing',
@@ -69,6 +70,24 @@ class LlmsGenerator
         'licensing'           => 'open-source license comparisons',
         'design-pattern'      => 'naming conventions for PSR-15 handlers',
     ];
+
+    /**
+     * Static page slugs listed under `## Docs` instead of `## Pages` - reference/setup content
+     * rather than product pages.
+     *
+     * @var list<non-empty-string>
+     */
+    private const array DOCS_PAGES = [
+        'architecture',
+        'wsl2',
+        'dotboost',
+    ];
+
+    /**
+     * Slug of the packages lifecycle page, hardcoded under `## Docs` in `buildHeader()` -
+     * excluded from `## Pages` here so it is not listed twice.
+     */
+    private const string OSS_LIFECYCLE_SLUG = 'dotkernel-packages-oss-lifecycle';
 
     public function __construct(
         private readonly PostRepository $postRepository,
@@ -106,7 +125,7 @@ class LlmsGenerator
             }
             $optionalCategoryCount++;
             foreach ($postsByCategory[$slug] as $entry) {
-                $optionalLines[] = $this->buildPostLink($slug, $entry);
+                $optionalLines[] = $this->buildOptionalPostLink($slug, $entry);
             }
             unset($postsByCategory[$slug]);
         }
@@ -198,6 +217,22 @@ class LlmsGenerator
     }
 
     /**
+     * @param array{post: Post, title: string, description: string} $entry
+     */
+    private function buildOptionalPostLink(string $slug, array $entry): string
+    {
+        return sprintf(
+            '- [%s](%s/%s/%s.md) *(%s)*: %s',
+            $entry['title'],
+            $this->baseUrl,
+            $slug,
+            $entry['post']->getSlug(),
+            $entry['post']->getCategory()->getName(),
+            $entry['description'],
+        );
+    }
+
+    /**
      * @return array{title: string, description: string}
      */
     private function resolveFrontMatter(string $categorySlug, Post $post): array
@@ -223,6 +258,11 @@ class LlmsGenerator
 
         $pages = [];
         foreach (glob($this->pagesDir . '/*.md') ?: [] as $path) {
+            $slug = basename($path, '.md');
+            if ($slug === self::OSS_LIFECYCLE_SLUG || in_array($slug, self::DOCS_PAGES, true)) {
+                continue;
+            }
+
             $contents = file_get_contents($path);
             if ($contents === false) {
                 continue;
@@ -236,7 +276,7 @@ class LlmsGenerator
 
             $pages[] = [
                 'title'       => trim(explode('|', $title, 2)[0]),
-                'slug'        => basename($path, '.md'),
+                'slug'        => $slug,
                 'description' => $description,
             ];
         }
@@ -261,6 +301,41 @@ class LlmsGenerator
         return implode("\n", $lines) . "\n\n";
     }
 
+    /**
+     * Adds `self::DOCS_PAGES` under `## Docs`
+     */
+    private function buildDocsPageLinks(): string
+    {
+        if ($this->pagesDir === null) {
+            return '';
+        }
+
+        $lines = [];
+        foreach (self::DOCS_PAGES as $slug) {
+            $path     = sprintf('%s/%s.md', $this->pagesDir, $slug);
+            $contents = @file_get_contents($path);
+            if ($contents === false) {
+                continue;
+            }
+
+            $title       = $this->extractFrontMatterField($contents, 'title');
+            $description = $this->extractFrontMatterField($contents, 'description');
+            if ($title === null || $description === null) {
+                continue;
+            }
+
+            $lines[] = sprintf(
+                '- [%s](%s/%s.md): %s',
+                trim(explode('|', $title, 2)[0]),
+                $this->baseUrl,
+                $slug,
+                $description,
+            );
+        }
+
+        return $lines === [] ? '' : implode("\n", $lines) . "\n";
+    }
+
     private function extractFrontMatterField(string $contents, string $field): ?string
     {
         if (preg_match(sprintf('/^%s:\s*"(.*)"\s*$/m', $field), $contents, $matches) === 1) {
@@ -272,7 +347,7 @@ class LlmsGenerator
 
     private function buildHeader(): string
     {
-        $intro = '> Dotkernel is the technical blog for the Dotkernel headless PHP platform - a PSR-15 '
+        $intro = '> dotkernel.com is the technical blog for the Dotkernel headless PHP platform - a PSR-15 '
             . 'compliant application built on Mezzio and Laminas components. It publishes architecture '
             . 'write-ups, how-tos, and release notes for the platform applications - Dotkernel API, Admin '
             . 'and Queue - and for the standalone Dotkernel Light skeleton.';
@@ -280,7 +355,8 @@ class LlmsGenerator
         $body = 'Content spans foundational PHP/middleware architecture (PSR-7, PSR-15, request lifecycle, '
             . 'dependency injection), practical how-tos (Doctrine migrations, CORS, authentication, caching), '
             . 'and the history/release notes of the Dotkernel ecosystem going back to 2008. Posts are organized '
-            . 'by category and attributed to an author; URLs follow the pattern `/{category-slug}/{post-slug}/`.';
+            . 'by category and attributed to an author; URLs follow the pattern `/{category-slug}/{post-slug}/`. '
+            . 'Each post also has a Markdown version at `/{category-slug}/{post-slug}.md`.';
 
         $about = 'the team behind Dotkernel - how the team works, its commitment to open source and the PHP '
             . 'community, and how it uses AI under guardrails';
@@ -289,10 +365,8 @@ class LlmsGenerator
             . $intro . "\n\n"
             . $body . "\n\n"
             . "## Docs\n\n"
-            . "- [Blog]({$this->baseUrl}/blog/): full list of posts, most recent first, paginated\n"
-            . "- [Categories]({$this->baseUrl}/categories/): all categories with post counts\n"
-            . "- [OSS Package Lifecycle]({$this->baseUrl}/dotkernel-packages-oss-lifecycle/): "
+            . "- [OSS Package Lifecycle]({$this->baseUrl}/" . self::OSS_LIFECYCLE_SLUG . ".md): "
             . "support/maintenance status of Dotkernel's open-source packages\n"
-            . "- [Contact]({$this->baseUrl}/contact/)\n\n";
+            . $this->buildDocsPageLinks() . "\n";
     }
 }

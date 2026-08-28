@@ -22,18 +22,22 @@ class PackageGeneratorFactoryTest extends UnitTest
     public function testInvokeAppliesTheConfiguredValues(): void
     {
         $generator = (new PackageGeneratorFactory())($this->createContainer([
-            'github'   => ['org' => 'acme'],
-            'packages' => [
+            'github'      => ['org' => 'acme'],
+            'application' => ['url' => 'https://acme.example'],
+            'packages'    => [
                 'dataFile'        => '/tmp/acme-packages.json',
+                'markdownFile'    => '/tmp/acme-packages.md',
                 'ignoreRepos'     => ['acme.com'],
                 'includeArchived' => false,
             ],
         ]));
 
         $this->assertSame('/tmp/acme-packages.json', $generator->getDataFile());
+        $this->assertSame('/tmp/acme-packages.md', $generator->getMarkdownFile());
         $this->assertSame('acme', $this->readProperty($generator, 'org'));
         $this->assertSame(['acme.com'], $this->readProperty($generator, 'ignoreRepos'));
         $this->assertFalse($this->readProperty($generator, 'includeArchived'));
+        $this->assertSame('https://acme.example', $this->readProperty($generator, 'baseUrl'));
     }
 
     /**
@@ -46,9 +50,25 @@ class PackageGeneratorFactoryTest extends UnitTest
         $generator = (new PackageGeneratorFactory())($this->createContainer($config));
 
         $this->assertSame('data/dotkernel-packages.json', $generator->getDataFile());
+        $this->assertNull($generator->getMarkdownFile());
         $this->assertSame('dotkernel', $this->readProperty($generator, 'org'));
         $this->assertSame([], $this->readProperty($generator, 'ignoreRepos'));
         $this->assertTrue($this->readProperty($generator, 'includeArchived'));
+        $this->assertSame('', $this->readProperty($generator, 'baseUrl'));
+    }
+
+    /**
+     * Config is not guaranteed to hold a string for `markdownFile`.
+     *
+     * @throws Exception
+     */
+    public function testInvokeIgnoresANonStringMarkdownFile(): void
+    {
+        $generator = (new PackageGeneratorFactory())($this->createContainer([
+            'packages' => ['markdownFile' => 42],
+        ]));
+
+        $this->assertNull($generator->getMarkdownFile());
     }
 
     /**

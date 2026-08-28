@@ -11,6 +11,7 @@ use Psr\Container\ContainerInterface;
 use function assert;
 use function is_array;
 use function is_scalar;
+use function is_string;
 
 class PackageGeneratorFactory
 {
@@ -39,12 +40,18 @@ class PackageGeneratorFactory
             }
         }
 
+        $markdownFile = isset($packages['markdownFile']) && is_string($packages['markdownFile'])
+            ? $packages['markdownFile']
+            : null;
+
         return new PackageGenerator(
             $client,
             (string) ($packages['dataFile'] ?? 'data/dotkernel-packages.json'),
             (string) ($github['org'] ?? 'dotkernel'),
             $ignoreRepos,
             (bool) ($packages['includeArchived'] ?? true),
+            $markdownFile,
+            (string) ($config['application']['url'] ?? ''),
         );
     }
 }
