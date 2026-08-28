@@ -16,6 +16,7 @@ use function file_get_contents;
 use function file_put_contents;
 use function glob;
 use function implode;
+use function in_array;
 use function preg_match;
 use function sprintf;
 use function strcasecmp;
@@ -69,6 +70,24 @@ class LlmsGenerator
         'licensing'           => 'open-source license comparisons',
         'design-pattern'      => 'naming conventions for PSR-15 handlers',
     ];
+
+    /**
+     * Static page slugs listed under `## Docs` instead of `## Pages` - reference/setup content
+     * rather than product pages.
+     *
+     * @var list<non-empty-string>
+     */
+    private const array DOCS_PAGES = [
+        'architecture',
+        'wsl2',
+        'dotboost',
+    ];
+
+    /**
+     * Slug of the packages lifecycle page, hardcoded under `## Docs` in `buildHeader()` -
+     * excluded from `## Pages` here so it is not listed twice.
+     */
+    private const string OSS_LIFECYCLE_SLUG = 'dotkernel-packages-oss-lifecycle';
 
     public function __construct(
         private readonly PostRepository $postRepository,
@@ -239,6 +258,11 @@ class LlmsGenerator
 
         $pages = [];
         foreach (glob($this->pagesDir . '/*.md') ?: [] as $path) {
+            $slug = basename($path, '.md');
+            if ($slug === self::OSS_LIFECYCLE_SLUG || in_array($slug, self::DOCS_PAGES, true)) {
+                continue;
+            }
+
             $contents = file_get_contents($path);
             if ($contents === false) {
                 continue;
@@ -252,7 +276,7 @@ class LlmsGenerator
 
             $pages[] = [
                 'title'       => trim(explode('|', $title, 2)[0]),
-                'slug'        => basename($path, '.md'),
+                'slug'        => $slug,
                 'description' => $description,
             ];
         }
@@ -275,6 +299,41 @@ class LlmsGenerator
         }
 
         return implode("\n", $lines) . "\n\n";
+    }
+
+    /**
+     * Adds `self::DOCS_PAGES` under `## Docs`
+     */
+    private function buildDocsPageLinks(): string
+    {
+        if ($this->pagesDir === null) {
+            return '';
+        }
+
+        $lines = [];
+        foreach (self::DOCS_PAGES as $slug) {
+            $path     = sprintf('%s/%s.md', $this->pagesDir, $slug);
+            $contents = @file_get_contents($path);
+            if ($contents === false) {
+                continue;
+            }
+
+            $title       = $this->extractFrontMatterField($contents, 'title');
+            $description = $this->extractFrontMatterField($contents, 'description');
+            if ($title === null || $description === null) {
+                continue;
+            }
+
+            $lines[] = sprintf(
+                '- [%s](%s/%s.md): %s',
+                trim(explode('|', $title, 2)[0]),
+                $this->baseUrl,
+                $slug,
+                $description,
+            );
+        }
+
+        return $lines === [] ? '' : implode("\n", $lines) . "\n";
     }
 
     private function extractFrontMatterField(string $contents, string $field): ?string
@@ -306,8 +365,8 @@ class LlmsGenerator
             . $intro . "\n\n"
             . $body . "\n\n"
             . "## Docs\n\n"
-            . "- [OSS Package Lifecycle]({$this->baseUrl}/dotkernel-packages-oss-lifecycle.md): "
+            . "- [OSS Package Lifecycle]({$this->baseUrl}/" . self::OSS_LIFECYCLE_SLUG . ".md): "
             . "support/maintenance status of Dotkernel's open-source packages\n"
-            . "- [Contact]({$this->baseUrl}/contact/)\n\n";
+            . $this->buildDocsPageLinks() . "\n";
     }
 }
