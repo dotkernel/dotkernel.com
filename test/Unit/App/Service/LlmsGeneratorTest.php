@@ -199,7 +199,7 @@ class LlmsGeneratorTest extends UnitTest
 
         $output = $this->writtenOutput();
         $this->assertStringContainsString(
-            '- [JS post](https://example.test/javascript/js-post.md): An excerpt.',
+            '- [JS post](https://example.test/javascript/js-post.md) *(Javascript)*: An excerpt.',
             $output
         );
         $this->assertStringNotContainsString('## Javascript', $output);
@@ -310,8 +310,10 @@ class LlmsGeneratorTest extends UnitTest
         $this->createGenerator(baseUrl: 'https://example.test')->write();
 
         $output = $this->writtenOutput();
-        $this->assertStringContainsString('[Blog](https://example.test/blog/):', $output);
-        $this->assertStringContainsString('[Contact](https://example.test/contact/)', $output);
+        $this->assertStringContainsString(
+            '[OSS Package Lifecycle](https://example.test/dotkernel-packages-oss-lifecycle.md):',
+            $output
+        );
     }
 
     /**

@@ -16,6 +16,7 @@ use function count;
 use function dirname;
 use function file_get_contents;
 use function file_put_contents;
+use function implode;
 use function is_array;
 use function is_dir;
 use function is_file;
@@ -25,9 +26,11 @@ use function json_encode;
 use function mkdir;
 use function preg_match;
 use function rename;
+use function rtrim;
 use function sprintf;
 use function strtolower;
 use function trim;
+use function ucfirst;
 use function unlink;
 use function usort;
 
@@ -41,6 +44,9 @@ use const PHP_INT_MAX;
  *
  * A repository is considered a published package when it contains an `OSSMETADATA` file; that
  * file is also the source of the lifecycle value, so repositories opt in simply by adding it.
+ *
+ * Alongside the JSON listing consumed by the packages page, the same data is rendered to a
+ * Markdown file for `llms.txt`/`llms-full.txt` to pick up.
  *
  * @phpstan-type PackageData array{
  *     name: string,
@@ -70,6 +76,17 @@ readonly class PackageGenerator
     ];
 
     /**
+     * Display labels for the Markdown listing, matching the packages page. Anything unrecognised
+     * falls back to a capitalised version of the raw value.
+     */
+    private const array LIFECYCLE_LABELS = [
+        'active'        => 'Active',
+        'maintenance'   => 'Maintenance',
+        'security-only' => 'Security-only',
+        'archived'      => 'Archived',
+    ];
+
+    /**
      * Fraction of failed requests above which the run is abandoned rather than writing a
      * partial listing over a known-good one.
      */
@@ -86,12 +103,19 @@ readonly class PackageGenerator
         private string $org,
         private array $ignoreRepos,
         private bool $includeArchived,
+        private ?string $markdownFile = null,
+        private string $baseUrl = '',
     ) {
     }
 
     public function getDataFile(): string
     {
         return $this->dataFile;
+    }
+
+    public function getMarkdownFile(): ?string
+    {
+        return $this->markdownFile;
     }
 
     /**
@@ -201,7 +225,9 @@ readonly class PackageGenerator
             return [$leftRank, $left['name']] <=> [$rightRank, $right['name']];
         });
 
-        $this->save($packages);
+        $generatedAt = new DateTimeImmutable();
+        $this->save($packages, $generatedAt);
+        $this->saveMarkdown($packages, $generatedAt);
 
         $ignoredMisses = [];
         foreach (array_keys($ignore) as $ignored) {
@@ -247,10 +273,10 @@ readonly class PackageGenerator
      * @throws RuntimeException
      * @throws JsonException
      */
-    private function save(array $packages): void
+    private function save(array $packages, DateTimeImmutable $generatedAt): void
     {
         $payload = [
-            'generated_at' => (new DateTimeImmutable())->format(DateTimeInterface::ATOM),
+            'generated_at' => $generatedAt->format(DateTimeInterface::ATOM),
             'org'          => $this->org,
             'packages'     => $packages,
         ];
@@ -260,19 +286,95 @@ readonly class PackageGenerator
             JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR
         );
 
-        $directory = dirname($this->dataFile);
+        $this->writeAtomically($this->dataFile, $json);
+    }
+
+    /**
+     * @param list<PackageData> $packages
+     * @throws RuntimeException
+     */
+    private function saveMarkdown(array $packages, DateTimeImmutable $generatedAt): void
+    {
+        if ($this->markdownFile === null) {
+            return;
+        }
+
+        $this->writeAtomically($this->markdownFile, $this->buildMarkdown($packages, $generatedAt));
+    }
+
+    /**
+     * @param list<PackageData> $packages
+     */
+    private function buildMarkdown(array $packages, DateTimeImmutable $generatedAt): string
+    {
+        $frontMatter = "---\n"
+            . "title: \"Dotkernel Packages OSS Lifecycle | Support status for every dot-* package\"\n"
+            . "description: \"Every Dotkernel package declares its own lifecycle - active, maintenance, "
+            . "security-only or archived - in its OSSMETADATA file, along with the PHP versions it supports.\"\n"
+            . sprintf("canonical_url: \"%s/dotkernel-packages-oss-lifecycle/\"\n", rtrim($this->baseUrl, '/'))
+            . "language: \"en\"\n"
+            . "---\n";
+
+        $lines = [
+            '# Dotkernel Packages OSS Lifecycle',
+            '',
+            sprintf(
+                'Generated %s from each repository\'s `OSSMETADATA` file.',
+                $generatedAt->format('Y-m-d')
+            ),
+        ];
+
+        $currentLifecycle = null;
+        foreach ($packages as $package) {
+            if ($package['lifecycle'] !== $currentLifecycle) {
+                $currentLifecycle = $package['lifecycle'];
+                $lines[]          = '';
+                $lines[]          = '## ' . $this->lifecycleLabel($currentLifecycle);
+                $lines[]          = '';
+            }
+
+            $lines[] = $this->buildMarkdownPackageLine($package);
+        }
+
+        return $frontMatter . "\n" . implode("\n", $lines) . "\n";
+    }
+
+    /**
+     * @param PackageData $package
+     */
+    private function buildMarkdownPackageLine(array $package): string
+    {
+        $phpSuffix   = $package['php'] !== null ? sprintf(' (PHP %s)', $package['php']) : '';
+        $description = $package['description'] !== null ? ': ' . $package['description'] : '';
+        $archived    = $package['archived'] ? ' - archived on GitHub' : '';
+
+        return sprintf('- [%s](%s)%s%s%s', $package['name'], $package['url'], $phpSuffix, $description, $archived);
+    }
+
+    private function lifecycleLabel(string $lifecycle): string
+    {
+        return self::LIFECYCLE_LABELS[$lifecycle] ?? ucfirst($lifecycle);
+    }
+
+    /**
+     * Writes to a sibling file and renames, so a crash mid-write cannot leave truncated content
+     * behind for a reader.
+     *
+     * @throws RuntimeException
+     */
+    private function writeAtomically(string $path, string $contents): void
+    {
+        $directory = dirname($path);
         if (! is_dir($directory) && ! mkdir($directory, 0775, true) && ! is_dir($directory)) {
             throw new RuntimeException(sprintf('Unable to create directory %s.', $directory));
         }
 
-        // Write to a sibling file and rename, so a crash mid-write cannot leave truncated JSON
-        // behind for the request handler to read.
-        $temporaryFile = $this->dataFile . '.tmp';
-        if (file_put_contents($temporaryFile, $json) === false) {
+        $temporaryFile = $path . '.tmp';
+        if (file_put_contents($temporaryFile, $contents) === false) {
             throw new RuntimeException(sprintf('Unable to write %s.', $temporaryFile));
         }
 
-        if (! rename($temporaryFile, $this->dataFile)) {
+        if (! rename($temporaryFile, $path)) {
             unlink($temporaryFile);
             throw new RuntimeException(sprintf('Unable to move %s into place.', $temporaryFile));
         }

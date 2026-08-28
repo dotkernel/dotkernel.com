@@ -43,6 +43,10 @@ printf(
     PHP_EOL
 );
 
+if ($packageGenerator->getMarkdownFile() !== null) {
+    printf('Markdown listing written to %s%s', $packageGenerator->getMarkdownFile(), PHP_EOL);
+}
+
 if ($report['skipped'] !== []) {
     printf('Skipped by ignoreRepos: %s%s', implode(', ', $report['skipped']), PHP_EOL);
 }
