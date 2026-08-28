@@ -1,5 +1,5 @@
 ---
-title: "SQL queries using Zend_Db – SELECT"
+title: "SQL queries using Zend_Db - SELECT"
 description: "How to write SELECT queries with JOINs and WHERE IN clauses using Zend_Db, alongside their equivalent raw SQL."
 author: "Teo"
 date_published: "2010-06-15"
@@ -8,7 +8,7 @@ category: "Best Practice"
 language: "en"
 ---
 
-# SQL queries using Zend_Db – SELECT
+# SQL queries using Zend_Db - SELECT
 
 ## TL;DR
 

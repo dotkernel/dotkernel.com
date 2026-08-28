@@ -35,6 +35,8 @@ class LlmsGenerator
         'middleware',
         'architecture',
         'design-pattern',
+        'how-to',
+        'best-practice',
     ];
 
     /**
@@ -43,8 +45,6 @@ class LlmsGenerator
      * @var list<non-empty-string>
      */
     private const OPTIONAL_CATEGORIES = [
-        'best-practice',
-        'how-to',
         'javascript',
         'php-troubleshooting',
         'licensing',
@@ -106,7 +106,7 @@ class LlmsGenerator
             }
             $optionalCategoryCount++;
             foreach ($postsByCategory[$slug] as $entry) {
-                $optionalLines[] = $this->buildPostLink($slug, $entry);
+                $optionalLines[] = $this->buildOptionalPostLink($slug, $entry);
             }
             unset($postsByCategory[$slug]);
         }
@@ -198,6 +198,22 @@ class LlmsGenerator
     }
 
     /**
+     * @param array{post: Post, title: string, description: string} $entry
+     */
+    private function buildOptionalPostLink(string $slug, array $entry): string
+    {
+        return sprintf(
+            '- [%s](%s/%s/%s.md) *(%s)*: %s',
+            $entry['title'],
+            $this->baseUrl,
+            $slug,
+            $entry['post']->getSlug(),
+            $entry['post']->getCategory()->getName(),
+            $entry['description'],
+        );
+    }
+
+    /**
      * @return array{title: string, description: string}
      */
     private function resolveFrontMatter(string $categorySlug, Post $post): array
@@ -272,7 +288,7 @@ class LlmsGenerator
 
     private function buildHeader(): string
     {
-        $intro = '> Dotkernel is the technical blog for the Dotkernel headless PHP platform - a PSR-15 '
+        $intro = '> dotkernel.com is the technical blog for the Dotkernel headless PHP platform - a PSR-15 '
             . 'compliant application built on Mezzio and Laminas components. It publishes architecture '
             . 'write-ups, how-tos, and release notes for the platform applications - Dotkernel API, Admin '
             . 'and Queue - and for the standalone Dotkernel Light skeleton.';
@@ -280,7 +296,8 @@ class LlmsGenerator
         $body = 'Content spans foundational PHP/middleware architecture (PSR-7, PSR-15, request lifecycle, '
             . 'dependency injection), practical how-tos (Doctrine migrations, CORS, authentication, caching), '
             . 'and the history/release notes of the Dotkernel ecosystem going back to 2008. Posts are organized '
-            . 'by category and attributed to an author; URLs follow the pattern `/{category-slug}/{post-slug}/`.';
+            . 'by category and attributed to an author; URLs follow the pattern `/{category-slug}/{post-slug}/`. '
+            . 'Each post also has a Markdown version at `/{category-slug}/{post-slug}.md`.';
 
         $about = 'the team behind Dotkernel - how the team works, its commitment to open source and the PHP '
             . 'community, and how it uses AI under guardrails';
@@ -289,9 +306,7 @@ class LlmsGenerator
             . $intro . "\n\n"
             . $body . "\n\n"
             . "## Docs\n\n"
-            . "- [Blog]({$this->baseUrl}/blog/): full list of posts, most recent first, paginated\n"
-            . "- [Categories]({$this->baseUrl}/categories/): all categories with post counts\n"
-            . "- [OSS Package Lifecycle]({$this->baseUrl}/dotkernel-packages-oss-lifecycle/): "
+            . "- [OSS Package Lifecycle]({$this->baseUrl}/dotkernel-packages-oss-lifecycle.md): "
             . "support/maintenance status of Dotkernel's open-source packages\n"
             . "- [Contact]({$this->baseUrl}/contact/)\n\n";
     }
