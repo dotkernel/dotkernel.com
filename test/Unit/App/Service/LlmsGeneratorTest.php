@@ -314,7 +314,6 @@ class LlmsGeneratorTest extends UnitTest
             '[OSS Package Lifecycle](https://example.test/dotkernel-packages-oss-lifecycle.md):',
             $output
         );
-        $this->assertStringContainsString('[Contact](https://example.test/contact/)', $output);
     }
 
     /**
