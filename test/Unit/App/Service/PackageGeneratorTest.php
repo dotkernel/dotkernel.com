@@ -21,6 +21,7 @@ use function file_put_contents;
 use function is_dir;
 use function is_file;
 use function json_decode;
+use function mb_strpos;
 use function mkdir;
 use function random_bytes;
 use function rmdir;
@@ -40,22 +41,35 @@ class PackageGeneratorTest extends UnitTest
      */
     private string $dataFile;
 
+    /**
+     * Lives alongside `dataFile` in the same throwaway directory.
+     */
+    private string $markdownFile;
+
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->dataFile = sprintf(
-            '%s%slight-packages-%s%sdotkernel-packages.json',
+        $directory = sprintf(
+            '%s%slight-packages-%s',
             sys_get_temp_dir(),
             DIRECTORY_SEPARATOR,
             bin2hex(random_bytes(8)),
-            DIRECTORY_SEPARATOR
         );
+
+        $this->dataFile     = $directory . DIRECTORY_SEPARATOR . 'dotkernel-packages.json';
+        $this->markdownFile = $directory . DIRECTORY_SEPARATOR . 'dotkernel-packages-oss-lifecycle.md';
     }
 
     protected function tearDown(): void
     {
-        foreach ([$this->dataFile, $this->dataFile . '.tmp'] as $file) {
+        $files = [
+            $this->dataFile,
+            $this->dataFile . '.tmp',
+            $this->markdownFile,
+            $this->markdownFile . '.tmp',
+        ];
+        foreach ($files as $file) {
             if (is_file($file)) {
                 unlink($file);
             }
@@ -74,6 +88,20 @@ class PackageGeneratorTest extends UnitTest
         $generator = $this->createGenerator([], []);
 
         $this->assertSame($this->dataFile, $generator->getDataFile());
+    }
+
+    public function testGetMarkdownFileReturnsNullWhenNoneIsConfigured(): void
+    {
+        $generator = $this->createGenerator([], []);
+
+        $this->assertNull($generator->getMarkdownFile());
+    }
+
+    public function testGetMarkdownFileReturnsTheConfiguredPath(): void
+    {
+        $generator = $this->createGenerator([], [], markdownFile: $this->markdownFile);
+
+        $this->assertSame($this->markdownFile, $generator->getMarkdownFile());
     }
 
     /**
@@ -153,6 +181,132 @@ class PackageGeneratorTest extends UnitTest
         )->write();
 
         $this->assertFileDoesNotExist($this->dataFile . '.tmp');
+    }
+
+    /**
+     * No `markdownFile` configured is the default, and must not be treated as an error.
+     *
+     * @throws Exception
+     */
+    public function testWriteDoesNotCreateAMarkdownFileWhenNoneIsConfigured(): void
+    {
+        $this->createGenerator(
+            [['name' => 'dot-cache', 'archived' => false]],
+            [$this->metadataPath('dot-cache') => 'osslifecycle=active']
+        )->write();
+
+        $this->assertFileDoesNotExist($this->markdownFile);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testWriteCreatesTheMarkdownFileWithFrontMatterAndPackagesGroupedByLifecycle(): void
+    {
+        $generator = $this->createGenerator(
+            [
+                [
+                    'name'        => 'dot-cache',
+                    'description' => 'Dotkernel cache component',
+                    'archived'    => false,
+                ],
+                [
+                    'name'     => 'dot-console',
+                    'archived' => true,
+                ],
+                [
+                    'name'        => 'dot-mail',
+                    'description' => 'Mail component',
+                    'archived'    => false,
+                ],
+            ],
+            [
+                $this->metadataPath('dot-cache')   => 'osslifecycle=active',
+                $this->composerPath('dot-cache')   => '{"require":{"php":"~8.3.0 || ~8.4.0"}}',
+                $this->metadataPath('dot-console') => 'osslifecycle=archived',
+                $this->metadataPath('dot-mail')    => 'osslifecycle=maintenance',
+            ],
+            markdownFile: $this->markdownFile,
+            baseUrl: 'https://example.test',
+        );
+
+        $generator->write();
+
+        $markdown = $this->markdownContents();
+
+        $this->assertStringStartsWith(
+            "---\n"
+            . "title: \"Dotkernel Packages OSS Lifecycle | Support status for every dot-* package\"\n",
+            $markdown
+        );
+        $this->assertStringContainsString(
+            'canonical_url: "https://example.test/dotkernel-packages-oss-lifecycle/"',
+            $markdown
+        );
+        $this->assertStringContainsString("language: \"en\"\n---\n", $markdown);
+        $this->assertStringContainsString('# Dotkernel Packages OSS Lifecycle', $markdown);
+
+        // Grouped under a heading per lifecycle, in the same order as the JSON listing.
+        $activeAt      = mb_strpos($markdown, '## Active');
+        $archivedAt    = mb_strpos($markdown, '## Archived');
+        $maintenanceAt = mb_strpos($markdown, '## Maintenance');
+        $cacheAt       = mb_strpos($markdown, '[dot-cache]');
+        $consoleAt     = mb_strpos($markdown, '[dot-console]');
+        $mailAt        = mb_strpos($markdown, '[dot-mail]');
+
+        $this->assertNotFalse($activeAt);
+        $this->assertNotFalse($archivedAt);
+        $this->assertNotFalse($maintenanceAt);
+        $this->assertLessThan($cacheAt, $activeAt);
+        $this->assertLessThan($mailAt, $maintenanceAt);
+        $this->assertLessThan($consoleAt, $archivedAt);
+
+        $this->assertStringContainsString(
+            '- [dot-cache](https://github.com/dotkernel/dot-cache) (PHP ~8.3.0 || ~8.4.0): '
+            . 'Dotkernel cache component',
+            $markdown
+        );
+        $this->assertStringContainsString(
+            '- [dot-console](https://github.com/dotkernel/dot-console) - archived on GitHub',
+            $markdown
+        );
+        $this->assertStringContainsString(
+            '- [dot-mail](https://github.com/dotkernel/dot-mail): Mail component',
+            $markdown
+        );
+    }
+
+    /**
+     * `lifecycleLabel()` falls back to a capitalised version of the raw value for anything not in
+     * `LIFECYCLE_LABELS`.
+     *
+     * @throws Exception
+     */
+    public function testWriteMarkdownFileFallsBackToACapitalisedLabelForAnUnrecognisedLifecycle(): void
+    {
+        $this->createGenerator(
+            [['name' => 'dot-experimental', 'archived' => false]],
+            [$this->metadataPath('dot-experimental') => 'osslifecycle=experimental'],
+            markdownFile: $this->markdownFile,
+        )->write();
+
+        $this->assertStringContainsString('## Experimental', $this->markdownContents());
+    }
+
+    /**
+     * Same crash-safety guarantee as the JSON listing.
+     *
+     * @throws Exception
+     */
+    public function testWriteLeavesNoTemporaryMarkdownFileBehind(): void
+    {
+        $this->createGenerator(
+            [['name' => 'dot-cache', 'archived' => false]],
+            [$this->metadataPath('dot-cache') => 'osslifecycle=active'],
+            markdownFile: $this->markdownFile,
+        )->write();
+
+        $this->assertFileDoesNotExist($this->markdownFile . '.tmp');
     }
 
     /**
@@ -640,6 +794,8 @@ class PackageGeneratorTest extends UnitTest
         array $files,
         array $ignoreRepos = [],
         bool $includeArchived = true,
+        ?string $markdownFile = null,
+        string $baseUrl = '',
     ): PackageGenerator {
         $client = $this->createMock(GitHubClientInterface::class);
 
@@ -672,7 +828,9 @@ class PackageGeneratorTest extends UnitTest
             $this->dataFile,
             self::ORG,
             $ignoreRepos,
-            $includeArchived
+            $includeArchived,
+            $markdownFile,
+            $baseUrl,
         );
     }
 
@@ -724,5 +882,15 @@ class PackageGeneratorTest extends UnitTest
         $this->assertIsArray($decoded['packages']);
 
         return $decoded;
+    }
+
+    private function markdownContents(): string
+    {
+        $this->assertFileExists($this->markdownFile);
+
+        $contents = file_get_contents($this->markdownFile);
+        $this->assertIsString($contents);
+
+        return $contents;
     }
 }
