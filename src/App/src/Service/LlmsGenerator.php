@@ -61,11 +61,23 @@ class LlmsGenerator
      * @var array<non-empty-string, list<non-empty-string>>
      */
     private const array OPTIONAL_POSTS = [
-        'dotkernel' => [
+        'dotkernel'       => [
             'commitment-to-php-new-zend-certified-engineers-zce-in-our-team',
             'adding-composer-support-in-your-dotkernel-project',
             'using-dotkernel-with-composer-dependencies',
             'forcing-utf8-connections-and-character-set-in-mysql',
+            'adding-a-cors-implementation-to-zend-expressive',
+        ],
+        'best-practice'   => [
+            'insert-update-delete-statements-with-zend-db',
+            'sql-queries-using-zend-db-select',
+            'subqueries-with-zend-db',
+            'using-like-wildcards-with-zend-db',
+            'what-are-returning-the-fetch-functions-from-zend-db',
+        ],
+        'php-development' => [
+            'almalinux-9-in-wsl2-install-php-apache-mariadb-composer-phpmyadmin',
+            'mezzio-app-development-in-wsl2',
         ],
     ];
 
