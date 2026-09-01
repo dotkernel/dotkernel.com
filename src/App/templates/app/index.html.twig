@@ -1,6 +1,7 @@
 {% extends '@layout/default.html.twig' %}
 {% block json_ld %} {{ include('@jsonld/index.jsonld.twig') }} {% endblock %}
 {% block title %}A PSR-15 compliant application{% endblock %}
+{% block head_links %}<link rel="alternate" type="text/markdown" href="/index.md">{% endblock %}
 
 {% block content %}
 
@@ -10,7 +11,7 @@
                 <span class="eyebrow">PSR-15 . middleware-first architecture</span>
                 <h1>A headless platform for building modern web applications</h1>
                 <p class="sub"> Dotkernel is a set of open-source PHP applications - REST API, admin, and queue - that ship assembled on Mezzio and Laminas, over one shared Doctrine domain layer called Core.
-                    OAuth2, RBAC, HAL, and a generated OpenAPI spec are wired together on install, not left for you to choose.</p>
+                                OAuth2, RBAC, HAL, and a generated OpenAPI spec are wired together on install, not left for you to choose.</p>
                 <div class="hero-ctas">
                     <a class="btn btn-primary" href="https://docs.dotkernel.org" target="_blank" rel="noopener">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
@@ -28,8 +29,8 @@
                 </div>
             </div>
 
-            <div class="pipeline" >
-                <div class="pipeline-label" ><span>Request lifecycle</span></div>
+            <div class="pipeline">
+                <div class="pipeline-label"><span>Request lifecycle</span></div>
                 <div class="pipeline-track">
                     <div class="pl-packet" aria-hidden="true"></div>
                     <div class="pl-step"><span class="name">Router</span><span class="tag">FastRoute</span></div>
@@ -61,36 +62,36 @@
             </div>
             <div class="traits">
                 <div class="trait">
-                    <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/traffic-sign-50.svg') }}" alt="" loading="lazy">
+                    <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/traffic-sign-50.svg') }}" alt="Doctrine, not Active Record" loading="lazy">
                     <p>Doctrine, not Active Record</p>
                 </div>
 
                 <div class="trait">
-                    <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/success-50.svg') }}" alt="" loading="lazy">
+                    <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/success-50.svg') }}" alt="Explicit wiring, no magic" loading="lazy">
                     <p>Explicit wiring, no magic</p>
                 </div>
 
                 <div class="trait">
-                    <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/speed-radar-50.svg') }}" alt="Lightning-fast performance" loading="lazy">
+                    <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/speed-radar-50.svg') }}" alt="One domain, three deployables" loading="lazy">
                     <p>One domain, three deployables</p>
                 </div>
 
                 <div class="trait">
-                    <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/maintenance.svg') }}" alt="Easier maintenance and onboarding" loading="lazy">
+                    <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/maintenance.svg') }}" alt="Dependencies that move slowly" loading="lazy">
                     <p>Dependencies that move slowly</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section style="background:var(--surface-2);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);">
+    <section class="section-bg-light">
         <div class="wrap">
             <div class="section-head">
                 <span class="eyebrow">Headless Platform</span>
                 <h2>Three applications, one platform</h2>
                 <p>API, Admin, and Queue declare the same <code>Core</code> namespaces - the same entities, repositories, and services.
-                    A <code>User</code> means the same thing to the endpoint that creates it, the admin screen that moderates it, and the worker that emails it.
-                    Three deployables that scale independently and never disagree about the domain.</p>
+                  A <code>User</code> means the same thing to the endpoint that creates it, the admin screen that moderates it, and the worker that emails it.
+                Three deployables that scale independently and never disagree about the domain.</p>
             </div>
 
             <div class="core-band row align-items-center gy-3">
@@ -205,7 +206,7 @@
         </div>
     </section>
 
-    <section style="background:var(--surface-2);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);">
+    <section class="section-bg-light">
         <div class="wrap">
             <div class="section-head">
                 <span class="eyebrow">Other skeletons</span>
@@ -258,9 +259,9 @@
         </div>
     </section>
 
-    <section style="background:var(--surface-2);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);" id="components-dot-packages">
+    <section>
         <div class="wrap">
-            <div class="section-head" >
+            <div class="section-head" id="components-dot-packages">
                 <span class="eyebrow">Components</span>
                 <h2>Every layer, on its own</h2>
                 <p>Small, independent dot-* packages - pull in what you need. Lifecycle status for each lives on the <a href="https://www.dotkernel.com/dotkernel-packages-oss-lifecycle/" style="color:var(--teal);">Packages Lifecycle</a> page.</p>
@@ -361,7 +362,7 @@
         </div>
     </section>
     {% if posts is defined and posts is iterable %}
-        <section>
+        <section style="background:var(--surface-2);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);">
             <div class="wrap">
                 <div class="section-head">
                     <span class="eyebrow">From the blog</span>
