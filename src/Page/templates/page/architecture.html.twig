@@ -168,7 +168,7 @@
         </div>
     </section>
 
-    <section style="background:var(--surface-2);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);">
+    <section style="background:var(--surface-2);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);" id="middleware-flow">
         <div class="wrap">
             <div class="section-head">
                 <span class="eyebrow">Middleware flow</span>
@@ -398,7 +398,7 @@
     </section>
 
     <section>
-        <div class="wrap">
+        <div class="wrap" id="library-flow">
             <div class="section-head">
                 <span class="eyebrow">Library flow</span>
                 <h2>The packages underneath, in the same order</h2>
@@ -447,7 +447,7 @@
                     <div class="lib-node is-edge">Response</div>
                 </div>
 
-                <div class="libflow">
+                <div class="libflow" id="library-flow-email">
                     <h4>Flow for sending an email</h4>
                     <p class="libflow-sub">Identical until the domain layer, where <code>dot-mail</code> joins in.</p>
 
