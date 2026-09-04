@@ -68,7 +68,8 @@ $bp-tablet: 900px;
 
 // ---------- Layout ----------
 .post-body-wrap {
-  padding: 52px 0 72px;
+  padding-top: 52px;
+  padding-bottom: 72px;
 }
 
 .post-layout {
@@ -81,6 +82,10 @@ $bp-tablet: 900px;
     grid-template-columns: 1fr;
     gap: 44px;
   }
+
+  > * {
+    min-width: 0;
+  }
 }
 
 .article {
@@ -92,6 +97,7 @@ $bp-tablet: 900px;
 // ---------- Article entry ----------
 .entry {
   max-width: 720px;
+  overflow-wrap: break-word;
 
   @media (max-width: $bp-tablet) {
     max-width: 100%;

@@ -389,7 +389,12 @@
     --arrow-length: 215px;
     --arrow-thickness: 1px;
 }
+
+.diagram-fit {
+    overflow: hidden;
+}
 </style>
+                <div class="diagram-fit">
                 <div class="middleware-flow">
                     <div class="entry-point">
                         <p class="mb-3">Entry Point</p>
@@ -515,6 +520,7 @@
                         </div>
                     </div>
                 </div>
+                </div>
 
 <script>
 $('.hasTooltip').hover(
@@ -533,6 +539,34 @@ $('.hasTooltip').hover(
         $('#tool-tip-line2').text('');
     }
 );
+</script>
+
+<script>
+(function () {
+    var $wrap = $('.diagram-fit');
+    var $diagram = $('.middleware-flow');
+
+    function fitDiagram() {
+        $diagram.css('transform', 'none');
+        $wrap.css('height', '');
+
+        var naturalWidth = $diagram.outerWidth();
+        var naturalHeight = $diagram.outerHeight();
+        var available = $wrap.width();
+
+        if (available < naturalWidth) {
+            var scale = (available / naturalWidth) * 0.995;
+            $diagram.css({
+                transform: 'scale(' + scale + ')',
+                transformOrigin: 'top left'
+            });
+            $wrap.css('height', Math.ceil(naturalHeight * scale) + 'px');
+        }
+    }
+
+    $(window).on('load resize', fitDiagram);
+    fitDiagram();
+})();
 </script>
 
 <p class="mb-3"></p>

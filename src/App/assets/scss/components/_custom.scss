@@ -1252,6 +1252,10 @@ details.acc {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
+
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr;
+  }
 }
 .post-card {
   background: var(--surface);
