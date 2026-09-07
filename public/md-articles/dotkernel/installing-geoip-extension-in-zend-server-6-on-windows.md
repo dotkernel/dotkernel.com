@@ -13,19 +13,14 @@ language: "en"
 ## TL;DR
 As an update to [Installing GeoIP extension in Zend Server 5.6 on Windows](https://www.dotkernel.com/dotkernel/installing-geoip-extension-in-zend-server-5-6-on-windows/), here's how to enable php_geoip on Zend Server 6.1.
 
-## Steps
+As an update to the post [Installing GeoIP extension in Zend Server 5.6 on Windows ](http://www.dotkernel.com/dotkernel/installing-geoip-extension-in-zend-server-5-6-on-windows/), for Zend Server 6.1 , you can do the following:
 
-1. Download the `php_geoip-1.0.8-5.4-nts-vc9-x86.zip` file from [http://windows.php.net/downloads/pecl/releases/geoip/1.0.8/](http://windows.php.net/downloads/pecl/releases/geoip/1.0.8/).
-2. From the archive, copy `php_geoip.dll` to `ZEND_PATH\Zend\ZendServer\lib\phpext\`.
-3. Open the `php.ini` file, located at `ZEND_PATH\Zend\ZendServer\etc\php.ini`.
-4. Add the following line at the end of the file:
-
-   ```ini
-   extension=php_geoip.dll
-   ```
-
-5. Save the file and click **"Restart PHP"** from the Zend Server GUI.
-6. Follow the steps from the previous article to test the GeoIP integration and download the Geoip*.dat files.
+1. Download the php_geoip-1.0.8-5.4-nts-vc9-x86.zip file from [http://windows.php.net/downloads/pecl/releases/geoip/1.0.8/](http://windows.php.net/downloads/pecl/releases/geoip/1.0.8/)
+2. From the archived file, copy the file php_geoip.dll to ZEND_PATH\Zend\ZendServer\lib\phpext\
+3.  Open php.ini file, from the location: ZEND_PATH\Zend\ZendServer\etc\php.ini
+4.  Add the below line at the end of the file **extension=php_geoip.dll**
+5. Save the file and "Restart PHP" :-))  from Zend Server GUI
+6. follow the step from the previous article in order to test GeoIP integration , and download the Geoip*.dat files
 
 ## FAQ
 
@@ -40,8 +35,3 @@ A: Open the php.ini file at ZEND_PATH\Zend\ZendServer\etc\php.ini, add the line 
 
 **Q: How do you verify GeoIP is working after this setup?**
 A: Follow the same steps described in the previous article (Installing GeoIP extension in Zend Server 5.6 on Windows) to test the GeoIP integration and download the Geoip*.dat files.
-
-## Resources
-
-- [Installing GeoIP extension in Zend Server 5.6 on Windows](http://www.dotkernel.com/dotkernel/installing-geoip-extension-in-zend-server-5-6-on-windows/)
-- [php_geoip 1.0.8 downloads](http://windows.php.net/downloads/pecl/releases/geoip/1.0.8/)

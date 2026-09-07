@@ -10,10 +10,19 @@ language: "en"
 
 # PHP Formatter and Templates for Zend Studio 10.1
 
-Because Zend donated the Zend Studio Formatter upstream to the PDT project, the Formatter plugin for Zend Studio 10.1 needs to be changed: replace "com.zend.php" with "org.eclipse.php".
-The updated file is available as the Dotkernel PHP Formatter for Zend Studio 10.1.
+Because Zend donated the Zend Studio's Formatter upstream to the PDT project, the Formatter plugin for Zend Studio 10.1 need to be changed: replace  "com.zend.php" to "org.eclipse.php".
 
-Dotkernel also created a templates file for Zend Studio 10.1, built according to the Dotkernel coding standard.
+See  the updated file  [Dotkernel PHP Formatter for Zend Studio 10.1](http://www.dotkernel.com/download/?did=37)
+
+About PHP Formatter , see [http://files.zend.com/help/Zend-Studio-10/zend-studio.htm#formatter.htm](http://files.zend.com/help/Zend-Studio-10/zend-studio.htm#formatter.htm)
+
+ 
+
+Also, we created the templates file for Zend Studio 10.1 , according to Dotkernel coding standard, see the file: [Templates for Zend Studio](http://www.dotkernel.com/download/?did=38)
+
+About Templates in Zend Studio and how to import/export: [http://files.zend.com/help/Zend-Studio-10/zend-studio.htm#templates.htm](http://files.zend.com/help/Zend-Studio-10/zend-studio.htm#templates.htm)
+
+ 
 
 ## FAQ
 
@@ -22,10 +31,3 @@ A: Because Zend donated the Zend Studio Formatter upstream to the PDT project, t
 
 **Q: Where can I get Dotkernel's updated Formatter and Templates files for Zend Studio 10.1?**
 A: The updated PHP Formatter file for Zend Studio 10.1 and a templates file built according to the Dotkernel coding standard are both available as downloads linked in the article.
-
-## Resources
-
-- [Dotkernel PHP Formatter for Zend Studio 10.1](http://www.dotkernel.com/download/?did=37)
-- [About PHP Formatter (Zend Studio docs)](http://files.zend.com/help/Zend-Studio-10/zend-studio.htm#formatter.htm)
-- [Templates for Zend Studio](http://www.dotkernel.com/download/?did=38)
-- [About Templates in Zend Studio and how to import/export (Zend Studio docs)](http://files.zend.com/help/Zend-Studio-10/zend-studio.htm#templates.htm)

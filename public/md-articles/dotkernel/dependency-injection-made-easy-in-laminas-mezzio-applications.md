@@ -11,27 +11,23 @@ language: "en"
 # Dependency Injection made easy in Laminas/Mezzio applications
 
 ## TL;DR
-
 Dotkernel's dot-dependency-injection package autowires constructor dependencies in Laminas/Mezzio (and other PSR-11) applications, removing the need to write and maintain a custom factory class for every service.
 Instead of a bespoke factory, you add an attribute to the class constructor and register a single shared AttributedServiceFactory in your ConfigProvider.
 The package requires Doctrine ORM but can still be used in applications that don't integrate Doctrine, and it also supports injecting Doctrine repositories directly instead of fetching them from the EntityManager.
 
-> Note: The package requires Doctrine ORM. Still, it can be used in applications which do not integrate Doctrine.
+> **Note**: The package requires Doctrine ORM. Still, it can be used in applications which do not integrate Doctrine.
 
 So, first thing first, the problem.
-You have a Laminas / Mezzio application with a bunch of services that you need to use in a, let's say, controller class or in any other class, and you are tired of building, updating, and maintaining factories every time you add a new dependency to your class.
 
-Dotkernel has you covered.
-We built a tool to autowire those dependencies in your class.
-There is no need for factories for every class you make.
-Just use one "factory" class that you tie to your custom class in the config, and that's it.
+You have a **Laminas / Mezzio** application with a bunch of services that you need to use in a, let's say, controller class or in any other class, and you are tired of building, updating, and maintaining factories every time you add a new dependency to your class.
 
-Sounds easy, right?
-Let's finish with the chat and speak some code, first showing the problem and then the solution.
+**Dotkernel** has you covered. We built a **tool to autowire those dependencies in your class**. There is no need for factories for every class you make. Just use one “factory” class that you tie to your custom class in the config, and that's it.
 
-> The examples below are from the [Dotkernel API framework](https://github.com/dotkernel/api), but the pattern applies to all laminas and mezzio applications and to all PSR-11 applications.
+Sounds easy, right? Let’s finish with the chat and speak some code, first showing the problem and then the solution.
 
-```php
+> The examples below are from the **[Dotkernel API framework](https://github.com/dotkernel/api)**, but the pattern applies to all **laminas** and **mezzio** applications and to all PSR-11 applications.
+
+```
 class UserHandler implements RequestHandlerInterface
 {
     public function __construct(
@@ -42,10 +38,9 @@ class UserHandler implements RequestHandlerInterface
 }
 ```
 
-Above, we have a UserHandler (Controller), and we have the required dependencies: `UserService` and `config`.
-Normally, we would build a factory for this to get things from the container and put them in the config provider like this:
+Above, we have a **UserHandler** (Controller), and we have the required dependencies: `UserService `and `config`. Normally, we would build a factory for this to get things from the container and put them in the config provider like this:
 
-```php
+```
 class UserHandlerFactory
 {
     /**
@@ -66,7 +61,7 @@ class UserHandlerFactory
 
 And in the config provider, we would have the following:
 
-```php
+```
 public function getDependencies(): array
 {
     return
@@ -74,9 +69,9 @@ public function getDependencies(): array
 }
 ```
 
-In one more example, let's look at the real-world required dependencies for `UserService`, the dependency that is required for `UserHandler`.
+In one more example, let's look at the real-world required dependencies for `UserService`, the dependency that is required for `UserHandle`.
 
-```php
+```
 class UserService implements UserServiceInterface
 {
     public function __construct(
@@ -95,20 +90,21 @@ class UserService implements UserServiceInterface
 }
 ```
 
-Now consider that we need to build the factory for this and update it when we add a new dependency, and so on.
-We'd also need to build the logic in the factory to handle any dependencies missing from the container.
-Painful, right?
+Now consider that we need to build the factory for this and update it when we add a new dependency, and so on. Also to build the logic in the factory to handle any dependencies missing from the container. Painful right?
 
-Now let's use Dotkernel's [dot-dependency-injection](https://github.com/dotkernel/dot-dependency-injection) package to inject the required dependency into your class.
+Now let's use **Dotkernel's** [dot-dependency-injection](https://github.com/dotkernel/dot-dependency-injection) package to inject the required dependency into your class.
 
-After you install the package, your class needs to `use Dot\DependencyInjection\Attribute\Inject`, then you need to add the `#` attribute to the constructor definition to specify which dependencies should be injected.
+After you install the package, your class needs to `use Dot\DependencyInjection\Attribute\Inject` , then you need to add the `#[Inject(...)]` attribute to the constructor definition to specify which dependencies should be injected.
 
-```php
+```
 use Dot\DependencyInjection\Attribute\Inject;
 
 class UserHandler implements RequestHandlerInterface
 {
-    #
+    #[Inject(
+        UserServiceInterface::class,
+        "config",
+    )]
     public function __construct(
         protected UserServiceInterface $userService,
         protected array $config,
@@ -117,9 +113,9 @@ class UserHandler implements RequestHandlerInterface
 }
 ```
 
-Add the `Dot\DependencyInjection\Factory\AttributedServiceFactory` class to your `ConfigProvider`:
+Add the `Dot\DependencyInjection\Factory\AttributedServiceFactory` class to your `ConfigProvider`
 
-```php
+```
 public function getDependencies(): array
 {
     return
@@ -127,12 +123,11 @@ public function getDependencies(): array
 }
 ```
 
-That's right, the `AttributedServiceFactory` class is the only one you need to add to your config, so you are ready to go.
-This class will "build" the factory for you and will handle all the logic if any dependencies are not found in the container, with appropriate exceptions and messages.
+That's right, the ``AttributedServiceFactory` `class is the only one you need to add to your config, so you are ready to go. This class will "build" the factory for you and will handle all the logic if any dependencies are not found in the container with appropriate exceptions and messages.
 
 One more time, let's see how the `UserService` will look now.
 
-```php
+```
 class UserService implements UserServiceInterface
 {
     use Dot\DependencyInjection\Attribute\Inject;
@@ -155,10 +150,9 @@ class UserService implements UserServiceInterface
 }
 ```
 
-## And, That's Not All.
+## And, that's not all.
 
-If you use Doctrine and the repository pattern and you don't want to get your repository from `EntityManager` and want to inject it into your service, this package covers that too.
-The principle is the same, and for more insight about this, you can check the package documentation at [dot-dependency-injection](https://docs.dotkernel.org/dot-dependency-injection/).
+If you use doctrine and repository pattern and you don't want to get your repository from `EntityManager` and want to inject it into your service, this package covers that too. The principle is the same, and for more insight about this, you can check the package documentation at [dot-dependency-injection](https://docs.dotkernel.org/dot-dependency-injection/).
 
 ## FAQ
 

@@ -10,26 +10,28 @@ language: "en"
 
 # Protecting admin folder with .htaccess in Plesk
 
-## Steps
+In **/var/www/vhosts/exampledomain.com/conf/vhost.conf** file add this code:
 
-1. In `/var/www/vhosts/exampledomain.com/conf/vhost.conf`, add a Location block for /admin:
-
-```shell
-<Location /admin>
+```
+< Location /admin>
    AuthType Basic
    AuthName "My Site Admin"
    AuthUserFile /var/www/vhosts/exampledomain.com/conf/.htpasswd
-   Require valid-user
-</Location>
+  Require valid-user
+< /Location >
 ```
 
-2. Notify the server that vhost.conf has been added/changed:
+ 
 
-```shell
+Notice the server that vhost.conf has been added/changed with command:
+
+```
 /usr/local/psa/admin/sbin/websrvmng -a
 ```
 
-3. Create the `.htpasswd` file and upload it to `/var/www/vhosts/exampledomain.com/conf/`.
+ 
+
+Then create the .htpasswd file and upload it to **/var/www/vhosts/exampledomain.com/conf/**
 
 ## FAQ
 
@@ -37,4 +39,4 @@ language: "en"
 A: Add a Location block for /admin to the vhost.conf file (e.g. /var/www/vhosts/exampledomain.com/conf/vhost.conf) using AuthType Basic, an AuthName, an AuthUserFile pointing to a .htpasswd file, and Require valid-user.
 
 **Q: After editing vhost.conf, how do I apply the change and finish setup in Plesk?**
-A: Notify the server that vhost.conf has changed by running `/usr/local/psa/admin/sbin/websrvmng -a`, then create the .htpasswd file and upload it to the same conf directory referenced in the AuthUserFile directive.
+A: Notify the server that vhost.conf has changed by running /usr/local/psa/admin/sbin/websrvmng -a, then create the .htpasswd file and upload it to the same conf directory referenced in the AuthUserFile directive.

@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+use Twig\Extra\Markdown\MarkdownExtension;
+use Twig\RuntimeLoader\RuntimeLoaderInterface;
+
 return [
     'templates' => [
         'extension' => 'html.twig',
@@ -12,10 +15,14 @@ return [
         'autoescape'      => 'html',
         'auto_reload'     => true,
         'cache_dir'       => 'data/cache/twig',
-        'extensions'      => [],
+        'extensions'      => [
+            MarkdownExtension::class,
+        ],
         'globals'         => [],
         'optimizations'   => -1,
-        'runtime_loaders' => [],
+        'runtime_loaders' => [
+            RuntimeLoaderInterface::class,
+        ],
         'timezone'        => 'UTC',
     ],
 ];

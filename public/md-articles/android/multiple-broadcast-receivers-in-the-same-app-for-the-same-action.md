@@ -10,14 +10,9 @@ language: "en"
 
 # Multiple broadcast receivers in the same app, for the same action
 
-## The problem
+Did you come to a point where using multiple broadcast receivers to listen for the same intent, separatly, in the same android app, leads to unexpected results? If that's the case, one broadcast receiver might consume the broadcasted intent, [online casino](http://www.cillap.com/) leaving the others with nothing to receive. This can be the case where you use 3rd party libraries with broadcast receivers defined.
 
-When multiple broadcast receivers are registered separately to listen for the same intent within the same Android app, this can lead to unexpected results: one broadcast receiver might consume the broadcasted intent, leaving the others with nothing to receive.
-This can happen when using 3rd party libraries that define their own broadcast receivers alongside an app's own receivers.
-
-## The approach
-
-A solution for this kind of problem is a code snippet inspired by the way Admob for Android solves this, as shown in Admob's own documentation, using meta-data in the manifest file.
+The following is a solution for this kind of problem, a code snippet inspired by the way Admob for android seems to solve this, as shown in their [documentation](http://developer.admob.com/wiki/Android_App_Download_Tracking), using meta-data in manifest file...[[read more](http://n3vrax.wordpress.com/2011/07/15/multiple-broadcast-receivers-in-the-same-app-for-the-same-action/)].
 
 ## FAQ
 
@@ -26,7 +21,3 @@ A: When multiple broadcast receivers are registered separately to listen for the
 
 **Q: When is this issue most likely to occur?**
 A: This can happen when you use 3rd party libraries that already define their own broadcast receivers alongside your app's own receivers.
-
-## Resources
-
-- [Admob App Download Tracking documentation](http://developer.admob.com/wiki/Android_App_Download_Tracking)

@@ -11,16 +11,39 @@ language: "en"
 # Migrating Dotkernel 3 from Zend Expressive 2 to Zend Expressive 3
 
 ## TL;DR
-
 This guide covers migrating a Dotkernel 3 instance from Zend Expressive 2 to Zend Expressive 3, for projects that only contain controller-based middleware.
 Old middleware must first be refactored to the `psr/http-server-middleware` interfaces, since Delegates become RequestHandlers.
 The steps then cover updating `composer.json` dependencies, registering new ConfigProviders, wrapping `routes.php` and `pipeline.php` in callables, and replacing the old `pipeRoutingMiddleware()`/`pipeDispatchMiddleware()` calls with their PSR-15 equivalents.
 
+This article covers the steps required to migrate a Dotkernel 3 instance to the latest Zend Expressive Version.
+
+**Migration from Zend Expressive 2 to 3.**
+
+ 
+
+*Notes before starting:*
+
+For a better understanding of the migration and how it affects support we recommend reading Zend Expressive's [article](https://docs.zendframework.com/zend-expressive/v3/reference/migration/#http-interop) on migration.
+
+If your project contains old middleware it must be refactored to reflect the interfaces provided in the [**psr/http-server-middleware**](https://packagist.org/packages/psr/http-server-middleware) package.
+
+By updating your middleware the **Delegate**s will become **RequestHandler**s**. **The interfaces are provided in the **[psr/http-server-handler](https://packagist.org/packages/psr/http-server-handler) **package.
+
+ 
+
+If your project only contains controller-based middleware it can be migrated by following the guides below.
+
+ 
+
+## Dotkernel3 Migration - Expressive 2.0 -> 3.0
+
+ 
+
 ## Packages
 
-In `composer.json` replace the matching repositories with the following:
+In `composer.json` replace the matching repositories with the following:
 
-```json
+```
 "dotkernel/dot-authentication-service":"^1.0",
 "dotkernel/dot-authentication-service":"^1.0",
 "dotkernel/dot-authentication-web":"^1.0.1",
@@ -60,25 +83,25 @@ In `composer.json` replace the matching repositories with the following:
 "zendframework/zend-component-installer":"^2.0
 ```
 
-Also update require-dev dependencies:
+also update require-dev dependencies
 
-```json
+```
 "zendframework/zend-expressive-tooling:": "^1.0",
 "zendframework/zend-component-installer": "^2.0",
 ```
 
 Remove packages:
 
-- `http-interop/http-middleware`
-- `webimpress/http-middleware-compatibility`
+- http-interop/http-middleware
+- webimpress/http-middleware-compatibility
 
 ## Configurations
 
 ### Main Configuration
 
-In `config/config.php` add the following config providers:
+In `config/config.php` add the following config providers:
 
-```php
+```
 // zend expressive & middleware factory
 \Zend\Expressive\ConfigProvider::class,
 
@@ -93,22 +116,22 @@ In `config/config.php` add the following config providers:
 \Zend\HttpHandlerRunner\ConfigProvider::class,
 ```
 
-Make sure they are the first ConfigProviders or before cached config (`ArrayProvider`).
+Make sure they are the first ConfigProviders or before cached config (`ArrayProvider`)
 
 ### Routing
 
-Wrap routing from `config/routes.php` in a callable with the following format:
+Wrap routing from `config/routes.php` in a callable with the following format:
 
-```php
+```
 return function (Application $app, MiddlewareFactory $factory, ContainerInterface $container) : void {
     /** @var \Zend\Expressive\Application $app */
     $app->route('/', , , 'home');
 };
 ```
 
-Add the following use statements and make sure the names are not duplicate:
+add the following use statements and make sure the names are not duplicate:
 
-```php
+```
 use Psr\Container\ContainerInterface;
 use Zend\Expressive\Application;
 use Zend\Expressive\MiddlewareFactory;
@@ -116,41 +139,43 @@ use Zend\Expressive\MiddlewareFactory;
 
 ### Pipeline
 
-Wrap routing from `config/pipeline.php` in a callable with the following format:
+Wrap routing from `config/pipeline.php` in a callable with the following format:
 
-```php
+```
 return function (Application $app, MiddlewareFactory $factory, ContainerInterface $container) : void {
     /** @var \Zend\Expressive\Application $app */
     $app->route('/', , , 'home');
 };
 ```
 
-Add the following use statements and make sure the names are not duplicate:
+add the following use statements and make sure the names are not duplicate:
 
-```php
+```
 use Psr\Container\ContainerInterface;
 use Zend\Expressive\Application;
 use Zend\Expressive\MiddlewareFactory;
 ```
 
-#### Routing Middleware Migration
+#### Routing middleware migration
 
-Add the following use statements:
+add the following use statements
 
-```php
+```
 use Zend\Expressive\Router\Middleware\RouteMiddleware;
 use Zend\Expressive\Router\Middleware\DispatchMiddleware;
 ```
 
 Replace the following lines to reflect the changes:
 
-- `$app->pipeRoutingMiddleware();` becomes `$app->pipe(RouteMiddleware::class);`
-- `$app->pipeDispatchMiddleware();` becomes `$app->pipe(DispatchMiddleware::class);`
+`$app->pipeRoutingMiddleware();` -> `$app->pipe(RouteMiddleware::class);` `$app->pipeDispatchMiddleware();` -> `$app->pipe(DispatchMiddleware::class);`
 
-You can check the complete guides and example files from the following links:
+ 
 
-- [Migration guide for Dotkernel Frontend](https://github.com/dotkernel/frontend/tree/master/docs)
-- [Migration guide for Dotkernel Admin](https://docs.dotkernel.org/admin-documentation/) (the old `github.com/dotkernel/admin/tree/master/docs` folder has since moved to this documentation site)
+You can check the complete guides and example files from the following links
+
+**Migration guide for Dotkernel Frontend:** [github.com/dotkernel/frontend/tree/master/docs](https://github.com/dotkernel/frontend/tree/master/docs)
+
+**Migration guide for Dotkernel Admin:** [docs.dotkernel.org/admin-documentation](https://docs.dotkernel.org/admin-documentation/) (the old `github.com/dotkernel/admin/tree/master/docs` folder has since moved to this documentation site)
 
 ## FAQ
 
@@ -158,17 +183,16 @@ You can check the complete guides and example files from the following links:
 A: For a better understanding of the migration and how it affects support, it's recommended to read Zend Expressive's article on migration regarding HTTP interop.
 
 **Q: What happens to old middleware during the migration?**
-A: If a project contains old middleware, it must be refactored to reflect the interfaces provided in the psr/http-server-middleware package.
-As part of this, Delegates become RequestHandlers, using interfaces from the psr/http-server-handler package.
+A: If a project contains old middleware, it must be refactored to reflect the interfaces provided in the psr/http-server-middleware package. As part of this, Delegates become RequestHandlers, using interfaces from the psr/http-server-handler package.
 
 **Q: Which packages should be removed during migration?**
-A: `http-interop/http-middleware` and `webimpress/http-middleware-compatibility` should be removed from `composer.json`.
+A: http-interop/http-middleware and webimpress/http-middleware-compatibility should be removed from composer.json.
 
 **Q: What needs to be added to the main configuration file?**
-A: In `config/config.php`, several ConfigProviders need to be added - for Zend Expressive, the router, FastRoute router, Twig, helpers, and the handler runner - and they must be the first ConfigProviders or placed before the cached config (`ArrayProvider`).
+A: In config/config.php, several ConfigProviders need to be added – for Zend Expressive, the router, FastRoute router, Twig, helpers, and the handler runner – and they must be the first ConfigProviders or placed before the cached config (ArrayProvider).
 
 **Q: How do the routes.php and pipeline.php files change?**
-A: Routing from `config/routes.php` and the pipeline from `config/pipeline.php` both need to be wrapped in a callable of the form `function (Application $app, MiddlewareFactory $factory, ContainerInterface $container)`, with the corresponding use statements added.
+A: Routing from config/routes.php and the pipeline from config/pipeline.php both need to be wrapped in a callable of the form function (Application $app, MiddlewareFactory $factory, ContainerInterface $container), with the corresponding use statements added.
 
 **Q: What replaces pipeRoutingMiddleware() and pipeDispatchMiddleware()?**
-A: `$app->pipeRoutingMiddleware();` becomes `$app->pipe(RouteMiddleware::class);`, and `$app->pipeDispatchMiddleware();` becomes `$app->pipe(DispatchMiddleware::class);`.
+A: $app->pipeRoutingMiddleware(); becomes $app->pipe(RouteMiddleware::class);, and $app->pipeDispatchMiddleware(); becomes $app->pipe(DispatchMiddleware::class);.

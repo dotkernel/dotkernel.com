@@ -7,6 +7,9 @@ namespace Light\Blog\Handler;
 use Fig\Http\Message\StatusCodeInterface;
 use Laminas\Diactoros\Response\HtmlResponse;
 use Laminas\Diactoros\Response\TextResponse;
+use Light\App\Service\ArticleBodyCleaner;
+use Light\App\Service\FaqExtractor;
+use Light\App\Service\FrontMatter;
 use Light\Blog\Enum\PostStatusEnum;
 use Light\Blog\Repository\CategoryRepository;
 use Light\Blog\Repository\PostRepository;
@@ -57,17 +60,27 @@ class GetPostResourceHandler implements RequestHandlerInterface
         if ($article->getStatus() !== PostStatusEnum::Published) {
             return $this->blogService->notFound($categories);
         }
-        $meta     = $article;
-        $adjacent = $this->articleRepository->getAdjacentPosts($article);
+        $meta         = $article;
+        $adjacent     = $this->articleRepository->getAdjacentPosts($article);
+        $markdownFile = $this->blogService->resolveMarkdownFilePath($categorySlug, $slug);
+        if ($markdownFile === null) {
+            return $this->blogService->notFound($categories);
+        }
+
+        $parsed = FrontMatter::parse((string) file_get_contents($markdownFile));
+        $faq    = FaqExtractor::extract(ArticleBodyCleaner::clean($parsed['body']));
+
         try {
             $html = $this->template->render(
-                'page::blog-resource/' . $article->getCategory()->getSlug() . '/' . $slug,
+                'page::markdown-article',
                 [
                     'article'      => $article,
                     'meta'         => $meta,
                     'categories'   => $categories,
                     'previousPost' => $adjacent['previous'],
                     'nextPost'     => $adjacent['next'],
+                    'content'      => $faq['body'],
+                    'faq'          => $faq['faq'],
                 ]
             );
             return new HtmlResponse($html);

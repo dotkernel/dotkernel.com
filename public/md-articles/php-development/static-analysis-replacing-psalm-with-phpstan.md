@@ -11,19 +11,17 @@ language: "en"
 # Static Analysis - Replacing Psalm with PHPStan
 
 ## TL;DR
-
 Dotkernel is replacing Psalm with PHPStan for static analysis, following a broader PHP community shift (including projects like Doctrine and Composer) toward PHPStan's faster-growing ecosystem, full-time maintainer, PHPStorm-based stubs, and stronger detection.
 This article explains what static analysis is, why the switch makes sense, and walks through updating composer.json, the CI workflow, and the phpstan.neon configuration to run PHPStan checks in place of Psalm.
 
-## What Is Static Analysis
+## What is Static Analysis
 
-Static analysis (static code analysis or source code analysis) applies a set of coding rules to debug source code before a program is run.
-Applied in the early phase of code development, the goals of static analysis are:
+**Static analysis** (static code analysis or source code analysis) applies a set of coding rules to **debug source code** before a program is run. Applied in the early phase of code development, the goals of static analysis are:
 
-- Catch and fix errors like type-related errors which can occur especially in dynamically-typed programming languages like PHP.
-- Confirm coding standards to ensure readability and maintainability for large projects that need a consistent coding style.
-- Identify code that needs refactoring and recommend improvements to improve complex or 'smelly' code.
-- Enhance security by detecting potential code injection in PHP, cross-site scripting (XSS) and open redirect vulnerabilities.
+- **Catch and fix errors** like type-related errors which can occur especially in dynamically-typed programming languages like PHP.
+- **Confirm coding standards** to ensure readability and maintainability for large projects that need a consistent coding style.
+- **Identify code that needs refactoring** and recommend improvements to improve complex or 'smelly' code.
+- **Enhance security** by detecting potential code injection in PHP, cross-site scripting (XSS) and open redirect vulnerabilities.
 
 The top static analysis tools are:
 
@@ -36,9 +34,7 @@ The top static analysis tools are:
 
 ## Why Switch from Psalm to PHPStan?
 
-Dotkernel has been using [psalm](https://psalm.dev/) for a while now and the results have always been positive.
-A large part of the PHP community, especially developers in widely-used projects like Doctrine and Composer, have opted for [PHPStan](https://phpstan.org/) instead.
-For most use cases, psalm and PHPStan have identical findings, so it isn't really justified to use both.
+Dotkernel has been using [psalm](https://psalm.dev/) for a while now and the results have always been positive. A large part of the PHP community, especially developers in widely-used projects like Doctrine and Composer, have opted for [PHPStan](https://phpstan.org/) instead. For most use cases, psalm and PHPStan have identical findings, so it isn't really justified to use both.
 
 PHPStan has some advantages to psalm:
 
@@ -52,7 +48,7 @@ Thus, the better choice becomes PHPStan.
 
 ## Updating Your Project to Use PHPStan
 
-First, remove the references to psalm:
+First, remove the references to psalm
 
 - update the `require` in your `composer.json` file
   - remove `vimeo/psalm`
@@ -94,7 +90,7 @@ jobs:
       - name: Install PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: "${{ matrix.php }}"
+          php-version: '${{ matrix.php }}'
           coverage: pcov
           ini-values: assert.exception=1, zend.assertions=1, error_reporting=-1, log_errors_max_len=0, display_errors=On
           tools: composer:v2, cs2pr
@@ -139,18 +135,18 @@ parameters:
             path: test/Functional/AbstractFunctionalTest.php
 ```
 
-## Running the PHPStan Checks
+## Running the PHPStan checks
 
 To run the checks, use this command:
 
-```bash
+```
 composer static-analysis
 ```
 
-`composer.json` is currently set up to run this command which sets up the memory limit to a higher amount than that from the `php.ini` file in PHP (128M).
+`composer.json` is currently set up to run this command which sets up the memory limit to a higher amount that that from the `php.ini` file in PHP (128M).
 
-```bash
-vendor/bin/phpstan analyse --memory-limit 1G
+```
+vendor/bin/phpstan analyse --memory-limit 1G 
 ```
 
 If you still get the error below, try increasing the memory limit further, e.g. 2G or 4G.
@@ -161,8 +157,7 @@ Child process error: PHPStan process crashed because it reached configured PHP m
 
 ## Summary
 
-In this article we revisited the theoretical meaning of static analysis and focused on the change from psalm to PHPStan.
-It's highly recommended to use a static analysis tool in your project and, while both psalm and PHPStan perform similar functions, the latter has recently stepped ahead of the former.
+In this article we revisited the theoretical meaning of static analysis and focused on the change from psalm to PHPStan. It's highly recommended to use a static analysis tool in your project and, while both psalm and PHPStan perform similar functions, the latter has recently stepped ahead of the former.
 
 ## FAQ
 

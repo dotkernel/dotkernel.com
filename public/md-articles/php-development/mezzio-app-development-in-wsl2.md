@@ -11,27 +11,43 @@ language: "en"
 # Mezzio app development in WSL2
 
 ## TL;DR
-
 This article runs through the steps of installing a Mezzio application (Dotkernel API) in WSL2 and running it on Ubuntu 20.04 LTS, from installing WSL2 itself to configuring PHPStorm to work with the WSL2 file system.
 
-## Steps
+## Install a Mezzio app (Dotkernel API) using WSL2
 
-1. Make sure WSL2 is installed on your machine, following the [WSL2 installation guide](https://github.com/dotkernel/development/blob/main/wsl/README.md).
-2. Install Ubuntu 20.04 LTS inside WSL2, as described in the [Ubuntu 20 setup guide](https://docs.dotkernel.org/development/v2/running/) (the current version of this guide covers AlmaLinux 9, the distro the WSL setup has since moved to).
-3. Create a virtual host for your project using the [virtual hosts guide](https://docs.dotkernel.org/development/v2/virtualhosts/create-virtualhost/).
-4. Using your terminal, move into the virtual host directory you just created:
+This article will run you through the steps of installing a Mezzio application (Dotkernel API) in **WSL2** and run it on **Ubuntu 20.04 LTS**.
 
-   ```shell
-   cd /home/your-username/projects/your-virtualhost
-   ```
+### Step 1:
 
-Install Dotkernel API by following the [Dotkernel API guide](https://github.com/dotkernel/api).
-Make sure the `data` and `log` directories are writable by changing their permissions, as described in the [common permission issues guide](https://docs.dotkernel.org/development/v2/faq/#how-do-i-fix-common-permission-issues).
-5. Set up PHPStorm to work with WSL2 files, as described in the [JetBrains WSL development environment article](https://www.jetbrains.com/help/phpstorm/how-to-use-wsl-development-environment-in-product.html).
+Make sure you have WSL2 installed on your machine by following [this guide](https://github.com/dotkernel/development/blob/main/wsl/README.md).
 
-## Note
+### Step 2:
 
-There is a guide for AlmaLinux 8 as well, but it is not fully functional because of a well-known issue regarding running systemd inside WSL2.
+Install **Ubuntu 20.0 LTS** inside **WLS2** as described [here](https://docs.dotkernel.org/development/v2/running/) (the current version of this guide covers AlmaLinux 9, the distro the WSL setup has since moved to).
+
+### Step 3:
+
+Create a virtualhost for your project using [this guide](https://docs.dotkernel.org/development/v2/virtualhosts/create-virtualhost/).
+
+### Step 4:
+
+Using your terminal, move into the virtualhost directory that you just created:
+
+```
+cd /home/your-username/projects/your-virtualhost
+```
+
+Install Dotkernel API, by following [this guide](https://github.com/dotkernel/api).
+
+Make sure your `data` and `log` directories are writable by changing their permissions, as described [here](https://docs.dotkernel.org/development/v2/faq/#how-do-i-fix-common-permission-issues).
+
+### Step 5:
+
+Setup PHPStorm to work with WSL2 files like in [this article](https://www.jetbrains.com/help/phpstorm/how-to-use-wsl-development-environment-in-product.html)
+
+**Note:**
+
+> There is a guide for **AlmaLinux 8** as well, but that's not fully functional because of a well-known issue regarding running *systemd* inside **WSL2**.
 
 ## FAQ
 
@@ -45,20 +61,10 @@ A: You first need WSL2 installed on your machine, which you can set up by follow
 A: After Ubuntu is installed inside WSL2, you create a virtual host for your project by following the linked virtual-host creation guide.
 
 **Q: How do you install Dotkernel API once the virtual host is ready?**
-A: Using your terminal, move into the virtual host directory you created (for example, `cd /home/your-username/projects/your-virtualhost`), then install Dotkernel API by following its guide.
-Afterward, make sure the `data` and `log` directories are writable by changing their permissions, as described in the linked permission-fix guide.
+A: Using your terminal, move into the virtual host directory you created (for example, cd /home/your-username/projects/your-virtualhost), then install Dotkernel API by following its guide. Afterward, make sure the data and log directories are writable by changing their permissions, as described in the linked permission-fix guide.
 
 **Q: How do you get PHPStorm to work with the WSL2 project files?**
 A: You set up PHPStorm to work with WSL2 files by following the linked JetBrains article on using a WSL development environment in the product.
 
 **Q: Does this guide also work for AlmaLinux instead of Ubuntu?**
 A: There is a guide for AlmaLinux 8 as well, but it is not fully functional because of a well-known issue regarding running systemd inside WSL2.
-
-## Resources
-
-- [WSL2 installation guide](https://github.com/dotkernel/development/blob/main/wsl/README.md)
-- [Ubuntu 20 setup inside WSL2](https://docs.dotkernel.org/development/v2/running/)
-- [Create virtual hosts guide](https://docs.dotkernel.org/development/v2/virtualhosts/create-virtualhost/)
-- [Dotkernel API installation guide](https://github.com/dotkernel/api)
-- [Fix common permission issues](https://docs.dotkernel.org/development/v2/faq/#how-do-i-fix-common-permission-issues)
-- [Using WSL development environment in PHPStorm](https://www.jetbrains.com/help/phpstorm/how-to-use-wsl-development-environment-in-product.html)

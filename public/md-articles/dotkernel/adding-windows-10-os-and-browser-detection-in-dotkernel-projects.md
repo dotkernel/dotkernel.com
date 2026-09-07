@@ -14,18 +14,24 @@ language: "en"
 Dotkernel added Windows 8, 8.1 and 10 OS icons and a Microsoft Edge browser icon, shown in the User and Admin login icons.
 This article is the upgrade guide for applying that icon patch.
 
-## Upgrade steps
+Recently we have added the Windows 8, 8.1 and 10 OS icon and Microsoft's Edge browser icon.
 
-1. Make sure your project is running version **1.5.0** or **newer**.
-2. Download the [patch](http://www.dotkernel.com/download/?did=46).
-3. Extract the archive into a folder, e.g. `icons_patch`.
-4. Create a backup of your project before continuing (recommended).
-5. Copy all the files in the `icons_patch` folder into your Dotkernel project.
-6. You will be prompted to replace 2 files - replace them and agree to merge the folders' content (other files will be added, not replaced).
-7. Clear the cache for changes to take effect, since the OS and browser XMLs are cached (see "Dotkernel Reserved Variable Names for Caching", the "Browser & OS" section).
-8. You can now delete the `icons_patch` folder, or keep it to patch another project.
+In this article we will have the icon upgrade guide.
 
-## Affected files
+![Icons Patch](/uploads/article/019f8a80-cc47-710e-9ef1-b2257262e376/icons.png)The new Icons listed in User and Admin Logins
+
+ 
+
+1. Make sure your project is running on version **1.5.0** or **newer**
+2. Download the [patch](http://www.dotkernel.com/download/?did=46)
+3. Extract the archive in a folder, let's name it **icons_patch**
+4. We recommend creating a backup of your project before you continue
+5. Now copy all the files in the **icons_patch** folder in your Dotkernel
+6. You will be prompted to replace 2 files, simply replace the files and agree to merge the folders content (files will be added, not replaced this time)
+7. You need to clear the cache for changes to take effect, the os and browser xml's are cached. For more information read [this article](http://www.dotkernel.com/dotkernel/dotkernel-reserved-variable-names-for-caching/) (look for **Browser & OS**)
+8. You can now delete the **icons_patch** folder or use it to patch another project
+
+List of affected files:
 
 ```
 M /configs/useragent/browser.xml
@@ -34,7 +40,9 @@ A /images/browsers/edge.png
 A /images/os/windows_metro.png
 ```
 
-`M` stands for **modify**, `A` stands for **add**.
+**M** stands for **modify**
+
+**A** stands for **add**
 
 ## FAQ
 
@@ -49,8 +57,3 @@ A: Because the OS and browser XML files are cached, so the new icons won't show 
 
 **Q: Will applying the patch overwrite existing files?**
 A: You'll be prompted to replace 2 files (browser.xml and os.xml) and should agree, and also agree to merge the folders' contents since the other files listed are added rather than replaced.
-
-## Resources
-
-- [Icon patch download](http://www.dotkernel.com/download/?did=46)
-- [Dotkernel Reserved Variable Names for Caching](http://www.dotkernel.com/dotkernel/dotkernel-reserved-variable-names-for-caching)

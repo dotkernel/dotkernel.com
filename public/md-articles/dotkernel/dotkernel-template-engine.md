@@ -10,9 +10,9 @@ language: "en"
 
 # Dotkernel Template Engine
 
-Dotkernel Template Engine is an implementation of the PHPLib Template engine for PHP5.
-It has an amazing ability to separate the application code from the presentation layer, separating the manipulation of data (in the database as well as in PHP) from its final format, whether that format is HTML, XML, or a formatted e-mail.
-The big advantage is that it allows changing the look and feel of a site quickly without having to delve immediately into a lot of PHP variable assignments and print statements.
+## Dotkernel Template Engine is an implementation of PHPLib Template engine for PHP5.
+
+It has an amazing ability to separate the application code from the presentation layer. Separates the manipulation of data (in the database as well as in PHP) from its final format, whether that format is HTML, XML or a formatted e-mail. The big advantage is that is allowing us to change the look and feel of a site quickly without having to delve immediately into a lot of PHP variable assignments and print statements.
 
 ## FAQ
 

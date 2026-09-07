@@ -11,15 +11,15 @@ language: "en"
 # Scienta ZF Debug Bar: A very helpfull ZF debug tool
 
 ## TL;DR
-
 The author came across the Scienta ZF Debug Bar, a debugging tool for Zend Framework applications.
 Dotkernel had been relying on its own basic debug bar, which only showed queries, time spent, and memory used.
 Finding Scienta far more complex and polished than their internal tool, the Dotkernel team decided to switch to it and integrate it into the Dotkernel code base.
 
-Just found today a very interesting and helpful debug tool: [Scienta](http://jokke.dk/software/scientadebugbar).
+Just found today a very interesting and helpful debug tool:
 
-We at Dotkernel used some very basic debug bar: queries, time spent, memory used.
-But this Scienta is way more complex and nicer than our internal code, so we switch to it and integrate it in Dotkernel code base.
+**[Scienta](http://jokke.dk/software/scientadebugbar)**
+
+We at Dotkernel used some very basic debug bar:  queries, time spent , memory used.  But this **Scienta** is way more complex and nicer then our internal code,  so we switch to it and integrate it in Dotkernel code base.
 
 ## FAQ
 

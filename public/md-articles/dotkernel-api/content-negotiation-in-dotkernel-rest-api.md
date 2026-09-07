@@ -11,72 +11,103 @@ language: "en"
 # Content Negotiation in Dotkernel REST API
 
 ## TL;DR
-
 Content negotiation lets clients and servers agree on the format and language of exchanged data.
 It can be handled server-side or client-side (the latter being more versatile), communicated through HTTP headers or URL patterns, and Dotkernel API implements it out of the box using the `Content-Type` and `Accept` headers.
 
-## What is the Purpose of Content Negotiation?
+Content negotiation is an important aspect of RESTful APIs to make it possible for diverse systems to work seamlessly together. It's based on enabling clients and servers to agree on the format and language of data they exchange.
 
-RESTful resources can support multiple representations, and efficient client-server communication depends on both sides agreeing on the exchanged data format - this agreement is content negotiation.
-It ensures:
+## What is the purpose of Content Negotiation?
 
-- **Support for diverse clients**, e.g. `Accept: application/json` or `Accept: application/xml`.
-- **Data format flexibility**, e.g. using `Accept: application/msgpack` (a binary serialization) instead of JSON for a smaller, easier-to-transfer response.
-- **Language localization**, e.g. `Accept-Language: en-US`, to respond with content translated into the client's preferred language.
+RESTful resources can support multiple representations. Each team of developers implements one of more ways (e.g. data formats) to receive requests and return responses on the server side. Efficient communication between client and server can only be guaranteed if the both sides agree on how the exchange takes place. This is especially valid if the request and response support multiple formats. The act of agreeing on a way to represent the exchanged data format is content negotiation.
 
-## Who Decides the Data Format?
+Content negotiation ensures the following:
 
-Either the client or the server can decide:
+- **Support for diverse clients** is useful when the requested representation differs.
+  - e.g. `Accept: application/json` or `Accept: application/xml`.
+- **Data format flexibility** can come into play when a client prefers a smaller response.
+  - e.g. Instead of `Accept: application/json`, use `Accept: application/msgpack` which is a binary serialization, making the response smaller and easier to transfer.
+- **Language localization** will respond with content translated into the client's preferred language
+  - e.g. `Accept-Language: en-US`.
 
-- **Server-side negotiation**: the server decides the format based on various factors.
-This can introduce erroneous assumptions and a more complex server-side implementation, and forces the client to adhere to the server's rules.
-- **Client-side negotiation**: the client tells the server what format it prefers.
-This approach is more versatile and makes more sense.
+## Who decides the data format?
 
-There are two ways to communicate the preferred data format: HTTP request headers, or resource URI patterns.
+There are two sides to the exchange:
+
+- The client
+- The server
+
+Technically, either side can decide on how the data is transferred between the two.
+
+For **server-side negotiation** the server must decide based on various factors what the most appropriate format should be. This incurs assumptions that can be erroneous and the server-side implementation can also be more complex. This forces the client to adhere to the rules set up on the server-side.
+
+For **client-side negotiation** the client lets the server know what format it prefers. This approach is more versatile and thus makes more sense.
+
+There are two ways to communicate the data format:
+
+- **HTTP request headers**
+- or **resource URI patterns**.
 
 ### HTTP Request Headers
 
-The `Content-Type` and `Accept` headers determine the data format sent in the request and response.
-Examples of types include `text/plain`, `text/html`, `application/json`, `application/zip`, `image/gif`, and `image/jpeg`.
+The HTTP request headers `Content-Type` and `Accept` are used to determine the data format that will be sent in the request and the response. There are several types to choose from. Here are some examples:
 
-```shell
+- text/plain
+- text/html
+- application/json
+- application/zip
+- image/gif
+- image/jpeg
+
+Below is an example of what the keys look like in the content package. Note the `Accept` type
+
+```
 Content-Type: application/json, text/plain
 Accept: application/json
 ```
 
-If the `Accept` header is not present, the server decides the response format.
+If the `Accept` header is not present, the server gets to decide the format of the response.
 
-### Content Negotiation Using URL Patterns
+### Content Negotiation using URL Patterns
 
-A preferred format can also be communicated via the URL extension:
+Below are a couple of ways to communicate a preferred data format.
 
-```shell
+Via the extension on the URL:
+
+```
 https://www.example-api.com/record/47.xml
 https://www.example-api.com/record/47.json
 ```
 
-or via an extra query parameter:
+or via an extra parameter:
 
-```shell
+```
 https://www.example-api.com/record/47?format=xml
 https://www.example-api.com/record/47?format=json
 ```
 
-## Defining Preferences via a Quality Factor
+## Defining preferences via a quality factor
 
-The `Accept` header can hold multiple values with an added quality value (`q`, between 0 and 1) that defines preference or priority:
+The `Accept` header may hold multiple values with an added value that defines preference or priority.
 
-```shell
+In this example, the client declares it accpets both json and xml formats, with json being preferred over xml, as defined by the numeric value in `q` which can be between 0 and 1. If the server can only satisfy the xml format, it will respond with that. The final alternative is if the server can't respond with either json, or xml, so it responds with what it can.
+
+```
 Accept: application/json,application/xml;q=0.9,*/*;q=0.8
 ```
 
-In this example, the client accepts both JSON and XML, with JSON preferred. If the server can only satisfy XML, it responds with that; if it can satisfy neither, it responds with whatever it can.
+## How does Dotkernel API handle Content Negotiation?
 
-## How Does Dotkernel API Handle Content Negotiation?
+Out of the box, **Dotkernel API** uses **HTTP request headers** `Content-Type` and `Accept` to handle **client-side** content negotiation. It has both `application/json`, `application/hal+json` included. Of course, you can change these as development progresses for your project. There is also support for per-route content negotiation, if you should need it.
 
-Out of the box, Dotkernel API uses the `Content-Type` and `Accept` HTTP request headers to handle client-side content negotiation, supporting both `application/json` and `application/hal+json`.
-These can be changed as development progresses, and per-route content negotiation is also supported. Configuration lives in its own configuration file, validation is automatic, and several explicit errors are handled based on the supported format.
+The configuration is done is its own configuration file. The validation is automatic and several explicit errors are handled, based on what format is supported.
+
+Check out the relevant links below for exact details on the Dotkernel implementation of content negotiation.
+
+## Relevant Links
+
+[Content Negotiation in Dotkernel API](https://docs.dotkernel.org/api-documentation/v5/core-features/content-validation/)
+
+[Content types on iana.org](https://www.iana.org/assignments/media-types/media-types.xhtml)
 
 ## FAQ
 
@@ -84,26 +115,16 @@ These can be changed as development progresses, and per-route content negotiatio
 A: It's the act of a client and server agreeing on the format and language of the data they exchange, which is important for RESTful APIs since resources can support multiple representations.
 
 **Q: What does content negotiation ensure?**
-A: It ensures support for diverse clients (e.g. `Accept: application/json` or `Accept: application/xml`), data format flexibility for smaller responses (e.g. `Accept: application/msgpack`, a binary serialization), and language localization via headers like `Accept-Language: en-US`.
+A: It ensures support for diverse clients (e.g. Accept: application/json or Accept: application/xml), data format flexibility for smaller responses (e.g. Accept: application/msgpack, a binary serialization), and language localization via headers like Accept-Language: en-US.
 
 **Q: Who decides the data format, the client or the server?**
-A: Either side technically can.
-In server-side negotiation, the server decides based on various factors, which can introduce erroneous assumptions and more complex implementation, forcing the client to adhere to server rules.
-In client-side negotiation, the client tells the server what format it prefers, which is more versatile and makes more sense.
+A: Either side technically can. In server-side negotiation, the server decides based on various factors, which can introduce erroneous assumptions and more complex implementation, forcing the client to adhere to server rules. In client-side negotiation, the client tells the server what format it prefers, which is more versatile and makes more sense.
 
 **Q: How can the preferred data format be communicated?**
-A: Via HTTP request headers (`Content-Type` and `Accept`) or via resource URI patterns, such as a file extension in the URL (e.g. `/record/47.json`) or an extra query parameter (e.g. `/record/47?format=json`).
-If the `Accept` header is not present, the server decides the response format.
+A: Via HTTP request headers (Content-Type and Accept) or via resource URI patterns, such as a file extension in the URL (e.g. /record/47.json) or an extra query parameter (e.g. /record/47?format=json). If the Accept header is not present, the server decides the response format.
 
 **Q: How does the quality factor (q) work in the Accept header?**
-A: The `Accept` header can list multiple accepted formats with a `q` value between 0 and 1 to express preference, e.g. `Accept: application/json,application/xml;q=0.9,*/*;q=0.8`.
-The server responds with the most preferred format it can satisfy, falling back further down the list if needed.
+A: The Accept header can list multiple accepted formats with a q value between 0 and 1 to express preference, e.g. Accept: application/json,application/xml;q=0.9,*/*;q=0.8. The server responds with the most preferred format it can satisfy, falling back further down the list if needed.
 
 **Q: How does Dotkernel API handle content negotiation?**
-A: Out of the box, Dotkernel API uses the `Content-Type` and `Accept` HTTP request headers to handle client-side content negotiation, supporting both `application/json` and `application/hal+json`.
-These can be changed as needed, and per-route content negotiation is also supported.
-
-## Resources
-
-- [Content Negotiation in Dotkernel API](https://docs.dotkernel.org/api-documentation/v5/core-features/content-validation/)
-- [Content types on iana.org](https://www.iana.org/assignments/media-types/media-types.xhtml)
+A: Out of the box, Dotkernel API uses the Content-Type and Accept HTTP request headers to handle client-side content negotiation, supporting both application/json and application/hal+json. These can be changed as needed, and per-route content negotiation is also supported.
