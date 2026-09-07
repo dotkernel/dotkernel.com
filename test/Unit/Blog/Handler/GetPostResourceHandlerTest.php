@@ -119,6 +119,85 @@ class GetPostResourceHandlerTest extends UnitTest
     /**
      * @throws Exception
      */
+    public function testHandleRendersTheTwigTemplateWhenTheArticleIsFlaggedAsTwig(): void
+    {
+        $article = $this->createStub(Post::class);
+        $article->method('getStatus')->willReturn(PostStatusEnum::Published);
+        $article->method('isTwig')->willReturn(true);
+
+        $postRepository = $this->createStub(PostRepository::class);
+        $postRepository->method('getArticleResource')->willReturn($article);
+        $postRepository->method('getAdjacentPosts')->willReturn(['previous' => null, 'next' => null]);
+
+        $categoryRepository = $this->createStub(CategoryRepository::class);
+        $categoryRepository->method('getCategories')->willReturn([$this->createStub(Category::class)]);
+
+        $template = $this->createMock(TemplateRendererInterface::class);
+        $template->expects($this->once())
+            ->method('render')
+            ->with('page::blog-resource/a-category/a-slug', $this->anything())
+            ->willReturn('<html lang="en">twig</html>');
+
+        $handler = new GetPostResourceHandler(
+            $template,
+            $postRepository,
+            $categoryRepository,
+            $this->createStub(BlogServiceInterface::class),
+        );
+
+        $request  = (new ServerRequest())->withAttribute('slug', 'a-slug')->withAttribute('categorySlug', 'a-category');
+        $response = $handler->handle($request);
+
+        $this->assertSame(200, $response->getStatusCode());
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testHandleRendersTheMarkdownArticleForAPublishedPost(): void
+    {
+        $markdownFile = sys_get_temp_dir() . '/' . uniqid('dk-article-', true) . '.md';
+        file_put_contents($markdownFile, "---\ntitle: \"A Title\"\n---\n\n# A Title\n\nSome body content.");
+
+        $article = $this->createStub(Post::class);
+        $article->method('getStatus')->willReturn(PostStatusEnum::Published);
+        $article->method('isTwig')->willReturn(false);
+
+        $postRepository = $this->createStub(PostRepository::class);
+        $postRepository->method('getArticleResource')->willReturn($article);
+        $postRepository->method('getAdjacentPosts')->willReturn(['previous' => null, 'next' => null]);
+
+        $categoryRepository = $this->createStub(CategoryRepository::class);
+        $categoryRepository->method('getCategories')->willReturn([$this->createStub(Category::class)]);
+
+        $template = $this->createMock(TemplateRendererInterface::class);
+        $template->expects($this->once())
+            ->method('render')
+            ->with(
+                'page::markdown-article',
+                $this->callback(
+                    static fn (array $params): bool => $params['content'] === 'Some body content.'
+                        && $params['faq'] === []
+                )
+            )
+            ->willReturn('<html lang="en">md</html>');
+
+        $blogService = $this->createStub(BlogServiceInterface::class);
+        $blogService->method('resolveMarkdownFilePath')->willReturn($markdownFile);
+
+        $handler = new GetPostResourceHandler($template, $postRepository, $categoryRepository, $blogService);
+
+        $request  = (new ServerRequest())->withAttribute('slug', 'a-slug')->withAttribute('categorySlug', 'a-category');
+        $response = $handler->handle($request);
+
+        $this->assertSame(200, $response->getStatusCode());
+
+        unlink($markdownFile);
+    }
+
+    /**
+     * @throws Exception
+     */
     private function handle(?Post $article, string $withAccept = ''): ResponseInterface
     {
         $categories = [$this->createStub(Category::class)];
