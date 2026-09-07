@@ -11,52 +11,67 @@ language: "en"
 # Using Dotkernel with Composer Dependencies
 
 ## TL;DR
-
 This article covers using external dependencies via Composer within Dotkernel applications.
 Composer autoloads dependencies automatically, so there is no need to include/require them.
 The example renders a Barcode using Zend Framework 1 (non-namespaced) and Zend Framework 2 (namespaced), and applies to any Dotkernel 1.x version running PHP greater than 5.4.0.
 
+This article will cover the external dependency usage VIA composer within Dotkernel applications.
+
+There is also an article explaining how composer can be added to Dotkernel [learn more](http://www.dotkernel.com/dotkernel/adding-composer-support-in-your-dotkernel-project).
+
+Composer automatically loads our dependencies so there is no need to include/require them.
+
+For this example we will render a Barcode using [Zend Framework 1](http://framework.zend.com/manual/1.12/en/manual.html) as the Non-Namespaced dependency and [Zend Framework 2](http://framework.zend.com/manual/current/en/index.html) as the Namespaced dependency.
+
 ## The Composer Dependencies
 
-The ZendFramework 1 Barcode module can only be loaded with ZF1 itself:
+ZendFramework 1 Barcode module can only be loaded with the ZF1 itself:
 
-```shell
+```
 composer require 'zendframework/zendframework1'
 ```
 
-The ZendFramework 2 Barcode module can be loaded separately:
+The ZendFramework 2 Barcode module can be separately loaded:
 
-```shell
+```
 composer require 'zendframework/zend-barcode'
 ```
 
+ 
+
 ## Important note
 
-These dependencies can be used anywhere after the `Dot_Kernel::initialize()` function was called.
+```
+These dependencies can be used anywhere after the Dot_Kernel::initialize() function was called
+```
+
+ 
 
 ## Using Non-Namespaced Dependencies (Zend Framework 1)
 
-The class is loaded [PSR-0](http://www.php-fig.org/psr/psr-0/) style, meaning the class name looks like `VendorName_PackageName_ClassName`:
+The class is loaded [PSR-0](http://www.php-fig.org/psr/psr-0/) style, meaning the class name looks like VendorName_PackageName_ClassName
 
-```php
+```
 // Only the text to draw is required
-$barcodeOptions = array('text' => 'ZEND-FRAMEWORK');
-
+$barcodeOptions = array('text' =>; 'ZEND-FRAMEWORK');
+ 
 // No required options
 $rendererOptions = array();
-
+ 
 // Draw the barcode in a new image,
 // send the headers and the image
 Zend_Barcode::factory(
-    'code39', 'image', $barcodeOptions, $rendererOptions
+'code39', 'image', $barcodeOptions, $rendererOptions
 )->render();
 ```
 
+ 
+
 ## Using Namespaced Dependencies (Zend Framework 2)
 
-The class is loaded [PSR-4](http://www.php-fig.org/psr/psr-4/) style, meaning the class name looks like `\VendorName\PackageName\ClassName`:
+The class is loaded [PSR-4](http://www.php-fig.org/psr/psr-4/) style, meaning the class name looks like \VendorName\PackageName\ClassName
 
-```php
+```
 use Zend\Barcode\Barcode;
 
 // Only the text to draw is required
@@ -74,25 +89,36 @@ Barcode::factory(
 
 ### The result
 
-Both examples render the same barcode.
+Both the examples will render the following barcode if nothing goes wrong:
+
+[![Resulting barcode. Source: http://framework.zend.com/images/manual/zend.barcode.introduction.example-1.png](/uploads/article/019f8a80-cc48-70bf-ba9f-ddc6d1436f1a/zend.barcode.introduction.example-1.png)](/uploads/2016/04/zend.barcode.introduction.example-1.png) Resulting barcode.
+Source: bit.ly/1XbZZ81
 
 ### Tip
 
-The first (ZF1-style) example will work for both namespaced and non-namespaced dependencies if you add this as the first line:
+In this case the first example will work for both namespaced an non-namespaced dependencies if we add the the following as the first line at the first example:
 
-```php
+```
 use Zend\Barcode\Barcode as Zend_Barcode;
 ```
 
-You can then use any of the following to access ZF2's Barcode module:
+Now we can use any of the following to access ZF2's Barcode Module:
 
-- `Zend\Barcode\Barcode`
-- `Barcode`
-- `Zend_Barcode`
+- Zend\Barcode\Barcode
+- Barcode
+- Zend_Barcode
 
-## Compatibility
+ 
 
-This article works for any Dotkernel 1.x version if your server is running PHP greater than 5.4.0.
+ 
+
+The full examples can be found here:
+
+[Zend Framework 1 - Rendering a barcode](http://framework.zend.com/manual/1.12/en/zend.barcode.creation.html#zend.barcode.creation.renderering)
+
+[Zend Framework 2 - Rendering a barcode](http://framework.zend.com/manual/current/en/modules/zend.barcode.creation.html#rendering-a-barcode)
+
+This article works for any **Dotkernel 1.x** version if your server is running **PHP >5.4.0.**
 
 ## FAQ
 
@@ -100,28 +126,16 @@ This article works for any Dotkernel 1.x version if your server is running PHP g
 A: No. Composer automatically loads dependencies, so there is no need to include or require them yourself.
 
 **Q: What example does the article use to demonstrate Composer dependencies?**
-A: The article renders a Barcode using Zend Framework 1 as the Non-Namespaced dependency (installed with `composer require 'zendframework/zendframework1'`) and Zend Framework 2 as the Namespaced dependency (installed with `composer require 'zendframework/zend-barcode'`).
+A: The article renders a Barcode using Zend Framework 1 as the Non-Namespaced dependency (installed with composer require 'zendframework/zendframework1') and Zend Framework 2 as the Namespaced dependency (installed with composer require 'zendframework/zend-barcode').
 
 **Q: When can these Composer dependencies be used in the application?**
 A: These dependencies can be used anywhere after the Dot_Kernel::initialize() function has been called.
 
 **Q: How are non-namespaced (Zend Framework 1) classes loaded compared to namespaced (Zend Framework 2) classes?**
-A: Non-namespaced ZF1 classes are loaded PSR-0 style, meaning the class name looks like VendorName_PackageName_ClassName (e.g. Zend_Barcode).
-Namespaced ZF2 classes are loaded PSR-4 style, meaning the class name looks like \VendorName\PackageName\ClassName (e.g. Zend\Barcode\Barcode).
+A: Non-namespaced ZF1 classes are loaded PSR-0 style, meaning the class name looks like VendorName_PackageName_ClassName (e.g. Zend_Barcode). Namespaced ZF2 classes are loaded PSR-4 style, meaning the class name looks like \VendorName\PackageName\ClassName (e.g. Zend\Barcode\Barcode).
 
 **Q: Can the same code work for both namespaced and non-namespaced barcode dependencies?**
-A: Yes.
-If you add "use Zend\Barcode\Barcode as Zend_Barcode;" as the first line, the ZF1-style example will work for both, and you can then reference the module as Zend\Barcode\Barcode, Barcode, or Zend_Barcode.
+A: Yes. If you add "use Zend\Barcode\Barcode as Zend_Barcode;" as the first line, the ZF1-style example will work for both, and you can then reference the module as Zend\Barcode\Barcode, Barcode, or Zend_Barcode.
 
 **Q: What Dotkernel and PHP versions does this article apply to?**
 A: This article works for any Dotkernel 1.x version if your server is running PHP greater than 5.4.0.
-
-## Resources
-
-- [Adding Composer support in your Dotkernel project](http://www.dotkernel.com/dotkernel/adding-composer-support-in-your-dotkernel-project)
-- [Zend Framework 1 manual](http://framework.zend.com/manual/1.12/en/manual.html)
-- [Zend Framework 2 manual](http://framework.zend.com/manual/current/en/index.html)
-- [PSR-0](http://www.php-fig.org/psr/psr-0/)
-- [PSR-4](http://www.php-fig.org/psr/psr-4/)
-- [Zend Framework 1 - Rendering a barcode](http://framework.zend.com/manual/1.12/en/zend.barcode.creation.html#zend.barcode.creation.renderering)
-- [Zend Framework 2 - Rendering a barcode](http://framework.zend.com/manual/current/en/modules/zend.barcode.creation.html#rendering-a-barcode)

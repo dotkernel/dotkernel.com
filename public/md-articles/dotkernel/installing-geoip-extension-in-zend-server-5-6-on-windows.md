@@ -13,59 +13,53 @@ language: "en"
 ## TL;DR
 Test whether php_geoip is already available, and if not, download the correct php_geoip.dll for your PHP build from windows.php.net, copy it into Zend Server's phpext folder, enable it from the Zend Server GUI, and download the MaxMind GeoIP databases.
 
-## Steps
+To test if you have php_geoip extension on your Zend Server, create an php file and copy the following code. This will output true if extension is available or false if not.
 
-1. Test if you have the php_geoip extension:
+```
+If your output is false than you have to download an php_geoip.dll file correctly compiled for your zend server version.
 
-   ```php
-   <?php
-   var_dump(function_exists('geoip_database_info'));
-   ```
+For Zend Server 5.6 you can find geoip extension here:
 
-   This outputs `true` if the extension is available, or `false` if not.
+http://windows.php.net/downloads/pecl/releases/geoip/1.0.8/
 
-2. If the output is `false`, download a php_geoip.dll file correctly compiled for your Zend Server version from [http://windows.php.net/downloads/pecl/releases/geoip/1.0.8/](http://windows.php.net/downloads/pecl/releases/geoip/1.0.8/).
-There are several files for different architectures and compilers.
+As you can see there are several files for different architectures and compilers
 
-3. Find your PHP's architecture and compiler by running `phpinfo();`.
-Example values:
+** NOTE: you can find on what architecture your php is built and the compiler used with phpinfo();
 
-   | Field | Value |
-   |---|---|
-   | Compiler | MSVC9 (Visual C++ 2008) |
-   | Architecture | x86 |
+Compiler
+MSVC9 (Visual C++ 2008)
 
-4. Copy the downloaded `php_geoip.dll` file into:
+Architecture
+x86
 
-   ```
-   C:\YOUR_LOCATION\Zend\ZendServer\lib\phpext\
-   ```
+After you have downloaded the php_geoip.dll you have to copy the file in:
 
-5. In the Zend Server interface, restart PHP, turn on the geoip extension from **Server Setup -> Extension**, and restart PHP again.
+C:\YOUR_LOCATION\Zend\ZendServer\lib\phpext\
 
-   If you get an error loading the geoip extension, you picked the wrong dll - try one of the others.
+Now you have to go in your Zend Server interface, restart php, turn on geoip extension from Server Setup -> Extension and restart php again.
 
-   Otherwise, the extension is loaded and the test script from step 1 will output `true`.
+If you get an error loading geoip extension than you picked the wrong dll and you have to try the other ones.
 
-6. Download GeoIP databases from MaxMind, as needed:
-   - geoIP.dat
-   - geoIPCity.dat
-   - geoIPOrganization.dat
-   - or anything else you need
+Otherwise your geoip extension is loaded and your test script from the beginning will output "true".
 
-7. Copy those `.dat` files into:
+The next step is to download some geoip databases from maxmind.
+```
 
-   ```
-   C:\YOUR_LOCATION\Zend\ZendServer\bin\
-   ```
+- geoIP.dat
+- geoIPCity.dat
+- geoIPOrganization.dat
+- or anything you need
 
-You can now use geoip functions on Zend Server 5.6.
+Copy those .dat files in
+
+C:\YOUR_LOCATION\Zend\ZendServer\bin\
+
+And now you can use geoip functions on your Zend Server 5.6
 
 ## FAQ
 
 **Q: How do you test if the php_geoip extension is available on Zend Server?**
-A: Create a PHP file with `var_dump(function_exists('geoip_database_info'));`.
-It outputs true if the extension is available, or false if it isn't.
+A: Create a PHP file with var_dump(function_exists('geoip_database_info'));. It outputs true if the extension is available, or false if it isn't.
 
 **Q: Where can you download the php_geoip extension for Zend Server 5.6?**
 A: From http://windows.php.net/downloads/pecl/releases/geoip/1.0.8/, where several php_geoip.dll files are available for different architectures and compilers.
@@ -77,12 +71,7 @@ A: You can find your PHP's architecture and the compiler it was built with by ru
 A: Into C:\YOUR_LOCATION\Zend\ZendServer\lib\phpext\.
 
 **Q: How do you enable the geoip extension after copying the dll?**
-A: Go into the Zend Server interface, restart PHP, turn on the geoip extension from Server Setup -> Extension, and restart PHP again.
-If you get an error loading the extension, you picked the wrong dll and should try another one.
+A: Go into the Zend Server interface, restart PHP, turn on the geoip extension from Server Setup -> Extension, and restart PHP again. If you get an error loading the extension, you picked the wrong dll and should try another one.
 
 **Q: What else is needed besides the extension itself?**
 A: You also need to download geoip databases from MaxMind, such as geoIP.dat, geoIPCity.dat, and geoIPOrganization.dat, and copy those .dat files into C:\YOUR_LOCATION\Zend\ZendServer\bin\.
-
-## Resources
-
-- [php_geoip 1.0.8 downloads](http://windows.php.net/downloads/pecl/releases/geoip/1.0.8/)

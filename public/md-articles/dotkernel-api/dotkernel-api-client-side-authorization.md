@@ -10,13 +10,13 @@ language: "en"
 
 # Dotkernel API Client Side Authorization
 
-This article covers the basic authorization of a Client application which uses a backend built using Dotkernel API.
+**This article covers the basic authorization of a Client application which use a backend built using** [**Dotkernel API**](https://github.com/dotkernel/api)
 
 ## Authorization Request
 
-Client application users send a POST request to the backend containing the following JSON object:
+Client application users send a **POST** request to the backend containing the following JSON object:
 
-```shell
+```
 {
 "grant_type": "password",
 "client_id": "{API_CLIENT}",
@@ -29,9 +29,9 @@ Client application users send a POST request to the backend containing the follo
 
 ## Authorization Response
 
-If the credentials are correct, the API will return a JSON object containing the authentication data:
+If the credentials are correct, the **API** will return a **JSON** object containing the authentication data:
 
-```shell
+```
 {
 "token_type": "Bearer",
 "expires_in": 86400,
@@ -40,19 +40,15 @@ If the credentials are correct, the API will return a JSON object containing the
 }
 ```
 
-When sending API requests to an endpoint which requires authorization, an `Authorization` header must be present containing `"Bearer {access_token}"`, where `{access_token}` represents the content of the key with the same name found in the authorization response.
+When sending **API** requests to an endpoint which requires authorization, an *Authorization* header must be present containing the following data: `"Bearer {access_token}"`, where {access_token} represents the content of the key with the same name found in the above response.
 
 ## FAQ
 
 **Q: What does a client send to request authorization?**
-A: The client application sends a POST request to the backend with a JSON object containing `grant_type` (set to "password"), `client_id`, `client_secret`, `scope`, `username`/email, and `password`.
+A: The client application sends a POST request to the backend with a JSON object containing grant_type (set to "password"), client_id, client_secret, scope, username/email, and password.
 
 **Q: What does the API return when authorization succeeds?**
-A: If the credentials are correct, the API returns a JSON object containing `token_type` ("Bearer"), `expires_in` (86400 seconds), an `access_token`, and a `refresh_token`.
+A: If the credentials are correct, the API returns a JSON object containing token_type ("Bearer"), expires_in (86400 seconds), an access_token, and a refresh_token.
 
 **Q: How do I use the access token in subsequent requests?**
-A: When sending API requests to an endpoint that requires authorization, include an Authorization header containing `"Bearer {access_token}"`, where `{access_token}` is the value returned in the authorization response.
-
-## Resources
-
-- [Dotkernel API on GitHub](https://github.com/dotkernel/api)
+A: When sending API requests to an endpoint that requires authorization, include an Authorization header containing "Bearer {access_token}", where {access_token} is the value returned in the authorization response.

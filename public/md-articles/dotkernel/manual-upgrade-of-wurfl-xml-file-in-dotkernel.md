@@ -14,30 +14,32 @@ language: "en"
 Dotkernel Application Framework bundles a WURFL XML file, but it's the last GPL version (from June 2011).
 Because of a license change to that WURFL file, Dotkernel will no longer upgrade the bundled file - it must be upgraded manually.
 
-## Steps to manually upgrade
+Dotkernel Application Framework can be downloaded with WURFL XML file bundled in it, but is quite an old file,  the latest GPL version, from June 2011. Because of license changed of that WURFL file,  this bundled file will not be upgraded anymore by us.
 
-1. Download the `wurfl-2.3.xml.zip` file.
-2. Rename it to `wurfl.zip`.
-3. Rename the file inside the archive to `wurfl.xml`.
-4. Replace `/externals/wurfl/wurfl.zip` with this new `wurfl.zip` file.
-5. Download the `web_browsers_patch.xml` file.
-6. Replace the `/externals/wurfl/web_browsers_patch.xml` file with this new one.
-7. Go to the Admin panel, click on the **empty** wurfl cache link, then rebuild the cache.
+You need to manually upgrade the xml file, if you still want to use it , and of course, please pay attention to license changes.
 
-Please pay attention to WURFL license changes when performing this upgrade.
+1.  Download the wurfl-2.3.xml.zip file.
+2. Rename it to wurfl.zip
+3. Rename the file inside the archive to wurfl.xml
+4. Replace the file /externals/wurfl/wurfl.zip with this new wurfl.zip file
+5. Download the web_browsers_patch.xml file
+6. Replace the /externals/wurfl/web_browsers_patch.xml file with this new one
+7. Go to Admin panel, click on **empty** wurfl cache  link, then rebuild the cache
+
+Again, please pay attention to WURFL license changes.
+
+ 
 
 ## FAQ
 
 **Q: Why does the WURFL xml file need to be manually upgraded in Dotkernel?**
-A: Dotkernel bundles an old WURFL XML file (the latest GPL version, from June 2011).
-Because of a license change to that WURFL file, the bundled file will no longer be upgraded by Dotkernel, so it must be upgraded manually if you still want to use it.
+A: Dotkernel bundles an old WURFL XML file (the latest GPL version, from June 2011). Because of a license change to that WURFL file, the bundled file will no longer be upgraded by Dotkernel, so it must be upgraded manually if you still want to use it.
 
 **Q: What are the main steps to manually upgrade the WURFL file?**
 A: Download the wurfl-2.3.xml.zip file, rename it to wurfl.zip, rename the file inside the archive to wurfl.xml, and replace /externals/wurfl/wurfl.zip with this new wurfl.zip file.
 
 **Q: Is there anything else to replace besides wurfl.zip?**
-A: Yes.
-Download the web_browsers_patch.xml file and replace the /externals/wurfl/web_browsers_patch.xml file with the new one.
+A: Yes. Download the web_browsers_patch.xml file and replace the /externals/wurfl/web_browsers_patch.xml file with the new one.
 
 **Q: What's the last step after replacing the files?**
 A: Go to the Admin panel, click on the "empty" wurfl cache link, then rebuild the cache.

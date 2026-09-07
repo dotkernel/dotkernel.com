@@ -11,16 +11,14 @@ language: "en"
 # Dotkernel Admin V4
 
 ## TL;DR
-
 Dotkernel Admin V4, officially released on 19 July 2022, is Dotkernel's PSR-7 Admin application built on Mezzio for managing and displaying tabular data from one or more databases.
 It supports PHP 8.1 (minimum PHP 7.4), offers a config-driven module/middleware/route setup, RBAC-based authorization guards, a Symfony Console-based CLI with a file locker, per-module routing via RoutesDelegator, and a Bootstrap 4.5.0 / Fontawesome 5.0.6 frontend using Bootstrap Table for data listing.
 
 ## Getting Started with Dotkernel Admin V4
 
-Dotkernel's PSR-7 Admin is an application based on Mezzio, with the main purpose of managing and displaying tabular data from one or more databases components.
+**[Dotkernel's PSR-7 Admin](https://github.com/dotkernel/admin)**  is an application based on **[Mezzio](https://getlaminas.org/)**, with the main purpose of managing and displaying tabular data from one or more databases components.
 
-On 19 July 2022, Dotkernel Admin V4 has been officially released.
-Dotkernel Admin V4 comes with various interesting features and overall improvement of the core framework.
+On 19 July 2022 **Dotkernel Admin V4** has been officially released. **Dotkernel Admin V4** comes with various interesting features and overall improvement of the core framework.
 
 ## Demo
 
@@ -28,29 +26,29 @@ Ready to try it out?
 
 There should be an admin account with the following credentials:
 
-- Username: admin
-- Password: dotadmin
+- Username: **admin**
+- Password: **dotadmin**
 
-Head over to [https://admin7.dotkernel.net/](https://admin7.dotkernel.net/) and see for yourself.
+Head over to [https://admin7.dotkernel.net/](https://admin7.dotkernel.net/) and see for yourself :)
 
 ## Dotkernel Admin V4 Features
 
 ### PHP 8.1
 
-Dotkernel Admin V4 fully supports PHP 8.1 with a minimum requirement of PHP 7.4.
+**Dotkernel Admin V4** fully supports **PHP 8.1** with a minimum requirement of **PHP 7.4**.
 
 ### Configurability
 
-From managing middleware order to simply adding an API key to your application, the config directory is the way to go.
+From managing middleware order to simply adding an API key to you application the **config** directory is the way to go.
 
-Want to register a new module? In `config.php` you will find the right place for it, registering its `ConfigProvider.php`.
-Got a shiny new middleware? You can put it with the rest of them in `pipeline.php`, where you can even edit in which order they should run.
+Want to register a new module? In `config.php` you will find the right place for it registering its `ConfigProvider.php`.
+Got a shiny new Middleware? You can put it with the rest of them in `pipeline.php` where you can even edit in which order they should run.
 
-You can further customize your app within the autoload directory by changing the application name and URL in `app.global.php`, adding freshly created routes into `navigation.global.php`, and much more.
+You can further customize your app within the **autoload** directory by changing the application name and url into the `app.global.php`, adding the freshly created routes into `navigation.global.php` and much more.
 
-Example adding a simple route to the navigation bar:
+Example adding a simple route to navigation bar:
 
-```php
+```
 [
     'options' => [
         'label' => 'Dashboard',
@@ -62,9 +60,9 @@ Example adding a simple route to the navigation bar:
 ]
 ```
 
-Or a group of 2 or more routes:
+or a group of 2 or more routes
 
-```php
+```
 [
     'options' => [
         'label' => 'Manage admins',
@@ -92,12 +90,11 @@ Or a group of 2 or more routes:
 
 ### Authorization Guards
 
-The packages responsible for restricting access to certain parts of the application are [dot-rbac-guard](https://github.com/dotkernel/dot-rbac-guard) and [dot-rbac](https://github.com/dotkernel/dot-rbac).
-These packages work together to create an infrastructure that is customizable and diversified to manage user access to the platform by specifying the type of role the user has.
+The packages responsible for restricting access to certain parts of the application are [dot-rbac-guard](https://github.com/dotkernel/dot-rbac-guard) and [dot-rba](https://github.com/dotkernel/dot-rbac)[c](https://github.com/dotkernel/dot-rbac). These packages work together to create an infrastructure that is customizable and diversified to manage user access to the platform by specifying the type of role the user has.
 
 The `authorization.global.php` file provides multiple configurations specifying multiple roles as well as the types of permissions to which these roles have access.
 
-```php
+```
 //example of a flat RBAC model that specifies two types of roles as well as their permission
 'roles' => [
     'superuser' => [
@@ -117,15 +114,15 @@ The `authorization.global.php` file provides multiple configurations specifying 
 ]
 ```
 
-The `authorization-guards.global.php` file provides configuration to restrict access to certain actions based on the permissions defined in `authorization.global.php`, so basically the permissions have to be added in the dot-rbac configuration file first to specify the action restriction permissions.
+The `authorization-guards.global.php` file provides configuration to restrict access to certain actions based on the permissions defined in `authorization.global.php` so basically we have to add the permissions in the dot-rbac configuration file first to specify the action restriction permissions.
 
-```php
-//example of configuration to restrict certain actions of some routes based on the permissions specified in the dot-rbac configuration file
+```
+//example of configuration example to restrict certain actions of some routes based on the permissions specified in the dot-rbac configuration file
 'rules' => [
     [
         'route' => 'account',
         'actions' => [
-            //list of actions to apply, or empty array for all actions
+            //list of actions to apply , or empty array for all actions
             'unregister',
             'avatar',
             'details',
@@ -150,25 +147,25 @@ The `authorization-guards.global.php` file provides configuration to restrict ac
 
 ### CLI
 
-For registering a new command, first make sure your command class extends `Symfony\Component\Console\Command\Command`, then you can enable the command by registering it in `config/autoload/cli.global.php`.
+For registering new command first make sure your command class extends `Symfony\Component\Console\Command\Command`, then you can enable the command by registering it in `config/autoload/cli.global.php`.
 
-Here you will also find the brand new file locker configuration, so you can easily turn it on or off (by default: `'enabled' => true`).
+Here you will also find our brand new file locker configuration so you can easily turn in on or off ( by default: `'enabled' => true` )
 
-Note: the File Locker System will create a `command-{command-default-name}.lock` file which will not let another instance of the same command run until the previous one has finished.
+Note: The **File Locker System** will create a `command-{command-default-name}.lock` file which will not let another instance of the same command to run until the previous one has finished.
 
-You can list the existing commands by running the following in a terminal:
+You can list the existing commands running the following in a terminal:
 
-```bash
+```
 php /bin/cli.php list
 ```
 
-Note: you can take as example `Dot\Cli\Command\DemoCommand`.
+Note: You can take as example `Dot\Cli\Command\DemoCommand`
 
 ### Routing
 
-Each module gets a `RoutesDelegator.php` file for managing existing routes inside that specific module, providing an easy way of adding new ones by specifying the route path, the middleware that the route will use, an array of accepted methods, and the route name.
+Providing each Module with a `RoutesDelegator.php` file for managing existing routes inside that specific module and an easy way of adding new ones providing the route path, Middleware that the route will use, an array of accepted methods and the route name.
 
-```php
+```
 $app->route(
     '/admin[/{action}[/{uuid}]]',
     AdminController::class,
@@ -180,19 +177,19 @@ $app->route(
  );
 ```
 
-Note: the optional attributes on the route path are marked between `[]`.
+Note: The optional attributes on the route path are marked between **[]** like 
 
 ### Frontend
 
-As for the frontend toolkit, we chose to use Bootstrap 4.5.0 in combination with Fontawesome 5.0.6 for a minimalist but efficient design.
+As for the frontend toolkit we chose to use **Bootstrap** **4.5.0** in combination with **Fontawesome 5.0.6** for a minimalist but efficient design.
 
-For assembling `app.js` and `app.css` along with handling packages from `package.json`, we recommend using npm 7 or up.
+For assembling the `app.js` and `app.css` along with handling packages from `package.json` we recommend using **npm 7** or up.
 
-Our choice for listing raw data was Bootstrap Table because it is easy to implement and configurable in many ways.
+Our choice for listing raw data was **[Bootstrap Table](https://bootstrap-table.com/)** because it is easy to implement and configurable in many ways.
 
-Let's take the admin table as an example:
+Lets take admin table as an example:
 
-```html
+```
 <table data-toggle="table" data-url="/admin/list" data-click-to-select="true"
        data-mobile-responsive="true" data-min-width="800"
        data-check-on-init="true" data-id-field="uuid"
@@ -216,9 +213,9 @@ Let's take the admin table as an example:
 </table>
 ```
 
-Here we can tweak directly in the table data how our table looks, arrange the page, and use a couple of other features like the API URL for pulling data, pagination, allowing multiple row selection, and more.
+Here we can tweak directly into the table data how our table looks, arrange in page or a couple of usages like the api url for pulling data, pagination, allowing multiple row select and more...
 
-Note: you'll find in the `#tableToolbar` buttons that toggle a modal for adding/editing/deleting admins.
+Note: You`ll find in the `#tableToolbar` buttons that toggle a **modal** for adding/editing/deleting admins.
 
 ## FAQ
 

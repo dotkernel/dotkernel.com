@@ -10,21 +10,15 @@ language: "en"
 
 # Zend Framework dropped integration of WURFL adapter
 
-## What happened
+According to Matthew Weier O'Phinney, Zend Framework Project Leader, in the next release of ZF, 1.12.0 branch, WURFL adapter will be dropped
 
-According to Matthew Weier O'Phinney, Zend Framework Project Leader, the WURFL adapter will be dropped from `Zend_Http_UserAgent` in the next release of ZF, the 1.12.0 branch:
-
-> due to a change in licensing by the WURFL project -- the free version is now AGPL -- we're dropping the WURFL adapter from Zend_Http_UserAgent.
-> In discussions with Zend and the CR Team, we feel the AGPL raises too many concerns for end users with regards to how their products must be licensed in order to comply.
-> (This is a similar rationale as to why we did not consider ExtJS when looking at JS toolkits to partner with.)
->
+> due to a change in licensing by the WURFL project -- the free version is now AGPL -- we're dropping the WURFL adapter from Zend_Http_UserAgent. In discussions with Zend and the CR Team, we feel the AGPL raises too many concerns for end users with regards to how their products must be licensed in order to comply. (This is a similar rationale as to why we did not consider ExtJS when looking at JS toolkits to partner with.)
+> 
 > As such, if you relied on the WURFL adapter in the past, you _will_ need to change code when upgrading to ZF 1.12.0, or grab the WURFL adapter from a previous version.
 
-So it's a good moment to check old or current projects, and proceed accordingly.
+So its a good moment to check the old or current projects, and proceed.
 
-## Impact on Dotkernel
-
-Dotkernel framework uses its own WURFL adapter, so this change will not affect projects built with it.
+Dotkernel framework is using its own WURFL adapter, so this will not affect projects built with it .
 
 ## FAQ
 

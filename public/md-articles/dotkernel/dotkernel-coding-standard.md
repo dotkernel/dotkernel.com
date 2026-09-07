@@ -11,37 +11,34 @@ language: "en"
 # Dotkernel Coding Standard
 
 ## TL;DR
-
 Dotkernel is a "skeleton" of Zend Framework and borrows its coding standard from the ZF Coding Standard, with a small number of exceptions covering indentation, naming conventions, and brace placement.
 
-## Indentation
+**Dotkernel** will be a "skeleton"of [**Zend Framework**](http://framework.zend.com/). Dotkernel borrowed the coding standard from Zend Framework: **[ZF Coding Standard](http://framework.zend.com/manual/en/coding-standard.php-file-formatting.html)** with some exceptions.
 
-Indentation is made with tabs, not spaces (per section B.2.2 of the Zend Framework Coding Standard).
+In what follows, we will make remarks only on those features that are slightly different in the coding standards of Dotkernel.
 
-## Naming conventions
+[**B.2. PHP File Formatting**](http://framework.zend.com/manual/en/coding-standard.php-file-formatting.html)
 
-Dotkernel uses camel naming conventions, with these Dotkernel-specific rules:
+- [**B.2.2. Indentation**](http://framework.zend.com/manual/en/coding-standard.php-file-formatting.html#coding-standard.php-file-formatting.indentation)
 
-| Element | Convention | Example |
-|---|---|---|
-| Classes | Start with `Dot_` | `Dot_Templates` |
-| Interfaces | End with the string "Interface" | `Dot_Db_Interface` |
-| Filenames | Always use the `.php` extension, no fancy extensions | `.php`, not `.inc` |
+[**B.3. Naming Conventions**](http://framework.zend.com/manual/en/coding-standard.naming-conventions.html)
 
-## Control statements - brace placement
+Camel naming convention
 
-Every opening curly brace `{` starts on its own new line after the statement, and its matching closing brace `}` is also placed on its own new line, aligned in the same column as the opening brace, for better indentation of the code.
+- [**B.3.1. Classes**](http://framework.zend.com/manual/en/coding-standard.naming-conventions.html#coding-standard.naming-conventions.classes)
+- **[B.3.2. Interfaces](http://framework.zend.com/manual/en/coding-standard.naming-conventions.html#coding-standard.naming-conventions.interfaces)**
+- **[B.3.3. Filenames](http://framework.zend.com/manual/en/coding-standard.naming-conventions.html#coding-standard.naming-conventions.filenames)**
 
-Example:
+[**B.4.6. Control Statements**](http://framework.zend.com/manual/en/coding-standard.coding-style.html#coding-standard.coding-style.control-statements) every starting curly brace **}** after a statement starts on a new line, end it's closing curly brace **}** will be on a new line too. The start and end braces must be on the same column (for better indentation of the code) e.g:
 
-```php
+```
 if ($a != 2)
 {
    $a = 2;
 }
 ```
 
-```php
+```
 if ($a != 2)
 {
     $a = 2;
@@ -65,14 +62,3 @@ A: Classes start with the prefix Dot_ (e.g. Dot_Templates), interfaces end with 
 
 **Q: How should curly braces be placed for control statements?**
 A: Every opening curly brace starts on its own new line after the statement, and its matching closing brace also goes on a new line, aligned in the same column as the opening brace, for better indentation of the code.
-
-## Resources
-
-- Zend Framework: http://framework.zend.com/
-- ZF Coding Standard: http://framework.zend.com/manual/en/coding-standard.php-file-formatting.html
-- ZF Coding Standard - Indentation: http://framework.zend.com/manual/en/coding-standard.php-file-formatting.html#coding-standard.php-file-formatting.indentation
-- ZF Coding Standard - Naming Conventions: http://framework.zend.com/manual/en/coding-standard.naming-conventions.html
-- ZF Coding Standard - Classes: http://framework.zend.com/manual/en/coding-standard.naming-conventions.html#coding-standard.naming-conventions.classes
-- ZF Coding Standard - Interfaces: http://framework.zend.com/manual/en/coding-standard.naming-conventions.html#coding-standard.naming-conventions.interfaces
-- ZF Coding Standard - Filenames: http://framework.zend.com/manual/en/coding-standard.naming-conventions.html#coding-standard.naming-conventions.filenames
-- ZF Coding Standard - Control Statements: http://framework.zend.com/manual/en/coding-standard.coding-style.html#coding-standard.coding-style.control-statements

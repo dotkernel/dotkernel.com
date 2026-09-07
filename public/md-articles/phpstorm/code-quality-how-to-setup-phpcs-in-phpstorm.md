@@ -11,36 +11,77 @@ language: "en"
 # Code Quality: How to setup phpcs in PHPStorm
 
 ## TL;DR
-
 PHP_CodeSniffer (phpcs) needs to be configured correctly in PHPStorm under PHP > Quality Tools > PHP_CodeSniffer, with the Custom coding standard pointed at your project's phpcs.xml file.
 This article gives separate setup steps for a freshly cloned project versus an existing one that isn't reporting issues yet, and explains how to read the resulting inline error and warning indicators in the editor.
 
-PHP_CodeSniffer or phpcs is a tool that helps developers maintain a specific standard in the way they write code.
-In order to be able to provide relevant information, phpcs needs to be configured correctly in PHPStorm (see image).
+PHP_CodeSniffer or phpcs is a tool that helps developers maintain a specific standard in the way they write code. In order to be able to provide relevant information, phpcs needs to be configured correctly in PHPStorm (see image).
+
+![](/uploads/article/019f8a80-cc90-7160-853d-18cb7411b9ff/image.png)
+
 Whether you just cloned or you are already working on a project, follow the below guide on how to prepare your environment.
 
-## When Cloning a Project
+## When cloning a project
 
-1. Windows Terminal: Move to the directory where you want to clone the project.
-2. Windows Terminal: Clone the project.
-3. PHPStorm: install composer dependencies.
-4. PHPStorm: restart.
-5. PHPStorm: Open Settings (File -> Settings) and go to PHP -> Quality Tools -> PHP_CodeSniffer:
-    - Make sure that the inspection button is ON.
-    - Coding standard is set to Custom and the field next to it contains the path to your project's phpcs.xml file.
+**Step 1**:
 
-## For an Existing Project
+*Windows Terminal*: Move to the directory where you want to clone the project
 
-1. PHPStorm: Open Settings (File -> Settings) and go to PHP -> Quality Tools -> PHP_CodeSniffer.
-There, if Coding standard is set to Custom and the field next to it contains the path to your project's phpcs.xml file, then PHPStorm is configured correctly to use phpcs - NO need to continue with the next steps.
-2. PHPStorm: delete (if exists) the vendor directory.
-3. PHPStorm: install composer dependencies.
-4. PHPStorm: restart.
-5. Go to Step 1.
+**Step 2**:
+
+*Windows Terminal*: Clone the project
+
+**Step 3**:
+
+*PHPStorm*: install composer dependencies
+
+**Step 4**:
+
+*PHPStorm*: restart
+
+**Step 5**:
+
+*PHPStorm*: Open Settings (*FIle* -> *Settings*) and go to *PHP* -> *Quality Tools* -> *PHP_CodeSniffer*:
+
+- Make sure that the inspection button is ON
+- *Coding standard* is set to *Custom* and the field next to it contains the path to your project's *phpcs.xml* file
+
+## For an existing project
+
+**Step 1**:
+
+*PHPStorm*: Open Settings (*FIle* -> *Settings*) and go to *PHP* -> *Quality Tools* -> *PHP_CodeSniffer*. There, if *Coding standard* is set to *Custom* and the field next to it contains the path to your project's *phpcs.xml* file, then PHPStorm is configured correctly to use phpcs - NO need to continue with the next steps.
+
+**Step 2**:
+
+*PHPStorm*: delete (if exists) the vendor directory
+
+**Step 3**:
+
+*PHPStorm*: install composer dependencies
+
+**Step 4**:
+
+*PHPStorm*: restart
+
+**Step 5**:
+
+Go to **Step 1**.
 
 After you have the above configurations, you should start seeing information in the top-right corner of the editor.
-Once PHPStorm has finished analyzing the opened file, you should see either a green tick (meaning no errors) or a count of all the errors, warnings, and typos.
-Clicking on them will open a section where you get detailed information on each item, their location, and recommendations on how to fix them.
+
+![](/uploads/article/019f8a80-cc90-7160-853d-18cb7411b9ff/image-1-1024x83.png)
+
+Once the PHPStorm has finished analyzing the opened file, you should see either a green tick (meaning no errors)
+
+![](/uploads/article/019f8a80-cc90-7160-853d-18cb7411b9ff/image-2-1024x66.png)
+
+or a count of all the errors, warnings, typos:
+
+![](/uploads/article/019f8a80-cc90-7160-853d-18cb7411b9ff/image-3.png)
+
+Clicking on them will open a section where you get detailed information on each item, their location and recommendations on how to fix them:
+
+![](/uploads/article/019f8a80-cc90-7160-853d-18cb7411b9ff/image-5.png)
 
 ## FAQ
 

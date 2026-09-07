@@ -81,6 +81,7 @@ class PostLoader extends Fixture implements DependentFixtureInterface
                 $excerpt      = $articleData['excerpt'] ?? '';
                 $tlDr         = $articleData['tl_dr'] ?? '';
                 $isObsolete   = (bool) ($articleData['isObsolete'] ?? false);
+                $isTwig       = (bool) ($articleData['isTwig'] ?? false);
                 $openGraphImg = $articleData['opengraph_img'] ?? null;
 
                 $article = $repository->findOneBy(['slug' => $slug]);
@@ -96,6 +97,7 @@ class PostLoader extends Fixture implements DependentFixtureInterface
                     $article->setExcerpt($excerpt);
                     $article->setTldr($tlDr);
                     $article->setObsolete($isObsolete);
+                    $article->setTwig($isTwig);
                     $article->setOpenGraphImage($openGraphImg);
 
                     $manager->persist($article);
@@ -133,6 +135,10 @@ class PostLoader extends Fixture implements DependentFixtureInterface
                     }
                     if ($article->isObsolete() !== $isObsolete) {
                         $article->setObsolete($isObsolete);
+                        $changed = true;
+                    }
+                    if ($article->isTwig() !== $isTwig) {
+                        $article->setTwig($isTwig);
                         $changed = true;
                     }
                     if ($article->getOpenGraphImage() !== $openGraphImg) {

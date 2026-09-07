@@ -11,76 +11,96 @@ language: "en"
 # Creating admin accounts in Dotkernel API
 
 ## TL;DR
-
 Starting with version 3, Dotkernel API supports dedicated admin accounts.
 They can be created either through a protected API endpoint, which lets you assign one or more admin roles and optional names, or through a terminal command, which is quicker but always assigns the default admin role.
 Both methods leave you with a ready-to-use admin account.
 
-## Method 1: Using API Endpoint
+## Creating admin accounts in Dotkernel API
+
+Starting from v3, Dotkernel API introduces support for admin accounts. In this article we will describe two different methods of creating an admin account.
+
+## Method 1: Using API endpoint
 
 This action can be performed only by an authenticated admin/superuser.
-Once authenticated, call the protected endpoint `POST /admin` with the following JSON body:
 
-```json
+Once authenticated call the protected endpoint `POST /admin` with the following **JSON** body:
+
+```
 {
-    "identity": "{IDENTITY}",
-    "password": "{PASSWORD}",
-    "passwordConfirm": "{PASSWORD}",
-    "firstname": "{FIRSTNAME}",
-    "lastname": "{LASTNAME}",
-    "roles": ["{ROLE_UUID}"]
-}
+   "identity": "{IDENTITY}",
+   "password": "{PASSWORD}",
+   "passwordConfirm": "{PASSWORD}",
+   "firstname": "{FIRSTNAME}",
+   "lastname": "{LASTNAME}",
+   "roles":
+ }
 ```
 
 after replacing:
 
 - {IDENTITY} with a valid username OR email address
 - {PASSWORD} with a valid password
-- {ROLE_UUID} with a valid admin role UUID (you can get a list of admin roles by calling the protected endpoint `GET /admin/role`)
+- {ROLE_UUID} with a valid admin role UUID (You can get a list of admin roles by calling the protected endpoint `GET /admin/role`)
 - {FIRSTNAME} and {LASTNAME} are optional
 
-Note: you can specify multiple admin roles under the roles key.
+**NOTE:** You can specify multiple admin roles under the *roles* key.
+
 If the submitted data is valid, the response will be similar to the below:
 
-```json
+```
 {
-    "uuid": "d436b044-be36-11eb-9eb1-78f29ef45f43",
-    "identity": "Letha_Runolfsson96",
-    "firstName": "Oswald",
-    "lastName": "Swift",
-    "status": "active",
-    "roles": ["{ROLE_UUID}"],
-    "created": {
-        "date": "2021-05-26 17:27:06.194613",
-        "timezone_type": 3,
-        "timezone": "Europe/Berlin"
-    },
-    "updated": {
-        "date": "2021-05-26 17:27:06.279705",
-        "timezone_type": 3,
-        "timezone": "Europe/Berlin"
-    },
-    "_links": {
-        "self": {
-            "href": "http://localhost:8080/admin/d436b044-be36-11eb-9eb1-78f29ef45f43"
-        }
-    }
-}
+     "uuid": "d436b044-be36-11eb-9eb1-78f29ef45f43",
+     "identity": "Letha_Runolfsson96",
+     "firstName": "Oswald",
+     "lastName": "Swift",
+     "status": "active",
+     "roles": [
+     {
+       "uuid": "{ROLE_UUID}"
+     }
+   ][
+         {
+             "uuid": "eaa3d01c-9fc0-11eb-b099-78f29ef45f43",
+             "name": "admin",
+             "created": {
+                 "date": "2021-04-17 23:07:27.000000",
+                 "timezone_type": 3,
+                 "timezone": "Europe/Berlin"
+             },
+             "updated": null
+         }
+     ],
+     "created": {
+         "date": "2021-05-26 17:27:06.194613",
+         "timezone_type": 3,
+         "timezone": "Europe/Berlin"
+     },
+     "updated": {
+         "date": "2021-05-26 17:27:06.279705",
+         "timezone_type": 3,
+         "timezone": "Europe/Berlin"
+     },
+     "_links": {
+         "self": {
+             "href": "http://localhost:8080/admin/d436b044-be36-11eb-9eb1-78f29ef45f43"
+         }
+     }
+ }
 ```
 
 The new admin account is ready to use.
 
-## Method 2: Using Terminal Command
+## Method 2: Using terminal command
 
 Run the following command in your application's root directory:
 
-```bash
+```
 php ./bin/cli.php admin:create -i {IDENTITY} -p {PASSWORD}
 ```
 
 or
 
-```bash
+```
 php ./bin/cli.php admin:create --identity {IDENTITY} --password {PASSWORD}
 ```
 
@@ -89,10 +109,10 @@ after replacing:
 - {IDENTITY} with a valid username OR email address
 - {PASSWORD} with a valid password
 
-Note:
+**NOTE:**
 
-- if the specified identity or password contain special characters, make sure you surround them with double quote signs
-- this method does not allow specifying an admin role - newly created accounts will have the role of admin
+- if the specified *identity* or *password* contain special characters, make sure you surround them with double quote signs
+- this method does not allow specifying an admin role - newly created accounts will have role of admin
 
 If the submitted data is valid, the outputted response is:
 
@@ -101,27 +121,26 @@ Admin account has been created.
 ```
 
 The new admin account is ready to use.
+
 You can get more help with this command by running:
 
-```bash
+```
 php ./bin/cli.php help admin:create
 ```
 
 ## FAQ
 
 **Q: What are the two ways to create an admin account in Dotkernel API?**
-A: You can either call the protected API endpoint `POST /admin` with a JSON body, or run the terminal command `php ./bin/cli.php admin:create`.
+A: You can either call the protected API endpoint POST /admin with a JSON body, or run the terminal command php ./bin/cli.php admin:create.
 
 **Q: Who can create an admin account via the API endpoint?**
-A: This action can be performed only by an authenticated admin/superuser, calling the protected `POST /admin` endpoint.
+A: This action can be performed only by an authenticated admin/superuser, calling the protected POST /admin endpoint.
 
 **Q: What data does the POST /admin request body need?**
-A: identity, password, passwordConfirm, and roles (one or more valid admin role UUIDs, obtainable via the protected `GET /admin/role` endpoint).
-firstname and lastname are optional.
+A: identity, password, passwordConfirm, and roles (one or more valid admin role UUIDs, obtainable via the protected GET /admin/role endpoint). firstname and lastname are optional.
 
 **Q: What role does an admin get when created via the terminal command?**
 A: The terminal command doesn't allow specifying an admin role, so newly created accounts are given the role of admin.
 
 **Q: How do I get more help with the admin:create command?**
-A: Run `php ./bin/cli.php help admin:create`.
-Also note that if the identity or password contain special characters, they must be surrounded with double quote signs.
+A: Run php ./bin/cli.php help admin:create. Also note that if the identity or password contain special characters, they must be surrounded with double quote signs.

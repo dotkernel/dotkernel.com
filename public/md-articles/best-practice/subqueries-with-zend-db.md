@@ -11,12 +11,13 @@ language: "en"
 # Subqueries with Zend_Db
 
 ## TL;DR
-
 Continuing the Zend_Db series, this article shows a more complex query - combining COUNT(), LEFT JOIN, and GROUP BY across 3 tables, with a count taken from 2 different tables - and how to build it, including a nested subquery, using Zend_Db.
 
-## The SQL query
+Continuing the Zend_DB article [series](http://www.dotkernel.com/dotkernel/sql-queries-using-zend-db-select/), we are stopping now at subqueries.
 
-```sql
+As you note, the below is a complicate query, with *COUNT()*, *LEFT JOIN()*, *GROUP BY* - select from 3 tables, and make a count from 2 different tables:
+
+```
 SELECT a.id,
        a.title,
        (SELECT COUNT(c.track_id)
@@ -29,15 +30,13 @@ LEFT JOIN track_courses AS b ON (a.id = b.track_id)
 GROUP BY a.id
 ```
 
-## Connecting to the database
+Initialize the connection to our MySql database:
 
-```php
+```
 $db = Zend_Db::factory('Pdo_Mysql', $dbConnect);
 ```
 
-## Building the query in Zend_Db
-
-```php
+```
 $db->select()
    ->from(array('a'=>'tracks'),
          array('id',
@@ -56,8 +55,6 @@ $db->select()
    ->group('a.id');
 ```
 
-The `count_files` column is built by wrapping a nested `$db->select()` call inside a `Zend_Db_Expr`, correlated back to the outer table via `c.track_id = a.id`.
-
 ## FAQ
 
 **Q: What SQL techniques does this subquery example combine?**
@@ -68,7 +65,3 @@ A: Wrap a nested $db->select() call inside a Zend_Db_Expr, building the subquery
 
 **Q: How is the LEFT JOIN with a COUNT expressed in Zend_Db?**
 A: Use ->joinLeft(array('b'=>'track_courses'), 'a.id = b.track_id', array('count_courses' => 'COUNT(b.track_id)')) followed by ->group('a.id').
-
-## Resources
-
-- [Zend_Db series](http://www.dotkernel.com/dotkernel/sql-select-zend-db/)

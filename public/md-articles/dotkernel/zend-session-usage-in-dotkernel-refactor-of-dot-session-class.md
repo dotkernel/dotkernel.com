@@ -11,60 +11,44 @@ language: "en"
 # Zend_Session usage in Dotkernel - Refactor of Dot_Session class
 
 ## TL;DR
-
 A strange session bug was found on a project running Dotkernel 1.5.0: in IE8 and IE9, the session cookie was sometimes not saved, forcing repeated logins.
 Investigation traced it to the `Dot_Session` class calling both `regenerateID()` and `rememberMe()` unnecessarily, generating the session cookie 3 times.
 The fix, shipped in Dotkernel 1.5.1, removed the `regenerateID()` call and added two new application.ini settings.
 
-## The bug
+We found a strange behaviour of sessions in one of our project, running Dotkernel version 1.5.0
 
-We found a strange behaviour of sessions in one of our projects, running Dotkernel version 1.5.0 - similar to [one described here](http://trac.elgg.org/ticket/2677).
-In unknown circumstances, and only in IE 8 and IE9, the session cookie is not saved on the client machine, and the user needs to log in over and over again.
-It was reproduced once on the staging server, and the only way to fix it at the time was to open a new tab with the same page.
+Similar to this one described [here](http://trac.elgg.org/ticket/2677)
 
-## The investigation
+In unknowns circumstances, and only in IE 8 and IE9 , the session cookie is not saved on client machine, and the user need to login over and over again. I was able to reproduce that behaviour once, on our staging server , and the only way to fix that was to **open a new tab with the same page (?!?!?)**
 
-Investigating the `Dot_Session` class showed that the session cookie is generated **3 times**.
-See this [bug report](http://www.dotkernel.net/view.php?id=184).
+Anyway, is still an enygma. So i started to investigate Dot_Session class, and notice that the session cookie is generated **3 times !!** See this [bug report](http://www.dotkernel.net/view.php?id=184).
 
-The code used both **regenerateID()** and **rememberMe()** methods of Zend_Session, which is **not necessary**.
-Quote from the [ZF documentation](http://framework.zend.com/manual/1.11/en/zend.session.global_session_management.html):
+I noticed that we use both **regenerateID()**  and **rememberMe()**  methods of Zend_Session, , which is   **not necessary** Quote from [ZF documentation](http://framework.zend.com/manual/1.11/en/zend.session.global_session_management.html):
 
-> If you call the rememberMe() function, then don't use regenerateId(), since the former calls the latter.
-> If a user has successfully logged into your website, use rememberMe() instead of regenerateId().
+> If you call the rememberMe() function, then don't use regenerateId(), since the former calls the latter.  If a user has successfully logged into your website, use rememberMe() instead of regenerateId().
 
-## The fix
+So i removed **regenerateID()** call,   also added 2 new settings in application.ini  related to session : ***use_only_cookies***, which must be **ON** all the time in order to avoid *session fixation* , and **remember_me_seconds**.
 
-The **regenerateID()** call was removed, and 2 new settings were added in application.ini related to session:
+Those small bug fixes will be included in the new Dotkernel version 1.5.1 which will be released  next days.
 
-- **use_only_cookies** - must be **ON** at all times in order to avoid session fixation.
-- **remember_me_seconds**.
+**TIP**
 
-These bug fixes were included in the new Dotkernel version 1.5.1.
+if you encounter the same issue in IE8 and IE9 , then with all regret, you need to de-activate the **rememberMe()** and **regenerateId()** methods calls.
 
-## Tip
+ 
 
-If you encounter the same issue in IE8 and IE9, then with all regret, you need to deactivate the **rememberMe()** and **regenerateId()** methods calls.
+ 
 
 ## FAQ
 
 **Q: What session bug was found in Dotkernel 1.5.0?**
-A: In unknown circumstances, and only in IE8 and IE9, the session cookie was not saved on the client machine, forcing the user to log in over and over again.
-The only workaround found was to open a new tab with the same page.
+A: In unknown circumstances, and only in IE8 and IE9, the session cookie was not saved on the client machine, forcing the user to log in over and over again. The only workaround found was to open a new tab with the same page.
 
 **Q: What caused the session cookie to be generated multiple times?**
-A: Investigation of the Dot_Session class showed the session cookie was generated 3 times, because the code called both regenerateID() and rememberMe() methods of Zend_Session.
-According to the Zend Framework documentation, this is unnecessary: if you call rememberMe(), you should not also call regenerateId(), since rememberMe() already calls it internally.
+A: Investigation of the Dot_Session class showed the session cookie was generated 3 times, because the code called both regenerateID() and rememberMe() methods of Zend_Session. According to the Zend Framework documentation, this is unnecessary: if you call rememberMe(), you should not also call regenerateId(), since rememberMe() already calls it internally.
 
 **Q: What was the fix, and where was it released?**
-A: The regenerateID() call was removed, and two new application.ini settings were added: use_only_cookies, which must be ON at all times to avoid session fixation, and remember_me_seconds.
-These fixes were included in Dotkernel version 1.5.1.
+A: The regenerateID() call was removed, and two new application.ini settings were added: use_only_cookies, which must be ON at all times to avoid session fixation, and remember_me_seconds. These fixes were included in Dotkernel version 1.5.1.
 
 **Q: What should I do if I still see this issue in IE8/IE9?**
 A: If you encounter the same issue in IE8 and IE9, the tip given is to deactivate the rememberMe() and regenerateId() method calls.
-
-## Resources
-
-- Similar issue described on Elgg: http://trac.elgg.org/ticket/2677
-- Dotkernel bug report: http://www.dotkernel.net/view.php?id=184
-- Zend Framework documentation on global session management: http://framework.zend.com/manual/1.11/en/zend.session.global_session_management.html

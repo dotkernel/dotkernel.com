@@ -11,36 +11,36 @@ language: "en"
 # Using UTF8 charset in Dotkernel
 
 ## TL;DR
-
 To use UTF8 encoding in a Dotkernel-based system, changes are needed in both the database structure and the application.ini file.
 These changes were committed into the Dotkernel 1.6.0 dev codebase.
 
+In order to use UTF8 encoding in your Dotkernel based system, is needed to make some changes in both database structure and in the application.ini file.
+
+> Those changes are commited into **Dotkernel 1.6.0 dev** codebase, which will be released in next days.
+
 ## Database
 
-Set a proper collation for all tables and columns, either **utf8_general_ci** or **utf8_bin**.
+set for all tables and columns proper collation , either **utf8_general_ci** or **utf8_bin**
 
-## application.ini
+## Application.ini
 
-Add the following line to your application.ini file, in the database area:
+add the line
 
-```ini
+```
 database.params.charset = utf8
 ```
 
+to your application.ini file, in the **[production]** area.
+
 ## Differences between utf8_general_ci and utf8_bin
 
-| Collation | Behavior |
-|---|---|
-| utf8_bin | Compares strings by the binary value of each character in the string |
-| utf8_general_ci | Compares strings using general language rules and case-insensitive comparisons |
+**utf8_bin**: compare strings by the binary value of each character in the string **utf8_general_ci**: compare strings using general language rules and using case-insensitive comparisons
 
-For example, the following evaluates as true with utf8_general_ci collation, but **not** with utf8_bin collation:
+For example, the following will evaluate at true with  utf8_general_ci collation, but **not** with the utf8_bin collation:
 
-- Ä = A
-- Ö = O
-- Ü = U
+Ä = A Ö = O Ü = U
 
-These differences only happen at the **MySQL** level (for instance, in queries using the LIKE operator) and **not** at the **PHP** level (for instance, in `str_replace()` calls).
+Those differences happens only on **MySQL** level ( for instance in queries using LIKE operator) and **not** at **PHP** level ( for instance, in str_replace() calls )
 
 ## FAQ
 
@@ -48,11 +48,10 @@ These differences only happen at the **MySQL** level (for instance, in queries u
 A: Both the database structure and the application.ini file need changes: all tables and columns must have a proper UTF8 collation (utf8_general_ci or utf8_bin), and application.ini must load the utf8 charset.
 
 **Q: What line should I add to application.ini to enable UTF8?**
-A: Add the line `database.params.charset = utf8` to your application.ini file.
+A: Add the line database.params.charset = utf8 to your application.ini file.
 
 **Q: What is the difference between utf8_general_ci and utf8_bin collation?**
-A: utf8_bin compares strings by the binary value of each character, while utf8_general_ci compares strings using general language rules with case-insensitive comparisons.
-For example, Ä = A, Ö = O, and Ü = U evaluate as true under utf8_general_ci but not under utf8_bin.
+A: utf8_bin compares strings by the binary value of each character, while utf8_general_ci compares strings using general language rules with case-insensitive comparisons. For example, Ä = A, Ö = O, and Ü = U evaluate as true under utf8_general_ci but not under utf8_bin.
 
 **Q: Does the collation choice affect PHP string functions too?**
 A: No. These collation differences only happen at the MySQL level, for instance in queries using the LIKE operator, and not at the PHP level, for instance in str_replace() calls.

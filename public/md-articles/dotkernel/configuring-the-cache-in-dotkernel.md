@@ -11,46 +11,53 @@ language: "en"
 # Configuring the Cache in Dotkernel
 
 ## TL;DR
-
 Dotkernel's caching layer is built on Zend Framework Cache and is configured through `cache.*` settings in `application.ini`.
 The main frontend settings control whether caching is enabled, which cache service to use, the namespace prefix, and how long entries live.
 Optional backend-specific settings (like the file cache directory) are recommended so that separate projects don't accidentally share the same cache.
 
 This article contains the Dotkernel cache layer configuration guide.
-The Dotkernel Caching Layer is based on Zend Framework Cache; more configuration options can be found at the following links:
+
+The Dotkernel Caching Layer is based on Zend Framework Cache, more configuration options can be found at the following links:
 
 - [Zend Framework Cache Frontends](http://framework.zend.com/manual/1.12/en/zend.cache.frontends.html)
 - [Zend Framework Cache Backends](http://framework.zend.com/manual/1.12/en/zend.cache.backends.html)
 
-## Main Cache Settings (Cache Frontend)
+## Main cache settings (Cache Frontend)
 
-The main cache settings within the application.ini file should look like this:
+The main cache settings within the **application.ini** file should look like this:
 
-```ini
+```
 cache.enable = true
 cache.factory = "apc"
 cache.lifetime = "86400"
 cache.namespace = "dotkernel"
 ```
 
-The cache.enable option can be used to disable caching, mostly used in the development stage.
-The cache.factory value will be the cache service we want to use: file or apc.
-The cache.namespace will be the cache variables prefix, and the cache.lifetime value will define how long the cached variables will be usable before they need to be re-cached.
+The *cache.enable* option can be used to disable caching, mostly used in development stage.
 
-## Individual Cache Settings (Cache Backend)
+The *cache.factory* value will be the cache service we want to use: ***file*** or ***apc***
 
-The individual cache settings are optional, but it's highly recommended that you have these values set, otherwise other projects might use the same cache.
+The *cache.namespace* will be the cache variables prefix and the *cache.lifetime* value will define how long the variables cached will be usable before they will need to be re-cached.
 
-```ini
+ 
+
+## Individual cache settings (Cache Backend)
+
+The individual cache settings are optional but we highly recommend that you have theese values set, otherwise other projects might use the same cache
+
+```
 ; file caching settings
-cache.file.cache_dir = APPLICATION_PATH "/cache"
-cache.file.cache_file_perm = 0600
+ cache.file.cache_dir = APPLICATION_PATH "/cache"
+ cache.file.cache_file_perm = 0600
 ```
 
-For more settings and caching alternatives, see the Zend Framework Cache links at the beginning of the article.
+ 
+
+For more settings and caching alternatives see the Zend Framework Cache Links at the article beginning.
+
 The setting pattern and sample are below:
 
-```ini
+```
 cache.BACKEND_NAME.SETTING = "VALUE"
 ; example:
 cache.file.file_name_prefix = "Dotkernel"

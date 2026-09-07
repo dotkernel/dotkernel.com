@@ -10,14 +10,11 @@ language: "en"
 
 # Zend Studio PHP Formatter file for Dotkernel coding standard.
 
-An XML file is provided for download, ready to be imported into Zend Studio, version 9.x.
-This file follows Dotkernel's coding standard.
+[Here](http://www.dotkernel.com/download/?did=34) is  uploaded the XML file , ready to be imported in your Zend Studio, version 9.x
 
-## Installation steps
+This file follow Dotkernel’s Coding standard.
 
-1. Unzip the file.
-2. Go to Zend Studio -> Preferences -> PHP -> Code Style -> Formatter.
-3. Import the XML file.
+Unzip the file. Go to Zend Studio -> Preferences -> PHP -> Code Style -> Formatter Import the xml file.
 
 ## FAQ
 
@@ -26,7 +23,3 @@ A: It is an XML file, downloadable from the linked page, that can be imported in
 
 **Q: How do I import the formatter file into Zend Studio?**
 A: Unzip the downloaded file, then in Zend Studio go to Preferences -> PHP -> Code Style -> Formatter and import the XML file.
-
-## Resources
-
-- [Dotkernel PHP Formatter download](http://www.dotkernel.com/download/?did=34)

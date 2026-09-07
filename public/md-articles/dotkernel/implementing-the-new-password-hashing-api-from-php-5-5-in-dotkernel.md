@@ -14,24 +14,38 @@ language: "en"
 To use the new [Password Hashing](http://www.php.net/manual/en/book.password.php) functions introduced in PHP 5.5 and unify password-related functions for both admin and users, Dotkernel's codebase was refactored in version 1.8.0 (starting from revision 799).
 Because those functions require PHP 5.5+, the [Password Compat library](https://github.com/ircmaxell/password_compat) is used for compatibility, and the minimum PHP version to run Dotkernel was raised to 5.3.8.
 
-## Background
+In order to use the new [Password Hashing](http://www.php.net/manual/en/book.password.php) functions , introduced in PHP 5.5 , and unify all password related functions , used for both admin and users, we did a major refactor of Dotkernel codebase, in version 1.8.0 , starting from revision 799.
 
-See more on the reasoning behind this change [here](http://www.brandonsavage.net/please-stop-hashing-passwords-yourself/).
+See more on that matter[here](http://www.brandonsavage.net/please-stop-hashing-passwords-yourself/)
 
-## Applying this refactor to older Dotkernel systems
+Since those 4 new functions are available only since PHP 5.5 , we used the [Password Compatibility library.](https://github.com/ircmaxell/password_compat)
 
-1. Change the table structure to handle the new password format:
+The minimum PHP version in order to run Dotkernel was raised to PHP 5.3.8 .
 
-   ```sql
-   ALTER TABLE `admin` CHANGE `password` `password` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL;
-   ALTER TABLE `user` CHANGE `password` `password` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL;
-   ```
+ 
 
-2. Remove the `settings.admin.salt = 5F6WQ9U3YT` variable from `application.ini`.
-3. Apply the [patch](http://www.dotkernel.com/download/?did=40).
-4. If you have trouble applying the patch, compare the files and see the log/diff in [websvn](http://websvn.dotkernel.net/comp.php?repname=Dotkernel&compare[]=/@796&compare[]=/@797).
-5. Run the conversion script - details are in the file `Console/Controller.php`, at line 47.
-6. Admin passwords cannot be converted, so they need to be recreated manually.
+**How to apply this refactor to older Dotkernel systems**
+
+```
+ALTER TABLE `admin` CHANGE `password` `password` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL;
+```
+
+```
+ALTER TABLE `user` CHANGE `password` `password` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL;
+```
+
+- Remove from application.ini the variable **settings.admin.salt = 5F6WQ9U3YT**
+- apply the patch . [Download](http://www.dotkernel.com/download/?did=40)
+- if you have trouble applying the patch, you can compare the files and see the log/diff in [websvn](http://websvn.dotkernel.net/comp.php?repname=Dotkernel&compare[]=/@796&compare[]=/@797)
+- run the conversion script . You can find the details in the file Console/Controller.php , at line 47
+- Hope that you will not break something :-)
+- Admin passwords cannot be converted , so need to be recreated manually .
+
+ 
+
+ 
+
+ 
 
 ## FAQ
 
@@ -49,11 +63,3 @@ A: Change the password column definition in the admin and user tables via ALTER 
 
 **Q: What happens to existing admin passwords during the upgrade?**
 A: Admin passwords cannot be converted automatically, so they need to be recreated manually.
-
-## Resources
-
-- [PHP Password Hashing manual](http://www.php.net/manual/en/book.password.php)
-- [Please stop hashing passwords yourself](http://www.brandonsavage.net/please-stop-hashing-passwords-yourself/)
-- [Password Compatibility library](https://github.com/ircmaxell/password_compat)
-- [Patch download](http://www.dotkernel.com/download/?did=40)
-- [websvn diff (revision 796 vs 797)](http://websvn.dotkernel.net/comp.php?repname=Dotkernel&compare[]=/@796&compare[]=/@797)

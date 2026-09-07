@@ -11,24 +11,27 @@ language: "en"
 # Detecting Mobile Devices in Dotkernel 1.6.0
 
 ## TL;DR
-
 Dotkernel 1.6.0 no longer ships with a working built-in mobile detection method, because mobile detection now relies on the new Wurfl Cloud integration and must be configured via a Wurfl Cloud account and API key.
 The old Dot_UserAgent_Wurfl class was removed and replaced by Dot_UserAgent_WurflCloud, which uses the Wurfl Cloud API adapter.
 The article walks through the application.ini settings and shows sample code for reading device info and redirecting mobile visitors.
 
-The new Dotkernel version 1.6.0 is coming with some changes to how we detect mobile devices; these changes are because of the new Wurfl Cloud integration.
-This version of Dotkernel no longer comes with a working built-in method for mobile detection, so first we have to configure it.
+The new Dotkernel version 1.6.0 is comming with some changes how we are detecting mobile devices, this changes are because of the new Wurfl Cloud integration.
 
-- Go to the scientiamobile website and register for a Wurfl Cloud account.
-- Choose device_os and mobile_browser for your account and save.
-- Go to API Keys and copy the right key into application.ini.
+This version of Dotkernel is not comming anymore with a working built in method for mobile detection, so first we have to configure it.
 
-We chose device_os and mobile_browser capabilities because with these two capabilities we can get some extra capabilities (isMobile, isSmartPhone, isIphone, isAndroid, isBlackberry, isSymbian, and isWindowsMobile) using our built-in methods.
-Choosing other capabilities from scientiamobile will result in wrong detection of these extra capabilities, but you can get only those capabilities using another method from the Dot_UserAgent_WurflCloud class.
+- go to scientiamobile website and register for an Wurfl Cloud account
+- choose **device_os** and **mobile_browser** to your account and save
+- go to API Keys and copy the right key in application.ini
 
-Wurfl Cloud setting in application.ini:
+ 
 
-```ini
+We choosed device_os and mobile_browser capabilities because with these two capabilities we can get some extra capabilities (isMobile, isSmartPhone, isIphone, isAndroid, isBlackberry, is Symbian and is WindowsMobile) using our built in methods.
+
+Choosing other capabilities from scientiamobile will result in wrong detection of these extra capabilities, but you can get only those capabilities using another method from Dot_UserAgent_WurflCloud class.
+
+Wurfl Cloud setting in application.ini
+
+```
 resources.useragent.wurflcloud.active = TRUE
 resources.useragent.wurflcloud.redirect = TRUE
 resources.useragent.wurflcloud.cache = TRUE
@@ -38,29 +41,23 @@ resources.useragent.wurflcloud.api_key = 000000:XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 resources.useragent.wurflcloud.lib_dir = APPLICATION_PATH "/library/WurflCloud/"
 ```
 
-- active - used to turn on (TRUE) or off (FALSE) the Wurfl Cloud detection (default: TRUE).
-- redirect - if TRUE, visitors from the frontend will be redirected to the mobile module (default: TRUE).
-- cache - caches every distinct result to optimize the number of requests to scientiamobile (default: TRUE).
-- cache_lifetime - time in seconds to keep the results in cache (default: 3600).
-- cache_namespace - the prefix used for cache keys (default: WURFLCLOUD).
-- api_key - the API key from your WURFL Cloud account (change this to your own key).
-- lib_dir - the Wurfl Cloud library location in Dotkernel (don't change this, unless you want to move the library).
+**active** - used to turn on (TRUE) or off (FALSE) the wurfl cloud detection (default: TRUE) **redirect** - if is TRUE your visitators from frontend will be redirected to mobile module (default: TRUE) **cache** - cache every distinct result to optimize the number of requests to scientiamobile (default: TRUE) **cache_lifetime** - time in seconds to keep the results in cache (default: 3600) **cache_namespace** - the prefix used for cache keys (default: WURFLCLOUD) **api_key** - API Key from WURFL Cloud account (change this with your key) **lib_dir** - the wurfl cloud library location in Dotkernel (don't change this, just if you want to move the library)
 
-Because of these changes, we removed the old Dot_UserAgent_Wurfl class and added the new Dot_UserAgent_WurflCloud class, which uses the Wurfl Cloud API adapter.
+Because of these changes we removed the old Dot_UserAgent_Wurfl class and added the new one Dot_UserAgent_WurflCloud wich is using the Wurfl Cloud API adapter.
 
-## Example of Dot_UserAgent Usage in Dotkernel
+## Example of Dot_UserAgent usage in Dotkernel:
 
-Get Wurfl configuration:
+Get Wurfl configuration
 
-```php
+```
 $wurflConf = $registry->configuration->resources->useragent->wurflcloud;
 ```
 
-Note: you can have more Wurfl configurations if you have more libraries, like the Wurfl Package (GPL).
+Note: You can have more Wurfl configurations if you have more libraries like Wurfl Package (GPL)
 
-If Wurfl is active, then get device info:
+If Wurfl is active then get device info
 
-```php
+```
 if($wurflConf->active)
 {
     $deviceInfo = Dot_UserAgent :: getDeviceInfo($_SERVER);
@@ -68,9 +65,9 @@ if($wurflConf->active)
 }
 ```
 
-If the detected device is a mobile device, we save the device info in the database and redirect it to the mobile controller:
+If detected device is an mobile device we will save device info in database and redirect it to the mobile controller
 
-```php
+```
 if( (0 < count((array)$deviceInfo)) && $deviceInfo->isMobile)
 {
 

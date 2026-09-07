@@ -11,28 +11,58 @@ language: "en"
 # New Features in Zend Framework 1.12
 
 ## TL;DR
-
 Per Matthew Weier O'Phinney's announcement, the Zend Framework team made available the first release candidate of the Zend Framework 1.12 series, 1.12.0RC1.
 It back ports several ZF2 components to ZF1, removes the WurflApi adapter due to licensing changes, and fixes over 200 reported issues.
 
-## New Features
+According to [Matthew Weier O'Phinney announcement](http://devzone.zend.com/2366/zend-framework-1-12-series-1-12-0rc1-now-available/), Zend Framework team is pleased to announce the immediate availability of the first release candidate of the Zend Framework 1.12 series, 1.12.0RC1
 
-| Feature | Description |
-|---|---|
-| Zend_Loader changes | A number of autoloaders and autoloader facilities were back ported from ZF2, including `Zend_Loader_StandardAutoloader` (improves on `Zend_Loader_Autoloader` by allowing a specific path to be associated with a vendor prefix or namespace), `Zend_Loader_ClassMapAutoloader` (lookup-table based autoloading, typically the fastest method), and `Zend_Loader_AutoloaderFactory` (can create and update autoloaders and register them with `spl_autoload_register()`). Back ported by Matthew Weier O'Phinney. |
-| Zend_EventManager | A component that lets you attach and detach listeners to named events, per-instance or via shared collections, trigger events, and interrupt execution of listeners. Back ported by Matthew Weier O'Phinney. |
-| Zend_Http_UserAgent_Features_Adapter_Browscap | A features adapter that calls `get_browser()` to discover mobile device capabilities for injection into UserAgent device instances, relying on the Browscap project's `php_browscap.ini` file. Created by Matthew Weier O'Phinney. |
-| Zend_Mobile_Push | A component for implementing push notifications across the three major platforms: Apple (APNs), Google (C2DM), and Microsoft (MPNS). Contributed by Mike Willbanks. |
-| Zend_Gdata_Analytics | An extension to Zend_Gdata for interacting with Google's Analytics Data Export API; does not change the overall operation of Zend_Gdata components. Contributed by Daniel Hartmann. |
+##  New Features
+
+- Zend_Loader changes
+
+> A number of autoloaders and autoloader facilities were back ported from ZF2 to provide performant alternatives to those already available in the 1.X releases.  These include: Zend_Loader_StandardAutoloader, which improves on Zend_Loader_Autoloader by allowing the ability to specify a specific path to associate with a vendor prefix or namespace; Zend_Loader_ClassMapAutoloader, which provides the ability to use lookup tables for autoloading (which are typically the fastest possible way to autoload); and Zend_Loader_AutoloaderFactory, which can both create and update autoloaders for you, as well as register them with spl_autoload_register().
+> 
+> The Zend_Loader changes were back ported from ZF2 by Matthew Weier O'Phinney
+
+- Zend_EventManager
+
+> Zend_EventManager is a component that allows you to attach and detach listeners to named events, both on a per-instance basis as well as via shared collections; trigger events; and interrupt execution of listeners.
+> 
+> Zend_EventManager was back ported from ZF2 by Matthew Weier O'Phinney
+
+- Zend_Http_UserAgent_Features_Adapter_Browscap
+
+> This class provides a features adapter that calls get_browser() in order to discover mobile device capabilities to inject into UserAgent device instances.
+> 
+> Browscap ([http://browsers.garykeith.com/](http://browsers.garykeith.com/)) is an open project dedicated to collecting an disseminating a "database" of browser capabilities. PHP has built-in support for using these files via the get_browser() function. This function requires that your php.ini provides a browscap entry pointing to the PHP-specific php_browscap.ini file which is available at [http://browsers.garykeith.com/stream.asp?PHP_BrowsCapINI](http://browsers.garykeith.com/stream.asp?PHP_BrowsCapINI).
+> 
+> Zend_Http_UserAgent_Features_Adapter_Browscap was created by Matthew Weier O'Phinney
+
+- Zend_Mobile_Push
+
+> Zend_Mobile_Push is a component for implementing push notifications for the 3 major push notification platforms (Apple (Apns), Google (C2dm) and Microsoft (Mpns).
+> 
+> Zend_Mobile_Push was contributed by Mike Willbanks.
+
+- Zend_Gdata_Analytics
+
+> Zend_Gdata_Analytics is an extension to Zend_Gdata to allow interaction with Google's Analytics Data Export API. This extension does not encompass any major changes in the overall operation of Zend_Gdata components.
+> 
+> Zend_Gdata_Analytics was contributed by Daniel Hartmann.
 
 ## Removed features
 
-- `Zend_Http_UserAgent_Features_Adapter_WurflApi` was removed due to changes in WURFL's licensing (announced previously).
-The team planned to provide the WurflApi adapter directly to ScientiaMobile so WURFL users would still have that option.
+- Zend_Http_UserAgent_Features_Adapter_WurflApi  ( announced few months ago [here](http://www.dotkernel.com/dotkernel/zend-framework-dropped-integration-of-wurfl-adapter/))
+
+> Due to the changes in licensing of WURFL, we have removed the WurflApi adapter. We will be providing the WurflApi adapter to ScientiaMobile so that users of WURFL will still have that option.
 
 ## Bug Fixes
 
-Over 200 reported issues in the tracker were fixed, with particular thanks to Adam Lundrigan, Frank Brückner and Martin Hujer, as well as everyone who ran the ZF1 unit tests and reported results.
+> In addition over 200 reported issues in the tracker have been fixed. We'd like to particularly thank Adam Lundrigan, Frank Brückner and Martin Hujer for their efforts in making this happen. Thanks also to the many people who ran the ZF1 unit tests and reported their results!
+> 
+> For a complete list go here:[http://framework.zend.com/issues/secure/IssueNavigator.jspa?requestId=12877](http://framework.zend.com/issues/secure/IssueNavigator.jspa?requestId=12877)
+
+ 
 
 ## FAQ
 
@@ -46,16 +76,7 @@ A: A number of autoloaders and autoloader facilities were back ported from ZF2, 
 A: Zend_EventManager is a component, also back ported from ZF2, that lets you attach and detach listeners to named events (per-instance or via shared collections), trigger events, and interrupt execution of listeners.
 
 **Q: Why was the WurflApi adapter removed?**
-A: Zend_Http_UserAgent_Features_Adapter_WurflApi was removed due to changes in the licensing of WURFL.
-The team planned to provide the WurflApi adapter to ScientiaMobile so WURFL users would still have that option.
+A: Zend_Http_UserAgent_Features_Adapter_WurflApi was removed due to changes in the licensing of WURFL. The team planned to provide the WurflApi adapter to ScientiaMobile so WURFL users would still have that option.
 
 **Q: How many bugs were fixed in this release?**
 A: Over 200 reported issues in the tracker were fixed, with particular thanks credited to Adam Lundrigan, Frank Brückner and Martin Hujer, as well as everyone who ran the ZF1 unit tests and reported results.
-
-## Resources
-
-- [Matthew Weier O'Phinney's announcement](http://devzone.zend.com/2366/zend-framework-1-12-series-1-12-0rc1-now-available/)
-- [Browscap project](http://browsers.garykeith.com/)
-- [php_browscap.ini download](http://browsers.garykeith.com/stream.asp?PHP_BrowsCapINI)
-- [Prior WurflApi removal announcement](http://www.dotkernel.com/dotkernel/zend-framework-dropped-integration-of-wurfl-adapter/)
-- [Complete issue tracker list](http://framework.zend.com/issues/secure/IssueNavigator.jspa?requestId=12877)

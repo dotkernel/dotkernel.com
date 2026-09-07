@@ -11,24 +11,22 @@ language: "en"
 # Dotkernel Database Naming Conventions for MySQL
 
 ## TL;DR
-
 Dotkernel's database naming conventions are borrowed from FaZend's "Rules of naming of database tables and columns."
 Tables use singular, camelLetter names, every table has an auto-increment id, foreign keys are named after the referenced table and column, and SQL keywords are capitalized.
 
-## Database naming conventions for tables and columns
+Dotkernel borrows the database naming conventions from [FaZend: Rules of naming of database tables and columns](http://fazend.com/a/2009-11-DataNaming.html). FaZend is an open-source PHP framework based on Zend Framework. **Database naming conventions for tables and columns:**
 
-- Singular table names only (e.g. `user`, `category`, `product`, `order`, `orderProduct`)
-- Every table must have an auto-incrementing integer column `id`
-- ZF-like names of columns and tables (e.g. `user::isAdmin`, `orderProduct::product`)
-- Foreign keys must have the same name as the referenced table plus the name of the referenced column.
-  Example: table referenced is `admin`, column name `Id`, so the foreign key column will be `adminId`.
-- Pattern for CONSTRAINT name: `FK_referencedTableName_tableName`.
-  Example: `CONSTRAINT FK_admin_adminLogin`.
-- SQL keywords are capitalized (e.g. `SELECT`, `INT`)
+- Singular table names only (e.g. *user*, *category*, *product*, *order, orderProduct*)
+- Every table must have an auto-incrementing integer column id
+- ZF-like names of columns and tables (e.g. *user::isAdmin*, *orderProduct::product*)
+- ~~Foreign keys must have the same names as reference tables~~
+- Foreign keys must have the same names as reference tables + the name of the referenced column **Example:** table referenced: *admin* , column name: *Id* so the column will be *adminId*
+- Pattern for CONSTRAINT name : FK_referencedTableName_tableName **Example:** CONSTRAINT `FK_admin_adminLogin`
+- SQL keywords are capitalized (e.g. SELECT, INT)
 
-## Example of proper SQL file formatting and naming
+**Example of proper SQL file formatting and naming:**
 
-```sql
+```
 CREATE TABLE IF NOT EXISTS `user`
  (
    `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -37,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `user`
    `email` VARCHAR(100) NOT NULL,
    `firstName` VARCHAR(255) NOT NULL,
    `lastName` VARCHAR(255) NOT NULL,
-   `dateCreated` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+   `dateCreated` TIMESTAMP NOT  NULL DEFAULT  CURRENT_TIMESTAMP,
    `userType` INT(11) NOT NULL AUTO_INCREMENT
    `isActive` ENUM('0','1') NOT NULL DEFAULT '1',
    PRIMARY KEY  (`id`),
@@ -52,9 +50,7 @@ CREATE TABLE IF NOT EXISTS `user`
  AUTO_INCREMENT=1 ;
 ```
 
-## Conclusion
-
-The names of database tables and columns must follow camelLetter naming conventions.
+**Conclusion:** The names of database tables and columns must follow *camelLetter* as naming conventions.s
 
 ## FAQ
 
@@ -65,15 +61,10 @@ A: They are borrowed from FaZend's "Rules of naming of database tables and colum
 A: Singular table names only, for example user, category, product, order, orderProduct.
 
 **Q: How should foreign key columns be named?**
-A: A foreign key column takes the name of the referenced table plus the name of the referenced column.
-For example, referencing table admin's Id column produces a column named adminId.
+A: A foreign key column takes the name of the referenced table plus the name of the referenced column. For example, referencing table admin's Id column produces a column named adminId.
 
 **Q: What naming pattern is used for CONSTRAINT names?**
 A: The pattern is FK_referencedTableName_tableName, for example CONSTRAINT `FK_admin_adminLogin`.
 
 **Q: What casing convention applies to table/column names and to SQL keywords?**
 A: Table and column names must follow camelLetter naming conventions, while SQL keywords such as SELECT and INT are capitalized.
-
-## Resources
-
-- FaZend: Rules of naming of database tables and columns: http://fazend.com/a/2009-11-DataNaming.html

@@ -11,36 +11,35 @@ language: "en"
 # Dotkernel3 - Stable Release version 1.0
 
 ## TL;DR
-
 Dotkernel3 1.0 updates the core packages to support Zend Expressive 3 and PSR-15 middleware, making both frontend (1.0.0) and admin (1.0.1) easier to migrate.
 No functional changes were made to the core code, though projects using the old http-interop/http-middleware package must migrate to the psr/http-server-middleware interfaces.
 Existing Dotkernel 3 (Expressive 2) projects can follow a separate guide to move to Zend Expressive 3.
 
-## Release Overview
+Dotkernel was updated to support **[Zend Expressive 3](https://docs.zendframework.com/zend-expressive/) **alongside with **PSR-15 **middleware.
 
-Dotkernel was updated to support Zend Expressive 3 alongside PSR-15 middleware.
+We have updated the core packages to support **[PSR-15 Middleware](https://www.php-fig.org/psr/psr-15/).**
 
-We have updated the core packages to support PSR-15 Middleware.
+By updating the core packages both frontend and admin are easier to migrate.
 
-By updating the core packages, both frontend and admin are easier to migrate.
+The new versions are: frontend -> [1.0.0](https://packagist.org/packages/dotkernel/frontend#v1.0.0) admin -> [1.0.1](https://packagist.org/packages/dotkernel/admin#v1.0.1)
 
-The new versions are:
-frontend -> 1.0.0
-admin -> 1.0.1
+If your project is a Dotkernel 3 instance (based on expressive 2), you can migrate your project to Zend Expressive 3 by following [this guide](https://www.dotkernel.com/how-to/migrating-dotkernel-3-from-zend-expressive-2-to-zend-expressive-3/).
 
-If your project is a Dotkernel 3 instance (based on Expressive 2), you can migrate your project to Zend Expressive 3 by following this guide.
-
-## What's New
+## What's new
 
 - Runs on Zend Stratigility / Zend Expressive 3.0
 - Middleware is now PSR-15 compliant
 - PHP >=7.1 Support
 
+ 
+
 ## Changes
 
 - No functional changes were made in the core code
-- If your middleware code is based on the dotkernel/dot-controller package, no middleware migration is needed
-- If your middleware code is based on the http-interop/http-middleware, migration must be made to implement interfaces in psr/http-server-middleware
+- If your middleware code is based on the **dotkernel**/**dot-controller** package no middleware migration is needed
+- If your middleware code is based on the **http-interop/http-middleware** migration must be made to implement interfaces in **psr/http-server-middleware**
+
+ 
 
 ## Packages Updated
 
@@ -66,7 +65,7 @@ If your project is a Dotkernel 3 instance (based on Expressive 2), you can migra
 - dotkernel/dot-twigrenderer:^1.1
 - dotkernel/dot-user:^1.0
 
-## Zend Packages (Support) Updated
+## Zend Packages (support) Updated
 
 - psr/http-server-middleware:^1.0
 - psr/http-server-handler:^1.0
@@ -79,6 +78,8 @@ If your project is a Dotkernel 3 instance (based on Expressive 2), you can migra
 - zendframework/zend-expressive-router:^3.0
 - zendframework/zend-stratigility:^3.0
 - zendframework/zend-component-installer:^2.0
+
+ 
 
 ## Packages Removed
 

@@ -14,26 +14,34 @@ language: "en"
 Loading configuration and settings from XML files on every request is expensive, both due to hard-drive latency and XML parsing overhead.
 Dotkernel 1.8 implements a cache layer for router, acl_role, menu, options (including seo_xml), browser_xml, os_xml and test data, with a choice of APC/APCU or file-based storage.
 
+It's very expensive to load configurations and settings from XML files, on every requests.
+
+First because of latency of accessing files from hard drive, second because of the XML file parsing burden.
+
+Because of that , we implemented in upcoming 1.8 version of Dotkernel a cache layer where to store **router, acl_role, menu, options(including seo_xml), browser_xml, os_xml, test** between requests. More information about the variables which Dotkernel cache by default follow this link: [Dotkernel Reserved Variable Names for Caching](http://www.dotkernel.com/dotkernel/dotkernel-reserved-variable-names-for-caching)
+
+We are implementing 2 different cache factories to choose from: **apc** (or **apcu** for newest PHP installations) and **file**.
+
 ## 1. Configuring the cache
 
-The configuration is set from `/configs/application.ini`: whether caching is enabled, how long the cache stays valid, the cache namespace, and the storage provider (File or APC).
-The article recommends disabling the cache in development mode.
-See [Configuring the Cache in Dotkernel](http://www.dotkernel.com/dotkernel/configuring-the-cache-in-dotkernel/) for more details.
+The configuration can be set from /configs/application.ini, you can choose if you use the caching system, how long your cache stays valid, the cache namespace, and the storage provider (**File** or **APC**). I would disable the cache in development mode if I were you.
 
-## 2. Using the cache
+For more info about the configuration and help configuring the cache see: [Configuring the Cache in Dotkernel](http://www.dotkernel.com/dotkernel/configuring-the-cache-in-dotkernel/).
 
-The cache is automatically loaded during initialization and stored in the Registry - loading it manually is not needed because it's already loaded on kernel initialization (see `Dot_Kernel::initialize($startTime)`).
-If you want to use caching outside of that normal initialization, load it with:
+## 2. Using the Cache
 
-```php
+The cache is automatically loaded in the initialization and stored in the Registry.
+
+Loading the caching engine is not needed because it is already loaded on kernel initialization (*see **Dot_Kernel**::**initialize**($startTime)*)*,* but if you would like to use caching for other purposes (where you are not initializing the kernel), the loading syntax is the following:
+
+```
 Dot_Cache::loadCache();
 ```
 
-Note: the cache key must match a specific RegEx pattern.
+Below is a simple object caching sample, yes, you can also cache objects. 
+ Note: The cache key must match the following RegEx pattern: **[A-Za-z0-9_]***
 
-Example of object caching:
-
-```php
+```
 $id = 'MyCachedKey';
 $obj = new stdClass();
 $obj->text = 'I am a cached text';
@@ -45,10 +53,13 @@ Dot_Cache::save(obj, $id);
 $value = Dot_Cache::load($id);
 
 // checking if we have the object in cache
-if ($value !== false) {
+if($value !== false)
+{
      // assuming we only need the text value from the object
      echo $value->text;
-} else {
+}
+else
+{
      echo 'no value cached for '. $id ;
 }
 ```
@@ -62,17 +73,10 @@ A: Router, acl_role, menu, options (including seo_xml), browser_xml, os_xml, and
 A: Two cache factories to choose from: APC (or APCU for newer PHP installations) and File.
 
 **Q: Where is the cache configured?**
-A: In /configs/application.ini, where you can enable or disable caching, set how long the cache stays valid, choose the cache namespace, and pick the storage provider (File or APC).
-The article recommends disabling the cache in development mode.
+A: In /configs/application.ini, where you can enable or disable caching, set how long the cache stays valid, choose the cache namespace, and pick the storage provider (File or APC). The article recommends disabling the cache in development mode.
 
 **Q: Do you need to manually load the cache engine?**
-A: No, it's automatically loaded during kernel initialization (Dot_Kernel::initialize()).
-Manually calling Dot_Cache::loadCache() is only needed if you want to use caching outside of that normal initialization.
+A: No, it's automatically loaded during kernel initialization (Dot_Kernel::initialize()). Manually calling Dot_Cache::loadCache() is only needed if you want to use caching outside of that normal initialization.
 
 **Q: Can you cache PHP objects, not just simple values?**
 A: Yes, the article shows an example of saving and loading a stdClass object using Dot_Cache::save() and Dot_Cache::load().
-
-## Resources
-
-- [Dotkernel Reserved Variable Names for Caching](http://www.dotkernel.com/dotkernel/dotkernel-reserved-variable-names-for-caching)
-- [Configuring the Cache in Dotkernel](http://www.dotkernel.com/dotkernel/configuring-the-cache-in-dotkernel/)

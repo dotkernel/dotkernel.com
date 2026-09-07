@@ -11,43 +11,42 @@ language: "en"
 # WURFL Zend Framework Integration into Dotkernel
 
 ## TL;DR
-
 [WURFL](http://wurfl.sourceforge.net/) is integrated into Dotkernel using the [Zend_Http_UserAgent](http://framework.zend.com/manual/1.11/en/zend.http.user-agent.html) class from [ZF 1.11.0rc1](http://framework.zend.com/download/latest) (the beta release at the time of the post).
 This post walks through the required folders, config files, and code to wire it up.
 
-## Installation steps
+[WURFL](http://wurfl.sourceforge.net/) is integrated into Dotkernel, using the [Zend_Http_UserAgent](http://framework.zend.com/manual/1.11/en/zend.http.user-agent.html) class from the latest release [ZF 1.11.0rc1](http://framework.zend.com/download/latest) ( Beta release at the date of this post).
 
-1. Download the [WURFL PHP API](http://sourceforge.net/projects/wurfl/files/WURFL%20PHP/1.1/wurfl-php-1.1.tar.gz/download) and unzip it into a folder named `wurfl-php-1.1`.
-2. Create the following folders and make them writable by the web server:
-   - `cache\wurfl\FILE_CACHE_PROVIDER`
-   - `cache\wurfl\FILE_PERSISTENCE_PROVIDER`
-3. In the `configs` folder:
-   - Copy `wurfl-config.xml` from `wurfl-php-1.1\examples\resources`.
-   - Rename `wurfl-config.xml` to `wurfl.xml`.
-4. Edit the `configs\application.ini` file and add these lines:
+The integration of [WURFL](http://wurfl.sourceforge.net/) into Dotkernel is described below.
 
-```ini
+Download [WURFL PHP API](http://sourceforge.net/projects/wurfl/files/WURFL%20PHP/1.1/wurfl-php-1.1.tar.gz/download) and unzip it into folder ***wurfl-php-1.1***
+
+- Create folders and make it **writable** by web server
+  - ***cache\wurfl\FILE_CACHE_PROVIDER***
+  - ***cache\wurfl\FILE_PERSISTENCE_PROVIDER***
+- In folder *configs*:
+  - Copy ***wurfl-config.xml*** from ***wurfl-php-1.1\examples\resources***
+  - Rename ***wurfl-config.xml*** to ***wurfl.xml***
+- Edit ***configs\application.ini***file; add these lines:
+
+```
 resources.useragent.wurflapi.wurfl_api_version = "1.1"
 resources.useragent.wurflapi.wurfl_lib_dir = APPLICATION_PATH "/library/Wurfl/"
 resources.useragent.wurflapi.wurfl_config_file = APPLICATION_PATH "/configs/wurfl.xml"
 ```
 
-5. Create the folder `externals\wurfl`, and copy the following files into it:
-   - `wurfl-php-1.1\examples\resources\web_browsers_patch.xml`
-   - `wurfl-php-1.1\examples\resources\wurfl-regression.zip`, renamed to `wurfl.zip` (or download the [latest wurfl zip](http://sourceforge.net/projects/wurfl/files/WURFL/) database and rename it `wurfl.zip`).
-6. Copy the contents of the folder `wurfl-php-1.1\WURFL` to `library\Wurfl`.
+- Create folder ***externals\wurfl***, and copy the following files from:
+  - ***wurfl-php-1.1\examples\resources\web_browsers_patch.xml***
+  - ***wurfl-php-1.1\examples\resources\wurfl-regression.zip*** and rename it ***wurfl.zip*** or download the [latest wurfl zip](http://sourceforge.net/projects/wurfl/files/WURFL/) database and rename it ***wurfl.zip***
+- Copy the contents of the folder ***wurfl-php-1.1\WURFL*** to ***library\Wurfl***
 
-## Using WURFL in Dotkernel
+[WURFL](http://wurfl.sourceforge.net/) is integrated into Dotkernel in the mobile module, but to access WURFL configuration, use
 
-[WURFL](http://wurfl.sourceforge.net/) is integrated into Dotkernel in the mobile module.
-To access WURFL configuration:
-
-```php
+```
 $userAgent = new Zend_Http_UserAgent($config->resources->useragent);
 $device = $userAgent->getDevice();
 ```
 
-`$userAgent->getDevice()` returns all the relevant information about the current user agent (`$_SERVER`).
+*$userAgent->getDevice()* returns all the relevant information about the current user agent *($_SERVER['HTTP_USER_AGENT'])*
 
 ## FAQ
 
@@ -64,12 +63,4 @@ A: Two folders must be created and made writable by the web server: cache/wurfl/
 A: Three lines need to be added: resources.useragent.wurflapi.wurfl_api_version = "1.1", resources.useragent.wurflapi.wurfl_lib_dir pointing to APPLICATION_PATH "/library/Wurfl/", and resources.useragent.wurflapi.wurfl_config_file pointing to APPLICATION_PATH "/configs/wurfl.xml".
 
 **Q: How do you access WURFL configuration in code?**
-A: Instantiate a Zend_Http_UserAgent with the useragent config, then call getDevice() on it. getDevice() returns all the relevant information about the current user agent.
-
-## Resources
-
-- WURFL: http://wurfl.sourceforge.net/
-- Zend_Http_UserAgent manual: http://framework.zend.com/manual/1.11/en/zend.http.user-agent.html
-- Zend Framework latest download: http://framework.zend.com/download/latest
-- WURFL PHP API 1.1 download: http://sourceforge.net/projects/wurfl/files/WURFL%20PHP/1.1/wurfl-php-1.1.tar.gz/download
-- Latest WURFL zip database: http://sourceforge.net/projects/wurfl/files/WURFL/
+A: Instantiate a Zend_Http_UserAgent with the useragent config, then call getDevice() on it, for example $userAgent = new Zend_Http_UserAgent($config->resources->useragent); $device = $userAgent->getDevice();. getDevice() returns all the relevant information about the current user agent.
