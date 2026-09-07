@@ -60,8 +60,28 @@ class GetPostResourceHandler implements RequestHandlerInterface
         if ($article->getStatus() !== PostStatusEnum::Published) {
             return $this->blogService->notFound($categories);
         }
-        $meta         = $article;
-        $adjacent     = $this->articleRepository->getAdjacentPosts($article);
+        $meta     = $article;
+        $adjacent = $this->articleRepository->getAdjacentPosts($article);
+
+        if ($article->isTwig()) {
+            try {
+                $html = $this->template->render(
+                    "page::blog-resource/{$categorySlug}/{$slug}",
+                    [
+                        'article'      => $article,
+                        'meta'         => $meta,
+                        'categories'   => $categories,
+                        'previousPost' => $adjacent['previous'],
+                        'nextPost'     => $adjacent['next'],
+                        'faq'          => [],
+                    ]
+                );
+                return new HtmlResponse($html);
+            } catch (Throwable $e) {
+                return $this->blogService->notFound($categories);
+            }
+        }
+
         $markdownFile = $this->blogService->resolveMarkdownFilePath($categorySlug, $slug);
         if ($markdownFile === null) {
             return $this->blogService->notFound($categories);
