@@ -11,14 +11,14 @@ language: "en"
 # Using Postman for documentation in Dotkernel API 3
 
 ## TL;DR
+
 Starting from version 3.0, Dotkernel API documents its endpoints using Postman, via a provided collection and environment file that get imported into the tool.
 Postman organizes work into a Workspace, Collections, Environments, and Requests, and the Dotkernel API collection ships with built-in security: global Bearer Token authorization inherited from the collection root, and automatic ACCESS_TOKEN/REFRESH_TOKEN storage on the Admin/Security and User/Security folders.
 After making changes, the collection and environment files can be re-exported to overwrite the application's documentation files.
 
-## Using Postman documentation in Dotkernel API 3
+## Using Postman Documentation in Dotkernel API 3
 
-Starting from version 3.0 Dotkernel API provides it's documentation using [Postman](https://www.postman.com/).
-
+Starting from version 3.0 Dotkernel API provides its documentation using [Postman](https://www.postman.com/).
 In this article we will go into the details of creating and maintaining your application's documentation.
 
 ## Prerequisites
@@ -26,30 +26,31 @@ In this article we will go into the details of creating and maintaining your app
 In order to follow the steps, you will need the following:
 
 - a working installation of Dotkernel API 3
-- download and install Postman from their [download page](https://www.postman.com/downloads/).
+- download and install Postman from their [download page](https://www.postman.com/downloads/)
 
-**TIP:** If you don't have a Postman account, we recommend you to create one. This way Postman is able to backup your workspace in the cloud and synchronize it across multiple devices.
+TIP: If you don't have a Postman account, we recommend you to create one.
+This way Postman is able to backup your workspace in the cloud and synchronize it across multiple devices.
 
 ## Introduction
 
 For better understanding on how Postman works, we need to run through the "building blocks" of Postman:
 
-- **Workspace**: is the main container that holds all your collections, APIs, environments etc
-- **Collection**: holds all requests and dependencies of a project (for example Dotkernel API's collection containing all requests)
-- **Environment**: holds a set of environment-specific variables (for example Dotkernel API's environment file cotaining the application URL specific to the development environment)
-- **Request**: the definition of an API endpoint, including request method, name, description, URL, body, parameters and an example
+- Workspace: is the main container that holds all your collections, APIs, environments etc
+- Collection: holds all requests and dependencies of a project (for example Dotkernel API's collection containing all requests)
+- Environment: holds a set of environment-specific variables (for example Dotkernel API's environment file containing the application URL specific to the development environment)
+- Request: the definition of an API endpoint, including request method, name, description, URL, body, parameters and an example
 
-There are more terms to cover, like *Mock servers*, *Monitors* etc but they are not relevant yet in our case.
+There are more terms to cover, like Mock servers, Monitors etc but they are not relevant yet in our case.
 
-### Importing documentation files
+### Importing Documentation Files
 
 Open Postman (and log in if you have an account), then follow the below steps:
 
 - open the import modal by clicking `File` -> `Import` (or `Ctrl + O`)
 - inside the modal, make sure you're on the `File` tab, then click `Upload files`
 - navigate to `documentation` directory of your Dotkernel API 3 application and select both of the following files:
-  - **Dotkernel_API.postman_collection.json**
-  - **Dotkernel_API.postman_environment.json**
+  - Dotkernel_API.postman_collection.json
+  - Dotkernel_API.postman_environment.json
 - after clicking `Open` the modal should show the following:
 
 ```
@@ -61,17 +62,17 @@ Dotkernel_API        Postman Environment            Environment
 
 - at the bottom of the import modal, clicking `Import` will import the selected files and close the modal.
 
-Under **My Workspace** you should see a tab called **Collections**. Clicking on it should display all your collections, one of them called `Dotkernel_API`. This collection holds all of the provided requests and serves as the documentation of your application.
-
-Dotkernel API 3 collection and environment files ar now imported and ready to use.
-
+Under My Workspace you should see a tab called Collections.
+Clicking on it should display all your collections, one of them called `Dotkernel_API`.
+This collection holds all of the provided requests and serves as the documentation of your application.
+Dotkernel API 3 collection and environment files are now imported and ready to use.
 For more information on importing files into Postman, please consult their [docs](https://learning.postman.com/docs/getting-started/importing-and-exporting-data/).
 
-### Interacting with the environment
+### Interacting with the Environment
 
-On the top right corner of Postman, you'll see the **Environment quick look** button (it looks like an eye). On it's left side, there's a dropdown with all available environments, one of the being called `Dotkernel_API` - click on it to set it as the active environment.
-
-After this, clicking the **Environment quick look** button will bring up a modal containing all variables found in the environment:
+On the top right corner of Postman, you'll see the Environment quick look button (it looks like an eye).
+On its left side, there's a dropdown with all available environments, one of them being called `Dotkernel_API` - click on it to set it as the active environment.
+After this, clicking the Environment quick look button will bring up a modal containing all variables found in the environment:
 
 ```
 Dotkernel_API                                                                              Edit
@@ -79,56 +80,58 @@ VARIABLE               INITIAL VALUE                CURRENT_VALUE
 APPLICATION_URL        http://localhost:8080        http://localhost:8080
 ```
 
-If your application runs on a different host/port, click the **Edit** button to modify the initial/current value of the `APPLICATION_URL` variable.
-
-Once in Edit mode, you can also create new variables. You only have to enter the variable name and it's initial value - current value will be automatically filled in when the variable is used.
+If your application runs on a different host/port, click the Edit button to modify the initial/current value of the `APPLICATION_URL` variable.
+Once in Edit mode, you can also create new variables.
+You only have to enter the variable name and its initial value - current value will be automatically filled in when the variable is used.
 
 ## Usage
 
-### Creating a new request
+### Creating a New Request
 
-Inside the collection, right-click on any folder and click `Add Request`. The new request is automatically opened in a new tab, where you will:
+Inside the collection, right-click on any folder and click `Add Request`.
+The new request is automatically opened in a new tab, where you will:
 
-- enter request name by replacing *New Request* with a short and descriptive name
-- enter request description (first button under the **Environment quick look** button)
-- enter request URL - you should use the already existing variable `APPLICATION_URL` by wrapping it in double curly braces, then append the request path. Example: `{{ APPLICATION_URL }}/test` becomes `http://localhost:8080/test` when you send the request.
+- enter request name by replacing New Request with a short and descriptive name
+- enter request description (first button under the Environment quick look button)
+- enter request URL - you should use the already existing variable `APPLICATION_URL` by wrapping it in double curly braces, then append the request path.
+Example: `{{ APPLICATION_URL }}/test` becomes `http://localhost:8080/test` when you send the request.
 - select request method
 - (optionally) inspect tabs:
-  - **Params**: manage query parameters
-  - **Authorization**: select authorization type
-  - **Headers**: manage request headers
-  - **Body**: manage request body
-  - **Pre-request script**: provide *JavaScript* that Postman should run before sending the request
-  - **Tests**: provide *JavaScript* that Postman should run after receiving the response
-  - **Settings**: manage miscellaneous request settings
-- save the request using the **Save** button (or `Ctrl + S`)
+  - Params: manage query parameters
+  - Authorization: select authorization type
+  - Headers: manage request headers
+  - Body: manage request body
+  - Pre-request script: provide JavaScript that Postman should run before sending the request
+  - Tests: provide JavaScript that Postman should run after receiving the response
+  - Settings: manage miscellaneous request settings
+- save the request using the Save button (or `Ctrl + S`)
 
-### Sending a request
+### Sending a Request
 
-Once opened, you can immediately send a request by clicking the **Send** button.
-
-Optionally, you can save the response as an example (click on **Save Response**, then select **Save as example**), so other developers will have a visual representation of the response without making a request. This opens a new tab, where you can manage the example.
+Once opened, you can immediately send a request by clicking the Send button.
+Optionally, you can save the response as an example (click on Save Response, then select Save as example), so other developers will have a visual representation of the response without making a request.
+This opens a new tab, where you can manage the example.
 
 ## Features
 
 The collection provided by Dotkernel API 3 comes with some built-in security features.
 
-### Global security
+### Global Security
 
-Due to the hierarchy of the Collection, all requests are children of the Collection's root folder, so they automatically inherit it's Authorization settings. If you edit the Collection's root folder, you will find the following tabs:
+Due to the hierarchy of the Collection, all requests are children of the Collection's root folder, so they automatically inherit its Authorization settings.
+If you edit the Collection's root folder, you will find the following tabs:
 
-- **Authorization**
-  - **Type** is set to `Bearer Token`
-  - **Token** reads the environment variable `ACCESS_TOKEN`
-- **Pre-request Script**: here you can add *JavaScript* that should run on ALL requests before they run
-- **Tests**: here you can add *JavaScript* that should run on ALL requests after their response is returned
-- **Variables**: here you can manage global variables
+- Authorization
+  - Type is set to `Bearer Token`
+  - Token reads the environment variable `ACCESS_TOKEN`
+- Pre-request Script: here you can add JavaScript that should run on ALL requests before they run
+- Tests: here you can add JavaScript that should run on ALL requests after their response is returned
+- Variables: here you can manage global variables
 
-To disable this feature globally, set Authorization **Type** to `No Auth` or whatever value suits your application's requirements.
+To disable this feature globally, set Authorization Type to `No Auth` or whatever value suits your application's requirements.
+To disable this feature at folder/request level, edit the folder/request and set Type to `No Auth` under the Authorization tab.
 
-To disable this feature at folder/request level, edit the folder/request and set **Type** to `No Auth` under the Authorization tab.
-
-### Automatic Token storage
+### Automatic Token Storage
 
 Once an authorization token is re/generated, two environment variables are set/updated:
 
@@ -137,22 +140,28 @@ Once an authorization token is re/generated, two environment variables are set/u
 
 This is achieved by applying the following modifications to both Admin/Security and User/Security folders:
 
-- setting **Type** to `No Auth` under the **Authorization** tab (because the child requests under these folders should not send Authorization header)
-- adding a script under the **Tests** tab, that reads the response and - if successful - set/updates the above mentioned environment variables
+- setting Type to `No Auth` under the Authorization tab (because the child requests under these folders should not send Authorization header)
+- adding a script under the Tests tab, that reads the response and - if successful - set/updates the above mentioned environment variables
 
-## Exporting documentation
+## Exporting Documentation
 
-**TIP**: You can inspect your application's documentation at any moment by clicking on the *three horizontal dots* (you will find them on hover next to your collection's name) then click on **View documentation**.
+TIP: You can inspect your application's documentation at any moment by clicking on the three horizontal dots (you will find them on hover next to your collection's name) then click on View documentation.
 
-### Exporting collection
+### Exporting Collection
 
-Click on the same *three horizontal dots*, then select **Export**. You will be presented an *Export collection* modal asking you to choose the format of the export. Unless specified, choose the recommended version, then click **Export**. When asked to save the exported file, choose to overwrite your application's collection file (*documentaion/Dotkernel_API.postman_collection.json*).
+Click on the same three horizontal dots, then select Export.
+You will be presented an Export collection modal asking you to choose the format of the export.
+Unless specified, choose the recommended version, then click Export.
+When asked to save the exported file, choose to overwrite your application's collection file (documentation/Dotkernel_API.postman_collection.json).
 
-### Export environment
+### Export Environment
 
-This step is optional. It is needed only if you made modifications to the environment, else you can skip it.
-
-Start by clicking on the **Environment quick look** button, then click **Edit**. Once the edit environment tab opens, locate the *three horizontal dots* next to the **Share** button on the right of the Postman window. Click them and select **Export**. When asked to save the exported file, choose to overwrite your application's environment file (*documentaion/Dotkernel_API.postman_environment.json*).
+This step is optional.
+It is needed only if you made modifications to the environment, else you can skip it.
+Start by clicking on the Environment quick look button, then click Edit.
+Once the edit environment tab opens, locate the three horizontal dots next to the Share button on the right of the Postman window.
+Click them and select Export.
+When asked to save the exported file, choose to overwrite your application's environment file (documentation/Dotkernel_API.postman_environment.json).
 
 ## FAQ
 
@@ -160,13 +169,14 @@ Start by clicking on the **Environment quick look** button, then click **Edit**.
 A: Workspace (the main container holding all collections, APIs and environments), Collection (holds all requests and dependencies of a project, such as Dotkernel API's collection), Environment (holds environment-specific variables, like the application URL), and Request (the definition of an API endpoint, including method, name, description, URL, body, parameters and an example).
 
 **Q: How do you import Dotkernel API's documentation files into Postman?**
-A: Open the import modal via File -> Import (or Ctrl + O), go to the File tab, click Upload files, then select both Dotkernel_API.postman_collection.json and Dotkernel_API.postman_environment.json from the application's documentation directory, and click Import.
+A: Open the import modal via `File -> Import` (or `Ctrl + O`), go to the `File` tab, click `Upload files`, then select both `Dotkernel_API.postman_collection.json` and `Dotkernel_API.postman_environment.json` from the application's `documentation` directory, and click `Import`.
 
 **Q: What variable controls which host/port the requests target?**
-A: The APPLICATION_URL environment variable, found under the Dotkernel_API environment, defaults to http://localhost:8080 and can be edited via the Environment quick look button if the application runs on a different host/port.
+A: The `APPLICATION_URL` environment variable, found under the `Dotkernel_API` environment, defaults to `http://localhost:8080` and can be edited via the Environment quick look button if the application runs on a different host/port.
 
 **Q: What built-in security features does the collection provide?**
-A: Global security: all requests inherit Bearer Token authorization (reading the ACCESS_TOKEN environment variable) from the Collection's root folder, which can be disabled globally or per folder/request. Automatic token storage: the Admin/Security and User/Security folders use Test scripts to set/update the ACCESS_TOKEN and REFRESH_TOKEN environment variables whenever a token is re/generated.
+A: Global security: all requests inherit Bearer Token authorization (reading the `ACCESS_TOKEN` environment variable) from the Collection's root folder, which can be disabled globally or per folder/request.
+Automatic token storage: the Admin/Security and User/Security folders use Test scripts to set/update the `ACCESS_TOKEN` and `REFRESH_TOKEN` environment variables whenever a token is re/generated.
 
 **Q: How do you export the collection after making changes?**
 A: Click the three horizontal dots next to the collection's name, select Export, choose the recommended format, click Export, and overwrite the application's collection file (documentation/Dotkernel_API.postman_collection.json).

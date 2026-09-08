@@ -10,15 +10,17 @@ language: "en"
 
 # Javascript: Email Validator
 
-**Problem:** email should allow +/- characters in user, - in domain. dash (-) should be allowed anywhere in an email address or domain. plus (+) is allowed in the username (many people use this for categorization, especially at gmail)
+## Problem
 
-**Solution :**
+Email validation should allow the dash (-) character anywhere in an email address or domain, and the plus (+) character in the username (many people use it for categorization, especially on Gmail).
 
-```
+## Solution
+
+```javascript
 var regex = new RegExp("^+(\.+)*@+(\.+)*\.({2,})$","i");
 ```
 
-This will validated also emails like: username1+username2@gmail-domain.co.uk
+This will also validate emails like `username1+username2@gmail-domain.co.uk`.
 
 ## FAQ
 

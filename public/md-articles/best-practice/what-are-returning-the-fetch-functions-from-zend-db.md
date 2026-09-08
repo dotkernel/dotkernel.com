@@ -11,45 +11,50 @@ language: "en"
 # What are returning the FETCH functions from Zend_Db
 
 ## TL;DR
+
 Continuing the Zend_Db article series, this article walks through the FETCH methods available on Zend_Db_Adapter_Abstract: fetchAll, fetchAssoc, fetchCol, fetchOne, fetchPairs, and fetchRow.
 Each method is shown next to the equivalent old-style code built on query(), next_record(), and f(), so the two approaches can be compared side by side.
 
 Continuing the Zend_DB article [series](http://www.dotkernel.com/dotkernel/sql-queries-using-zend-db-select/), we are stopping now at *FETCH* methods that are in [Zend_Db_Adapter_Abstract](https://docs.laminas.dev/laminas-db/adapter/):
 
-```
-array  fetchAll  (string|Zend_Db_Select $sql, , )
-array fetchAssoc (string|Zend_Db_Select $sql, [mixed $bind = array()])
-array fetchCol (string|Zend_Db_Select $sql, [mixed $bind = array()])
-string fetchOne (string|Zend_Db_Select $sql, [mixed $bind = array()])
-array fetchPairs (string|Zend_Db_Select $sql, [mixed $bind = array()])
-array fetchRow (string|Zend_Db_Select $sql, , )
+```php
+array  fetchAll   (string|Zend_Db_Select $sql, [mixed $bind = array()])
+array  fetchAssoc (string|Zend_Db_Select $sql, [mixed $bind = array()])
+array  fetchCol   (string|Zend_Db_Select $sql, [mixed $bind = array()])
+string fetchOne   (string|Zend_Db_Select $sql, [mixed $bind = array()])
+array  fetchPairs (string|Zend_Db_Select $sql, [mixed $bind = array()])
+array  fetchRow   (string|Zend_Db_Select $sql, [mixed $bind = array()])
 ```
 
 To be more easily to follow, in green box is the classical SQL statement, and in blue box is the query written in Zend_Db style.
 
-Lets start. Initialize the connection to our MySql database:
+Initialize the connection to the MySQL database:
 
-```
+```php
 $db = Zend_Db::factory('Pdo_Mysql', $dbConnect);
 ```
 
-Here is a SQL query, that we want to fetch:
+Here is a SQL query that we want to fetch:
 
-```
+```sql
 $sql = "SELECT id, title FROM files";
 $db->query($sql)
 ```
 
-```
+```php
 $select = $db->select()
              ->from('files', array('id', 'title'))
 ```
 
-*Note*:* for the old style of fetching we used an old class. What you need to know is: - *query()* method is similar with mysqli_query() from *Mysqli* PHP extension - *next_record()* method is similar with mysqli_next_result() from *Mysqli* PHP extension - *f()* method retrieve the value of the column specified as parameter
+Note: for the old style of fetching we used an old class. What you need to know is:
+
+- *query()* method is similar with mysqli_query() from *Mysqli* PHP extension
+- *next_record()* method is similar with mysqli_next_result() from *Mysqli* PHP extension
+- *f()* method retrieve the value of the column specified as parameter
 
 **fetchAll**
 
-```
+```php
 while($db->next_record())
 {
     $a[] = array(
@@ -59,13 +64,13 @@ while($db->next_record())
 }
 ```
 
-```
+```php
 $a = $db->fetchAll($select);
 ```
 
 **fetchAssoc**
 
-```
+```php
 while($db->next_record())
 {
     $a[$db->f('id')] = array(
@@ -75,50 +80,50 @@ while($db->next_record())
 }
 ```
 
-```
+```php
 $a = $db->fetchAssoc($select);
 ```
 
 **fetchCol**
 
-```
+```php
 while($db->next_record())
 {
     $a[] = $db->f('id');
 }
 ```
 
-```
+```php
 $a = $db->fetchCol($select);
 ```
 
 **fetchOne**
 
-```
+```php
 $db->next_record();
 $a = $db->f('id');
 ```
 
-```
+```php
 $a = $db->fetchOne($select);
 ```
 
 **fetchPairs**
 
-```
+```php
 while($db->next_record())
 {
     $a[$db->f('id')] = $db->f('title');
 }
 ```
 
-```
+```php
 $a = $db->fetchPairs($select);
 ```
 
 **fetchRow**
 
-```
+```php
 $db->next_record();
 $a = array(
            'id' => $db->f('id'),
@@ -126,7 +131,7 @@ $a = array(
           );
 ```
 
-```
+```php
 $a = $db->fetchRow($select);
 ```
 

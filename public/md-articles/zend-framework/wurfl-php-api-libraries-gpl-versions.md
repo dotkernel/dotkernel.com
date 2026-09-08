@@ -11,18 +11,17 @@ language: "en"
 # WURFL PHP API libraries , GPL versions
 
 ## TL;DR
+
 GPL versions of the WURFL PHP API libraries were made available: version 1.1, the one integrated into Zend Framework's Zend_Http_UserAgent component, and version 1.2.1, the latest released under the GPL license.
 A later edit notes the download was removed because an AGPL version is available (which readers need to get themselves), and as a favor to Luca Passani.
 
-GPL versions of WURFL PHP API libraries are ready to be downloaded from here .
+GPL versions of WURFL PHP API libraries are ready to be downloaded from here.
 
-Version 1.1 is the one integrated in Zend Framework Zend_Htpp_UserAgent component.
+Version 1.1 is the one integrated in Zend Framework Zend_Http_UserAgent component.
 
 Version 1.2.1 is the latest released under GPL license.
 
 *Later Edit: removed because A) AGPL version is available, but you'll need to download it for yourself and B) removed to make Luca Passani a favor :-).*
-
- 
 
 ## FAQ
 

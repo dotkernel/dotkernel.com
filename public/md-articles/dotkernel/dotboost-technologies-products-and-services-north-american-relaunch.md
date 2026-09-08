@@ -11,19 +11,28 @@ language: "en"
 # DotBoost Technologies : Products and Services North American Relaunch
 
 ## TL;DR
+
 Dotboost announces its North American relaunch, aimed at better serving clients in Canada and the US.
 The relaunch centers on the source release of its in-house Dotkernel framework, along with expanded business IT integration and clearer consulting services.
 Founded in 2005, Dotboost describes itself as treating clients as strategic partners rather than as a typical IT vendor.
 
-**A new style and advanced approach to accompany the Dotkernel source release**
+## The North American Relaunch
 
-Dotboost is pleased to announce our North American Relaunch. This new phase comes as a result of dedicated research and analysis on how to best serve clients in Canada and the US.
+A new style and advanced approach to accompany the Dotkernel source release.
 
-At the heart of our relaunch is the source release for our exclusive inhouse developed Dotkernel framework. We have also added business IT integration and increased the clarity to our existing consulting services.
+Dotboost is pleased to announce our North American Relaunch.
+This new phase comes as a result of dedicated research and analysis on how to best serve clients in Canada and the US.
 
-We're not your average IT organization; we view our customers as strategic partners. This paradigm allows us to take a comprehensive approach towards creating solutions and gain the competitive advantage.
+At the heart of our relaunch is the source release for our exclusive inhouse developed Dotkernel framework.
+We have also added business IT integration and increased the clarity to our existing consulting services.
 
-Founded in 2005, the Dotboost process can incorporate anywhere into your project's life-cycle including concept development, architecture and design, development and integration, and implementation and support. We use time and distance to our advantage, pushing competitive boundaries and staking our place as a globally efficient organization.
+## The Dotboost Approach
+
+We're not your average IT organization; we view our customers as strategic partners.
+This paradigm allows us to take a comprehensive approach towards creating solutions and gain the competitive advantage.
+
+Founded in 2005, the Dotboost process can incorporate anywhere into your project's life-cycle including concept development, architecture and design, development and integration, and implementation and support.
+We use time and distance to our advantage, pushing competitive boundaries and staking our place as a globally efficient organization.
 
 ## FAQ
 

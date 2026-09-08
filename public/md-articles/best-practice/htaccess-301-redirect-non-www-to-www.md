@@ -12,14 +12,14 @@ language: "en"
 
 To always redirect users to the www site (for example: http://dotboost.com to http://www.dotboost.com), add the following lines to .htaccess, right after **RewriteEngine On**:
 
-```
+```shell
 RewriteCond %{HTTP_HOST} ^dotboost.com
 RewriteRule ^(.*)$ http://www.dotboost.com/$1 [L,R=301]
 ```
 
 If, on the other hand, you want to redirect http://www.dotboost.com to http://dotboost.com, add the following lines instead:
 
-```
+```shell
 RewriteCond %{HTTP_HOST} ^www.dotboost.com
 RewriteRule ^(.*)$ http://dotboost.com/$1 [L,R=301]
 ```

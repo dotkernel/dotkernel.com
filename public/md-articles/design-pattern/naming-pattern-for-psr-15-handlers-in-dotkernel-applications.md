@@ -31,12 +31,12 @@ Naming patterns can be defined for different types of files, since `image` files
 Here is a list of items to consider:
 
 - The file names should be kept as **short** as possible, while retaining relevant items to help outline the file's purpose.
-- **Abreviations** are ok to use, but special characters should be avoided, excepting dash and underscore which are fine, no matter the operating system you use.
+- **Abbreviations** are ok to use, but special characters should be avoided, excepting dash and underscore which are fine, no matter the operating system you use.
 - **Versioning and metadata** can also help visually.
 - Grouping files into **folders** is also recommended, especially when you are dealing with files that are related.
 - If **category names** are relevant to use, you can standardize their names by using a shortened version, maybe with 2-3 letters.
 
-After defining your naming pattern, the most import item by far is to **communicate the pattern to the team**. A top-level README file with the documentation should be kept handy for any developer who creates new files.
+After defining your naming pattern, the most important item by far is to **communicate the pattern to the team**. A top-level README file with the documentation should be kept handy for any developer who creates new files.
 
 ## The naming pattern for Dotkernel Handlers
 
@@ -45,7 +45,7 @@ HTTP request handlers are at the core of any web application. They receive a req
 Even the first paragraph above mentions several elements that are relevant. The naming pattern for our `Handlers` contains:
 
 - The **method** or verb used by the handler (e.g. GET, POST).
-- The **resouce** name (e.g. Admin, Account).
+- The **resource** name (e.g. Admin, Account).
 - The performed **action** (e.g. CreateForm, List).
 - An optional **Form** if the handler returns a form that will perform another action when submitted.
 - The string **Handler**.
@@ -75,8 +75,24 @@ You will likely need to update and delete products further down the line, so you
 
 It takes only a minute to build the proper name for each handler, which takes you and other team members no more than a second to figure out what it does. You will thank yourself in the future.
 
-## Additional resources
+## FAQ
 
-[PSR-15](https://www.php-fig.org/psr/psr-15/)
+**Q: What is a naming pattern?**
+A: A naming pattern helps you organize and quickly identify your files by using relevant strings in file names, such as what a file refers to, the action it performs, how it relates to other files, its author, and its creation date.
 
-[Dotkernel Application Repositories](https://github.com/dotkernel)
+**Q: What elements make up the naming pattern for Dotkernel Handlers?**
+A: The method or verb used by the handler (e.g. GET, POST), the resource name (e.g. Admin, Account), the performed action (e.g. CreateForm, List), an optional Form suffix, and the string Handler.
+
+**Q: What wording is used for the performed actions (CRUD)?**
+A: Create, Get for Read, Edit for Update, and Delete.
+
+**Q: Where is this naming pattern used?**
+A: It is used in Dotkernel Admin v6 and will also be implemented in the next releases for Frontend and Light.
+
+**Q: What is a practical example of this naming pattern?**
+A: For a product resource managed by admin users, you would get handlers such as `GetProductCreateFormHandler`, `PostProductCreateHandler`, `GetProductEditFormHandler`, `PostProductEditHandler`, `PostProductDeleteHandler`, and `GetProductListHandler`.
+
+## Resources
+
+- [PSR-15](https://www.php-fig.org/psr/psr-15/)
+- [Dotkernel Application Repositories](https://github.com/dotkernel)

@@ -11,18 +11,25 @@ language: "en"
 # Templating in Dotkernel3
 
 ## TL;DR
+
 Dotkernel3 moved from its previous, 10-year-old templating engine to the popular Twig Templating Engine, gaining layouts, loops, variables, and escaping, while giving developers the familiarity of HTML with the overview and convenience of PHP.
 
-**Dotkernel3** aims to improve the Dotkernel stack in every way possible, and one of the painpoints in the previous version of Dotkernel was the templating engine. Albeit a solid and robust templating engine, it was also 10 years old, and used techniques that's slightly outdated by now.
+## Why the switch was made
 
-In Dotkernel 3, we made the move to the popular [**Twig Templating Engine**](https://twig.symfony.com/), which will allow us to take our templates to a whole new level. It can now be written as HTML code, with some extra Twig tags; It is incredibly powerful and includes features such as:
+One of the pain points in the previous version of Dotkernel was the templating engine.
+Although it was solid and robust, it was also 10 years old and used techniques that had become slightly outdated.
+
+## What Twig brings to Dotkernel3
+
+Templates can now be written as HTML code with extra Twig tags.
+Twig is powerful and includes features such as:
 
 - Layouts
 - Loops
 - Variables
 - Escaping
 
-The templating engine in **Dotkernel3** gives you the familiarity of HTML with the overview and convenience of PHP.
+The templating engine in Dotkernel3 gives the familiarity of HTML with the overview and convenience of PHP.
 
 ## FAQ
 
@@ -36,4 +43,8 @@ A: The previous templating engine, although solid and robust, was also 10 years 
 A: Templates can now be written as HTML code with extra Twig tags, and Twig includes features such as layouts, loops, variables, and escaping, giving the familiarity of HTML with the overview and convenience of PHP.
 
 **Q: Where can I read the official Twig templating documentation for Dotkernel?**
-A: The official documentation is available at twig.symfony.com.
+A: The official documentation is available at [twig.symfony.com](https://twig.symfony.com/).
+
+## Resources
+
+- [Twig Templating Engine](https://twig.symfony.com/)

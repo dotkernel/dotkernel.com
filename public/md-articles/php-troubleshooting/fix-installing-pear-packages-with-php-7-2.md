@@ -11,20 +11,19 @@ language: "en"
 # FIX: Installing PEAR packages with PHP 7.2
 
 ## TL;DR
+
 On PHP 7.2, installing PEAR packages such as PHP Code Sniffer fails with a "Cannot use result of built-in function in write context" error in Archive_Tar's Tar.php, because a function is called by reference.
 The fix is to edit the offending line in Tar.php to drop the by-reference call, then reinstall Archive_Tar and the target package.
-
-This article will cover the solution to the PEAR "*Cannot use result of built-in function in write context*" issue.
 
 ## The Issue
 
 If installing a pear package (for instance PHP Code Sniffer), when running:
 
-```
+```bash
 pear install PHP_CodeSniffer
 ```
 
-This error is shown
+this error is shown:
 
 ```
 PHP Fatal error: Cannot use result of built-in function in write context in ...\php\pear\Archive\Tar.php on line 639
@@ -32,60 +31,46 @@ Fatal error: Cannot use result of built-in function in write context in ...\pear
 ```
 
 This error is shown because the function is called by reference.
-
 More details about this issue can be found in [this Pull Request](https://github.com/pear/Archive_Tar/pull/18).
 
- 
+## The Solution
 
-## The solution
+You might be tempted to execute the following:
 
-You might be tempted to execute the following
-
-```
+```bash
 pear install Archive_Tar
 ```
 
 which will result in the same error.
-
- 
-
 Go to the line indicated in the error (639 in this case) and replace:
 
-```
- $v_att_list = & func_get_args();
-```
-
-with
-
-```
- $v_att_list = func_get_args();
+```php
+$v_att_list = &func_get_args();
 ```
 
-The above means the **func_get_args() **isn't called by reference anymore.
+with:
 
-## Our recommendation
+```php
+$v_att_list = func_get_args();
+```
 
-The above does fix the problem, **but we recommend installing **the Archive_Tar again so you have the latest working version.
+The above means func_get_args() isn't called by reference anymore.
 
- 
+## Our Recommendation
 
+The above does fix the problem, but it's recommended to also install Archive_Tar again so you have the latest working version.
 Run the following command:
 
-```
+```bash
 pear install Archive_Tar
 ```
 
-This will update your Archive Tar PEAR package.
+This will update your Archive_Tar PEAR package.
+And to install the code sniffer, run:
 
- 
-
-And to install the code sniffer run:
-
-```
+```bash
 pear install PHP_CodeSniffer
 ```
-
- 
 
 ## FAQ
 

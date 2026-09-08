@@ -11,42 +11,43 @@ language: "en"
 # Dotkernel 1.5.0 Released
 
 ## TL;DR
+
 After a longer wait than usual and around 250 commits, Dotkernel 1.5.0 was released, skipping 1.4 entirely due to the scale of changes.
 Highlights include switching from Dojo to jQuery, a redesigned admin and frontend, model inheritance through a new Dot_Model class, support for dashed controller names, and a reorganized Zend Registry.
 
-After a longer wait than usual, Dotkernel 1.5.0 was just released. Due to the large amount of changes and the long time spent in development, we chose to skip 1.4 and go straight to 1.5.0.
+## Why skip straight to 1.5.0?
 
-Here are a few of the many changes to Dotkernel in the latest release:
+Due to the large amount of changes and the long time spent in development, the team chose to skip 1.4 and go straight to 1.5.0.
 
 ## Highlights of 1.5.0
 
 ### Switched from Dojo to jQuery
 
-Starting with 1.5.0 we've [switched from using Dojo to jQuery](http://www.dotkernel.com/javascript/intro-to-jquery/). This doesn't mean you can't still use Dojo in your own projects, but only jQuery will be used and maintained in the Dotkernel distribution.
+Starting with 1.5.0, Dotkernel switched from using Dojo to jQuery.
+Dojo can still be used in your own projects, but only jQuery is used and maintained in the Dotkernel distribution itself.
 
 ### New designs
 
-We've redesigned the admin site, with new themes, and a dropdown menu, as well as a new and simpler design for the front-end.
+The admin site was redesigned, with new themes and a dropdown menu, along with a new and simpler design for the front-end.
 
 ### Model inheritance
 
-Up until now, there was a lot of code duplication in models. For example, in the user model, you might have a *getUserById* function in the admin as well as the frontend. When you've got more models and more modules, your project can start having a lot of copy-pasted code.
-
-To prevent this, we've introduced a *Dot_Model* class, and a way to define global models that are inherited in the admin and frontend. This way, you can have *User* class in the admin that only has methods specific to the admin module, a *User* class in the frontend that only has code specific for the frontend, and they both inherit the *Dot_Model_User* class which will have all the common code.
+Previously there was a lot of code duplication in models - for example, a `getUserById` function might exist separately in both the admin and frontend User models.
+To solve this, a `Dot_Model` class was introduced along with a way to define global models inherited by both admin and frontend.
+A `User` class in the admin only holds admin-specific methods, a `User` class in the frontend only holds frontend-specific methods, and both inherit a shared `Dot_Model_User` class containing the common code.
 
 ### Dashed controllers
 
-We've changed the way the controller name is parsed, so that you can have controller with multiple words, split with dashes, without breaking the coding standard (for example, *www.example.com/search-article* will call *SearchArticleController.php*)
+The way controller names are parsed was changed so that controllers with multiple words, split with dashes, work without breaking the coding standard.
+For example, `www.example.com/search-article` calls `SearchArticleController.php`.
 
 ### Zend Registry reorganization
 
-We've changed the structure of the registry, for more about this, please check [this blog post](http://www.dotkernel.com/dotkernel/zend-registry-usage-in-dotkernel/).
+The structure of the registry was changed; more details are covered in a separate blog post on Zend Registry usage in Dotkernel.
 
- 
+## Scale of the release
 
-There have been about 250 commits in our SVN repository since the latest release, so we can't cover all changes in this blog post. Please [download Dotkernel 1.5.0](http://www.dotkernel.com/download/?did=33) try it out yourself and tell us what you think.
-
- 
+There were about 250 commits in the SVN repository since the previous release, so the blog post could not cover every change.
 
 ## FAQ
 
@@ -54,13 +55,21 @@ There have been about 250 commits in our SVN repository since the latest release
 A: Because of the large amount of changes and the long time spent in development, the team chose to skip version 1.4 and go straight to 1.5.0.
 
 **Q: Did Dotkernel switch from Dojo to jQuery in 1.5.0?**
-A: Yes. Starting with 1.5.0, Dotkernel switched from Dojo to jQuery for its own distribution, though Dojo can still be used in your own projects.
+A: Yes.
+Starting with 1.5.0, Dotkernel switched from Dojo to jQuery for its own distribution, though Dojo can still be used in your own projects.
 
 **Q: What is Dot_Model and why was it introduced?**
-A: Dot_Model is a base class introduced to reduce code duplication between admin and frontend models. Both admin- and frontend-specific model classes (such as User) inherit from a shared Dot_Model_User class that holds the common code.
+A: Dot_Model is a base class introduced to reduce code duplication between admin and frontend models.
+Both admin- and frontend-specific model classes (such as User) inherit from a shared Dot_Model_User class that holds the common code.
 
 **Q: How does the "dashed controllers" feature work?**
 A: The controller name parsing was changed so a URL like www.example.com/search-article correctly calls SearchArticleController.php, allowing multi-word controller names split with dashes without breaking the coding standard.
 
 **Q: How much changed in the 1.5.0 release?**
 A: About 250 commits went into the SVN repository since the previous release, so the blog post only covers the highlights - the full Dotkernel 1.5.0 download is available to try out.
+
+## Resources
+
+- Intro to jQuery: http://www.dotkernel.com/javascript/intro-to-jquery/
+- Zend Registry usage in Dotkernel: http://www.dotkernel.com/dotkernel/zend-registry-usage-in-dotkernel/
+- Dotkernel 1.5.0 download: http://www.dotkernel.com/download/?did=33

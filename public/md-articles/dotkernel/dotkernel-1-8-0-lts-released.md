@@ -11,65 +11,56 @@ language: "en"
 # Dotkernel 1.8.0 LTS Released
 
 ## TL;DR
+
 Dotkernel 1.8.0 (LTS) was released with a new Plugin Architecture, a redesigned and mobile-friendly frontend, APC/File caching for faster response times, a new Dot_Request class, and multiple security and alerting improvements.
 Some features (WURFL integration, multiple SMTP transporters) were removed from core and made available as plugins instead.
 
-Dotkernel 1.8.0 (LTS) was just released.
+## What is LTS?
 
-## **What is LTS?**
-
-Long-term support (LTS) is a type of special versions or editions of software designed to be supported for a longer than normal period. It is particularly applicable to open-source software projects. It contains many bug fixes, some refactoring and a few minor features. Find more details read [this article](http://www.dotkernel.com/long-term-support).
-
- 
-
-Here are a few of the many changes to Dotkernel in the latest release:
+Long-term support (LTS) is a type of special version or edition of software designed to be supported for a longer than normal period.
+It's particularly applicable to open-source software projects.
+The 1.8.0 LTS release itself contains many bug fixes, some refactoring, and a few minor features.
 
 ## Highlights of 1.8.0 (LTS)
 
- 
-
 ### Plugin Architecture
 
-Starting with 1.8.0 we will start using Plugins to make the Dotkernel extending easier. We'll keep you up to date about how you create and use a plugin.
+Starting with 1.8.0, Dotkernel uses Plugins to make extending the framework easier.
 
 ### New design
 
-We've redesigned the admin module and the frontend module is now mobile-friendly, but you can still use the mobile module.
+The admin module was redesigned and the frontend module is now mobile-friendly, while the separate mobile module remains available.
 
-### Loads Faster
+### Loads faster
 
-The Dotkernel framework just got a big boost because it supports APC & File Caching within the framework, all the XML's and config files are cached in order to maximize response speed for more information about caching and how to cache your data see [this article](http://www.dotkernel.com/dotkernel/caching-in-dotkernel-using-zend-framework/).
+The framework now supports APC and File Caching, with all XML and config files cached in order to maximize response speed.
 
-### Easier Request Handling
+### Easier request handling
 
-We've added a new class, Dot_Request, which lets you have control over the request data before you use it, for example the variables $_SERVER, $_GET and $_POST are only used within controllers.
+A new class, `Dot_Request`, gives control over the request data before use - for example, so that `$_SERVER`, `$_GET`, and `$_POST` are only accessed from within controllers.
 
 ### Features added
 
-- API with Rate Limit - we've added a simple API with a single key authentification and a simple implementation of a rate limit (see /configs/application.ini - section params.api)
-- Cache System - Built on the Zend_Cache backends, provides caching within Dotkernel, but also in library, more details about this and how it works can be found [here](http://www.dotkernel.com/dotkernel/dotkernel-reserved-variable-names-for-caching/).
+- API with Rate Limit - a simple API with single-key authentication and a basic rate limit implementation (configurable in `/configs/application.ini`, section `params.api`)
+- Cache System - built on Zend_Cache backends, providing caching within Dotkernel and in library code
 
 ### Other changes
 
-- Removed WURFL integration, Dotkernel can detect wether you use a mobile device separately now, the WURFL Library can be added as a Plugin from now on
-- Removed multiple SMTP Transporter, it can be added as a plugin
-- Security scan in Admin Dashboard - you can now see which are the recommended settings (especially security related) for Dotkernel to work at it's best
-- Admin fail logins are no longer sent to the first admin, they are sent to all developers found in *devEmails* within *settings* table in the database
-- Alert System - Alerts can be sent to all the developers to notify them if something goes wrong, for more information about alerts read [this article](http://www.dotkernel.com/dotkernel/how-to-use-alerts-in-dotkernel/).
+- Removed WURFL integration - mobile device detection is now handled separately; WURFL can be added as a plugin
+- Removed support for multiple SMTP transporters - it can be added as a plugin
+- Security scan in the Admin Dashboard, showing recommended (especially security-related) settings
+- Admin failed-login notifications are now sent to all developers listed in `devEmails` (within the `settings` table), not just the first admin
+- Alert System - alerts can be sent to all developers to notify them if something goes wrong
 
-### Bug Fixes
+### Bug fixes
 
-- [0000289](http://dotkernel.net/view.php?id=289): **[Bugs]** seo.xml will cause error on same varname for two modules instead of overwriting
-- [0000249](http://dotkernel.net/view.php?id=249): **[Bugs]** email sent twice
-- [0000275](http://dotkernel.net/view.php?id=275): **[Bugs]** wrong unwritable warning on nginx
+- `seo.xml` caused an error when two modules used the same variable name instead of overwriting it
+- Emails were sent twice
+- A wrong "unwritable" warning appeared on nginx
 
- 
+## Scale of the release
 
- 
-
-There have been a lot of commits in our SVN repository since the latest release, so we can't cover all changes in this blog post. Please [download Dotkernel 1.8.0 (LTS)](http://www.dotkernel.com/download/?did=41) try it out yourself and tell us what you think.
-
- 
+There were a lot of commits in the SVN repository since the previous release, so the blog post only covers the highlights.
 
 ## FAQ
 
@@ -90,3 +81,11 @@ A: WURFL integration was removed (mobile device detection is now handled separat
 
 **Q: What security-related additions does 1.8.0 include?**
 A: A security scan in the Admin Dashboard shows recommended settings, admin failed-login notifications are sent to all developers listed in devEmails (not just the first admin), and a new Alert System can notify developers if something goes wrong.
+
+## Resources
+
+- What is LTS: http://www.dotkernel.com/long-term-support
+- Caching in Dotkernel using Zend Framework: http://www.dotkernel.com/dotkernel/caching-in-dotkernel-using-zend-framework/
+- Dotkernel reserved variable names for caching: http://www.dotkernel.com/dotkernel/dotkernel-reserved-variable-names-for-caching/
+- How to use alerts in Dotkernel: http://www.dotkernel.com/dotkernel/how-to-use-alerts-in-dotkernel/
+- Dotkernel 1.8.0 (LTS) download: http://www.dotkernel.com/download/?did=41
