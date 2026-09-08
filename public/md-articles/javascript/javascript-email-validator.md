@@ -25,10 +25,10 @@ This will also validate emails like `username1+username2@gmail-domain.co.uk`.
 ## FAQ
 
 **Q: What problem does this email validator solve?**
-A: Common email regex patterns fail to allow the plus (+) character in the username and the dash (-) character anywhere in the address or domain, even though both are commonly used (plus for categorization on Gmail, dash in domain names).
+A: Common email regex patterns fail to allow the plus (+) character in the username and the dash (-) character anywhere in the address or domain. The plus sign is used by many people, especially on Gmail, for categorization, and dashes commonly appear in domain names, so a validator that rejects them is too strict.
 
 **Q: What is the suggested regex solution?**
-A: The regular expression `^+(\.+)*@+(\.+)*\.({2,})$` (case-insensitive) that permits both characters in the appropriate parts of the address.
+A: The article proposes the regular expression ^+(\.+)*@+(\.+)*\.({2,})$ (case-insensitive) as a replacement that permits both the plus and dash characters in the appropriate parts of the address.
 
 **Q: What kind of email addresses does this regex validate?**
-A: Addresses like `username1+username2@gmail-domain.co.uk`, combining a plus-separated username with a dashed domain.
+A: According to the article, this pattern will also successfully validate addresses like username1+username2@gmail-domain.co.uk, which combine a plus-separated username with a dashed domain.

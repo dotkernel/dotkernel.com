@@ -59,6 +59,10 @@ We have chosen this wording for the performed actions (or CRUD):
 - **Edit** for Update
 - **Delete**
 
+The image below contains the full list of handlers used in Dotkernel Admin.
+
+![Dotkernel Naming Convention](https://www.dotkernel.com/wp-content/uploads/2025/05/naming-convention-1024x767.png)
+
 ## A practical example
 
 Let's assume your application requires you to create products managed by admin users. So how do you go about naming a new set of files for this purpose?

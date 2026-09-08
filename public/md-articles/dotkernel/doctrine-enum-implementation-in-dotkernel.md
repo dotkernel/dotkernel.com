@@ -24,15 +24,18 @@ The update introduces the detection of `enumType` and `options.values` from a pr
 ### Old Setup
 
 ```php
-#
+#[Entity]
 class Card
 {
-    #
-    #
-    #
+    #[Id]
+    #[GeneratedValue]
+    #[Column]
     public int $id;
 
-    #],
+    #[Column(
+        type: Types::ENUM,
+        enumType: Suit::class,
+        options: ['values' => ['H', 'D', 'C', 'S']],
     )]
     public Suit $suit;
 }
@@ -41,15 +44,15 @@ class Card
 ### New Setup
 
 ```php
-#
+#[Entity]
 class Card
 {
-    #
-    #
-    #
+    #[Id]
+    #[GeneratedValue]
+    #[Column]
     public int $id;
 
-    #
+    #[Column(type: Types::ENUM)]
     public Suit $suit;
 }
 ```
@@ -77,13 +80,16 @@ Our old implementation defined the values like below, for the `User` entity.
 ```php
 public const STATUS_PENDING = 'pending';
 public const STATUS_ACTIVE  = 'active';
-public const STATUSES       = ;
+public const STATUSES       = [
+    self::STATUS_PENDING,
+    self::STATUS_ACTIVE,
+];
 ```
 
 The column for the ORM was defined like this, as a simple string, with `pending` as its default value:
 
 ```php
-#
+#[ORM\Column(name: "status", type: "string", length: 20)]
 protected string $status = self::STATUS_PENDING;
 ```
 
@@ -155,9 +161,10 @@ If you create your own enum types, make sure to update the `NAME` constant and t
 Let's register the custom type in `config/autoload/doctrine.global.php` under the `types` key:
 
 ```php
-'types'         =>
+'types'         => [
+[...]
     UserStatusEnumType::NAME => UserStatusEnumType::class,
-
+[...]
 ],
 ```
 
@@ -170,7 +177,10 @@ $this->getFilterChain()
     ->attach(fn($value) => $value === null ? UserStatusEnum::Active : UserStatusEnum::from($value));
 
 $this->getValidatorChain()
-    ->attachByName(InArray::class, , true);
+    ->attachByName(InArray::class, [
+        'haystack' => UserStatusEnum::cases(),
+        'message'  => sprintf(Message::INVALID_VALUE, 'status'),
+    ], true);
 ```
 
 The above ensures that the new `UserStatusEnum` class is used for the `status` column updates.
@@ -178,7 +188,7 @@ The above ensures that the new `UserStatusEnum` class is used for the `status` c
 The `User` entity uses the new `UserStatusEnum` class.
 
 ```php
-#)]
+#[ORM\Column(type: 'user_status_enum', options: ['default' => UserStatusEnum::Pending])]
 protected UserStatusEnum $status = UserStatusEnum::Pending;
 ```
 
@@ -200,7 +210,7 @@ Dotkernel checks the user status during login in `src/User/src/Repository/UserRe
 If the user is not activated, the login is rejected.
 
 ```php
-if ($clientEntity->getName() === 'frontend' && $result !== UserStatusEnum::Active) {
+if ($clientEntity->getName() === 'frontend' && $result['status'] !== UserStatusEnum::Active) {
     throw new OAuthServerException(Message::USER_NOT_ACTIVATED, 6, 'inactive_user', 401);
 }
 ```
@@ -210,14 +220,14 @@ A new user is created using the `enum` type and `pending` as the default.
 ```php
 $user = (new User())
     ->setDetail($detail)
-    ->setIdentity($data)
-    ->usePassword($data)
-    ->setStatus($data ?? UserStatusEnum::Pending);
+    ->setIdentity($data['identity'])
+    ->usePassword($data['password'])
+    ->setStatus($data['status'] ?? UserStatusEnum::Pending);
 ```
 
 Note the `status` column in the migration query which now looks like this:
 
-```php
+```
 $this->addSql('
 CREATE TABLE user (
     uuid BINARY(16) NOT NULL,

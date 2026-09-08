@@ -35,7 +35,7 @@ Zend_Db is the primary class used for accessing the database, but there is more:
 A short tip: you can use type casting to avoid SQL Injection in a WHERE clause where possible.
 
 ```php
-$sql = 'SELECT * FROM table WHERE id = ' . (int)$_POST;
+$sql = 'SELECT * FROM table WHERE id = ' . (int)$_POST['id'];
 ```
 
 ## FAQ

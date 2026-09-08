@@ -41,7 +41,7 @@ We use the package [ramsey/uuid](https://github.com/ramsey/uuid) to generate the
 In this way we have full control over the UUID version in use.
 This solution means you don't depend on extensions or a particular version of the database.
 
-> To ensure you have support for the `UUID` data type, you must use PostgreSQL or MariaDB v10.7 or later.
+> To ensure you have support for the `UUID` data type, you must use PostgreSQL or MariaDB v11.4 or later.
 
 This also brings along a less-impactful change that still deserves mentioning: the table columns named `uuid` have been renamed to `id`.
 
@@ -65,7 +65,7 @@ A: v7 removes the Evolution pattern's support for Method Deprecation, and drops 
 A: Dotkernel uses the ramsey/uuid package to generate the UUID before storing it in the database. This gives full control over the UUID version in use, so the application doesn't depend on extensions or a particular database version.
 
 **Q: Which databases support the UUID data type required by v7?**
-A: You must use PostgreSQL or MariaDB v10.7 or later to have support for the UUID data type.
+A: You must use PostgreSQL or MariaDB v11.4 or later to have support for the UUID data type.
 
 **Q: What else changed alongside the move to native UUID?**
 A: Table columns previously named `uuid` have been renamed to `id`. The database configuration was also clarified so it's more obvious which connection is the default and how to switch to another database connection.

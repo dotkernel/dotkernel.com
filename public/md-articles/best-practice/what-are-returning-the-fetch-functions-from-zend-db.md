@@ -15,30 +15,24 @@ language: "en"
 Continuing the Zend_Db article series, this article walks through the FETCH methods available on Zend_Db_Adapter_Abstract: fetchAll, fetchAssoc, fetchCol, fetchOne, fetchPairs, and fetchRow.
 Each method is shown next to the equivalent old-style code built on query(), next_record(), and f(), so the two approaches can be compared side by side.
 
-## Available FETCH Methods
-
-Continuing the Zend_Db article series, this article stops at the FETCH methods found in Zend_Db_Adapter_Abstract:
+Continuing the Zend_DB article [series](http://www.dotkernel.com/dotkernel/sql-queries-using-zend-db-select/), we are stopping now at *FETCH* methods that are in [Zend_Db_Adapter_Abstract](https://docs.laminas.dev/laminas-db/adapter/):
 
 ```php
-array  fetchAll   (string|Zend_Db_Select $sql, ...)
-array  fetchAssoc (string|Zend_Db_Select $sql, ...)
-array  fetchCol   (string|Zend_Db_Select $sql, ...)
-string fetchOne   (string|Zend_Db_Select $sql, ...)
-array  fetchPairs (string|Zend_Db_Select $sql, ...)
-array  fetchRow   (string|Zend_Db_Select $sql, ...)
+array  fetchAll   (string|Zend_Db_Select $sql, [mixed $bind = array()])
+array  fetchAssoc (string|Zend_Db_Select $sql, [mixed $bind = array()])
+array  fetchCol   (string|Zend_Db_Select $sql, [mixed $bind = array()])
+string fetchOne   (string|Zend_Db_Select $sql, [mixed $bind = array()])
+array  fetchPairs (string|Zend_Db_Select $sql, [mixed $bind = array()])
+array  fetchRow   (string|Zend_Db_Select $sql, [mixed $bind = array()])
 ```
 
-To make it easier to follow, each example below shows the classical, old-style query first, followed by the equivalent query written in Zend_Db style.
-
-## Connecting to the Database
+To be more easily to follow, in green box is the classical SQL statement, and in blue box is the query written in Zend_Db style.
 
 Initialize the connection to the MySQL database:
 
 ```php
 $db = Zend_Db::factory('Pdo_Mysql', $dbConnect);
 ```
-
-## Setting Up the Query
 
 Here is a SQL query that we want to fetch:
 
@@ -47,23 +41,18 @@ $sql = "SELECT id, title FROM files";
 $db->query($sql)
 ```
 
-Here is the same query written in Zend_Db style:
-
 ```php
 $select = $db->select()
              ->from('files', array('id', 'title'))
 ```
 
-Note: the old style of fetching shown below uses an older class.
-Here's what you need to know about its methods:
+Note: for the old style of fetching we used an old class. What you need to know is:
 
-- `query()` is similar to `mysqli_query()` from the Mysqli PHP extension
-- `next_record()` is similar to `mysqli_next_result()` from the Mysqli PHP extension
-- `f()` retrieves the value of the column specified as a parameter
+- *query()* method is similar with mysqli_query() from *Mysqli* PHP extension
+- *next_record()* method is similar with mysqli_next_result() from *Mysqli* PHP extension
+- *f()* method retrieve the value of the column specified as parameter
 
-## fetchAll
-
-Old style:
+**fetchAll**
 
 ```php
 while($db->next_record())
@@ -75,35 +64,27 @@ while($db->next_record())
 }
 ```
 
-Zend_Db style:
-
 ```php
 $a = $db->fetchAll($select);
 ```
 
-## fetchAssoc
-
-Old style:
+**fetchAssoc**
 
 ```php
 while($db->next_record())
 {
-    $a = array(
+    $a[$db->f('id')] = array(
                              'id' => $db->f('id'),
                              'title' => $db->f('title')
                             );
 }
 ```
 
-Zend_Db style:
-
 ```php
 $a = $db->fetchAssoc($select);
 ```
 
-## fetchCol
-
-Old style:
+**fetchCol**
 
 ```php
 while($db->next_record())
@@ -112,47 +93,35 @@ while($db->next_record())
 }
 ```
 
-Zend_Db style:
-
 ```php
 $a = $db->fetchCol($select);
 ```
 
-## fetchOne
-
-Old style:
+**fetchOne**
 
 ```php
 $db->next_record();
 $a = $db->f('id');
 ```
 
-Zend_Db style:
-
 ```php
 $a = $db->fetchOne($select);
 ```
 
-## fetchPairs
-
-Old style:
+**fetchPairs**
 
 ```php
 while($db->next_record())
 {
-    $a = $db->f('title');
+    $a[$db->f('id')] = $db->f('title');
 }
 ```
-
-Zend_Db style:
 
 ```php
 $a = $db->fetchPairs($select);
 ```
 
-## fetchRow
-
-Old style:
+**fetchRow**
 
 ```php
 $db->next_record();
@@ -161,8 +130,6 @@ $a = array(
            'title' => $db->f('title')
           );
 ```
-
-Zend_Db style:
 
 ```php
 $a = $db->fetchRow($select);
@@ -174,13 +141,13 @@ $a = $db->fetchRow($select);
 A: The article covers fetchAll, fetchAssoc, fetchCol, fetchOne, fetchPairs, and fetchRow.
 
 **Q: What does fetchAll do compared to the old query style?**
-A: `$a = $db->fetchAll($select)` replaces the old-style loop that calls `next_record()` repeatedly and builds an array of associative rows using `f()` for each column.
+A: $a = $db->fetchAll($select) replaces the old-style loop that calls next_record() repeatedly and builds an array of associative rows using f() for each column.
 
 **Q: What does fetchRow return?**
-A: `$a = $db->fetchRow($select)` returns a single row as an associative array, replacing a single `next_record()` call followed by `f()` calls for each column.
+A: $a = $db->fetchRow($select) returns a single row as an associative array, replacing a single next_record() call followed by f() calls for each column.
 
 **Q: What does fetchOne return?**
-A: `$a = $db->fetchOne($select)` returns a single value, replacing a single `next_record()` call followed by one `f()` call.
+A: $a = $db->fetchOne($select) returns a single value, replacing a single next_record() call followed by one f() call.
 
 **Q: How do the old-style query(), next_record(), and f() methods relate to Mysqli?**
-A: `query()` is similar to `mysqli_query()`, `next_record()` is similar to `mysqli_next_result()`, and `f()` retrieves the value of the column specified as a parameter.
+A: query() is similar to mysqli_query(), next_record() is similar to mysqli_next_result(), and f() retrieves the value of the column specified as a parameter.

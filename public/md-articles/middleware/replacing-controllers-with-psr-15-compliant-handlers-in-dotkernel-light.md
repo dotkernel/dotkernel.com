@@ -14,9 +14,16 @@ language: "en"
 
 The goal of this update is to implement [PSR-15](https://www.php-fig.org/psr/psr-15/) handlers into [Dotkernel Light](https://github.com/dotkernel/light), keeping the application up-to-date with recommended design guidelines, secure, and aligned with standards widely adopted by the PHP community.
 
+The goal of this update is to implement [PSR-15](https://www.php-fig.org/psr/psr-15/) handlers into [Dotkernel Light](https://github.com/dotkernel/light).
+There are several advantages to using handlers, which we will explore below.
+
+We strive to keep our applications up-to-date with the recommended design guidelines.
+This ensures that we keep the applications secure, while also implementing standards widely adopted by the PHP community.
+
 ## What makes handlers better than controllers?
 
-Handlers split code into manageable chunks instead of one large controller file with several actions, following the first SOLID principle (Single-responsibility).
+It's all fine and good if you have one large controller file with several actions, but handlers split the code into manageable chunks that make your life a lot easier in the long run.
+This follows the first of the SOLID principles.
 SOLID stands for:
 
 - S - Single-responsibility Principle
@@ -25,18 +32,34 @@ SOLID stands for:
 - I - Interface Segregation Principle
 - D - Dependency Inversion Principle
 
-With single-responsibility, handlers separate each action into its own class, which makes them easier to maintain, refactor, and test. Expanding an application is easier too - rather than searching for a place to fit new code into a controller, you simply create a new handler.
-Refactoring is simpler because there's less code to worry about breaking, and tests only need to inject or bind mocks for a single action per handler instead of covering multiple branches.
+We are focusing on that first `S` in the SOLID acronym.
+Instead if having multiple actions we would normally include in controllers, with `single-responsibility` the handlers separate each action into its own class.
+This makes handlers easier to maintain, refactor and test.
+
+Expanding your application is also helped by handlers.
+Rather than searching for a place to fit in that new code, simply create a handler to keep thing orderly.
+Your future self or the programmer that takes over from you will thank you for it.
+
+Refactoring is always easier if you don't have to worry about edge cases that are unexpectedly not supported because of an error on your part.
+Simpler code means refactoring steps are more obvious.
+
+Writing tests for actions that have multiple branches tends to take a lot of time.
+Since handlers only deal with a single action, your tests only have to inject or bind mocks for that specific action.
 
 ## How to implement the Page handler
 
-Replacing controllers with handlers in Dotkernel Light means the `dot-controller` package is no longer needed and can be removed, along with any existing Controllers.
+When it comes to [Dotkernel Light](https://github.com/dotkernel/light), replacing controllers with handlers means we don't need the `dot-controller` package any more.
+Go ahead and remove it, along with any `Controllers` you may have.
 
-For Dotkernel Light, most of the old Controller's actions were combined under a single Handler, `GetPageViewHandler`, since they all performed the same task - displaying static content.
-The only exception is `IndexHandler.php`, which was kept separate but is set up similarly.
+Below we are going to detail how to set up the `GetPageViewHandler`.
+If you already have Controllers in your application, you will have to repeat the steps below for each controller.
+Based on your application, you may have to split your actions over multiple Handlers.
 
-Handlers are registered in each module's `ConfigProvider`, mapping factories under `getDependencies()`.
-Add `GetPageViewHandler` under the `factories` key and remove any reference to `PageController`:
+For Dotkernel Light we were able to combine the functionality of most of the old Controller's `actions` under a single Handler, since the actions performed a single task - displaying static content.
+The only exception is `IndexHandler.php` which we opted to leave separate, but its setup is similar to GetPageViewHandler.php.
+
+Handlers use the `ConfigProvider` in each module to map factories under `getDependencies()`.
+You should already have delegators and aliases, but make sure to add `GetPageViewHandler` under the `factories` key and remove any reference to PageController.
 
 ```php
 public function getDependencies(): array
@@ -49,8 +72,8 @@ public function getDependencies(): array
 }
 ```
 
-`GetPageViewHandlerFactory.php` adds the template renderer as a dependency, making it available in the handler.
-`PageControllerFactory.php` is no longer needed and can be deleted:
+`GetPageViewHandlerFactory.php` adds the template as a dependency, making it available in the Handler.
+We don't need the PageControllerFactory.php file, so go ahead and delete it.
 
 ```php
 <?php
@@ -85,8 +108,8 @@ class GetPageViewHandlerFactory
 ```
 
 `GetPageViewHandler.php` determines the template file name from the route name and displays it.
-No dynamic elements are included, since it deals only with static pages.
-`PageController.php` can be deleted:
+No dynamic elements are included, since we are dealing only with static pages right now.
+If you haven't already, delete PageController.php.
 
 ```php
 <?php
@@ -120,24 +143,24 @@ class GetPageViewHandler implements RequestHandlerInterface
 }
 ```
 
-These are the bare essentials to get started with handlers for a website that displays static pages.
+And that's it! These are the bare essentials to get yourself started with handlers for a website that displays static pages.
 
 ## FAQ
 
 **Q: What is the goal of replacing controllers with PSR-15 handlers?**
-A: Keeping Dotkernel Light up-to-date with recommended design guidelines, secure, and aligned with PHP community standards.
+A: The goal is to implement PSR-15 handlers into Dotkernel Light, keeping the application up to date with recommended design guidelines, ensuring it stays secure while implementing standards widely adopted by the PHP community.
 
 **Q: What makes handlers better than controllers?**
-A: They apply the Single-responsibility Principle, splitting actions into their own classes, which makes them easier to maintain, refactor, expand, and test.
+A: Handlers split code into manageable chunks instead of one large controller file with several actions, following the Single-responsibility Principle (the "S" in SOLID). Each action becomes its own class, which makes handlers easier to maintain, refactor and test, easier to expand with new functionality, and simpler to write focused tests for since each handler only deals with a single action.
 
 **Q: Do you still need the dot-controller package?**
-A: No - it can be removed along with any existing Controllers once handlers replace them.
+A: No. Replacing controllers with handlers in Dotkernel Light means the dot-controller package is no longer needed and can be removed, along with any existing Controllers.
 
 **Q: How is GetPageViewHandler set up?**
-A: Registered as a factory in the module's ConfigProvider (replacing PageController), with GetPageViewHandlerFactory injecting the template renderer, and the handler resolving the template from the matched route name.
+A: Handlers are registered in each module's ConfigProvider, mapping factories under getDependencies(). GetPageViewHandler is added under the factories key, replacing any reference to PageController, and GetPageViewHandlerFactory adds the template renderer as a dependency so it's available in the handler, which determines the template file name from the matched route name and renders it.
 
 **Q: Does every action need its own separate handler?**
-A: Not necessarily - in Dotkernel Light most static-page actions were combined into one handler, with only IndexHandler.php kept separate; other applications may need to split actions across multiple handlers.
+A: Not necessarily. For Dotkernel Light, most of the old Controller's actions were combined under a single Handler since they performed a single task - displaying static content. The exception is IndexHandler.php, which was kept separate but is set up similarly to GetPageViewHandler.php. Depending on your application, you may need to split actions over multiple handlers.
 
 ## Resources
 

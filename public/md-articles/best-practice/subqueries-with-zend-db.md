@@ -14,7 +14,9 @@ language: "en"
 
 Continuing the Zend_Db series, this article shows a more complex query - combining COUNT(), LEFT JOIN, and GROUP BY across 3 tables, with a count taken from 2 different tables - and how to build it, including a nested subquery, using Zend_Db.
 
-## The SQL query
+Continuing the Zend_DB article [series](http://www.dotkernel.com/dotkernel/sql-queries-using-zend-db-select/), we are stopping now at subqueries.
+
+As you note, the below is a complicate query, with *COUNT()*, *LEFT JOIN()*, *GROUP BY* - select from 3 tables, and make a count from 2 different tables:
 
 ```sql
 SELECT a.id,
@@ -29,13 +31,11 @@ LEFT JOIN track_courses AS b ON (a.id = b.track_id)
 GROUP BY a.id
 ```
 
-## Connecting to the database
+Initialize the connection to the MySQL database:
 
 ```php
 $db = Zend_Db::factory('Pdo_Mysql', $dbConnect);
 ```
-
-## Building the query in Zend_Db
 
 ```php
 $db->select()
@@ -55,8 +55,6 @@ $db->select()
          )
    ->group('a.id');
 ```
-
-The `count_files` column is built by wrapping a nested `$db->select()` call inside a `Zend_Db_Expr`, correlated back to the outer table via `c.track_id = a.id`.
 
 ## FAQ
 

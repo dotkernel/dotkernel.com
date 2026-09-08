@@ -24,6 +24,10 @@ If you're facing the error:
 it means the server didn't send the header that lets you access its data through a local client (e.g. a browser).
 This issue is most common when trying to get data (usually JSON) that you want to process using JavaScript.
 
+The error looks similar to the image below:
+
+![](/uploads/article/019f8a80-cc4d-71e9-9af2-595b3eb4c793/Screenshot-2019-04-06-at-15.03.21-1024x165-1-1024x165.png)
+
 ## The solution
 
 A simple implementation uses [Tuupola's Cors Middleware](https://packagist.org/packages/tuupola/cors-middleware) package.

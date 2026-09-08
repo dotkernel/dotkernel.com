@@ -18,6 +18,8 @@ On top of that, it ships plugins for popular CMS platforms and PHP frameworks su
 
 ## Free PHP, HTML, CSS, JavaScript Editor (IDE) - Codelobster PHP Edition
 
+![Free PHP, HTML, CSS, JavaScript editor (IDE) - Codelobster PHP Edition](http://www.codelobster.com/images/clphped.gif)
+
 For valuable work on creation of sites you need a good comfortable editor necessarily.
 There are many requiring paid products for this purpose, but we would like to select free of charge very functional and at the same time of simple in the use editor - [Codelobster PHP Edition](http://www.codelobster.com/).
 

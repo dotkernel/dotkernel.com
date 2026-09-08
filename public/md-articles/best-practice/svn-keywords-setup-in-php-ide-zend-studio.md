@@ -15,11 +15,13 @@ language: "en"
 For better integration between SVN, the Zend Studio PHP IDE, and a bug tracker, a set of SVN properties must be set for each project.
 This article lists which properties to set and how.
 
-## Steps
+For a better integration of SVN, your PHP IDE( Zend Studio), and a bug tracker of choice, the below proprieties must be set, **for each project** you have.
 
-1. Right click on the **project**.
-2. Go to **Team -> Set Propriety**.
-3. Set `svn:ignore` so local settings aren't committed to the main repository:
+1. Right click on **project**.
+
+2. Go to **Team->Set Propriety**.
+
+3. SVN Ignore files, below you have an example. As we do not want to commit your local settings to the main repository :-)
 
 ```
 Name: svn:ignore
@@ -33,7 +35,7 @@ cache
 *.ini
 ```
 
-4. Set up basic bug tracker integration:
+4. Basic integration with a bug tracker
 
 ```
 Name: bugtracq:label
@@ -42,23 +44,25 @@ Propriety: Tracker ID:
 
 ```
 Name: bugtraq:message
-Propriety:
+Propriety: [Tracker ID: #%BUGID%]
 ```
 
-5. If using a public bug tracker (e.g. Mantis), also set:
+5. If you have a public bug tracker system, example Mantis
 
 ```
 Name: bugtraq:url
 Propriety: http://www.dotkernel.net/view.php?id=%BUGID%
 ```
 
-For the properties above, apply them **only** to the project folder, **not** recursively.
+For **above** Proprieties , apply **only** to project folder, **NOT** recursive
 
-## Final step (svn:keywords only)
+## Final step( below instructions are good **only** for **svn:keywords** )
 
-1. Check **Apply property recursively to:**.
+1. Check the **Apply property recursively to:**.
 2. Select **All resources**.
-3. Check **Use filtration by the resource name** and add mask: `*.php`.
+3. Check the **Use filtration by the resource name** and add **Mask:** *.php.
+
+[![svn-add](/uploads/article/019f8a80-cc87-71b3-80b8-478826d88044/svn-add.jpg)](/uploads/2013/02/svn-add.jpg)
 
 ## FAQ
 

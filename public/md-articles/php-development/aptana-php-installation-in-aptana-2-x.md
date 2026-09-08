@@ -28,20 +28,3 @@ In case you don't have yet a SVN plugin, go to
 1. Aptana -> Help -> Install Aptana Features
 2. Others -> Subclipse
 3. Follow the instructions
-
-## FAQ
-
-**Q: Why isn't the Aptana PHP plugin available by default in Aptana 2.x?**
-A: It was discontinued in Aptana 2.x, in favor of PDT.
-
-**Q: Why not just use PDT instead of Aptana PHP?**
-A: PDT is not suitable for professional PHP development, since major features are missing.
-
-**Q: How do I reinstall the Aptana PHP plugin?**
-A: Go to Aptana -> Help -> Install New Software, add the update site http://update.aptana.com/install/php, then select Aptana PHP and install it.
-
-**Q: How do I add SVN support in Aptana?**
-A: Go to Aptana -> Help -> Install Aptana Features, choose Others -> Subclipse, and follow the instructions.
-
-**Q: Do I need an SVN plugin to use Aptana PHP?**
-A: Not specifically for Aptana PHP, but if you don't already have an SVN plugin, Subclipse can be installed separately through Aptana's Install Aptana Features menu.

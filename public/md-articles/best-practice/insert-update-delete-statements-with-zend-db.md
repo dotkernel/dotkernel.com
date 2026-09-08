@@ -15,22 +15,24 @@ language: "en"
 DML (Data Manipulation Language) statements change data values in database tables.
 This article, continuing the Zend_Db series, shows how the three primary DML statements - INSERT, UPDATE, and DELETE - are written in raw SQL and translated into Zend_Db method calls.
 
-## Connecting to the database
+Continuing the Zend_DB article [series](http://www.dotkernel.com/dotkernel/sql-queries-using-zend-db-select/), we are stopping now at DML statements. DML (Data Manipulation Language) statements are statements that change data values in database tables. There are 3 primary DML statements:
+
+- INSERT - Inserting new rows into database tables.
+- UPDATE - Updating existing rows in database tables.
+- DELETE - Deleting existing rows from database tables.
 
 ```php
 $db = Zend_Db::factory('Pdo_Mysql', $dbConnect);
 ```
 
-## INSERT
-
-SQL:
+**INSERT**
 
 ```sql
 INSERT INTO user(email, password, firstName, lastName, active)
        VALUES ('$email', '$password', '$firstName', '$lastName', 1);
 ```
 
-Zend_Db:
+The above SQL *INSERT* statement is translated in Zend_Db as follows:
 
 ```php
 $data = array( 'email' => $email,
@@ -41,9 +43,7 @@ $data = array( 'email' => $email,
 $db->insert('user', $data);
 ```
 
-## UPDATE
-
-SQL:
+**UPDATE**
 
 ```sql
 UPDATE user
@@ -54,7 +54,7 @@ UPDATE user
  WHERE id = '$id'
 ```
 
-Zend_Db:
+The above SQL *UPDATE* statement is translated in Zend_Db as follows:
 
 ```php
 $data = array('password' => $password,
@@ -64,15 +64,13 @@ $data = array('password' => $password,
 $db->update('user', $data, 'id = '.$id);
 ```
 
-## DELETE
-
-SQL:
+**DELETE**
 
 ```sql
 DELETE FROM user WHERE id = '$id'
 ```
 
-Zend_Db:
+The above SQL *DELETE* statement is translated in Zend_Db as follows:
 
 ```php
 $db->delete('user', 'id = '.$id);

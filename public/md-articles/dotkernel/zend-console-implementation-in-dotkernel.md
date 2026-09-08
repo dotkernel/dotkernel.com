@@ -54,7 +54,7 @@ A: The bootstrap is found in Console/index.php, and it has one controller in Con
 A: There are two arguments: -a, the name of the action to execute, and -e, the environment as defined in application.ini (development, staging, or production), which is optional and defaults to production.
 
 **Q: What happens to extra arguments passed to the script?**
-A: Any other arguments set when calling the script will be available in the controller in the registry's arguments array.
+A: Any other arguments set when calling the script will be available in the controller in the `$registry->arguments` array.
 
 **Q: What example actions are bundled with the Console controller?**
 A: The bundled controller has two example actions: count-users, which demonstrates how to interact with models, and send-newsletter, which reads the newsletter from the command line.

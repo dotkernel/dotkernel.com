@@ -48,20 +48,3 @@ collation_server=utf8mb4_general_ci
 ```ini
 collation_server=utf8mb4_unicode_ci
 ```
-
-## FAQ
-
-**Q: What is utf8mb4 and why was it introduced?**
-A: utf8mb4 is a character set introduced in MySQL 5.5 to provide better support for Unicode.
-
-**Q: What error do I get if I keep VARCHAR(255) columns after switching to utf8mb4?**
-A: You get `#1071 - Specified key was too long; max key length is 767 bytes`, so VARCHAR(150) is used instead.
-
-**Q: How do I change the connection charset for the application?**
-A: Edit the config/application.ini file and set `database.params.charset = utf8mb4`.
-
-**Q: What changes are needed in my.cnf?**
-A: Replace the string utf8_* with utf8mb4_*, for example `character_set_server=utf8mb4` and `collation_server=utf8mb4_general_ci` or `collation_server=utf8mb4_unicode_ci`.
-
-**Q: Was Dotkernel's own sample SQL updated for utf8mb4?**
-A: Yes, the sample dk.sql file, part of the Dotkernel framework, was updated for utf8mb4 in revision 793.

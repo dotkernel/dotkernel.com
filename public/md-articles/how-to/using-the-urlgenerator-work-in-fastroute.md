@@ -50,7 +50,7 @@ To use it in a controller, you have access to `$this->url();`, which takes the r
 A controller redirect may then look like this:
 
 ```php
-return new RedirectResponse($this->url('contact', ));
+return new RedirectResponse($this->url('contact', ['action' => 'thank-you']));
 ```
 
 Using the URLGenerator in views is approximately the same, since you have access to the global `path()` method.

@@ -16,6 +16,23 @@ Caching stores data the first time it's requested so that later requests can be 
 This article, a follow-up to an earlier caching article, shows how to enable the dot-cache component, a wrapper around symfony/cache, in Dotkernel Admin.
 It covers the array and filesystem storage adapters, configuring Doctrine's four cache types (result, metadata, query, hydration), and marking entities and queries as cacheable.
 
+When it comes to web development, performance is one of the critical elements that influence the success of an application.
+Developers focus on improving response times and overall speed to enhance the user experience.
+
+When a user visits a website or interacts with a web application, various resources such as images, scripts, and database queries are requested from the server.
+Retrieving these resources can sometimes be time-consuming, especially if they require complex processing or querying a database.
+
+To speed up this process and improve overall performance, developers implement caching mechanisms.
+When data is first requested, it's stored in a cache.
+Then, when subsequent requests for the same data are made, the application can retrieve it from the cache instead of fetching it from the original source.
+This reduces the time it takes to serve the content to the user because accessing data from the cache is typically much faster than retrieving it from the original source.
+
+> This article is a follow-up to the [previous article](https://www.dotkernel.com/how-to/doctrine-cache-in-mezzio-and-dotkernel/) where we tackled the caching topic.
+
+![](/uploads/article/019f8a80-cc52-73f7-afe5-9255a3bb4681/sdasdadsa.drawio.png)
+
+In this article our focus will be on enabling the [dot-cache](https://packagist.org/packages/dotkernel/dot-cache) component and effectively implementing caching in [Dotkernel Admin](https://github.com/dotkernel/admin/).
+
 ## Installation
 
 Run the following command in your project directory:

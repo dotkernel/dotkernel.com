@@ -91,7 +91,7 @@ A: Typical errors include "Zend InputFilter requires intl PHP extension" and "Th
 A: Intl (Internationalization extension) is a wrapper for the ICU library that lets PHP programmers perform locale-aware operations, including formatting, transliteration, encoding conversion, and calendar operations. It can be installed bundled since PHP 5.3.0, or as a separate PECL extension since PHP 5.2.0.
 
 **Q: How do you find your PHP extensions directory?**
-A: You can find the extension_dir either by calling phpinfo() or by running the command php -r "echo ini_get('extension_dir');" - both read the value straight from the PHP runtime configuration.
+A: You can find the extension_dir either by calling phpinfo() or by running the command php -r "echo ini_get('extension_dir');" — both read the value straight from the PHP runtime configuration.
 
 **Q: How do you enable the Intl extension on a Linux server if the file already exists?**
 A: Confirm php_intl.so exists in your extensions directory, open the php.ini config file (usually /etc/php.ini), make sure the line "extension=php_intl.so" exists and isn't commented out, restart the web server (e.g. sudo service httpd restart), and verify with phpinfo().

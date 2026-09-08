@@ -15,21 +15,21 @@ language: "en"
 This article compares the basic features of Laminas API Tools and Dotkernel API side by side, covering architecture, versioning, documentation, authentication, and more.
 It highlights that Dotkernel API is a solid alternative now that Laminas API Tools has been archived, since Dotkernel API uses a modern middleware architecture, MIT license, and evolution-based deprecations instead of traditional versioning.
 
-Below is an analysis of the basic features available in Laminas API Tools and Dotkernel API.
+Below we have created an analysis of the basic features available in **Laminas API Tools** and **Dotkernel API**.
 It's intended to highlight the differences between the two and also to showcase why Dotkernel API is a good alternative for Laminas API Tools, especially considering the latter's archived status.
 
 > The table below refers to [Dotkernel API V7](https://github.com/dotkernel/api/tree/7.0).
 
-| | API Tools (formerly Apigility) | Dotkernel API |
-|---|---|---|
+|  | **API Tools (formerly Apigility)** | **Dotkernel API** |
+| --- | --- | --- |
 | URL | [api-tools](https://api-tools.getlaminas.org/) | [Dotkernel API](https://www.dotkernel.org) |
 | First Release | 2012 | 2018 |
-| PHP Version | <= 8.2 | Shown via a dynamic Packagist badge (see the project repository for the current supported version) |
+| PHP Version | <= 8.2 | ![PHP Version](https://img.shields.io/packagist/php-v/dotkernel/api) |
 | Architecture | MVC, Event Driven | Middleware |
-| OSS Lifecycle | Archived | Shown via a dynamic OSS Lifecycle badge (see the project repository for the current status) |
+| OSS Lifecycle | Archived | ![OSS Lifecycle](https://img.shields.io/osslifecycle/dotkernel/api?style=flat&label=) |
 | Style | REST, RPC | REST |
 | Versioning | Yes | Deprecations (API Evolution) * |
-| Documentation | Swagger (Automated) | Postman (Manual), OpenAPI 3.0 (Swagger) |
+| Documentation | Swagger (Automated) | Postman (*Manual*), OpenAPI 3.0 (Swagger) |
 | Content-Negotiation | Custom | Custom |
 | License | BSD-3 | MIT |
 | Default DB Layer | laminas-db | doctrine-orm 3.x |

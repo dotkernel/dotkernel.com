@@ -11,6 +11,7 @@ language: "en"
 # Highcharts Integration in Dotkernel 1.6.0
 
 ## TL;DR
+
 Dotkernel 1.6.0 integrates the Highcharts charting library, offering a new, intuitive and interactive charting experience.
 Sample charts (pie, column and line) were added to the admin, and the library ships in the project's externals directory.
 
@@ -21,6 +22,8 @@ The admin includes samples built with Highcharts:
 - A pie chart (with a small custom feature)
 - A column chart
 - A line chart
+
+[![](/uploads/article/019f8a80-cc3b-71e4-913b-5c28321fc438/highcharts-1024x651.png)](/uploads/2012/05/highcharts.png)
 
 The Highcharts library itself can be found in the **externals** directory of the project.
 
@@ -55,7 +58,9 @@ chart = new Highcharts.Chart({
         min: 0
     },
     xAxis: {
-        categories: ,
+        categories: ['1','2','3','4','5','6','7','8','9','10','11','12',
+                                 '13','14','15','16','17','18','19','20','21','22',
+                                 '23','24','25','26','27','28','29','30','31'],
         labels: {
             rotation: -45,
             align: 'right',

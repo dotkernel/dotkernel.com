@@ -51,6 +51,9 @@ class Post extends AbstractEntity
     #[ORM\Column(name: 'isObsolete', type: 'boolean')]
     private bool $isObsolete = false;
 
+    #[ORM\Column(name: 'isTwig', type: 'boolean', options: ['default' => false])]
+    private bool $isTwig = false;
+
     #[ORM\Column(name: 'opengraph_img', type: 'string', length: 255, nullable: true)]
     private ?string $openGraphImage = null;
 
@@ -155,6 +158,16 @@ class Post extends AbstractEntity
         $this->isObsolete = $isObsolete;
     }
 
+    public function isTwig(): bool
+    {
+        return $this->isTwig;
+    }
+
+    public function setTwig(bool $isTwig): void
+    {
+        $this->isTwig = $isTwig;
+    }
+
     public function getOpenGraphImage(): ?string
     {
         return $this->openGraphImage;
@@ -183,6 +196,7 @@ class Post extends AbstractEntity
      *     tlDr: string|null,
      *     postDate: string,
      *     isObsolete: bool,
+     *     isTwig: bool,
      *     openGraphImage: string|null,
      *     category: array{id: non-empty-string, name: string, slug: string},
      *     author: array{id: non-empty-string, name: string, slug: string, github: string|null}
@@ -198,6 +212,7 @@ class Post extends AbstractEntity
             'excerpt'        => $this->excerpt,
             'tlDr'           => $this->tlDr,
             'isObsolete'     => $this->isObsolete,
+            'isTwig'         => $this->isTwig,
             'openGraphImage' => $this->openGraphImage,
             'postDate'       => $this->postDate->format('Y-m-d H:i:s'),
             'category'       => $this->category->getArrayCopy(),

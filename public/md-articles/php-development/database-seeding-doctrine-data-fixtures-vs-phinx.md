@@ -102,6 +102,8 @@ php bin/console
 
 It should print out all the doctrine CLI commands available, including our fixtures commands.
 
+![](/uploads/article/019f8a80-cc6c-71e3-a52c-9a9b1a204472/Screenshot-2022-08-30-at-19.14.14-1024x334.png)
+
 ## Usage
 
 ### List All Available Fixtures, by Order of Execution
@@ -109,6 +111,8 @@ It should print out all the doctrine CLI commands available, including our fixtu
 ```bash
 php bin/doctrine fixtures:list
 ```
+
+![](/uploads/article/019f8a80-cc6c-71e3-a52c-9a9b1a204472/Screenshot-2022-08-30-at-19.22.45-1024x147.png)
 
 By using this command you can check the execution order of your fixtures before executing them.
 
@@ -271,27 +275,10 @@ class UserLoader implements FixtureInterface, DependentFixtureInterface
 Notice how `UserLoader.php` implements 2 interfaces, `FixtureInterface` and `DependentFixtureInterface`.
 The method `getDependencies()` returns an array containing the dependencies (fixtures) that need to be executed prior to the current one.
 After running all the fixtures using `php bin/doctrine fixtures:execute` the output should look like this:
+
+![](/uploads/article/019f8a80-cc6c-71e3-a52c-9a9b1a204472/Screenshot-2022-08-30-at-20.39.19.png)
+
 `RoleLoader` was executed before `UserLoader` because `UserLoader` had `RoleLoader` as a dependency.
 
 To wrap things up, we implemented a database seeder and saw a practical example of how to use it.
 More details about Fixtures in this blogpost: [https://matthiasnoback.nl/2018/07/about-fixtures/](https://matthiasnoback.nl/2018/07/about-fixtures/).
-
-## FAQ
-
-**Q: Why did Dotkernel move from Phinx to doctrine/data-fixtures for seeding?**
-A: Previous versions of Dotkernel 3 used cakephp/phinx for seeding, but the team wanted more flexibility, so they evaluated doctrine/data-fixtures since Doctrine is already used as the database abstraction layer.
-
-**Q: What's the catch with doctrine/data-fixtures?**
-A: It provides a concrete implementation of data fixtures, but without a CLI interface, so Dotkernel built the dotkernel/dot-data-fixtures package to add one.
-
-**Q: Does dotkernel/dot-data-fixtures depend on other Dotkernel packages?**
-A: No, its only dependency is Doctrine.
-
-**Q: How do you install dotkernel/dot-data-fixtures?**
-A: Run `composer require dotkernel/dot-data-fixtures`, register its ConfigProvider in `config/config.php`, add a `fixtures` key pointing to your fixtures folder in your doctrine config, and register the ExecuteFixturesCommand and ListFixturesCommand in a `bin/doctrine` CLI file.
-
-**Q: How do you list and execute fixtures?**
-A: Use `php bin/doctrine fixtures:list` to see the execution order, `php bin/doctrine fixtures:execute` to run all fixtures, or `php bin/doctrine fixtures:execute --class={FixtureClassName}` to run a specific one.
-
-**Q: How can fixtures be ordered?**
-A: Either by implementing `OrderedFixtureInterface` to specify an explicit order, or by implementing `DependentFixtureInterface` and its `getDependencies()` method to declare which fixtures must run first.

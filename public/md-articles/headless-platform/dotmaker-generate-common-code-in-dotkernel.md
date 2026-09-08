@@ -15,6 +15,8 @@ language: "en"
 DotMaker (`dotkernel/dot-maker`) programmatically generates project files and directories matching the Dotkernel file structure inspired by Mezzio.
 It boosts productivity and enforces consistency and standardization compared to creating modules and files by hand, and it can tell the difference between Dotkernel applications (Api, Admin, Frontend) to create the files each one requires.
 
+https://www.youtube.com/watch?v=CPDilXP2kAc
+
 ## Why use dot-maker?
 
 Creating a new module manually requires a relatively large number of files and folders.

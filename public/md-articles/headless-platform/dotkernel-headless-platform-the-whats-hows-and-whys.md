@@ -55,6 +55,8 @@ Using both API and Admin together brings several benefits:
 The file structure can be configured to use a **Core** module - a common code repository shared between API and Admin, ensuring entities and queries stay consistent.
 Entities (products, articles, etc.) are the building blocks of the application, and queries handle CRUD interactions with them.
 
+![](/uploads/article/019f8a80-cc94-7123-80d3-9c21a30c19ea/Core2.png)
+
 ### Implement only the handlers you need
 
 Having many entities in the Core doesn't require implementing handlers for each one in both API and Admin.
@@ -65,6 +67,10 @@ Each application only handles what it needs - for example, a shop may need to ed
 API and Admin share a file structure, so becoming familiar with one makes the other easy to pick up.
 This means onboarding is easy and the applications can be maintained by fewer developers - potentially a single developer, at least initially.
 By contrast, an API+Angular approach often needs two developers working together to implement a new feature.
+
+![](/uploads/article/019f8a80-cc94-7123-80d3-9c21a30c19ea/files-api.jpg)
+
+![](/uploads/article/019f8a80-cc94-7123-80d3-9c21a30c19ea/files-admin-1.jpg)
 
 ### Can satisfy any application size
 
@@ -78,6 +84,8 @@ The Dotkernel architecture aims to support several architectural designs:
 - **Clean Architecture** - software components are organized into concentric layers, with code dependencies flowing from outer to inner layers, improving testability and independence from libraries, UI, and databases.
 - **Domain-Driven Design (DDD)** - the focus is on custom solutions for business logic; rather than building reusable services for a Service Oriented Architecture (SOA), only the specific components needed to satisfy requirements are implemented.
 - **Hexagonal Architecture** - divides a system into several loosely-coupled, interchangeable components (application core, database, user interface, test scripts, interfaces with other systems), as an alternative to traditional layered architecture.
+
+![](/uploads/article/019f8a80-cc94-7123-80d3-9c21a30c19ea/Flow2.png)
 
 ### Supported by an active community
 

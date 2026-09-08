@@ -76,6 +76,8 @@ Barcode::factory(
 
 Both examples render the same barcode.
 
+[![Resulting barcode.](/uploads/article/019f8a80-cc48-70bf-ba9f-ddc6d1436f1a/zend.barcode.introduction.example-1.png)](/uploads/2016/04/zend.barcode.introduction.example-1.png)
+
 ### Tip
 
 The first (ZF1-style) example will work for both namespaced and non-namespaced dependencies if you add this as the first line:

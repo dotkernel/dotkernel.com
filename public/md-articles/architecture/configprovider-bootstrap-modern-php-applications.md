@@ -34,7 +34,10 @@ class ConfigProvider
 {
     public function __invoke(): array
     {
-        return [ /* ... */ ];
+        return [
+            'dependencies' => $this->getDependencies(),
+            'templates'    => $this->getTemplates(),
+        ];
     }
 
     public function getDependencies(): array
@@ -59,7 +62,7 @@ What each item means:
 
 | Item | Meaning |
 |---|---|
-| `dependencies` | Used by the dependency injector (e.g. laminas-servicemanager) to construct every requested service. |
+| `dependencies` | Used by the dependency injector (e.g. [laminas-servicemanager](https://docs.mezzio.dev/mezzio/v3/features/container/laminas-servicemanager/)) to construct every requested service. |
 | `factories` | The factory builds the service. |
 | `invokables` | The service is built with `new` directly. |
 | `aliases` | Redirects to another service name. |
@@ -74,7 +77,11 @@ The ConfigProvider is automatically picked up by the framework during applicatio
 2. **Read the configuration array** - A call similar to `$config = $container->get('config') ?? [];` reads an array of entries.
 3. **Resolve item** - `$app->pipe()` is called to resolve one of the following: resolve the service name from the container, wrap the middleware if an array is provided, or call the closure or invokable object.
 4. **Handle errors** - The error-handling middleware is the last one in the pipeline, to make sure it can handle any exceptions.
-5. **Execute at runtime** - Laminas Stratigility iterates over the pipeline in the order it was registered. Each middleware can handle the request and return a response, or delegate execution to the next middleware in the pipeline, until a `ResponseInterface` is returned to the client.
+5. **Execute at runtime** - [Laminas Stratigility](https://docs.laminas.dev/laminas-stratigility/) iterates over the pipeline in the order it was registered. Each middleware can handle the request and return a response, or delegate execution to the next middleware in the pipeline, until a `ResponseInterface` is returned to the client.
+
+Below you can see how Mezzio and Dotkernel merge and use ConfigProviders to build the middleware pipeline and dependencies.
+
+![](/uploads/article/019f8a80-cc92-7277-92c8-c0e68d81615f/ConfigProvider2.png)
 
 ## Benefits
 
@@ -82,7 +89,7 @@ The ConfigProvider is automatically picked up by the framework during applicatio
 - **Modular** - Each package can ship with its own config without interfering with others.
 - **Container-friendly** - Works well with frameworks using DI containers like Laminas ServiceManager, PHP-DI, or Pimple.
 - **Standardized service definitions** - Consistent rules for object creation, separate from business logic.
-- **Auto-Discovery** - In Laminas/Mezzio, the ConfigAggregator automatically loads and merges all ConfigProviders.
+- **Auto-Discovery** - In Laminas/Mezzio, the [ConfigAggregator](https://docs.laminas.dev/laminas-config-aggregator/) automatically loads and merges all ConfigProviders.
 Dotkernel is an exception: new ConfigProviders have to be added manually in `config/config.php`, because all the initial ConfigProviders required to install the applications are already injected.
 - **Environment-agnostic** - Returns an array that defines dev, test, or prod environments.
 - **Testability** - The consistent, central configuration promotes isolated (e.g. per-module) testing, easier swapping of dependencies, and assertion of pipeline setup (e.g. checking if a config key is present).

@@ -52,6 +52,20 @@ For example, on the `/user` endpoint:
 ### Announcing deprecation
 
 Deprecation is announced by including an updated response header via handler attributes, with customizable values for `sunset`, `link`, and `deprecationReason`.
+
+```php
+#[ResourceDeprecation(
+    sunset: '2026-01-01',
+    link: 'https://docs.dotkernel.org/api-documentation/v7/tutorials/api-evolution/',
+    deprecationReason: 'Resource deprecation example.',
+    rel: 'sunset',
+    type: 'text/html'
+)]
+class OldHandler implements RequestHandlerInterface
+{
+...
+```
+
 A deprecated endpoint's response includes headers similar to:
 
 ```

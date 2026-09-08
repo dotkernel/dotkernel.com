@@ -21,6 +21,8 @@ use Light\App\Factory\GetSitemapViewHandlerFactory;
 use Light\App\Factory\GitHubClientFactory;
 use Light\App\Factory\LlmsFullGeneratorFactory;
 use Light\App\Factory\LlmsGeneratorFactory;
+use Light\App\Factory\MarkdownExtensionFactory;
+use Light\App\Factory\MarkdownRuntimeLoaderFactory;
 use Light\App\Factory\PackageGeneratorFactory;
 use Light\App\Factory\SitemapGeneratorFactory;
 use Light\App\Handler\GetFeedViewHandler;
@@ -39,6 +41,8 @@ use Light\App\Service\SitemapGenerator;
 use Mezzio\Application;
 use Roave\PsrContainerDoctrine\EntityManagerFactory;
 use Symfony\Component\Cache\Adapter\AdapterInterface;
+use Twig\Extra\Markdown\MarkdownExtension;
+use Twig\RuntimeLoader\RuntimeLoaderInterface;
 
 use function getcwd;
 
@@ -144,6 +148,8 @@ class ConfigProvider
                 PackageGenerator::class               => PackageGeneratorFactory::class,
                 LlmsFullGenerator::class              => LlmsFullGeneratorFactory::class,
                 LlmsGenerator::class                  => LlmsGeneratorFactory::class,
+                MarkdownExtension::class              => MarkdownExtensionFactory::class,
+                RuntimeLoaderInterface::class         => MarkdownRuntimeLoaderFactory::class,
             ],
             'aliases'    => [
                 EntityManager::class          => 'doctrine.entity_manager.orm_default',

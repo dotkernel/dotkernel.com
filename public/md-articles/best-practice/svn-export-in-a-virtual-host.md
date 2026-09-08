@@ -15,18 +15,25 @@ language: "en"
 `svn export` lets you export the contents of a repository into a virtual host directory.
 The commands should be run in a terminal (e.g. via Putty on Windows) on the target host, ideally using the domain's own user rather than root.
 
-## Steps
+The following commands should be run in the terminal (for example, using Putty in Windows) on the host where you want to export the repository). It's recommended that you run them using the domain's user, not root.
 
-1. Make sure Subversion is installed on the host by running `svn --version`.
-If you don't get a "command not found" message, it's installed; otherwise, install it.
-2. Go to the directory where you want to export the contents of the repository (e.g. `cd /var/www/vhosts/example.com/httpdocs` or `cd /home/sitename/public_html`).
-3. Run the export command:
+1. First make sure that Subversion is installed on the host. To check if it is installed, run:
+
+```
+svn --version
+```
+
+If you don't get a "command not found" message, subversion is installed. Otherwise, you need to install it.
+
+2. The next step is to go to where you want to export the contents of the repository (eg.: "*cd /var/www/vhosts/example.com/httpdocs*" or "*cd /home/sitename/public_html*").
+
+3. The command looks like this:
 
 ```shell
 svn export repositoryUrl repositoryUrl
 ```
 
-Where:
+where:
 
 | Parameter | Meaning |
 |---|---|
@@ -37,9 +44,9 @@ Where:
 | `targetDirectory` - `/var/www/vhosts/example.com/httpdocs` | Exports to an absolute path. |
 | `--force` | Optional. By default SVN will not export into an existing directory; this overrides that. **Be careful, this option can overwrite files.** |
 
-4. For more information, run `svn help export`.
+4. For more information, you can run **svn help export**.
 
-## Examples
+Examples:
 
 ```shell
 svn export http://v1.dotkernel.net/svn/trunk ./ --force
@@ -47,9 +54,7 @@ svn export -r 423 http://v1.dotkernel.net/svn/trunk ./ --force
 svn export http://v1.dotkernel.net/svn/trunk /var/www/vhosts/domain.com/httpdocs/dk
 ```
 
-## Fixing permissions afterward
-
-If the repository was exported using a different user (e.g. root), change the permissions back as root:
+If you've exported the repository using a different user (root for example), you can change the permissions back by running the following command as root:
 
 ```shell
 chown -R siteuser.psacln /var/www/vhosts/example.com/httpdocs

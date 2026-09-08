@@ -67,6 +67,8 @@ The queue system has an active daemon that listens for TCP connections on a spec
 This supports a large number of requests per second without overloading.
 Operations are then scheduled for execution when resources are available, using the FIFO (First-In, First-Out) method, where the oldest request is processed first, followed by newer requests.
 
+![](/uploads/article/019f8a80-cc97-70d1-a431-cb612f641c19/Queue-process2.png)
+
 ## Main Features
 
 The following features are already implemented and have been tried and tested extensively in the team's live projects.

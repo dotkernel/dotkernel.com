@@ -17,6 +17,9 @@ This article gives separate setup steps for a freshly cloned project versus an e
 
 PHP_CodeSniffer or phpcs is a tool that helps developers maintain a specific standard in the way they write code.
 In order to be able to provide relevant information, phpcs needs to be configured correctly in PHPStorm (see image).
+
+![](/uploads/article/019f8a80-cc90-7160-853d-18cb7411b9ff/image.png)
+
 Whether you just cloned or you are already working on a project, follow the below guide on how to prepare your environment.
 
 ## When Cloning a Project
@@ -39,8 +42,20 @@ There, if Coding standard is set to Custom and the field next to it contains the
 5. Go to Step 1.
 
 After you have the above configurations, you should start seeing information in the top-right corner of the editor.
-Once PHPStorm has finished analyzing the opened file, you should see either a green tick (meaning no errors) or a count of all the errors, warnings, and typos.
+
+![](/uploads/article/019f8a80-cc90-7160-853d-18cb7411b9ff/image-1-1024x83.png)
+
+Once PHPStorm has finished analyzing the opened file, you should see either a green tick (meaning no errors)
+
+![](/uploads/article/019f8a80-cc90-7160-853d-18cb7411b9ff/image-2-1024x66.png)
+
+or a count of all the errors, warnings, and typos.
+
+![](/uploads/article/019f8a80-cc90-7160-853d-18cb7411b9ff/image-3.png)
+
 Clicking on them will open a section where you get detailed information on each item, their location, and recommendations on how to fix them.
+
+![](/uploads/article/019f8a80-cc90-7160-853d-18cb7411b9ff/image-5.png)
 
 ## FAQ
 

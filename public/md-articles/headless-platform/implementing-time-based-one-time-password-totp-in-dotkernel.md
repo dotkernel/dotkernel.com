@@ -60,6 +60,10 @@ Generates temporary, unique 6-digit codes that change every 30 seconds, via an A
 3. User submits the current 6-digit code, or alternatively a single-use recovery code.
 4. If the code is valid, the user is logged in.
 
+Below is a simplified flow for the 2FA with TOTP mechanism.
+
+![](/uploads/article/019f8a80-cc99-7003-89fb-1a4493d92a4c/totp-flow.jpg)
+
 ## Installation steps
 
 ### Step 1 - Install the package
@@ -75,29 +79,29 @@ composer require dotkernel/dot-totp
 Following the Dotkernel file structure, add the files below (downloadable from the [official code examples](https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp)):
 
 Forms:
-- `src/Admin/src/Form/RecoveryForm.php`
-- `src/Admin/src/Form/TotpForm.php`
+- [`src/Admin/src/Form/RecoveryForm.php`](https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/Admin/src/Form/RecoveryForm.php)
+- [`src/Admin/src/Form/TotpForm.php`](https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/Admin/src/Form/TotpForm.php)
 
 Handlers (in `src/Admin/src/Handler/Account/`):
-- `GetDisableTotpFormHandler.php`
-- `GetEnableTotpFormHandler.php`
-- `GetRecoveryFormHandler.php`
-- `GetTotpHandler.php`
-- `PostDisableTotpHandler.php`
-- `PostEnableTotpHandler.php`
-- `PostValidateRecoveryHandler.php`
-- `PostValidateTotpHandler.php`
+- [`GetDisableTotpFormHandler.php`](https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/Admin/src/Handler/Account/GetDisableTotpFormHandler.php)
+- [`GetEnableTotpFormHandler.php`](https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/Admin/src/Handler/Account/GetEnableTotpFormHandler.php)
+- [`GetRecoveryFormHandler.php`](https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/Admin/src/Handler/Account/GetRecoveryFormHandler.php)
+- [`GetTotpHandler.php`](https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/Admin/src/Handler/Account/GetTotpHandler.php)
+- [`PostDisableTotpHandler.php`](https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/Admin/src/Handler/Account/PostDisableTotpHandler.php)
+- [`PostEnableTotpHandler.php`](https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/Admin/src/Handler/Account/PostEnableTotpHandler.php)
+- [`PostValidateRecoveryHandler.php`](https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/Admin/src/Handler/Account/PostValidateRecoveryHandler.php)
+- [`PostValidateTotpHandler.php`](https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/Admin/src/Handler/Account/PostValidateTotpHandler.php)
 
 Templates:
-- `src/Admin/templates/admin/recovery-form.html.twig`
+- [`src/Admin/templates/admin/recovery-form.html.twig`](https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/Admin/templates/admin/recovery-form.html.twig)
 
 Middleware:
-- `src/App/src/Middleware/CancelUrlMiddleware.php`
-- `src/App/src/Middleware/TotpMiddleware.php`
+- [`src/App/src/Middleware/CancelUrlMiddleware.php`](https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/App/src/Middleware/CancelUrlMiddleware.php)
+- [`src/App/src/Middleware/TotpMiddleware.php`](https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/App/src/Middleware/TotpMiddleware.php)
 
 ### Step 3 - Apply the entity trait and migrate the database
 
-Apply the trait at `src/Core/src/App/src/Entity/TotpTrait.php` to any entity that requires 2FA, then migrate the new columns onto that entity's table: `totpSecret`, `totp_enabled`, and `recovery_codes`.
+Apply the trait at [`src/Core/src/App/src/Entity/TotpTrait.php`](https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/src/Core/src/App/src/Entity/TotpTrait.php) to any entity that requires 2FA, then migrate the new columns onto that entity's table: `totpSecret`, `totp_enabled`, and `recovery_codes`.
 
 ### Step 4 - Register the remaining snippets
 
@@ -105,10 +109,10 @@ The `_misc` folder in the code examples contains four required additions:
 
 | Snippet | Destination |
 |---|---|
-| Enable/disable 2FA button (`totp-append-view-account.html.twig`) | `view-account.html.twig`, or a new page |
-| Routes updates (`totp-append-routes.php`) | `src/Admin/src/RoutesDelegator.php` |
-| Pipeline updates (`totp-append-Pipeline.php`) | `config/pipeline.php`, after `$app->pipe(AuthMiddleware::class);` |
-| ConfigProvider updates (`totp-append-ConfigProvider.php`) | `src/Admin/src/ConfigProvider.php` |
+| [Enable/disable 2FA button](https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/_misc/totp-append-view-account.html.twig) (`totp-append-view-account.html.twig`) | `view-account.html.twig`, or a new page |
+| [Routes updates](https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/_misc/totp-append-routes.php) (`totp-append-routes.php`) | `src/Admin/src/RoutesDelegator.php` |
+| [Pipeline updates](https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/_misc/totp-append-Pipeline.php) (`totp-append-Pipeline.php`) | `config/pipeline.php`, after `$app->pipe(AuthMiddleware::class);` |
+| [ConfigProvider updates](https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp/_misc/totp-append-ConfigProvider.php) (`totp-append-ConfigProvider.php`) | `src/Admin/src/ConfigProvider.php` |
 
 ## Using TOTP in Dotkernel Admin (end-user flow)
 
@@ -116,17 +120,29 @@ The `_misc` folder in the code examples contains four required additions:
 
 1. Navigate to the account profile (top-right image in Dotkernel Admin).
 A TOTP box with an "Enable TOTP" button is shown.
+
+![](/uploads/article/019f8a80-cc99-7003-89fb-1a4493d92a4c/profile-totp-deactivated.jpg)
+
 2. Click "Enable TOTP".
 A QR code is displayed. An Authenticator app on a mobile device is required.
+
+![](/uploads/article/019f8a80-cc99-7003-89fb-1a4493d92a4c/totp-activate-qr.jpg)
+
 3. Scan the QR code with the mobile device.
 4. Enter the 6-digit code generated by the Authenticator app. The code refreshes every 30 seconds.
 5. Save the recovery codes shown during activation in a secure location - each is usable only once.
+
+![](/uploads/article/019f8a80-cc99-7003-89fb-1a4493d92a4c/totp-recovery-codes.jpg)
+
 6. If the code is valid, the user is logged in and TOTP is activated for the account.
 
 ### Logging in with TOTP enabled
 
 1. Enter username and password as before.
 2. Submit the current code from the Authenticator app, or alternatively a recovery code.
+
+![](/uploads/article/019f8a80-cc99-7003-89fb-1a4493d92a4c/totp-ask-code.jpg)
+
 3. On success, the user is logged in.
 
 ## FAQ
@@ -150,7 +166,7 @@ A: You need to migrate three new columns onto the entity that uses the TotpTrait
 
 ## Resources
 
-- dot-totp on GitHub: https://github.com/dotkernel/dot-totp
-- Dotkernel Admin on GitHub: https://github.com/dotkernel/admin
-- Official tutorial - Installing dot-totp into Dotkernel Admin: https://docs.dotkernel.org/admin-documentation/v7/tutorials/install-dot-totp/
-- Complete code examples: https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp
+- [dot-totp on GitHub](https://github.com/dotkernel/dot-totp)
+- [Dotkernel Admin on GitHub](https://github.com/dotkernel/admin)
+- [Official tutorial - Installing dot-totp into Dotkernel Admin](https://docs.dotkernel.org/admin-documentation/v7/tutorials/install-dot-totp/)
+- [Complete code examples](https://github.com/dotkernel/admin-documentation/tree/main/code_examples/totp)

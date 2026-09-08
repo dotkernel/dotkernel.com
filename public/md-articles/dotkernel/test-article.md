@@ -16,7 +16,9 @@ This is a test article added to the dotkernel category for testing purposes. Thi
 
 ## Overview
 
-This is a test article used for fixture and testing purposes.
+![](/uploads/article/019fd6ae-4ce6-71cc-99aa-33741b77758c/test-article.png)
+
+This is a test article used for fixture and testing purposes. This article is now updated.
 
 ## FAQ
 

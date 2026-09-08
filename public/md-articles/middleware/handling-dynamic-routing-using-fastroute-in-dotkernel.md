@@ -15,31 +15,72 @@ language: "en"
 This article, the first in a series about switching from controllers to PSR-15 compliant handlers, explains how Dotkernel replaced its static, hard-coded route declarations with a centralized, dynamic configuration in `local.php`.
 The change is aimed at static pages only - any method other than GET (post, put, delete) returns a 405 status code.
 
+The goal of this update is to replace the static way of creating routes with a more dynamic implementation.
+The result is a cleaner approach that is easier to set up and review at a glance.
+
+`RoutesDelegator.php` is used to configure the routes in Dotkernel applications.
+`Routing` allows web applications to respond to user requests by executing the correct code based on URL paths.
+The dynamic aspect discussed in this article moves the relevant items for each route into the `local.php` file.
+The RoutesDelegator then reads the route configuration and generates the routes.
+
+> This is the first in a series of articles for switching from controllers to handlers that are PSR-15 compliant. It's aimed at static pages alone, so any other method like `post`, `put` or `delete` will return a `405 status code`.
+
 ## The old way of doing things
 
-Routes were declared in a `RoutesDelegator.php` file present in the `src` folder of each module, with entries like:
+In the past, declaring routes had a more static, hard-coded approach. All our modules have a `RoutesDelegator.php` file in the `src` folder for each module. Each route would have an entry like the one below:
 
 ```php
-$app->get('/page', , 'page');
+$app->get('/page[/{action}]', [GetPageViewHandler::class], 'page');
 ```
 
-This route serves urls like `/page/about` or `/page/who-we-are`.
-Each entry required:
+This route would be used for urls like `/page/about` or `/page/who-we-are` that we will reference later.
 
-- A **method**, such as `get`, aimed at static pages.
-- A **path** used to direct execution to a handler, such as `/page`, which also uses the optional `action` parameter.
-- A **handler** to execute, such as `GetPageViewHandler`, designed to display static pages out of the box but expandable as needed.
-- A unique **route name**, such as `page`, referenceable for redirects or authorization.
+These are the required items:
 
-In a live application the route list can grow to many entries across areas like product list, product details, checkout, contact us, reports, order history, and blog - grouped into modules, meaning a routing error could require digging through multiple RoutesDelegators.
+- A **method**, in this case `get` which is aimed at static pages.
+- A **path** used to direct the execution to a handler, in this case `/page[/{action}]` which also uses the optional parameter `action`.
+- A **handler** to be executed, like `GetPageViewHandler` which is designed to display static pages out of the box, but can be expanded as needed.
+- A unique **route name**, like `page` which can be referenced to generate redirects or set up authorization.
+
+In a live application the route list can quickly grow to many more entries, each with its own logic:
+
+- Product list
+- Product details
+- Checkout
+- Contact us
+- Reports
+- Order History
+- Blog
+
+These items can be grouped into modules, meaning you have to dig into multiple RoutesDelegators when a routing error occurs.
 
 ## The new approach
 
-The update centralizes route configuration in `config/autoload/local.php`, under a `routes` array.
-`RoutesDelegator.php` reads this configuration and generates the routes, so it doesn't need to be touched most of the time:
+The update centralizes the route configuration in the `config/autoload/local.php` file.
+Here is how the routing looks out of the box:
 
 ```php
-$routes = $container->get('config') ?? [];
+'routes'      => [
+    'page' => [
+        'about'      => 'about',
+        'who-we-are' => 'who-we-are',
+    ],
+],
+```
+
+This supports the urls `/page/about` and `/page/who-we-are`.
+
+Let's list the components under the `routes` array:
+
+- `page` is the module name.
+- The key `about` is used to build the page's path.
+- The value `about` is the template file.
+
+In this setup, the `RoutesDelegator` file doesn't need to be touched most of the time.
+This is how it generates the routes for each page:
+
+```php
+$routes = $container->get('config')['routes'] ?? [];
 foreach ($routes as $prefix => $moduleRoutes) {
     foreach ($moduleRoutes as $routeUri => $templateName) {
     $app->get(
@@ -51,37 +92,38 @@ foreach ($routes as $prefix => $moduleRoutes) {
 }
 ```
 
-Under the `routes` array: the module name (e.g. `page`) is the top-level key, the key (e.g. `about`) builds the page's path, and the value (e.g. `about`) is the template file.
-This supports `/page/about` and `/page/who-we-are`.
+Each item under `routes` array for each module will have its own entry.
+The result is you have a `get` for the `about` page and another for the `who-we-are` page.
 
 ## Advanced configuration
 
-The same versatility as before is retained:
+You have the same versatility as before for route configuration.
+Below we explore some scenarios that showcase the control you still have over the routing.
 
-1. **Change the template**: replace `$template = $request->getAttribute(RouteResult::class)->getMatchedRouteName();` with a fixed template, like `$template = 'my-template';`.
-2. **Change the URL for SEO** (e.g. `/page/about` to `/about`): remove the `$moduleName` parameter from `sprintf('/%s/%s', $moduleName, $routeUri)`, making it `sprintf('/%s', $routeUri)` - carefully, to avoid breaking other routes.
-3. **Change the URL segment**: edit `'about' => 'about',` to `'about-us' => 'about',` in `local.php`, changing the url to `/page/about-us` while still using the `about` template.
-4. **Add a dynamic parameter**: edit `'about' => 'about',` to `'about/{id}' => 'about',`, supporting urls like `/page/about/us`, `/page/about/company`, `/page/about/123`, and read the value in the handler with `$request->getAttribute('id')`.
+1. **Change the template**: the template file is taken from the path, but you can still change that in the `handler` based on your requirements. Replace `$template = $request->getAttribute(RouteResult::class)->getMatchedRouteName();` with a template of your choosing, like `$template = 'my-template';`
+2. **Change the URL for SEO**: say you want to change the url from `/page/about`, to `/about` for SEO purposes. All you have to do is remove the `$moduleName` parameter from `sprintf('/%s/%s', $moduleName, $routeUri),` making it `sprintf('/%s', $routeUri),`. Take care not to break other routes, though!
+3. **Change the URL segment**: if you need to change the url parameter, you can do that in the `local.php` file. Edit `'about' => 'about',` into `'about-us' => 'about',`. This changes the original url to `/page/about-us`, but uses the same `about` template as before.
+4. **Add a dynamic parameter**: do you need a dynamic parameter? Edit the route entry from `'about' => 'about',` to `'about/{id}' => 'about',`. This expands the matched url to support something like `/page/about/us`, `/page/about/company`, `/page/about/123` which will allow you to customize each url with different content in the handler. All you need is to use `$request->getAttribute('id')` to tell what page you are on.
 
 ## FAQ
 
 **Q: What is the goal of this dynamic routing update?**
-A: To replace static, hard-coded route declarations with a more dynamic, centralized implementation that is easier to set up and review.
+A: The goal is to replace the static way of creating routes with a more dynamic implementation, resulting in a cleaner approach that is easier to set up and review at a glance.
 
 **Q: How were routes configured in the old, static approach?**
-A: In a per-module `RoutesDelegator.php` file, with hard-coded entries specifying a method, path, handler, and route name.
+A: Each module had its own RoutesDelegator.php file in the src folder, with hard-coded route entries such as $app->get('/page', , 'page');. Each route needed a method (e.g. get), a path used to direct execution to a handler, a handler like GetPageViewHandler, and a unique route name. In a live application the route list can grow to many entries grouped across modules, meaning multiple RoutesDelegators had to be checked when a routing error occurred.
 
 **Q: How does the new approach centralize route configuration?**
-A: Route data moves into a `routes` array in `config/autoload/local.php`, which `RoutesDelegator.php` reads to generate routes automatically.
+A: The update centralizes the route configuration in the config/autoload/local.php file, moving the relevant items for each route into a routes array. RoutesDelegator.php then reads this configuration and generates the routes automatically, so it doesn't need to be touched most of the time.
 
 **Q: What do the entries under the routes array represent?**
-A: The module name, the URL path segment (key), and the template file to render (value).
+A: For a module like page, the module name is the top-level key, the array key (e.g. about) is used to build the page's path, and its value (e.g. about) is the template file. This supports urls like /page/about and /page/who-we-are.
 
 **Q: Can routes still be customized beyond the default setup?**
-A: Yes - templates, URL structure, URL segments, and dynamic parameters can all still be adjusted.
+A: Yes. You can change the template used by editing the handler's template attribute, change a URL for SEO purposes by removing the module name parameter from the generated path, change the URL segment by editing the key in local.php (e.g. turning 'about' into 'about-us' while keeping the same template), or add a dynamic parameter (e.g. 'about/{id}') and read it in the handler via $request->getAttribute('id').
 
 **Q: Does this update support methods other than GET?**
-A: No - it targets static pages only; other HTTP methods return a 405 status code.
+A: No - this is the first in a series of articles for switching from controllers to PSR-15 compliant handlers, and it is aimed at static pages alone, so any other method like post, put or delete will return a 405 status code.
 
 ## Resources
 
