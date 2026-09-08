@@ -11,46 +11,39 @@ language: "en"
 # Remote connections to MySQL server on Plesk based servers
 
 ## TL;DR
+
 Plesk-based Linux servers default to `old_passwords=1`, which forces MySQL to use the old, pre-4.1 password storage style even on MySQL 5.5+, breaking remote PDO connections.
 The fix is to create a new database user, grant it privileges, disable old_passwords, and reset its password so a newer, longer password hash is stored in mysql.user.
 
-By default, MySql servers on Linux machines where Plesk is installed, have the **old_passwords**=1 or ON flag.
-
-That mean even if you have MySQL 5.5+ version, it still use old style of password storage, pre-mysql 4.1+
-
+By default, MySql servers on Linux machines where Plesk is installed, have the old_passwords=1 or ON flag.
+That mean even if you have MySQL 5.5+ version, it still use old style of password storage, pre-mysql 4.1+.
 If you try to connect remote, from your local development machine, you will get an ugly error, like:
-
- 
 
 ```
 Fatal error: Uncaught exception 'PDOException' with message 'SQLSTATE  mysqlnd
-cannot connect  to MySQL 4.1+ using the old insecure authentication. Please use an administration
+cannot connect  to MySQL 4.1+ using the old insecure authentication. Please use an administration
 tool to reset your password with the command SET PASSWORD = PASSWORD('your_existing_password').
 This will store a new, and more secure, hash value in mysql.user.
 If this user is used in other scripts executed by PHP 5.2 or earlier you might need to remove
- the old-passwords flag from your my.cnf file' in
+the old-passwords flag from your my.cnf file' in
 ```
 
-How to fix that [ You need mysql admin priviledges] :
+How to fix that:
 
-1. Create a new database user,  **someuser** for instance directly in command line
+1. Create a new database user, someuser for instance directly in command line.
 2. Grant priviledges to that user to the database you want to connect to.
 3. Now run the below SQL statements:
 
-```
+```sql
 SET old_passwords = 0;
 UPDATE mysql.user SET Password = PASSWORD('somepassword') WHERE User = 'someuser' limit 1;
 SELECT LENGTH(Password) FROM mysql.user WHERE User = 'someuser';
 FLUSH PRIVILEGES;
 ```
 
- 
+Now you can remotely connect to that server, using the user: someuser and password: somepassword.
 
-Now you can remotely connect to that server, using the user: **someuser** and password: **somepassword**
-
- 
-
-NOTE: if you browse the table mysql.user , you will note that the password field contain many more characters for the user **someuser** compared to the others.
+NOTE: if you browse the table mysql.user, you will note that the password field contain many more characters for the user someuser compared to the others.
 
 ## FAQ
 

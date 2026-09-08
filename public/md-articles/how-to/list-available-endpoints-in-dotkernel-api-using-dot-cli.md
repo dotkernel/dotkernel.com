@@ -11,22 +11,24 @@ language: "en"
 # List available endpoints in Dotkernel API using dot-cli
 
 ## TL;DR
+
 Starting from version 3, Dotkernel API uses the dot-cli package to list all of its available endpoints via the `route:list` command.
 The command's output can be filtered by route name, path, or HTTP method, and filters are case-insensitive and combinable.
 
-## Displaying Dotkernel API endpoints using dot-cli
+## Displaying Dotkernel API Endpoints Using dot-cli
 
 Starting from version 3, Dotkernel API uses [dot-cli](https://github.com/dotkernel/dot-cli) to display a list of available endpoints.
 
 ## Usage
 
-Run the following command in your application’s root directory:
+Run the following command in your application's root directory:
 
-```
+```bash
 php ./bin/cli.php route:list
 ```
 
-The command runs through all routes and extracts endpoint information in realtime. The output should be similar to the following:
+The command runs through all routes and extracts endpoint information in realtime.
+The output should be similar to the following:
 
 ```
 +--------+---------------------------------+--------------------------------+
@@ -72,21 +74,22 @@ The command runs through all routes and extracts endpoint information in realtim
 +--------+---------------------------------+--------------------------------+
 ```
 
-## Filtering results
+## Filtering Results
 
 The following filters can be applied when displaying the routes list:
 
-- Filter routes by name, using: `-i|--name[=NAME]`
-- Filter routes by path, using: `-p|--path[=PATH]`
-- Filter routes by method, using: `-m|--method[=METHOD]`
+- Filter routes by name, using: `-i|--name`
+- Filter routes by path, using: `-p|--path`
+- Filter routes by method, using: `-m|--method`
 
 The filters are case-insensitive and can be combined.
 
 ### Example
 
-Let's find which path should one call to register their user account. For this we will list routes where method is **POST** and name contains the string **register**:
+Let's find which path should one call to register their user account.
+For this we will list routes where method is POST and name contains the string register:
 
-```
+```bash
 php ./bin/cli.php route:list --method=post --name=register
 ```
 
@@ -102,7 +105,7 @@ The output is the following:
 
 You can get more help with this command by running:
 
-```
+```bash
 php ./bin/cli.php route:list --help
 ```
 
@@ -112,13 +115,15 @@ php ./bin/cli.php route:list --help
 A: Starting from version 3, Dotkernel API uses dot-cli to display a list of available endpoints.
 
 **Q: Which command lists all routes?**
-A: Run php ./bin/cli.php route:list in your application's root directory. It runs through all routes and extracts endpoint information in realtime, outputting a table with Method, Name and Path columns.
+A: Run `php ./bin/cli.php route:list` in your application's root directory.
+It runs through all routes and extracts endpoint information in realtime, outputting a table with Method, Name and Path columns.
 
 **Q: How can the route list be filtered?**
-A: You can filter routes by name using -i|--name, by path using -p|--path, or by method using -m|--method. The filters are case-insensitive and can be combined.
+A: You can filter routes by name using `-i|--name`, by path using `-p|--path`, or by method using `-m|--method`.
+The filters are case-insensitive and can be combined.
 
 **Q: How would you find the endpoint used to register a user account?**
-A: By combining the method and name filters: php ./bin/cli.php route:list --method=post --name=register, which returns the account.register route mapped to /account/register.
+A: By combining the method and name filters: `php ./bin/cli.php route:list --method=post --name=register`, which returns the account.register route mapped to /account/register.
 
 **Q: How do you get more help on this command?**
-A: Run php ./bin/cli.php route:list --help to get more information about the command.
+A: Run `php ./bin/cli.php route:list --help` to get more information about the command.

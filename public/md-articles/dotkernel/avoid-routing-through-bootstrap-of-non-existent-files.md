@@ -10,25 +10,24 @@ language: "en"
 
 # Avoid routing through bootstrap of non existent files
 
-In some cases you may encounter missing files: images, css or js files. All those missing files are processed by the current bootstrap: index.php
+In some cases you may encounter missing files: images, CSS, or JS files.
+All those missing files are processed by the current bootstrap: `index.php`.
 
-If the session is set to regenerate on each request, as a normal security measure, the currently logged user is logged off, because the session ID is different now.
+If the session is set to regenerate on each request, as a normal security measure, the currently logged-in user is logged off, because the session ID is different now.
 
-To avoid this, **below** the following line
+To avoid this, below the following line:
 
 ```
 RewriteEngine On
 ```
 
-add the line :
+add the line:
 
 ```
-RewriteCond %{REQUEST_FILENAME} (\.gif|\.jpg|\.png|\.css|\.js)$ [OR]
+RewriteCond %{REQUEST_FILENAME} (\.gif|\.jpg|\.png|\.css|\.js)$
 ```
 
-Save and don't forget to test.
-
-Even though it's a well known fact that real men do not test...
+Save, and don't forget to test.
 
 ## FAQ
 

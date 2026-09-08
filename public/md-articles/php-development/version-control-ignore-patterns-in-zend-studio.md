@@ -11,22 +11,20 @@ language: "en"
 # Version Control Ignore Patterns in Zend Studio
 
 ## TL;DR
+
 Zend Studio lets you manage "Ignored Resources" patterns globally, under Window -> Preferences -> Team -> Ignored Resources, instead of configuring them separately for each project.
 This is especially handy when a workspace mixes Git and SVN projects, though any given project can still opt to use its own specific patterns instead of the global ones.
 
-In order to globally manage the ["Ignored Resources"](http://www.dotkernel.com/best-practice/svn-keywords-setup-in-php-ide-zend-studio/)  patterns in Zend Studio, for all projects , instead of manually add to each project, you can do the following:
+## Managing Global Ignored Resources
 
-1. Go to **Window**-> **Preferences**
+In order to globally manage the [Ignored Resources](https://www.dotkernel.com/best-practice/svn-keywords-setup-in-php-ide-zend-studio/) patterns in Zend Studio for all projects, instead of manually adding them to each project, you can do the following:
 
-2. **Team** -> **Ignored Resources **
+1. Go to Window -> Preferences.
+2. Team -> Ignored Resources.
+3. Using Add Pattern, add each ignored pattern one by one, or remove some of the already existing patterns.
 
-3. using **Add Pattern,** you can add each ignored pattern , one by one . Or you can remove some of allready existing patterns.
-
-This is specially useful when you have both Git and SVN projects in your workspace , also when you tend to be less careful about your code and workspace :-)
-
-Also, on each project, you can use either global ignored  patterns, or use specific ones.
-
- 
+This is especially useful when you have both Git and SVN projects in your workspace, and also when you tend to be less careful about your code and workspace.
+Also, on each project, you can use either the global ignored patterns or specific ones.
 
 [![ignore-patterns](/uploads/article/019f8a80-cc67-73be-b359-c0cc3c3adbed/ignore-patterns.png)](/uploads/2013/04/ignore-patterns.png)
 

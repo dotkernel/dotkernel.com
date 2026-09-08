@@ -11,14 +11,16 @@ language: "en"
 # AlmaLinux 9 in WSL2 : install PHP, Apache, MariaDB, Composer, PhpMyadmin
 
 ## TL;DR
+
 This guide shows how to install AlmaLinux 9 through Windows Subsystem for Linux (WSL2) and provision it with an Ansible-driven installer script that sets up PHP, Apache, MariaDB, Composer, and phpMyAdmin.
 It covers verifying WSL2 readiness, installing the AlmaLinux 9 distribution from the Microsoft Store, running the two-step Ansible installer (with a required restart in between), and confirming the setup through Apache's homepage, a PHP info page, and phpMyAdmin.
 
 In this article we will demonstrate how we install AlmaLinux 9 using Windows Subsystem for Linux (WSL2).
 
-First, you need to check if your machine is ready for using WSL2. Open Windows Terminal and execute the following command:
+First, you need to check if your machine is ready for using WSL2.
+Open Windows Terminal and execute the following command:
 
-```
+```bash
 wsl -v
 ```
 
@@ -34,11 +36,14 @@ DXCore version: 10.0.26091.1-240325-1447.ge-release
 Windows version: 10.0.22631.3737
 ```
 
-If instead of the above output, you get an error, it means that WSL is not (completely) installed on your machine. In this case, please follow the instructions found in [this guide](https://docs.dotkernel.org/development/v1/setup/installation/), then return to this page and continue with the next step.
+If instead of the above output, you get an error, it means that WSL is not (completely) installed on your machine.
+In this case, please follow the instructions found in [this guide](https://docs.dotkernel.org/development/v1/setup/installation/), then return to this page and continue with the next step.
 
-## Download and install AlmaLinux 9
+## Download and Install AlmaLinux 9
 
-Open Microsoft Store and search for `AlmaLinux`. From the results, select `AlmaLinux 9` and install it. Once installed, clicking on *Open* will open it in Windows Terminal.
+Open Microsoft Store and search for `AlmaLinux`.
+From the results, select `AlmaLinux 9` and install it.
+Once installed, clicking on *Open* will open it in Windows Terminal.
 
 The installer will prompt you for your *username*, your *password* and *password confirmation*.
 
@@ -48,39 +53,40 @@ While still in the AlmaLinux 9 terminal, start executing the following commands.
 
 Install required packages:
 
-```
+```bash
 sudo dnf install epel-release dnf-utils http://rpms.remirepo.net/enterprise/remi-release-9.rpm -y
 ```
 
 Update installed packages:
 
-```
+```bash
 sudo dnf upgrade -y
 ```
 
 Install Ansible:
 
-```
+```bash
 sudo dnf install ansible -y
 ```
 
 Clone our development environment setup package:
 
-```
+```bash
 git clone https://github.com/dotkernel/development.git
 ```
 
 Navigate to the directory with the Ansible recipes:
 
-```
+```bash
 cd ~/development/wsl/
 ```
 
-Using your preferred text editor, open **config.yml** where you must fill in the empty fields. Save and close the file.
+Using your preferred text editor, open **config.yml** where you must fill in the empty fields.
+Save and close the file.
 
 Run Step 1 of the installer script (it will prompt you for the password you entered during the installation process):
 
-```
+```bash
 ansible-playbook -i hosts install.yml --ask-become-pass
 ```
 
@@ -93,13 +99,13 @@ Restart AlmaLinux 9:
 
 Navigate back to the directory with the Ansible recipes:
 
-```
+```bash
 cd ~/development/wsl/
 ```
 
 Run Step 2 of the installer script (once again, it will prompt you for the password you entered during the installation process):
 
-```
+```bash
 ansible-playbook -i hosts install.yml --ask-become-pass
 ```
 

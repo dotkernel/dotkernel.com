@@ -11,17 +11,18 @@ language: "en"
 # Disambiguation: Dotkernel 1 and Dotkernel 3
 
 ## TL;DR
+
 Dotkernel 1 is the original PHP Application Framework built on Zend Framework 1 with an MVC architecture, released in 2010 and now in bugfix-only mode at version 1.8 LTS.
 Dotkernel 3 is a newer collection of PSR-7 middleware applications built on the Zend Expressive microframework and Zend Framework 3 components, implementing PSR-1, PSR-2, PSR-4, PSR-7, and PSR-11.
 Since Dotkernel 3's release, the unqualified name "Dotkernel" refers to Dotkernel 3, while Dotkernel 1 is always referenced explicitly.
 
-## What is the meaning behind 'Dotkernel'?
+## What Is the Meaning Behind 'Dotkernel'?
 
 The name **Dotkernel** symbiotically combines the string **Dot,** as a representation of the Internet, and **Kernel**, the quintessential components of any IT application.
 
 In other words, **Dotkernel** aims to become the starting point for development Internet applications and hence ensure increased development productivity and run-time performance.
 
-## What was Dotkernel 1?
+## What Was Dotkernel 1?
 
 Dotkernel 1 was a ***PHP* *Application Framework***, built on top of Zend Framework 1 (ZF1).
 
@@ -29,7 +30,7 @@ It had the first public release in July 2010. It was tightly coupled with **Zend
 
 The latest version is **1.8 Long Term Support**. It will not be getting any new releases or bugfixes because Zend Framework 1 is also not supported. If you are still using either Dotkernel 1 or Zend Framework 1, you need to refactor your code to the [Dotkernel Headless Platform](https://docs.dotkernel.org/headless-documentation/).
 
-## What is Dotkernel?
+## What Is Dotkernel?
 
 A **collection** of PSR-15 Middleware applications built on top of the [**Mezzio**](https://docs.mezzio.dev/mezzio/v3/getting-started/quick-start/) microframework. It is composed of a set of custom and extended [**Laminas**](https://docs.laminas.dev/) components.
 
@@ -38,8 +39,8 @@ Dotkernel architecture is based on **Middleware**. Dotkernel implements the foll
 Currently, there are three applications:
 
 - API
- - Admin
- - Queue
+- Admin
+- Queue
 
 ## Dotkernel = Dotkernel 1 or the new Dotkernel?
 
@@ -48,7 +49,7 @@ In posts older than 2017 **Dotkernel 1** was referred to as **Dotkernel** becaus
 ## FAQ
 
 **Q: What does the name "Dotkernel" mean?**
-A: It combines "Dot", as a representation of the Internet, with "kernel", the quintessence of any IT application, reflecting the aim of being a central part of Internet development.
+A: It combines "Dot", as a representation of the Internet, with "Kernel", the quintessence of any IT application, reflecting the aim of being a central part of Internet development.
 
 **Q: What is Dotkernel 1?**
 A: A PHP Application Framework built on top of Zend Framework 1, first publicly released in July 2010, with an architecture based on MVC. Its latest version is 1.8 Long Term Support, which per the article will not be followed by a new version, only bugfixes.

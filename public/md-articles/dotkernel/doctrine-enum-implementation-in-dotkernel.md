@@ -11,21 +11,19 @@ language: "en"
 # Doctrine enum implementation in Dotkernel
 
 ## TL;DR
+
 Doctrine ORM 3.2.0 added EnumType columns, building on the enum type introduced in PHP 8.1, and Dotkernel now implements this on both the PHP and database sides.
 The article contrasts Dotkernel's old string-based flag columns (like `User->Status`) with a new setup that uses custom PHP enums paired with a DBAL type extending `AbstractEnumType`.
 The new approach creates an explicit, enforced link between the PHP code and the database column values, at the cost of needing to update both sides whenever the value set changes.
 
-The update of `doctrine/orm` to version 3.2.0 saw the introduction of **EnumType** columns. The enum type was introduced in **PHP 8.1**. This new data type is now implemented in Dotkernel, on both the PHP side and the database side.
+## Doctrine's Approach
 
-Below we will discuss some technical aspects behind this update. You can review the full update in [this Dotkernel API Pull Request](https://github.com/dotkernel/api/pull/339/files).
+The update introduces the detection of `enumType` and `options.values` from a property with `type: Types::ENUM`.
+[This PR](https://github.com/doctrine/orm/pull/11666) discusses the update and links to several older relevant issues.
 
-## Doctrine's approach
+### Old Setup
 
-The update introduces the detection of `enumType` and `options.values` from a property with `type: Types::ENUM`. [This PR](https://github.com/doctrine/orm/pull/11666) discusses the update and links to several older relevant issues.
-
-### Old setup
-
-```
+```php
 #[Entity]
 class Card
 {
@@ -43,9 +41,9 @@ class Card
 }
 ```
 
-### New setup
+### New Setup
 
-```
+```php
 #[Entity]
 class Card
 {
@@ -59,21 +57,27 @@ class Card
 }
 ```
 
-> Note that the type `Types::ENUM` part is still required if we want to have an actual `enum` column in MariaDB. We still default to `Types::STRING` or `TYPES::INTEGER` for columns types with a PHP enum as this is the more portable solution and the safer default.
+Note that the type `Types::ENUM` part is still required if we want to have an actual `enum` column in MySQL/MariaDB.
+We still default to `Types::STRING` or `Types::INTEGER` for column types with a PHP enum, as this is the more portable solution and the safer default.
 
-## Dotkernel's approach
+## Dotkernel's Approach
 
-### Old setup
+### Old Setup
 
-Dotkernel uses flags for columns like `User->Status`, but we resorted to the simpler `string` type. The obvious disadvantage is that you can't definitively enforce a set of values for a given column. Sure, the PHP can be set up to only use the agrred upon set of values, but the database is independent from it. If you edit a value manually in the database, any string is accepted.
+Dotkernel uses flags for columns like `User->Status`, but we resorted to the simpler `string` type.
+The obvious disadvantage is that you can't definitively enforce a set of values for a given column.
+Sure, the PHP can be set up to only use the agreed-upon set of values, but the database is independent from it.
+If you edit a value manually in the database, any string is accepted.
 
-The issue is the same on the side of the PHP code. If the developer adds a value with a typo, it's supported, but will not work as intended.
+The issue is the same on the side of the PHP code.
+If the developer adds a value with a typo, it's supported, but will not work as intended.
 
-The only advantage this setup has is the ability to easily add more values in the value set. This may be seen as a feature, but it invites bugs in the execution.
+The only advantage this setup has is the ability to easily add more values in the value set.
+This may be seen as a feature, but it invites bugs in the execution.
 
 Our old implementation defined the values like below, for the `User` entity.
 
-```
+```php
 public const STATUS_PENDING = 'pending';
 public const STATUS_ACTIVE  = 'active';
 public const STATUSES       = [
@@ -84,14 +88,14 @@ public const STATUSES       = [
 
 The column for the ORM was defined like this, as a simple string, with `pending` as its default value:
 
-```
+```php
 #[ORM\Column(name: "status", type: "string", length: 20)]
 protected string $status = self::STATUS_PENDING;
 ```
 
 Obviously, the `getStatus` and `setStatus` also work with strings:
 
-```
+```php
 public function getStatus(): string
 {
     return $this->status;
@@ -103,19 +107,20 @@ public function setStatus(string $status): self
 }
 ```
 
-### New setup
+### New Setup
 
-Thanks to the update of `doctrine/orm` to version 3.2.0, Dotkernel can now have a proper link between the PHP code and database values. Now the link between the PHP code and the database is explicit and enforced.
+Thanks to the update of `doctrine/orm` to version 3.2.0, Dotkernel can now have a proper link between the PHP code and database values.
+Now the link between the PHP code and the database is explicit and enforced.
 
-> Any update to the value set must be on both the PHP code and the database.
+Any update to the value set must be on both the PHP code and the database.
 
 Let's review how the update affects the `User` entity.
 
-> In the next example, we show how to implement a value set using a custom enum.
+In the next example, we show how to implement a value set using a custom enum.
 
 First, we define our custom value set in `src/User/src/Enum/UserStatusEnum.php`.
 
-```
+```php
 namespace Api\User\Enum;
 
 enum UserStatusEnum: string
@@ -127,9 +132,9 @@ enum UserStatusEnum: string
 
 We need to create `src/User/src/DBAL/Types/UserStatusEnumType.php` to process the new values for the `status` column.
 
-> `AbstractEnumType` must be extended by any future custom enum type.
+`AbstractEnumType` must be extended by any future custom enum type.
 
-```
+```php
 namespace Api\User\DBAL\Types;
 
 use Api\App\DBAL\Types\AbstractEnumType;
@@ -151,11 +156,11 @@ class UserStatusEnumType extends AbstractEnumType
 }
 ```
 
-> If you create your own enum types, make sure to update the `NAME` constant and the value returned by `getEnumClass`.
+If you create your own enum types, make sure to update the `NAME` constant and the value returned by `getEnumClass`.
 
 Let's register the custom type in `config/autoload/doctrine.global.php` under the `types` key:
 
-```
+```php
 'types'         => [
 [...]
     UserStatusEnumType::NAME => UserStatusEnumType::class,
@@ -165,7 +170,7 @@ Let's register the custom type in `config/autoload/doctrine.global.php` under th
 
 The filtering is updated in `src/User/src/InputFilter/Input/StatusInput.php`:
 
-```
+```php
 $this->getFilterChain()
     ->attachByName(StringTrim::class)
     ->attachByName(StripTags::class)
@@ -182,14 +187,14 @@ The above ensures that the new `UserStatusEnum` class is used for the `status` c
 
 The `User` entity uses the new `UserStatusEnum` class.
 
-```
+```php
 #[ORM\Column(type: 'user_status_enum', options: ['default' => UserStatusEnum::Pending])]
 protected UserStatusEnum $status = UserStatusEnum::Pending;
 ```
 
 The `status` getter and setter are also updated:
 
-```
+```php
 public function getStatus(): UserStatusEnum
 {
     return $this->status;
@@ -201,9 +206,10 @@ public function setStatus(UserStatusEnum $status): self
 }
 ```
 
-Dotkernel checks the user status during login in `src/User/src/Repository/UserRepository.php`. If the user is not activated, the login is rejected.
+Dotkernel checks the user status during login in `src/User/src/Repository/UserRepository.php`.
+If the user is not activated, the login is rejected.
 
-```
+```php
 if ($clientEntity->getName() === 'frontend' && $result['status'] !== UserStatusEnum::Active) {
     throw new OAuthServerException(Message::USER_NOT_ACTIVATED, 6, 'inactive_user', 401);
 }
@@ -211,7 +217,7 @@ if ($clientEntity->getName() === 'frontend' && $result['status'] !== UserStatusE
 
 A new user is created using the `enum` type and `pending` as the default.
 
-```
+```php
 $user = (new User())
     ->setDetail($detail)
     ->setIdentity($data['identity'])
@@ -245,18 +251,13 @@ new setup: status ENUM(\'active\', \'pending\') DEFAULT \'pending\' NOT NULL
 
 ## Conclusions
 
-The old setup used in the Dotkernel applications worked fine, but the limitations were clear as day. There was:
+The old setup used in the Dotkernel applications worked fine, but the limitations were clear as day.
+There was:
 
 - No enforcement of the value set.
 - No link between the PHP code and the database.
 
 The new setup solves both issues, ensuring more consistent flag management for your classes.
-
-## Relevant links
-
-- [Dotkernel API Pull Request](https://github.com/dotkernel/api/pull/339/files)
-- [Doctrine Pull Request](https://github.com/doctrine/orm/pull/11666)
-- [PHP Enumerations](https://www.php.net/manual/en/language.enumerations.overview.php)
 
 ## FAQ
 
@@ -273,7 +274,13 @@ A: It made it easy to add more values to the value set, though the article notes
 A: A PHP enum class (like UserStatusEnum) plus a DBAL type class extending AbstractEnumType, which must define a NAME constant and a getEnumClass() method; the new type is then registered under the types key in config/autoload/doctrine.global.php.
 
 **Q: Does Types::ENUM still fall back to a string or integer database column?**
-A: The article notes that Doctrine still defaults to Types::STRING or Types::INTEGER for columns backed by a PHP enum, as this is considered the more portable and safer default; Types::ENUM is required if you want an actual enum column in MariaDB.
+A: The article notes that Doctrine still defaults to Types::STRING or Types::INTEGER for columns backed by a PHP enum, as this is considered the more portable and safer default; Types::ENUM is required if you want an actual enum column in MySQL/MariaDB.
 
 **Q: What must happen when the value set of an enum changes under the new setup?**
 A: Any update to the value set must be made on both the PHP code and the database, since the new setup creates an explicit, enforced link between them.
+
+## Resources
+
+- [Dotkernel API Pull Request](https://github.com/dotkernel/api/pull/339/files)
+- [Doctrine Pull Request](https://github.com/doctrine/orm/pull/11666)
+- [PHP Enumerations](https://www.php.net/manual/en/language.enumerations.overview.php)

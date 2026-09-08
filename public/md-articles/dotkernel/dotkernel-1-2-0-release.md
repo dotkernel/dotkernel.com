@@ -11,27 +11,39 @@ language: "en"
 # Dotkernel 1.2.0 release
 
 ## TL;DR
+
 Dotkernel 1.2.0 has been released, bringing changes since the previous 1.1.2 release.
 The database tables were renamed and restructured to follow database naming conventions, and configuration for each "dots" (submodule) now lives in XML files instead of being hard-coded in PHP.
 The release also adds new library classes (Dot_Geoip, Dot_Seo), updates existing ones (Dot_Curl, Dot_Session), and confirms that all SQL queries are written as prepared statements.
 
-Finally we reached Dotkernel 1.2.0 milestone.
+## Database Naming Conventions
 
-Since the previous released 1.1.2, some changes have been made.
+On database, we changed the names and structure of tables to respect database naming convention.
+See [http://www.dotkernel.com/dotkernel/dotkernel-database-naming-conventions-for-mysql/](http://www.dotkernel.com/dotkernel/dotkernel-database-naming-conventions-for-mysql/) for details.
 
-- On database, we changed the names and structure of tables to respect database naming convention. [*http://www.dotkernel.com/dotkernel/dotkernel-database-naming-conventions-for-mysql/*](../dotkernel/dotkernel-database-naming-conventions-for-mysql/)
+## The "Dots" Concept
 
-- A new word came into our Dotkernel discussions: ***dots.*** We use this term when talking about a submodule and all its component files. For example, *“user”* is a submodule of *frontend* module. Note that one dots can be part of multiple modules. (For example, *“user”* dots belong to *frontend* and *admin* module). For each dots, the configurations values have been added to xml files which are stored in *configs/dots* folder. In the preview versions, this values where hard-coded in the php files.
+A new word came into our Dotkernel discussions: dots.
+We use this term when talking about a submodule and all its component files.
+For example, "user" is a submodule of the frontend module.
+Note that one dots can be part of multiple modules (for example, "user" dots belong to both the frontend and admin module).
+For each dots, the configuration values have been added to XML files which are stored in the configs/dots folder.
+In the previous versions, these values were hard-coded in the PHP files.
 
-- Another change made in *configs* folder is *resource.xml*, which contains the configuration values for the controllers of each module.
+Another change made in the configs folder is resource.xml, which contains the configuration values for the controllers of each module.
 
-To be easier to start an application from Dotkernel, in admin module, there are now the following dots:  admin, user and system.
+To be easier to start an application from Dotkernel, in the admin module, there are now the following dots: admin, user and system.
 
-New library classes have been implemented: Dot_Geoip and Dot_Seo, and some of the existing ones have been updated: Dot_Curl and Dot_Session (each module has his own session).
+## Library Class Updates
 
-In Dotkernel, all SQL queries are written as prepared statements.  We strongly encourage this  practice: *[http://www.dotkernel.com/php-development/protection-against-sql-injection-using-pdo-and-zend-framework/](../php-development/protection-against-sql-injection-using-pdo-and-zend-framework/)*
+New library classes have been implemented: Dot_Geoip and Dot_Seo, and some of the existing ones have been updated: Dot_Curl and Dot_Session (each module has its own session).
 
-For more details, see  [ChangeLog 1.2.0](http://www.dotkernel.com/changelog/1-2-0/)
+## SQL Prepared Statements
+
+In Dotkernel, all SQL queries are written as prepared statements.
+We strongly encourage this practice: [http://www.dotkernel.com/php-development/protection-against-sql-injection-using-pdo-and-zend-framework/](http://www.dotkernel.com/php-development/protection-against-sql-injection-using-pdo-and-zend-framework/)
+
+For more details, see [ChangeLog 1.2.0](http://www.dotkernel.com/changelog/1-2-0/).
 
 ## FAQ
 

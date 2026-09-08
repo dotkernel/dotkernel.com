@@ -11,37 +11,26 @@ language: "en"
 # Zend Server 5.5 Quick Setup on Windows
 
 ## TL;DR
+
 A fresh Zend Server 5.5.0 install on Windows 7 needs a few quick tweaks before it's ready for development: enabling mod_rewrite in Apache, adjusting a handful of PHP directives, and fixing APC so it actually works even though it's shown as enabled.
 
-In order to make  usable a fresh installation of Zend Server 5.5.0 on Windows 7, and be ready for development , few quick steps are required:
+## Quick Setup Steps
 
-**1. Enable mod_rewrite**
+In order to make a fresh installation of Zend Server 5.5.0 on Windows 7 usable and ready for development, a few quick steps are required.
 
--  Open the file ZEND_INSTALATION_PATH/Apache2/conf/httpd.conf. Change the directive *AllowOverride* fron None to All
-
-- Restart Apache service
-
-**2. PHP fine tunes**
-
-- go to Zend Server administration interface, [http://localhost:10081/ZendServer/](http://localhost:10081/ZendServer/), Server Setup-> Directives, and change the following:
-
-- set timezone:  set ***date*** to *America/New_York*
-
--set error reporting: **display_errors ** set to **on**, and **error_reporting** to **-1** .
-
-**3. Enable APC**
-
-- APC is listed as been enabled in Zend Server admin interface, but the app dll file is missing, and APC is not working
-
-- download the latest php apc dll file, from [here](http://windows.php.net/downloads/pecl/releases/apc/) . Quite old file at the time of this post, *php_apc-3.1.5-5.3-nts-vc9-x86.zip*, which is the latest Non-thread-safe VC9 file available. Download the archive and extract the file *php_apc.dll* to ZEND_INSTALATION_PATH/ZendServer/lib/phpext/
-
-- open *php.ini* file, from ZEND_INSTALATION_PATH/ZendServer\etc\php.ini , add the line *extension=php_apc.dll*
-
-- Restart Apache service
-
- 
-
- 
+1. Enable mod_rewrite.
+   - Open the file ZEND_INSTALATION_PATH/Apache2/conf/httpd.conf and change the AllowOverride directive from None to All.
+   - Restart the Apache service.
+2. PHP fine tunes.
+   - Go to the Zend Server administration interface at [http://localhost:10081/ZendServer/](http://localhost:10081/ZendServer/), then Server Setup -> Directives, and change the following.
+   - Set timezone: set date to America/New_York.
+   - Set error reporting: display_errors to on, and error_reporting to -1.
+3. Enable APC.
+   - APC is listed as enabled in the Zend Server admin interface, but the app dll file is missing, so APC isn't actually working.
+   - Download the latest php_apc dll file from [here](http://windows.php.net/downloads/pecl/releases/apc/) - at the time of writing, php_apc-3.1.5-5.3-nts-vc9-x86.zip was the latest non-thread-safe VC9 build available.
+   - Extract php_apc.dll to ZEND_INSTALATION_PATH/ZendServer/lib/phpext/.
+   - Open the php.ini file from ZEND_INSTALATION_PATH/ZendServer/etc/php.ini and add the line extension=php_apc.dll.
+   - Restart the Apache service.
 
 ## FAQ
 

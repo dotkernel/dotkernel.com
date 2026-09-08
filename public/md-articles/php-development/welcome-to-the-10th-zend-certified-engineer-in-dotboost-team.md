@@ -11,16 +11,19 @@ language: "en"
 # Welcome to the 10th Zend Certified Engineer in Dotboost Team
 
 ## TL;DR
+
 Dotboost Technologies Inc. announces that the 10th member of its team has passed the Zend Certified Engineer exam, part of its commitment to top-level PHP development and quality assurance for clients.
 Next up: adopting Zend Framework 2 best practices, pursuing the Zend Framework 2 Certified Architect exam, and, starting in 2014, making Zend Certification mandatory for every developer on the team.
 
-Today is a major milestone for our [Dotboost Technologies Inc.](http://www.dotboost.com) Company. We are announcing the 10th member of the team passed the Zend Certified Engineer exam.
+## Milestone Announcement
 
-[Zend Yellow Pages](http://bit.ly/dotboost-zce)
+Today is a major milestone for [Dotboost Technologies Inc.](http://www.dotboost.com)
+The company is announcing that the 10th member of the team has passed the Zend Certified Engineer exam.
+See the [Zend Yellow Pages](http://bit.ly/dotboost-zce) listing.
 
-This is part of our commitment to ensure that our clients have access to top level PHP development as standard practice and allows us to follow a strong quality assurance program. The next step is to implement the Zend Framework 2 best practices and to take the upcoming Zend Framework 2 Certified Architect exam.
-
-Beginning 2014, a Zend Certification will became mandatory for every developer in our team.
+This is part of the company's commitment to ensure that clients have access to top level PHP development as standard practice, and it allows the team to follow a strong quality assurance program.
+The next step is to implement Zend Framework 2 best practices and to take the upcoming Zend Framework 2 Certified Architect exam.
+Beginning 2014, a Zend Certification will become mandatory for every developer in the team.
 
 ## FAQ
 

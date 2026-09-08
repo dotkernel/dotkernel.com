@@ -11,12 +11,17 @@ language: "en"
 # Handling dynamic routing using FastRoute in Dotkernel
 
 ## TL;DR
+
 This article, the first in a series about switching from controllers to PSR-15 compliant handlers, explains how Dotkernel replaced its static, hard-coded route declarations with a centralized, dynamic configuration in `local.php`.
 The change is aimed at static pages only - any method other than GET (post, put, delete) returns a 405 status code.
 
-The goal of this update is to replace the static way of creating routes with a more dynamic implementation. The result is a cleaner approach that is easier to set up and review at a glance.
+The goal of this update is to replace the static way of creating routes with a more dynamic implementation.
+The result is a cleaner approach that is easier to set up and review at a glance.
 
-`RoutesDelegator.php` is used to configure the routes in Dotkernel applications. `Routing` allows web applications to respond to user requests by executing the correct code based on URL paths. The dynamic aspect discussed in this article moves the relevant items for each route into the `local.php` file. The RoutesDelegator then reads the route configuration and generates the routes.
+`RoutesDelegator.php` is used to configure the routes in Dotkernel applications.
+`Routing` allows web applications to respond to user requests by executing the correct code based on URL paths.
+The dynamic aspect discussed in this article moves the relevant items for each route into the `local.php` file.
+The RoutesDelegator then reads the route configuration and generates the routes.
 
 > This is the first in a series of articles for switching from controllers to handlers that are PSR-15 compliant. It's aimed at static pages alone, so any other method like `post`, `put` or `delete` will return a `405 status code`.
 
@@ -24,7 +29,7 @@ The goal of this update is to replace the static way of creating routes with a m
 
 In the past, declaring routes had a more static, hard-coded approach. All our modules have a `RoutesDelegator.php` file in the `src` folder for each module. Each route would have an entry like the one below:
 
-```
+```php
 $app->get('/page[/{action}]', [GetPageViewHandler::class], 'page');
 ```
 
@@ -51,9 +56,10 @@ These items can be grouped into modules, meaning you have to dig into multiple R
 
 ## The new approach
 
-The update centralizes the route configuration in the `config/autoload/local.php` file. Here is how the routing looks out of the box:
+The update centralizes the route configuration in the `config/autoload/local.php` file.
+Here is how the routing looks out of the box:
 
-```
+```php
 'routes'      => [
     'page' => [
         'about'      => 'about',
@@ -70,9 +76,10 @@ Let's list the components under the `routes` array:
 - The key `about` is used to build the page's path.
 - The value `about` is the template file.
 
-In this setup, the `RoutesDelegator` file doesn't need to be touched most of the time. This is how it generates the routes for each page:
+In this setup, the `RoutesDelegator` file doesn't need to be touched most of the time.
+This is how it generates the routes for each page:
 
-```
+```php
 $routes = $container->get('config')['routes'] ?? [];
 foreach ($routes as $prefix => $moduleRoutes) {
     foreach ($moduleRoutes as $routeUri => $templateName) {
@@ -85,27 +92,18 @@ foreach ($routes as $prefix => $moduleRoutes) {
 }
 ```
 
-Each item under `routes` array for each module will have its own entry. The result is you have a `get` for the `about` page and another for the `who-we-are` page.
+Each item under `routes` array for each module will have its own entry.
+The result is you have a `get` for the `about` page and another for the `who-we-are` page.
 
 ## Advanced configuration
 
-You have the same versatility as before for route configuration. Below we explore some scenarios that showcase the control you still have over the routing.
+You have the same versatility as before for route configuration.
+Below we explore some scenarios that showcase the control you still have over the routing.
 
-The template file is taken from the path, but you can still change that in the `handler` based on your requirements. Replace `$template = $request->getAttribute(RouteResult::class)->getMatchedRouteName();` with a template of your choosing, like `$template = 'my-template';`
-
-Say you want to change the url from `/page/about`, to `/about` for SEO purposes. All you have to do is remove the `$moduleName` parameter from `sprintf('/%s/%s', $moduleName, $routeUri),` making it `sprintf('/%s', $routeUri),`. Take care not to break other routes, though!
-
-If you need to change the url parameter, you can do that in the `local.php` file. Edit `'about' => 'about',` into `'about-us' => 'about',`. This changes the original url to `/page/about-us`, but uses the same `about` template as before.
-
-Do you need a dynamic parameter? Edit the route entry from `'about' => 'about',` to `'about/{id}' => 'about',`. This expands the matched url to support something like `/page/about/us`, `/page/about/company`, `/page/about/123` which will allow you to customize each url with different content in the handler. All you need is to use `$request->getAttribute('id')` to tell what page you are on.
-
-## Additional resources
-
-[Dotkernel Light](https://github.com/dotkernel/light)
-
-[Dotkernel Light Routing How to](https://docs.dotkernel.org/light-documentation/v1/how-tos/routing/)
-
-[FastRoute](https://github.com/nikic/FastRoute)
+1. **Change the template**: the template file is taken from the path, but you can still change that in the `handler` based on your requirements. Replace `$template = $request->getAttribute(RouteResult::class)->getMatchedRouteName();` with a template of your choosing, like `$template = 'my-template';`
+2. **Change the URL for SEO**: say you want to change the url from `/page/about`, to `/about` for SEO purposes. All you have to do is remove the `$moduleName` parameter from `sprintf('/%s/%s', $moduleName, $routeUri),` making it `sprintf('/%s', $routeUri),`. Take care not to break other routes, though!
+3. **Change the URL segment**: if you need to change the url parameter, you can do that in the `local.php` file. Edit `'about' => 'about',` into `'about-us' => 'about',`. This changes the original url to `/page/about-us`, but uses the same `about` template as before.
+4. **Add a dynamic parameter**: do you need a dynamic parameter? Edit the route entry from `'about' => 'about',` to `'about/{id}' => 'about',`. This expands the matched url to support something like `/page/about/us`, `/page/about/company`, `/page/about/123` which will allow you to customize each url with different content in the handler. All you need is to use `$request->getAttribute('id')` to tell what page you are on.
 
 ## FAQ
 
@@ -126,3 +124,9 @@ A: Yes. You can change the template used by editing the handler's template attri
 
 **Q: Does this update support methods other than GET?**
 A: No - this is the first in a series of articles for switching from controllers to PSR-15 compliant handlers, and it is aimed at static pages alone, so any other method like post, put or delete will return a 405 status code.
+
+## Resources
+
+- [Dotkernel Light](https://github.com/dotkernel/light)
+- [Dotkernel Light Routing How-to](https://docs.dotkernel.org/light-documentation/v1/how-tos/routing/)
+- [FastRoute](https://github.com/nikic/FastRoute)

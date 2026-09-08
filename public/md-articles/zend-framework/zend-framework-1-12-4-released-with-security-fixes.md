@@ -11,24 +11,23 @@ language: "en"
 # Zend Framework 1.12.4 Released with Security Fixes
 
 ## TL;DR
+
 Matthew Weier O'Phinney announced the release of Zend Framework 1.12.4, along with 2.1.6 and 2.2.6, all containing security updates, and the ZF PEAR channel was updated to the latest 1.12.4 release.
 A March 7, 2014 edit notes that Zend Framework 1.12.5 was subsequently released to fix a backward compatibility issue introduced in the 1.12.4 release.
 
-[Matthew Weier O'Phinney](http://mwop.net/) just announced the release of ZF 1.12.4, 2.1.6, and 2.2.6 m with Security Updates
+[Matthew Weier O'Phinney](http://mwop.net/) just announced the release of ZF 1.12.4, 2.1.6, and 2.2.6 with Security Updates.
 
 For more information, please read the official release announcement: [Zend Framework Released](http://framework.zend.com/blog/zend-framework-1-12-4-2-1-6-and-2-2-6-released.html)
 
-Also, the ZF  PEAR channel was updated to latest 1.12.4 release.
+Also, the ZF PEAR channel was updated to latest 1.12.4 release.
 
 [pear upgrade zend/zend](http://code.google.com/p/zend/)
 
-**March 7, 2014 EDIT:**
+March 7, 2014 EDIT:
 
 Zend Framework 1.12.5 was released, in order to fix a backward compatibility issue introduced in 1.12.4 release.
 
 [Release Announcement](http://framework.zend.com/blog/zend-framework-1-12-5-released.html)
-
- 
 
 ## FAQ
 

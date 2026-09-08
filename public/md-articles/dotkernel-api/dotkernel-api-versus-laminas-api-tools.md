@@ -11,12 +11,14 @@ language: "en"
 # Dotkernel API versus Laminas API Tools
 
 ## TL;DR
+
 This article compares the basic features of Laminas API Tools and Dotkernel API side by side, covering architecture, versioning, documentation, authentication, and more.
 It highlights that Dotkernel API is a solid alternative now that Laminas API Tools has been archived, since Dotkernel API uses a modern middleware architecture, MIT license, and evolution-based deprecations instead of traditional versioning.
 
-Below we have created an analysis of the basic features available in **Laminas Api Tools** and **Dotkernel API**. It's intended to highlight the differences between the two and also to showcase why Dotkernel API is a good alternative for Laminas API Tools, especially considering the latter's archived status.
+Below we have created an analysis of the basic features available in **Laminas API Tools** and **Dotkernel API**.
+It's intended to highlight the differences between the two and also to showcase why Dotkernel API is a good alternative for Laminas API Tools, especially considering the latter's archived status.
 
-> The table below refers to [Dotkernel API V7](https://github.com/dotkernel/api/tree/7.0)
+> The table below refers to [Dotkernel API V7](https://github.com/dotkernel/api/tree/7.0).
 
 |  | **API Tools (formerly Apigility)** | **Dotkernel API** |
 | --- | --- | --- |
@@ -40,4 +42,24 @@ Below we have created an analysis of the basic features available in **Laminas A
 
 ## Note
 
-> - Versioning is replaced by [Deprecations](https://docs.dotkernel.org/api-documentation/v6/tutorials/api-evolution/), using evolution strategy
+- Versioning is replaced by [Deprecations](https://docs.dotkernel.org/api-documentation/v6/tutorials/api-evolution/), using an evolution strategy.
+
+## FAQ
+
+**Q: What is the purpose of this comparison?**
+A: It highlights the differences between Laminas API Tools and Dotkernel API, and shows why Dotkernel API is a good alternative now that Laminas API Tools is archived.
+
+**Q: Which version of Dotkernel API does the comparison table refer to?**
+A: Dotkernel API V7.
+
+**Q: What architecture does each project use?**
+A: Laminas API Tools uses an MVC, event-driven architecture, while Dotkernel API uses a middleware architecture.
+
+**Q: What license does each project use?**
+A: Laminas API Tools is licensed under BSD-3, while Dotkernel API is licensed under MIT.
+
+**Q: How does Dotkernel API handle API versioning?**
+A: Instead of traditional versioning, Dotkernel API replaces it with Deprecations, using an evolution (API Evolution) strategy.
+
+**Q: What documentation options does each project support?**
+A: Laminas API Tools generates Swagger documentation automatically, while Dotkernel API supports manual Postman documentation as well as automated OpenAPI 3.0 (Swagger) documentation.

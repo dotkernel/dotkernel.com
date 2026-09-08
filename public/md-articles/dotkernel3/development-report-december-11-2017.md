@@ -11,28 +11,23 @@ language: "en"
 # Development Report December 11, 2017
 
 ## TL;DR
+
 This report covers updates to the Dotkernel3 documentation: new release notes for the frontend and admin, a Webpack tutorial added to the Prerequisites section, and revisions to the Api Endpoint Documentation Guidelines.
 Contributor JapSeyz is thanked for this round of updates.
 
+## Documentation Updates
+
 This report contains updates about the Dotkernel3 documentation.
 
-We have added the release notes for Dotkernel3 **frontend** and **admin**: you can now check the Release Notes page.
+We have added the release notes for Dotkernel3 frontend and admin: you can now check the Release Notes page.
 
-Webpack tutorial has been added in the Prerequisites section.
+A Webpack tutorial has been added in the Prerequisites section.
 
 The Api Endpoint Documentation Guidelines were updated as well, a slightly different layout and some corrections were applied.
 
- 
+## Contributors
 
-**Links**:
-
-- Release Notes page
-- Webpack tutorial
-- Api Endpoint Documentation Guidelines
-
- 
-
-**Thanks to our contributors:**
+Thanks to our contributors:
 
 [JapSeyz](https://github.com/JapSeyz)
 

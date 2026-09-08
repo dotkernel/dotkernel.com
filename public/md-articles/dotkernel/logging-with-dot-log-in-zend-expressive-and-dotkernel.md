@@ -15,240 +15,98 @@ This article explains how to use the [dot-log](https://github.com/dotkernel/dot-
 Since dot-log extends `zendframework/zend-log`, the tutorial is mostly compatible with zend-log as well.
 See the [zend-log documentation](https://zendframework.github.io/zend-log/) for more detail.
 
-This article will explain the usage of the **[dot-log](https://github.com/dotkernel/dot-log)** component within Dotkernel, Zend Expressive or in a project that uses Zend Service Manager.
+## Adding the config provider
 
-Since dot-log extends zendframework/zend-log this tutorial mostly compatible with zend-log as well.
-
-For a more detailed documentation about the zend-log visit the [zend-log documentation](https://zendframework.github.io/zend-log/).
-
-## Adding The Config Provider
-
-- Enter **config/config.php**
-- If there is no entry for the config provider below, add it: \Dot\Log\ConfigProvider::class
-- Make sure it is added before with the Application-Specific components, eg.: `\Frontend\App\ConfigProvider.php`,  `\Admin\App\ConfigProvider::class`,  `MyProject\ConfigProvider::class` , etc.
-- Open the `Dot\Log\ConfigProvider`
-  - In the dependencies section you will see an **absctract factory **(`LoggerAbstractServiceFactory::class`)
-  - This class responds to "selectors" instead of class names
-  - Instead of requesting the `Zend\Log\Logger::class` from the container, `dot-log.my_logger` should be requested (or just `my_logger` if using zend-log)
-- Next, create a **log.global.php **file within **/config/autoload**
-  - return an empty array for start
+- Open `config/config.php`.
+- If there's no entry for the dot-log config provider, add `\Dot\Log\ConfigProvider::class`.
+- Make sure it's added before application-specific components, e.g. `Frontend\App\ConfigProvider::class`, `Admin\App\ConfigProvider::class`, `MyProject\ConfigProvider::class`.
+- Inside `Dot\Log\ConfigProvider`, the dependencies section registers an abstract factory, `LoggerAbstractServiceFactory::class`.
+This class responds to "selectors" instead of class names - instead of requesting `Zend\Log\Logger::class` from the container, you request `dot-log.my_logger` (or just `my_logger` if using zend-log).
+- Create a `log.global.php` file within `/config/autoload`, returning an empty array to start.
 
 ## Configuring the logger
 
-For compatibility between components and for the better understanding of this tutorial the name for the created logger will be **my_logger**.
+For this tutorial, the created logger is named **my_logger** (the name is the developer's choice and should reflect its purpose, e.g. `db_error_logger`).
 
-The logger name is the developer's choice and should reflect its purpose (eg.: db_error_logger - a logger that only writes the error messages in **db**).
+In `log.global.php`:
 
-Create a key-value pair, the key should be **dot-log** (or **log** if using zend-log) and the value should be an empty array.
+1. Add a top-level key `dot-log` (or `log` if using zend-log) with an array value.
+2. Inside it, add a `loggers` key.
+3. Inside that, add the logger name key (`my_logger`) with an empty array.
 
-In the newly created value add a key loggers, and the value should be an array with the key **my_logger** and an empty array as the value.
-
- 
-
-At this point your log.global.php should look like this:
-
-```
-return
-        ],
-    ],
-];
-```
-
- 
-
-For this logger to actually log somewhere a writer is required, otherwise the log command will be received, but the logger will have no place to write the message in.
-
-The next step will show you how to configure writing to a specific file.
+For the logger to actually log somewhere, a writer is required - without one, log calls are received but there's nowhere to write the message.
 
 ## Configuring the writer(s)
 
 Loggers must have at least one writer.
+A **writer** is an object that inherits from `Zend\Log\Writer\AbstractWriter`, responsible for recording log data to a storage backend (see the [zend-log writer documentation](https://zendframework.github.io/zend-log/writers/)).
 
-A ***writer*** is an object that inherits from `Zend\Log\Writer\AbstractWriter`. A writer's responsibility is to record log data to a storage backend. (from [zend-log's writer documentation](https://zendframework.github.io/zend-log/writers/))
+It's possible to separate logs into multiple files using writers and filters (e.g. `warnings.log`, `errors.log`, `all_messages.log`).
+In the simplest example, all log messages are written to one file, e.g. `/data/logs/dk.log`, under a `writers` key inside `my_logger`.
 
- 
+Notes on writer configuration:
 
-### Writing to a file (stream)
+- The writer key name (e.g. `FileWriter`) is optional - otherwise the writers array would be enumerative instead of associative.
+- The writer's `name` key is a developer-provided name for that writer and is **mandatory**.
+- The writer's `priority` key doesn't affect which errors get written - it's only a way to organize writers (e.g. 1 - FILE, 2 - SQL, 3 - E-mail), reflecting that writing to a file is the most reliable since SQL or e-mail servers can be external and offline.
+The priority key is optional.
+- To write to a file, the `stream` key must be present in the writer's `options` array (required only when writing to streams/files).
 
-It is possible separate logs into multiple files using writers and filters. For example **warnings.log, errors.log**, all_messages.log.
+More writer examples: [Streams](https://zendframework.github.io/zend-log/writers/#writing-to-streams), [Databases](https://zendframework.github.io/zend-log/writers/#writing-to-databases), [FirePHP](https://zendframework.github.io/zend-log/writers/#writing-to-firephp), [ChromePHP](https://zendframework.github.io/zend-log/writers/#writing-to-chromephp), [Mail](https://zendframework.github.io/zend-log/writers/#writing-to-mail), [MongoDB](https://zendframework.github.io/zend-log/writers/#writing-to-mongodb), [Syslog](https://zendframework.github.io/zend-log/writers/#writing-to-syslog), [Zend Monitor](https://zendframework.github.io/zend-log/writers/#writing-to-zend-monitor).
 
-In this example all the log messages will be written in one file.
+## (Optional) Configuring the filters
 
-- In the my_logger key insert an empty array on key **writers**
-  - The **writers** will all be used when writing logs
-- The following is the simplest example to write anything to **/data/logs/dk.log**
+A **filter** prevents a message from being written to the log (see the [zend-log filters documentation](https://zendframework.github.io/zend-log/filters/)).
 
-```
-return ,
-                    ],
-                ],
-            ]
-        ],
-    ],
-];
-```
+Per [PSR-3](https://www.php-fig.org/psr/psr-3/#5-psrlogloglevel), the log levels, in order of priority/importance, are:
 
-The **FileWriter** key is optional, otherwise the writers array would be enumerative instead of associative.
+| Level | Priority number |
+|---|---|
+| emergency | 0 |
+| alert | 1 |
+| critical | 2 |
+| error | 3 |
+| warn | 4 |
+| notice | 5 |
+| info | 6 |
+| debug | 7 |
 
-The writer **name** key is a developer-provided name for that writer, the writer name key is **mandatory**.
+Although the plain Logger in Zend Log is not fully PSR-3 compatible, it provides a way to log all of these message types.
+The developer can optionally use keys to name filters.
+**Important:** the operator for "more important" messages is `<=`, because a smaller number represents a more important message.
 
-The writer priority key is not affecting the errors that are written, it is a way to organize writers, for example:
+More on filters: [zend-log filters documentation](https://zendframework.github.io/zend-log/filters/).
 
-- 1 - FILE
-- 2 - SQL
-- 3 - E-mail
+## (Optional) Configuring the formatter
 
-It is the most important to write in the file, the sql or e-mail are more probably fail because the servers can be external and offline, the file is on the same server.
+The logged value isn't limited to a string - arrays can be logged too, and for readability they can be serialized. Zend Log provides String, XML, JSON and FirePHP formatting.
 
-The writer priority key is optional.
+The formatter config accepts:
 
-To write into a file the key **stream** must be present in the **writer options** array. This is required only if writing into streams/files.
+- `name` - the formatter class (must implement `Zend\Log\Formatter\FormatterInterface`)
+- `options` - options passed to the formatter constructor, if required
 
- 
+More on formatters: [Simple](https://zendframework.github.io/zend-log/formatters/#simple-formatting), [JSON](https://zendframework.github.io/zend-log/formatters/#formatting-to-json), [XML](https://zendframework.github.io/zend-log/formatters/#formatting-to-xml), [FirePHP](https://zendframework.github.io/zend-log/formatters/#formatting-to-firephp).
 
-For more examples see the zend-log streams:
+## Full example (described)
 
-- [Writing to Streams](https://zendframework.github.io/zend-log/writers/#writing-to-streams)
-- [Writing to Databases](https://zendframework.github.io/zend-log/writers/#writing-to-databases)
-- [Writing to FirePHP](https://zendframework.github.io/zend-log/writers/#writing-to-firephp)
-- [Writing to ChromePHP](https://zendframework.github.io/zend-log/writers/#writing-to-chromephp)
-- [Writing to Mail](https://zendframework.github.io/zend-log/writers/#writing-to-mail)
-- [Writing to MongoDB](https://zendframework.github.io/zend-log/writers/#writing-to-mongodb)
-- [Writing to Syslog](https://zendframework.github.io/zend-log/writers/#writing-to-syslog)
-- [Writing to Zend Monitor](https://zendframework.github.io/zend-log/writers/#writing-to-zend-monitor)
+A complete configuration, as described in the article, does the following:
 
-## (Optional) Configuring the Filters
-
-A *filter* prevents a message from being written to the log. (from [zend-log filters documentation](https://zendframework.github.io/zend-log/filters/))
-
-As per [PSR-3 document](https://www.php-fig.org/psr/psr-3/#5-psrlogloglevel).
-
-The log levels are: **emergency (0)**, **alert (1)**, **critical (2)**, **error (3)**, **warn (4)**, **notice (5)**, **info (6)**, **debug (7)** (in order of priority/importance)
-
-Although the plain Logger in Zend Log is not fully compatible with PSR-3, it provides a way to log all of these message types.
-
- 
-
-Starting from the basic writer configuration, several configurations will be added for extra functionality.
-
- 
-
-```
-<?php
-
-return
-                                ],
-                            ],
-                        ],
-                    ],
-                    // Only warnings
-                    'OnlyWarningsWriter' => ,
-                                ],
-                            ],
-                        ],
-                    ],
-                    // Warnings and more important messages
-                    'WarningOrHigherWriter' => ,
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-            ],
-        ],
-    ],
-];
-```
-
-As in the writer configuration, the developer can optionally use keys for associating the filters with a name.
-
-**IMPORTANT NOTE:** the operator for more important messages is **<=,** this is because the number representation is smaller for a more important message type.
-
-The filter added on the first writer is equal to not setting a filter, but it was been added to illustrate how to explicitly allow all messages.
-
-It was added opposite to the others just to demonstrate the other operator is also an option.
-
- 
-
-More examples on filters: [https://zendframework.github.io/zend-log/filters/](https://zendframework.github.io/zend-log/filters/)
-
-## (Optional) Configuring the Formatter
-
-When using dot-log or zend-log, the logged value is not limited to a string. Arrays can be logged as well.
-
-For a better readability, these arrays can be serialized.
-
-Zend Log provides String formatting, XML, JSON and FirePHP formatting.
-
- 
-
-The formatter accepts following parameters:
-
-- name - the formatter class (it must implement **Zend\Log\Formatter\FormatterInterface**)
-- options - options to pass to the formatter constructor if required
-
- 
-
-The following formats the message as JSON data:
-
-```
-'formatter' => [
-    'name' => \Zend\Log\Formatter\Json::class,
-],
-```
-
- 
-
-- [Simple Formatting](https://zendframework.github.io/zend-log/formatters/#simple-formatting)
-- [Formatting to JSON](https://zendframework.github.io/zend-log/formatters/#formatting-to-json)
-- [Formatting to XML](https://zendframework.github.io/zend-log/formatters/#formatting-to-xml)
-- [Formatting to FirePhp](https://zendframework.github.io/zend-log/formatters/#formatting-to-firephp)
-
- 
-
-## Full example
-
-Below an example which:
-
-- The log is used through **dot-log**
-- The logger name is **my_logger**
+- Uses the log through **dot-log**
+- Names the logger **my_logger**
 - Writes to file: **data/logs/dk.log**
-- Explicitly allows **all the messages** to be written
+- Explicitly allows **all messages** to be written
 - Formats the message as **JSON**
-
-The key elements are **bold**.
-
-```
-<?php
-
-return ,
-                                ],
-                            ],
-                            'formatter' => ,
-                        ],
-                    ],
-                ],
-            ],
-        ],
-    ],
-];
-```
-
- 
 
 ## Usage
 
-Basic usage of the logger is illustraded below.
+Basic usage of the logger:
 
-The messages are written to see which logs are written and which are not written.
-
-```
+```php
 use Zend\Log\Logger;
 ```
 
-...
-
-```
+```php
 $logger = $container->get('dot-log.my_logger');
 
 /** @var Logger $logger */
@@ -263,32 +121,33 @@ $logger->debug('7 debug');
 $logger->log(Logger::NOTICE, 'NOTICE from log()');
 ```
 
-## Sources:
-
-- https://zendframework.github.io/zend-log/
-- https://zendframework.github.io/zend-log/writers/
-- https://zendframework.github.io/zend-log/filters/
-
-This article will be continued in a different article that treats the error handling in middleware applications.
-
- 
-
 ## FAQ
 
 **Q: How do I register dot-log's config provider?**
-A: In config/config.php, add \Dot\Log\ConfigProvider::class if it's not already there, making sure it is added before application-specific components such as Frontend\App\ConfigProvider or Admin\App\ConfigProvider.
+A: In config/config.php, add `\Dot\Log\ConfigProvider::class` if it's not already there, making sure it is added before application-specific components such as Frontend\App\ConfigProvider or Admin\App\ConfigProvider.
 
 **Q: How is a logger retrieved from the container instead of using the plain class name?**
-A: Dot\Log\ConfigProvider registers an abstract factory, LoggerAbstractServiceFactory, that responds to "selectors" instead of class names. Instead of requesting Zend\Log\Logger::class from the container, you request dot-log.my_logger (or just my_logger if using zend-log).
+A: Dot\Log\ConfigProvider registers an abstract factory, LoggerAbstractServiceFactory, that responds to "selectors" instead of class names.
+Instead of requesting Zend\Log\Logger::class from the container, you request dot-log.my_logger (or just my_logger if using zend-log).
 
 **Q: What is a writer, and how many does a logger need?**
-A: A writer is an object that inherits from Zend\Log\Writer\AbstractWriter and is responsible for recording log data to a storage backend. Loggers must have at least one writer, and the writer's "name" key is mandatory while its "priority" key is optional and only used to organize writers, not to affect which errors get written.
+A: A writer is an object that inherits from Zend\Log\Writer\AbstractWriter and is responsible for recording log data to a storage backend.
+Loggers must have at least one writer, and the writer's "name" key is mandatory while its "priority" key is optional and only used to organize writers, not to affect which errors get written.
 
 **Q: What does a filter do, and how are log levels ordered?**
-A: A filter prevents a message from being written to the log. Per PSR-3, the log levels in order of priority/importance are emergency (0), alert (1), critical (2), error (3), warn (4), notice (5), info (6), and debug (7) - the operator for "more important" messages is <= because a smaller number represents a more important message.
+A: A filter prevents a message from being written to the log.
+Per PSR-3, the log levels in order of priority/importance are emergency (0), alert (1), critical (2), error (3), warn (4), notice (5), info (6), and debug (7) - the operator for "more important" messages is `<=` because a smaller number represents a more important message.
 
 **Q: What does the formatter configuration control?**
-A: The formatter accepts a "name" (a class implementing Zend\Log\Formatter\FormatterInterface) and "options" to pass to that formatter's constructor. Zend Log provides String, XML, JSON and FirePHP formatting, and arrays can be serialized this way for better readability.
+A: The formatter accepts a "name" (a class implementing Zend\Log\Formatter\FormatterInterface) and "options" to pass to that formatter's constructor.
+Zend Log provides String, XML, JSON and FirePHP formatting, and arrays can be serialized this way for better readability.
 
 **Q: How do you actually write log messages once the logger is configured?**
-A: Fetch the logger from the container, e.g. $logger = $container->get('dot-log.my_logger');, then call methods such as emerg(), alert(), crit(), err(), warn(), notice(), info(), debug(), or the generic log(Logger::NOTICE, 'message').
+A: Fetch the logger from the container, e.g. `$logger = $container->get('dot-log.my_logger');`, then call methods such as emerg(), alert(), crit(), err(), warn(), notice(), info(), debug(), or the generic log(Logger::NOTICE, 'message').
+
+## Resources
+
+- [zend-log documentation](https://zendframework.github.io/zend-log/)
+- [zend-log writers documentation](https://zendframework.github.io/zend-log/writers/)
+- [zend-log filters documentation](https://zendframework.github.io/zend-log/filters/)
+- [dot-log on GitHub](https://github.com/dotkernel/dot-log)
