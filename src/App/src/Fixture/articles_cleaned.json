@@ -2010,6 +2010,21 @@
                 "excerpt": "With the recent release of AlmaLinux OS 10, we have created a new recipe for our WSL development environment. Compared to its predecessor, AlmaLinux 10 provides performance enhancements, security updates and improved hardware support.",
                 "tl_dr": "With the release of AlmaLinux OS 10, Dotkernel created a new WSL2 development environment recipe offering performance, security, and hardware improvements over AlmaLinux 9.\nThe recipe sets up WSL2, AlmaLinux 10, PHP, Apache, MariaDB, Git, Composer, Node.js, and PhpMyAdmin.\nIt also covers the OS/hardware requirements, installing the distro, and running PHP projects directly or via virtual hosts.",
                 "tags": []
+            },
+            {
+                "post_title": "How to Use Twig Markdown to Generate HTML Pages at Runtime",
+                "post_date": "2026-09-09 00:00:00",
+                "post_status": "published",
+                "author": {
+                    "display_name": "stefan",
+                    "github": "OStefan2001"
+                },
+                "isObsolete": false,
+                "isTwig": false,
+                "opengraph_img": "/opengraph/article/dotkernel-twig-markdown-twitter-card.png",
+                "excerpt": "How to wire twig/markdown-extra with league/commonmark so a Twig application converts Markdown files to HTML on every request, instead of pre-compiling pages at build time.",
+                "tl_dr": "twig/markdown-extra adds a markdown_to_html filter to Twig but ships no Markdown parser itself — you provide one through a RuntimeLoaderInterface factory.\nWire MarkdownExtension and a MarkdownRuntime (backed by league/commonmark's GithubFlavoredMarkdownConverter) into your container, register the extension with Twig, then call {{ someMarkdownString|markdown_to_html }} in any template.\nBecause the conversion runs inside the request/response cycle rather than at build time, the source .md file can be read from disk, edited, or swapped right up until the moment a request asks for it — no build step, no cache to invalidate by hand.",
+                "tags": []
             }
         ]
     },
