@@ -2783,6 +2783,21 @@
                 "excerpt": "Why We Switched to the Offline-Focused Bruno Every API developer knows that to build an API properly you need a reliable client for testing and interacting with the API. Ideally this tool should be free, it should store endpoint collections and share them easily with your team, and it should be fast and secure.",
                 "tl_dr": "The team has used Postman for years but is considering switching to Bruno, a lightweight, offline-first alternative, reflecting a broader PHP community trend toward local-first, Git-native developer tools.\nBruno wins on offline access, version control via Git, performance, and (arguably) security, while Postman still offers a broader feature set for larger, budget-having teams.",
                 "tags": []
+            },
+            {
+                "post_title": "What \"Production Ready\" Means for Dotkernel API",
+                "post_date": "2026-09-09 00:00:00",
+                "post_status": "published",
+                "author": {
+                    "display_name": "arhimede",
+                    "github": "arhimede"
+                },
+                "isObsolete": false,
+                "isTwig": false,
+                "opengraph_img": "/opengraph/article/dotkernel-production-ready-twitter-card.png",
+                "excerpt": "Dotkernel API describes itself as production ready. Here is exactly what that covers — and the infrastructure layer (rate limiting, gateway, federated identity, error tracking, health checks, caching) that stays yours to add before launch.",
+                "tl_dr": "Dotkernel API ships a complete, tested application layer — pipeline, OAuth2 auth, RBAC, validation, error responses, OpenAPI. It does not ship the infrastructure layer around it: rate limiting, an API gateway, federated identity, error tracking, health checks, or caching/background jobs. Those are deliberate boundaries, not gaps, and the linked documentation page lists each one with what to configure before going live.",
+                "tags": []
             }
         ]
     },
