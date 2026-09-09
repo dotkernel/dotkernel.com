@@ -2021,7 +2021,7 @@
                 },
                 "isObsolete": false,
                 "isTwig": false,
-                "opengraph_img": "/opengraph/article/dotkernel-twig-markdown-twitter-card.png",
+                "opengraph_img": "/opengraph/article/twitter-card-markdown-to-html.png",
                 "excerpt": "How to wire twig/markdown-extra with league/commonmark so a Twig application converts Markdown files to HTML on every request, instead of pre-compiling pages at build time.",
                 "tl_dr": "twig/markdown-extra adds a markdown_to_html filter to Twig but ships no Markdown parser itself — you provide one through a RuntimeLoaderInterface factory.\nWire MarkdownExtension and a MarkdownRuntime (backed by league/commonmark's GithubFlavoredMarkdownConverter) into your container, register the extension with Twig, then call {{ someMarkdownString|markdown_to_html }} in any template.\nBecause the conversion runs inside the request/response cycle rather than at build time, the source .md file can be read from disk, edited, or swapped right up until the moment a request asks for it — no build step, no cache to invalidate by hand.",
                 "tags": []
