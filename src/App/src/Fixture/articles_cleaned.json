@@ -2794,7 +2794,7 @@
                 },
                 "isObsolete": false,
                 "isTwig": false,
-                "opengraph_img": "/opengraph/article/dotkernel-production-ready-twitter-card.png",
+                "opengraph_img": "/opengraph/article/twitter-card-dotkernel-api-production-ready.png",
                 "excerpt": "Dotkernel API describes itself as production ready. Here is exactly what that covers — and the infrastructure layer (rate limiting, gateway, federated identity, error tracking, health checks, caching) that stays yours to add before launch.",
                 "tl_dr": "Dotkernel API ships a complete, tested application layer — pipeline, OAuth2 auth, RBAC, validation, error responses, OpenAPI. It does not ship the infrastructure layer around it: rate limiting, an API gateway, federated identity, error tracking, health checks, or caching/background jobs. Those are deliberate boundaries, not gaps, and the linked documentation page lists each one with what to configure before going live.",
                 "tags": []

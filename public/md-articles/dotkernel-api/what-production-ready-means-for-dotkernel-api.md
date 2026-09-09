@@ -12,7 +12,9 @@ language: "en"
 
 ## TL;DR
 
-Dotkernel API ships a complete, tested application layer — pipeline, OAuth2 auth, RBAC, validation, error responses, OpenAPI. It does not ship the infrastructure layer around it: rate limiting, an API gateway, federated identity, error tracking, health checks, or caching/background jobs. Those are deliberate boundaries, not gaps, and the linked documentation page lists each one with what to configure before going live.
+Dotkernel API ships a complete, tested application layer — pipeline, OAuth2 auth, RBAC, validation, error responses, OpenAPI.
+It does not ship the infrastructure layer around it: rate limiting, an API gateway, federated identity, error tracking, health checks, or caching/background jobs.
+Those are deliberate boundaries, not gaps, and the linked documentation page lists each one with what to configure before going live.
 
 Dotkernel API describes itself as production ready, and it is — but the phrase covers less ground than most people assume, and the difference is worth naming.
 
