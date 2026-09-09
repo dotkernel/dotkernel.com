@@ -3098,6 +3098,20 @@
                 "excerpt": "What TOTP Does A Time-based One-Time Password (TOTP) is a security algorithm used as part of two-factor authentication (2FA) to protect against account attacks. The mechanism is integrated into dot-totp to enhance security by requiring both a password and an additional one-time code.",
                 "tl_dr": "dot-totp adds two-factor authentication (2FA) to Dotkernel Admin using time-based one-time passwords.\nUsers authenticate with their password plus a 6-digit code from an Authenticator app that refreshes every 30 seconds.\nInstallation is one Composer command plus a set of forms, handlers, middleware, and templates from the official code examples, applying a TotpTrait to the relevant entity, migrating three new database columns, and registering routes/pipeline/ConfigProvider updates.",
                 "tags": []
+            },
+            {
+                "post_title": "AI-Native Coding Pods: The Promise, Risks, and How to Make Them Work",
+                "post_date": "2026-09-09 12:00:00",
+                "post_status": "publish",
+                "author": {
+                    "display_name": "Florin Bidirean",
+                    "github": "bidi47"
+                },
+                "isObsolete": false,
+                "opengraph_img": "/opengraph/article/twitter-card-ai-native-coding-pods.png",
+                "excerpt": "What an AI-native coding pod is, the benefits and risks it introduces to a software team, and concrete mitigations covering code quality, review capacity, architecture, security, and human accountability.",
+                "tl_dr": "An AI-native coding pod is a small engineering team - often just two or three people - that builds AI coding agents into every stage of the development lifecycle, letting a small group deliver at the scale of a much larger traditional team. That leverage cuts both ways: it can produce inconsistent code quality, a code-review bottleneck, propagated architectural mistakes, weaker engineering fundamentals, and concentration risk in a small team, so it needs deliberate quality gates, risk-based review, architectural checkpoints, and explicit human accountability to pay off safely.",
+                "tags": []
             }
         ]
     }
