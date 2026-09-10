@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 use Dot\ErrorHandler\ErrorHandlerInterface;
 use Dot\ResponseHeader\Middleware\ResponseHeaderMiddleware;
-use Light\App\Middleware\ServiceDocLinkMiddleware;
 use Mezzio\Application;
 use Mezzio\Handler\NotFoundHandler;
 use Mezzio\Helper\ServerUrlMiddleware;
@@ -52,7 +51,6 @@ return function (Application $app): void {
     $app->pipe(ImplicitHeadMiddleware::class);
     $app->pipe(ImplicitOptionsMiddleware::class);
     $app->pipe(MethodNotAllowedMiddleware::class);
-    $app->pipe(ServiceDocLinkMiddleware::class);
     $app->pipe(ResponseHeaderMiddleware::class);
 
     // Seed the UrlHelper with the routing results:
