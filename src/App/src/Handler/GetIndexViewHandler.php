@@ -52,14 +52,14 @@ class GetIndexViewHandler implements RequestHandlerInterface
         $posts = $this->postRepository->getRecentPosts(3);
         return new HtmlResponse(
             $this->template->render('app::index', [
-                'posts'         => $posts,
-                'adopterLogos'  => $this->getAdopterLogos(),
+                'posts'        => $posts,
+                'adopterLogos' => $this->getAdopterLogos(),
             ])
         );
     }
 
     /**
-     * @return list<array{file: non-empty-string, alt: string}>
+     * @return list<array{file: string, alt: string}>
      */
     private function getAdopterLogos(): array
     {
