@@ -24,12 +24,14 @@ use Light\App\Factory\LlmsGeneratorFactory;
 use Light\App\Factory\MarkdownExtensionFactory;
 use Light\App\Factory\MarkdownRuntimeLoaderFactory;
 use Light\App\Factory\PackageGeneratorFactory;
+use Light\App\Factory\ServiceDocLinkMiddlewareFactory;
 use Light\App\Factory\SitemapGeneratorFactory;
 use Light\App\Handler\GetFeedViewHandler;
 use Light\App\Handler\GetIndexViewHandler;
 use Light\App\Handler\GetMarkdownArticleHandler;
 use Light\App\Handler\GetPackagesViewHandler;
 use Light\App\Handler\GetSitemapViewHandler;
+use Light\App\Middleware\ServiceDocLinkMiddleware;
 use Light\App\Resolver\EntityListenerResolver;
 use Light\App\Service\FeedGenerator;
 use Light\App\Service\GitHubClient;
@@ -150,6 +152,7 @@ class ConfigProvider
                 LlmsGenerator::class                  => LlmsGeneratorFactory::class,
                 MarkdownExtension::class              => MarkdownExtensionFactory::class,
                 RuntimeLoaderInterface::class         => MarkdownRuntimeLoaderFactory::class,
+                ServiceDocLinkMiddleware::class       => ServiceDocLinkMiddlewareFactory::class,
             ],
             'aliases'    => [
                 EntityManager::class          => 'doctrine.entity_manager.orm_default',
