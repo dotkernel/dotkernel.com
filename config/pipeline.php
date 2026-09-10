@@ -41,7 +41,6 @@ return function (Application $app): void {
     // Register the routing middleware in the middleware pipeline.
     // This middleware registers the Mezzio\Router\RouteResult request attribute.
     $app->pipe(RouteMiddleware::class);
-    $app->pipe(ResponseHeaderMiddleware::class);
 
     // The following handle routing failures for common conditions:
     // - HEAD request but no routes answer that method
@@ -52,6 +51,7 @@ return function (Application $app): void {
     $app->pipe(ImplicitHeadMiddleware::class);
     $app->pipe(ImplicitOptionsMiddleware::class);
     $app->pipe(MethodNotAllowedMiddleware::class);
+    $app->pipe(ResponseHeaderMiddleware::class);
 
     // Seed the UrlHelper with the routing results:
     $app->pipe(UrlHelperMiddleware::class);
