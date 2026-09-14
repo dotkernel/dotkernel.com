@@ -7,7 +7,7 @@ $serviceDocLink = static fn (string $url): string => sprintf('<%s>; rel="service
 
 return [
     'dot_response_headers' => [
-        '*' => [
+        '*'                  => [
             'X-Powered-By' => [
                 'value'     => 'Dotkernel',
                 'overwrite' => true,

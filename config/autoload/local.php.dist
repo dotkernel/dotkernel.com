@@ -47,19 +47,19 @@ $app = [
 ];
 
 return [
-    'application'          => $app,
-    'databases'            => $databases,
-    'doctrine'             => [
+    'application' => $app,
+    'databases'   => $databases,
+    'doctrine'    => [
         'connection' => [
             'orm_default' => [
                 'params' => $databases['default'],
             ],
         ],
     ],
-    'feed'                 => [
+    'feed'        => [
         'path' => realpath(__DIR__ . '/../../public/feed.xml'),
     ],
-    'llms'                 => [
+    'llms'        => [
         'sourceDir'  => realpath(__DIR__ . '/../../public/md-articles'),
         'outputFile' => realpath(__DIR__ . '/../../public/llms-full.txt'),
         // Markdown versions of the static pages, appended after the articles. Optional.
