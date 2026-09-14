@@ -47,35 +47,19 @@ $app = [
 ];
 
 return [
-    'application'          => $app,
-    'databases'            => $databases,
-    'dot_response_headers' => [
-        '*' => [
-            'X-Powered-By' => [
-                'value'     => $app['meta']['siteName'],
-                'overwrite' => true,
-            ],
-            'X-Llms-Txt'   => [
-                'value'     => '/llms.txt',
-                'overwrite' => true,
-            ],
-            'Link'         => [
-                'value'     => '</llms.txt>; rel="llms-txt", </llms-full.txt>; rel="llms-full-txt"',
-                'overwrite' => true,
-            ],
-        ],
-    ],
-    'doctrine'             => [
+    'application' => $app,
+    'databases'   => $databases,
+    'doctrine'    => [
         'connection' => [
             'orm_default' => [
                 'params' => $databases['default'],
             ],
         ],
     ],
-    'feed'                 => [
+    'feed'        => [
         'path' => realpath(__DIR__ . '/../../public/feed.xml'),
     ],
-    'llms'                 => [
+    'llms'        => [
         'sourceDir'  => realpath(__DIR__ . '/../../public/md-articles'),
         'outputFile' => realpath(__DIR__ . '/../../public/llms-full.txt'),
         // Markdown versions of the static pages, appended after the articles. Optional.
