@@ -13,9 +13,19 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
+use function array_map;
+use function basename;
 use function file_get_contents;
+use function glob;
 use function is_file;
+use function pathinfo;
+use function sort;
 use function str_contains;
+use function str_replace;
+use function ucwords;
+
+use const GLOB_BRACE;
+use const PATHINFO_FILENAME;
 
 class GetIndexViewHandler implements RequestHandlerInterface
 {
@@ -41,7 +51,32 @@ class GetIndexViewHandler implements RequestHandlerInterface
 
         $posts = $this->postRepository->getRecentPosts(3);
         return new HtmlResponse(
-            $this->template->render('app::index', ['posts' => $posts])
+            $this->template->render('app::index', [
+                'posts'        => $posts,
+                'adopterLogos' => $this->getAdopterLogos(),
+            ])
+        );
+    }
+
+    /**
+     * @return list<array{file: string, alt: string}>
+     */
+    private function getAdopterLogos(): array
+    {
+        $files = glob($this->mdPagesPath . '/images/app/content/adopters/*.{png,jpg,jpeg,svg,webp}', GLOB_BRACE);
+        if ($files === false) {
+            return [];
+        }
+
+        $names = array_map(basename(...), $files);
+        sort($names);
+
+        return array_map(
+            static fn (string $name): array => [
+                'file' => $name,
+                'alt'  => ucwords(str_replace(['-', '_'], ' ', pathinfo($name, PATHINFO_FILENAME))),
+            ],
+            $names
         );
     }
 }
