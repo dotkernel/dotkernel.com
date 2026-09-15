@@ -153,6 +153,6 @@ A: Both live in src/App/templates/layout/default.html.twig: the top menu items a
 
 ## Resources
 
-- [dotkernel.org](https://www.dotkernel.org) - a working example
+- [dotkernel.org](https://www.dotkernel.com/api/) - a working example
 - [Dotkernel Light](https://github.com/dotkernel/light)
 - [More from Dotkernel](https://github.com/dotkernel)
