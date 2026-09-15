@@ -11,7 +11,8 @@ chdir(__DIR__ . '/../');
 require 'vendor/autoload.php';
 
 $templatesDir = 'src/Blog/templates/page/blog-resource';
-$uploadsDir   = 'public/uploads';
+$publicDir    = 'public';
+$uploadsDir   = $publicDir . '/uploads';
 $articleDir   = $uploadsDir . '/article';
 $limit        = null;
 
@@ -33,18 +34,20 @@ $entityManager  = $container->get(EntityManager::class);
 $postRepository = $entityManager->getRepository(Post::class);
 
 /**
- * Index every file currently under public/uploads (excluding the
- * uploads/article destination tree) by basename, so we can locate the
- * source file for each image referenced from a template.
+ * Index every file anywhere under public/ by basename, so we can locate the
+ * source file for each image referenced from a template or markdown
+ * article - including images already sitting in some other article's
+ * uploads/article/{uuid}/ directory (e.g. left over from before a post's
+ * UUID changed), not just loose files dropped outside uploads/article/.
  *
  * @return array<string, string>
  */
-function indexUploadSources(string $uploadsDir, string $articleDir): array
+function indexUploadSources(string $publicDir): array
 {
     $index = [];
 
     $iterator = new RecursiveIteratorIterator(
-        new RecursiveDirectoryIterator($uploadsDir, FilesystemIterator::SKIP_DOTS)
+        new RecursiveDirectoryIterator($publicDir, FilesystemIterator::SKIP_DOTS)
     );
 
     foreach ($iterator as $file) {
@@ -52,21 +55,49 @@ function indexUploadSources(string $uploadsDir, string $articleDir): array
             continue;
         }
 
-        $path = $file->getPathname();
-        if (str_starts_with($path, $articleDir . '/')) {
-            continue;
-        }
-
         $basename = $file->getFilename();
         if (! isset($index[$basename])) {
-            $index[$basename] = $path;
+            $index[$basename] = $file->getPathname();
         }
     }
 
     return $index;
 }
 
-$sourceIndex = indexUploadSources($uploadsDir, $articleDir);
+/**
+ * Extract every (uuid, filename) pair referenced via an
+ * "uploads/article/{uuid}/{filename}" path in Markdown article content -
+ * these are hardcoded literally in .md files, unlike the dynamic
+ * `~ article.id ~` expression used in .html.twig templates.
+ *
+ * @return list<array{uuid: string, filename: string}>
+ */
+function extractArticleImageRefs(string $contents): array
+{
+    $pattern = '/uploads\/article\/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\/([^)\]\s"\']+)/i';
+
+    preg_match_all($pattern, $contents, $matches, PREG_SET_ORDER);
+
+    $seen = [];
+    $refs = [];
+
+    foreach ($matches as $match) {
+        $uuid     = strtolower($match[1]);
+        $filename = $match[2];
+        $key      = $uuid . '/' . $filename;
+
+        if (isset($seen[$key])) {
+            continue;
+        }
+
+        $seen[$key] = true;
+        $refs[]     = ['uuid' => $uuid, 'filename' => $filename];
+    }
+
+    return $refs;
+}
+
+$sourceIndex = indexUploadSources($publicDir);
 
 // Matches the filename in: asset('uploads/article/' ~ article.id ~ '/filename.ext')
 $pattern = '/~\s*article\.id\s*~\s*\'\/([^\']+)\'/';
@@ -140,8 +171,137 @@ foreach ($templateIterator as $file) {
     }
 }
 
+/**
+ * Markdown articles (public/md-articles/{category-slug}/{article-slug}.md)
+ * embed uploads/article/{uuid}/{filename} paths as literal text, unlike
+ * .html.twig templates whose `~ article.id ~` is resolved dynamically. Since
+ * a Post's UUID (uuid7) is generated fresh the first time its slug is
+ * fixture-inserted in a given environment, a UUID hardcoded in a .md file
+ * drifts from the Post's real UUID as soon as that slug is (re)seeded
+ * elsewhere. This pass detects that drift, rewrites the file to the real
+ * UUID, and makes sure the image is available under the corrected path.
+ */
+$mdArticlesDir = 'public/md-articles';
+
+$mdFilesProcessed = 0;
+$uuidsFixed       = 0;
+$mdDirsCreated    = 0;
+$mdImagesCopied   = 0;
+$mdImagesMissing  = 0;
+
+if (is_dir($mdArticlesDir)) {
+    $mdIterator = new RecursiveIteratorIterator(
+        new RecursiveDirectoryIterator($mdArticlesDir, FilesystemIterator::SKIP_DOTS)
+    );
+
+    foreach ($mdIterator as $file) {
+        if (! $file->isFile() || $file->getExtension() !== 'md') {
+            continue;
+        }
+
+        $path = $file->getPathname();
+
+        // Only handle files one level under a category directory, i.e.
+        // public/md-articles/{category-slug}/{article-slug}.md - skips
+        // stray top-level files such as md-articles/index.md.
+        $relative = ltrim(substr($path, strlen($mdArticlesDir)), '/');
+        if (substr_count($relative, '/') !== 1) {
+            continue;
+        }
+
+        $slug     = preg_replace('/\.md$/', '', $file->getFilename());
+        $contents = file_get_contents($path);
+        if ($contents === false) {
+            continue;
+        }
+
+        $refs = extractArticleImageRefs($contents);
+        if ($refs === []) {
+            continue;
+        }
+
+        $post = $postRepository->findOneBy(['slug' => $slug]);
+        if ($post === null) {
+            printf("No Post found for slug '%s' (%s), skipping%s", $slug, $path, PHP_EOL);
+            continue;
+        }
+
+        $mdFilesProcessed++;
+
+        $realUuid   = $post->getId()->toString();
+        $staleUuids = [];
+
+        foreach ($refs as $ref) {
+            $refUuid  = $ref['uuid'];
+            $filename = $ref['filename'];
+
+            if ($refUuid !== $realUuid) {
+                $staleUuids[$refUuid] = true;
+            }
+
+            $targetDir  = $articleDir . '/' . $realUuid;
+            $targetPath = $targetDir . '/' . $filename;
+
+            if (file_exists($targetPath)) {
+                continue;
+            }
+
+            if (! is_dir($targetDir)) {
+                if (! mkdir($targetDir, 0775, true) && ! is_dir($targetDir)) {
+                    fwrite(STDERR, sprintf("Failed to create directory '%s'%s", $targetDir, PHP_EOL));
+                    continue;
+                }
+                $mdDirsCreated++;
+            }
+
+            $sourcePath = null;
+            if ($refUuid !== $realUuid) {
+                $stalePath = $articleDir . '/' . $refUuid . '/' . $filename;
+                if (file_exists($stalePath)) {
+                    $sourcePath = $stalePath;
+                }
+            }
+
+            if ($sourcePath === null && isset($sourceIndex[$filename])) {
+                $sourcePath = $sourceIndex[$filename];
+            }
+
+            if ($sourcePath === null) {
+                printf("Source image '%s' not found for %s%s", $filename, $path, PHP_EOL);
+                $mdImagesMissing++;
+                continue;
+            }
+
+            if (! copy($sourcePath, $targetPath)) {
+                fwrite(STDERR, sprintf("Failed to copy '%s' to '%s'%s", $sourcePath, $targetPath, PHP_EOL));
+                continue;
+            }
+
+            $mdImagesCopied++;
+        }
+
+        if ($staleUuids !== []) {
+            $updated = $contents;
+            foreach (array_keys($staleUuids) as $staleUuid) {
+                $updated = str_replace($staleUuid, $realUuid, $updated);
+            }
+
+            if ($updated !== $contents) {
+                if (file_put_contents($path, $updated) === false) {
+                    fwrite(STDERR, sprintf("Failed to update '%s'%s", $path, PHP_EOL));
+                } else {
+                    $uuidsFixed++;
+                    printf("Corrected UUID in '%s'%s", $path, PHP_EOL);
+                }
+            }
+        }
+    }
+}
+
 printf(
-    "Done. %d template%s processed, %d director%s created, %d image%s copied, %d missing.%s",
+    "Done. %d twig template%s processed, %d director%s created, %d image%s copied, %d missing.%s"
+    . " %d markdown file%s processed, %d UUID%s corrected, %d director%s created,"
+    . " %d image%s copied, %d missing.%s",
     $filesProcessed,
     $filesProcessed === 1 ? '' : 's',
     $dirsCreated,
@@ -149,5 +309,15 @@ printf(
     $imagesCopied,
     $imagesCopied === 1 ? '' : 's',
     $imagesMissing,
+    PHP_EOL,
+    $mdFilesProcessed,
+    $mdFilesProcessed === 1 ? '' : 's',
+    $uuidsFixed,
+    $uuidsFixed === 1 ? '' : 's',
+    $mdDirsCreated,
+    $mdDirsCreated === 1 ? 'y' : 'ies',
+    $mdImagesCopied,
+    $mdImagesCopied === 1 ? '' : 's',
+    $mdImagesMissing,
     PHP_EOL
 );

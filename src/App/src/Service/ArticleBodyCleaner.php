@@ -17,7 +17,7 @@ final class ArticleBodyCleaner
     public static function clean(string $body): string
     {
         $body = (string) preg_replace('/\A#[ \t][^\n]*\n/', '', $body, 1);
-        $body = (string) preg_replace('/^## TL;DR\s*$.*?(?=^## |\z)/ms', '', $body, 1);
+        $body = (string) preg_replace('/^## TL;DR\s*$\n\s*\n.*?(?=\n\s*\n|^## |\z)/ms', '', $body, 1);
 
         return trim($body);
     }
