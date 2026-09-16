@@ -19,7 +19,7 @@ Using both together, sharing a common Core module, gives consistent entities and
 
 The Dotkernel Headless Platform contains two major components:
 
-- [Dotkernel API](https://www.dotkernel.org) - a REST API based on the [Mezzio skeleton](https://github.com/mezzio/mezzio-skeleton).
+- [Dotkernel API](https://www.dotkernel.com/api/) - a REST API based on the [Mezzio skeleton](https://github.com/mezzio/mezzio-skeleton).
 - [Dotkernel Admin](https://github.com/dotkernel/admin) - a complementary component aimed at quickly setting up a backend for your platform.
 
 The Admin is not bundled by default but is available as a first-party, installable application designed to work seamlessly alongside your API.

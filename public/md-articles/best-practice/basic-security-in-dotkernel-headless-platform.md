@@ -48,7 +48,7 @@ Let's take a practical view on software security in Dotkernel.
 
 You should never trust that the user inputs correct data by passing it directly into your business logic. By defining the configuration for an input filter, you ensure that a field is both present, and of the correct type.
 
-[Dotkernel API](https://www.dotkernel.org) makes use of [laminas/laminas-inputfilter](https://github.com/laminas/laminas-inputfilter) for this purpose.
+[Dotkernel API](https://www.dotkernel.com/api/) makes use of [laminas/laminas-inputfilter](https://github.com/laminas/laminas-inputfilter) for this purpose.
 
 In addition to the above filtering, Dotkernel Admin also makes use of [laminas/laminas-form](https://github.com/laminas/laminas-form). laminas-form contains:
 

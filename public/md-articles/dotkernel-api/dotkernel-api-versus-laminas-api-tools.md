@@ -22,7 +22,7 @@ It's intended to highlight the differences between the two and also to showcase 
 
 |  | **API Tools (formerly Apigility)** | **Dotkernel API** |
 | --- | --- | --- |
-| URL | [api-tools](https://api-tools.getlaminas.org/) | [Dotkernel API](https://www.dotkernel.org) |
+| URL | [api-tools](https://api-tools.getlaminas.org/) | [Dotkernel API](https://www.dotkernel.com/api/) |
 | First Release | 2012 | 2018 |
 | PHP Version | <= 8.2 | ![PHP Version](https://img.shields.io/packagist/php-v/dotkernel/api) |
 | Architecture | MVC, Event Driven | Middleware |
