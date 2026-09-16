@@ -34,12 +34,6 @@ $entityManager  = $container->get(EntityManager::class);
 $postRepository = $entityManager->getRepository(Post::class);
 
 /**
- * Index every file anywhere under public/ by basename, so we can locate the
- * source file for each image referenced from a template or markdown
- * article - including images already sitting in some other article's
- * uploads/article/{uuid}/ directory (e.g. left over from before a post's
- * UUID changed), not just loose files dropped outside uploads/article/.
- *
  * @return array<string, string>
  */
 function indexUploadSources(string $publicDir): array
@@ -65,11 +59,6 @@ function indexUploadSources(string $publicDir): array
 }
 
 /**
- * Extract every (uuid, filename) pair referenced via an
- * "uploads/article/{uuid}/{filename}" path in Markdown article content -
- * these are hardcoded literally in .md files, unlike the dynamic
- * `~ article.id ~` expression used in .html.twig templates.
- *
  * @return list<array{uuid: string, filename: string}>
  */
 function extractArticleImageRefs(string $contents): array
@@ -99,7 +88,6 @@ function extractArticleImageRefs(string $contents): array
 
 $sourceIndex = indexUploadSources($publicDir);
 
-// Matches the filename in: asset('uploads/article/' ~ article.id ~ '/filename.ext')
 $pattern = '/~\s*article\.id\s*~\s*\'\/([^\']+)\'/';
 
 $filesProcessed = 0;
@@ -171,16 +159,6 @@ foreach ($templateIterator as $file) {
     }
 }
 
-/**
- * Markdown articles (public/md-articles/{category-slug}/{article-slug}.md)
- * embed uploads/article/{uuid}/{filename} paths as literal text, unlike
- * .html.twig templates whose `~ article.id ~` is resolved dynamically. Since
- * a Post's UUID (uuid7) is generated fresh the first time its slug is
- * fixture-inserted in a given environment, a UUID hardcoded in a .md file
- * drifts from the Post's real UUID as soon as that slug is (re)seeded
- * elsewhere. This pass detects that drift, rewrites the file to the real
- * UUID, and makes sure the image is available under the corrected path.
- */
 $mdArticlesDir = 'public/md-articles';
 
 $mdFilesProcessed = 0;
@@ -200,10 +178,6 @@ if (is_dir($mdArticlesDir)) {
         }
 
         $path = $file->getPathname();
-
-        // Only handle files one level under a category directory, i.e.
-        // public/md-articles/{category-slug}/{article-slug}.md - skips
-        // stray top-level files such as md-articles/index.md.
         $relative = ltrim(substr($path, strlen($mdArticlesDir)), '/');
         if (substr_count($relative, '/') !== 1) {
             continue;
