@@ -43,6 +43,23 @@
         </div>
     </section>
 
+    {% if adopterLogos is defined and adopterLogos is not empty %}
+        <section class="trusted-by">
+            <div class="wrap trusted-by-viewport">
+                <p class="trusted-by-label">Trusted by teams running Dotkernel in production</p>
+                <div class="trusted-by-track" style="animation-duration: {{ (adopterLogos|length * 5)|round(0, 'ceil') }}s;">
+                    {% for i in 0..1 %}
+                        <div class="trusted-by-group" aria-hidden="{{ i == 1 ? 'true' : 'false' }}">
+                            {% for logo in adopterLogos %}
+                                <img class="trusted-by-logo" src="{{ asset('images/app/content/adopters/' ~ logo.file) }}" alt="{{ logo.alt }}" loading="lazy">
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    {% endif %}
+
     <section class="what-is-platform">
         <div class="wrap split">
             <div>

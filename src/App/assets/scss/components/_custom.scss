@@ -802,6 +802,75 @@ h1.error-code {
 }
 
 /* ============================================================
+   Adopters
+   ============================================================ */
+
+.trusted-by {
+  padding: 28px 0;
+  background: var(--rose);
+  border-top: 1px solid rgba(255, 255, 255, .15);
+  border-bottom: 1px solid rgba(255, 255, 255, .15);
+}
+
+html[data-theme="dark"] .trusted-by {
+  background: var(--bg);
+  border-top-color: var(--border-soft);
+  border-bottom-color: var(--border-soft);
+}
+
+.trusted-by-label {
+  margin: 0 0 16px;
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .8);
+}
+
+.trusted-by-viewport {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.trusted-by-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: trusted-by-scroll linear infinite;
+}
+
+.trusted-by-viewport:hover .trusted-by-track {
+  animation-play-state: paused;
+}
+
+.trusted-by-group {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  padding-right: 40px;
+  flex: 0 0 auto;
+}
+
+.trusted-by-logo {
+  height: 32px;
+  width: auto;
+  flex: 0 0 auto;
+}
+
+@keyframes trusted-by-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trusted-by-track {
+    animation: none;
+  }
+}
+
+/* ============================================================
    Split / traits
    ============================================================ */
 
