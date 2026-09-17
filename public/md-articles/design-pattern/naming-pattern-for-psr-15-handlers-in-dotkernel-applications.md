@@ -61,7 +61,7 @@ We have chosen this wording for the performed actions (or CRUD):
 
 The image below contains the full list of handlers used in Dotkernel Admin.
 
-![Dotkernel Naming Convention](https://www.dotkernel.com/wp-content/uploads/2025/05/naming-convention-1024x767.png)
+![Dotkernel Naming Convention](/uploads/article/naming-convention-1024x767.png)
 
 ## A practical example
 
