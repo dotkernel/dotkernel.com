@@ -23,7 +23,7 @@ The admin includes samples built with Highcharts:
 - A column chart
 - A line chart
 
-[![](/uploads/article/019f8a80-cc3b-71e4-913b-5c28321fc438/highcharts-1024x651.png)](/uploads/2012/05/highcharts.png)
+[![](/uploads/article/highcharts-1024x651.png)](/uploads/2012/05/highcharts.png)
 
 The Highcharts library itself can be found in the **externals** directory of the project.
 

@@ -26,7 +26,7 @@ This issue is most common when trying to get data (usually JSON) that you want t
 
 The error looks similar to the image below:
 
-![](/uploads/article/019f8a80-cc4d-71e9-9af2-595b3eb4c793/Screenshot-2019-04-06-at-15.03.21-1024x165-1-1024x165.png)
+![](/uploads/article/Screenshot-2019-04-06-at-15.03.21-1024x165-1-1024x165.png)
 
 ## The solution
 

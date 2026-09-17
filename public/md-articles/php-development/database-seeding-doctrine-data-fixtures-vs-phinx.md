@@ -102,7 +102,7 @@ php bin/console
 
 It should print out all the doctrine CLI commands available, including our fixtures commands.
 
-![](/uploads/article/019f8a80-cc6c-71e3-a52c-9a9b1a204472/Screenshot-2022-08-30-at-19.14.14-1024x334.png)
+![](/uploads/article/Screenshot-2022-08-30-at-19.14.14-1024x334.png)
 
 ## Usage
 
@@ -112,7 +112,7 @@ It should print out all the doctrine CLI commands available, including our fixtu
 php bin/doctrine fixtures:list
 ```
 
-![](/uploads/article/019f8a80-cc6c-71e3-a52c-9a9b1a204472/Screenshot-2022-08-30-at-19.22.45-1024x147.png)
+![](/uploads/article/Screenshot-2022-08-30-at-19.22.45-1024x147.png)
 
 By using this command you can check the execution order of your fixtures before executing them.
 
@@ -276,7 +276,7 @@ Notice how `UserLoader.php` implements 2 interfaces, `FixtureInterface` and `Dep
 The method `getDependencies()` returns an array containing the dependencies (fixtures) that need to be executed prior to the current one.
 After running all the fixtures using `php bin/doctrine fixtures:execute` the output should look like this:
 
-![](/uploads/article/019f8a80-cc6c-71e3-a52c-9a9b1a204472/Screenshot-2022-08-30-at-20.39.19.png)
+![](/uploads/article/Screenshot-2022-08-30-at-20.39.19.png)
 
 `RoleLoader` was executed before `UserLoader` because `UserLoader` had `RoleLoader` as a dependency.
 
