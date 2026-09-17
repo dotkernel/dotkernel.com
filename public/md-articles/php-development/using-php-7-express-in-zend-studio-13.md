@@ -27,7 +27,7 @@ If you want to create a new project for testing instead of modifying the origina
 Choosing the PHP 7 option will hide the PHP 7 Express feature, because Zend Studio assumes a PHP 7 project doesn't need compatibility checks, but if the project is actually using a different version of PHP, compatibility issues might appear.
 Long story short: use the exact PHP version your project is using at project creation.
 
-[![The New Local PHP Project dialog in Zend Studio 13](/uploads/article/019f8a80-cc69-7286-91c9-b075c0b9be59/Screenshot-2015-12-22-16.21.56.png)](/uploads/2015/12/Screenshot-2015-12-22-16.21.56.png) The "New Local PHP Project" dialog in Zend Studio 13 and the PHP version selection
+[![The New Local PHP Project dialog in Zend Studio 13](/uploads/article/Screenshot-2015-12-22-16.21.56.png)](/uploads/2015/12/Screenshot-2015-12-22-16.21.56.png) The "New Local PHP Project" dialog in Zend Studio 13 and the PHP version selection
 
 ## The 'PHP Interpreter' Selection
 
@@ -39,7 +39,7 @@ To check and modify the PHP Interpreter:
 - The PHP -> Interpreter option should show up.
 - If you only need a specific interpreter for a specific project, check "Enable Project specific settings" - this way you won't affect the other projects in the current workspace.
 
-[![Zend Studio PHP Interpreter Dialog](/uploads/article/019f8a80-cc69-7286-91c9-b075c0b9be59/zftest.png)](/uploads/2015/12/zftest.png) Zend Studio PHP Interpreter Dialog
+[![Zend Studio PHP Interpreter Dialog](/uploads/article/zftest.png)](/uploads/2015/12/zftest.png) Zend Studio PHP Interpreter Dialog
 
 The PHP 7 Express feature should now show up.
 
@@ -64,7 +64,7 @@ Using PHP 7 Express is very easy:
 
 After the analysis is done, the PHP 7 Express view (or tab) appears in the bottom pane in Zend Studio, depending on the perspective.
 
-[![Zend Framework 1 compatibility issues with PHP7](/uploads/article/019f8a80-cc69-7286-91c9-b075c0b9be59/php7errors.png)](/uploads/2015/12/php7errors.png) Zend Framework 1 compatibility issues with PHP7
+[![Zend Framework 1 compatibility issues with PHP7](/uploads/article/php7errors.png)](/uploads/2015/12/php7errors.png) Zend Framework 1 compatibility issues with PHP7
 
 ## FAQ
 

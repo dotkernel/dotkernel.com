@@ -29,7 +29,7 @@ This reduces the time it takes to serve the content to the user because accessin
 
 > This article is a follow-up to the [previous article](https://www.dotkernel.com/how-to/doctrine-cache-in-mezzio-and-dotkernel/) where we tackled the caching topic.
 
-![](/uploads/article/019f8a80-cc52-73f7-afe5-9255a3bb4681/sdasdadsa.drawio.png)
+![](/uploads/article/sdasdadsa.drawio.png)
 
 In this article our focus will be on enabling the [dot-cache](https://packagist.org/packages/dotkernel/dot-cache) component and effectively implementing caching in [Dotkernel Admin](https://github.com/dotkernel/admin/).
 

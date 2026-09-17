@@ -3,40 +3,26 @@
 
 declare(strict_types=1);
 
-use Doctrine\ORM\EntityManager;
-use Light\Blog\Entity\Post;
-
 chdir(__DIR__ . '/../');
 
-require 'vendor/autoload.php';
+$publicDir     = 'public';
+$mdArticlesDir = $publicDir . '/md-articles';
+$articleDir    = $publicDir . '/uploads/article';
 
-$templatesDir = 'src/Blog/templates/page/blog-resource';
-$publicDir    = 'public';
-$uploadsDir   = $publicDir . '/uploads';
-$articleDir   = $uploadsDir . '/article';
-$limit        = null;
-
-if (isset($argv[1])) {
-    if (! ctype_digit($argv[1]) || (int) $argv[1] < 1) {
-        fwrite(STDERR, sprintf("Invalid file limit '%s'. Expected a positive integer.%s", $argv[1], PHP_EOL));
-        exit(1);
-    }
-    $limit = (int) $argv[1];
-}
-
-if (! is_dir($templatesDir)) {
-    fwrite(STDERR, sprintf("Directory '%s' not found%s", $templatesDir, PHP_EOL));
+if (! is_dir($mdArticlesDir)) {
+    fwrite(STDERR, sprintf("Directory '%s' not found%s", $mdArticlesDir, PHP_EOL));
     exit(1);
 }
 
-$container      = require 'config/container.php';
-$entityManager  = $container->get(EntityManager::class);
-$postRepository = $entityManager->getRepository(Post::class);
+if (! is_dir($articleDir) && ! mkdir($articleDir, 0775, true) && ! is_dir($articleDir)) {
+    fwrite(STDERR, sprintf("Failed to create directory '%s'%s", $articleDir, PHP_EOL));
+    exit(1);
+}
 
 /**
  * @return array<string, string>
  */
-function indexUploadSources(string $publicDir): array
+function indexUploadSources(string $publicDir, string $articleDir): array
 {
     $index = [];
 
@@ -49,9 +35,14 @@ function indexUploadSources(string $publicDir): array
             continue;
         }
 
+        $pathname = $file->getPathname();
+        if (str_starts_with($pathname, $articleDir . '/')) {
+            continue;
+        }
+
         $basename = $file->getFilename();
         if (! isset($index[$basename])) {
-            $index[$basename] = $file->getPathname();
+            $index[$basename] = $pathname;
         }
     }
 
@@ -59,93 +50,52 @@ function indexUploadSources(string $publicDir): array
 }
 
 /**
- * @return list<array{uuid: string, filename: string}>
+ * @return list<string>
  */
-function extractArticleImageRefs(string $contents): array
+function extractArticleImageFilenames(string $contents): array
 {
-    $pattern = '/uploads\/article\/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\/([^)\]\s"\']+)/i';
+    $pattern = '/uploads\/article\/([^\/)\]\s"\']+)/i';
 
-    preg_match_all($pattern, $contents, $matches, PREG_SET_ORDER);
+    preg_match_all($pattern, $contents, $matches);
 
-    $seen = [];
-    $refs = [];
-
-    foreach ($matches as $match) {
-        $uuid     = strtolower($match[1]);
-        $filename = $match[2];
-        $key      = $uuid . '/' . $filename;
-
-        if (isset($seen[$key])) {
-            continue;
-        }
-
-        $seen[$key] = true;
-        $refs[]     = ['uuid' => $uuid, 'filename' => $filename];
-    }
-
-    return $refs;
+    return array_values(array_unique($matches[1]));
 }
 
-$sourceIndex = indexUploadSources($publicDir);
+$sourceIndex = indexUploadSources($publicDir, $articleDir);
 
-$pattern = '/~\s*article\.id\s*~\s*\'\/([^\']+)\'/';
+$mdFilesProcessed = 0;
+$imagesCopied      = 0;
+$imagesMissing     = 0;
 
-$filesProcessed = 0;
-$dirsCreated    = 0;
-$imagesCopied   = 0;
-$imagesMissing  = 0;
-
-$templateIterator = new RecursiveIteratorIterator(
-    new RecursiveDirectoryIterator($templatesDir, FilesystemIterator::SKIP_DOTS)
+$mdIterator = new RecursiveIteratorIterator(
+    new RecursiveDirectoryIterator($mdArticlesDir, FilesystemIterator::SKIP_DOTS)
 );
 
-foreach ($templateIterator as $file) {
-    if ($limit !== null && $filesProcessed >= $limit) {
-        break;
-    }
-
-    if (! $file->isFile() || $file->getExtension() !== 'twig') {
+foreach ($mdIterator as $file) {
+    if (! $file->isFile() || $file->getExtension() !== 'md') {
         continue;
     }
 
-    $path     = $file->getPathname();
-    $slug     = preg_replace('/\.html\.twig$/', '', $file->getFilename());
-    $contents = file_get_contents($path);
+    $contents = file_get_contents($file->getPathname());
     if ($contents === false) {
         continue;
     }
 
-    preg_match_all($pattern, $contents, $matches);
-    $filenames = array_unique($matches[1] ?? []);
+    $filenames = extractArticleImageFilenames($contents);
     if ($filenames === []) {
         continue;
     }
 
-    $post = $postRepository->findOneBy(['slug' => $slug]);
-    if ($post === null) {
-        printf("No Post found for slug '%s' (%s), skipping%s", $slug, $path, PHP_EOL);
-        continue;
-    }
-
-    $filesProcessed++;
-
-    $targetDir = $articleDir . '/' . $post->getId()->toString();
-    if (! is_dir($targetDir)) {
-        if (! mkdir($targetDir, 0775, true) && ! is_dir($targetDir)) {
-            fwrite(STDERR, sprintf("Failed to create directory '%s'%s", $targetDir, PHP_EOL));
-            continue;
-        }
-        $dirsCreated++;
-    }
+    $mdFilesProcessed++;
 
     foreach ($filenames as $filename) {
-        $targetPath = $targetDir . '/' . $filename;
+        $targetPath = $articleDir . '/' . $filename;
         if (file_exists($targetPath)) {
             continue;
         }
 
         if (! isset($sourceIndex[$filename])) {
-            printf("Source image '%s' not found for %s%s", $filename, $path, PHP_EOL);
+            printf("Source image '%s' not found for %s%s", $filename, $file->getPathname(), PHP_EOL);
             $imagesMissing++;
             continue;
         }
@@ -159,139 +109,12 @@ foreach ($templateIterator as $file) {
     }
 }
 
-$mdArticlesDir = 'public/md-articles';
-
-$mdFilesProcessed = 0;
-$uuidsFixed       = 0;
-$mdDirsCreated    = 0;
-$mdImagesCopied   = 0;
-$mdImagesMissing  = 0;
-
-if (is_dir($mdArticlesDir)) {
-    $mdIterator = new RecursiveIteratorIterator(
-        new RecursiveDirectoryIterator($mdArticlesDir, FilesystemIterator::SKIP_DOTS)
-    );
-
-    foreach ($mdIterator as $file) {
-        if (! $file->isFile() || $file->getExtension() !== 'md') {
-            continue;
-        }
-
-        $path = $file->getPathname();
-        $relative = ltrim(substr($path, strlen($mdArticlesDir)), '/');
-        if (substr_count($relative, '/') !== 1) {
-            continue;
-        }
-
-        $slug     = preg_replace('/\.md$/', '', $file->getFilename());
-        $contents = file_get_contents($path);
-        if ($contents === false) {
-            continue;
-        }
-
-        $refs = extractArticleImageRefs($contents);
-        if ($refs === []) {
-            continue;
-        }
-
-        $post = $postRepository->findOneBy(['slug' => $slug]);
-        if ($post === null) {
-            printf("No Post found for slug '%s' (%s), skipping%s", $slug, $path, PHP_EOL);
-            continue;
-        }
-
-        $mdFilesProcessed++;
-
-        $realUuid   = $post->getId()->toString();
-        $staleUuids = [];
-
-        foreach ($refs as $ref) {
-            $refUuid  = $ref['uuid'];
-            $filename = $ref['filename'];
-
-            if ($refUuid !== $realUuid) {
-                $staleUuids[$refUuid] = true;
-            }
-
-            $targetDir  = $articleDir . '/' . $realUuid;
-            $targetPath = $targetDir . '/' . $filename;
-
-            if (file_exists($targetPath)) {
-                continue;
-            }
-
-            if (! is_dir($targetDir)) {
-                if (! mkdir($targetDir, 0775, true) && ! is_dir($targetDir)) {
-                    fwrite(STDERR, sprintf("Failed to create directory '%s'%s", $targetDir, PHP_EOL));
-                    continue;
-                }
-                $mdDirsCreated++;
-            }
-
-            $sourcePath = null;
-            if ($refUuid !== $realUuid) {
-                $stalePath = $articleDir . '/' . $refUuid . '/' . $filename;
-                if (file_exists($stalePath)) {
-                    $sourcePath = $stalePath;
-                }
-            }
-
-            if ($sourcePath === null && isset($sourceIndex[$filename])) {
-                $sourcePath = $sourceIndex[$filename];
-            }
-
-            if ($sourcePath === null) {
-                printf("Source image '%s' not found for %s%s", $filename, $path, PHP_EOL);
-                $mdImagesMissing++;
-                continue;
-            }
-
-            if (! copy($sourcePath, $targetPath)) {
-                fwrite(STDERR, sprintf("Failed to copy '%s' to '%s'%s", $sourcePath, $targetPath, PHP_EOL));
-                continue;
-            }
-
-            $mdImagesCopied++;
-        }
-
-        if ($staleUuids !== []) {
-            $updated = $contents;
-            foreach (array_keys($staleUuids) as $staleUuid) {
-                $updated = str_replace($staleUuid, $realUuid, $updated);
-            }
-
-            if ($updated !== $contents) {
-                if (file_put_contents($path, $updated) === false) {
-                    fwrite(STDERR, sprintf("Failed to update '%s'%s", $path, PHP_EOL));
-                } else {
-                    $uuidsFixed++;
-                    printf("Corrected UUID in '%s'%s", $path, PHP_EOL);
-                }
-            }
-        }
-    }
-}
-
 printf(
-    "Done. %d twig template%s processed, %d director%s created, %d image%s copied, %d missing.%s"
-    . " %d markdown file%s processed, %d UUID%s corrected, %d director%s created,"
-    . " %d image%s copied, %d missing.%s",
-    $filesProcessed,
-    $filesProcessed === 1 ? '' : 's',
-    $dirsCreated,
-    $dirsCreated === 1 ? 'y' : 'ies',
+    "Done. %d markdown file%s processed, %d image%s copied, %d missing.%s",
+    $mdFilesProcessed,
+    $mdFilesProcessed === 1 ? '' : 's',
     $imagesCopied,
     $imagesCopied === 1 ? '' : 's',
     $imagesMissing,
-    PHP_EOL,
-    $mdFilesProcessed,
-    $mdFilesProcessed === 1 ? '' : 's',
-    $uuidsFixed,
-    $uuidsFixed === 1 ? '' : 's',
-    $mdDirsCreated,
-    $mdDirsCreated === 1 ? 'y' : 'ies',
-    $mdImagesCopied,
-    $mdImagesCopied === 1 ? '' : 's',
-    $mdImagesMissing,
     PHP_EOL
 );

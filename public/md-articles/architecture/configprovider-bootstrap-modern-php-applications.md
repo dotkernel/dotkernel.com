@@ -81,7 +81,7 @@ The ConfigProvider is automatically picked up by the framework during applicatio
 
 Below you can see how Mezzio and Dotkernel merge and use ConfigProviders to build the middleware pipeline and dependencies.
 
-![](/uploads/article/019f8a80-cc92-7277-92c8-c0e68d81615f/ConfigProvider2.png)
+![](/uploads/article/ConfigProvider2.png)
 
 ## Benefits
 

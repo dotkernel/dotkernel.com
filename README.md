@@ -51,9 +51,7 @@ After changing `post_status`, follow the same steps: re-run `bin/doctrine-fixtur
 
 Copy an existing set of these three files in the same category as a starting point, to match the established structure (FAQ block matching the `FAQPage` entries, etc.).
 
-If the article body uses images (via `asset('uploads/article/' ~ article.id ~ '/filename.png')` in the `.html.twig`), just drop the image file anywhere under `public/uploads` - `bin/create-uploads-dir` (step 4) finds it by filename and copies it to the right place. No manual path/folder creation needed.
-
-Markdown articles reference images with a literal path instead, e.g. `![](/uploads/article/{post-id}/filename.png)` - `{post-id}` there is just a placeholder for whatever UUID the `Post` has when you write the file. `bin/create-uploads-dir` also scans `.md` files: it resolves the real `Post` by slug and, if the UUID hardcoded in the file doesn't match the post's actual current UUID (which happens whenever fixtures assign it a new one, e.g. in a fresh environment), rewrites the file to the real UUID and copies the image into the correct directory.
+If the article body uses images (via `asset('uploads/article/filename.png')` in the `.html.twig`, or `![](/uploads/article/filename.png)` in the `.md`), just drop the image file anywhere under `public/uploads` - `bin/create-uploads-dir` (step 4) finds it by filename and copies it into the flat `public/uploads/article/` directory if it isn't already there. No per-article subfolder or post ID/UUID involved - every article image lives directly under `public/uploads/article/filename.png`, so the same literal path works across environments without drifting.
 
 ## 3. At deploy - run in this order
 
@@ -62,8 +60,8 @@ php bin/doctrine-fixtures
 php bin/create-uploads-dir
 ```
 
-- `bin/doctrine-fixtures` loads `articles_cleaned.json` into the database, creating the `Post` entity (with its database-generated UUID) for the new article.
-- `bin/create-uploads-dir` must run *after* it - it resolves the post by slug to get that UUID, creates `public/uploads/article/{post-id}/`, and copies each image referenced in the `.html.twig` there from wherever it already lives under `public/uploads`. It does the same for `.md` files, additionally correcting the UUID hardcoded in the file if it no longer matches the post's real one.
+- `bin/doctrine-fixtures` loads `articles_cleaned.json` into the database, creating the `Post` entity for the new article.
+- `bin/create-uploads-dir` scans every `.md` file under `public/md-articles/` for `/uploads/article/filename.ext` references and, for any that aren't already present in `public/uploads/article/`, copies the file there from wherever it already lives under `public/uploads` (matched by filename). It doesn't touch the database.
 
 ## 4. Regenerate the public artifacts - any order
 
@@ -93,7 +91,7 @@ Steps to edit an existing article (change its status, text, or both) and get the
    - `public/md-articles/{category-slug}/{article-slug}.md`
    - `src/Blog/templates/page/blog-resource/{category-slug}/{article-slug}.html.twig`
    - `src/Blog/templates/page/JSON-LD/{category-slug}/{article-slug}.jsonld.twig` (only if it has hardcoded text outside of `article.*`/`meta.*` variables — most of its fields pull straight from the database and update automatically)
-3. **Re-run the same commands as step 3 and step 4 above** (`bin/doctrine-fixtures`, then `bin/generate-feed` / `bin/sitemap` / `bin/generate-llms-full`) so the database and the generated artifacts reflect the change. `bin/create-uploads-dir` only needs to run again if you added a new image - it's also safe (and cheap) to run any time you suspect a `.md` file's hardcoded UUID has drifted from the post's real one.
+3. **Re-run the same commands as step 3 and step 4 above** (`bin/doctrine-fixtures`, then `bin/generate-feed` / `bin/sitemap` / `bin/generate-llms-full`) so the database and the generated artifacts reflect the change. `bin/create-uploads-dir` only needs to run again if you added a new image.
 
 ## How to move an article to a different category
 
