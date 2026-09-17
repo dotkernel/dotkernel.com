@@ -42,7 +42,9 @@ class CategoryRepository extends AbstractRepository
             ->from(Category::class, 'categories');
 
         $qb->where($qb->expr()->in('categories.id', $publishedCategoryIds->getDQL()))
-            ->setParameter('published', PostStatusEnum::Published);
+            ->andWhere('categories.isVisible = :visible')
+            ->setParameter('published', PostStatusEnum::Published)
+            ->setParameter('visible', true);
 
         return $qb->getQuery()->getResult();
     }
