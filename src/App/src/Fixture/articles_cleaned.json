@@ -3102,7 +3102,7 @@
             {
                 "post_title": "AI-Native Coding Pods: The Promise, Risks, and How to Make Them Work",
                 "post_date": "2026-09-09 12:00:00",
-                "post_status": "publish",
+                "post_status": "published",
                 "author": {
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
@@ -3111,6 +3111,20 @@
                 "opengraph_img": "/opengraph/article/twitter-card-ai-native-coding-pods.png",
                 "excerpt": "What an AI-native coding pod is, the benefits and risks it introduces to a software team, and concrete mitigations covering code quality, review capacity, architecture, security, and human accountability.",
                 "tl_dr": "An AI-native coding pod is a small engineering team - often just two or three people - that builds AI coding agents into every stage of the development lifecycle, letting a small group deliver at the scale of a much larger traditional team. That leverage cuts both ways: it can produce inconsistent code quality, a code-review bottleneck, propagated architectural mistakes, weaker engineering fundamentals, and concentration risk in a small team, so it needs deliberate quality gates, risk-based review, architectural checkpoints, and explicit human accountability to pay off safely.",
+                "tags": []
+            },
+            {
+                "post_title": "Dotkernel vs Lumen vs Slim: Which Is Better for a Lightweight API Microservice?",
+                "post_date": "2026-09-17 12:00:00",
+                "post_status": "published",
+                "author": {
+                    "display_name": "Florin Bidirean",
+                    "github": "bidi47"
+                },
+                "isObsolete": false,
+                "opengraph_img": "/opengraph/article/twitter-card-dotkernel-vs-lumen-vs-slim.png",
+                "excerpt": "Choosing a lightweight PHP framework for a microservice is less about which option is smallest and more about which complexity you want to own. This article compares Dotkernel API, Slim 4, and Lumen, looking at various features and tradeoffs.",
+                "tl_dr": "Dotkernel API, Slim 4, and Lumen take very different approaches to building lightweight PHP microservices. Explore how they compare in terms of simplicity, authentication, authorization, database support, operational tooling, dependency management, and long-term maintainability—and understand why the right choice depends on whether you need a genuinely minimal service or an authenticated API designed to evolve over time.",
                 "tags": []
             }
         ]
