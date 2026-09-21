@@ -59,8 +59,8 @@ php bin/doctrine-fixtures
 php bin/create-uploads-dir
 ```
 
-- `bin/doctrine-fixtures` loads `articles_cleaned.json` into the database, creating the `Post` entity (with its database-generated UUID) for the new article.
-- `bin/create-uploads-dir` must run *after* it - it resolves the post by slug to get that UUID, creates `public/uploads/article/{post-id}/`, and copies each image referenced in the `.html.twig` there from wherever it already lives under `public/uploads`.
+- `bin/doctrine-fixtures` loads `articles_cleaned.json` into the database, creating the `Post` entity for the new article.
+- `bin/create-uploads-dir` scans every `.md` file under `public/md-articles/` for `/uploads/article/filename.ext` references and, for any that aren't already present in `public/uploads/article/`, copies the file there from wherever it already lives under `public/uploads` (matched by filename). It doesn't touch the database.
 
 `bin/doctrine-fixtures` isn't only for new articles - it matches existing posts by slug, so re-running it after editing any field on an existing entry (`post_title`, `excerpt`, `post_status`, etc.) updates that same `Post` row instead of creating a duplicate.
 

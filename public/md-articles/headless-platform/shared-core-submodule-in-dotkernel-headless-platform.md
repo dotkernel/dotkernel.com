@@ -83,7 +83,7 @@ Once the shared Core submodule is separated and imported into each application, 
 - Admin + Core
 - Queue + Core
 
-![](/uploads/article/019f8a80-cc95-70fa-bdb7-28854eb6d673/core-queue2.png)
+![](/uploads/article/core-queue2.png)
 
 > Each box in the image is a different Git repository.
 
@@ -113,7 +113,7 @@ This design pattern ensures:
 As your platform expands, each new application connects to the Dotkernel Headless Platform via the central API which services everything the other applications require.
 This ensures consistency throughout your platform, while allowing any number of outside connections as requirements arise.
 
-![](/uploads/article/019f8a80-cc95-70fa-bdb7-28854eb6d673/api-comms4-2.png)
+![](/uploads/article/api-comms4-2.png)
 
 ## FAQ
 

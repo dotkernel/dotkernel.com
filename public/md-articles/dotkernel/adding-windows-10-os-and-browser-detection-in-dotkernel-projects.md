@@ -16,7 +16,7 @@ This article is the upgrade guide for applying that icon patch.
 
 ## Upgrade steps
 
-![Icons Patch](/uploads/article/019f8a80-cc47-710e-9ef1-b2257262e376/icons.png)
+![Icons Patch](/uploads/article/icons.png)
 *The new Icons listed in User and Admin Logins*
 
 1. Make sure your project is running version **1.5.0** or **newer**.

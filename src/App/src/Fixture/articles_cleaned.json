@@ -3102,7 +3102,7 @@
             {
                 "post_title": "AI-Native Coding Pods: The Promise, Risks, and How to Make Them Work",
                 "post_date": "2026-09-09 12:00:00",
-                "post_status": "published",
+                "post_status": "draft",
                 "author": {
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"
@@ -3116,7 +3116,7 @@
             {
                 "post_title": "Dotkernel vs Lumen vs Slim: Which Is Better for a Lightweight API Microservice?",
                 "post_date": "2026-09-17 12:00:00",
-                "post_status": "published",
+                "post_status": "draft",
                 "author": {
                     "display_name": "Florin Bidirean",
                     "github": "bidi47"

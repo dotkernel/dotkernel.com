@@ -19,7 +19,7 @@ Using both together, sharing a common Core module, gives consistent entities and
 
 The Dotkernel Headless Platform contains two major components:
 
-- [Dotkernel API](https://www.dotkernel.org) - a REST API based on the [Mezzio skeleton](https://github.com/mezzio/mezzio-skeleton).
+- [Dotkernel API](https://www.dotkernel.com/api/) - a REST API based on the [Mezzio skeleton](https://github.com/mezzio/mezzio-skeleton).
 - [Dotkernel Admin](https://github.com/dotkernel/admin) - a complementary component aimed at quickly setting up a backend for your platform.
 
 The Admin is not bundled by default but is available as a first-party, installable application designed to work seamlessly alongside your API.
@@ -55,7 +55,7 @@ Using both API and Admin together brings several benefits:
 The file structure can be configured to use a **Core** module - a common code repository shared between API and Admin, ensuring entities and queries stay consistent.
 Entities (products, articles, etc.) are the building blocks of the application, and queries handle CRUD interactions with them.
 
-![](/uploads/article/019f8a80-cc94-7123-80d3-9c21a30c19ea/Core2.png)
+![](/uploads/article/Core2.png)
 
 ### Implement only the handlers you need
 
@@ -68,9 +68,9 @@ API and Admin share a file structure, so becoming familiar with one makes the ot
 This means onboarding is easy and the applications can be maintained by fewer developers - potentially a single developer, at least initially.
 By contrast, an API+Angular approach often needs two developers working together to implement a new feature.
 
-![](/uploads/article/019f8a80-cc94-7123-80d3-9c21a30c19ea/files-api.jpg)
+![](/uploads/article/files-api.jpg)
 
-![](/uploads/article/019f8a80-cc94-7123-80d3-9c21a30c19ea/files-admin-1.jpg)
+![](/uploads/article/files-admin-1.jpg)
 
 ### Can satisfy any application size
 
@@ -85,7 +85,7 @@ The Dotkernel architecture aims to support several architectural designs:
 - **Domain-Driven Design (DDD)** - the focus is on custom solutions for business logic; rather than building reusable services for a Service Oriented Architecture (SOA), only the specific components needed to satisfy requirements are implemented.
 - **Hexagonal Architecture** - divides a system into several loosely-coupled, interchangeable components (application core, database, user interface, test scripts, interfaces with other systems), as an alternative to traditional layered architecture.
 
-![](/uploads/article/019f8a80-cc94-7123-80d3-9c21a30c19ea/Flow2.png)
+![](/uploads/article/Flow2.png)
 
 ### Supported by an active community
 

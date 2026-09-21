@@ -62,7 +62,7 @@ For **above** Proprieties , apply **only** to project folder, **NOT** recursive
 2. Select **All resources**.
 3. Check the **Use filtration by the resource name** and add **Mask:** *.php.
 
-[![svn-add](/uploads/article/019f8a80-cc87-71b3-80b8-478826d88044/svn-add.jpg)](/uploads/2013/02/svn-add.jpg)
+[![svn-add](/uploads/article/svn-add.jpg)](/uploads/2013/02/svn-add.jpg)
 
 ## FAQ
 
