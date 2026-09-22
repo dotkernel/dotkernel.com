@@ -24,7 +24,7 @@ A fast, reliable way to manage the records in your database with a simple table-
 
 ## Request lifecycle
 
-Session (`dot-session`) -> Router (`dot-router`) -> Authentication (`laminas-authentication`) -> RBAC guard (`dot-rbac-guard`) -> Your handler (PSR-15) -> Response (Twig template).
+Session (`dot-session`) -> Route matching (`mezzio-fastroute`) -> Guard check (`dot-rbac-guard`'s `AuthMiddleware`, redirects to login if unauthenticated) -> Your handler (PSR-15, where credential authentication via `laminas-authentication` actually happens on login) -> Response (Twig template).
 
 ## The back office, not a framework to learn
 
@@ -208,7 +208,7 @@ If the fixtures ran, sign in with user `admin` and password `dotadmin` - the sam
 | Component | Requirement |
 | --- | --- |
 | Operating system | A \*nix based system is strongly recommended for production. |
-| PHP | 8.2 or newer, mod_php or FCGI (FPM). `memory_limit` at least 128M; `upload_max_filesize` and `post_max_size` at least 100M depending on your data. |
+| PHP | 8.3 or newer, mod_php or FCGI (FPM). `memory_limit` at least 128M; `upload_max_filesize` and `post_max_size` at least 100M depending on your data. |
 | Web server | Apache 2.2+ with `mod_rewrite` and `.htaccess` support (`AllowOverride All`) - a default `.htaccess` ships in `public/`. On Nginx, translate it into server configuration. |
 | Database | MariaDB 10.7, 10.11 LTS, 11.4 LTS and 11.8 LTS, or PostgreSQL 13 and above. **MySQL is not supported**, as it has no UUID support. |
 | Required extensions | `mbstring`, the CLI SAPI for cron jobs, and Composer available on `$PATH`. |

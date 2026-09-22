@@ -204,7 +204,7 @@ valkey-cli ping
 Clone the queue branch, then copy each `.dist` configuration file into place - local, log, messenger and swoole - and fill them in.
 
 ```shell
-git clone -b default-queue https://github.com/dotkernel/queue.git
+git clone https://github.com/dotkernel/queue.git
 composer install --no-dev
 ```
 
