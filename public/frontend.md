@@ -12,7 +12,7 @@ Web starter . Server-rendered
 A web starter skeleton on the Mezzio microframework and Laminas components, for the applications people log into.
 User accounts, a working contact form and a content page ship as proof of concept - real, running features whose only job is to show you where your own code goes.
 
-- [Read the docs](https://docs.dotkernel.org/frontend/)
+- [Read the docs](https://docs.dotkernel.org/frontend-documentation/)
 - [View on GitHub](https://github.com/dotkernel/frontend)
 - [Live demo](https://v5.dotkernel.net/)
 
@@ -24,7 +24,7 @@ User accounts, a working contact form and a content page ship as proof of concep
 
 ## Request lifecycle
 
-Session (`dot-session`) -> Router (FastRoute) -> Authentication (User identity) -> RBAC guard (route + action) -> Controller action (`dot-controller`) -> Response (Twig + flash).
+Error handler (`dot-errorhandler`) -> Session (`dot-session`) -> CORS (`mezzio-cors`) -> Router (FastRoute) -> Response headers (`dot-response-header`) -> Remember me + Authentication (User identity) -> RBAC guard (route + action) -> Navigation (`dot-navigation`) -> Controller action (`dot-controller`) -> Response (Twig + flash).
 
 ## The web application half of the stack
 
@@ -36,7 +36,7 @@ They exist to showcase the file architecture and to be copied.
 
 Extending the power of Mezzio by Laminas.
 
-- User accounts, from register to unregister
+- User accounts, from registration to account deletion
 - Action controllers, not request handlers
 - CSRF and reCAPTCHA on public forms
 - GDPR anonymization out of the box
@@ -49,8 +49,8 @@ These are the parts you would otherwise spend your first two weeks assembling, a
 
 The whole account lifecycle, already routed.
 
-Login, registration and account management, including avatar upload, password change and unregistering.
-Password reset and account activation emails are part of the flow, which is why the skeleton stores a name and an email address and nothing more.
+Login, registration and account management, including activation, password reset, avatar upload, profile details, password change and account deletion.
+Password reset and account activation emails are part of the flow, which is why the only personal details on a user profile are a name and an email address.
 
 ### Guards per action - Security . Access control
 
@@ -70,8 +70,8 @@ Tokens expire after a configurable timeout - one hour by default - and are never
 
 A public form that does not become a spam relay.
 
-The contact form uses Google reCAPTCHA, with the site and secret keys read from local configuration and the message recipients - `to` and any number of `cc` addresses - configured alongside them.
-Whitelist `localhost` while developing, and take it out again for production.
+The contact form uses score-based Google reCAPTCHA, with the site key, secret key and score threshold read from local configuration, and the message recipients - `to`, `cc` and `bcc` addresses - configured alongside them.
+The contact page will not render until the keys are set; whitelist `localhost` while developing, and take it out again for production.
 
 ### Flash messages - UX . Feedback
 
@@ -96,9 +96,9 @@ Migrations live in `data/doctrine/migrations`; `bin/doctrine fixtures:execute` s
 
 ### Headers & CORS - Delivery . HTTP
 
-Response headers declared per route.
+Response headers declared globally or per route.
 
-`dot-response-header` sets custom headers per route from `response-header.global.php`, while `mezzio-cors` handles origins, headers and cookies from `cors.global.php`.
+`dot-response-header` sets custom headers for all routes or for individual routes from `response-header.global.php`, while `mezzio-cors` handles origins, headers and cookies from `cors.global.php`.
 
 ### Menus, templates, i18n - Content . Presentation
 
@@ -113,16 +113,17 @@ The `Plugin` module carries dynamic forms and templates.
 Under the GDPR, a company recording personal data from EU citizens must delete it on request - or anonymize it, which the European Commission accepts as an alternative.
 Frontend implements the second option, because deleting a user row is rarely what your foreign keys want.
 
-The skeleton stores only what it needs to run those flows: first name, last name and the email address used as the identity, for password reset and account activation.
-Anonymizing replaces exactly those.
+On the user profile, the skeleton stores only what it needs to run those flows: first name, last name and the email address used as the identity, for password reset and account activation.
+Anonymizing replaces exactly those; contact form messages and remember-me records are kept as they are.
 
 - [Anonymization reference](https://docs.dotkernel.org/frontend-documentation/v5/reference/account-anonymization/)
 
 ### What anonymization changes
 
-- First and last name become `anonymous` plus the current UNIX timestamp - for example `anonymous1725980747`.
-- The email becomes the same value plus whatever you set in `userAnonymizeAppend` - `anonymous1725980747@example.com`.
-- The avatar image and its database record are deleted.
+- First and last name become `anonymous` plus the current date and time in `dmYHis` format - for example `anonymous23092026155300`.
+- The email becomes the same value plus whatever you set in `userAnonymizeAppend` - `anonymous23092026155300@example.com`.
+- The account status is set to `deleted`; the row itself is kept.
+- On account deletion, the avatar image and its database record are deleted.
 
 Point `userAnonymizeAppend` at a domain you control and it doubles as a catch-all address, if your mail provider supports one.
 Leave it empty and the local part stands alone.
@@ -153,7 +154,7 @@ Plugin functionality for dynamic forms and templates.
 
 ### Module contents
 
-`Controller`, `Entity`, `Repository` and `Service` folders, plus `InputFilter`, `EventListener`, `Helper`, `Command` or `Factory` as needed.
+`Controller`, `Entity`, `Repository` and `Service` folders, plus `Form`, `Fieldset`, `InputFilter`, `EventListener`, `Factory`, `Middleware` or `Enum` as needed.
 
 ## From clone to welcome page
 
@@ -187,7 +188,7 @@ composer development-enable
 
 ### 4 . Prepare the config files
 
-Copy the `.dist` files into place - `local.php`, `development.local.php`, `mail.local.php`, `debugbar.local.php` - then fill in the database, SMTP and reCAPTCHA details.
+`composer install` has already created `local.php` and `mail.global.php`, and development mode created `development.local.php`; fill in the database and reCAPTCHA details in `local.php`, and copy `mail.global.php` to `mail.local.php` for the sender and SMTP details, so credentials stay out of git.
 
 ### 5 . Migrate and seed
 
@@ -214,11 +215,11 @@ Duplicating `local.test.php.dist` gives your tests an in-memory database.
 | Component | Requirement |
 | --- | --- |
 | Operating system | A \*nix based system is strongly recommended for production. |
-| PHP | 8.2 or newer, mod_php or FCGI (FPM). `memory_limit` at least 128M; `upload_max_filesize` and `post_max_size` at least 100M depending on your data. |
+| PHP | 8.2 or 8.3, mod_php or FCGI (FPM). `memory_limit` at least 128M; `upload_max_filesize` and `post_max_size` at least 100M depending on your data. |
 | Web server | Apache 2.2+ with `mod_rewrite` and `.htaccess` support (`AllowOverride All`); a default `.htaccess` ships in `public/`. On Nginx, translate it into server configuration. |
 | Database | Tested with MariaDB 10.11 LTS and 11.4 LTS, and with MySQL 8.4 LTS. For MySQL 8.4, `my.cnf` needs `mysql_native_password=ON`. |
-| Required extensions | `mbstring`, the CLI SAPI for cron jobs, and Composer on `$PATH`. |
-| Recommended extensions | `opcache`; `pdo_mysql` or `mysqli`; `dom` and `simplexml` for markup; `gd` and `exif` for images; `zlib`, `zip`, `bz2` for compression; `curl` when calling APIs; `sqlite3` for the test suite. |
+| Required extensions | `curl`, `gettext`, `intl`, `json`, `mbstring`, the CLI SAPI for cron jobs, and Composer on `$PATH`. |
+| Recommended extensions | `opcache`; `pdo_mysql` for MySQL or MariaDB; `dom` and `simplexml` for markup; `gd` and `exif` for images; `zlib`, `zip`, `bz2` for compression; `sqlite3` for the test suite. |
 
 Note that Frontend still supports MySQL - unlike API and Admin v7, which require native UUID support and therefore PostgreSQL or MariaDB 10.7+.
 
