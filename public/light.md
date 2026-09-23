@@ -134,7 +134,7 @@ One command while you work, one before you ship.
 
 Vite concatenates and compresses CSS and JavaScript, preprocesses SCSS, and copies fonts and images - avoiding the network bottleneck of many separate files.
 `npm run watch` recompiles on change; `npm run build` compiles once.
-Node.js v20 is the minimum supported version.
+Node.js `^20.19.0` or `>=22.12.0` is required.
 
 ### assets -> public - Build . Source of truth
 
@@ -174,56 +174,43 @@ Development mode adds the error handlers you want locally and nowhere else.
 ## Running in minutes, honestly
 
 No database to create, no fixtures to seed.
-Clone, install, set a URL, open it.
+Create the project, set a URL, open it.
 
-### 1 . Clone into an empty folder
+### 1 . Create the project
 
-Git refuses a directory that is not empty, and you need write permissions on it.
-
-```shell
-git clone https://github.com/dotkernel/light.git .
-```
-
-### 2 . Install dependencies
-
-Run it from the CLI so the prompts stay interactive.
-Decline the config provider injection - Light already includes its own.
+One Composer command creates the directory, installs dependencies, and enables development mode for you.
 
 ```shell
-composer install
+composer create-project dotkernel/light dk
+cd dk
 ```
 
-### 3 . Enable development mode
+Decline the config provider injection when prompted - Light already includes its own.
 
-Local work only.
-`composer development-status` reports where you stand.
-
-```shell
-composer development-enable
-```
-
-### 4 . Set the base URL
+### 2 . Set the base URL
 
 Point `$baseUrl` in `config/autoload/local.php` at your virtual host.
 
-### 5 . Fix the writable folders
+### 3 . Fix the writable folders
 
 The two directories the application writes to.
-Most first-run errors are this and nothing else.
+Most first-run errors are this and nothing else. Give the web server group write access instead of opening the folders to everyone:
 
 ```shell
-chmod -R 777 ./data ./log
+sudo chown -R "$USER":www-data data log
+sudo chmod -R 775 data log
 ```
 
-### 6 . Open it in a browser
+### 4 . Open it in a browser
 
 The Dotkernel Light welcome page is waiting.
 Errors about missing services usually mean a stale config cache.
 
 ```shell
-php ./bin/clear-config-cache.php
+composer clear-config-cache
 ```
 
+Do not run this with `sudo` - that leaves the regenerated `data/cache/config-cache.php` owned by root, which the application can no longer rewrite.
 A cached `data/cache/config-cache.php` is loaded regardless of the `ConfigAggregator::ENABLE_CACHE` setting - which is exactly why clearing it fixes so much.
 On Windows, WSL2 with AlmaLinux is the recommended development environment.
 
@@ -232,7 +219,7 @@ On Windows, WSL2 with AlmaLinux is the recommended development environment.
 | Component | Requirement |
 | --- | --- |
 | Operating system | A \*nix based system is strongly recommended for production. |
-| PHP | 8.2, 8.3 or 8.4, with mod_php or FCGI (FPM). `memory_limit` at least 128M. |
+| PHP | 8.3, 8.4 or 8.5, with mod_php or FCGI (FPM). `memory_limit` at least 128M. |
 | Web server | Apache 2.2+ with `mod_rewrite` and `.htaccess` support (`AllowOverride All`); a default `.htaccess` ships in `public/`. On Nginx, translate it into server configuration. |
 | Database | None. Light has no persistence layer - which is the point. |
 | Required extensions | `mbstring`, plus Composer available on `$PATH`. |

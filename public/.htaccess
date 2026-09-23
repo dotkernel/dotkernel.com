@@ -1,5 +1,8 @@
 RewriteEngine On
 
+# send a hard 404 to wordpress robots 
+RedirectMatch 404 ^/(wp-login\.php|wp-admin|wp-content|wp-includes|xmlrpc\.php)
+
 # Block known spam/probe queries on any URL -> 404
 RewriteCond %{REQUEST_URI} ^/
 RewriteCond %{QUERY_STRING} ^post_type=wfacp_checkout$ [OR]
