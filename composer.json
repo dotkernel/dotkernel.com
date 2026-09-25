@@ -33,6 +33,7 @@
         "doctrine/doctrine-fixtures-bundle": "^4.3",
         "dotkernel/dot-cache": "^4.0",
         "dotkernel/dot-errorhandler": "^5.0.0",
+        "dotkernel/dot-mail": "^5.4",
         "dotkernel/dot-response-header": "^3.6",
         "laminas/laminas-component-installer": "^3.5.0",
         "laminas/laminas-config-aggregator": "^1.17.0",

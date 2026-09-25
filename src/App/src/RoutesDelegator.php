@@ -9,6 +9,7 @@ use Light\App\Handler\GetIndexViewHandler;
 use Light\App\Handler\GetMarkdownArticleHandler;
 use Light\App\Handler\GetPackagesViewHandler;
 use Light\App\Handler\GetSitemapViewHandler;
+use Light\App\Handler\PostContactCreateHandler;
 use Mezzio\Application;
 use Psr\Container\ContainerInterface;
 
@@ -24,6 +25,8 @@ class RoutesDelegator
         $app->get('/feed/', [GetFeedViewHandler::class], 'app::feed');
         $app->get('/sitemap/', [GetSitemapViewHandler::class], 'app::sitemap');
         $app->get('/{categorySlug}/{slug}.md', [GetMarkdownArticleHandler::class], 'app::markdown-article');
+
+        $app->post('/contact/', [PostContactCreateHandler::class], 'app::create-contact');
 
         // Route name kept as `page::…` because `@layout/default.html.twig` links it by name.
         // The matching entry must stay out of `routes.page` in local.php to avoid a duplicate.
