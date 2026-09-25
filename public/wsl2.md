@@ -111,13 +111,16 @@ config:
     - "api.dotkernel.localhost"
 ```
 
+`api.dotkernel.localhost` is only an example - use any name your project needs, such as `laravel.localhost` or `shop.localhost`, as long as it ends in `.localhost` and uses only lowercase letters, numbers and hyphens.
+Add one list item per project.
+
 Then provision it:
 
 ```shell
 ansible-playbook -i hosts create-virtualhost.yml --ask-become-pass
 ```
 
-Files go under `/var/www/api.dotkernel.localhost/html`, with the document root at `html/public`.
+Files go under `/var/www/<your-domain>/html` - for example `/var/www/api.dotkernel.localhost/html` - with the document root at `html/public`.
 `html/public` doesn't exist until you place a project there, so the URL shows an error until then.
 
 ## Common questions
