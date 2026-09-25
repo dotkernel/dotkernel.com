@@ -75,20 +75,30 @@
                 </nav>
             </aside>
 
-            <div class="contact-form-card">
-                <form class="contact-form" data-contact-form>
+            <div class="contact-form-card" id="contact-form">
+                {% set values = contact_values|default({}) %}
+                {% set errors = contact_errors|default({}) %}
+                {% set selected_topic = values.topic|default('') ?: topics[0].id %}
+                <form class="contact-form" method="post" action="{{ path('app::create-contact') }}" data-contact-form>
                     <div class="contact-form-head">
                         <h2>Send a message</h2>
                         <p>Fields marked with an asterisk are required.</p>
                     </div>
 
+                    {% if contact_success|default(false) %}
+                        <p class="contact-alert contact-alert-success" role="status">Thanks - your message is on its way. We'll reply within one working day.</p>
+                    {% endif %}
+                    {% if contact_mail_failed|default(false) %}
+                        <p class="contact-alert contact-alert-error" role="alert">Something went wrong sending your message. Please email us directly at <a href="mailto:{{ contact_email }}">{{ contact_email }}</a> instead.</p>
+                    {% endif %}
+
                     <fieldset class="contact-topics">
                         <legend class="contact-label">What is it about</legend>
-                        <input type="hidden" name="topic" value="{{ topics[0].id }}" data-contact-topic>
+                        <input type="hidden" name="topic" value="{{ selected_topic }}" data-contact-topic>
                         <div class="contact-pills">
                             {% for topic in topics %}
                                 <button type="button" class="contact-pill" data-topic="{{ topic.id }}"
-                                        aria-pressed="{{ loop.first ? 'true' : 'false' }}">{{ topic.label }}</button>
+                                        aria-pressed="{{ topic.id == selected_topic ? 'true' : 'false' }}">{{ topic.label }}</button>
                             {% endfor %}
                         </div>
                     </fieldset>
@@ -96,32 +106,34 @@
                     <div class="contact-fields">
                         <div class="contact-field">
                             <label for="c-name">Name *</label>
-                            <input id="c-name" name="name" class="contact-input" type="text" autocomplete="name" required placeholder="Your full name">
+                            <input id="c-name" name="name" class="contact-input" type="text" autocomplete="name" required placeholder="Your full name" value="{{ values.name|default('') }}">
+                            {% if errors.name is defined %}<p class="contact-error">{{ errors.name }}</p>{% endif %}
                         </div>
                         <div class="contact-field">
                             <label for="c-email">Work email *</label>
-                            <input id="c-email" name="email" class="contact-input" type="email" autocomplete="email" required placeholder="you@company.com">
+                            <input id="c-email" name="email" class="contact-input" type="email" autocomplete="email" required placeholder="you@company.com" value="{{ values.email|default('') }}">
+                            {% if errors.email is defined %}<p class="contact-error">{{ errors.email }}</p>{% endif %}
                         </div>
                         <div class="contact-field">
                             <label for="c-company">Company</label>
-                            <input id="c-company" name="company" class="contact-input" type="text" autocomplete="organization" placeholder="Optional">
+                            <input id="c-company" name="company" class="contact-input" type="text" autocomplete="organization" placeholder="Optional" value="{{ values.company|default('') }}">
                         </div>
                         <div class="contact-field">
                             <label for="c-stack">Current stack</label>
-                            <input id="c-stack" name="stack" class="contact-input" type="text" placeholder="e.g. ZF3, PHP 7.4, MySQL">
+                            <input id="c-stack" name="stack" class="contact-input" type="text" placeholder="e.g. ZF3, PHP 7.4, MySQL" value="{{ values.stack|default('') }}">
                         </div>
                     </div>
 
                     <div class="contact-field">
                         <label for="c-msg">Message *</label>
                         <textarea id="c-msg" name="message" class="contact-input" rows="6" required
-                                  placeholder="What you are building, where it is stuck, and any deadline."></textarea>
+                                  placeholder="What you are building, where it is stuck, and any deadline.">{{ values.message|default('') }}</textarea>
+                        {% if errors.message is defined %}<p class="contact-error">{{ errors.message }}</p>{% endif %}
                     </div>
 
-                    <label class="contact-consent">
-                        <input type="checkbox" name="consent" required>
-                        <span>I agree that Dotkernel stores these details to answer this message, as described in the privacy policy.</span>
-                    </label>
+                    {% for param_name, param_value in query|default({}) %}
+                        <input type="hidden" name="{{ param_name }}" value="{{ param_value }}">
+                    {% endfor %}
 
                     <div class="contact-form-foot">
                         <p>Bug reports and feature requests go to the package's GitHub issues, where the fix is tracked in public.</p>
@@ -131,20 +143,6 @@
                         </button>
                     </div>
                 </form>
-
-                <div class="contact-sent" role="status" data-contact-sent hidden>
-                    <div class="contact-sent-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-                    </div>
-                    <h2 tabindex="-1">Message sent</h2>
-                    <p>
-                        It is filed under <strong data-contact-sent-topic>{{ topics[0].label }}</strong>. A copy is on its way to your inbox,
-                        and the reply comes from an engineer, not a ticket queue.
-                    </p>
-                    <div>
-                        <button type="button" class="btn btn-ghost" data-contact-reset>Send another message</button>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
