@@ -53,7 +53,7 @@
                     real, running features whose only job is to show you where your own code goes.
                 </p>
                 <div class="hero-ctas">
-                    <a class="btn btn-primary" href="https://docs.dotkernel.org/frontend/" target="_blank" rel="noopener">
+                    <a class="btn btn-primary" href="https://docs.dotkernel.org/frontend-documentation/" target="_blank" rel="noopener">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
                         Read the docs
                     </a>
@@ -169,8 +169,8 @@
             </div>
             <div class="traits">
                 <div class="trait">
-                    <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/success-50.svg') }}" alt="User accounts, from register to unregister" loading="lazy">
-                    <p>User accounts, from register to unregister</p>
+                    <img class="icon icon-lg" decoding="async" src="{{ asset('images/app/content/success-50.svg') }}" alt="User accounts, from registration to account deletion" loading="lazy">
+                    <p>User accounts, from registration to account deletion</p>
                 </div>
 
                 <div class="trait">
@@ -208,9 +208,10 @@
                     </div>
                     <p class="lede">The whole account lifecycle, already routed.</p>
                     <p class="desc">
-                        Login, registration and account management, including avatar upload, password change and
-                        unregistering. Password reset and account activation emails are part of the flow, which is why
-                        the skeleton stores a name and an email address and nothing more.
+                        Login, registration and account management, including activation, password reset, avatar upload,
+                        profile details, password change and account deletion. Password reset and account activation
+                        emails are part of the flow, which is why the only personal details on a user profile are a name
+                        and an email address.
                     </p>
                 </div>
 
@@ -246,10 +247,11 @@
                     </div>
                     <p class="lede">A public form that does not become a spam relay.</p>
                     <p class="desc">
-                        The contact form uses Google reCAPTCHA, with the site and secret keys read from local
-                        configuration and the message recipients - <code>to</code> and any number of
-                        <code>cc</code> addresses - configured alongside them. Whitelist <code>localhost</code> while
-                        developing, and take it out again for production.
+                        The contact form uses score-based Google reCAPTCHA, with the site key, secret key and score
+                        threshold read from local configuration, and the message recipients - <code>to</code>,
+                        <code>cc</code> and <code>bcc</code> addresses - configured alongside them. The contact page will
+                        not render until the keys are set; whitelist <code>localhost</code> while developing, and take it
+                        out again for production.
                     </p>
                 </div>
 
@@ -294,9 +296,9 @@
                     <div class="card-top">
                         <div><span class="kicker">Delivery . HTTP</span><h3>Headers &amp; CORS</h3></div>
                     </div>
-                    <p class="lede">Response headers declared per route.</p>
+                    <p class="lede">Response headers declared globally or per route.</p>
                     <p class="desc">
-                        <code>dot-response-header</code> sets custom headers per route from
+                        <code>dot-response-header</code> sets custom headers for all routes or for individual routes from
                         <code>response-header.global.php</code>, while <code>mezzio-cors</code> handles origins, headers
                         and cookies from <code>cors.global.php</code>.
                     </p>
@@ -329,9 +331,10 @@
                     second option, because deleting a user row is rarely what your foreign keys want.
                 </p>
                 <p class="lede">
-                    The skeleton stores only what it needs to run those flows: first name, last name and the email
-                    address used as the identity, for password reset and account activation. Anonymizing replaces
-                    exactly those.
+                    On the user profile, the skeleton stores only what it needs to run those flows: first name, last
+                    name and the email address used as the identity, for password reset and account activation.
+                    Anonymizing replaces exactly those; contact form messages and remember-me records are kept as they
+                    are.
                 </p>
                 <div class="hero-ctas">
                     <a class="btn btn-ghost" href="https://docs.dotkernel.org/frontend-documentation/v5/reference/account-anonymization/" target="_blank" rel="noopener">Anonymization reference</a>
@@ -340,11 +343,12 @@
             <div class="callout">
                 <h4>What anonymization changes</h4>
                 <ul>
-                    <li>First and last name become <code>anonymous</code> plus the current UNIX timestamp - for example
-                        <code>anonymous1725980747</code>.</li>
+                    <li>First and last name become <code>anonymous</code> plus the current date and time in
+                        <code>dmYHis</code> format - for example <code>anonymous23092026155300</code>.</li>
                     <li>The email becomes the same value plus whatever you set in <code>userAnonymizeAppend</code> -
-                        <code>anonymous1725980747@example.com</code>.</li>
-                    <li>The avatar image and its database record are deleted.</li>
+                        <code>anonymous23092026155300@example.com</code>.</li>
+                    <li>The account status is set to <code>deleted</code>; the row itself is kept.</li>
+                    <li>On account deletion, the avatar image and its database record are deleted.</li>
                 </ul>
                 <p>
                     Point <code>userAnonymizeAppend</code> at a domain you control and it doubles as a catch-all
@@ -389,8 +393,9 @@
                 <div class="standard">
                     <h4>Module contents</h4>
                     <p><code>Controller</code>, <code>Entity</code>, <code>Repository</code> and
-                       <code>Service</code> folders, plus <code>InputFilter</code>, <code>EventListener</code>,
-                       <code>Helper</code>, <code>Command</code> or <code>Factory</code> as needed.</p>
+                       <code>Service</code> folders, plus <code>Form</code>, <code>Fieldset</code>,
+                       <code>InputFilter</code>, <code>EventListener</code>, <code>Factory</code>,
+                       <code>Middleware</code> or <code>Enum</code> as needed.</p>
                 </div>
             </div>
         </div>
@@ -423,9 +428,11 @@
                 </div>
                 <div class="standard">
                     <h4>4 . Prepare the config files</h4>
-                    <p>Copy the <code>.dist</code> files into place - <code>local.php</code>,
-                       <code>development.local.php</code>, <code>mail.local.php</code>,
-                       <code>debugbar.local.php</code> - then fill in the database, SMTP and reCAPTCHA details.</p>
+                    <p><code>composer install</code> has already created <code>local.php</code> and
+                       <code>mail.global.php</code>, and development mode created <code>development.local.php</code>;
+                       fill in the database and reCAPTCHA details in <code>local.php</code>, and copy
+                       <code>mail.global.php</code> to <code>mail.local.php</code> for the sender and SMTP details, so
+                       credentials stay out of git.</p>
                 </div>
                 <div class="standard">
                     <h4>5 . Migrate and seed</h4>
@@ -474,7 +481,7 @@
                         </tr>
                         <tr>
                             <th scope="row">PHP</th>
-                            <td>8.2 or newer, mod_php or FCGI (FPM). <code>memory_limit</code> at least 128M;
+                            <td>8.2 or 8.3, mod_php or FCGI (FPM). <code>memory_limit</code> at least 128M;
                                 <code>upload_max_filesize</code> and <code>post_max_size</code> at least 100M depending
                                 on your data.</td>
                         </tr>
@@ -491,16 +498,16 @@
                         </tr>
                         <tr>
                             <th scope="row">Required extensions</th>
-                            <td><code>mbstring</code>, the CLI SAPI for cron jobs, and Composer on
+                            <td><code>curl</code>, <code>gettext</code>, <code>intl</code>, <code>json</code>,
+                                <code>mbstring</code>, the CLI SAPI for cron jobs, and Composer on
                                 <code>$PATH</code>.</td>
                         </tr>
                         <tr>
                             <th scope="row">Recommended extensions</th>
-                            <td><code>opcache</code>; <code>pdo_mysql</code> or <code>mysqli</code>;
+                            <td><code>opcache</code>; <code>pdo_mysql</code> for MySQL or MariaDB;
                                 <code>dom</code> and <code>simplexml</code> for markup; <code>gd</code> and
                                 <code>exif</code> for images; <code>zlib</code>, <code>zip</code>,
-                                <code>bz2</code> for compression; <code>curl</code> when calling APIs;
-                                <code>sqlite3</code> for the test suite.</td>
+                                <code>bz2</code> for compression; <code>sqlite3</code> for the test suite.</td>
                         </tr>
                     </tbody>
                 </table>

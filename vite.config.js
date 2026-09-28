@@ -28,11 +28,14 @@ export default defineConfig({
             input: {
                 main: '/App/assets/js/index.js', // Main JavaScript entry point
                 style: '/App/assets/scss/index.scss', // Main CSS entry point
+                contact: '/App/assets/scss/contact.scss', // Contact page CSS
             },
             output: {
                 manualChunks: undefined,
                 entryFileNames: "js/app.js",
-                assetFileNames: "css/app.css",
+                assetFileNames: (asset) => (asset.names ?? []).includes('contact.css')
+                    ? 'css/contact.css'
+                    : 'css/app.css',
             },
         },
     },

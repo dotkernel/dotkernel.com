@@ -3,81 +3,195 @@
 
 {% block title %}Contact{% endblock %}
 
+{% block stylesheets %}<link href="{{ asset('css/contact.css') }}" rel="stylesheet" />{% endblock %}
+
+{% set topics = [
+    {id: 'migration', label: 'Migration'},
+    {id: 'project', label: 'Project work'},
+    {id: 'oss', label: 'Open source'},
+    {id: 'other', label: 'Something else'},
+] %}
+
+{% set support_links = [
+    {label: 'Support documentation', href: 'https://github.com/dotkernel/.github/blob/main/SUPPORT.md'},
+    {label: 'Security policy', href: 'https://github.com/dotkernel/.github/blob/main/SECURITY.md'},
+    {label: 'Contributing guidelines', href: 'https://github.com/dotkernel/.github/blob/main/CONTRIBUTING.md'},
+    {label: 'Git attributes', href: 'https://github.com/dotkernel/.github/blob/main/GIT_ATTRIBUTES.md'},
+] %}
+
+{% block body_class %}contact-page{% endblock %}
+
 {% block page_title %}
-    {{ include('@partial/title-section.html.twig', {
-        badge: 'Get in touch',
-        title: 'Contact Us',
-    }) }}
+    <section class="contact-hero">
+        <div class="wrap">
+            <span class="eyebrow">Contact . Dotkernel team</span>
+            <h1>Talk to the people who build the platform</h1>
+            <p>
+                Questions about <strong>Dotkernel API, Admin, Queue, Light or Frontend</strong>, or a move from
+                Zend Framework to Mezzio - tell the team what you are working on and an engineer replies.
+            </p>
+        </div>
+    </section>
 {% endblock %}
 
 {% block content %}
-    <div class="wrap post-body-wrap">
-        <div class="post-layout">
-            {{ include('@partial/left-menu.html.twig') }}
+    <section class="contact-main">
+        <div class="wrap contact-layout">
+            <aside class="contact-channels" aria-label="Other ways to reach Dotkernel">
+                <div class="contact-label">Other channels</div>
 
-            <main class="article">
-                <div class="pb-5">
-                    <div class="wrap">
-                        <div class="section-head">
-                            <span class="eyebrow">Community</span>
-                            <h2>Contributing and Support</h2>
-                            <p>Everything you need to get help, report issues, or contribute to the project.</p>
+                <a class="contact-channel" href="https://github.com/orgs/dotkernel/discussions" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 11h7M8.5 14h4"/></svg>
+                    <div class="contact-channel-body">
+                        <div class="contact-channel-kicker">Discussion</div>
+                        <div class="contact-channel-title">GitHub Discussions</div>
+                        <p>Usage questions, ideas and design debates, answered in the open where the next person can find them.</p>
+                    </div>
+                </a>
+
+                <a class="contact-channel" href="https://github.com/dotkernel" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
+                    <div class="contact-channel-body">
+                        <div class="contact-channel-kicker">GitHub</div>
+                        <div class="contact-channel-title">github.com/dotkernel</div>
+                        <p>Issues and pull requests, one repository per package - <code>dot-rbac-guard</code>, <code>dot-mail</code> and the rest.</p>
+                    </div>
+                </a>
+
+                <a class="contact-channel" href="https://docs.dotkernel.org/" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19.5V5a2 2 0 0 1 2-2h14v16H6a2 2 0 0 0-2 2z"/><path d="M8 7h8M8 11h6"/></svg>
+                    <div class="contact-channel-body">
+                        <div class="contact-channel-kicker">Documentation</div>
+                        <div class="contact-channel-title">Read the docs first</div>
+                        <p>Installation, configuration and upgrade guides for every application.</p>
+                    </div>
+                </a>
+
+                <nav class="contact-support" aria-label="Contributing and support">
+                    <div class="contact-label">Contributing and support</div>
+                    {% for link in support_links %}
+                        <a href="{{ link.href }}" target="_blank" rel="noopener">{{ link.label }}<span aria-hidden="true">→</span></a>
+                    {% endfor %}
+                </nav>
+            </aside>
+
+            <div class="contact-form-card">
+                <form class="contact-form" data-contact-form>
+                    <div class="contact-form-head">
+                        <h2>Send a message</h2>
+                        <p>Fields marked with an asterisk are required.</p>
+                    </div>
+
+                    <fieldset class="contact-topics">
+                        <legend class="contact-label">What is it about</legend>
+                        <input type="hidden" name="topic" value="{{ topics[0].id }}" data-contact-topic>
+                        <div class="contact-pills">
+                            {% for topic in topics %}
+                                <button type="button" class="contact-pill" data-topic="{{ topic.id }}"
+                                        aria-pressed="{{ loop.first ? 'true' : 'false' }}">{{ topic.label }}</button>
+                            {% endfor %}
                         </div>
-                        <ul class="feature-list">
-                            <li>
-                                If you need support with the project, read
-                                <a href="https://github.com/dotkernel/.github/blob/main/SUPPORT.md" target="_blank" rel="noopener" style="color:var(--teal);">the support documentation</a>.
-                            </li>
-                            <li>
-                                For open discussions, please use
-                                <a href="https://github.com/orgs/dotkernel/discussions" target="_blank" rel="noopener" style="color:var(--teal);">github discussion</a>.
-                            </li>
-                            <li>
-                                For reporting security issues, please review our
-                                <a href="https://github.com/dotkernel/.github/blob/main/SECURITY.md" target="_blank" rel="noopener" style="color:var(--teal);">security policy</a>.
-                            </li>
-                            <li>
-                                If you wish to contribute to the project, read the
-                                <a href="https://github.com/dotkernel/.github/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener" style="color:var(--teal);">contributing guidelines</a>.
-                            </li>
-                            <li>
-                                Learn about
-                                <a href="https://github.com/dotkernel/.github/blob/main/GIT_ATTRIBUTES.md" target="_blank" rel="noopener" style="color:var(--teal);">git attributes</a>.
-                            </li>
-                        </ul>
+                    </fieldset>
+
+                    <div class="contact-fields">
+                        <div class="contact-field">
+                            <label for="c-name">Name *</label>
+                            <input id="c-name" name="name" class="contact-input" type="text" autocomplete="name" required placeholder="Your full name">
+                        </div>
+                        <div class="contact-field">
+                            <label for="c-email">Work email *</label>
+                            <input id="c-email" name="email" class="contact-input" type="email" autocomplete="email" required placeholder="you@company.com">
+                        </div>
+                        <div class="contact-field">
+                            <label for="c-company">Company</label>
+                            <input id="c-company" name="company" class="contact-input" type="text" autocomplete="organization" placeholder="Optional">
+                        </div>
+                        <div class="contact-field">
+                            <label for="c-stack">Current stack</label>
+                            <input id="c-stack" name="stack" class="contact-input" type="text" placeholder="e.g. ZF3, PHP 7.4, MySQL">
+                        </div>
+                    </div>
+
+                    <div class="contact-field">
+                        <label for="c-msg">Message *</label>
+                        <textarea id="c-msg" name="message" class="contact-input" rows="6" required
+                                  placeholder="What you are building, where it is stuck, and any deadline."></textarea>
+                    </div>
+
+                    <label class="contact-consent">
+                        <input type="checkbox" name="consent" required>
+                        <span>I agree that Dotkernel stores these details to answer this message, as described in the privacy policy.</span>
+                    </label>
+
+                    <div class="contact-form-foot">
+                        <p>Bug reports and feature requests go to the package's GitHub issues, where the fix is tracked in public.</p>
+                        <button type="submit" class="btn btn-primary">
+                            Send message
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                        </button>
+                    </div>
+                </form>
+
+                <div class="contact-sent" role="status" data-contact-sent hidden>
+                    <div class="contact-sent-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                    </div>
+                    <h2 tabindex="-1">Message sent</h2>
+                    <p>
+                        It is filed under <strong data-contact-sent-topic>{{ topics[0].label }}</strong>. A copy is on its way to your inbox,
+                        and the reply comes from an engineer, not a ticket queue.
+                    </p>
+                    <div>
+                        <button type="button" class="btn btn-ghost" data-contact-reset>Send another message</button>
                     </div>
                 </div>
-                <div class="posts-grid">
-                    <a class="post-card" href="https://github.com/dotkernel" target="_blank" rel="noopener noreferrer">
-                        <svg viewBox="0 0 24 24" fill="currentColor"
-                             style="width:20px;height:20px;color:var(--teal);" aria-hidden="true">
-                            <path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.1.83-.27.83-.58v-2.17c-3.34.73-4.04-1.42-4.04-1.42-.55-1.4-1.34-1.77-1.34-1.77-1.08-.75.09-.73.09-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.84 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.53.12-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.65.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .31.22.69.83.57A12 12 0 0 0 12 .5z"/>
-                        </svg>
-                        <h3>GitHub</h3>
-                        <p>Browse our repositories, open issues, or contribute to the Dotkernel ecosystem.</p>
-                        <span class="read-more">Visit GitHub →</span>
-                    </a>
-                    <a class="post-card" href="https://docs.dotkernel.org/" target="_blank" rel="noopener noreferrer">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-                             style="width:20px;height:20px;color:var(--teal);" aria-hidden="true">
-                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
-                        </svg>
-                        <h3>Documentation</h3>
-                        <p>Read the guides, references, and best practices for building with Dotkernel.</p>
-                        <span class="read-more">Read the Docs →</span>
-                    </a>
-                    <a class="post-card" href="https://github.com/orgs/dotkernel/discussions" target="_blank" rel="noopener noreferrer">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-                             style="width:20px;height:20px;color:var(--teal);" aria-hidden="true">
-                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-                        </svg>
-                        <h3>Discussion</h3>
-                        <p>Ask questions, share ideas, and join the conversation with the Dotkernel community.</p>
-                        <span class="read-more">Open Discussions →</span>
-                    </a>
-                </div>
-            </main>
+            </div>
         </div>
-    </div>
+    </section>
+
+    <section class="contact-faq section-bg-light">
+        <div class="wrap contact-faq-layout">
+            <div class="contact-faq-head">
+                <span class="eyebrow">Before you write</span>
+                <h2>Where each question goes</h2>
+                <p>Sending it to the right place the first time gets it answered faster.</p>
+            </div>
+            {% set chevron %}<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>{% endset %}
+            <div class="contact-faq-list">
+                <details class="acc" open>
+                    <summary>I found a bug in a package{{ chevron }}</summary>
+                    <p>
+                        Open an issue on that package's repository. Include the package version, PHP version and the smallest
+                        code that reproduces it - that is what the maintainers work from. The
+                        <a href="https://github.com/dotkernel/.github/blob/main/SUPPORT.md" target="_blank" rel="noopener">support documentation</a>
+                        covers what else to include.
+                    </p>
+                </details>
+                <details class="acc">
+                    <summary>I want to migrate from Zend Framework or Laminas MVC{{ chevron }}</summary>
+                    <p>
+                        Pick Migration in the form above. Say which framework version you run, roughly how many routes and
+                        modules the application has, and whether it has to keep serving traffic while it moves.
+                    </p>
+                </details>
+                <details class="acc">
+                    <summary>I need to report a security vulnerability{{ chevron }}</summary>
+                    <p>
+                        Do not open a public issue. Follow the
+                        <a href="https://github.com/dotkernel/.github/blob/main/SECURITY.md" target="_blank" rel="noopener">security policy</a>
+                        to report it privately, and the details stay private until a fix ships.
+                    </p>
+                </details>
+                <details class="acc">
+                    <summary>I have a usage question{{ chevron }}</summary>
+                    <p>
+                        Check the <a href="https://docs.dotkernel.org/" target="_blank" rel="noopener">documentation</a> for the
+                        application you use. If the answer is not there, ask in
+                        <a href="https://github.com/orgs/dotkernel/discussions" target="_blank" rel="noopener">GitHub Discussions</a>
+                        - and a gap in the docs is worth reporting too.
+                    </p>
+                </details>
+            </div>
+        </div>
+    </section>
 {% endblock %}

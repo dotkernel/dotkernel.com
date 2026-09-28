@@ -201,7 +201,7 @@ valkey-cli ping
 
 ### 4 . Clone and configure
 
-Clone the queue branch, then copy each `.dist` configuration file into place - local, log, messenger and swoole - and fill them in.
+Clone the queue repo, then copy each `.dist` configuration file into place - local, log, messenger and swoole - and fill them in.
 
 ```shell
 git clone https://github.com/dotkernel/queue.git

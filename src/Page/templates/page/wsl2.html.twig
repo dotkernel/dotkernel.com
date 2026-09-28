@@ -4,7 +4,7 @@
 {% set meta = {
     title: 'Development Environment | AlmaLinux 10 on WSL 2',
     description: 'AlmaLinux 10 on WSL 2 for a RHEL-compatible local stack. One Ansible playbook installs PHP, Apache, '
-        ~ 'MariaDB, Composer, Node.js and phpMyAdmin, and provisions a virtualhost for every project you add.',
+        ~ 'MariaDB, Composer, Node.js and phpMyAdmin, and a second provisions a virtualhost for every project you add.',
     openGraphImage: '/opengraph/pages/twitter-card-wsl2.png',
 } %}
 
@@ -24,6 +24,7 @@
         .spec-table td { color: var(--text); }
         .spec-note { margin-top: 14px; font-size: 13.5px; color: var(--text-dim); }
         .step-cmd { display: block; margin-top: 12px; font-family: var(--mono); font-size: 12.5px; color: var(--teal); overflow-x: auto; }
+        pre.step-cmd { margin-bottom: 0; white-space: pre; }
 
         /* Windows/AlmaLinux boundary diagram in the hero - scoped to this page. */
         .ws-flow { display: block; width: 100%; height: auto; margin-top: 6px; }
@@ -48,7 +49,7 @@
         <div class="wrap hero-grid">
             <div>
                 <span class="eyebrow">Development environment . AlmaLinux 10 . WSL2</span>
-                <h1>AlmaLinux development, one playbook away on WSL2</h1>
+                <h1>Development Environment</h1>
                 <p class="sub">
                     Dotkernel's local environment runs <strong>AlmaLinux 10</strong> - inside <strong>WSL 2</strong> on Windows, or on bare
                     metal with no WSL at all. One <strong>Ansible</strong> playbook installs PHP, Apache, MariaDB, Composer, Node.js and
@@ -75,7 +76,7 @@
             <div class="hero-visual">
                 <div class="pipeline">
                     <div class="pipeline-label"><span>Windows host, Linux environment</span></div>
-                    <svg class="ws-flow" viewBox="0 0 400 200" role="img" aria-label="Two panels, Windows on the left with Terminal and IDE boxes, and AlmaLinux 10 on the right listing the components one playbook installs - web server, database, PHP, Node.js, Git and Composer, and Ansible - separated by a WSL 2 boundary">
+                    <svg class="ws-flow" viewBox="0 0 400 200" role="img" aria-label="Two panels, Windows on the left with Terminal and IDE boxes, and AlmaLinux 10 on the right listing the components one playbook installs - web server, database, PHP, Node.js, and Git and Composer - separated by a WSL 2 boundary">
                         <defs>
                             <marker id="ws-arrowhead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
                                 <path d="M0,0 L10,5 L0,10 Z" class="ws-arrow"/>
@@ -113,9 +114,6 @@
 
                         <rect class="ws-comp" x="230" y="142" width="120" height="20" rx="5"/>
                         <text class="ws-comp-label" x="290" y="156">Git &amp; Composer</text>
-
-                        <rect class="ws-comp" x="230" y="166" width="120" height="20" rx="5"/>
-                        <text class="ws-comp-label" x="290" y="180">Ansible</text>
                     </svg>
                 </div>
             </div>
@@ -134,8 +132,9 @@
                     Windows-native rebuild of every tool.
                 </p>
                 <p class="lede">
-                    Everything here also runs the same way without WSL, directly on a bare AlmaLinux 10 host - the
-                    Ansible playbooks do not know or care which one they are provisioning.
+                    Everything from Setup Packages onwards also runs on a bare AlmaLinux 10 host without WSL - the
+                    Ansible playbooks do not know or care which one they are provisioning. Connect over SSH, and use
+                    the server's IP address instead of <code>localhost</code> when you test it.
                 </p>
             </div>
             <div class="traits">
@@ -167,34 +166,50 @@
             <div class="section-head">
                 <span class="eyebrow">Setup</span>
                 <h2>Three steps to a running shell</h2>
-                <p>Each step runs in a different place - Windows Terminal for the first two, the AlmaLinux 10 shell for
-                   the third. The full walkthrough, prompts and all, is in the docs.</p>
+                <p>Steps 1 and 2 run in Windows Terminal and step 3 in the AlmaLinux 10 shell; step 2 ends inside the
+                   new distro with a quick systemd check. The full walkthrough, prompts and all, is in the docs.</p>
             </div>
 
             <div class="standards-grid">
                 <div class="standard">
                     <h4>1 . Terminal &amp; requirements</h4>
-                    <p>Install Windows Terminal, then confirm WSL 2 is enabled - Hyper-V, Virtual Machine Platform and
-                       Windows Subsystem for Linux, all turned on in Windows features.</p>
-                    <code class="step-cmd">wsl -v</code>
+                    <p>On Windows 11, install Windows Terminal, then check for a modern WSL 2 install. If
+                       <code>wsl --version</code> isn't recognized, install WSL 2 with
+                       <code>wsl --install --no-distribution</code> and restart when prompted.</p>
+                    <code class="step-cmd">wsl --version</code>
                 </div>
                 <div class="standard">
                     <h4>2 . Install AlmaLinux 10</h4>
                     <p>Stop any other running distro, then install AlmaLinux 10 and create your Unix username and
                        password when prompted.</p>
                     <code class="step-cmd">wsl --install -d AlmaLinux-10</code>
+                    <p>Before moving on, confirm systemd is active inside AlmaLinux 10 - the playbook needs it. If the
+                       check below prints an error instead of a status, add <code>systemd=true</code> under
+                       <code>[boot]</code> in <code>/etc/wsl.conf</code>, run <code>wsl --shutdown</code> from Windows
+                       Terminal and reopen the distro.</p>
+                    <code class="step-cmd">systemctl is-system-running</code>
                 </div>
                 <div class="standard">
                     <h4>3 . Setup packages</h4>
-                    <p>Clone <code>dotkernel/development</code>, fill in <code>config.yml</code> with your Git identity and MariaDB
-                       root password, and let Ansible provision the rest.</p>
+                    <p>Inside AlmaLinux 10, update the system, add the EPEL and Remi repositories, and install
+                       <code>ansible-core</code> with the <code>community.general</code> and <code>community.mysql</code>
+                       collections. Then clone the <code>alma-linux-10</code> branch of <code>dotkernel/development</code>,
+                       copy <code>wsl/config.yml.dist</code> to <code>config.yml</code>, fill in your Git identity and
+                       MariaDB root password, and run the playbook from <code>development/wsl</code>.</p>
                     <code class="step-cmd">ansible-playbook -i hosts install.yml --ask-become-pass</code>
                 </div>
             </div>
 
             <p class="spec-note">
                 Not using WSL? Skip straight to Setup Packages on a bare AlmaLinux 10 host - the same playbook runs
-                there unchanged.
+                there unchanged; test it with the server's IP address instead of <code>localhost</code>.
+            </p>
+            <p class="spec-note">
+                After setup,
+                <a href="https://docs.dotkernel.org/development/v2/editor-integration/" target="_blank" rel="noopener">Editor Integration</a>
+                connects VS Code or PhpStorm, and
+                <a href="https://docs.dotkernel.org/development/v2/wsl-configuration/" target="_blank" rel="noopener">WSL Configuration</a>
+                covers where to keep projects and how to cap WSL's memory and CPU.
             </p>
         </div>
     </section>
@@ -223,11 +238,11 @@
                         </tr>
                         <tr>
                             <th scope="row">Database</th>
-                            <td>MariaDB 11.4 LTS, plus phpMyAdmin for browsing it.</td>
+                            <td>MariaDB 12.3 from the MariaDB repository, plus phpMyAdmin for browsing it.</td>
                         </tr>
                         <tr>
                             <th scope="row">PHP</th>
-                            <td>8.4 by default via the Remi repository; <code>php81</code> … <code>php85</code> aliases switch
+                            <td>8.5 by default via the Remi repository; <code>php81</code> … <code>php85</code> aliases switch
                                 versions.</td>
                         </tr>
                         <tr>
@@ -236,13 +251,8 @@
                         </tr>
                         <tr>
                             <th scope="row">Git &amp; Composer</th>
-                            <td>Your Git identity from <code>config.yml</code>, and the latest Composer, kept current with
-                                <code>composer self-update</code>.</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Ansible</th>
-                            <td><code>community.general</code> and <code>community.mysql</code> collections - the same tool that just
-                                installed itself.</td>
+                            <td>Your Git identity from <code>config.yml</code>, and the latest Composer at install time; update
+                                it later with <code>composer self-update</code>.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -261,7 +271,9 @@
                     file - any <code>*.localhost</code> domain is routed automatically.
                 </p>
                 <p class="lede">
-                    List the domains you want under <code>config.yml</code>'s <code>virtualhosts</code> key and run the playbook.
+                    List the domains you want under <code>config.yml</code>'s <code>virtualhosts</code> key and run
+                    <code>create-virtualhost.yml</code> - a separate playbook you re-run for every new project, without
+                    repeating <code>install.yml</code>.
                     Existing entries are left untouched, so you keep adding to the same file as your project grows.
                 </p>
                 <div class="hero-ctas">
@@ -270,13 +282,23 @@
             </div>
             <div class="callout">
                 <h4>One playbook, every domain</h4>
-                <p>In <code>development/wsl/config.yml</code>, under <code>virtualhosts</code>:</p>
-                <code class="step-cmd">api.dotkernel.localhost</code>
+                <p>In <code>development/wsl/config.yml</code>, under <code>config.virtualhosts</code>:</p>
+                <pre class="step-cmd">config:
+  virtualhosts:
+    - "api.dotkernel.localhost"</pre>
+                <p>
+                    <code>api.dotkernel.localhost</code> is only an example - use any name your project needs, such as
+                    <code>laravel.localhost</code> or <code>shop.localhost</code>, as long as it ends in
+                    <code>.localhost</code> and uses only lowercase letters, numbers and hyphens. Add one list item per
+                    project.
+                </p>
                 <p>Then provision it:</p>
                 <code class="step-cmd">ansible-playbook -i hosts create-virtualhost.yml --ask-become-pass</code>
                 <p>
-                    Files go under <code>/var/www/api.dotkernel.localhost/html</code>, with the document root at
-                    <code>html/public</code>.
+                    Files go under <code>/var/www/&lt;your-domain&gt;/html</code> - for example
+                    <code>/var/www/api.dotkernel.localhost/html</code> - with the document root at
+                    <code>html/public</code>. <code>html/public</code> doesn't exist until you place a project there,
+                    so the URL shows an error until then.
                 </p>
             </div>
         </div>
@@ -310,18 +332,18 @@
                         <summary>How do I fix permission issues? <span class="chev">+</span></summary>
                         <div class="acc-body">
                             <p>Local development only: <code>chmod -R 777 data</code>, <code>log</code> or
-                               <code>public/uploads</code>, whichever directory the error names.</p>
+                               <code>public/uploads</code>, whichever directory the error names. Don't carry this into
+                               staging or production.</p>
                         </div>
                     </details>
                     <details class="acc">
                         <summary>Where are the error logs? <span class="chev">+</span></summary>
                         <div class="acc-body">
-                            <p>Apache: <code>/var/log/httpd/error_log</code>. PHP-FPM: <code>/var/log/php-fpm/error.log</code> and
-                               <code>www-error.log</code>.</p>
+                            <p>Apache: <code>/var/log/httpd/error_log</code>, plus
+                               <code>/var/www/&lt;virtualhost&gt;/log/error.log</code> for each virtualhost. PHP-FPM:
+                               <code>/var/log/php-fpm/error.log</code> and <code>www-error.log</code>.</p>
                         </div>
                     </details>
-                </div>
-                <div>
                     <details class="acc">
                         <summary>How do I update Composer? <span class="chev">+</span></summary>
                         <div class="acc-body">
@@ -336,6 +358,8 @@
                                it like any other command.</p>
                         </div>
                     </details>
+                </div>
+                <div>
                     <details class="acc">
                         <summary>How do I delete a virtualhost? <span class="chev">+</span></summary>
                         <div class="acc-body">
@@ -344,9 +368,34 @@
                         </div>
                     </details>
                     <details class="acc">
+                        <summary>Why does the playbook fail with a systemd error? <span class="chev">+</span></summary>
+                        <div class="acc-body">
+                            <p>systemd isn't active in the distro yet. Add <code>systemd=true</code> under <code>[boot]</code> in
+                               <code>/etc/wsl.conf</code>, run <code>wsl --shutdown</code> from Windows Terminal, reopen
+                               AlmaLinux 10 and re-run <code>install.yml</code>.</p>
+                        </div>
+                    </details>
+                    <details class="acc">
+                        <summary>What if port 80 is already in use? <span class="chev">+</span></summary>
+                        <div class="acc-body">
+                            <p>Find the Windows service holding it with <code>netstat -ano | findstr :80</code> and stop it, or
+                               change Apache's <code>Listen</code> port in <code>/etc/httpd/conf/httpd.conf</code> and restart
+                               httpd.</p>
+                        </div>
+                    </details>
+                    <details class="acc">
+                        <summary>Is this environment safe to expose beyond localhost? <span class="chev">+</span></summary>
+                        <div class="acc-body">
+                            <p>No. It is for local development only: the MariaDB root password is stored in plaintext,
+                               phpMyAdmin allows root login and the firewall is off by default.</p>
+                        </div>
+                    </details>
+                    <details class="acc">
                         <summary>Can I run this without WSL? <span class="chev">+</span></summary>
                         <div class="acc-body">
-                            <p>Yes - every instruction here works the same way on a bare AlmaLinux 10 host.</p>
+                            <p>Yes - from Setup Packages onwards the steps are the same on a bare AlmaLinux 10 host. Skip the
+                               WSL steps, connect over SSH, and use the server's IP address instead of
+                               <code>localhost</code>.</p>
                         </div>
                     </details>
                 </div>
@@ -358,13 +407,14 @@
         <div class="wrap about-inner">
             <div>
                 <span class="eyebrow">Built for how the platform ships</span>
-                <h2>Provision once, match production everywhere.</h2>
+                <h2>Provision once, match your production OS</h2>
             </div>
             <div>
                 <p class="about-text">
                     The WSL 2 + AlmaLinux 10 setup is maintained by the same team behind the rest of the Headless
-                    Platform, so the local environment stays in step with what actually runs in production - not a
-                    Docker approximation of it.
+                    Platform, so the local environment stays on the same OS family as production - not a Docker
+                    approximation of it. It is a local development environment only: security is relaxed by default,
+                    so never expose it to a network.
                 </p>
                 <div class="about-cta">
                     <a class="btn btn-ghost" href="{{ url('page::contact') }}">Talk to us -></a>

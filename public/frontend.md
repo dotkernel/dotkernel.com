@@ -221,7 +221,7 @@ Duplicating `local.test.php.dist` gives your tests an in-memory database.
 | Required extensions | `curl`, `gettext`, `intl`, `json`, `mbstring`, the CLI SAPI for cron jobs, and Composer on `$PATH`. |
 | Recommended extensions | `opcache`; `pdo_mysql` for MySQL or MariaDB; `dom` and `simplexml` for markup; `gd` and `exif` for images; `zlib`, `zip`, `bz2` for compression; `sqlite3` for the test suite. |
 
-Note that Frontend still supports MySQL - unlike API and Admin v7, which require native UUID support and therefore PostgreSQL or MariaDB 10.7+.
+Note that Frontend still supports MySQL - unlike API and Admin v7, which require native UUID support and therefore PostgreSQL 13+ or MariaDB 11.4+.
 
 ## Where Frontend sits
 
