@@ -25,6 +25,7 @@ $aggregator = new ConfigAggregator([
     \Mezzio\Twig\ConfigProvider::class,
 
     // Dotkernel packages
+    \Dot\DependencyInjection\ConfigProvider::class,
     \Dot\ErrorHandler\ConfigProvider::class,
     \Dot\Log\ConfigProvider::class,
     \Dot\Mail\ConfigProvider::class,

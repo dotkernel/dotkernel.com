@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Light\App\Service;
 
+use Dot\DependencyInjection\Attribute\Inject;
 use Dot\Mail\Service\MailServiceInterface;
 use Laminas\Validator\EmailAddress;
 use Laminas\Validator\NotEmpty;
@@ -49,6 +50,7 @@ final class ContactService
 
     private const array RESERVED_FIELDS = ['topic', 'name', 'email', 'company', 'stack', 'message', 'contact'];
 
+    #[Inject('dot-mail.service.contact')]
     public function __construct(private readonly MailServiceInterface $mailService)
     {
     }

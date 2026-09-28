@@ -10,8 +10,8 @@ use Doctrine\Persistence\Mapping\Driver\MappingDriver;
 use Doctrine\Persistence\Mapping\Driver\MappingDriverChain;
 use Dot\Cache\Adapter\ArrayAdapter;
 use Dot\Cache\Adapter\FilesystemAdapter;
+use Dot\DependencyInjection\Factory\AttributedServiceFactory;
 use Light\App\DBAL\Types\UuidType;
-use Light\App\Factory\ContactServiceFactory;
 use Light\App\Factory\EntityListenerResolverFactory;
 use Light\App\Factory\FeedGeneratorFactory;
 use Light\App\Factory\GetFeedViewHandlerFactory;
@@ -25,7 +25,6 @@ use Light\App\Factory\LlmsGeneratorFactory;
 use Light\App\Factory\MarkdownExtensionFactory;
 use Light\App\Factory\MarkdownRuntimeLoaderFactory;
 use Light\App\Factory\PackageGeneratorFactory;
-use Light\App\Factory\PostContactCreateHandlerFactory;
 use Light\App\Factory\SitemapGeneratorFactory;
 use Light\App\Handler\GetFeedViewHandler;
 use Light\App\Handler\GetIndexViewHandler;
@@ -146,8 +145,8 @@ class ConfigProvider
                 GetMarkdownArticleHandler::class      => GetMarkdownArticleHandlerFactory::class,
                 GetSitemapViewHandler::class          => GetSitemapViewHandlerFactory::class,
                 GetPackagesViewHandler::class         => GetPackagesViewHandlerFactory::class,
-                PostContactCreateHandler::class       => PostContactCreateHandlerFactory::class,
-                ContactService::class                 => ContactServiceFactory::class,
+                PostContactCreateHandler::class       => AttributedServiceFactory::class,
+                ContactService::class                 => AttributedServiceFactory::class,
                 FeedGenerator::class                  => FeedGeneratorFactory::class,
                 SitemapGenerator::class               => SitemapGeneratorFactory::class,
                 GitHubClient::class                   => GitHubClientFactory::class,

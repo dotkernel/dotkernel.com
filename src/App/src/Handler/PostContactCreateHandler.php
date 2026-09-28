@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Light\App\Handler;
 
+use Dot\DependencyInjection\Attribute\Inject;
 use Laminas\Diactoros\Response\HtmlResponse;
 use Laminas\Diactoros\Response\RedirectResponse;
 use Light\App\Service\ContactService;
@@ -18,6 +19,10 @@ class PostContactCreateHandler implements RequestHandlerInterface
 {
     public const string TEMPLATE = 'page::contact';
 
+    #[Inject(
+        TemplateRendererInterface::class,
+        ContactService::class,
+    )]
     public function __construct(
         protected TemplateRendererInterface $template,
         protected ContactService $contactService,
