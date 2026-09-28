@@ -298,8 +298,8 @@
                     <p class="desc">
                         Vite concatenates and compresses CSS and JavaScript, preprocesses SCSS, and copies fonts and
                         images - avoiding the network bottleneck of many separate files. <code>npm run watch</code>
-                        recompiles on change; <code>npm run build</code> compiles once. Node.js v20 is the minimum
-                        supported version.
+                        recompiles on change; <code>npm run build</code> compiles once. Node.js <code>^20.19.0</code>
+                        or <code>&gt;=22.12.0</code> is required.
                     </p>
                 </div>
 
@@ -373,45 +373,38 @@
             <div class="section-head">
                 <span class="eyebrow">Installation</span>
                 <h2>Running in minutes, honestly</h2>
-                <p>No database to create, no fixtures to seed. Clone, install, set a URL, open it.</p>
+                <p>No database to create, no fixtures to seed. Create the project, set a URL, open it.</p>
             </div>
 
             <div class="standards-grid">
                 <div class="standard">
-                    <h4>1 . Clone into an empty folder</h4>
-                    <p>Git refuses a directory that is not empty, and you need write permissions on it.</p>
-                    <code class="step-cmd">git clone https://github.com/dotkernel/light.git .</code>
+                    <h4>1 . Create the project</h4>
+                    <p>One Composer command creates the directory, installs dependencies, and enables development mode
+                       for you. Decline the config provider injection when prompted - Light already includes its
+                       own.</p>
+                    <code class="step-cmd">composer create-project dotkernel/light dk<br>cd dk</code>
                 </div>
                 <div class="standard">
-                    <h4>2 . Install dependencies</h4>
-                    <p>Run it from the CLI so the prompts stay interactive. Decline the config provider injection -
-                       Light already includes its own.</p>
-                    <code class="step-cmd">composer install</code>
-                </div>
-                <div class="standard">
-                    <h4>3 . Enable development mode</h4>
-                    <p>Local work only. <code>composer development-status</code> reports where you stand.</p>
-                    <code class="step-cmd">composer development-enable</code>
-                </div>
-                <div class="standard">
-                    <h4>4 . Set the base URL</h4>
+                    <h4>2 . Set the base URL</h4>
                     <p>Point <code>$baseUrl</code> in <code>config/autoload/local.php</code> at your virtual host.</p>
                 </div>
                 <div class="standard">
-                    <h4>5 . Fix the writable folders</h4>
+                    <h4>3 . Fix the writable folders</h4>
                     <p>The two directories the application writes to. Most first-run errors are this and nothing
-                       else.</p>
-                    <code class="step-cmd">chmod -R 777 ./data ./log</code>
+                       else. Give the web server group write access instead of opening the folders to everyone:</p>
+                    <code class="step-cmd">sudo chown -R "$USER":www-data data log<br>sudo chmod -R 775 data log</code>
                 </div>
                 <div class="standard">
-                    <h4>6 . Open it in a browser</h4>
+                    <h4>4 . Open it in a browser</h4>
                     <p>The Dotkernel Light welcome page is waiting. Errors about missing services usually mean a stale
                        config cache.</p>
-                    <code class="step-cmd">php ./bin/clear-config-cache.php</code>
+                    <code class="step-cmd">composer clear-config-cache</code>
                 </div>
             </div>
 
             <p class="spec-note">
+                Do not run this with <code>sudo</code> - that leaves the regenerated
+                <code>data/cache/config-cache.php</code> owned by root, which the application can no longer rewrite.
                 A cached <code>data/cache/config-cache.php</code> is loaded regardless of the
                 <code>ConfigAggregator::ENABLE_CACHE</code> setting - which is exactly why clearing it fixes so much.
                 On Windows, WSL2 with AlmaLinux is the recommended development environment.
@@ -441,7 +434,7 @@
                         </tr>
                         <tr>
                             <th scope="row">PHP</th>
-                            <td>8.2+ with mod_php or FCGI (FPM). <code>memory_limit</code> at least
+                            <td>8.3, 8.4 or 8.5, with mod_php or FCGI (FPM). <code>memory_limit</code> at least
                                 128M.</td>
                         </tr>
                         <tr>

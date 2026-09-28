@@ -16,6 +16,8 @@ A fast, reliable way to manage the records in your database with a simple table-
 - [View on GitHub](https://github.com/dotkernel/admin)
 - [Live demo](https://admin7.dotkernel.net/)
 
+PHP 8.3, 8.4 or 8.5 . [Latest release](https://github.com/dotkernel/admin/releases/latest)
+
 | | |
 | --- | --- |
 | Runtime | Mezzio + Laminas |
@@ -210,7 +212,7 @@ If the fixtures ran, sign in with user `admin` and password `dotadmin` - the sam
 | Operating system | A \*nix based system is strongly recommended for production. |
 | PHP | 8.3 or newer, mod_php or FCGI (FPM). `memory_limit` at least 128M; `upload_max_filesize` and `post_max_size` at least 100M depending on your data. |
 | Web server | Apache 2.2+ with `mod_rewrite` and `.htaccess` support (`AllowOverride All`) - a default `.htaccess` ships in `public/`. On Nginx, translate it into server configuration. |
-| Database | MariaDB 10.7, 10.11 LTS, 11.4 LTS and 11.8 LTS, or PostgreSQL 13 and above. **MySQL is not supported**, as it has no UUID support. |
+| Database | MariaDB 11.4 LTS, 11.8 LTS and 12.3 LTS, or PostgreSQL 13 and above. **MySQL is not supported**, as it has no UUID support. |
 | Required extensions | `mbstring`, the CLI SAPI for cron jobs, and Composer available on `$PATH`. |
 | Recommended extensions | `opcache`; `pdo_mysql`, `pdo_pgsql` or `mysqli` to match your database; `dom` and `simplexml` for markup; `gd` and `exif` for images; `zlib`, `zip`, `bz2` for compression; `curl` when calling APIs; `sqlite3` for the test suite. |
 

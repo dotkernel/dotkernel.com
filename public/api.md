@@ -16,6 +16,8 @@ OAuth 2.0, RBAC authorization, HAL payloads, standardized error responses and an
 - [View on GitHub](https://github.com/dotkernel/api)
 - [Live demo](https://api.dotkernel.net/)
 
+PHP 8.3, 8.4 or 8.5 . [Latest release](https://github.com/dotkernel/api/releases/latest)
+
 | | |
 | --- | --- |
 | Runtime | Mezzio + Laminas |
@@ -130,11 +132,11 @@ You keep full control of the UUID version without depending on database extensio
 ### PostgreSQL support
 
 PostgreSQL joins the supported databases.
-Because native UUID is required, you need PostgreSQL or MariaDB 10.7 or later; MySQL is no longer supported, as it has no UUID data type.
+Because native UUID is required, you need PostgreSQL 13+ or MariaDB 11.4 or later; MySQL is no longer supported, as it has no UUID data type.
 
 ### PHP 8.5
 
-The API targets PHP 8.5, with Dotkernel Admin on 8.4.
+The API and Admin target PHP 8.5.
 Dependencies are kept current, and the ecosystem's own packages track the versions Laminas and Doctrine support.
 
 ### Table prefixes
@@ -176,7 +178,7 @@ The comparison below is drawn from the full side-by-side write-up on our blog.
 | First release | 2012 | 2018 |
 | Architecture | MVC, event driven | Middleware |
 | OSS lifecycle | Archived | Active |
-| PHP version | ≤ 8.2 | See the PHP version badge for `dotkernel/api` |
+| PHP version | ≤ 8.2 | 8.3, 8.4 or 8.5 |
 | Style | REST, RPC | REST |
 | Change management | Versioning | Deprecations (API evolution) |
 | Documentation | Swagger (automated) | OpenAPI 3.0 (Swagger) and Postman (manual) |
@@ -283,7 +285,7 @@ Updates arrive with bugfixes and improvements from the PHP community, and breaki
 
 ## Install it and call an endpoint
 
-Create the project with Composer, point it at PostgreSQL or MariaDB 10.7+, run the migrations, and you have an authenticated REST API with a browsable OpenAPI specification.
+Create the project with Composer, point it at PostgreSQL 13+ or MariaDB 11.4+, run the migrations, and you have an authenticated REST API with a browsable OpenAPI specification.
 
 - [Installation guide](https://docs.dotkernel.org/api-documentation/)
 - [Try the demo](https://api.dotkernel.net/)
