@@ -16,10 +16,7 @@ A fast, reliable way to manage the records in your database with a simple table-
 - [View on GitHub](https://github.com/dotkernel/admin)
 - [Live demo](https://admin7.dotkernel.net/)
 
-![PHP version for dotkernel/admin](https://img.shields.io/packagist/dependency-v/dotkernel/admin/php?style=flat&label=php)
-![Latest release of dotkernel/admin](https://img.shields.io/packagist/v/dotkernel/admin?style=flat)
-![License of dotkernel/admin](https://img.shields.io/github/license/dotkernel/admin?style=flat)
-![GitHub stars for dotkernel/admin](https://img.shields.io/github/stars/dotkernel/admin?style=flat&label=%E2%98%85)
+PHP 8.3, 8.4 or 8.5 . [Latest release](https://github.com/dotkernel/admin/releases/latest)
 
 | | |
 | --- | --- |

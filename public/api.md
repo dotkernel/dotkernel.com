@@ -16,10 +16,7 @@ OAuth 2.0, RBAC authorization, HAL payloads, standardized error responses and an
 - [View on GitHub](https://github.com/dotkernel/api)
 - [Live demo](https://api.dotkernel.net/)
 
-![PHP version for dotkernel/api](https://img.shields.io/packagist/dependency-v/dotkernel/api/php?style=flat&label=php)
-![Latest release of dotkernel/api](https://img.shields.io/packagist/v/dotkernel/api?style=flat)
-![License of dotkernel/api](https://img.shields.io/github/license/dotkernel/api?style=flat)
-![GitHub stars for dotkernel/api](https://img.shields.io/github/stars/dotkernel/api?style=flat&label=%E2%98%85)
+PHP 8.3, 8.4 or 8.5 . [Latest release](https://github.com/dotkernel/api/releases/latest)
 
 | | |
 | --- | --- |
@@ -139,7 +136,7 @@ Because native UUID is required, you need PostgreSQL 13+ or MariaDB 11.4 or late
 
 ### PHP 8.5
 
-The API targets PHP 8.5, with Dotkernel Admin on 8.4.
+The API and Admin target PHP 8.5.
 Dependencies are kept current, and the ecosystem's own packages track the versions Laminas and Doctrine support.
 
 ### Table prefixes
@@ -180,8 +177,8 @@ The comparison below is drawn from the full side-by-side write-up on our blog.
 | --- | --- | --- |
 | First release | 2012 | 2018 |
 | Architecture | MVC, event driven | Middleware |
-| OSS lifecycle | Archived | ![OSS lifecycle for dotkernel/api](https://img.shields.io/osslifecycle/dotkernel/api?style=flat) |
-| PHP version | ≤ 8.2 | See the PHP version badge for `dotkernel/api` |
+| OSS lifecycle | Archived | Active |
+| PHP version | ≤ 8.2 | 8.3, 8.4 or 8.5 |
 | Style | REST, RPC | REST |
 | Change management | Versioning | Deprecations (API evolution) |
 | Documentation | Swagger (automated) | OpenAPI 3.0 (Swagger) and Postman (manual) |
