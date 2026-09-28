@@ -22,7 +22,7 @@ A request enters at the error boundary, passes through routing, negotiation, aut
 | Container | PSR-11 |
 | Logging | PSR-3 |
 
-## Five phases, 19 stages
+## Six phases, 19 stages
 
 Error boundary (1 stage) -> Request preparation (4 stages) -> Routing (4 stages) -> Contract & headers (4 stages) -> Identity (2 stages) -> Dispatch & fallback (4 stages).
 

@@ -16,6 +16,11 @@ OAuth 2.0, RBAC authorization, HAL payloads, standardized error responses and an
 - [View on GitHub](https://github.com/dotkernel/api)
 - [Live demo](https://api.dotkernel.net/)
 
+![PHP version for dotkernel/api](https://img.shields.io/packagist/dependency-v/dotkernel/api/php?style=flat&label=php)
+![Latest release of dotkernel/api](https://img.shields.io/packagist/v/dotkernel/api?style=flat)
+![License of dotkernel/api](https://img.shields.io/github/license/dotkernel/api?style=flat)
+![GitHub stars for dotkernel/api](https://img.shields.io/github/stars/dotkernel/api?style=flat&label=%E2%98%85)
+
 | | |
 | --- | --- |
 | Runtime | Mezzio + Laminas |
@@ -130,7 +135,7 @@ You keep full control of the UUID version without depending on database extensio
 ### PostgreSQL support
 
 PostgreSQL joins the supported databases.
-Because native UUID is required, you need PostgreSQL or MariaDB 10.7 or later; MySQL is no longer supported, as it has no UUID data type.
+Because native UUID is required, you need PostgreSQL 13+ or MariaDB 11.4 or later; MySQL is no longer supported, as it has no UUID data type.
 
 ### PHP 8.5
 
@@ -175,7 +180,7 @@ The comparison below is drawn from the full side-by-side write-up on our blog.
 | --- | --- | --- |
 | First release | 2012 | 2018 |
 | Architecture | MVC, event driven | Middleware |
-| OSS lifecycle | Archived | Active |
+| OSS lifecycle | Archived | ![OSS lifecycle for dotkernel/api](https://img.shields.io/osslifecycle/dotkernel/api?style=flat) |
 | PHP version | ≤ 8.2 | See the PHP version badge for `dotkernel/api` |
 | Style | REST, RPC | REST |
 | Change management | Versioning | Deprecations (API evolution) |
@@ -283,7 +288,7 @@ Updates arrive with bugfixes and improvements from the PHP community, and breaki
 
 ## Install it and call an endpoint
 
-Create the project with Composer, point it at PostgreSQL or MariaDB 10.7+, run the migrations, and you have an authenticated REST API with a browsable OpenAPI specification.
+Create the project with Composer, point it at PostgreSQL 13+ or MariaDB 11.4+, run the migrations, and you have an authenticated REST API with a browsable OpenAPI specification.
 
 - [Installation guide](https://docs.dotkernel.org/api-documentation/)
 - [Try the demo](https://api.dotkernel.net/)
