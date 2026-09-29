@@ -84,7 +84,7 @@ npm run prod
    ```shell
    vendor/bin/phinx create --configuration=config/migrations.php  RememberUserSchema
    ```
-3. Modify the generated migration file as in [user_remember_schema](https://www.dotkernel.com/dotkernel/autologin-cookie-remember-me-feature/), then run it against the database:
+3. Modify the generated migration file as in [user_remember_schema](https://github.com/dotkernel/frontend/blob/b736eeaa7092c1c50d57db9242c938d8d5f83bd0/data/database/migrations/20220621062142_remember_user_schema.php), then run it against the database:
    ```shell
    vendor/bin/phinx migrate --configuration=config/migrations.php
    ```
