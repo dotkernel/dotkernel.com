@@ -5,13 +5,6 @@
 
 {% block stylesheets %}<link href="{{ asset('css/contact.css') }}" rel="stylesheet" />{% endblock %}
 
-{% set topics = [
-    {id: 'migration', label: 'Migration'},
-    {id: 'project', label: 'Project work'},
-    {id: 'oss', label: 'Open source'},
-    {id: 'other', label: 'Something else'},
-] %}
-
 {% set support_links = [
     {label: 'Support documentation', href: 'https://github.com/dotkernel/.github/blob/main/SUPPORT.md'},
     {label: 'Security policy', href: 'https://github.com/dotkernel/.github/blob/main/SECURITY.md'},
@@ -78,7 +71,7 @@
             <div class="contact-form-card" id="contact-form">
                 {% set values = contact_values|default({}) %}
                 {% set errors = contact_errors|default({}) %}
-                {% set selected_topic = values.topic|default('') ?: topics[0].id %}
+                {% set selected_topic = values.topic|default('') ?: (topics|first).value %}
                 <form class="contact-form" method="post" action="{{ path('app::create-contact') }}" data-contact-form>
                     <div class="contact-form-head">
                         <h2>Send a message</h2>
@@ -97,8 +90,8 @@
                         <input type="hidden" name="topic" value="{{ selected_topic }}" data-contact-topic>
                         <div class="contact-pills">
                             {% for topic in topics %}
-                                <button type="button" class="contact-pill" data-topic="{{ topic.id }}"
-                                        aria-pressed="{{ topic.id == selected_topic ? 'true' : 'false' }}">{{ topic.label }}</button>
+                                <button type="button" class="contact-pill" data-topic="{{ topic.value }}"
+                                        aria-pressed="{{ topic.value == selected_topic ? 'true' : 'false' }}">{{ topic.label() }}</button>
                             {% endfor %}
                         </div>
                     </fieldset>

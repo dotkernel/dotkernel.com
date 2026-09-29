@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace LightTest\Unit\App;
 
+use Light\App\Handler\GetContactCreateFormHandler;
 use Light\App\Handler\GetFeedViewHandler;
 use Light\App\Handler\GetIndexViewHandler;
 use Light\App\Handler\GetMarkdownArticleHandler;
@@ -72,6 +73,9 @@ class RoutesDelegatorTest extends UnitTest
             GetPackagesViewHandler::TEMPLATE,
             $this->registeredRoutes['/dotkernel-packages-oss-lifecycle/']['name']
         );
+
+        $this->assertSame([GetContactCreateFormHandler::class], $this->registeredRoutes['/contact/']['handler']);
+        $this->assertSame('page::contact', $this->registeredRoutes['/contact/']['name']);
 
         $this->assertSame([PostContactCreateHandler::class], $this->registeredRoutes['POST /contact/']['handler']);
         $this->assertSame('app::create-contact', $this->registeredRoutes['POST /contact/']['name']);

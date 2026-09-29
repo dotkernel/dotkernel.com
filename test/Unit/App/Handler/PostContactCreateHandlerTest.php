@@ -7,10 +7,13 @@ namespace LightTest\Unit\App\Handler;
 use Dot\Mail\Email;
 use Dot\Mail\Result\MailResult;
 use Dot\Mail\Service\MailServiceInterface;
+use Fig\Http\Message\StatusCodeInterface;
 use Laminas\Diactoros\Response\HtmlResponse;
 use Laminas\Diactoros\Response\RedirectResponse;
+use Light\App\Enum\ContactTopicEnum;
 use Light\App\Handler\PostContactCreateHandler;
 use Light\App\Service\ContactService;
+use Mezzio\Helper\UrlHelper;
 use Mezzio\Template\TemplateRendererInterface;
 use PHPUnit\Framework\MockObject\Exception;
 use PHPUnit\Framework\TestCase;
@@ -63,11 +66,18 @@ class PostContactCreateHandlerTest extends TestCase
         $template = $this->createMock(TemplateRendererInterface::class);
         $template->expects($this->never())->method('render');
 
-        $handler  = new PostContactCreateHandler($template, $this->service(new MailResult(true)));
+        $urlHelper = $this->createMock(UrlHelper::class);
+        $urlHelper
+            ->expects($this->once())
+            ->method('generate')
+            ->with('page::contact', [], ['contact' => 'sent'], 'contact-form')
+            ->willReturn('/contact/?contact=sent#contact-form');
+
+        $handler  = new PostContactCreateHandler($template, $urlHelper, $this->service(new MailResult(true)));
         $response = $handler->handle($request);
 
         $this->assertInstanceOf(RedirectResponse::class, $response);
-        $this->assertSame(303, $response->getStatusCode());
+        $this->assertSame(StatusCodeInterface::STATUS_SEE_OTHER, $response->getStatusCode());
         $this->assertSame('/contact/?contact=sent#contact-form', $response->getHeaderLine('Location'));
     }
 
@@ -90,7 +100,8 @@ class PostContactCreateHandlerTest extends TestCase
             ->with(
                 'page::contact',
                 $this->callback(function (array $params): bool {
-                    return $params['contact_mail_failed'] === false
+                    return $params['topics'] === ContactTopicEnum::cases()
+                        && $params['contact_mail_failed'] === false
                         && array_key_exists('name', $params['contact_errors'])
                         && array_key_exists('message', $params['contact_errors'])
                         && $params['contact_values']['email'] === 'jane@example.com';
@@ -98,7 +109,11 @@ class PostContactCreateHandlerTest extends TestCase
             )
             ->willReturn('<html></html>');
 
-        $handler  = new PostContactCreateHandler($template, $this->service(new MailResult(true)));
+        $handler  = new PostContactCreateHandler(
+            $template,
+            $this->createStub(UrlHelper::class),
+            $this->service(new MailResult(true))
+        );
         $response = $handler->handle($request);
 
         $this->assertInstanceOf(HtmlResponse::class, $response);
@@ -131,7 +146,11 @@ class PostContactCreateHandlerTest extends TestCase
             )
             ->willReturn('<html></html>');
 
-        $handler = new PostContactCreateHandler($template, $this->service(new MailResult(true)));
+        $handler = new PostContactCreateHandler(
+            $template,
+            $this->createStub(UrlHelper::class),
+            $this->service(new MailResult(true))
+        );
         $handler->handle($request);
     }
 
@@ -158,6 +177,7 @@ class PostContactCreateHandlerTest extends TestCase
 
         $handler  = new PostContactCreateHandler(
             $template,
+            $this->createStub(UrlHelper::class),
             $this->service(new RuntimeException('SMTP connection refused'))
         );
         $response = $handler->handle($request);

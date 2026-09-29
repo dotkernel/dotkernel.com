@@ -5,9 +5,12 @@ declare(strict_types=1);
 namespace Light\App\Handler;
 
 use Dot\DependencyInjection\Attribute\Inject;
+use Fig\Http\Message\StatusCodeInterface;
 use Laminas\Diactoros\Response\HtmlResponse;
 use Laminas\Diactoros\Response\RedirectResponse;
+use Light\App\Enum\ContactTopicEnum;
 use Light\App\Service\ContactService;
+use Mezzio\Helper\UrlHelper;
 use Mezzio\Template\TemplateRendererInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -17,14 +20,14 @@ use function is_array;
 
 class PostContactCreateHandler implements RequestHandlerInterface
 {
-    public const string TEMPLATE = 'page::contact';
-
     #[Inject(
         TemplateRendererInterface::class,
+        UrlHelper::class,
         ContactService::class,
     )]
     public function __construct(
         protected TemplateRendererInterface $template,
+        protected UrlHelper $urlHelper,
         protected ContactService $contactService,
     ) {
     }
@@ -42,7 +45,8 @@ class PostContactCreateHandler implements RequestHandlerInterface
         if ($errors !== [] || $mailFailed) {
             $rawBody = $request->getParsedBody();
 
-            return new HtmlResponse($this->template->render(self::TEMPLATE, [
+            return new HtmlResponse($this->template->render(GetContactCreateFormHandler::TEMPLATE, [
+                'topics'              => ContactTopicEnum::cases(),
                 'contact_errors'      => $errors,
                 'contact_values'      => $data,
                 'contact_mail_failed' => $mailFailed,
@@ -50,6 +54,14 @@ class PostContactCreateHandler implements RequestHandlerInterface
             ]));
         }
 
-        return new RedirectResponse('/contact/?contact=sent#contact-form', 303);
+        return new RedirectResponse(
+            $this->urlHelper->generate(
+                GetContactCreateFormHandler::TEMPLATE,
+                [],
+                ['contact' => 'sent'],
+                'contact-form'
+            ),
+            StatusCodeInterface::STATUS_SEE_OTHER
+        );
     }
 }

@@ -26,6 +26,7 @@ use Light\App\Factory\MarkdownExtensionFactory;
 use Light\App\Factory\MarkdownRuntimeLoaderFactory;
 use Light\App\Factory\PackageGeneratorFactory;
 use Light\App\Factory\SitemapGeneratorFactory;
+use Light\App\Handler\GetContactCreateFormHandler;
 use Light\App\Handler\GetFeedViewHandler;
 use Light\App\Handler\GetIndexViewHandler;
 use Light\App\Handler\GetMarkdownArticleHandler;
@@ -145,6 +146,7 @@ class ConfigProvider
                 GetMarkdownArticleHandler::class      => GetMarkdownArticleHandlerFactory::class,
                 GetSitemapViewHandler::class          => GetSitemapViewHandlerFactory::class,
                 GetPackagesViewHandler::class         => GetPackagesViewHandlerFactory::class,
+                GetContactCreateFormHandler::class    => AttributedServiceFactory::class,
                 PostContactCreateHandler::class       => AttributedServiceFactory::class,
                 ContactService::class                 => AttributedServiceFactory::class,
                 FeedGenerator::class                  => FeedGeneratorFactory::class,

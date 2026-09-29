@@ -180,39 +180,14 @@ class GetPageViewHandlerTest extends UnitTest
     /**
      * @throws Exception
      */
-    public function testHandlePassesTheContactStateToTheTemplate(): void
+    private function createRequest(string $routeName, string $accept = ''): ServerRequestInterface
     {
-        $template = $this->createMock(TemplateRendererInterface::class);
-        $template
-            ->expects($this->once())
-            ->method('render')
-            ->with('page::contact', $this->callback(
-                fn (array $params): bool => $params['contact_success'] === true
-                    && $params['query'] === ['utm_source' => 'newsletter']
-            ))
-            ->willReturn('');
-
-        $this->createHandler($template)->handle(
-            $this->createRequest('page::contact', query: ['contact' => 'sent', 'utm_source' => 'newsletter'])
-        );
-    }
-
-    /**
-     * @param array<string, mixed> $query
-     * @throws Exception
-     */
-    private function createRequest(
-        string $routeName,
-        string $accept = '',
-        array $query = [],
-    ): ServerRequestInterface {
         $routeResult = $this->createStub(RouteResult::class);
         $routeResult->method('getMatchedRouteName')->willReturn($routeName);
 
         $request = $this->createStub(ServerRequestInterface::class);
         $request->method('getAttribute')->willReturn($routeResult);
         $request->method('getHeaderLine')->willReturn($accept);
-        $request->method('getQueryParams')->willReturn($query);
 
         return $request;
     }

@@ -8,6 +8,7 @@ use Dot\DependencyInjection\Attribute\Inject;
 use Dot\Mail\Service\MailServiceInterface;
 use Laminas\Validator\EmailAddress;
 use Laminas\Validator\NotEmpty;
+use Light\App\Enum\ContactTopicEnum;
 use Throwable;
 
 use function htmlspecialchars;
@@ -35,13 +36,6 @@ use const ENT_QUOTES;
  */
 final class ContactService
 {
-    public const array TOPICS = [
-        'migration' => 'Migration',
-        'project'   => 'Project work',
-        'oss'       => 'Open source',
-        'other'     => 'Something else',
-    ];
-
     private const array REQUIRED_FIELDS = [
         'name'    => 'Name',
         'email'   => 'Work email',
@@ -76,11 +70,10 @@ final class ContactService
      */
     public function normalize(mixed $parsedBody): array
     {
-        $raw   = is_array($parsedBody) ? $parsedBody : [];
-        $topic = $this->stringValue($raw, 'topic');
+        $raw = is_array($parsedBody) ? $parsedBody : [];
 
         return [
-            'topic'   => isset(self::TOPICS[$topic]) ? $topic : '',
+            'topic'   => ContactTopicEnum::tryFrom($this->stringValue($raw, 'topic'))->value ?? '',
             'name'    => $this->stringValue($raw, 'name'),
             'email'   => $this->stringValue($raw, 'email'),
             'company' => $this->stringValue($raw, 'company'),
@@ -144,7 +137,7 @@ final class ContactService
     private function buildBody(array $data): string
     {
         $rows = [
-            'Topic'         => self::TOPICS[$data['topic']] ?? '',
+            'Topic'         => ContactTopicEnum::tryFrom($data['topic'])?->label() ?? '',
             'Name'          => $data['name'],
             'Work email'    => $data['email'],
             'Company'       => $data['company'],

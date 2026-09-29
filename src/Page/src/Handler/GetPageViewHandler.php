@@ -7,7 +7,6 @@ namespace Light\Page\Handler;
 use Fig\Http\Message\StatusCodeInterface;
 use Laminas\Diactoros\Response\HtmlResponse;
 use Laminas\Diactoros\Response\TextResponse;
-use Light\App\Service\ContactService;
 use Light\Blog\Repository\CategoryRepository;
 use Light\Blog\Repository\PostRepository;
 use Light\Page\Service\PageServiceInterface;
@@ -47,13 +46,10 @@ class GetPageViewHandler implements RequestHandlerInterface
 
         $posts      = $this->postRepository->getRecentPosts(3);
         $categories = $this->categoryRepository->getCategories();
-        $query      = $request->getQueryParams();
         return new HtmlResponse(
             $this->template->render($template, [
-                'posts'           => $posts,
-                'categories'      => $categories,
-                'contact_success' => ($query['contact'] ?? null) === 'sent',
-                'query'           => ContactService::extractQuery($query),
+                'posts'      => $posts,
+                'categories' => $categories,
             ])
         );
     }
