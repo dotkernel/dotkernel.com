@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Light\App\Handler;
 
 use Dot\DependencyInjection\Attribute\Inject;
-use Fig\Http\Message\StatusCodeInterface;
 use Laminas\Diactoros\Response\HtmlResponse;
 use Laminas\Diactoros\Response\RedirectResponse;
 use Light\App\Enum\ContactTopicEnum;
@@ -18,7 +17,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 use function is_array;
 
-class PostContactCreateHandler implements RequestHandlerInterface
+class PostCreateContactHandler implements RequestHandlerInterface
 {
     #[Inject(
         TemplateRendererInterface::class,
@@ -45,7 +44,7 @@ class PostContactCreateHandler implements RequestHandlerInterface
         if ($errors !== [] || $mailFailed) {
             $rawBody = $request->getParsedBody();
 
-            return new HtmlResponse($this->template->render(GetContactCreateFormHandler::TEMPLATE, [
+            return new HtmlResponse($this->template->render(GetCreateContactFormHandler::TEMPLATE, [
                 'topics'              => ContactTopicEnum::cases(),
                 'contact_errors'      => $errors,
                 'contact_values'      => $data,
@@ -55,13 +54,7 @@ class PostContactCreateHandler implements RequestHandlerInterface
         }
 
         return new RedirectResponse(
-            $this->urlHelper->generate(
-                GetContactCreateFormHandler::TEMPLATE,
-                [],
-                ['contact' => 'sent'],
-                'contact-form'
-            ),
-            StatusCodeInterface::STATUS_SEE_OTHER
+            $this->urlHelper->generate('app::create-contact-form', [], ['contact' => 'sent'], 'contact-form')
         );
     }
 }

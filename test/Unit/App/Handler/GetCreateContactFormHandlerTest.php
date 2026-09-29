@@ -7,13 +7,13 @@ namespace LightTest\Unit\App\Handler;
 use Fig\Http\Message\StatusCodeInterface;
 use Laminas\Diactoros\Response\HtmlResponse;
 use Light\App\Enum\ContactTopicEnum;
-use Light\App\Handler\GetContactCreateFormHandler;
+use Light\App\Handler\GetCreateContactFormHandler;
 use LightTest\Unit\UnitTest;
 use Mezzio\Template\TemplateRendererInterface;
 use PHPUnit\Framework\MockObject\Exception;
 use Psr\Http\Message\ServerRequestInterface;
 
-class GetContactCreateFormHandlerTest extends UnitTest
+class GetCreateContactFormHandlerTest extends UnitTest
 {
     /**
      * @throws Exception
@@ -31,7 +31,7 @@ class GetContactCreateFormHandlerTest extends UnitTest
             ))
             ->willReturn('<form></form>');
 
-        $response = (new GetContactCreateFormHandler($template))->handle($this->createRequest([]));
+        $response = (new GetCreateContactFormHandler($template))->handle($this->createRequest([]));
 
         $this->assertInstanceOf(HtmlResponse::class, $response);
         $this->assertSame(StatusCodeInterface::STATUS_OK, $response->getStatusCode());
@@ -53,7 +53,7 @@ class GetContactCreateFormHandlerTest extends UnitTest
             ))
             ->willReturn('');
 
-        (new GetContactCreateFormHandler($template))->handle(
+        (new GetCreateContactFormHandler($template))->handle(
             $this->createRequest(['contact' => 'sent', 'utm_source' => 'newsletter'])
         );
     }

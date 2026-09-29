@@ -9,6 +9,7 @@ use Dot\Mail\Service\MailServiceInterface;
 use Laminas\Validator\EmailAddress;
 use Laminas\Validator\NotEmpty;
 use Light\App\Enum\ContactTopicEnum;
+use Psr\Log\LoggerInterface;
 use Throwable;
 
 use function htmlspecialchars;
@@ -44,9 +45,14 @@ final class ContactService
 
     private const array RESERVED_FIELDS = ['topic', 'name', 'email', 'company', 'stack', 'message', 'contact'];
 
-    #[Inject('dot-mail.service.contact')]
-    public function __construct(private readonly MailServiceInterface $mailService)
-    {
+    #[Inject(
+        'dot-mail.service.contact',
+        'dot-log.default_logger',
+    )]
+    public function __construct(
+        private readonly MailServiceInterface $mailService,
+        private readonly LoggerInterface $logger,
+    ) {
     }
 
     /**
@@ -115,10 +121,25 @@ final class ContactService
         $this->mailService->setBody($this->buildBody($data));
 
         try {
-            return $this->mailService->send()->isValid();
-        } catch (Throwable) {
+            $result = $this->mailService->send();
+        } catch (Throwable $exception) {
+            $this->logger->error('Contact form email could not be sent: {message}', [
+                'message'   => $exception->getMessage(),
+                'exception' => $exception,
+            ]);
+
             return false;
         }
+
+        if (! $result->isValid()) {
+            $this->logger->error('Contact form email could not be sent: {message}', [
+                'message' => $result->getMessage(),
+            ]);
+
+            return false;
+        }
+
+        return true;
     }
 
     /**

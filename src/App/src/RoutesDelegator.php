@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Light\App;
 
-use Light\App\Handler\GetContactCreateFormHandler;
+use Light\App\Handler\GetCreateContactFormHandler;
 use Light\App\Handler\GetFeedViewHandler;
 use Light\App\Handler\GetIndexViewHandler;
 use Light\App\Handler\GetMarkdownArticleHandler;
 use Light\App\Handler\GetPackagesViewHandler;
 use Light\App\Handler\GetSitemapViewHandler;
-use Light\App\Handler\PostContactCreateHandler;
+use Light\App\Handler\PostCreateContactHandler;
 use Mezzio\Application;
 use Psr\Container\ContainerInterface;
 
@@ -27,8 +27,8 @@ class RoutesDelegator
         $app->get('/sitemap/', [GetSitemapViewHandler::class], 'app::sitemap');
         $app->get('/{categorySlug}/{slug}.md', [GetMarkdownArticleHandler::class], 'app::markdown-article');
 
-        $app->get('/contact/', [GetContactCreateFormHandler::class], GetContactCreateFormHandler::TEMPLATE);
-        $app->post('/contact/', [PostContactCreateHandler::class], 'app::create-contact');
+        $app->get('/contact/', [GetCreateContactFormHandler::class], 'app::create-contact-form');
+        $app->post('/contact/', [PostCreateContactHandler::class], 'app::create-contact');
 
         // Route name kept as `page::…` because `@layout/default.html.twig` links it by name.
         // The matching entry must stay out of `routes.page` in local.php to avoid a duplicate.

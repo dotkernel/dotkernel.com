@@ -11,19 +11,20 @@ use Fig\Http\Message\StatusCodeInterface;
 use Laminas\Diactoros\Response\HtmlResponse;
 use Laminas\Diactoros\Response\RedirectResponse;
 use Light\App\Enum\ContactTopicEnum;
-use Light\App\Handler\PostContactCreateHandler;
+use Light\App\Handler\PostCreateContactHandler;
 use Light\App\Service\ContactService;
 use Mezzio\Helper\UrlHelper;
 use Mezzio\Template\TemplateRendererInterface;
 use PHPUnit\Framework\MockObject\Exception;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Log\NullLogger;
 use RuntimeException;
 use Throwable;
 
 use function array_key_exists;
 
-class PostContactCreateHandlerTest extends TestCase
+class PostCreateContactHandlerTest extends TestCase
 {
     /**
      * @return array<string, string>
@@ -52,7 +53,7 @@ class PostContactCreateHandlerTest extends TestCase
             $mailService->method('send')->willReturn($sendResult);
         }
 
-        return new ContactService($mailService);
+        return new ContactService($mailService, new NullLogger());
     }
 
     /**
@@ -70,14 +71,14 @@ class PostContactCreateHandlerTest extends TestCase
         $urlHelper
             ->expects($this->once())
             ->method('generate')
-            ->with('page::contact', [], ['contact' => 'sent'], 'contact-form')
+            ->with('app::create-contact-form', [], ['contact' => 'sent'], 'contact-form')
             ->willReturn('/contact/?contact=sent#contact-form');
 
-        $handler  = new PostContactCreateHandler($template, $urlHelper, $this->service(new MailResult(true)));
+        $handler  = new PostCreateContactHandler($template, $urlHelper, $this->service(new MailResult(true)));
         $response = $handler->handle($request);
 
         $this->assertInstanceOf(RedirectResponse::class, $response);
-        $this->assertSame(StatusCodeInterface::STATUS_SEE_OTHER, $response->getStatusCode());
+        $this->assertSame(StatusCodeInterface::STATUS_FOUND, $response->getStatusCode());
         $this->assertSame('/contact/?contact=sent#contact-form', $response->getHeaderLine('Location'));
     }
 
@@ -109,7 +110,7 @@ class PostContactCreateHandlerTest extends TestCase
             )
             ->willReturn('<html></html>');
 
-        $handler  = new PostContactCreateHandler(
+        $handler  = new PostCreateContactHandler(
             $template,
             $this->createStub(UrlHelper::class),
             $this->service(new MailResult(true))
@@ -146,7 +147,7 @@ class PostContactCreateHandlerTest extends TestCase
             )
             ->willReturn('<html></html>');
 
-        $handler = new PostContactCreateHandler(
+        $handler = new PostCreateContactHandler(
             $template,
             $this->createStub(UrlHelper::class),
             $this->service(new MailResult(true))
@@ -175,7 +176,7 @@ class PostContactCreateHandlerTest extends TestCase
             )
             ->willReturn('<html></html>');
 
-        $handler  = new PostContactCreateHandler(
+        $handler  = new PostCreateContactHandler(
             $template,
             $this->createStub(UrlHelper::class),
             $this->service(new RuntimeException('SMTP connection refused'))

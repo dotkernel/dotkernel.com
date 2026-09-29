@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace LightTest\Unit\App;
 
-use Light\App\Handler\GetContactCreateFormHandler;
+use Light\App\Handler\GetCreateContactFormHandler;
 use Light\App\Handler\GetFeedViewHandler;
 use Light\App\Handler\GetIndexViewHandler;
 use Light\App\Handler\GetMarkdownArticleHandler;
 use Light\App\Handler\GetPackagesViewHandler;
 use Light\App\Handler\GetSitemapViewHandler;
-use Light\App\Handler\PostContactCreateHandler;
+use Light\App\Handler\PostCreateContactHandler;
 use Light\App\RoutesDelegator;
 use LightTest\Unit\UnitTest;
 use Mezzio\Application;
@@ -74,10 +74,10 @@ class RoutesDelegatorTest extends UnitTest
             $this->registeredRoutes['/dotkernel-packages-oss-lifecycle/']['name']
         );
 
-        $this->assertSame([GetContactCreateFormHandler::class], $this->registeredRoutes['/contact/']['handler']);
-        $this->assertSame('page::contact', $this->registeredRoutes['/contact/']['name']);
+        $this->assertSame([GetCreateContactFormHandler::class], $this->registeredRoutes['/contact/']['handler']);
+        $this->assertSame('app::create-contact-form', $this->registeredRoutes['/contact/']['name']);
 
-        $this->assertSame([PostContactCreateHandler::class], $this->registeredRoutes['POST /contact/']['handler']);
+        $this->assertSame([PostCreateContactHandler::class], $this->registeredRoutes['POST /contact/']['handler']);
         $this->assertSame('app::create-contact', $this->registeredRoutes['POST /contact/']['name']);
     }
 }

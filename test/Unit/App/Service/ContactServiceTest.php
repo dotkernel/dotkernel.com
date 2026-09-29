@@ -10,6 +10,8 @@ use Dot\Mail\Service\MailServiceInterface;
 use Light\App\Service\ContactService;
 use PHPUnit\Framework\MockObject\Exception;
 use PHPUnit\Framework\TestCase;
+use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 use RuntimeException;
 
 use function str_contains;
@@ -37,7 +39,7 @@ class ContactServiceTest extends TestCase
 
     private function service(): ContactService
     {
-        return new ContactService($this->createStub(MailServiceInterface::class));
+        return new ContactService($this->createStub(MailServiceInterface::class), new NullLogger());
     }
 
     public function testNormalizeExtractsAndTrimsKnownFields(): void
@@ -191,7 +193,7 @@ class ContactServiceTest extends TestCase
         $mailService->expects($this->once())->method('setBody');
         $mailService->method('send')->willReturn(new MailResult(true));
 
-        $service = new ContactService($mailService);
+        $service = new ContactService($mailService, new NullLogger());
 
         $this->assertTrue($service->send($this->validData()));
     }
@@ -204,7 +206,16 @@ class ContactServiceTest extends TestCase
         $mailService->method('getMessage')->willReturn($message);
         $mailService->method('send')->willThrowException(new RuntimeException('SMTP connection refused'));
 
-        $service = new ContactService($mailService);
+        $logger = $this->createMock(LoggerInterface::class);
+        $logger
+            ->expects($this->once())
+            ->method('error')
+            ->with($this->anything(), $this->callback(
+                fn (array $context): bool => $context['message'] === 'SMTP connection refused'
+                    && $context['exception'] instanceof RuntimeException
+            ));
+
+        $service = new ContactService($mailService, $logger);
 
         $this->assertFalse($service->send($this->validData()));
     }
@@ -217,7 +228,13 @@ class ContactServiceTest extends TestCase
         $mailService->method('getMessage')->willReturn($message);
         $mailService->method('send')->willReturn(new MailResult(false, 'Invalid message'));
 
-        $service = new ContactService($mailService);
+        $logger = $this->createMock(LoggerInterface::class);
+        $logger
+            ->expects($this->once())
+            ->method('error')
+            ->with($this->anything(), ['message' => 'Invalid message']);
+
+        $service = new ContactService($mailService, $logger);
 
         $this->assertFalse($service->send($this->validData()));
     }
@@ -237,7 +254,7 @@ class ContactServiceTest extends TestCase
             ));
         $mailService->method('send')->willReturn(new MailResult(true));
 
-        $service = new ContactService($mailService);
+        $service = new ContactService($mailService, new NullLogger());
 
         $data          = $this->validData();
         $data['query'] = 'utm_source=google&ref=partner';
@@ -259,7 +276,7 @@ class ContactServiceTest extends TestCase
             ));
         $mailService->method('send')->willReturn(new MailResult(true));
 
-        $service = new ContactService($mailService);
+        $service = new ContactService($mailService, new NullLogger());
 
         $service->send($this->validData());
     }
@@ -278,6 +295,6 @@ class ContactServiceTest extends TestCase
             ));
         $mailService->method('send')->willReturn(new MailResult(true));
 
-        (new ContactService($mailService))->send($this->validData());
+        (new ContactService($mailService, new NullLogger()))->send($this->validData());
     }
 }
