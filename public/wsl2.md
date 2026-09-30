@@ -84,12 +84,12 @@ After setup, [Editor Integration](https://docs.dotkernel.org/development/v2/edit
 
 `install.yml` reads `config.yml` once and provisions every one of these - safe to re-run if a step fails partway through.
 
-| Component | What you get |
-| --- | --- |
-| Web server | Apache, with virtualhosts routed automatically under `*.localhost`. |
-| Database | MariaDB 12.3 from the MariaDB repository, plus phpMyAdmin for browsing it. |
-| PHP | 8.5 by default via the Remi repository; `php81` … `php85` aliases switch versions. |
-| Node.js | 22 by default via NodeSource; `node18` … `node24` aliases switch versions. |
+| Component      | What you get                                                                                                               |
+|----------------|----------------------------------------------------------------------------------------------------------------------------|
+| Web server     | Apache, with virtualhosts routed automatically under `*.localhost`.                                                        |
+| Database       | MariaDB 12.3 from the MariaDB repository, plus phpMyAdmin for browsing it.                                                 |
+| PHP            | 8.5 by default via the Remi repository; `php81` … `php85` aliases switch versions.                                         |
+| Node.js        | 24 by default via NodeSource; `node18` … `node24` aliases switch versions.                                                 |
 | Git & Composer | Your Git identity from `config.yml`, and the latest Composer at install time; update it later with `composer self-update`. |
 
 ## Every project, its own subdomain
