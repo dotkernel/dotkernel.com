@@ -94,4 +94,4 @@ A: Call $db->delete('user', 'id = '.$id), which is equivalent to the SQL stateme
 
 ## Resources
 
-- [Zend_Db series](http://www.dotkernel.com/dotkernel/sql-select-zend-db/)
+- [Zend_Db series](https://www.dotkernel.com/best-practice/sql-queries-using-zend-db-select/)
