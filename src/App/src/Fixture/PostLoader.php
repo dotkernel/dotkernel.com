@@ -55,16 +55,19 @@ class PostLoader extends Fixture implements DependentFixtureInterface
                 }
 
                 /** @var Author $author */
-                $author = $this->getReference('author_' . $authorSlug, Author::class);
-                $title  = html_entity_decode($articleData['post_title'], ENT_QUOTES, 'UTF-8');
-                $slug   = $this->slugify($title);
+                $author   = $this->getReference('author_' . $authorSlug, Author::class);
+                $title    = html_entity_decode($articleData['post_title'], ENT_QUOTES, 'UTF-8');
+                $autoSlug = $this->slugify($title);
 
-                if (isset($usedSlugs[$slug])) {
-                    $usedSlugs[$slug]++;
-                    $slug .= '-' . $usedSlugs[$slug];
+                if (isset($usedSlugs[$autoSlug])) {
+                    $usedSlugs[$autoSlug]++;
+                    $autoSlug .= '-' . $usedSlugs[$autoSlug];
                 } else {
-                    $usedSlugs[$slug] = 1;
+                    $usedSlugs[$autoSlug] = 1;
                 }
+
+                $customSlug = trim((string) ($articleData['post_slug'] ?? ''));
+                $slug       = $customSlug !== '' ? $customSlug : $autoSlug;
 
                 $status = match ($articleData['post_status']) {
                     'published' => PostStatusEnum::Published,
@@ -85,6 +88,10 @@ class PostLoader extends Fixture implements DependentFixtureInterface
                 $openGraphImg = $articleData['opengraph_img'] ?? null;
 
                 $article = $repository->findOneBy(['slug' => $slug]);
+                if ($article === null && $slug !== $autoSlug) {
+                    // post was imported before post_slug was set: find it by the title-based slug
+                    $article = $repository->findOneBy(['slug' => $autoSlug]);
+                }
 
                 if ($article === null) {
                     $article = new Post();
@@ -105,6 +112,10 @@ class PostLoader extends Fixture implements DependentFixtureInterface
                 } else {
                     $changed = false;
 
+                    if ($article->getSlug() !== $slug) {
+                        $article->setSlug($slug);
+                        $changed = true;
+                    }
                     if ($article->getTitle() !== $title) {
                         $article->setTitle($title);
                         $changed = true;
