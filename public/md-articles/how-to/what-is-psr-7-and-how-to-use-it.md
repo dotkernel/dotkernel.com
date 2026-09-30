@@ -18,7 +18,7 @@ This article lists the PSR-7 interfaces as a cheatsheet, then walks through prac
 PSR-7 is a set of common interfaces defined by PHP Framework Interop Group.
 These interfaces are representing HTTP messages, and URIs for use when communicating trough HTTP.
 Any web application using this set of interfaces is a PSR-7 application.
-More about interfaces and interfaces examples can be found [here](http://php.net/manual/language.oop5.interfaces.php).
+More about interfaces and interfaces examples can be found [here](https://php.net/manual/language.oop5.interfaces.php).
 
 ## Interfaces
 
@@ -29,13 +29,13 @@ The interfaces defined in PSR-7 are the following:
 
 | Class Name | Description |
 |---|---|
-| [`Psr\Http\Message\MessageInterface`](http://www.php-fig.org/psr/psr-7/#psrhttpmessagemessageinterface) | Representation of a HTTP message |
-| [`Psr\Http\Message\RequestInterface`](http://www.php-fig.org/psr/psr-7/#psrhttpmessagerequestinterface) | Representation of an outgoing, client-side request. |
-| [`Psr\Http\Message\ServerRequestInterface`](http://www.php-fig.org/psr/psr-7/#psrhttpmessageserverrequestinterface) | Representation of an incoming, server-side HTTP request. |
-| [`Psr\Http\Message\ResponseInterface`](http://www.php-fig.org/psr/psr-7/#psrhttpmessageresponseinterface) | Representation of an outgoing, server-side response. |
-| [`Psr\Http\Message\StreamInterface`](http://www.php-fig.org/psr/psr-7/#psrhttpmessagestreaminterface) | Describes a data stream |
-| [`Psr\Http\Message\UriInterface`](http://www.php-fig.org/psr/psr-7/#psrhttpmessageuriinterface) | Value object representing a URI. |
-| [`Psr\Http\Message\UploadedFileInterface`](http://www.php-fig.org/psr/psr-7/#psrhttpmessageuploadedfileinterface) | Value object representing a file uploaded through an HTTP request. |
+| [`Psr\Http\Message\MessageInterface`](https://www.php-fig.org/psr/psr-7/#psrhttpmessagemessageinterface) | Representation of a HTTP message |
+| [`Psr\Http\Message\RequestInterface`](https://www.php-fig.org/psr/psr-7/#psrhttpmessagerequestinterface) | Representation of an outgoing, client-side request. |
+| [`Psr\Http\Message\ServerRequestInterface`](https://www.php-fig.org/psr/psr-7/#psrhttpmessageserverrequestinterface) | Representation of an incoming, server-side HTTP request. |
+| [`Psr\Http\Message\ResponseInterface`](https://www.php-fig.org/psr/psr-7/#psrhttpmessageresponseinterface) | Representation of an outgoing, server-side response. |
+| [`Psr\Http\Message\StreamInterface`](https://www.php-fig.org/psr/psr-7/#psrhttpmessagestreaminterface) | Describes a data stream |
+| [`Psr\Http\Message\UriInterface`](https://www.php-fig.org/psr/psr-7/#psrhttpmessageuriinterface) | Value object representing a URI. |
+| [`Psr\Http\Message\UploadedFileInterface`](https://www.php-fig.org/psr/psr-7/#psrhttpmessageuploadedfileinterface) | Value object representing a file uploaded through an HTTP request. |
 
 ## Working with PSR-7
 
@@ -202,7 +202,7 @@ $bodyText = $body->getContends();
 
 More information can be found in the [PSR-7 article](https://www.php-fig.org/psr/psr-7/) in Dotkernel3 documentation portal.
 
-Sources: [PSR-7: HTTP messages](http://www.php-fig.org/psr/psr-7/), [zend-diactoros](https://zendframework.github.io/zend-diactoros/)
+Sources: [PSR-7: HTTP messages](https://www.php-fig.org/psr/psr-7/), [zend-diactoros](https://zendframework.github.io/zend-diactoros/)
 
 ## FAQ
 

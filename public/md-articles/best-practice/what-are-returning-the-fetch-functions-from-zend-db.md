@@ -15,7 +15,7 @@ language: "en"
 Continuing the Zend_Db article series, this article walks through the FETCH methods available on Zend_Db_Adapter_Abstract: fetchAll, fetchAssoc, fetchCol, fetchOne, fetchPairs, and fetchRow.
 Each method is shown next to the equivalent old-style code built on query(), next_record(), and f(), so the two approaches can be compared side by side.
 
-Continuing the Zend_DB article [series](http://www.dotkernel.com/best-practice/sql-queries-using-zend-db-select/), we are stopping now at *FETCH* methods that are in [Zend_Db_Adapter_Abstract](https://docs.laminas.dev/laminas-db/adapter/):
+Continuing the Zend_DB article [series](https://www.dotkernel.com/best-practice/sql-queries-using-zend-db-select/), we are stopping now at *FETCH* methods that are in [Zend_Db_Adapter_Abstract](https://docs.laminas.dev/laminas-db/adapter/):
 
 ```php
 array  fetchAll   (string|Zend_Db_Select $sql, [mixed $bind = array()])

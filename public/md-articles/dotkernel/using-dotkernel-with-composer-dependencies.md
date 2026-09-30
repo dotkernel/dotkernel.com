@@ -36,7 +36,7 @@ These dependencies can be used anywhere after the `Dot_Kernel::initialize()` fun
 
 ## Using Non-Namespaced Dependencies (Zend Framework 1)
 
-The class is loaded [PSR-0](http://www.php-fig.org/psr/psr-0/) style, meaning the class name looks like `VendorName_PackageName_ClassName`:
+The class is loaded [PSR-0](https://www.php-fig.org/psr/psr-0/) style, meaning the class name looks like `VendorName_PackageName_ClassName`:
 
 ```php
 // Only the text to draw is required
@@ -54,7 +54,7 @@ Zend_Barcode::factory(
 
 ## Using Namespaced Dependencies (Zend Framework 2)
 
-The class is loaded [PSR-4](http://www.php-fig.org/psr/psr-4/) style, meaning the class name looks like `\VendorName\PackageName\ClassName`:
+The class is loaded [PSR-4](https://www.php-fig.org/psr/psr-4/) style, meaning the class name looks like `\VendorName\PackageName\ClassName`:
 
 ```php
 use Zend\Barcode\Barcode;
@@ -120,10 +120,10 @@ A: This article works for any Dotkernel 1.x version if your server is running PH
 
 ## Resources
 
-- [Adding Composer support in your Dotkernel project](http://www.dotkernel.com/dotkernel/adding-composer-support-in-your-dotkernel-project)
+- [Adding Composer support in your Dotkernel project](https://www.dotkernel.com/dotkernel/adding-composer-support-in-your-dotkernel-project)
 - [Zend Framework 1 manual](http://framework.zend.com/manual/1.12/en/manual.html)
 - [Zend Framework 2 manual](http://framework.zend.com/manual/current/en/index.html)
-- [PSR-0](http://www.php-fig.org/psr/psr-0/)
-- [PSR-4](http://www.php-fig.org/psr/psr-4/)
+- [PSR-0](https://www.php-fig.org/psr/psr-0/)
+- [PSR-4](https://www.php-fig.org/psr/psr-4/)
 - [Zend Framework 1 - Rendering a barcode](http://framework.zend.com/manual/1.12/en/zend.barcode.creation.html#zend.barcode.creation.renderering)
 - [Zend Framework 2 - Rendering a barcode](http://framework.zend.com/manual/current/en/modules/zend.barcode.creation.html#rendering-a-barcode)

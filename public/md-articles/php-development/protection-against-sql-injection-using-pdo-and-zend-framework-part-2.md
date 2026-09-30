@@ -63,6 +63,6 @@ A short tip mentioned is to use type casting to avoid SQL Injection in a WHERE c
 
 ## Resources
 
-- [Protection against SQL Injection using PDO and Zend Framework (part 1)](http://www.dotkernel.com/php-development/protection-against-sql-injection-using-pdo-and-zend-framework/)
+- [Protection against SQL Injection using PDO and Zend Framework (part 1)](https://www.dotkernel.com/php-development/protection-against-sql-injection-using-pdo-and-zend-framework/)
 - [Secure Programming with the Zend Framework (Stefan Esser slides)](http://www.suspekt.org/downloads/DPC_Secure_Programming_With_The_Zend_Framework.pdf)
 - [PHP Type Casting](https://www.w3schools.com/php/php_casting.asp)
