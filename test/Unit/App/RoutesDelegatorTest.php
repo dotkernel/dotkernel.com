@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace LightTest\Unit\App;
 
+use Light\App\Handler\GetCreateContactFormHandler;
 use Light\App\Handler\GetFeedViewHandler;
 use Light\App\Handler\GetIndexViewHandler;
 use Light\App\Handler\GetMarkdownArticleHandler;
 use Light\App\Handler\GetPackagesViewHandler;
 use Light\App\Handler\GetSitemapViewHandler;
+use Light\App\Handler\PostCreateContactHandler;
 use Light\App\RoutesDelegator;
 use LightTest\Unit\UnitTest;
 use Mezzio\Application;
@@ -35,6 +37,11 @@ class RoutesDelegatorTest extends UnitTest
 
         $app->method('get')->willReturnCallback(function (string $uri, mixed $handler, ?string $name = null) {
             $this->registeredRoutes[$uri] = ['handler' => $handler, 'name' => $name];
+
+            return $this->createStub(Route::class);
+        });
+        $app->method('post')->willReturnCallback(function (string $uri, mixed $handler, ?string $name = null) {
+            $this->registeredRoutes['POST ' . $uri] = ['handler' => $handler, 'name' => $name];
 
             return $this->createStub(Route::class);
         });
@@ -66,5 +73,11 @@ class RoutesDelegatorTest extends UnitTest
             GetPackagesViewHandler::TEMPLATE,
             $this->registeredRoutes['/dotkernel-packages-oss-lifecycle/']['name']
         );
+
+        $this->assertSame([GetCreateContactFormHandler::class], $this->registeredRoutes['/contact/']['handler']);
+        $this->assertSame('app::create-contact-form', $this->registeredRoutes['/contact/']['name']);
+
+        $this->assertSame([PostCreateContactHandler::class], $this->registeredRoutes['POST /contact/']['handler']);
+        $this->assertSame('app::create-contact', $this->registeredRoutes['POST /contact/']['name']);
     }
 }

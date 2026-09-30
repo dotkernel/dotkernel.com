@@ -71,6 +71,9 @@ class SitemapGenerator
         $this->appendUrl($dom, $urlset, $this->baseUrl . '/dotkernel-packages-oss-lifecycle/');
         $count++;
 
+        $this->appendUrl($dom, $urlset, $this->baseUrl . '/contact/');
+        $count++;
+
         foreach ($this->pageRoutes as $routeUri) {
             $this->appendUrl($dom, $urlset, sprintf('%s/%s/', $this->baseUrl, $routeUri));
             $count++;
