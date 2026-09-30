@@ -3,7 +3,7 @@ title: "Autologin using Cookie / Remember Me in Dotkernel"
 description: "A step-by-step guide to implementing a Remember Me / autologin feature in Dotkernel Frontend."
 author: "SergiuB"
 date_published: "2022-07-18"
-canonical_url: "https://www.dotkernel.com/dotkernel/autologin-using-cookie-remember-me-in-dotkernel/"
+canonical_url: "https://www.dotkernel.com/dotkernel/autologin-cookie-remember-me-feature/"
 category: "Dotkernel"
 language: "en"
 ---
@@ -84,7 +84,7 @@ npm run prod
    ```shell
    vendor/bin/phinx create --configuration=config/migrations.php  RememberUserSchema
    ```
-3. Modify the generated migration file as in [user_remember_schema](https://github.com/dotkernel/frontend/blob/b736eeaa7092c1c50d57db9242c938d8d5f83bd0/data/database/migrations/20220621062142_remember_user_schema.php), then run it against the database:
+3. Modify the generated migration file as in [user_remember_schema](https://www.dotkernel.com/dotkernel/autologin-cookie-remember-me-feature/), then run it against the database:
    ```shell
    vendor/bin/phinx migrate --configuration=config/migrations.php
    ```
