@@ -14,7 +14,7 @@ language: "en"
 
 Continuing the Zend_Db series, this article shows a more complex query - combining COUNT(), LEFT JOIN, and GROUP BY across 3 tables, with a count taken from 2 different tables - and how to build it, including a nested subquery, using Zend_Db.
 
-Continuing the Zend_DB article [series](http://www.dotkernel.com/dotkernel/sql-queries-using-zend-db-select/), we are stopping now at subqueries.
+Continuing the Zend_DB article [series](http://www.dotkernel.com/best-practice/sql-queries-using-zend-db-select/), we are stopping now at subqueries.
 
 As you note, the below is a complicate query, with *COUNT()*, *LEFT JOIN()*, *GROUP BY* - select from 3 tables, and make a count from 2 different tables:
 

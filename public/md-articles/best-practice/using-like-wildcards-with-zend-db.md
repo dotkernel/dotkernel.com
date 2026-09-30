@@ -16,7 +16,7 @@ The LIKE condition allows pattern matching in the WHERE clause of SELECT, INSERT
 The `_` wildcard matches a single character, and `%` matches any string of any length (including zero).
 This article shows how to use LIKE and NOT LIKE with both wildcards in Zend_Db.
 
-Continuing the Zend_Db article series (http://www.dotkernel.com/dotkernel/sql-queries-using-zend-db-select/), let's discuss the LIKE condition.
+Continuing the Zend_Db article [series](https://www.dotkernel.com/best-practice/sql-queries-using-zend-db-select/), let's discuss the LIKE condition.
 
 The **LIKE** condition allows you to use wildcards in the *WHERE* clause of an SQL statement. This allows pattern matching. It can be used in any valid SQL statement (*SELECT*, *INSERT*, *UPDATE* or *DELETE*).
 
