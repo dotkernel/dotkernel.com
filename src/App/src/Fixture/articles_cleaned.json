@@ -3129,7 +3129,7 @@
                 "tags": []
             },
             {
-                "post_title": "Attributes vs. factories",
+                "post_title": "Attributes vs. Factories in Dependency Injection",
                 "post_date": "2026-10-01 12:00:00",
                 "post_status": "draft",
                 "author": {
