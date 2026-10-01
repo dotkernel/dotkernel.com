@@ -12,12 +12,12 @@ language: "en"
 
 ## TL;DR
 
-[WURFL](http://wurfl.sourceforge.net/) is integrated into Dotkernel using the [Zend_Http_UserAgent](http://framework.zend.com/manual/1.11/en/zend.http.user-agent.html) class from [ZF 1.11.0rc1](http://framework.zend.com/download/latest) (the beta release at the time of the post).
+[WURFL](https://wurfl.sourceforge.net/) is integrated into Dotkernel using the [Zend_Http_UserAgent](https://framework.zend.com/manual/1.11/en/zend.http.user-agent.html) class from [ZF 1.11.0rc1](https://framework.zend.com/download/latest) (the beta release at the time of the post).
 This post walks through the required folders, config files, and code to wire it up.
 
 ## Installation steps
 
-1. Download the [WURFL PHP API](http://sourceforge.net/projects/wurfl/files/WURFL%20PHP/1.1/wurfl-php-1.1.tar.gz/download) and unzip it into a folder named `wurfl-php-1.1`.
+1. Download the [WURFL PHP API](https://sourceforge.net/projects/wurfl/files/WURFL%20PHP/1.1/wurfl-php-1.1.tar.gz/download) and unzip it into a folder named `wurfl-php-1.1`.
 2. Create the following folders and make them writable by the web server:
    - `cache\wurfl\FILE_CACHE_PROVIDER`
    - `cache\wurfl\FILE_PERSISTENCE_PROVIDER`
@@ -34,12 +34,12 @@ resources.useragent.wurflapi.wurfl_config_file = APPLICATION_PATH "/configs/wurf
 
 5. Create the folder `externals\wurfl`, and copy the following files into it:
    - `wurfl-php-1.1\examples\resources\web_browsers_patch.xml`
-   - `wurfl-php-1.1\examples\resources\wurfl-regression.zip`, renamed to `wurfl.zip` (or download the [latest wurfl zip](http://sourceforge.net/projects/wurfl/files/WURFL/) database and rename it `wurfl.zip`).
+   - `wurfl-php-1.1\examples\resources\wurfl-regression.zip`, renamed to `wurfl.zip` (or download the [latest wurfl zip](https://sourceforge.net/projects/wurfl/files/WURFL/) database and rename it `wurfl.zip`).
 6. Copy the contents of the folder `wurfl-php-1.1\WURFL` to `library\Wurfl`.
 
 ## Using WURFL in Dotkernel
 
-[WURFL](http://wurfl.sourceforge.net/) is integrated into Dotkernel in the mobile module.
+[WURFL](https://wurfl.sourceforge.net/) is integrated into Dotkernel in the mobile module.
 To access WURFL configuration:
 
 ```php
@@ -68,8 +68,8 @@ A: Instantiate a Zend_Http_UserAgent with the useragent config, then call getDev
 
 ## Resources
 
-- WURFL: http://wurfl.sourceforge.net/
-- Zend_Http_UserAgent manual: http://framework.zend.com/manual/1.11/en/zend.http.user-agent.html
-- Zend Framework latest download: http://framework.zend.com/download/latest
-- WURFL PHP API 1.1 download: http://sourceforge.net/projects/wurfl/files/WURFL%20PHP/1.1/wurfl-php-1.1.tar.gz/download
-- Latest WURFL zip database: http://sourceforge.net/projects/wurfl/files/WURFL/
+- WURFL: https://wurfl.sourceforge.net/
+- Zend_Http_UserAgent manual: https://framework.zend.com/manual/1.11/en/zend.http.user-agent.html
+- Zend Framework latest download: https://framework.zend.com/download/latest
+- WURFL PHP API 1.1 download: https://sourceforge.net/projects/wurfl/files/WURFL%20PHP/1.1/wurfl-php-1.1.tar.gz/download
+- Latest WURFL zip database: https://sourceforge.net/projects/wurfl/files/WURFL/

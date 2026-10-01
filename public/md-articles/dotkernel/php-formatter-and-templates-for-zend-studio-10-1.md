@@ -25,7 +25,7 @@ A: The updated PHP Formatter file for Zend Studio 10.1 and a templates file buil
 
 ## Resources
 
-- [Dotkernel PHP Formatter for Zend Studio 10.1](http://www.dotkernel.com/download/?did=37)
-- [About PHP Formatter (Zend Studio docs)](http://files.zend.com/help/Zend-Studio-10/zend-studio.htm#formatter.htm)
-- [Templates for Zend Studio](http://www.dotkernel.com/download/?did=38)
-- [About Templates in Zend Studio and how to import/export (Zend Studio docs)](http://files.zend.com/help/Zend-Studio-10/zend-studio.htm#templates.htm)
+- [Dotkernel PHP Formatter for Zend Studio 10.1](https://www.dotkernel.com/download/?did=37)
+- [About PHP Formatter (Zend Studio docs)](https://files.zend.com/help/Zend-Studio-10/zend-studio.htm#formatter.htm)
+- [Templates for Zend Studio](https://www.dotkernel.com/download/?did=38)
+- [About Templates in Zend Studio and how to import/export (Zend Studio docs)](https://files.zend.com/help/Zend-Studio-10/zend-studio.htm#templates.htm)

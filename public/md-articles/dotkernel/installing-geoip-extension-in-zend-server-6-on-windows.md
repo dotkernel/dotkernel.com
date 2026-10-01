@@ -15,7 +15,7 @@ As an update to [Installing GeoIP extension in Zend Server 5.6 on Windows](https
 
 ## Steps
 
-1. Download the `php_geoip-1.0.8-5.4-nts-vc9-x86.zip` file from [http://windows.php.net/downloads/pecl/releases/geoip/1.0.8/](http://windows.php.net/downloads/pecl/releases/geoip/1.0.8/).
+1. Download the `php_geoip-1.0.8-5.4-nts-vc9-x86.zip` file from [https://windows.php.net/downloads/pecl/releases/geoip/1.0.8/](https://windows.php.net/downloads/pecl/releases/geoip/1.0.8/).
 2. From the archive, copy `php_geoip.dll` to `ZEND_PATH\Zend\ZendServer\lib\phpext\`.
 3. Open the `php.ini` file, located at `ZEND_PATH\Zend\ZendServer\etc\php.ini`.
 4. Add the following line at the end of the file:
@@ -30,7 +30,7 @@ As an update to [Installing GeoIP extension in Zend Server 5.6 on Windows](https
 ## FAQ
 
 **Q: Which php_geoip file should be downloaded for Zend Server 6.1?**
-A: Download the php_geoip-1.0.8-5.4-nts-vc9-x86.zip file from http://windows.php.net/downloads/pecl/releases/geoip/1.0.8/.
+A: Download the php_geoip-1.0.8-5.4-nts-vc9-x86.zip file from https://windows.php.net/downloads/pecl/releases/geoip/1.0.8/.
 
 **Q: Where does the php_geoip.dll go on Zend Server 6.1?**
 A: Copy the php_geoip.dll file from the archive to ZEND_PATH\Zend\ZendServer\lib\phpext\.
@@ -43,5 +43,5 @@ A: Follow the same steps described in the previous article (Installing GeoIP ext
 
 ## Resources
 
-- [Installing GeoIP extension in Zend Server 5.6 on Windows](http://www.dotkernel.com/dotkernel/installing-geoip-extension-in-zend-server-5-6-on-windows/)
-- [php_geoip 1.0.8 downloads](http://windows.php.net/downloads/pecl/releases/geoip/1.0.8/)
+- [Installing GeoIP extension in Zend Server 5.6 on Windows](https://www.dotkernel.com/dotkernel/installing-geoip-extension-in-zend-server-5-6-on-windows/)
+- [php_geoip 1.0.8 downloads](https://windows.php.net/downloads/pecl/releases/geoip/1.0.8/)

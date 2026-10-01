@@ -11,12 +11,12 @@ language: "en"
 # Implementing the new Password Hashing API from PHP 5.5 in Dotkernel
 
 ## TL;DR
-To use the new [Password Hashing](http://www.php.net/manual/en/book.password.php) functions introduced in PHP 5.5 and unify password-related functions for both admin and users, Dotkernel's codebase was refactored in version 1.8.0 (starting from revision 799).
+To use the new [Password Hashing](https://www.php.net/manual/en/book.password.php) functions introduced in PHP 5.5 and unify password-related functions for both admin and users, Dotkernel's codebase was refactored in version 1.8.0 (starting from revision 799).
 Because those functions require PHP 5.5+, the [Password Compat library](https://github.com/ircmaxell/password_compat) is used for compatibility, and the minimum PHP version to run Dotkernel was raised to 5.3.8.
 
 ## Background
 
-See more on the reasoning behind this change [here](http://www.brandonsavage.net/please-stop-hashing-passwords-yourself/).
+See more on the reasoning behind this change [here](https://www.brandonsavage.net/please-stop-hashing-passwords-yourself/).
 
 ## Applying this refactor to older Dotkernel systems
 
@@ -28,8 +28,8 @@ See more on the reasoning behind this change [here](http://www.brandonsavage.net
    ```
 
 2. Remove the `settings.admin.salt = 5F6WQ9U3YT` variable from `application.ini`.
-3. Apply the [patch](http://www.dotkernel.com/download/?did=40).
-4. If you have trouble applying the patch, compare the files and see the log/diff in [websvn](http://websvn.dotkernel.net/comp.php?repname=Dotkernel&compare[]=/@796&compare[]=/@797).
+3. Apply the [patch](https://www.dotkernel.com/download/?did=40).
+4. If you have trouble applying the patch, compare the files and see the log/diff in [websvn](https://websvn.dotkernel.net/comp.php?repname=Dotkernel&compare[]=/@796&compare[]=/@797).
 5. Run the conversion script - details are in the file `Console/Controller.php`, at line 47.
 6. Admin passwords cannot be converted, so they need to be recreated manually.
 
@@ -52,8 +52,8 @@ A: Admin passwords cannot be converted automatically, so they need to be recreat
 
 ## Resources
 
-- [PHP Password Hashing manual](http://www.php.net/manual/en/book.password.php)
-- [Please stop hashing passwords yourself](http://www.brandonsavage.net/please-stop-hashing-passwords-yourself/)
+- [PHP Password Hashing manual](https://www.php.net/manual/en/book.password.php)
+- [Please stop hashing passwords yourself](https://www.brandonsavage.net/please-stop-hashing-passwords-yourself/)
 - [Password Compatibility library](https://github.com/ircmaxell/password_compat)
-- [Patch download](http://www.dotkernel.com/download/?did=40)
-- [websvn diff (revision 796 vs 797)](http://websvn.dotkernel.net/comp.php?repname=Dotkernel&compare[]=/@796&compare[]=/@797)
+- [Patch download](https://www.dotkernel.com/download/?did=40)
+- [websvn diff (revision 796 vs 797)](https://websvn.dotkernel.net/comp.php?repname=Dotkernel&compare[]=/@796&compare[]=/@797)

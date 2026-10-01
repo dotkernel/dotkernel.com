@@ -49,7 +49,7 @@ As an example, a local project named zend-framework-test is used, and the latest
 
 - Right click on the project.
 - Create a new folder named library.
-- Download the latest Zend Framework 1 version from [here](http://framework.zend.com/downloads/latest#ZF1), making sure to choose the Full option, not the Full Package one.
+- Download the latest Zend Framework 1 version from [here](https://framework.zend.com/downloads/latest#ZF1), making sure to choose the Full option, not the Full Package one.
 - Extract the archive and browse the library folder.
 - Copy the Zend folder into your project's library folder.
 - If the drag and drop didn't work and you had to manually copy the folder into your project, click the project folder in Zend Studio and press F5 (Refresh).

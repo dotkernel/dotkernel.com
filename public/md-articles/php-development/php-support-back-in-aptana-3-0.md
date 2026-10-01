@@ -47,5 +47,5 @@ The plan is to provide the PHP debugger as a separate set of plugins you can gra
 
 ## Resources
 
-- [Aptana Studio 3 official product page](http://www.aptana.com/products/studio3)
+- [Aptana Studio 3 official product page](https://www.aptana.com/products/studio3)
 - [Aptana forum announcement thread](https://aptanastudio.tenderapp.com/discussions/questions/419-php-in-studio-3)

@@ -47,7 +47,7 @@ A: You can download just the changed files from 1.2.1 to 1.2.2 using the upgrade
 
 - ChangeLog 1.2.2 (linked in the original post as `../changelog/1-2-2/`)
 - Upgrade package for 1.2.2 (linked in the original post as `../download/?did=17`)
-- Dotkernel Tracker: http://www.dotkernel.net/
-- Dotkernel WebSVN: http://websvn.dotkernel.net/listing.php?repname=Dotkernel+ver.+1
+- Dotkernel Tracker: https://www.dotkernel.net/
+- Dotkernel WebSVN: https://websvn.dotkernel.net/listing.php?repname=Dotkernel+ver.+1
 - ChangeLog 1.2.1 (linked in the original post as `../changelog/1-2-1/`)
 - Upgrade package for 1.2.1 (linked in the original post as `../download/?did=14`)

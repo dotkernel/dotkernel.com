@@ -19,8 +19,8 @@ Optional backend-specific settings (like the file cache directory) are recommend
 This article contains the Dotkernel cache layer configuration guide.
 The Dotkernel Caching Layer is based on Zend Framework Cache; more configuration options can be found at the following links:
 
-- [Zend Framework Cache Frontends](http://framework.zend.com/manual/1.12/en/zend.cache.frontends.html)
-- [Zend Framework Cache Backends](http://framework.zend.com/manual/1.12/en/zend.cache.backends.html)
+- [Zend Framework Cache Frontends](https://framework.zend.com/manual/1.12/en/zend.cache.frontends.html)
+- [Zend Framework Cache Backends](https://framework.zend.com/manual/1.12/en/zend.cache.backends.html)
 
 ## Main Cache Settings (Cache Frontend)
 

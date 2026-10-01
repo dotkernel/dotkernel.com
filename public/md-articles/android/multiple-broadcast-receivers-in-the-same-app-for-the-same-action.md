@@ -29,4 +29,4 @@ A: This can happen when you use 3rd party libraries that already define their ow
 
 ## Resources
 
-- [Admob App Download Tracking documentation](http://developer.admob.com/wiki/Android_App_Download_Tracking)
+- [Admob App Download Tracking documentation](https://developer.admob.com/wiki/Android_App_Download_Tracking)

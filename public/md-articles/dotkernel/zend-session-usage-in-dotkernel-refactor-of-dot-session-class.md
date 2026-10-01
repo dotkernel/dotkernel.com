@@ -18,17 +18,17 @@ The fix, shipped in Dotkernel 1.5.1, removed the `regenerateID()` call and added
 
 ## The bug
 
-We found a strange behaviour of sessions in one of our projects, running Dotkernel version 1.5.0 - similar to [one described here](http://trac.elgg.org/ticket/2677).
+We found a strange behaviour of sessions in one of our projects, running Dotkernel version 1.5.0 - similar to [one described here](https://trac.elgg.org/ticket/2677).
 In unknown circumstances, and only in IE 8 and IE9, the session cookie is not saved on the client machine, and the user needs to log in over and over again.
 It was reproduced once on the staging server, and the only way to fix it at the time was to open a new tab with the same page.
 
 ## The investigation
 
 Investigating the `Dot_Session` class showed that the session cookie is generated **3 times**.
-See this [bug report](http://www.dotkernel.net/view.php?id=184).
+See this [bug report](https://www.dotkernel.net/view.php?id=184).
 
 The code used both **regenerateID()** and **rememberMe()** methods of Zend_Session, which is **not necessary**.
-Quote from the [ZF documentation](http://framework.zend.com/manual/1.11/en/zend.session.global_session_management.html):
+Quote from the [ZF documentation](https://framework.zend.com/manual/1.11/en/zend.session.global_session_management.html):
 
 > If you call the rememberMe() function, then don't use regenerateId(), since the former calls the latter.
 > If a user has successfully logged into your website, use rememberMe() instead of regenerateId().
@@ -65,6 +65,6 @@ A: If you encounter the same issue in IE8 and IE9, the tip given is to deactivat
 
 ## Resources
 
-- Similar issue described on Elgg: http://trac.elgg.org/ticket/2677
-- Dotkernel bug report: http://www.dotkernel.net/view.php?id=184
-- Zend Framework documentation on global session management: http://framework.zend.com/manual/1.11/en/zend.session.global_session_management.html
+- Similar issue described on Elgg: https://trac.elgg.org/ticket/2677
+- Dotkernel bug report: https://www.dotkernel.net/view.php?id=184
+- Zend Framework documentation on global session management: https://framework.zend.com/manual/1.11/en/zend.session.global_session_management.html

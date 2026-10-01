@@ -118,4 +118,4 @@ A: Create a new Dot_Alert(), add headers such as From, Reply-To and X-Mailer, th
 
 ## Resources
 
-- [Understanding dots.xml](http://www.dotkernel.com/docs/dots-xml/)
+- [Understanding dots.xml](https://www.dotkernel.com/docs/dots-xml/)

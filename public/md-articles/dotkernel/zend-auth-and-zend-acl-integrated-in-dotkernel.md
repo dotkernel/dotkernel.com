@@ -12,7 +12,7 @@ language: "en"
 
 ## TL;DR
 
-[Zend_Auth](http://framework.zend.com/manual/en/zend.auth.html) and [Zend_Acl](http://framework.zend.com/manual/en/zend.acl.html) have been integrated into Dotkernel starting with version 1.5.0.
+[Zend_Auth](https://framework.zend.com/manual/en/zend.auth.html) and [Zend_Acl](https://framework.zend.com/manual/en/zend.acl.html) have been integrated into Dotkernel starting with version 1.5.0.
 The User and Admin models were completely refactored using the new `Dot_Auth` and `Dot_Acl` classes for authentication and access control.
 
 ## Dot_Auth
@@ -95,5 +95,5 @@ Dot_Auth calls the isAllowed method from Dot_Acl to authenticate the user.
 
 ## Resources
 
-- Zend_Auth manual: http://framework.zend.com/manual/en/zend.auth.html
-- Zend_Acl manual: http://framework.zend.com/manual/en/zend.acl.html
+- Zend_Auth manual: https://framework.zend.com/manual/en/zend.auth.html
+- Zend_Acl manual: https://framework.zend.com/manual/en/zend.acl.html

@@ -121,9 +121,9 @@ A: This article works for any Dotkernel 1.x version if your server is running PH
 ## Resources
 
 - [Adding Composer support in your Dotkernel project](https://www.dotkernel.com/dotkernel/adding-composer-support-in-your-dotkernel-project)
-- [Zend Framework 1 manual](http://framework.zend.com/manual/1.12/en/manual.html)
-- [Zend Framework 2 manual](http://framework.zend.com/manual/current/en/index.html)
+- [Zend Framework 1 manual](https://framework.zend.com/manual/1.12/en/manual.html)
+- [Zend Framework 2 manual](https://framework.zend.com/manual/current/en/index.html)
 - [PSR-0](https://www.php-fig.org/psr/psr-0/)
 - [PSR-4](https://www.php-fig.org/psr/psr-4/)
-- [Zend Framework 1 - Rendering a barcode](http://framework.zend.com/manual/1.12/en/zend.barcode.creation.html#zend.barcode.creation.renderering)
-- [Zend Framework 2 - Rendering a barcode](http://framework.zend.com/manual/current/en/modules/zend.barcode.creation.html#rendering-a-barcode)
+- [Zend Framework 1 - Rendering a barcode](https://framework.zend.com/manual/1.12/en/zend.barcode.creation.html#zend.barcode.creation.renderering)
+- [Zend Framework 2 - Rendering a barcode](https://framework.zend.com/manual/current/en/modules/zend.barcode.creation.html#rendering-a-barcode)

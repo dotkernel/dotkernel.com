@@ -29,4 +29,4 @@ A: Unzip the downloaded file, then in Zend Studio go to Preferences -> PHP -> Co
 
 ## Resources
 
-- [Dotkernel PHP Formatter download](http://www.dotkernel.com/download/?did=34)
+- [Dotkernel PHP Formatter download](https://www.dotkernel.com/download/?did=34)

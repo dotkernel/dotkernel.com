@@ -16,8 +16,8 @@ Dotkernel's example mobile site normally relies on Wurfl to detect mobile browse
 As of revision 408, this behavior is controlled by a single `resources.useragent.wurflapi.redirect` setting in application.ini.
 The article shows that setting along with the matching condition in `IndexController.php` that checks it before registering and redirecting a visit.
 
-Dotkernel has an example mobile site at [http://v1.dotkernel.net/mobile](http://v1.dotkernel.net/mobile) that uses [jQuery Mobile](http://jquerymobile.com/).
-Wurfl is also used to detect mobile browsers (as discussed in a [previous blog post](http://www.dotkernel.com/dotkernel/wurfl-zend-framework-integration-into-dotkernel/)) and automatically redirect them to the mobile site the first time they view the homepage.
+Dotkernel has an example mobile site at [https://v1.dotkernel.net/mobile](https://v1.dotkernel.net/mobile) that uses [jQuery Mobile](https://jquerymobile.com/).
+Wurfl is also used to detect mobile browsers (as discussed in a [previous blog post](https://www.dotkernel.com/dotkernel/wurfl-zend-framework-integration-into-dotkernel/)) and automatically redirect them to the mobile site the first time they view the homepage.
 Sometimes this behavior isn't desired (for example when you don't have a mobile site, or you don't plan on using Wurfl at all).
 
 Starting with revision 408, there's an option in application.ini to disable the automatic redirect (by default the redirect is disabled):

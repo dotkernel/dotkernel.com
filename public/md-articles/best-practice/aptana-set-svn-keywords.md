@@ -10,7 +10,7 @@ language: "en"
 
 # Aptana - set SVN keywords
 
-In Aptana it's very simple to set the [svn:keywords](http://svnbook.red-bean.com/en/1.4/svn.advanced.props.special.keywords.html) property for a file.
+In Aptana it's very simple to set the [svn:keywords](https://svnbook.red-bean.com/en/1.4/svn.advanced.props.special.keywords.html) property for a file.
 
 For example if you want to set the svn keyword property ***Id***:
 
@@ -44,4 +44,4 @@ A: After the SVN commit of the file, the $Id$ keyword is replaced with text cont
 
 ## Resources
 
-- [svn:keywords property documentation](http://svnbook.red-bean.com/en/1.4/svn.advanced.props.special.keywords.html)
+- [svn:keywords property documentation](https://svnbook.red-bean.com/en/1.4/svn.advanced.props.special.keywords.html)

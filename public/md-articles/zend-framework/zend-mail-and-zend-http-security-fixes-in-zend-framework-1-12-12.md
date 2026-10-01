@@ -17,7 +17,7 @@ Consumers of these components, including Dotkernel which relies heavily on Zend_
 A follow-up release, 1.12.13, was issued shortly after to fix a regression introduced in 1.12.12.
 
 The release of ZF 1.12.12 was just announced, with security updates especially on the Zend_Mail and Zend_Http components.
-For more information, please read the official release announcement: [Zend Framework 1.12.12 Released](http://bit.ly/1Hr0K6e).
+For more information, please read the official release announcement: [Zend Framework 1.12.12 Released](https://bit.ly/1Hr0K6e).
 
 Also, the ZF PEAR channel was updated to the latest 1.12.12 release.
 
@@ -31,7 +31,7 @@ If you cannot, you can download the patch separately and apply it to your ZF ins
 May 20, 2015 EDIT:
 
 Zend Framework 1.12.13 was released, in order to fix a regression issue introduced in the 1.12.12 release.
-See the [Release Announcement](http://framework.zend.com/blog/zend-framework-1-12-13-released.html).
+See the [Release Announcement](https://framework.zend.com/blog/zend-framework-1-12-13-released.html).
 
 ## FAQ
 
