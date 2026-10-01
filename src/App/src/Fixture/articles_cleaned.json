@@ -3127,6 +3127,20 @@
                 "excerpt": "Choosing a lightweight PHP framework for a microservice is less about which option is smallest and more about which complexity you want to own. This article compares Dotkernel API, Slim 4, and Lumen, looking at various features and tradeoffs.",
                 "tl_dr": "Dotkernel API, Slim 4, and Lumen take very different approaches to building lightweight PHP microservices. Explore how they compare in terms of simplicity, authentication, authorization, database support, operational tooling, dependency management, and long-term maintainability—and understand why the right choice depends on whether you need a genuinely minimal service or an authenticated API designed to evolve over time.",
                 "tags": []
+            },
+            {
+                "post_title": "Dotkernel vs NestJS for API Backends: When Each One Fits",
+                "post_date": "2026-09-29 12:00:00",
+                "post_status": "draft",
+                "author": {
+                    "display_name": "Florin Bidirean",
+                    "github": "bidi47"
+                },
+                "isObsolete": false,
+                "opengraph_img": "/opengraph/article/twitter-card-dotkernel-vs-nestjs.png",
+                "excerpt": "Dotkernel suits PHP teams that need a REST API, admin and queue worker over one shared domain layer. NestJS suits TypeScript-first teams, GraphQL or WebSocket transports, and ecosystem depth.",
+                "tl_dr": "This fit guide compares the Dotkernel Headless Platform with NestJS for API backends. Dotkernel is the stronger choice for PHP teams that need a REST API, an admin back office, and a queue worker sharing one Doctrine domain layer, with OAuth2, RBAC, HAL, and a generated OpenAPI spec wired together on install. NestJS wins for TypeScript-first teams, for GraphQL, WebSocket or gRPC transports, and wherever ecosystem depth and hiring speed matter most.",
+                "tags": []
             }
         ]
     }
