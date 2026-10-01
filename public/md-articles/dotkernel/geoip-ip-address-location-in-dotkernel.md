@@ -109,7 +109,7 @@ If neither .dat file exists, it behaves the same as when mod_geoip isn't install
 
 ## Resources
 
-- [MaxMind's IP geolocation](http://www.maxmind.com/app/ip-location)
-- [library/Dot/Geoip.php source](http://websvn.dotkernel.net/filedetails.php?repname=Dotkernel&path=%2Ftrunk%2Flibrary%2FDot%2FGeoip.php)
-- [GeoLite Country database](http://www.maxmind.com/app/geolitecountry)
-- [PHP GeoIP functions](http://php.net/manual/en/book.geoip.php)
+- [MaxMind's IP geolocation](https://www.maxmind.com/app/ip-location)
+- [library/Dot/Geoip.php source](https://websvn.dotkernel.net/filedetails.php?repname=Dotkernel&path=%2Ftrunk%2Flibrary%2FDot%2FGeoip.php)
+- [GeoLite Country database](https://www.maxmind.com/app/geolitecountry)
+- [PHP GeoIP functions](https://php.net/manual/en/book.geoip.php)

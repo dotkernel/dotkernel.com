@@ -76,4 +76,4 @@ A: Table and column names must follow camelLetter naming conventions, while SQL 
 
 ## Resources
 
-- FaZend: Rules of naming of database tables and columns: http://fazend.com/a/2009-11-DataNaming.html
+- FaZend: Rules of naming of database tables and columns: https://fazend.com/a/2009-11-DataNaming.html

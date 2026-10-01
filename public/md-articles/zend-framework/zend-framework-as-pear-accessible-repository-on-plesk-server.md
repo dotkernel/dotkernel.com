@@ -22,7 +22,7 @@ Also that way we can forget about the need to update ZF at latest versions, and 
 Of course, backward compatibility can be an issue in future ZF releases (like the 2.0 branch for PHP > 5.3).
 
 1. Install PEAR if it is not installed already.
-2. Follow the instructions for [ZF PEAR](http://code.google.com/p/zend/).
+2. Follow the instructions for [ZF PEAR](https://code.google.com/p/zend/).
 Then simply use: `pear install zend/zend`
 3. Create a vhosts.conf file in /var/www/vhosts/dotkernel.com/conf or wherever your vhost configuration folder is located.
 4. In that file, remove the open_basedir:

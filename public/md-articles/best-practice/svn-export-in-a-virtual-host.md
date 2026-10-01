@@ -38,7 +38,7 @@ where:
 | Parameter | Meaning |
 |---|---|
 | `-r revisionNumber` | Optional. Exports a specific revision. By default, the latest revision is used. |
-| `repositoryUrl` | The repository URL (e.g. `http://example.com/repos/project-name/trunk/`). Remember to add `/trunk/`, or change it appropriately for a branch or tag. |
+| `repositoryUrl` | The repository URL (e.g. `https://example.com/repos/project-name/trunk/`). Remember to add `/trunk/`, or change it appropriately for a branch or tag. |
 | `targetDirectory` - `./` | The current directory. |
 | `targetDirectory` - `./project-name` | Exports to the `project-name` subdirectory. |
 | `targetDirectory` - `/var/www/vhosts/example.com/httpdocs` | Exports to an absolute path. |

@@ -126,6 +126,6 @@ A: Before fetching it, echo the query to visualize it: echo $select->__toString(
 ## Resources
 
 - [Zend_Db](https://docs.laminas.dev/laminas-db/adapter/)
-- [What are returning the FETCH functions from Zend_Db](http://www.dotkernel.com/best-practice/what-are-returning-the-fetch-functions-from-zend-db/)
-- [Subqueries with Zend_Db](http://www.dotkernel.com/best-practice/subqueries-with-zend-db/)
-- [INSERT, UPDATE, DELETE statements with Zend_Db](http://www.dotkernel.com/best-practice/insert-update-delete-statements-with-zend-db/)
+- [What are returning the FETCH functions from Zend_Db](https://www.dotkernel.com/best-practice/what-are-returning-the-fetch-functions-from-zend-db/)
+- [Subqueries with Zend_Db](https://www.dotkernel.com/best-practice/subqueries-with-zend-db/)
+- [INSERT, UPDATE, DELETE statements with Zend_Db](https://www.dotkernel.com/best-practice/insert-update-delete-statements-with-zend-db/)

@@ -19,7 +19,7 @@ The release also adds new library classes (Dot_Geoip, Dot_Seo), updates existing
 ## Database Naming Conventions
 
 On database, we changed the names and structure of tables to respect database naming convention.
-See [http://www.dotkernel.com/dotkernel/dotkernel-database-naming-conventions-for-mysql/](http://www.dotkernel.com/dotkernel/dotkernel-database-naming-conventions-for-mysql/) for details.
+See [https://www.dotkernel.com/dotkernel/dotkernel-database-naming-conventions-for-mysql/](https://www.dotkernel.com/dotkernel/dotkernel-database-naming-conventions-for-mysql/) for details.
 
 ## The "Dots" Concept
 
@@ -41,9 +41,9 @@ New library classes have been implemented: Dot_Geoip and Dot_Seo, and some of th
 ## SQL Prepared Statements
 
 In Dotkernel, all SQL queries are written as prepared statements.
-We strongly encourage this practice: [http://www.dotkernel.com/php-development/protection-against-sql-injection-using-pdo-and-zend-framework/](http://www.dotkernel.com/php-development/protection-against-sql-injection-using-pdo-and-zend-framework/)
+We strongly encourage this practice: [https://www.dotkernel.com/php-development/protection-against-sql-injection-using-pdo-and-zend-framework/](https://www.dotkernel.com/php-development/protection-against-sql-injection-using-pdo-and-zend-framework/)
 
-For more details, see [ChangeLog 1.2.0](http://www.dotkernel.com/changelog/1-2-0/).
+For more details, see [ChangeLog 1.2.0](https://www.dotkernel.com/changelog/1-2-0/).
 
 ## FAQ
 

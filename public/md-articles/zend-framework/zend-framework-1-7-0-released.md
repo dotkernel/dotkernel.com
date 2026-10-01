@@ -16,8 +16,8 @@ Zend Framework 1.7.0 has been released, and its headline feature is support for 
 The release is available directly from the official Zend Framework download page.
 
 At first glance, the biggest news is AMF support.
-This brings [Adobe's Action Message Format protocol to your PHP 5 application](http://framework.zend.com/manual/1.12/en/zend.amf.server.html).
-You can [download the latest ZF](http://framework.zend.com/download/latest) release directly.
+This brings [Adobe's Action Message Format protocol to your PHP 5 application](https://framework.zend.com/manual/1.12/en/zend.amf.server.html).
+You can [download the latest ZF](https://framework.zend.com/download/latest) release directly.
 
 ## FAQ
 

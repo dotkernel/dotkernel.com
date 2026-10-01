@@ -35,6 +35,6 @@ A: The post provides a dedicated "Upgrade from Dotkernel 1.8.0" download link, s
 
 ## Resources
 
-- Dotkernel 1.8.1: http://www.dotkernel.com/download/?did=42
-- Upgrade from Dotkernel 1.8.0: http://www.dotkernel.com/download/?did=43
-- Dotkernel 1.8.0 (LTS): http://www.dotkernel.com/download/?did=41
+- Dotkernel 1.8.1: https://www.dotkernel.com/download/?did=42
+- Upgrade from Dotkernel 1.8.0: https://www.dotkernel.com/download/?did=43
+- Dotkernel 1.8.0 (LTS): https://www.dotkernel.com/download/?did=41

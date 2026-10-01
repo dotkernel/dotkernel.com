@@ -17,9 +17,9 @@ Next up: adopting Zend Framework 2 best practices, pursuing the Zend Framework 2
 
 ## Milestone Announcement
 
-Today is a major milestone for [Dotboost Technologies Inc.](http://www.dotboost.com)
+Today is a major milestone for [Dotboost Technologies Inc.](https://www.dotboost.com)
 The company is announcing that the 10th member of the team has passed the Zend Certified Engineer exam.
-See the [Zend Yellow Pages](http://bit.ly/dotboost-zce) listing.
+See the [Zend Yellow Pages](https://bit.ly/dotboost-zce) listing.
 
 This is part of the company's commitment to ensure that clients have access to top level PHP development as standard practice, and it allows the team to follow a strong quality assurance program.
 The next step is to implement Zend Framework 2 best practices and to take the upcoming Zend Framework 2 Certified Architect exam.

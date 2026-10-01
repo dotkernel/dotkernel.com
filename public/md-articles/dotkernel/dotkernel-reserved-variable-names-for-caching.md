@@ -47,7 +47,7 @@ A: The change won't take effect on its own, since values like browser_xml and os
 
 ## Resources
 
-- [Caching in Dotkernel Using Zend Framework Cache](http://www.dotkernel.com/dotkernel/caching-in-dotkernel-using-zend-framework)
-- [router.xml documentation](http://www.dotkernel.com/docs/router-xml/)
-- [Module Structure](http://www.dotkernel.com/docs/module-structure/)
-- [menu.xml documentation](http://www.dotkernel.com/docs/menu-xml/)
+- [Caching in Dotkernel Using Zend Framework Cache](https://www.dotkernel.com/dotkernel/caching-in-dotkernel-using-zend-framework)
+- [router.xml documentation](https://www.dotkernel.com/docs/router-xml/)
+- [Module Structure](https://www.dotkernel.com/docs/module-structure/)
+- [menu.xml documentation](https://www.dotkernel.com/docs/menu-xml/)

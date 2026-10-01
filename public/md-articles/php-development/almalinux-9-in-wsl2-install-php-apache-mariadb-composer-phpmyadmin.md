@@ -54,7 +54,7 @@ While still in the AlmaLinux 9 terminal, start executing the following commands.
 Install required packages:
 
 ```bash
-sudo dnf install epel-release dnf-utils http://rpms.remirepo.net/enterprise/remi-release-9.rpm -y
+sudo dnf install epel-release dnf-utils https://rpms.remirepo.net/enterprise/remi-release-9.rpm -y
 ```
 
 Update installed packages:

@@ -16,7 +16,7 @@ On a TIMESTAMP field that records date and time when inserting a new record, it'
 This removes the need to set the value manually from PHP or with MySQL's NOW() function, and the ON UPDATE CURRENT_TIMESTAMP clause can additionally keep the field updated automatically on every row update.
 Only one TIMESTAMP field per table can be DEFAULT CURRENT_TIMESTAMP.
 
-On a *TIMESTAMP field* that records date and time when *inserting* a new record, it is encouraged to use as a *DEFAULT* value, the **CURRENT_TIMESTAMP** constant. **Why?** Because when inserting a new row in the table for the date and time field there is no need to specifically add its value, either by creating it from PHP code with the [Date/ Time functions](http://www.php.net/manual/en/ref.datetime.php) or with MySQL function [NOW()](http://dev.mysql.com/doc/refman/5.0/en/date-and-time-functions.html#function_now)
+On a *TIMESTAMP field* that records date and time when *inserting* a new record, it is encouraged to use as a *DEFAULT* value, the **CURRENT_TIMESTAMP** constant. **Why?** Because when inserting a new row in the table for the date and time field there is no need to specifically add its value, either by creating it from PHP code with the [Date/ Time functions](https://www.php.net/manual/en/ref.datetime.php) or with MySQL function [NOW()](https://dev.mysql.com/doc/refman/5.0/en/date-and-time-functions.html#function_now)
 
 ```sql
 ALTER TABLE `user` CHANGE `dateCreated` `dateCreated` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;

@@ -24,7 +24,7 @@ Test whether php_geoip is already available, and if not, download the correct ph
 
    This outputs `true` if the extension is available, or `false` if not.
 
-2. If the output is `false`, download a php_geoip.dll file correctly compiled for your Zend Server version from [http://windows.php.net/downloads/pecl/releases/geoip/1.0.8/](http://windows.php.net/downloads/pecl/releases/geoip/1.0.8/).
+2. If the output is `false`, download a php_geoip.dll file correctly compiled for your Zend Server version from [https://windows.php.net/downloads/pecl/releases/geoip/1.0.8/](https://windows.php.net/downloads/pecl/releases/geoip/1.0.8/).
 There are several files for different architectures and compilers.
 
 3. Find your PHP's architecture and compiler by running `phpinfo();`.
@@ -68,7 +68,7 @@ A: Create a PHP file with `var_dump(function_exists('geoip_database_info'));`.
 It outputs true if the extension is available, or false if it isn't.
 
 **Q: Where can you download the php_geoip extension for Zend Server 5.6?**
-A: From http://windows.php.net/downloads/pecl/releases/geoip/1.0.8/, where several php_geoip.dll files are available for different architectures and compilers.
+A: From https://windows.php.net/downloads/pecl/releases/geoip/1.0.8/, where several php_geoip.dll files are available for different architectures and compilers.
 
 **Q: How do you know which php_geoip.dll file to download?**
 A: You can find your PHP's architecture and the compiler it was built with by running phpinfo().
@@ -85,4 +85,4 @@ A: You also need to download geoip databases from MaxMind, such as geoIP.dat, ge
 
 ## Resources
 
-- [php_geoip 1.0.8 downloads](http://windows.php.net/downloads/pecl/releases/geoip/1.0.8/)
+- [php_geoip 1.0.8 downloads](https://windows.php.net/downloads/pecl/releases/geoip/1.0.8/)

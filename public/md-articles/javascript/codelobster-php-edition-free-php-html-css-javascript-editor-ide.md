@@ -18,10 +18,10 @@ On top of that, it ships plugins for popular CMS platforms and PHP frameworks su
 
 ## Free PHP, HTML, CSS, JavaScript Editor (IDE) - Codelobster PHP Edition
 
-![Free PHP, HTML, CSS, JavaScript editor (IDE) - Codelobster PHP Edition](http://www.codelobster.com/images/clphped.gif)
+![Free PHP, HTML, CSS, JavaScript editor (IDE) - Codelobster PHP Edition](https://www.codelobster.com/images/clphped.gif)
 
 For valuable work on creation of sites you need a good comfortable editor necessarily.
-There are many requiring paid products for this purpose, but we would like to select free of charge very functional and at the same time of simple in the use editor - [Codelobster PHP Edition](http://www.codelobster.com/).
+There are many requiring paid products for this purpose, but we would like to select free of charge very functional and at the same time of simple in the use editor - [Codelobster PHP Edition](https://www.codelobster.com/).
 
 Let us consider some important possibilities and advantages of this program:
 
@@ -47,7 +47,7 @@ Highlighting and autocompletion works for SQL files also.
 - WordPress blogging engine
 - Smarty template engine
 
-[http://www.codelobster.com](http://www.codelobster.com)
+[https://www.codelobster.com](https://www.codelobster.com)
 
 ## FAQ
 

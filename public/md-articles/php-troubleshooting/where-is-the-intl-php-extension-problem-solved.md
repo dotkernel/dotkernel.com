@@ -36,7 +36,7 @@ Source: [PHP Documentation](https://www.php.net/manual/en/book.intl.php)
 
 > This extension may be installed using the bundled version as of PHP 5.3.0, or as a PECL extension as of PHP 5.2.0. In other words, there are two methods to install the intl extension.
 
-Source: [PHP Documentation](http://php.net/manual/en/intl.installation.php)
+Source: [PHP Documentation](https://php.net/manual/en/intl.installation.php)
 
 ## Cause
 
@@ -75,7 +75,7 @@ For projects hosted on a shared hosting platform, you must ask your hosting prov
   - Check if the extension is enabled using `phpinfo()`.
 - If the file doesn't exist:
   - Check your PHP version by running the `php -v` command.
-  - Download the PHP version that corresponds to yours from the [PHP Downloads Page](http://windows.php.net/download/) (TS/NTS, x86/x64).
+  - Download the PHP version that corresponds to yours from the [PHP Downloads Page](https://windows.php.net/download/) (TS/NTS, x86/x64).
 To find thread safety for your PHP, run `php -i | findstr "Thread"`.
   - Search for the php_intl.dll file in the ext folder of that downloaded version and copy it into your php\ext folder.
   - Repeat the steps for the case in which the file exists.

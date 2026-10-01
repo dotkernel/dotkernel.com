@@ -73,7 +73,7 @@ A: They provide better integration of SVN, your PHP IDE (Zend Studio), and a bug
 A: It tells SVN to ignore local settings files such as *.project, *.prefs, .project, cache, .settings, .buildpath, and *.ini, since you don't want to commit your local settings to the main repository.
 
 **Q: How do you set up basic bug tracker integration?**
-A: Set the bugtracq:label property to "Tracker ID:" and bugtraq:message; if you have a public bug tracker such as Mantis, also set bugtraq:url to a URL pattern like http://www.dotkernel.net/view.php?id=%BUGID%.
+A: Set the bugtracq:label property to "Tracker ID:" and bugtraq:message; if you have a public bug tracker such as Mantis, also set bugtraq:url to a URL pattern like https://www.dotkernel.net/view.php?id=%BUGID%.
 
 **Q: Should these properties be applied recursively?**
 A: No. For the properties above, apply them only to the project folder, not recursively.

@@ -55,4 +55,4 @@ A: The article recommends using Subversion source code to switch from one enviro
 
 ## Resources
 
-- [Software development practice](http://dltj.org/article/software-development-practice/)
+- [Software development practice](https://dltj.org/article/software-development-practice/)

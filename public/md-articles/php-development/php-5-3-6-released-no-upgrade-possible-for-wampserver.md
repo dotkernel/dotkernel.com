@@ -28,4 +28,4 @@ A: More details are available on the WampServer forum, linked in this article.
 
 ## Resources
 
-- [WampServer forum discussion](http://www.wampserver.com/phorum/read.php?2,72243)
+- [WampServer forum discussion](https://www.wampserver.com/phorum/read.php?2,72243)

@@ -18,7 +18,7 @@ Since Nginx was becoming the buzzword instead of Apache, this article tests Dotk
 
 1. Installed on a clean CentOS 6.3 VPS: Nginx 1.4.1, PHP 5.4.16, PHP-FPM.
 2. Installed PHP modules: APC, GeoIP, and others.
-3. Installed PEAR and Zend Framework from the PEAR ZF channel (`http://code.google.com/p/zend/`).
+3. Installed PEAR and Zend Framework from the PEAR ZF channel (`https://code.google.com/p/zend/`).
 4. Fine-tuned `php.ini`: date, default charset, include path, etc.
 5. Created a MySQL database on a remote server and allowed permissions from the Nginx server's IP to connect to it.
 6. Edited the Nginx config (`/etc/nginx/conf.d/default.conf`):
@@ -73,10 +73,10 @@ A: The directive `try_files $uri $uri/ /index.php;`, which sends all requests to
 A: By adding a location block matching `^/configs/` that returns `deny all;`.
 
 **Q: How was the Dotkernel codebase deployed onto the server?**
-A: It was exported directly from SVN using `svn export --force http://v1.dotkernel.net/svn/trunk/ /var/www/html`.
+A: It was exported directly from SVN using `svn export --force https://v1.dotkernel.net/svn/trunk/ /var/www/html`.
 
 ## Resources
 
-- [PEAR ZF Channel](http://code.google.com/p/zend/)
-- [application.ini example](http://nginx.dotkernel.net/configs/application.ini)
-- [Live Nginx demo](http://nginx.dotkernel.net/)
+- [PEAR ZF Channel](https://code.google.com/p/zend/)
+- [application.ini example](https://nginx.dotkernel.net/configs/application.ini)
+- [Live Nginx demo](https://nginx.dotkernel.net/)

@@ -44,6 +44,6 @@ It does not allow making derivative works, even when source code is provided or 
 
 ## Resources
 
-- [Scientia Mobile](http://www.scientiamobile.com/)
-- [Detecting Mobile Devices in Dotkernel 1.6](http://www.dotkernel.com/dotkernel/detecting-mobile-devices-in-dotkernel-1-6/)
-- [dotkernel/library/WurflCloud/LICENSE.txt](http://websvn.dotkernel.net/filedetails.php?repname=Dotkernel&path=%2Ftrunk%2Flibrary%2FWurflCloud%2FLICENSE.txt)
+- [Scientia Mobile](https://www.scientiamobile.com/)
+- [Detecting Mobile Devices in Dotkernel 1.6](https://www.dotkernel.com/dotkernel/detecting-mobile-devices-in-dotkernel-1-6/)
+- [dotkernel/library/WurflCloud/LICENSE.txt](https://websvn.dotkernel.net/filedetails.php?repname=Dotkernel&path=%2Ftrunk%2Flibrary%2FWurflCloud%2FLICENSE.txt)

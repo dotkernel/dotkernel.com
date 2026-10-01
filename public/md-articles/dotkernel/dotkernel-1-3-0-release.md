@@ -63,5 +63,5 @@ A: No. Because of the XML file reorganization (bug 69), 1.3.0 is not compatible 
 - ChangeLog 1.3.0 (linked in the original post as `../changelog/1-3-0/`)
 - route.xml documentation (linked in the original post as `../docs/router-xml/`)
 - dots.xml documentation (linked in the original post as `../docs/dots-xml/`)
-- Dotkernel Tracker: http://www.dotkernel.net/
-- Dotkernel WebSVN: http://websvn.dotkernel.net/listing.php?repname=Dotkernel
+- Dotkernel Tracker: https://www.dotkernel.net/
+- Dotkernel WebSVN: https://websvn.dotkernel.net/listing.php?repname=Dotkernel

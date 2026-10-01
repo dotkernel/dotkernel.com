@@ -103,7 +103,7 @@ A: If precise values matter for your project, the article recommends using the B
 
 ## Resources
 
-- [Floating point tutorial (kipirvine.com)](http://kipirvine.com/asm/workbook/floating_tut.htm)
-- [IEEE 754 converter (h-schmidt.net)](http://www.h-schmidt.net/FloatConverter/IEEE754.html)
-- [BCMath PHP Extension documentation](http://php.net/manual/en/book.bc.php)
-- [What Every Computer Scientist Should Know About Floating-Point Arithmetic](http://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html)
+- [Floating point tutorial (kipirvine.com)](https://kipirvine.com/asm/workbook/floating_tut.htm)
+- [IEEE 754 converter (h-schmidt.net)](https://www.h-schmidt.net/FloatConverter/IEEE754.html)
+- [BCMath PHP Extension documentation](https://php.net/manual/en/book.bc.php)
+- [What Every Computer Scientist Should Know About Floating-Point Arithmetic](https://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html)

@@ -54,8 +54,8 @@ A: Over 200 reported issues in the tracker were fixed, with particular thanks cr
 
 ## Resources
 
-- [Matthew Weier O'Phinney's announcement](http://devzone.zend.com/2366/zend-framework-1-12-series-1-12-0rc1-now-available/)
-- [Browscap project](http://browsers.garykeith.com/)
-- [php_browscap.ini download](http://browsers.garykeith.com/stream.asp?PHP_BrowsCapINI)
-- [Prior WurflApi removal announcement](http://www.dotkernel.com/dotkernel/zend-framework-dropped-integration-of-wurfl-adapter/)
-- [Complete issue tracker list](http://framework.zend.com/issues/secure/IssueNavigator.jspa?requestId=12877)
+- [Matthew Weier O'Phinney's announcement](https://devzone.zend.com/2366/zend-framework-1-12-series-1-12-0rc1-now-available/)
+- [Browscap project](https://browsers.garykeith.com/)
+- [php_browscap.ini download](https://browsers.garykeith.com/stream.asp?PHP_BrowsCapINI)
+- [Prior WurflApi removal announcement](https://www.dotkernel.com/dotkernel/zend-framework-dropped-integration-of-wurfl-adapter/)
+- [Complete issue tracker list](https://framework.zend.com/issues/secure/IssueNavigator.jspa?requestId=12877)
