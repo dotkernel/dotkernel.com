@@ -10,11 +10,7 @@
 
 {% block title %}Development Environment{% endblock %}
 
-{% block head_links %}
-    <link rel="alternate" type="text/markdown" href="/wsl2.md">
-
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-{% endblock %}
+{% block head_links %}<link rel="alternate" type="text/markdown" href="/wsl2.md">{% endblock %}
 
 {% block stylesheets %}
     <style>
@@ -33,8 +29,6 @@
         .stack-name { display: inline-flex; align-items: center; gap: 8px; }
         .stack-logo { width: 20px; height: 20px; object-fit: contain; flex: none; }
         .spec-note { margin-top: 14px; font-size: 13.5px; color: var(--text-dim); }
-        .hero-stack-note { align-items: center; }
-        .hero-star { display: flex; align-items: center; }
         .step-cmd { display: block; margin-top: 12px; font-family: var(--mono); font-size: 12.5px; color: var(--teal); overflow-x: auto; }
         pre.step-cmd { margin-bottom: 0; white-space: pre; }
 
@@ -82,7 +76,6 @@
                     <div><span>Distro</span> AlmaLinux 10</div>
                     <div><span>Provisioning</span> Ansible</div>
                     <div><span>Host</span> WSL 2 or bare metal</div>
-                    <div class="hero-star"><a class="github-button" href="https://github.com/dotkernel/development" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star dotkernel/dotkernel.com on GitHub">Star</a></div>
                 </div>
             </div>
 
