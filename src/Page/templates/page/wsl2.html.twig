@@ -10,7 +10,11 @@
 
 {% block title %}Development Environment{% endblock %}
 
-{% block head_links %}<link rel="alternate" type="text/markdown" href="/wsl2.md">{% endblock %}
+{% block head_links %}
+    <link rel="alternate" type="text/markdown" href="/wsl2.md">
+
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+{% endblock %}
 
 {% block stylesheets %}
     <style>
@@ -22,7 +26,15 @@
         .spec-table tbody tr:last-child th, .spec-table tbody tr:last-child td { border-bottom: 0; }
         .spec-table tbody th { font-weight: 500; color: var(--text-muted); white-space: nowrap; }
         .spec-table td { color: var(--text); }
+        .spec-table--compare { min-width: 1100px; }
+        .spec-table--compare tbody th { white-space: normal; min-width: 150px; position: sticky; left: 0; background: var(--surface-2); }
+        .spec-table--compare thead th:first-child { position: sticky; left: 0; }
+        .spec-table--compare thead th:nth-child(2), .spec-table--compare tbody td:nth-child(2) { background: var(--page-accent-dim, var(--sage-dim)); }
+        .stack-name { display: inline-flex; align-items: center; gap: 8px; }
+        .stack-logo { width: 20px; height: 20px; object-fit: contain; flex: none; }
         .spec-note { margin-top: 14px; font-size: 13.5px; color: var(--text-dim); }
+        .hero-stack-note { align-items: center; }
+        .hero-star { display: flex; align-items: center; }
         .step-cmd { display: block; margin-top: 12px; font-family: var(--mono); font-size: 12.5px; color: var(--teal); overflow-x: auto; }
         pre.step-cmd { margin-bottom: 0; white-space: pre; }
 
@@ -70,6 +82,7 @@
                     <div><span>Distro</span> AlmaLinux 10</div>
                     <div><span>Provisioning</span> Ansible</div>
                     <div><span>Host</span> WSL 2 or bare metal</div>
+                    <div class="hero-star"><a class="github-button" href="https://github.com/dotkernel/development" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star dotkernel/dotkernel.com on GitHub">Star</a></div>
                 </div>
             </div>
 
@@ -116,6 +129,114 @@
                         <text class="ws-comp-label" x="290" y="156">Git &amp; Composer</text>
                     </svg>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Comparison</span>
+                <h2>Comparison with Popular Stacks</h2>
+                <p>Here is a direct comparison between the Dotkernel WSL2 stack, XAMPP, Laragon, DDEV, and Docker to help you choose the best
+                   development environment for your workflow.</p>
+            </div>
+
+            <div class="spec-table-wrap">
+                <table class="spec-table spec-table--compare">
+                    <thead>
+                        <tr>
+                            <th scope="col">Feature</th>
+                            <th scope="col"><span class="stack-name"><img class="stack-logo" src="{{ asset('images/app/stack/wsl2.svg') }}" alt="" width="20" height="20" loading="lazy" decoding="async">Dotkernel WSL2 (AlmaLinux 10)</span></th>
+                            <th scope="col"><span class="stack-name"><img class="stack-logo" src="{{ asset('images/app/stack/xampp.svg') }}" alt="" width="20" height="20" loading="lazy" decoding="async">XAMPP</span></th>
+                            <th scope="col"><span class="stack-name"><img class="stack-logo" src="{{ asset('images/app/stack/laragon.svg') }}" alt="" width="20" height="20" loading="lazy" decoding="async">Laragon</span></th>
+                            <th scope="col"><span class="stack-name"><img class="stack-logo" src="{{ asset('images/app/stack/ddev.svg') }}" alt="" width="20" height="20" loading="lazy" decoding="async">DDEV</span></th>
+                            <th scope="col"><span class="stack-name"><img class="stack-logo" src="{{ asset('images/app/stack/docker.svg') }}" alt="" width="20" height="20" loading="lazy" decoding="async">Docker</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Primary Use Case</th>
+                            <td>RHEL-compatible PHP stack on Windows, provisioned by one Ansible playbook.</td>
+                            <td>Quick all-in-one Apache/MariaDB/PHP/Perl stack for local development.</td>
+                            <td>Fast, portable PHP/Node development stack on Windows.</td>
+                            <td>Per-project PHP/CMS (and Node.js) development environments built on Docker.</td>
+                            <td>General-purpose containerization for any tech stack.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Core Architecture</th>
+                            <td>AlmaLinux 10 running in WSL 2's lightweight utility VM (real Linux kernel), or directly on bare metal. Services run natively inside the distro.</td>
+                            <td>Native executables run as host processes (optionally as services).</td>
+                            <td>Portable native Windows binaries; doesn't use Windows Services.</td>
+                            <td>Orchestration layer that generates and runs Docker containers per project, plus a shared router.</td>
+                            <td>Containers sharing the host kernel on Linux; on Windows/macOS, Docker Desktop runs the engine inside a Linux VM (WSL2/Hyper-V or Apple Virtualization).</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Depends On</th>
+                            <td>Windows virtualization support (WSL 2); nothing extra on bare AlmaLinux 10.</td>
+                            <td>Nothing.</td>
+                            <td>Nothing.</td>
+                            <td>A Docker provider (Docker CE, Docker Desktop, OrbStack, Rancher, etc.); on Windows, usually WSL2.</td>
+                            <td>Native on Linux; WSL2 or Hyper-V on Windows; a VM on macOS.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">OS Support</th>
+                            <td>Windows 10 1903+ (x64) or 2004+ (ARM64), Windows 11, Windows Server 2022/2025; bare-metal AlmaLinux 10.</td>
+                            <td>Windows and Linux (PHP up to 8.2.12); macOS build lags (PHP up to 8.2.4).</td>
+                            <td>Windows only.</td>
+                            <td>macOS, Windows (WSL2 or traditional), Linux, GitHub Codespaces.</td>
+                            <td>Windows, macOS, Linux.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Resource Usage</th>
+                            <td>Low to Medium (small idle footprint; WSL 2 memory grows dynamically, capped by default at a share of host RAM).</td>
+                            <td>Low (runs directly on host processes).</td>
+                            <td>Very Low (lightweight, no background services).</td>
+                            <td>Medium to High (Docker overhead plus several containers per project; varies by provider).</td>
+                            <td>Low on native Linux; Medium to High with Docker Desktop's VM.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Environment Isolation</th>
+                            <td>Separate Linux filesystem and kernel from Windows; projects share one Apache/PHP/MariaDB install, each with its own <code>*.localhost</code> virtualhost.</td>
+                            <td>None (shared global install, ports, and PHP version).</td>
+                            <td>Self-contained install, no per-project isolation (projects share services and the active PHP version).</td>
+                            <td>Container-level per project (own web and DB containers), with a shared router on ports 80/443.</td>
+                            <td>Container-level (process, filesystem, and network namespaces; shared kernel, so weaker than a VM).</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Production Parity</th>
+                            <td>High for RHEL-family servers (same <code>dnf</code>, <code>systemd</code>, and package sources as AlmaLinux/Rocky/RHEL production); not image-identical.</td>
+                            <td>Low (Windows paths and config differ from production; vendor states it's not for production).</td>
+                            <td>Low (Windows paths differ from Linux servers).</td>
+                            <td>High if versions are matched (standardized Linux containers, not your production images).</td>
+                            <td>High; identical only if the exact same image is deployed to production.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">PHP Version Switching</th>
+                            <td><code>php81</code> … <code>php85</code> aliases (Remi modules).</td>
+                            <td>One PHP version per install; switching means a different installer.</td>
+                            <td>Switch between installed PHP versions from the menu.</td>
+                            <td>Per-project <code>php_version</code> in config.</td>
+                            <td>Per image / per container.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Default Versions</th>
+                            <td>PHP 8.5, MariaDB 12.3 LTS, Node.js 24.</td>
+                            <td>PHP 8.2.12, MariaDB 10.4.32 (Windows build).</td>
+                            <td>User-selectable.</td>
+                            <td>Configurable per project.</td>
+                            <td>Defined by the image.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">License / Cost</th>
+                            <td>Free, open source (MIT).</td>
+                            <td>Free, open source.</td>
+                            <td>Laragon 6 free; 7+ free for non-commercial use (with license reminders), paid license for commercial use.</td>
+                            <td>Free, open source.</td>
+                            <td>Docker Engine free and open source; Docker Desktop requires a paid subscription for orgs with 250+ employees or $10M+ revenue.</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </section>
@@ -247,7 +368,7 @@
                         </tr>
                         <tr>
                             <th scope="row">Node.js</th>
-                            <td>22 by default via NodeSource; <code>node18</code> … <code>node24</code> aliases switch versions.</td>
+                            <td>24 by default via NodeSource; <code>node18</code> … <code>node24</code> aliases switch versions.</td>
                         </tr>
                         <tr>
                             <th scope="row">Git &amp; Composer</th>
@@ -417,7 +538,7 @@
                     so never expose it to a network.
                 </p>
                 <div class="about-cta">
-                    <a class="btn btn-ghost" href="{{ url('page::contact') }}">Talk to us -></a>
+                    <a class="btn btn-ghost" href="{{ url('app::create-contact-form') }}">Talk to us -></a>
                 </div>
             </div>
         </div>

@@ -15,15 +15,32 @@ One Ansible playbook installs PHP, Apache, MariaDB, Composer, Node.js and phpMyA
 - [Read the docs](https://docs.dotkernel.org/development/v2/terminal/)
 - [View on GitHub](https://github.com/dotkernel/development/tree/alma-linux-10)
 
-| | |
-| --- | --- |
-| Distro | AlmaLinux 10 |
-| Provisioning | Ansible |
-| Host | WSL 2 or bare metal |
+|              |                     |
+|--------------|---------------------|
+| Distro       | AlmaLinux 10        |
+| Provisioning | Ansible             |
+| Host         | WSL 2 or bare metal |
 
 ## Terminal to running stack
 
 Terminal -> WSL 2 -> AlmaLinux -> Ansible -> Ready.
+
+## Comparison with Popular Stacks
+
+Here is a direct comparison between the Dotkernel WSL2 stack, XAMPP, Laragon, DDEV, and Docker to help you choose the best development environment for your workflow.
+
+| Feature                   | Dotkernel WSL2 (AlmaLinux 10)                                                                                                                   | XAMPP                                                                                         | Laragon                                                                                                   | DDEV                                                                                              | Docker                                                                                                                                                  |
+|---------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Primary Use Case**      | RHEL-compatible PHP stack on Windows, provisioned by one Ansible playbook.                                                                      | Quick all-in-one Apache/MariaDB/PHP/Perl stack for local development.                         | Fast, portable PHP/Node development stack on Windows.                                                     | Per-project PHP/CMS (and Node.js) development environments built on Docker.                       | General-purpose containerization for any tech stack.                                                                                                    |
+| **Core Architecture**     | AlmaLinux 10 running in WSL 2's lightweight utility VM (real Linux kernel), or directly on bare metal. Services run natively inside the distro. | Native executables run as host processes (optionally as services).                            | Portable native Windows binaries; doesn't use Windows Services.                                           | Orchestration layer that generates and runs Docker containers per project, plus a shared router.  | Containers sharing the host kernel on Linux; on Windows/macOS, Docker Desktop runs the engine inside a Linux VM (WSL2/Hyper-V or Apple Virtualization). |
+| **Depends On**            | Windows virtualization support (WSL 2); nothing extra on bare AlmaLinux 10.                                                                     | Nothing.                                                                                      | Nothing.                                                                                                  | A Docker provider (Docker CE, Docker Desktop, OrbStack, Rancher, etc.); on Windows, usually WSL2. | Native on Linux; WSL2 or Hyper-V on Windows; a VM on macOS.                                                                                             |
+| **OS Support**            | Windows 10 1903+ (x64) or 2004+ (ARM64), Windows 11, Windows Server 2022/2025; bare-metal AlmaLinux 10.                                         | Windows and Linux (PHP up to 8.2.12); macOS build lags (PHP up to 8.2.4).                     | Windows only.                                                                                             | macOS, Windows (WSL2 or traditional), Linux, GitHub Codespaces.                                   | Windows, macOS, Linux.                                                                                                                                  |
+| **Resource Usage**        | Low to Medium (small idle footprint; WSL 2 memory grows dynamically, capped by default at a share of host RAM).                                 | Low (runs directly on host processes).                                                        | Very Low (lightweight, no background services).                                                           | Medium to High (Docker overhead plus several containers per project; varies by provider).         | Low on native Linux; Medium to High with Docker Desktop's VM.                                                                                           |
+| **Environment Isolation** | Separate Linux filesystem and kernel from Windows; projects share one Apache/PHP/MariaDB install, each with its own `*.localhost` virtualhost.  | None (shared global install, ports, and PHP version).                                         | Self-contained install, no per-project isolation (projects share services and the active PHP version).    | Container-level per project (own web and DB containers), with a shared router on ports 80/443.    | Container-level (process, filesystem, and network namespaces; shared kernel, so weaker than a VM).                                                      |
+| **Production Parity**     | High for RHEL-family servers (same `dnf`, `systemd`, and package sources as AlmaLinux/Rocky/RHEL production); not image-identical.              | Low (Windows paths and config differ from production; vendor states it's not for production). | Low (Windows paths differ from Linux servers).                                                            | High if versions are matched (standardized Linux containers, not your production images).         | High; identical only if the exact same image is deployed to production.                                                                                 |
+| **PHP Version Switching** | `php81` … `php85` aliases (Remi modules).                                                                                                       | One PHP version per install; switching means a different installer.                           | Switch between installed PHP versions from the menu.                                                      | Per-project `php_version` in config.                                                              | Per image / per container.                                                                                                                              |
+| **Default Versions**      | PHP 8.5, MariaDB 12.3 LTS, Node.js 24.                                                                                                          | PHP 8.2.12, MariaDB 10.4.32 (Windows build).                                                  | User-selectable.                                                                                          | Configurable per project.                                                                         | Defined by the image.                                                                                                                                   |
+| **License / Cost**        | Free, open source (MIT).                                                                                                                        | Free, open source.                                                                            | Laragon 6 free; 7+ free for non-commercial use (with license reminders), paid license for commercial use. | Free, open source.                                                                                | Docker Engine free and open source; Docker Desktop requires a paid subscription for orgs with 250+ employees or $10M+ revenue.                          |
 
 ## The same OS family your servers run
 
@@ -84,12 +101,12 @@ After setup, [Editor Integration](https://docs.dotkernel.org/development/v2/edit
 
 `install.yml` reads `config.yml` once and provisions every one of these - safe to re-run if a step fails partway through.
 
-| Component | What you get |
-| --- | --- |
-| Web server | Apache, with virtualhosts routed automatically under `*.localhost`. |
-| Database | MariaDB 12.3 from the MariaDB repository, plus phpMyAdmin for browsing it. |
-| PHP | 8.5 by default via the Remi repository; `php81` … `php85` aliases switch versions. |
-| Node.js | 22 by default via NodeSource; `node18` … `node24` aliases switch versions. |
+| Component      | What you get                                                                                                               |
+|----------------|----------------------------------------------------------------------------------------------------------------------------|
+| Web server     | Apache, with virtualhosts routed automatically under `*.localhost`.                                                        |
+| Database       | MariaDB 12.3 from the MariaDB repository, plus phpMyAdmin for browsing it.                                                 |
+| PHP            | 8.5 by default via the Remi repository; `php81` … `php85` aliases switch versions.                                         |
+| Node.js        | 24 by default via NodeSource; `node18` … `node24` aliases switch versions.                                                 |
 | Git & Composer | Your Git identity from `config.yml`, and the latest Composer at install time; update it later with `composer self-update`. |
 
 ## Every project, its own subdomain

@@ -35,7 +35,7 @@ use const DIRECTORY_SEPARATOR;
 class SitemapGeneratorTest extends UnitTest
 {
     /** Homepage, /blog/, /categories/, /authors/ and the packages-lifecycle page are always present. */
-    private const FIXED_URL_COUNT = 5;
+    private const FIXED_URL_COUNT = 6;
 
     private string $sitemapFile;
 
@@ -92,6 +92,7 @@ class SitemapGeneratorTest extends UnitTest
             'https://example.test/dotkernel-packages-oss-lifecycle/',
             (string) $urls[4]->loc
         );
+        $this->assertSame('https://example.test/contact/', (string) $urls[5]->loc);
         $this->assertCount(0, $urls[0]->lastmod);
     }
 
@@ -100,12 +101,12 @@ class SitemapGeneratorTest extends UnitTest
      */
     public function testWriteAddsOneUrlEntryPerConfiguredStaticPage(): void
     {
-        $generator = $this->createGenerator(pageRoutes: ['contact']);
+        $generator = $this->createGenerator(pageRoutes: ['about']);
 
         $this->assertSame(self::FIXED_URL_COUNT + 1, $generator->write());
 
         $urls = $this->loadSitemap()->url;
-        $this->assertSame('https://example.test/contact/', (string) $urls[self::FIXED_URL_COUNT]->loc);
+        $this->assertSame('https://example.test/about/', (string) $urls[self::FIXED_URL_COUNT]->loc);
         $this->assertCount(0, $urls[self::FIXED_URL_COUNT]->lastmod);
     }
 

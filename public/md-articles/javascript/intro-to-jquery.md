@@ -16,13 +16,13 @@ Starting with Dotkernel's 1.5 release, the framework switched from Dojo to jQuer
 It covers the jQuery (`$`) object and CSS-style selectors, chaining methods to manipulate matched elements, binding events like click, and making Ajax calls with `$.get()` and `$.getJSON()`.
 
 Starting with the 1.5 release, Dotkernel will make the switch from Dojo to jQuery.
-On jQuery's website, there's an excellent "[Getting started with jQuery tutorial](http://docs.jquery.com/Tutorials:Getting_Started_with_jQuery)", as well as a extensive [documentation](http://api.jquery.com/) for the framework, so I'll just go over a few basic concepts and common examples.
+On jQuery's website, there's an excellent "[Getting started with jQuery tutorial](https://docs.jquery.com/Tutorials:Getting_Started_with_jQuery)", as well as a extensive [documentation](https://api.jquery.com/) for the framework, so I'll just go over a few basic concepts and common examples.
 
 ## The jQuery Object
 
 jQuery is the global object that contains all of jQuery's functionality.
 You will probably want to use $ instead which is a synonim of the same object, only faster to type.
-It contains a few useful methods such as [jQuery.map](http://api.jquery.com/jQuery.map/), but it's mostly used with a selector parameter to retrieve a set of matched elements.
+It contains a few useful methods such as [jQuery.map](https://api.jquery.com/jQuery.map/), but it's mostly used with a selector parameter to retrieve a set of matched elements.
 
 ## Selectors
 
@@ -70,7 +70,7 @@ $("#helpButton").click(function(){
 
 ## Ajax
 
-jQuery has [many ajax helper functions](http://api.jquery.com/category/ajax/), here is a simple example that will replace the contents of an element with data loaded from the server:
+jQuery has [many ajax helper functions](https://api.jquery.com/category/ajax/), here is a simple example that will replace the contents of an element with data loaded from the server:
 
 ```javascript
 $.get("get-news.php", function(result){

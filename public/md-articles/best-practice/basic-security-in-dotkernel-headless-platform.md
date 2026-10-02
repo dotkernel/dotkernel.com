@@ -151,7 +151,7 @@ The GitHub Action [Laminas Continuous Integration](https://github.com/laminas/la
 - [Content Negotiation in Dotkernel REST API](https://www.dotkernel.com/dotkernel-api/content-negotiation-in-dotkernel-rest-api/)
 - [laminas-form Documentation](https://docs.laminas.dev/laminas-form/v3/intro/)
 - [CORS in Dotkernel API](https://docs.dotkernel.org/api-documentation/v6/tutorials/cors/)
-- [CORS Policy Setup in Dotkernel](https://www.dotkernel.com/how-to/mezzio-cors-implementation-in-dotkernel/)
+- [CORS Policy Setup in Dotkernel](https://www.dotkernel.com/how-to/cors-policy-setup-in-dotkernel-using-mezzio-cors/)
 - [Error Reporting Endpoint](https://docs.dotkernel.org/api-documentation/v6/core-features/error-reporting/)
 - [OpenAPI Documentation](https://docs.dotkernel.org/api-documentation/v6/openapi/introduction/)
 - [mezzio/mezzio-authentication-oauth2 Configuration](https://docs.mezzio.dev/mezzio-authentication-oauth2/v1/intro/#configuration)

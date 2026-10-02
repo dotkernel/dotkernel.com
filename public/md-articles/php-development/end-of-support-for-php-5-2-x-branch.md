@@ -40,5 +40,5 @@ A: PHP 5.3.3 was just released, so it is time to upgrade every project to the PH
 
 ## Resources
 
-- [PHP 5.2.14 changelog](http://www.php.net/ChangeLog-5.php#5.2.14)
-- [PHP 5.3.3 changelog](http://www.php.net/ChangeLog-5.php#5.3.3)
+- [PHP 5.2.14 changelog](https://www.php.net/ChangeLog-5.php#5.2.14)
+- [PHP 5.3.3 changelog](https://www.php.net/ChangeLog-5.php#5.3.3)

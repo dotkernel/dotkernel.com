@@ -18,7 +18,7 @@ Dotkernel 1.8 implements a cache layer for router, acl_role, menu, options (incl
 
 The configuration is set from `/configs/application.ini`: whether caching is enabled, how long the cache stays valid, the cache namespace, and the storage provider (File or APC).
 The article recommends disabling the cache in development mode.
-See [Configuring the Cache in Dotkernel](http://www.dotkernel.com/dotkernel/configuring-the-cache-in-dotkernel/) for more details.
+See [Configuring the Cache in Dotkernel](https://www.dotkernel.com/dotkernel/configuring-the-cache-in-dotkernel/) for more details.
 
 ## 2. Using the cache
 
@@ -74,5 +74,5 @@ A: Yes, the article shows an example of saving and loading a stdClass object usi
 
 ## Resources
 
-- [Dotkernel Reserved Variable Names for Caching](http://www.dotkernel.com/dotkernel/dotkernel-reserved-variable-names-for-caching)
-- [Configuring the Cache in Dotkernel](http://www.dotkernel.com/dotkernel/configuring-the-cache-in-dotkernel/)
+- [Dotkernel Reserved Variable Names for Caching](https://www.dotkernel.com/dotkernel/dotkernel-reserved-variable-names-for-caching)
+- [Configuring the Cache in Dotkernel](https://www.dotkernel.com/dotkernel/configuring-the-cache-in-dotkernel/)

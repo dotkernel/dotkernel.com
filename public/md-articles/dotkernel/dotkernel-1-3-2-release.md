@@ -49,4 +49,4 @@ Refactoring covered Zend_Paginator and added a dojo dijit theme to Dotkernel.
 
 ## Resources
 
-- Dotkernel 1.3.2 download: http://www.dotkernel.com/download/?did=27
+- Dotkernel 1.3.2 download: https://www.dotkernel.com/download/?did=27

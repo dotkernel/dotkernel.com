@@ -68,11 +68,11 @@ A: Every opening curly brace starts on its own new line after the statement, and
 
 ## Resources
 
-- Zend Framework: http://framework.zend.com/
-- ZF Coding Standard: http://framework.zend.com/manual/en/coding-standard.php-file-formatting.html
-- ZF Coding Standard - Indentation: http://framework.zend.com/manual/en/coding-standard.php-file-formatting.html#coding-standard.php-file-formatting.indentation
-- ZF Coding Standard - Naming Conventions: http://framework.zend.com/manual/en/coding-standard.naming-conventions.html
-- ZF Coding Standard - Classes: http://framework.zend.com/manual/en/coding-standard.naming-conventions.html#coding-standard.naming-conventions.classes
-- ZF Coding Standard - Interfaces: http://framework.zend.com/manual/en/coding-standard.naming-conventions.html#coding-standard.naming-conventions.interfaces
-- ZF Coding Standard - Filenames: http://framework.zend.com/manual/en/coding-standard.naming-conventions.html#coding-standard.naming-conventions.filenames
-- ZF Coding Standard - Control Statements: http://framework.zend.com/manual/en/coding-standard.coding-style.html#coding-standard.coding-style.control-statements
+- Zend Framework: https://framework.zend.com/
+- ZF Coding Standard: https://framework.zend.com/manual/en/coding-standard.php-file-formatting.html
+- ZF Coding Standard - Indentation: https://framework.zend.com/manual/en/coding-standard.php-file-formatting.html#coding-standard.php-file-formatting.indentation
+- ZF Coding Standard - Naming Conventions: https://framework.zend.com/manual/en/coding-standard.naming-conventions.html
+- ZF Coding Standard - Classes: https://framework.zend.com/manual/en/coding-standard.naming-conventions.html#coding-standard.naming-conventions.classes
+- ZF Coding Standard - Interfaces: https://framework.zend.com/manual/en/coding-standard.naming-conventions.html#coding-standard.naming-conventions.interfaces
+- ZF Coding Standard - Filenames: https://framework.zend.com/manual/en/coding-standard.naming-conventions.html#coding-standard.naming-conventions.filenames
+- ZF Coding Standard - Control Statements: https://framework.zend.com/manual/en/coding-standard.coding-style.html#coding-standard.coding-style.control-statements

@@ -84,8 +84,8 @@ A: A security scan in the Admin Dashboard shows recommended settings, admin fail
 
 ## Resources
 
-- What is LTS: http://www.dotkernel.com/long-term-support
-- Caching in Dotkernel using Zend Framework: http://www.dotkernel.com/dotkernel/caching-in-dotkernel-using-zend-framework/
-- Dotkernel reserved variable names for caching: http://www.dotkernel.com/dotkernel/dotkernel-reserved-variable-names-for-caching/
-- How to use alerts in Dotkernel: http://www.dotkernel.com/dotkernel/how-to-use-alerts-in-dotkernel/
-- Dotkernel 1.8.0 (LTS) download: http://www.dotkernel.com/download/?did=41
+- What is LTS: https://www.dotkernel.com/long-term-support
+- Caching in Dotkernel using Zend Framework: https://www.dotkernel.com/dotkernel/caching-in-dotkernel-using-zend-framework/
+- Dotkernel reserved variable names for caching: https://www.dotkernel.com/dotkernel/dotkernel-reserved-variable-names-for-caching/
+- How to use alerts in Dotkernel: https://www.dotkernel.com/dotkernel/how-to-use-alerts-in-dotkernel/
+- Dotkernel 1.8.0 (LTS) download: https://www.dotkernel.com/download/?did=41

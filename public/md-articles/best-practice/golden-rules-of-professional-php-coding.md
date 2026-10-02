@@ -31,7 +31,7 @@ ini_set('display_errors', 1);
 
 6. Use a version control system. **SVN is NOT dead.**
 
-7. Use an **[IDE](http://en.wikipedia.org/wiki/Integrated_development_environment)**. [Aptana 2](http://www.aptana.com/products/studio2/download), [Aptana 3](http://www.aptana.com/products/studio3/download), Eclipse, even [Zend Studio](http://www.zend.com/en/products/studio/).
+7. Use an **[IDE](https://en.wikipedia.org/wiki/Integrated_development_environment)**. [Aptana 2](https://www.aptana.com/products/studio2/download), [Aptana 3](https://www.aptana.com/products/studio3/download), Eclipse, even [Zend Studio](https://www.zend.com/en/products/studio/).
 
 8. Know your **IDE**: code snippets, code assist, integration with Zend Framework, SVN integration, bug tracker integration, and so on
 
@@ -55,7 +55,7 @@ A: It recommends using a version control system (noting that SVN is not dead) an
 
 ## Resources
 
-- [Integrated development environment (Wikipedia)](http://en.wikipedia.org/wiki/Integrated_development_environment)
-- [Aptana 2 download](http://www.aptana.com/products/studio2/download)
-- [Aptana 3 download](http://www.aptana.com/products/studio3/download)
-- [Zend Studio](http://www.zend.com/en/products/studio/)
+- [Integrated development environment (Wikipedia)](https://en.wikipedia.org/wiki/Integrated_development_environment)
+- [Aptana 2 download](https://www.aptana.com/products/studio2/download)
+- [Aptana 3 download](https://www.aptana.com/products/studio3/download)
+- [Zend Studio](https://www.zend.com/en/products/studio/)

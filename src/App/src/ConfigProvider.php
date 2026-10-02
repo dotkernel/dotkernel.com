@@ -10,6 +10,7 @@ use Doctrine\Persistence\Mapping\Driver\MappingDriver;
 use Doctrine\Persistence\Mapping\Driver\MappingDriverChain;
 use Dot\Cache\Adapter\ArrayAdapter;
 use Dot\Cache\Adapter\FilesystemAdapter;
+use Dot\DependencyInjection\Factory\AttributedServiceFactory;
 use Light\App\DBAL\Types\UuidType;
 use Light\App\Factory\EntityListenerResolverFactory;
 use Light\App\Factory\FeedGeneratorFactory;
@@ -25,12 +26,15 @@ use Light\App\Factory\MarkdownExtensionFactory;
 use Light\App\Factory\MarkdownRuntimeLoaderFactory;
 use Light\App\Factory\PackageGeneratorFactory;
 use Light\App\Factory\SitemapGeneratorFactory;
+use Light\App\Handler\GetCreateContactFormHandler;
 use Light\App\Handler\GetFeedViewHandler;
 use Light\App\Handler\GetIndexViewHandler;
 use Light\App\Handler\GetMarkdownArticleHandler;
 use Light\App\Handler\GetPackagesViewHandler;
 use Light\App\Handler\GetSitemapViewHandler;
+use Light\App\Handler\PostCreateContactHandler;
 use Light\App\Resolver\EntityListenerResolver;
+use Light\App\Service\ContactService;
 use Light\App\Service\FeedGenerator;
 use Light\App\Service\GitHubClient;
 use Light\App\Service\GitHubClientInterface;
@@ -142,6 +146,9 @@ class ConfigProvider
                 GetMarkdownArticleHandler::class      => GetMarkdownArticleHandlerFactory::class,
                 GetSitemapViewHandler::class          => GetSitemapViewHandlerFactory::class,
                 GetPackagesViewHandler::class         => GetPackagesViewHandlerFactory::class,
+                GetCreateContactFormHandler::class    => AttributedServiceFactory::class,
+                PostCreateContactHandler::class       => AttributedServiceFactory::class,
+                ContactService::class                 => AttributedServiceFactory::class,
                 FeedGenerator::class                  => FeedGeneratorFactory::class,
                 SitemapGenerator::class               => SitemapGeneratorFactory::class,
                 GitHubClient::class                   => GitHubClientFactory::class,

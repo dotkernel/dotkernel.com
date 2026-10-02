@@ -83,13 +83,12 @@ return [
     'sitemap' => [
         'path' => realpath(__DIR__ . '/../../public/sitemap.xml'),
     ],
-    // `dotkernel-packages-oss-lifecycle` is intentionally absent: it has a dedicated handler
-    // and is routed in Light\App\RoutesDelegator. Re-adding it here registers the path twice.
+    // `dotkernel-packages-oss-lifecycle` and `contact` are intentionally absent: they have dedicated
+    // handlers and are routed in Light\App\RoutesDelegator. Re-adding them here registers the path twice.
     'routes' => [
         'page' => [
             // Linked from the footer on every page, so this route must stay registered.
             'about'        => 'about',
-            'contact'      => 'contact',
             'api'          => 'api',
             'admin'        => 'admin',
             'queue'        => 'queue',

@@ -18,7 +18,7 @@ In Dotkernel, `Zend_Registry` holds a fixed set of request-scoped variables - fr
 
 | Variable | Contents |
 |---|---|
-| `startTime` | The result of [microtime()](http://php.net/manual/en/function.microtime.php) at the beginning of the request |
+| `startTime` | The result of [microtime()](https://php.net/manual/en/function.microtime.php) at the beginning of the request |
 | `configuration` | The configuration options loaded from `configs/application.ini` |
 | `router` | Routing settings loaded from `configs/router.xml` |
 | `database` | The database adapter |
@@ -63,5 +63,5 @@ A: It contains seo information loaded from configs/dots/seo.xml, such as site na
 
 ## Resources
 
-- microtime() PHP manual: http://php.net/manual/en/function.microtime.php
-- Zend Framework Documentation on Zend_Registry: http://framework.zend.com/manual/en/zend.registry.using.html
+- microtime() PHP manual: https://php.net/manual/en/function.microtime.php
+- Zend Framework Documentation on Zend_Registry: https://framework.zend.com/manual/en/zend.registry.using.html

@@ -48,6 +48,6 @@ Zend_Registry is a container for storing objects and values in the application s
 
 ## Resources
 
-- [DotBoost](http://www.dotboost.com)
-- [Open Software License (OSL 3.0)](http://opensource.org/licenses/osl-3.0.php)
-- [Zend Framework](http://framework.zend.com/)
+- [DotBoost](https://www.dotboost.com)
+- [Open Software License (OSL 3.0)](https://opensource.org/licenses/osl-3.0.php)
+- [Zend Framework](https://framework.zend.com/)

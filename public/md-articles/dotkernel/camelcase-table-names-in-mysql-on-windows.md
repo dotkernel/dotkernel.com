@@ -30,4 +30,4 @@ A: Add the line `lower_case_table_names=2` to your my.cnf file and restart MySQL
 
 ## Resources
 
-- [MySQL lower_case_table_names documentation](http://dev.mysql.com/doc/refman/4.1/en/server-system-variables.html#sysvar_lower_case_table_names)
+- [MySQL lower_case_table_names documentation](https://dev.mysql.com/doc/refman/4.1/en/server-system-variables.html#sysvar_lower_case_table_names)

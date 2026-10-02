@@ -70,6 +70,6 @@ A: About 250 commits went into the SVN repository since the previous release, so
 
 ## Resources
 
-- Intro to jQuery: http://www.dotkernel.com/javascript/intro-to-jquery/
-- Zend Registry usage in Dotkernel: http://www.dotkernel.com/dotkernel/zend-registry-usage-in-dotkernel/
-- Dotkernel 1.5.0 download: http://www.dotkernel.com/download/?did=33
+- Intro to jQuery: https://www.dotkernel.com/javascript/intro-to-jquery/
+- Zend Registry usage in Dotkernel: https://www.dotkernel.com/dotkernel/zend-registry-usage-in-dotkernel/
+- Dotkernel 1.5.0 download: https://www.dotkernel.com/download/?did=33
