@@ -22,6 +22,12 @@
         .spec-table tbody tr:last-child th, .spec-table tbody tr:last-child td { border-bottom: 0; }
         .spec-table tbody th { font-weight: 500; color: var(--text-muted); white-space: nowrap; }
         .spec-table td { color: var(--text); }
+        .spec-table--compare { min-width: 1100px; }
+        .spec-table--compare tbody th { white-space: normal; min-width: 150px; position: sticky; left: 0; background: var(--surface-2); }
+        .spec-table--compare thead th:first-child { position: sticky; left: 0; }
+        .spec-table--compare thead th:nth-child(2), .spec-table--compare tbody td:nth-child(2) { background: var(--page-accent-dim, var(--sage-dim)); }
+        .stack-name { display: inline-flex; align-items: center; gap: 8px; }
+        .stack-logo { width: 20px; height: 20px; object-fit: contain; flex: none; }
         .spec-note { margin-top: 14px; font-size: 13.5px; color: var(--text-dim); }
         .step-cmd { display: block; margin-top: 12px; font-family: var(--mono); font-size: 12.5px; color: var(--teal); overflow-x: auto; }
         pre.step-cmd { margin-bottom: 0; white-space: pre; }
@@ -116,6 +122,98 @@
                         <text class="ws-comp-label" x="290" y="156">Git &amp; Composer</text>
                     </svg>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Comparison</span>
+                <h2>Comparison with Popular Stacks</h2>
+                <p>Here is a direct comparison between WSL2, XAMPP, Laragon, DDEV, and Docker to help you choose the best
+                   development environment for your workflow.</p>
+            </div>
+
+            <div class="spec-table-wrap">
+                <table class="spec-table spec-table--compare">
+                    <thead>
+                        <tr>
+                            <th scope="col">Feature</th>
+                            <th scope="col"><span class="stack-name"><img class="stack-logo" src="{{ asset('images/app/stack/wsl2.svg') }}" alt="" width="20" height="20" loading="lazy" decoding="async">WSL2</span></th>
+                            <th scope="col"><span class="stack-name"><img class="stack-logo" src="{{ asset('images/app/stack/xampp.svg') }}" alt="" width="20" height="20" loading="lazy" decoding="async">XAMPP</span></th>
+                            <th scope="col"><span class="stack-name"><img class="stack-logo" src="{{ asset('images/app/stack/laragon.svg') }}" alt="" width="20" height="20" loading="lazy" decoding="async">Laragon</span></th>
+                            <th scope="col"><span class="stack-name"><img class="stack-logo" src="{{ asset('images/app/stack/ddev.svg') }}" alt="" width="20" height="20" loading="lazy" decoding="async">DDEV</span></th>
+                            <th scope="col"><span class="stack-name"><img class="stack-logo" src="{{ asset('images/app/stack/docker.svg') }}" alt="" width="20" height="20" loading="lazy" decoding="async">Docker</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Primary Use Case</th>
+                            <td>Running a real Linux environment on Windows via a managed VM.</td>
+                            <td>Quick all-in-one Apache/MariaDB/PHP/Perl stack for local development.</td>
+                            <td>Fast, portable PHP/Node development stack on Windows.</td>
+                            <td>Per-project PHP/CMS (and Node.js) development environments built on Docker.</td>
+                            <td>General-purpose containerization for any tech stack.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Core Architecture</th>
+                            <td>Real Linux kernel in a lightweight utility VM; distros run as isolated containers inside it.</td>
+                            <td>Native executables run as host processes (optionally as services).</td>
+                            <td>Portable native Windows binaries; doesn't use Windows Services.</td>
+                            <td>Orchestration layer that generates and runs Docker containers per project, plus a shared router.</td>
+                            <td>Containers sharing the host kernel on Linux; on Windows/macOS, Docker Desktop runs the engine inside a Linux VM (WSL2/Hyper-V or Apple Virtualization).</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Depends On</th>
+                            <td>Windows virtualization support.</td>
+                            <td>Nothing.</td>
+                            <td>Nothing.</td>
+                            <td>A Docker provider (Docker CE, Docker Desktop, OrbStack, Rancher, etc.); on Windows, usually WSL2.</td>
+                            <td>Native on Linux; WSL2 or Hyper-V on Windows; a VM on macOS.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">OS Support</th>
+                            <td>Windows 10 (1903+, build 18362+), Windows 11, Windows Server.</td>
+                            <td>Windows and Linux (PHP up to 8.2.12); macOS build lags (PHP up to 8.2.4); XAMPP-VM unsupported on Apple Silicon.</td>
+                            <td>Windows only.</td>
+                            <td>macOS, Windows (WSL2 or traditional), Linux, GitHub Codespaces.</td>
+                            <td>Windows, macOS, Linux.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Resource Usage</th>
+                            <td>Low to Medium (small footprint at idle; memory grows dynamically, capped by default at a share of host RAM).</td>
+                            <td>Low (runs directly on host processes).</td>
+                            <td>Very Low (lightweight, no background services).</td>
+                            <td>Medium to High (Docker overhead plus several containers per project; varies by provider).</td>
+                            <td>Low on native Linux; Medium to High with Docker Desktop's VM.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Environment Isolation</th>
+                            <td>Partial (separate Linux filesystem and kernel, but deliberately integrated with Windows files, networking, and executables).</td>
+                            <td>None (shared global install, ports, and PHP version).</td>
+                            <td>Self-contained install, no per-project isolation (projects share services and the active PHP version).</td>
+                            <td>Container-level per project (own web and DB containers), with a shared router on ports 80/443.</td>
+                            <td>Container-level (process, filesystem, and network namespaces; shared kernel, so weaker than a VM).</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Production Parity</th>
+                            <td>Depends on what you install (it's a Linux OS, not a stack).</td>
+                            <td>Low (Windows paths and config differ from production; vendor states it's not for production).</td>
+                            <td>Low (Windows paths differ from Linux servers).</td>
+                            <td>High if versions are matched (standardized Linux containers, not your production images).</td>
+                            <td>High; identical only if the exact same image is deployed to production.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">License / Cost</th>
+                            <td>Free (part of Windows).</td>
+                            <td>Free, open source.</td>
+                            <td>Laragon 6 free; versions 7+ require a paid license.</td>
+                            <td>Free, open source.</td>
+                            <td>Docker Engine free and open source; Docker Desktop requires a paid subscription for larger businesses.</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </section>
