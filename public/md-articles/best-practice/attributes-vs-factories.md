@@ -8,11 +8,11 @@ category: "Best Practice"
 language: "en"
 ---
 
-# Attributes vs. factories
+# Attributes vs. Hand-Written Factories
 
 ## TL;DR
 
-Attributes remove one factory file per service and keep dependencies next to the constructor they feed, while hand-written factories keep static type checking and full control over construction. Use #[Inject] for plain constructor wiring, keep factories for computed, conditional, decorated or third-party classes, and mix both freely in the same PSR-11 application.
+Attributes remove one factory file per service and keep dependencies next to the constructor they feed, while hand-written factories keep static type checking and full control over construction. Use #[Inject] for plain constructor wiring, keep factories for computed, conditional, decorated or third-party classes, and mix both freely in the same Mezzio application.
 
 ## Introduction
 
@@ -22,7 +22,8 @@ The payoff is flexibility, because you can swap an implementation without touchi
 For required dependencies, the constructor is the natural place to receive them.
 
 Someone still has to build those objects, and in a [PSR-11](https://www.php-fig.org/psr/psr-11/) application that someone is the container.
-PSR-11 defines only two methods on `ContainerInterface`: `get()` and `has()`.
+[PSR-11](https://www.php-fig.org/psr/psr-11/) standardizes only how you retrieve entries from a container, not how they are built: `ContainerInterface` defines just two methods, `get()` and `has()`.
+The factories and delegators configuration you'll see below belongs to `ServiceManager`.
 It also gives a clear warning: "Users SHOULD NOT pass a container into an object so that the object can retrieve its own dependencies."
 That is the service locator anti-pattern, and it is why the container belongs in a factory, not inside your service.
 
@@ -34,14 +35,14 @@ We introduced the package in [Dependency Injection made easy in Laminas/Mezzio a
 This article puts the two side by side and helps you choose.
 The real-world code comes from the [Dotkernel API](https://github.com/dotkernel/api) repository.
 
-## Comparison table
+## Comparison Table
 
 | Aspect | Hand-written factory | `#[Inject]` attribute |
 | --- | --- | --- |
 | Files per service | 2: the class and its factory | 1: the class |
-| Type checking | Statically verified | None, dependencies are resolved from strings at runtime |
-| Argument order | Written by you in the `new` call | Must match the constructor manually |
-| Reflection | None when the service is built | One `ReflectionClass` per service creation |
+| Static type checking | Verified by your IDE and static analysis | None; identifiers are strings resolved at runtime, and PHP's type declarations catch a mismatch only when the service is built |
+| Argument order | Kept in sync manually, but verified statically in the `new` call (named arguments also possible) | Kept in sync manually; a mistake surfaces only at runtime |
+| Reflection | None when the service is built | One `ReflectionClass` per service creation (usually once per request, since services are shared by default) |
 | Conditional wiring | Fully supported | Not supported |
 | Third-party classes | Works on any class | Only classes you can annotate |
 | Config access | `$container->get('config')['user']` | `'config.user'` |
@@ -50,9 +51,9 @@ The real-world code comes from the [Dotkernel API](https://github.com/dotkernel/
 
 Rule of thumb: if the constructor only needs things the container already holds, use the attribute. If construction needs logic, use a factory.
 
-## Code examples from dotkernel/api
+## Code Examples from dotkernel/api
 
-### A service wired with an attribute
+### A Service Wired with an Attribute
 
 `UserAvatarService` needs a Doctrine repository and the application config.
 In dotkernel/api, the class declares both on the constructor:
@@ -91,7 +92,7 @@ use Dot\DependencyInjection\Factory\AttributedServiceFactory;
 The same `AttributedServiceFactory` entry is repeated for every handler, service and middleware in the module.
 The attribute lists the container identifiers in constructor order, which is the order you must keep in sync by hand.
 
-### The same service with a hand-written factory
+### The Same Service with a Hand-Written Factory
 
 The factory below is illustrative: dotkernel/api does not ship it, but it is what the same wiring looks like without the attribute.
 
@@ -123,7 +124,7 @@ That is two files instead of one, and a second place to edit whenever the constr
 In return, the `new UserAvatarService(...)` call is checked statically: a wrong argument type or order is caught by your IDE and static analysis before the code runs.
 With the attribute, the same mistake shows up when the service is built.
 
-### Doctrine repositories
+### Doctrine Repositories
 
 Repositories are where attributes save the most repetition.
 In dotkernel/api, the repository declares which entity it serves:
@@ -153,7 +154,7 @@ use Dot\DependencyInjection\Factory\AttributedRepositoryFactory;
 
 Without it, each repository needs its own factory that fetches the entity manager and asks it for the right repository, the same boilerplate repeated per entity.
 
-### Where a factory still wins
+### Where a Factory Still Wins
 
 Some objects cannot be described by a list of container identifiers.
 `ErrorResponseGeneratorFactory` in dotkernel/api reads a config value, with a fallback when the container has no config at all:
@@ -192,7 +193,7 @@ An attribute cannot express "give me the container", and this resolver exists to
 That is a deliberate exception.
 It does not make the container a general-purpose dependency for your services.
 
-### Using both in one project
+### Using Both in One Project
 
 The two approaches share the same `ConfigProvider`.
 dotkernel/api's `App` module, for example, wires its services with the attribute and still decorates selected services with delegators:
@@ -211,7 +212,7 @@ dotkernel/api's `App` module, for example, wires its services with the attribute
 A service can be built by `AttributedServiceFactory` and still be wrapped by a delegator.
 Which factory applies to which service is decided entirely by the configuration.
 
-### The anti-pattern to avoid
+### The Anti-Pattern to Avoid
 
 Both approaches keep the container out of your classes.
 This is what PSR-11 warns against:
@@ -232,7 +233,8 @@ class UserAvatarService
 }
 ```
 
-The dependencies are now hidden: the constructor signature no longer says what the class needs, and a missing service fails in the middle of a request instead of at construction.
+The dependencies are now hidden: the constructor signature no longer says what the class needs, and a missing service no longer fails when `UserAvatarService` is built, but only when `deleteAvatar()` is called.
+That may be a rarely used code path that slips past your tests and fails in production.
 Tests also have to build a container just to run one method.
 Declare `UserAvatarRepository` in the constructor instead, using either approach from this article.
 
@@ -240,7 +242,8 @@ Declare `UserAvatarRepository` in the constructor instead, using either approach
 
 Attributes and factories are two ways of delivering the same constructor injection.
 Default to `#[Inject]` when a class only needs services and config the container already holds: it means one file per service, dependencies visible next to the constructor, and uniform error messages.
-Reach for a factory when construction involves logic, when a class is not yours to annotate, or when you need a delegator or a decorated service.
+Reach for a hand-written factory when construction involves logic or when a class is not yours to annotate.
+Decorating a service is a separate concern: the delegator is a factory you write, but the service it wraps can still be built with `#[Inject]`.
 You do not have to choose once for the whole project, since the `ConfigProvider` decides per service.
 
 To go further, read the [dot-dependency-injection documentation](https://docs.dotkernel.org/dot-dependency-injection/v1/attributes-vs-factories/) and browse the [Dotkernel API](https://github.com/dotkernel/api) source for both styles in a working application.
@@ -251,13 +254,17 @@ To go further, read the [dot-dependency-injection documentation](https://docs.do
 A: Yes. The `ConfigProvider` decides which factory builds each service, so some services can use `AttributedServiceFactory` while others use a hand-written factory. dotkernel/api does exactly that.
 
 **Q: Do attributes slow the application down?**
-A: There is a small cost: the attribute approach uses one `ReflectionClass` per service creation, while a hand-written factory has no reflection when the service is built. The documentation does not publish benchmark figures, so measure your own application if it matters.
+A: There is a small cost: the attribute approach uses one `ReflectionClass` per service creation, while a hand-written factory has no reflection when the service is built.
+Because ServiceManager shares services by default, a service is usually created once per request rather than on every `get()` call, so the cost is paid once per service per request.
+The documentation does not publish benchmark figures, so measure your own application if it matters.
 
-**Q: Why does `#[Inject]` lose type checking?**
-A: The attribute lists container identifiers as strings, such as `UserAvatarRepository::class` or `'config'`, and they are resolved at runtime. Static analysis cannot check that they match the constructor's parameter types or order, whereas a factory's `new` call is checked statically.
+**Q: Why does `#[Inject]` lose static type checking?**
+A: The attribute lists container identifiers as strings, such as `UserAvatarRepository::class` or `'config'`, and they are resolved at runtime.
+Static analysis cannot check that they match the constructor's parameter types or order, whereas a factory's `new` call is checked statically.
+PHP still enforces the constructor's type declarations, so a mismatch throws a `TypeError` when the service is built rather than going unnoticed; it just isn't caught before the code runs.
 
 **Q: When must I write a factory?**
-A: When construction is computed or conditional, when the class is a third-party class you cannot annotate, when you need a delegator or decorated service, or when the dependency is not a constructor argument.
+A: When construction is computed or conditional, when the class is a third-party class you cannot annotate, or when the dependency is not a constructor argument. To decorate a service you write a delegator factory, but the service itself can still be wired with `#[Inject]`, as the `App` module example shows.
 
 **Q: How does this relate to PSR-11 and the service locator anti-pattern?**
 A: PSR-11 says users should not pass a container into an object so that it can retrieve its own dependencies. Both approaches follow that: the container is used inside the factory, never inside your service, and your service receives its dependencies through the constructor.
