@@ -41,6 +41,11 @@ $files = [
         'environment' => [ENVIRONMENT_DEVELOPMENT, ENVIRONMENT_PRODUCTION],
     ],
     [
+        'source'      => 'config/autoload/mail.local.php.dist',
+        'destination' => 'config/autoload/mail.local.php',
+        'environment' => [ENVIRONMENT_DEVELOPMENT, ENVIRONMENT_PRODUCTION],
+    ],
+    [
         'source'      => 'config/autoload/local.test.php.dist',
         'destination' => 'config/autoload/local.test.php',
         'environment' => [ENVIRONMENT_DEVELOPMENT],
