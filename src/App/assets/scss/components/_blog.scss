@@ -240,6 +240,57 @@ $bp-tablet: 900px;
       font-size: inherit;
     }
   }
+
+  // Markdown tables render as bare <table> elements, so they are styled by tag.
+  // display:block lets a wide table scroll sideways instead of overflowing the column.
+  table {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 0 24px;
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    border-collapse: collapse;
+    font-size: 14.5px;
+    background: var(--surface);
+
+    th,
+    td {
+      padding: 12px 16px;
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    thead th {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      color: var(--text-dim);
+      background: var(--surface-2);
+    }
+
+    tbody tr:last-child td,
+    tbody tr:last-child th {
+      border-bottom: 0;
+    }
+
+    tbody th,
+    td:first-child {
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    p {
+      margin-bottom: 0;
+      font-size: inherit;
+      line-height: 1.6;
+    }
+  }
 }
 
 // ---------- Obsolete post warning ----------

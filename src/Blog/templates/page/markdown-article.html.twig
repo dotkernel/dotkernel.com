@@ -9,9 +9,9 @@
 <div class="faq-list">
     {% for item in faq %}
     <details class="acc"{% if loop.first %} open{% endif %}>
-        <summary>{{ item.question }} <span class="chev">+</span></summary>
+        <summary>{{ item.question|markdown_to_html|striptags('<code><strong><em><a>')|raw }} <span class="chev">+</span></summary>
         <div class="acc-body">
-            <p class="mb-0">{{ item.answer }}</p>
+            <p class="mb-0">{{ item.answer|markdown_to_html|striptags('<code><strong><em><a>')|raw }}</p>
         </div>
     </details>
     {% endfor %}
