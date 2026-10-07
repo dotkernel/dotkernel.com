@@ -242,18 +242,21 @@ $bp-tablet: 900px;
   }
 
   // Markdown tables render as bare <table> elements, so they are styled by tag.
-  // display:block lets a wide table scroll sideways instead of overflowing the column.
-  table {
-    display: block;
-    width: 100%;
-    max-width: 100%;
+  // The template wraps each one in .table-wrap so a wide table scrolls sideways
+  // instead of overflowing the column.
+  .table-wrap {
     margin: 0 0 24px;
     overflow-x: auto;
     border: 1px solid var(--border);
     border-radius: 8px;
+    background: var(--surface);
+  }
+
+  table {
+    width: 100%;
+    margin: 0;
     border-collapse: collapse;
     font-size: 14.5px;
-    background: var(--surface);
 
     th,
     td {

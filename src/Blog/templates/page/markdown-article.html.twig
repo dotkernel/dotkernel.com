@@ -1,7 +1,7 @@
 {% extends '@layout/blog-post.html.twig' %}
 
 {% block body %}
-{{ content|markdown_to_html }}
+{{ content|markdown_to_html|replace({'<table>': '<div class="table-wrap"><table>', '</table>': '</table></div>'})|raw }}
 
 {% if faq is not empty %}
 <h2 id="user-content-faq">Frequently Asked Questions</h2>
