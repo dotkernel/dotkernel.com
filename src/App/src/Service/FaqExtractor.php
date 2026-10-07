@@ -14,12 +14,16 @@ use const PREG_SET_ORDER;
 /**
  * Pulls the trailing `## FAQ` section (a `**Q: ...**` / `A: ...` pair per question) out of a
  * Markdown article body, so it can be rendered as an accordion and fed into JSON-LD separately
- * from the rest of the body.
+ * from the rest of the body. `question` and `answer` keep their Markdown (for rendering);
+ * `questionText` and `answerText` are plain-text copies (for JSON-LD).
  */
 final class FaqExtractor
 {
     /**
-     * @return array{faq: list<array{question: string, answer: string}>, body: string}
+     * @return array{
+     *     faq: list<array{question: string, answer: string, questionText: string, answerText: string}>,
+     *     body: string
+     * }
      */
     public static function extract(string $body): array
     {
@@ -35,14 +39,24 @@ final class FaqExtractor
             PREG_SET_ORDER
         );
         foreach ($matches as $match) {
+            $question = trim($match[1]);
+            $answer   = trim(preg_replace('/\s+/', ' ', $match[2]) ?? '');
+
             $faq[] = [
-                'question' => trim($match[1]),
-                'answer'   => trim(preg_replace('/\s+/', ' ', $match[2]) ?? ''),
+                'question'     => $question,
+                'answer'       => $answer,
+                'questionText' => self::toPlainText($question),
+                'answerText'   => self::toPlainText($answer),
             ];
         }
 
         $body = trim((string) preg_replace('/^## FAQ\s*$.*\z/ms', '', $body));
 
         return ['faq' => $faq, 'body' => $body];
+    }
+
+    private static function toPlainText(string $markdown): string
+    {
+        return preg_replace('/(`+)(.+?)\1/', '$2', $markdown) ?? $markdown;
     }
 }
