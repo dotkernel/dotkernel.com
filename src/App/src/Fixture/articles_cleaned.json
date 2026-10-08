@@ -3127,6 +3127,20 @@
                 "excerpt": "Choosing a lightweight PHP framework for a microservice is less about which option is smallest and more about which complexity you want to own. This article compares Dotkernel API, Slim 4, and Lumen, looking at various features and tradeoffs.",
                 "tl_dr": "Dotkernel API, Slim 4, and Lumen take very different approaches to building lightweight PHP microservices. Explore how they compare in terms of simplicity, authentication, authorization, database support, operational tooling, dependency management, and long-term maintainability—and understand why the right choice depends on whether you need a genuinely minimal service or an authenticated API designed to evolve over time.",
                 "tags": []
+            },
+            {
+                "post_title": "Attributes vs. Factories in Dependency Injection",
+                "post_date": "2026-10-01 12:00:00",
+                "post_status": "draft",
+                "author": {
+                    "display_name": "Florin Bidirean",
+                    "github": "bidi47"
+                },
+                "isObsolete": false,
+                "opengraph_img": "/opengraph/article/twitter-card-attributes-vs-factories.png",
+                "excerpt": "Dotkernel's dot-dependency-injection package lets you wire a service with an #[Inject] attribute or a hand-written factory. This article compares both approaches with real dotkernel/api code and explains when each one fits.",
+                "tl_dr": "Attributes remove one factory file per service and keep dependencies next to the constructor they feed, while hand-written factories keep static type checking and full control over construction. Use #[Inject] for plain constructor wiring, keep factories for computed, conditional, decorated or third-party classes, and mix both freely in the same PSR-11 application.",
+                "tags": []
             }
         ]
     }
