@@ -83,6 +83,11 @@ return [
     'sitemap' => [
         'path' => realpath(__DIR__ . '/../../public/sitemap.xml'),
     ],
+    'turnstile' => [
+        'site_key'   => '1x00000000000000000000AA',
+        'secret_key' => '1x0000000000000000000000000000000AA',
+        'hostname'   => '',
+    ],
     // `dotkernel-packages-oss-lifecycle` and `contact` are intentionally absent: they have dedicated
     // handlers and are routed in Light\App\RoutesDelegator. Re-adding them here registers the path twice.
     'routes' => [

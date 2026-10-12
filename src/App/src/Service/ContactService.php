@@ -12,14 +12,17 @@ use Light\App\Enum\ContactTopicEnum;
 use Psr\Log\LoggerInterface;
 use Throwable;
 
+use function file_get_contents;
 use function htmlspecialchars;
 use function http_build_query;
 use function in_array;
 use function is_array;
 use function is_scalar;
 use function is_string;
+use function json_decode;
 use function nl2br;
 use function sprintf;
+use function stream_context_create;
 use function trim;
 
 use const ENT_QUOTES;
@@ -35,24 +38,83 @@ use const ENT_QUOTES;
  *     query: string,
  * }
  */
-final class ContactService
+class ContactService
 {
+    private const string TURNSTILE_ACTION = 'contact';
+
     private const array REQUIRED_FIELDS = [
         'name'    => 'Name',
         'email'   => 'Work email',
         'message' => 'Message',
     ];
 
-    private const array RESERVED_FIELDS = ['topic', 'name', 'email', 'company', 'stack', 'message', 'contact'];
+    private const array RESERVED_FIELDS = [
+        'topic',
+        'name',
+        'email',
+        'company',
+        'stack',
+        'message',
+        'contact',
+        'cf-turnstile-response',
+    ];
 
+    /**
+     * @param array{site_key: string, secret_key: string, hostname: string} $turnstile
+     */
     #[Inject(
         'dot-mail.service.contact',
         'dot-log.default_logger',
+        'config.turnstile',
     )]
     public function __construct(
         private readonly MailServiceInterface $mailService,
         private readonly LoggerInterface $logger,
+        private readonly array $turnstile = ['site_key' => '', 'secret_key' => '', 'hostname' => ''],
     ) {
+    }
+
+    public function turnstileSiteKey(): string
+    {
+        return $this->turnstile['secret_key'] !== '' ? $this->turnstile['site_key'] : '';
+    }
+
+    public function verifyTurnstile(string $token, ?string $remoteIp): bool
+    {
+        if ($this->turnstileSiteKey() === '') {
+            return true;
+        }
+
+        if ($token === '') {
+            return false;
+        }
+
+        $data = [
+            'secret'   => $this->turnstile['secret_key'],
+            'response' => $token,
+        ];
+        if ($remoteIp) {
+            $data['remoteip'] = $remoteIp;
+        }
+
+        $response = $this->siteverify($data);
+        if ($response === null) {
+            return false;
+        }
+
+        $validation = json_decode($response, true);
+        if (! is_array($validation) || ($validation['success'] ?? false) !== true) {
+            return false;
+        }
+
+        if (($validation['metadata']['result_with_testing_key'] ?? false) === true) {
+            return true;
+        }
+
+        $hostname = $this->turnstile['hostname'];
+
+        return ($validation['action'] ?? null) === self::TURNSTILE_ACTION
+            && ($hostname === '' || ($validation['hostname'] ?? null) === $hostname);
     }
 
     /**
@@ -140,6 +202,26 @@ final class ContactService
         }
 
         return true;
+    }
+
+    /**
+     * @param array<string, string> $data
+     */
+    protected function siteverify(array $data): ?string
+    {
+        $options = [
+            'http' => [
+                'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+                'method'  => 'POST',
+                'content' => http_build_query($data),
+                'timeout' => 5,
+            ],
+        ];
+
+        $context  = stream_context_create($options);
+        $response = @file_get_contents('https://challenges.cloudflare.com/turnstile/v0/siteverify', false, $context);
+
+        return $response === false ? null : $response;
     }
 
     /**

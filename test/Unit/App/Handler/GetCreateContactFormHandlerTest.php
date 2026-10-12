@@ -28,10 +28,11 @@ class GetCreateContactFormHandlerTest extends UnitTest
                 fn (array $params): bool => $params['topics'] === ContactTopicEnum::cases()
                     && $params['contact_success'] === false
                     && $params['query'] === []
+                    && $params['turnstile_site_key'] === ''
             ))
             ->willReturn('<form></form>');
 
-        $response = (new GetCreateContactFormHandler($template))->handle($this->createRequest([]));
+        $response = (new GetCreateContactFormHandler($template, ''))->handle($this->createRequest([]));
 
         $this->assertInstanceOf(HtmlResponse::class, $response);
         $this->assertSame(StatusCodeInterface::STATUS_OK, $response->getStatusCode());
@@ -53,9 +54,26 @@ class GetCreateContactFormHandlerTest extends UnitTest
             ))
             ->willReturn('');
 
-        (new GetCreateContactFormHandler($template))->handle(
+        (new GetCreateContactFormHandler($template, ''))->handle(
             $this->createRequest(['contact' => 'sent', 'utm_source' => 'newsletter'])
         );
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testHandlePassesTheTurnstileSiteKey(): void
+    {
+        $template = $this->createMock(TemplateRendererInterface::class);
+        $template
+            ->expects($this->once())
+            ->method('render')
+            ->with('page::contact', $this->callback(
+                fn (array $params): bool => $params['turnstile_site_key'] === 'site-key'
+            ))
+            ->willReturn('');
+
+        (new GetCreateContactFormHandler($template, 'site-key'))->handle($this->createRequest([]));
     }
 
     /**
