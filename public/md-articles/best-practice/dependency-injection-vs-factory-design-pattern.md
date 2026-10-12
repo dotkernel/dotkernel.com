@@ -1,6 +1,15 @@
+---
+title: "Dependency Injection vs. Factory Design Pattern"
+description: "Dotkernel's dot-dependency-injection package lets you wire a service with an #[Inject] attribute or a hand-written factory. This article compares both approaches with real dotkernel/api code and explains when each one fits."
+author: "Florin Bidirean"
+date_published: "2026-10-12"
+canonical_url: "https://www.dotkernel.com/best-practice/ai-native-coding-pods/"
+category: "Best Practice"
+language: "en"
+---
+
 # Dependency Injection vs. Factory Design Pattern
 
-Oct 5, 2026 · @bidi
 
 ## TL;DR
 

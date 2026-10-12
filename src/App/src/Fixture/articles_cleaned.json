@@ -3137,7 +3137,7 @@
                     "github": "bidi47"
                 },
                 "isObsolete": false,
-                "opengraph_img": "/opengraph/article/twitter-card-attributes-vs-factories.png",
+                "opengraph_img": "/opengraph/article/twitter-card-dependency-injection-vs-factories-design-pattern.png",
                 "excerpt": "Dotkernel's dot-dependency-injection package lets you wire a service with an #[Inject] attribute or a hand-written factory. This article compares both approaches with real dotkernel/api code and explains when each one fits.",
                 "tl_dr": "Attributes remove one factory file per service and keep dependencies next to the constructor they feed, while hand-written factories keep static type checking and full control over construction. Use #[Inject] for plain constructor wiring, keep factories for computed, conditional, decorated or third-party classes, and mix both freely in the same PSR-11 application.",
                 "tags": []
