@@ -45,7 +45,7 @@
                 "@id": "{{ app.url ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}#faq",
                 "mainEntity": [
                     {% for item in faq %}
-                    { "@type": "Question", "name": {{ item.question|json_encode|raw }}, "acceptedAnswer": { "@type": "Answer", "text": {{ item.answer|json_encode|raw }} } }{% if not loop.last %},{% endif %}
+                    { "@type": "Question", "name": {{ item.questionText|json_encode|raw }}, "acceptedAnswer": { "@type": "Answer", "text": {{ item.answerText|json_encode|raw }} } }{% if not loop.last %},{% endif %}
                     {% endfor %}
                 ]
             }{% endif %}

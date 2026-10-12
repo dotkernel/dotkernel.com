@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Mail configuration.
+ *
+ * Duplicate this file as `mail.local.php` and change its settings as required.
+ * `mail.local.php` is ignored by git and safe to use for sensitive data like SMTP credentials.
+ */
+
 declare(strict_types=1);
 
 $contactEmail = 'example@mail.com';
