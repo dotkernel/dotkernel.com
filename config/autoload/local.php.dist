@@ -72,7 +72,7 @@ return [
      * scopes at all; without a token the generator still runs, at a lower rate limit.
      * Non-credential settings (ignore list, output path) live in `packages.global.php`.
      */
-    'github'  => [
+    'github'    => [
         'userAgent'      => '',
         'authBearer'     => '',
         'repoResultFile' => date('Ymd') . "-$org-repos" . '.json',
@@ -80,8 +80,13 @@ return [
         'cachePath'      => realpath(__DIR__ . "/../../data/cache/package-info"),
         'org'            => $org,
     ],
-    'sitemap' => [
+    'sitemap'   => [
         'path' => realpath(__DIR__ . '/../../public/sitemap.xml'),
+    ],
+    'turnstile' => [
+        'site_key'   => '1x00000000000000000000AA',
+        'secret_key' => '1x0000000000000000000000000000000AA',
+        'hostname'   => '',
     ],
     // `dotkernel-packages-oss-lifecycle` and `contact` are intentionally absent: they have dedicated
     // handlers and are routed in Light\App\RoutesDelegator. Re-adding them here registers the path twice.

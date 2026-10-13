@@ -186,4 +186,56 @@ class PostCreateContactHandlerTest extends TestCase
         $this->assertInstanceOf(HtmlResponse::class, $response);
         $this->assertSame(200, $response->getStatusCode());
     }
+
+    /**
+     * @throws Exception
+     */
+    public function testFailedTurnstileRerendersWithCaptchaErrorAndSendsNothing(): void
+    {
+        $data                          = $this->validData();
+        $data['cf-turnstile-response'] = 'bad-token';
+
+        $request = $this->createStub(ServerRequestInterface::class);
+        $request->method('getParsedBody')->willReturn($data);
+        $request->method('getServerParams')->willReturn(['REMOTE_ADDR' => '203.0.113.5']);
+
+        $contactService = $this->createMock(ContactService::class);
+        $contactService->method('normalize')->willReturn([
+            'topic'   => 'migration',
+            'name'    => 'Jane Doe',
+            'email'   => 'jane@example.com',
+            'company' => 'Acme Inc',
+            'stack'   => 'ZF3, PHP 7.4',
+            'message' => 'We would like to talk about migrating our platform.',
+            'query'   => '',
+        ]);
+        $contactService->method('validate')->willReturn([]);
+        $contactService
+            ->expects($this->once())
+            ->method('verifyTurnstile')
+            ->with('bad-token', '203.0.113.5')
+            ->willReturn(false);
+        $contactService->method('turnstileSiteKey')->willReturn('site-key');
+        $contactService->expects($this->never())->method('send');
+
+        $template = $this->createMock(TemplateRendererInterface::class);
+        $template
+            ->expects($this->once())
+            ->method('render')
+            ->with(
+                'page::contact',
+                $this->callback(function (array $params): bool {
+                    return $params['contact_errors']['captcha'] === "We couldn't verify you're human. Please try again."
+                        && $params['contact_mail_failed'] === false
+                        && $params['turnstile_site_key'] === 'site-key';
+                })
+            )
+            ->willReturn('<html></html>');
+
+        $handler  = new PostCreateContactHandler($template, $this->createStub(UrlHelper::class), $contactService);
+        $response = $handler->handle($request);
+
+        $this->assertInstanceOf(HtmlResponse::class, $response);
+        $this->assertSame(200, $response->getStatusCode());
+    }
 }

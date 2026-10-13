@@ -4,20 +4,27 @@ declare(strict_types=1);
 
 namespace LightTest\Unit\App\Service;
 
+use Closure;
 use Dot\Mail\Email;
 use Dot\Mail\Result\MailResult;
 use Dot\Mail\Service\MailServiceInterface;
 use Light\App\Service\ContactService;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\Exception;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use RuntimeException;
 
+use function array_shift;
 use function str_contains;
 
 class ContactServiceTest extends TestCase
 {
+    private const array TURNSTILE = ['site_key' => 'site-key', 'secret_key' => 'secret-key', 'hostname' => ''];
+
+    private const string SITEVERIFY_SUCCESS = '{"success":true,"hostname":"www.dotkernel.com","action":"contact"}';
+
     /**
      * @return array{
      *     topic: string, name: string, email: string, company: string, stack: string, message: string,
@@ -40,6 +47,40 @@ class ContactServiceTest extends TestCase
     private function service(): ContactService
     {
         return new ContactService($this->createStub(MailServiceInterface::class), new NullLogger());
+    }
+
+    /**
+     * @param array{site_key: string, secret_key: string, hostname: string} $turnstile
+     * @param list<array<string, string>> $calls
+     */
+    private function turnstileService(array $turnstile, ?string $response, array &$calls = []): ContactService
+    {
+        $responses  = [$response];
+        $siteverify = function (array $data) use (&$responses, &$calls): ?string {
+            $calls[] = $data;
+
+            return array_shift($responses);
+        };
+
+        $mailService = $this->createStub(MailServiceInterface::class);
+
+        return new class ($mailService, $turnstile, $siteverify) extends ContactService {
+            /**
+             * @param array{site_key: string, secret_key: string, hostname: string} $turnstile
+             */
+            public function __construct(
+                MailServiceInterface $mailService,
+                array $turnstile,
+                private readonly Closure $siteverifyFn,
+            ) {
+                parent::__construct($mailService, new NullLogger(), $turnstile);
+            }
+
+            protected function siteverify(array $data): ?string
+            {
+                return ($this->siteverifyFn)($data);
+            }
+        };
     }
 
     public function testNormalizeExtractsAndTrimsKnownFields(): void
@@ -296,5 +337,133 @@ class ContactServiceTest extends TestCase
         $mailService->method('send')->willReturn(new MailResult(true));
 
         (new ContactService($mailService, new NullLogger()))->send($this->validData());
+    }
+
+    public function testExtractQueryExcludesTheTurnstileToken(): void
+    {
+        $query = ContactService::extractQuery([
+            'cf-turnstile-response' => 'token',
+            'utm_source'            => 'google',
+        ]);
+
+        $this->assertSame(['utm_source' => 'google'], $query);
+    }
+
+    public function testTurnstileIsOffWithEmptyKeys(): void
+    {
+        $calls   = [];
+        $service = $this->turnstileService(
+            ['site_key' => '', 'secret_key' => '', 'hostname' => ''],
+            self::SITEVERIFY_SUCCESS,
+            $calls
+        );
+
+        $this->assertSame('', $service->turnstileSiteKey());
+        $this->assertTrue($service->verifyTurnstile('', null));
+        $this->assertSame([], $calls);
+    }
+
+    public function testTurnstileIsOffWithoutASecretKey(): void
+    {
+        $calls   = [];
+        $service = $this->turnstileService(
+            ['site_key' => 'site-key', 'secret_key' => '', 'hostname' => ''],
+            self::SITEVERIFY_SUCCESS,
+            $calls
+        );
+
+        $this->assertSame('', $service->turnstileSiteKey());
+        $this->assertTrue($service->verifyTurnstile('', null));
+        $this->assertSame([], $calls);
+    }
+
+    public function testTurnstileIsOffByDefault(): void
+    {
+        $this->assertSame('', $this->service()->turnstileSiteKey());
+        $this->assertTrue($this->service()->verifyTurnstile('', null));
+    }
+
+    public function testTurnstileSiteKeyIsExposedWhenBothKeysAreSet(): void
+    {
+        $this->assertSame('site-key', $this->turnstileService(self::TURNSTILE, null)->turnstileSiteKey());
+    }
+
+    public function testEmptyTokenFailsWithoutCallingSiteverify(): void
+    {
+        $calls   = [];
+        $service = $this->turnstileService(self::TURNSTILE, self::SITEVERIFY_SUCCESS, $calls);
+
+        $this->assertFalse($service->verifyTurnstile('', '203.0.113.5'));
+        $this->assertSame([], $calls);
+    }
+
+    public function testValidTokenPassesAndSendsSecretResponseAndRemoteIp(): void
+    {
+        $calls   = [];
+        $service = $this->turnstileService(self::TURNSTILE, self::SITEVERIFY_SUCCESS, $calls);
+
+        $this->assertTrue($service->verifyTurnstile('token', '203.0.113.5'));
+        $this->assertSame([
+            [
+                'secret'   => 'secret-key',
+                'response' => 'token',
+                'remoteip' => '203.0.113.5',
+            ],
+        ], $calls);
+    }
+
+    public function testRemoteIpIsOmittedWhenNull(): void
+    {
+        $calls   = [];
+        $service = $this->turnstileService(self::TURNSTILE, self::SITEVERIFY_SUCCESS, $calls);
+
+        $this->assertTrue($service->verifyTurnstile('token', null));
+        $this->assertSame([['secret' => 'secret-key', 'response' => 'token']], $calls);
+    }
+
+    /**
+     * @return array<string, array{array{site_key: string, secret_key: string, hostname: string}, ?string}>
+     */
+    public static function rejectedSiteverifyProvider(): array
+    {
+        $withHostname = ['site_key' => 'site-key', 'secret_key' => 'secret-key', 'hostname' => 'www.dotkernel.com'];
+
+        return [
+            'success false'     => [self::TURNSTILE, '{"success":false,"error-codes":["invalid-input-response"]}'],
+            'action mismatch'   => [self::TURNSTILE, '{"success":true,"action":"login"}'],
+            'missing action'    => [self::TURNSTILE, '{"success":true,"hostname":"www.dotkernel.com"}'],
+            'hostname mismatch' => [$withHostname, '{"success":true,"hostname":"evil.example","action":"contact"}'],
+            'invalid json'      => [self::TURNSTILE, 'not json'],
+            'network failure'   => [self::TURNSTILE, null],
+        ];
+    }
+
+    /**
+     * @param array{site_key: string, secret_key: string, hostname: string} $turnstile
+     */
+    #[DataProvider('rejectedSiteverifyProvider')]
+    public function testRejectedSiteverifyFails(array $turnstile, ?string $response): void
+    {
+        $this->assertFalse($this->turnstileService($turnstile, $response)->verifyTurnstile('token', null));
+    }
+
+    public function testMatchingHostnamePasses(): void
+    {
+        $service = $this->turnstileService(
+            ['site_key' => 'site-key', 'secret_key' => 'secret-key', 'hostname' => 'www.dotkernel.com'],
+            self::SITEVERIFY_SUCCESS
+        );
+
+        $this->assertTrue($service->verifyTurnstile('token', null));
+    }
+
+    public function testTestingKeyResponsePassesEvenWithAHostnameConfigured(): void
+    {
+        $service = $this->turnstileService(
+            ['site_key' => 'site-key', 'secret_key' => 'secret-key', 'hostname' => 'www.dotkernel.com'],
+            '{"success":true,"hostname":"example.com","metadata":{"result_with_testing_key":true}}'
+        );
+
+        $this->assertTrue($service->verifyTurnstile('token', null));
     }
 }
