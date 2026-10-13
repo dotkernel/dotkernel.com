@@ -8,6 +8,7 @@ use Dot\DependencyInjection\Attribute\Inject;
 use Laminas\Diactoros\Response\HtmlResponse;
 use Laminas\Diactoros\Response\RedirectResponse;
 use Light\App\Enum\ContactTopicEnum;
+use Light\App\Middleware\IpAddressMiddleware;
 use Light\App\Service\ContactService;
 use Mezzio\Helper\UrlHelper;
 use Mezzio\Template\TemplateRendererInterface;
@@ -42,7 +43,7 @@ class PostCreateContactHandler implements RequestHandlerInterface
         $token   = is_array($rawBody) && is_string($rawBody['cf-turnstile-response'] ?? null)
             ? $rawBody['cf-turnstile-response']
             : '';
-        $ip      = $request->getServerParams()['REMOTE_ADDR'] ?? null;
+        $ip      = $request->getAttribute(IpAddressMiddleware::ATTRIBUTE);
 
         if (! $this->contactService->verifyTurnstile($token, is_string($ip) ? $ip : null)) {
             $errors['captcha'] = "We couldn't verify you're human. Please try again.";

@@ -33,6 +33,7 @@ use Light\App\Handler\GetMarkdownArticleHandler;
 use Light\App\Handler\GetPackagesViewHandler;
 use Light\App\Handler\GetSitemapViewHandler;
 use Light\App\Handler\PostCreateContactHandler;
+use Light\App\Middleware\IpAddressMiddleware;
 use Light\App\Resolver\EntityListenerResolver;
 use Light\App\Service\ContactService;
 use Light\App\Service\FeedGenerator;
@@ -149,6 +150,7 @@ class ConfigProvider
                 GetCreateContactFormHandler::class    => AttributedServiceFactory::class,
                 PostCreateContactHandler::class       => AttributedServiceFactory::class,
                 ContactService::class                 => AttributedServiceFactory::class,
+                IpAddressMiddleware::class            => AttributedServiceFactory::class,
                 FeedGenerator::class                  => FeedGeneratorFactory::class,
                 SitemapGenerator::class               => SitemapGeneratorFactory::class,
                 GitHubClient::class                   => GitHubClientFactory::class,

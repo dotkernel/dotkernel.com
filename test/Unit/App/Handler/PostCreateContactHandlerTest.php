@@ -12,6 +12,7 @@ use Laminas\Diactoros\Response\HtmlResponse;
 use Laminas\Diactoros\Response\RedirectResponse;
 use Light\App\Enum\ContactTopicEnum;
 use Light\App\Handler\PostCreateContactHandler;
+use Light\App\Middleware\IpAddressMiddleware;
 use Light\App\Service\ContactService;
 use Mezzio\Helper\UrlHelper;
 use Mezzio\Template\TemplateRendererInterface;
@@ -197,7 +198,7 @@ class PostCreateContactHandlerTest extends TestCase
 
         $request = $this->createStub(ServerRequestInterface::class);
         $request->method('getParsedBody')->willReturn($data);
-        $request->method('getServerParams')->willReturn(['REMOTE_ADDR' => '203.0.113.5']);
+        $request->method('getAttribute')->willReturnMap([[IpAddressMiddleware::ATTRIBUTE, null, '203.0.113.5']]);
 
         $contactService = $this->createMock(ContactService::class);
         $contactService->method('normalize')->willReturn([
