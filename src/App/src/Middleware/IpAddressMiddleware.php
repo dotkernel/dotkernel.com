@@ -31,20 +31,13 @@ use function trim;
 
 use const FILTER_VALIDATE_IP;
 
-/**
- * Determines the client IP address and stores it in the `ip_address` request attribute,
- * the same way akrabat/ip-address-middleware does.
- *
- * Forwarding headers are read only when REMOTE_ADDR is a trusted proxy, because any client can
- * send them with any value. With no trusted proxies configured, the attribute is REMOTE_ADDR.
- */
 class IpAddressMiddleware implements MiddlewareInterface
 {
     public const string ATTRIBUTE = 'ip_address';
 
     /**
-     * @param list<string> $trustedProxies IP addresses or CIDR ranges, e.g. `10.0.0.1` or `173.245.48.0/20`
-     * @param list<string> $headers checked in order; the first one that gives an address wins
+     * @param list<string> $trustedProxies
+     * @param list<string> $headers
      */
     #[Inject(
         'config.ip_address.trusted_proxies',
@@ -90,10 +83,6 @@ class IpAddressMiddleware implements MiddlewareInterface
             $hops[] = $this->normalize(strcasecmp($header, 'Forwarded') === 0 ? $this->forwardedFor($hop) : $hop);
         }
 
-        /**
-         * Each proxy appends the address it received the request from, so walk from the right: the first
-         * address that is not one of our own proxies is the client. Anything left of it could be forged.
-         */
         foreach (array_reverse($hops) as $hop) {
             if ($hop === null) {
                 return null;
@@ -106,9 +95,6 @@ class IpAddressMiddleware implements MiddlewareInterface
         return $hops[0];
     }
 
-    /**
-     * Returns the `for=` value of one RFC 7239 element, e.g. `for=192.0.2.60;proto=https;by=203.0.113.43`.
-     */
     private function forwardedFor(string $element): string
     {
         foreach (explode(';', $element) as $pair) {
@@ -121,9 +107,6 @@ class IpAddressMiddleware implements MiddlewareInterface
         return '';
     }
 
-    /**
-     * Strips quotes, IPv6 brackets and ports; returns null for anything that is not an IP address.
-     */
     private function normalize(mixed $value): ?string
     {
         if (! is_string($value)) {
