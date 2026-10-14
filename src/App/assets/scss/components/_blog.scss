@@ -272,7 +272,6 @@ $bp-tablet: 900px;
       font-size: 12px;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      white-space: nowrap;
       color: var(--text-dim);
       background: var(--surface-2);
     }
@@ -286,6 +285,10 @@ $bp-tablet: 900px;
     td:first-child {
       font-weight: 500;
       color: var(--text-muted);
+    }
+
+    code {
+      overflow-wrap: anywhere;
     }
 
     p {
