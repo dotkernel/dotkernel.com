@@ -10,7 +10,6 @@ language: "en"
 
 # Dependency Injection vs. Factory Design Pattern
 
-
 ## TL;DR
 
 Declarative dependency injection with an `#[Inject]` attribute removes one factory class per service and keeps dependencies next to the constructor they feed.
