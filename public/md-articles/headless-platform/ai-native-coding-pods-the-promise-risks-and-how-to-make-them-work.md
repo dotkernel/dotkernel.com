@@ -2,7 +2,7 @@
 title: "AI-Native Coding Pods: The Promise, Risks, and How to Make Them Work"
 description: "What an AI-native coding pod is, the benefits and risks it introduces to a software team, and concrete mitigations covering code quality, review capacity, architecture, security, and human accountability."
 author: "Florin Bidirean"
-date_published: "2026-09-09"
+date_published: "2026-10-07"
 canonical_url: "https://www.dotkernel.com/best-practice/ai-native-coding-pods/"
 category: "Best Practice"
 language: "en"

@@ -16,6 +16,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
 use function is_array;
+use function is_string;
 
 class PostCreateContactHandler implements RequestHandlerInterface
 {
@@ -37,19 +38,28 @@ class PostCreateContactHandler implements RequestHandlerInterface
         $errors     = $this->contactService->validate($data);
         $mailFailed = false;
 
+        $rawBody = $request->getParsedBody();
+        $token   = is_array($rawBody) && is_string($rawBody['cf-turnstile-response'] ?? null)
+            ? $rawBody['cf-turnstile-response']
+            : '';
+        $ip      = $request->getServerParams()['REMOTE_ADDR'] ?? null;
+
+        if (! $this->contactService->verifyTurnstile($token, is_string($ip) ? $ip : null)) {
+            $errors['captcha'] = "We couldn't verify you're human. Please try again.";
+        }
+
         if ($errors === [] && ! $this->contactService->send($data)) {
             $mailFailed = true;
         }
 
         if ($errors !== [] || $mailFailed) {
-            $rawBody = $request->getParsedBody();
-
             return new HtmlResponse($this->template->render(GetCreateContactFormHandler::TEMPLATE, [
                 'topics'              => ContactTopicEnum::cases(),
                 'contact_errors'      => $errors,
                 'contact_values'      => $data,
                 'contact_mail_failed' => $mailFailed,
                 'query'               => ContactService::extractQuery(is_array($rawBody) ? $rawBody : []),
+                'turnstile_site_key'  => $this->contactService->turnstileSiteKey(),
             ]));
         }
 

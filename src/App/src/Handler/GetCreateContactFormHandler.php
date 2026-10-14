@@ -19,9 +19,11 @@ class GetCreateContactFormHandler implements RequestHandlerInterface
 
     #[Inject(
         TemplateRendererInterface::class,
+        'config.turnstile.site_key',
     )]
     public function __construct(
         protected TemplateRendererInterface $template,
+        protected string $turnstileSiteKey,
     ) {
     }
 
@@ -30,9 +32,10 @@ class GetCreateContactFormHandler implements RequestHandlerInterface
         $query = $request->getQueryParams();
 
         return new HtmlResponse($this->template->render(self::TEMPLATE, [
-            'topics'          => ContactTopicEnum::cases(),
-            'contact_success' => ($query['contact'] ?? null) === 'sent',
-            'query'           => ContactService::extractQuery($query),
+            'topics'             => ContactTopicEnum::cases(),
+            'contact_success'    => ($query['contact'] ?? null) === 'sent',
+            'query'              => ContactService::extractQuery($query),
+            'turnstile_site_key' => $this->turnstileSiteKey,
         ]));
     }
 }
