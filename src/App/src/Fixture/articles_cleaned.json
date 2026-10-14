@@ -2605,6 +2605,20 @@
                 "excerpt": "Software security should always be in the back of your mind as a developer. It may seem fine at first to deliver a feature sooner, only to find later on that you left a backdoor into your crisp new update.",
                 "tl_dr": "Software security should always be top of mind for a developer, since ignoring it can lead to major costs, data loss, GDPR fines, or the loss of client trust. The article surveys many facets of software security and walks through the practical measures Dotkernel Headless Platform takes for each: input validation, content negotiation, CORS, RBAC, demo credentials, error reporting, OpenAPI docs, PHP and JavaScript dependencies, OAuth2, session/cookie settings, and CI checks.",
                 "tags": []
+            },
+            {
+                "post_title": "Dependency Injection vs. Factory Design Pattern",
+                "post_date": "2026-10-12 12:00:00",
+                "post_status": "published",
+                "author": {
+                    "display_name": "Florin Bidirean",
+                    "github": "bidi47"
+                },
+                "isObsolete": false,
+                "opengraph_img": "/opengraph/article/twitter-card-dependency-injection-vs-factories-design-pattern.png",
+                "excerpt": "Dotkernel's dot-dependency-injection package lets you wire a service with an #[Inject] attribute or a hand-written factory. This article compares both approaches with real dotkernel/api code and explains when each one fits.",
+                "tl_dr": "Attributes remove one factory file per service and keep dependencies next to the constructor they feed, while hand-written factories keep static type checking and full control over construction. Use #[Inject] for plain constructor wiring, keep factories for computed, conditional, decorated or third-party classes, and mix both freely in the same PSR-11 application.",
+                "tags": []
             }
         ]
     },
@@ -3126,20 +3140,6 @@
                 "opengraph_img": "/opengraph/article/twitter-card-dotkernel-vs-lumen-vs-slim.png",
                 "excerpt": "Choosing a lightweight PHP framework for a microservice is less about which option is smallest and more about which complexity you want to own. This article compares Dotkernel API, Slim 4, and Lumen, looking at various features and tradeoffs.",
                 "tl_dr": "Dotkernel API, Slim 4, and Lumen take very different approaches to building lightweight PHP microservices. Explore how they compare in terms of simplicity, authentication, authorization, database support, operational tooling, dependency management, and long-term maintainability—and understand why the right choice depends on whether you need a genuinely minimal service or an authenticated API designed to evolve over time.",
-                "tags": []
-            },
-            {
-                "post_title": "Attributes vs. Factories in Dependency Injection",
-                "post_date": "2026-10-12 12:00:00",
-                "post_status": "published",
-                "author": {
-                    "display_name": "Florin Bidirean",
-                    "github": "bidi47"
-                },
-                "isObsolete": false,
-                "opengraph_img": "/opengraph/article/twitter-card-dependency-injection-vs-factories-design-pattern.png",
-                "excerpt": "Dotkernel's dot-dependency-injection package lets you wire a service with an #[Inject] attribute or a hand-written factory. This article compares both approaches with real dotkernel/api code and explains when each one fits.",
-                "tl_dr": "Attributes remove one factory file per service and keep dependencies next to the constructor they feed, while hand-written factories keep static type checking and full control over construction. Use #[Inject] for plain constructor wiring, keep factories for computed, conditional, decorated or third-party classes, and mix both freely in the same PSR-11 application.",
                 "tags": []
             }
         ]
