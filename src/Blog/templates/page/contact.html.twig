@@ -72,7 +72,7 @@
                 {% set values = contact_values|default({}) %}
                 {% set errors = contact_errors|default({}) %}
                 {% set selected_topic = values.topic|default('') ?: (topics|first).value %}
-                <form class="contact-form" method="post" action="{{ path('app::create-contact') }}" data-contact-form>
+                <form class="contact-form" method="post" action="{{ path('app::create-contact') }}#contact-form" novalidate data-contact-form>
                     <div class="contact-form-head">
                         <h2>Send a message</h2>
                         <p>Fields marked with an asterisk are required.</p>
@@ -100,12 +100,12 @@
                         <div class="contact-field">
                             <label for="c-name">Name *</label>
                             <input id="c-name" name="name" class="contact-input" type="text" autocomplete="name" required placeholder="Your full name" value="{{ values.name|default('') }}">
-                            {% if errors.name is defined %}<p class="contact-error">{{ errors.name }}</p>{% endif %}
+                            {% if errors.name is defined %}<p class="contact-error contact-server-error">{{ errors.name }}</p>{% endif %}
                         </div>
                         <div class="contact-field">
                             <label for="c-email">Work email *</label>
                             <input id="c-email" name="email" class="contact-input" type="email" autocomplete="email" required placeholder="you@company.com" value="{{ values.email|default('') }}">
-                            {% if errors.email is defined %}<p class="contact-error">{{ errors.email }}</p>{% endif %}
+                            {% if errors.email is defined %}<p class="contact-error contact-server-error">{{ errors.email }}</p>{% endif %}
                         </div>
                         <div class="contact-field">
                             <label for="c-company">Company</label>
@@ -121,12 +121,14 @@
                         <label for="c-msg">Message *</label>
                         <textarea id="c-msg" name="message" class="contact-input" rows="6" required
                                   placeholder="What you are building, where it is stuck, and any deadline.">{{ values.message|default('') }}</textarea>
-                        {% if errors.message is defined %}<p class="contact-error">{{ errors.message }}</p>{% endif %}
+                        {% if errors.message is defined %}<p class="contact-error contact-server-error">{{ errors.message }}</p>{% endif %}
                     </div>
 
                     {% for param_name, param_value in query|default({}) %}
                         <input type="hidden" name="{{ param_name }}" value="{{ param_value }}">
                     {% endfor %}
+
+                    {% if errors.captcha is defined %}<p class="contact-error contact-server-error">{{ errors.captcha }}</p>{% endif %}
 
                     <div class="contact-form-foot">
                         <p>Bug reports and feature requests go to the package's GitHub issues, where the fix is tracked in public.</p>
@@ -135,6 +137,10 @@
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
                         </button>
                     </div>
+
+                    {% if turnstile_site_key|default('') %}
+                        <div id="contact-turnstile" class="cf-turnstile" data-sitekey="{{ turnstile_site_key }}" data-action="contact" data-appearance="always"></div>
+                    {% endif %}
                 </form>
             </div>
         </div>
@@ -185,4 +191,13 @@
             </div>
         </div>
     </section>
+{% endblock %}
+
+{% block javascript %}
+    {% if contact_errors is defined %}
+        <script>history.replaceState(null, '', '{{ path('app::create-contact-form') }}#contact-form');</script>
+    {% endif %}
+    {% if turnstile_site_key|default('') %}
+        <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    {% endif %}
 {% endblock %}
