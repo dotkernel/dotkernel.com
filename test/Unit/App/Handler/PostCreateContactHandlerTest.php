@@ -12,7 +12,6 @@ use Laminas\Diactoros\Response\HtmlResponse;
 use Laminas\Diactoros\Response\RedirectResponse;
 use Light\App\Enum\ContactTopicEnum;
 use Light\App\Handler\PostCreateContactHandler;
-use Light\App\Middleware\IpAddressMiddleware;
 use Light\App\Service\ContactService;
 use Mezzio\Helper\UrlHelper;
 use Mezzio\Template\TemplateRendererInterface;
@@ -198,7 +197,7 @@ class PostCreateContactHandlerTest extends TestCase
 
         $request = $this->createStub(ServerRequestInterface::class);
         $request->method('getParsedBody')->willReturn($data);
-        $request->method('getAttribute')->willReturnMap([[IpAddressMiddleware::ATTRIBUTE, null, '203.0.113.5']]);
+        $request->method('getAttribute')->willReturnMap([['ip_address', null, '203.0.113.5']]);
 
         $contactService = $this->createMock(ContactService::class);
         $contactService->method('normalize')->willReturn([
@@ -238,5 +237,44 @@ class PostCreateContactHandlerTest extends TestCase
 
         $this->assertInstanceOf(HtmlResponse::class, $response);
         $this->assertSame(200, $response->getStatusCode());
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testValidSubmissionSendsTheIpAddressFromTheRequestAttribute(): void
+    {
+        $request = $this->createStub(ServerRequestInterface::class);
+        $request->method('getParsedBody')->willReturn($this->validData());
+        $request->method('getAttribute')->willReturnMap([['ip_address', null, '203.0.113.5']]);
+
+        $contactService = $this->createMock(ContactService::class);
+        $contactService->method('normalize')->willReturn([
+            'topic'   => 'migration',
+            'name'    => 'Jane Doe',
+            'email'   => 'jane@example.com',
+            'company' => 'Acme Inc',
+            'stack'   => 'ZF3, PHP 7.4',
+            'message' => 'We would like to talk about migrating our platform.',
+            'query'   => '',
+        ]);
+        $contactService->method('validate')->willReturn([]);
+        $contactService->method('verifyTurnstile')->willReturn(true);
+        $contactService
+            ->expects($this->once())
+            ->method('send')
+            ->with($this->anything(), '203.0.113.5')
+            ->willReturn(true);
+
+        $urlHelper = $this->createStub(UrlHelper::class);
+        $urlHelper->method('generate')->willReturn('/contact/?contact=sent#contact-form');
+
+        $response = (new PostCreateContactHandler(
+            $this->createStub(TemplateRendererInterface::class),
+            $urlHelper,
+            $contactService
+        ))->handle($request);
+
+        $this->assertInstanceOf(RedirectResponse::class, $response);
     }
 }

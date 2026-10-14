@@ -29,6 +29,7 @@
         "php": "~8.5.0",
         "ext-curl": "*",
         "ext-dom": "*",
+        "akrabat/ip-address-middleware": "^2.6",
         "doctrine/data-fixtures": "^2.2",
         "doctrine/doctrine-fixtures-bundle": "^4.3",
         "dotkernel/dot-cache": "^4.0",
