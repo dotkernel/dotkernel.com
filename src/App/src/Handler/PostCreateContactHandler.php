@@ -24,11 +24,13 @@ class PostCreateContactHandler implements RequestHandlerInterface
         TemplateRendererInterface::class,
         UrlHelper::class,
         ContactService::class,
+        'config',
     )]
     public function __construct(
         protected TemplateRendererInterface $template,
         protected UrlHelper $urlHelper,
         protected ContactService $contactService,
+        protected array $config,
     ) {
     }
 
@@ -42,7 +44,7 @@ class PostCreateContactHandler implements RequestHandlerInterface
         $token   = is_array($rawBody) && is_string($rawBody['cf-turnstile-response'] ?? null)
             ? $rawBody['cf-turnstile-response']
             : '';
-        $ip      = $request->getAttribute('ip_address');
+        $ip      = $request->getAttribute($this->config['rka']['ip_address']['attribute_name'] ?? 'ip_address');
 
         if (! $this->contactService->verifyTurnstile($token, $ip)) {
             $errors['captcha'] = "We couldn't verify you're human. Please try again.";
