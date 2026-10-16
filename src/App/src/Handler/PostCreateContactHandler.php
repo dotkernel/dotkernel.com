@@ -18,10 +18,18 @@ use Psr\Http\Server\RequestHandlerInterface;
 use function is_array;
 use function is_string;
 
+/**
+ * @phpstan-type IpAddressConfigType array{
+ *      check_proxy_headers: bool,
+ *      trusted_proxies: array<non-empty-string>,
+ *      attribute_name: non-empty-string,
+ *      headers_to_inspect: array<non-empty-string>,
+ * }
+ */
 class PostCreateContactHandler implements RequestHandlerInterface
 {
     /**
-     * @param array{check_proxy_headers: bool, trusted_proxies: array<non-empty-string>, attribute_name: non-empty-string, headers_to_inspect: array<non-empty-string>} $ipAddressConfig
+     * @param IpAddressConfigType $ipAddressConfig
      */
     #[Inject(
         TemplateRendererInterface::class,
