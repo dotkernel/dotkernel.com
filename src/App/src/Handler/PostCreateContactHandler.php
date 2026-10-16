@@ -20,6 +20,9 @@ use function is_string;
 
 class PostCreateContactHandler implements RequestHandlerInterface
 {
+    /**
+     * @param array{check_proxy_headers: bool, trusted_proxies: array<non-empty-string>, attribute_name: non-empty-string, headers_to_inspect: array<non-empty-string>} $ipAddressConfig
+     */
     #[Inject(
         TemplateRendererInterface::class,
         UrlHelper::class,
