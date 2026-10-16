@@ -27,6 +27,24 @@ use function array_key_exists;
 class PostCreateContactHandlerTest extends TestCase
 {
     /**
+     * @return array{
+     *     check_proxy_headers: bool,
+     *     trusted_proxies: array<non-empty-string>,
+     *     attribute_name: non-empty-string,
+     *     headers_to_inspect: array<non-empty-string>,
+     * }
+     */
+    private function ipAddressConfig(): array
+    {
+        return [
+            'check_proxy_headers' => false,
+            'trusted_proxies'     => [],
+            'attribute_name'      => 'ip_address',
+            'headers_to_inspect'  => [],
+        ];
+    }
+
+    /**
      * @return array<string, string>
      */
     private function validData(): array
@@ -74,7 +92,12 @@ class PostCreateContactHandlerTest extends TestCase
             ->with('app::create-contact-form', [], ['contact' => 'sent'], 'contact-form')
             ->willReturn('/contact/?contact=sent#contact-form');
 
-        $handler  = new PostCreateContactHandler($template, $urlHelper, $this->service(new MailResult(true)));
+        $handler  = new PostCreateContactHandler(
+            $template,
+            $urlHelper,
+            $this->service(new MailResult(true)),
+            $this->ipAddressConfig()
+        );
         $response = $handler->handle($request);
 
         $this->assertInstanceOf(RedirectResponse::class, $response);
@@ -113,7 +136,8 @@ class PostCreateContactHandlerTest extends TestCase
         $handler  = new PostCreateContactHandler(
             $template,
             $this->createStub(UrlHelper::class),
-            $this->service(new MailResult(true))
+            $this->service(new MailResult(true)),
+            $this->ipAddressConfig()
         );
         $response = $handler->handle($request);
 
@@ -150,7 +174,8 @@ class PostCreateContactHandlerTest extends TestCase
         $handler = new PostCreateContactHandler(
             $template,
             $this->createStub(UrlHelper::class),
-            $this->service(new MailResult(true))
+            $this->service(new MailResult(true)),
+            $this->ipAddressConfig()
         );
         $handler->handle($request);
     }
@@ -179,7 +204,8 @@ class PostCreateContactHandlerTest extends TestCase
         $handler  = new PostCreateContactHandler(
             $template,
             $this->createStub(UrlHelper::class),
-            $this->service(new RuntimeException('SMTP connection refused'))
+            $this->service(new RuntimeException('SMTP connection refused')),
+            $this->ipAddressConfig()
         );
         $response = $handler->handle($request);
 
@@ -197,7 +223,7 @@ class PostCreateContactHandlerTest extends TestCase
 
         $request = $this->createStub(ServerRequestInterface::class);
         $request->method('getParsedBody')->willReturn($data);
-        $request->method('getServerParams')->willReturn(['REMOTE_ADDR' => '203.0.113.5']);
+        $request->method('getAttribute')->willReturnMap([['ip_address', null, '203.0.113.5']]);
 
         $contactService = $this->createMock(ContactService::class);
         $contactService->method('normalize')->willReturn([
@@ -232,10 +258,55 @@ class PostCreateContactHandlerTest extends TestCase
             )
             ->willReturn('<html></html>');
 
-        $handler  = new PostCreateContactHandler($template, $this->createStub(UrlHelper::class), $contactService);
+        $handler  = new PostCreateContactHandler(
+            $template,
+            $this->createStub(UrlHelper::class),
+            $contactService,
+            $this->ipAddressConfig()
+        );
         $response = $handler->handle($request);
 
         $this->assertInstanceOf(HtmlResponse::class, $response);
         $this->assertSame(200, $response->getStatusCode());
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testValidSubmissionSendsTheIpAddressFromTheRequestAttribute(): void
+    {
+        $request = $this->createStub(ServerRequestInterface::class);
+        $request->method('getParsedBody')->willReturn($this->validData());
+        $request->method('getAttribute')->willReturnMap([['ip_address', null, '203.0.113.5']]);
+
+        $contactService = $this->createMock(ContactService::class);
+        $contactService->method('normalize')->willReturn([
+            'topic'   => 'migration',
+            'name'    => 'Jane Doe',
+            'email'   => 'jane@example.com',
+            'company' => 'Acme Inc',
+            'stack'   => 'ZF3, PHP 7.4',
+            'message' => 'We would like to talk about migrating our platform.',
+            'query'   => '',
+        ]);
+        $contactService->method('validate')->willReturn([]);
+        $contactService->method('verifyTurnstile')->willReturn(true);
+        $contactService
+            ->expects($this->once())
+            ->method('send')
+            ->with($this->anything(), '203.0.113.5')
+            ->willReturn(true);
+
+        $urlHelper = $this->createStub(UrlHelper::class);
+        $urlHelper->method('generate')->willReturn('/contact/?contact=sent#contact-form');
+
+        $response = (new PostCreateContactHandler(
+            $this->createStub(TemplateRendererInterface::class),
+            $urlHelper,
+            $contactService,
+            $this->ipAddressConfig()
+        ))->handle($request);
+
+        $this->assertInstanceOf(RedirectResponse::class, $response);
     }
 }

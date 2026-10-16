@@ -176,11 +176,11 @@ class ContactService
     /**
      * @param ContactData $data
      */
-    public function send(array $data): bool
+    public function send(array $data, ?string $ipAddress = null): bool
     {
         $this->mailService->getMessage()->setReplyTo($data['email'], $data['name']);
         $this->mailService->setSubject('New contact form submission on dotkernel.com');
-        $this->mailService->setBody($this->buildBody($data));
+        $this->mailService->setBody($this->buildBody($data, $ipAddress));
 
         try {
             $result = $this->mailService->send();
@@ -237,7 +237,7 @@ class ContactService
     /**
      * @param ContactData $data
      */
-    private function buildBody(array $data): string
+    private function buildBody(array $data, ?string $ipAddress): string
     {
         $rows = [
             'Topic'         => ContactTopicEnum::tryFrom($data['topic'])?->label() ?? '',
@@ -247,6 +247,7 @@ class ContactService
             'Current stack' => $data['stack'],
             'Message'       => $data['message'],
             'Query params'  => $data['query'],
+            'IP address'    => $ipAddress ?? '',
         ];
 
         $html = '';

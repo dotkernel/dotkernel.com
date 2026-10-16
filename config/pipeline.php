@@ -13,6 +13,7 @@ use Mezzio\Router\Middleware\ImplicitHeadMiddleware;
 use Mezzio\Router\Middleware\ImplicitOptionsMiddleware;
 use Mezzio\Router\Middleware\MethodNotAllowedMiddleware;
 use Mezzio\Router\Middleware\RouteMiddleware;
+use RKA\Middleware\IpAddress;
 
 return function (Application $app): void {
     // The error handler should be the first (most outer) middleware to catch
@@ -62,6 +63,8 @@ return function (Application $app): void {
     // - route-based authentication
     // - route-based validation
     // - etc.
+
+    $app->pipe(IpAddress::class);
 
     // Register the dispatch middleware in the middleware pipeline
     $app->pipe(DispatchMiddleware::class);

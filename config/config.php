@@ -23,6 +23,7 @@ $aggregator = new ConfigAggregator([
     \Mezzio\Router\ConfigProvider::class,
     \Mezzio\Router\FastRouteRouter\ConfigProvider::class,
     \Mezzio\Twig\ConfigProvider::class,
+    \RKA\Middleware\Mezzio\ConfigProvider::class,
 
     // Dotkernel packages
     \Dot\DependencyInjection\ConfigProvider::class,

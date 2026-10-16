@@ -280,6 +280,38 @@ class ContactServiceTest extends TestCase
         $this->assertFalse($service->send($this->validData()));
     }
 
+    public function testSendIncludesTheIpAddressInBody(): void
+    {
+        $message = $this->createStub(Email::class);
+
+        $mailService = $this->createMock(MailServiceInterface::class);
+        $mailService->method('getMessage')->willReturn($message);
+        $mailService
+            ->expects($this->once())
+            ->method('setBody')
+            ->with($this->callback(
+                fn (string $body): bool => str_contains($body, '<p><strong>IP address:</strong><br>203.0.113.5</p>')
+            ));
+        $mailService->method('send')->willReturn(new MailResult(true));
+
+        (new ContactService($mailService, new NullLogger()))->send($this->validData(), '203.0.113.5');
+    }
+
+    public function testSendOmitsTheIpAddressRowWhenUnknown(): void
+    {
+        $message = $this->createStub(Email::class);
+
+        $mailService = $this->createMock(MailServiceInterface::class);
+        $mailService->method('getMessage')->willReturn($message);
+        $mailService
+            ->expects($this->once())
+            ->method('setBody')
+            ->with($this->callback(fn (string $body): bool => ! str_contains($body, 'IP address')));
+        $mailService->method('send')->willReturn(new MailResult(true));
+
+        (new ContactService($mailService, new NullLogger()))->send($this->validData());
+    }
+
     public function testSendIncludesQueryParamsInBodyWhenPresent(): void
     {
         $message = $this->createStub(Email::class);
