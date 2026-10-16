@@ -58,6 +58,14 @@ class Category extends AbstractEntity
         $this->slug = $slug;
     }
 
+    /**
+     * Visibility only controls the category sidebar widget (and the 404/410 pages, post, tag, author
+     * and page views that render it), via CategoryRepository::getCategories().
+     *
+     * It does not hide a category that has published posts: those are still listed on /categories/
+     * and in the sitemap (CategoryRepository::getCategoriesWithPublishedPosts()), and their
+     * /category/{slug}/ page is served.
+     */
     public function isVisible(): bool
     {
         return $this->isVisible;

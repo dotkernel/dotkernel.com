@@ -21,7 +21,7 @@ class GetCategoryCollectionHandler implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $categories = $this->categoryRepository->getCategories();
+        $categories = $this->categoryRepository->getCategoriesWithPublishedPosts();
 
         return new HtmlResponse(
             $this->template->render('page::categories', [
