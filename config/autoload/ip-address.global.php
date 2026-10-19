@@ -2,16 +2,6 @@
 
 declare(strict_types=1);
 
-// return [
-//     'rka' => [
-//         'ip_address' => [
-//             'check_proxy_headers' => false,
-//             'trusted_proxies'     => [],
-//             'attribute_name'      => 'ip_address',
-//             'headers_to_inspect'  => [],
-//         ],
-//     ],
-// ];
 
 // @see https://github.com/akrabat/ip-address-middleware/blob/main/src/IpAddress.php
 return [
@@ -22,7 +12,7 @@ return [
             // Proxy IPs/CIDRs/wildcards trusted to set the headers below.
             'trusted_proxies' => [],
             // Request attribute the resolved IP is stored under.
-            'attribute_name' => 'ip_address',
+            'attribute_name' => 'ipAddress',
             // Headers checked, in order, for the client IP.
             'headers_to_inspect' => [
                 // nginx specific

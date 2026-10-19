@@ -39,7 +39,7 @@ class PostCreateContactHandlerTest extends TestCase
         return [
             'check_proxy_headers' => false,
             'trusted_proxies'     => [],
-            'attribute_name'      => 'ip_address',
+            'attribute_name'      => 'ipAddress',
             'headers_to_inspect'  => [],
         ];
     }
@@ -223,7 +223,7 @@ class PostCreateContactHandlerTest extends TestCase
 
         $request = $this->createStub(ServerRequestInterface::class);
         $request->method('getParsedBody')->willReturn($data);
-        $request->method('getAttribute')->willReturnMap([['ip_address', null, '203.0.113.5']]);
+        $request->method('getAttribute')->willReturnMap([['ipAddress', null, '203.0.113.5']]);
 
         $contactService = $this->createMock(ContactService::class);
         $contactService->method('normalize')->willReturn([
@@ -277,7 +277,7 @@ class PostCreateContactHandlerTest extends TestCase
     {
         $request = $this->createStub(ServerRequestInterface::class);
         $request->method('getParsedBody')->willReturn($this->validData());
-        $request->method('getAttribute')->willReturnMap([['ip_address', null, '203.0.113.5']]);
+        $request->method('getAttribute')->willReturnMap([['ipAddress', null, '203.0.113.5']]);
 
         $contactService = $this->createMock(ContactService::class);
         $contactService->method('normalize')->willReturn([

@@ -247,7 +247,7 @@ class ContactService
             'Current stack' => $data['stack'],
             'Message'       => $data['message'],
             'Query params'  => $data['query'],
-            'IP address'    => $ipAddress ?? '',
+            'IP address'    => $ipAddress,
         ];
 
         $html = '';
