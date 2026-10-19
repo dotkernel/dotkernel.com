@@ -55,7 +55,7 @@ class PostCreateContactHandler implements RequestHandlerInterface
         $token   = is_array($rawBody) && is_string($rawBody['cf-turnstile-response'] ?? null)
             ? $rawBody['cf-turnstile-response']
             : '';
-        $ip      = $request->getAttribute($this->ipAddressConfig['attribute_name']);
+        $ip      = (string) $request->getAttribute($this->ipAddressConfig['attribute_name']);
 
         if (! $this->contactService->verifyTurnstile($token, $ip)) {
             $errors['captcha'] = "We couldn't verify you're human. Please try again.";
