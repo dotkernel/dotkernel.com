@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 // @see https://github.com/akrabat/ip-address-middleware/blob/main/src/IpAddress.php
 return [
     'rka' => [
