@@ -280,6 +280,38 @@ class ContactServiceTest extends TestCase
         $this->assertFalse($service->send($this->validData()));
     }
 
+    public function testSendIncludesTheIpAddressInBody(): void
+    {
+        $message = $this->createStub(Email::class);
+
+        $mailService = $this->createMock(MailServiceInterface::class);
+        $mailService->method('getMessage')->willReturn($message);
+        $mailService
+            ->expects($this->once())
+            ->method('setBody')
+            ->with($this->callback(
+                fn (string $body): bool => str_contains($body, '<p><strong>IP address:</strong><br>203.0.113.5</p>')
+            ));
+        $mailService->method('send')->willReturn(new MailResult(true));
+
+        (new ContactService($mailService, new NullLogger()))->send($this->validData(), '203.0.113.5');
+    }
+
+    public function testSendOmitsTheIpAddressRowWhenUnknown(): void
+    {
+        $message = $this->createStub(Email::class);
+
+        $mailService = $this->createMock(MailServiceInterface::class);
+        $mailService->method('getMessage')->willReturn($message);
+        $mailService
+            ->expects($this->once())
+            ->method('setBody')
+            ->with($this->callback(fn (string $body): bool => ! str_contains($body, 'IP address')));
+        $mailService->method('send')->willReturn(new MailResult(true));
+
+        (new ContactService($mailService, new NullLogger()))->send($this->validData());
+    }
+
     public function testSendIncludesQueryParamsInBodyWhenPresent(): void
     {
         $message = $this->createStub(Email::class);
@@ -359,7 +391,7 @@ class ContactServiceTest extends TestCase
         );
 
         $this->assertSame('', $service->turnstileSiteKey());
-        $this->assertTrue($service->verifyTurnstile('', null));
+        $this->assertTrue($service->verifyTurnstile('', ''));
         $this->assertSame([], $calls);
     }
 
@@ -373,14 +405,14 @@ class ContactServiceTest extends TestCase
         );
 
         $this->assertSame('', $service->turnstileSiteKey());
-        $this->assertTrue($service->verifyTurnstile('', null));
+        $this->assertTrue($service->verifyTurnstile('', ''));
         $this->assertSame([], $calls);
     }
 
     public function testTurnstileIsOffByDefault(): void
     {
         $this->assertSame('', $this->service()->turnstileSiteKey());
-        $this->assertTrue($this->service()->verifyTurnstile('', null));
+        $this->assertTrue($this->service()->verifyTurnstile('', ''));
     }
 
     public function testTurnstileSiteKeyIsExposedWhenBothKeysAreSet(): void
@@ -417,7 +449,7 @@ class ContactServiceTest extends TestCase
         $calls   = [];
         $service = $this->turnstileService(self::TURNSTILE, self::SITEVERIFY_SUCCESS, $calls);
 
-        $this->assertTrue($service->verifyTurnstile('token', null));
+        $this->assertTrue($service->verifyTurnstile('token', ''));
         $this->assertSame([['secret' => 'secret-key', 'response' => 'token']], $calls);
     }
 
@@ -444,7 +476,7 @@ class ContactServiceTest extends TestCase
     #[DataProvider('rejectedSiteverifyProvider')]
     public function testRejectedSiteverifyFails(array $turnstile, ?string $response): void
     {
-        $this->assertFalse($this->turnstileService($turnstile, $response)->verifyTurnstile('token', null));
+        $this->assertFalse($this->turnstileService($turnstile, $response)->verifyTurnstile('token', ''));
     }
 
     public function testMatchingHostnamePasses(): void
@@ -454,7 +486,7 @@ class ContactServiceTest extends TestCase
             self::SITEVERIFY_SUCCESS
         );
 
-        $this->assertTrue($service->verifyTurnstile('token', null));
+        $this->assertTrue($service->verifyTurnstile('token', ''));
     }
 
     public function testTestingKeyResponsePassesEvenWithAHostnameConfigured(): void
@@ -464,6 +496,6 @@ class ContactServiceTest extends TestCase
             '{"success":true,"hostname":"example.com","metadata":{"result_with_testing_key":true}}'
         );
 
-        $this->assertTrue($service->verifyTurnstile('token', null));
+        $this->assertTrue($service->verifyTurnstile('token', ''));
     }
 }

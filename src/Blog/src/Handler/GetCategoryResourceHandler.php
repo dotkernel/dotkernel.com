@@ -31,7 +31,7 @@ class GetCategoryResourceHandler implements RequestHandlerInterface
         if ($category === null) {
             return $this->blogService->notFound($categories);
         }
-        if (! $category->isVisible()) {
+        if ($category->getPublishedPostsCount() === 0) {
             return $this->blogService->gone($categories);
         }
         $meta = $category;

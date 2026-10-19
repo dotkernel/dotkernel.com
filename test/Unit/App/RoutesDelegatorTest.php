@@ -19,6 +19,7 @@ use PHPUnit\Framework\MockObject\Exception;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
+use RKA\Middleware\IpAddress;
 
 class RoutesDelegatorTest extends UnitTest
 {
@@ -77,7 +78,10 @@ class RoutesDelegatorTest extends UnitTest
         $this->assertSame([GetCreateContactFormHandler::class], $this->registeredRoutes['/contact/']['handler']);
         $this->assertSame('app::create-contact-form', $this->registeredRoutes['/contact/']['name']);
 
-        $this->assertSame([PostCreateContactHandler::class], $this->registeredRoutes['POST /contact/']['handler']);
+        $this->assertSame(
+            [IpAddress::class, PostCreateContactHandler::class],
+            $this->registeredRoutes['POST /contact/']['handler']
+        );
         $this->assertSame('app::create-contact', $this->registeredRoutes['POST /contact/']['name']);
     }
 }

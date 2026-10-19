@@ -18,17 +18,30 @@ use Psr\Http\Server\RequestHandlerInterface;
 use function is_array;
 use function is_string;
 
+/**
+ * @phpstan-type IpAddressConfigType array{
+ *      check_proxy_headers: bool,
+ *      trusted_proxies: array<non-empty-string>,
+ *      attribute_name: non-empty-string,
+ *      headers_to_inspect: array<non-empty-string>,
+ * }
+ */
 class PostCreateContactHandler implements RequestHandlerInterface
 {
+    /**
+     * @param IpAddressConfigType $ipAddressConfig
+     */
     #[Inject(
         TemplateRendererInterface::class,
         UrlHelper::class,
         ContactService::class,
+        'config.rka.ip_address',
     )]
     public function __construct(
         protected TemplateRendererInterface $template,
         protected UrlHelper $urlHelper,
         protected ContactService $contactService,
+        protected array $ipAddressConfig,
     ) {
     }
 
@@ -42,13 +55,13 @@ class PostCreateContactHandler implements RequestHandlerInterface
         $token   = is_array($rawBody) && is_string($rawBody['cf-turnstile-response'] ?? null)
             ? $rawBody['cf-turnstile-response']
             : '';
-        $ip      = $request->getServerParams()['REMOTE_ADDR'] ?? null;
+        $ip      = (string) $request->getAttribute($this->ipAddressConfig['attribute_name']);
 
-        if (! $this->contactService->verifyTurnstile($token, is_string($ip) ? $ip : null)) {
+        if (! $this->contactService->verifyTurnstile($token, $ip)) {
             $errors['captcha'] = "We couldn't verify you're human. Please try again.";
         }
 
-        if ($errors === [] && ! $this->contactService->send($data)) {
+        if ($errors === [] && ! $this->contactService->send($data, $ip)) {
             $mailFailed = true;
         }
 

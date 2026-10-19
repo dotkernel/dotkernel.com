@@ -13,6 +13,7 @@ use Light\App\Handler\GetSitemapViewHandler;
 use Light\App\Handler\PostCreateContactHandler;
 use Mezzio\Application;
 use Psr\Container\ContainerInterface;
+use RKA\Middleware\IpAddress;
 
 use function assert;
 
@@ -28,7 +29,7 @@ class RoutesDelegator
         $app->get('/{categorySlug}/{slug}.md', [GetMarkdownArticleHandler::class], 'app::markdown-article');
 
         $app->get('/contact/', [GetCreateContactFormHandler::class], 'app::create-contact-form');
-        $app->post('/contact/', [PostCreateContactHandler::class], 'app::create-contact');
+        $app->post('/contact/', [IpAddress::class, PostCreateContactHandler::class], 'app::create-contact');
 
         // Route name kept as `page::…` because `@layout/default.html.twig` links it by name.
         // The matching entry must stay out of `routes.page` in local.php to avoid a duplicate.
