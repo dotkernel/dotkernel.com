@@ -79,7 +79,7 @@ class ContactService
         return $this->turnstile['secret_key'] !== '' ? $this->turnstile['site_key'] : '';
     }
 
-    public function verifyTurnstile(string $token, ?string $remoteIp): bool
+    public function verifyTurnstile(string $token, string $remoteIp): bool
     {
         if ($this->turnstileSiteKey() === '') {
             return true;
@@ -93,7 +93,7 @@ class ContactService
             'secret'   => $this->turnstile['secret_key'],
             'response' => $token,
         ];
-        if ($remoteIp) {
+        if ($remoteIp !== '') {
             $data['remoteip'] = $remoteIp;
         }
 
@@ -176,11 +176,11 @@ class ContactService
     /**
      * @param ContactData $data
      */
-    public function send(array $data): bool
+    public function send(array $data, string $ipAddress = ''): bool
     {
         $this->mailService->getMessage()->setReplyTo($data['email'], $data['name']);
         $this->mailService->setSubject('New contact form submission on dotkernel.com');
-        $this->mailService->setBody($this->buildBody($data));
+        $this->mailService->setBody($this->buildBody($data, $ipAddress));
 
         try {
             $result = $this->mailService->send();
@@ -237,7 +237,7 @@ class ContactService
     /**
      * @param ContactData $data
      */
-    private function buildBody(array $data): string
+    private function buildBody(array $data, string $ipAddress): string
     {
         $rows = [
             'Topic'         => ContactTopicEnum::tryFrom($data['topic'])?->label() ?? '',
@@ -247,6 +247,7 @@ class ContactService
             'Current stack' => $data['stack'],
             'Message'       => $data['message'],
             'Query params'  => $data['query'],
+            'IP address'    => $ipAddress,
         ];
 
         $html = '';
