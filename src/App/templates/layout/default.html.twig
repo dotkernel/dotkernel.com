@@ -8,6 +8,9 @@
             document.documentElement.setAttribute('data-theme', saved === 'dark' ? 'dark' : 'light');
         })();
     </script>
+    {% set meta = meta ?? article ?? category ?? tag ?? null %}
+    {% set ogImage = meta.openGraphImage ?? null %}
+    {% set ogImageUrl = ogImage ? (app.url ~ ogImage) : app.meta.image %}
     {{ include('@partial/meta.html.twig') }}
     {% block canonical %}<link rel="canonical" href="{{ url(routeName ?? null) }}" />
     {% endblock %}<link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/app/favicon/apple-touch-icon.png') }}">

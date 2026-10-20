@@ -34,8 +34,6 @@ class GetCategoryResourceHandler implements RequestHandlerInterface
         if ($category->getPublishedPostsCount() === 0) {
             return $this->blogService->gone($categories);
         }
-        $meta = $category;
-
         $queryParams = $request->getQueryParams();
         $params      = Paginator::getParams($queryParams, 'articles.id');
         $data        = Paginator::wrapper(
@@ -49,7 +47,6 @@ class GetCategoryResourceHandler implements RequestHandlerInterface
                 [
                     'categories' => $categories,
                     'category'   => $category,
-                    'meta'       => $meta,
                     'data'       => $data,
                 ]
             );

@@ -1,4 +1,3 @@
-{% set ogImage = meta.openGraphImage ?? null %}
 {% set ogDescription = meta.description ?? meta.excerpt ?? app.meta.description %}
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -8,7 +7,7 @@
     <meta name="description"         content="{{ ogDescription }}"/>
     <meta property="og:title"        content="{{ meta.title ?? meta.name ?? app.meta.title }}"/>
     <meta property="og:description"  content="{{ ogDescription }}"/>
-    <meta property="og:image"        content="{{ ogImage ? (app.url ~ ogImage) : app.meta.image }}"/>
+    <meta property="og:image"        content="{{ ogImageUrl }}"/>
     <meta property="og:image:alt"    content="{{ ogDescription }}"/>
     <meta property="og:type"         content="{{ meta.type ?? (ogType ?? app.meta.type) }}"/>
     <meta property="og:site_name"    content="{{ app.meta.siteName }}"/>
@@ -18,5 +17,5 @@
     <meta name="twitter:site"        content="{{ app.meta.twitterSite }}"/>
     <meta name="twitter:title"       content="{{ meta.title ?? meta.name ?? app.meta.title }}"/>
     <meta name="twitter:description" content="{{ ogDescription }}"/>
-    <meta name="twitter:image"       content="{{ ogImage ? (app.url ~ ogImage) : app.meta.image }}"/>
+    <meta name="twitter:image"       content="{{ ogImageUrl }}"/>
     <meta name="twitter:image:alt"   content="{{ ogDescription }}"/>

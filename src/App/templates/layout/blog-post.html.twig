@@ -20,7 +20,7 @@
                 "mainEntityOfPage": "{{ app.url ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) }}",
                 "datePublished": "{{ article.postDate|date('c') }}",
                 "dateModified": "{{ article.postDate|date('c') }}",
-                "image": "{{ meta.openGraphImage ? app.url ~ meta.openGraphImage : app.meta.image }}",
+                "image": "{{ ogImageUrl }}",
                 "articleSection": {{ article.category.name|json_encode|raw }},
                 "author": {
                     "@type": "Person",
@@ -59,8 +59,6 @@
     }
 </script>
 {% endblock %}
-
-{% block title %}{{ article.title }}{% endblock %}
 
 {% block head_links %}
     <link rel="alternate" type="text/markdown" href="{{ url('app::markdown-article', {categorySlug: article.category.slug, slug: article.slug}) }}">
