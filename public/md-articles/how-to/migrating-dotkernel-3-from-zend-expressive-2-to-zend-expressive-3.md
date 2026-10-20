@@ -149,7 +149,7 @@ Replace the following lines to reflect the changes:
 
 You can check the complete guides and example files from the following links:
 
-- [Migration guide for Dotkernel Frontend](https://github.com/dotkernel/frontend/tree/master/docs)
+- [Migration guide for Dotkernel Frontend](https://docs.dotkernel.org/frontend-documentation/) (the old `github.com/dotkernel/frontend/tree/master/docs` folder has since moved to this documentation site)
 - [Migration guide for Dotkernel Admin](https://docs.dotkernel.org/admin-documentation/) (the old `github.com/dotkernel/admin/tree/master/docs` folder has since moved to this documentation site)
 
 ## FAQ
