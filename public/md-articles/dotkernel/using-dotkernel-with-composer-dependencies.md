@@ -76,7 +76,7 @@ Barcode::factory(
 
 Both examples render the same barcode.
 
-[![Resulting barcode.](/uploads/article/zend.barcode.introduction.example-1.png)](/uploads/2016/04/zend.barcode.introduction.example-1.png)
+[![Resulting barcode.](/uploads/article/zend.barcode.introduction.example-1.png)](/uploads/article/zend.barcode.introduction.example-1.png)
 
 ### Tip
 
