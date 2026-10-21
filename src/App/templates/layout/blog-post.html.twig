@@ -2,6 +2,7 @@
 
 {% set canonicalUrl = app.url ~ path('page::blog-resource', {categorySlug: article.category.slug, slug: article.slug}) %}
 {% set ogType = 'article' %}
+{% set publishedTime = article.postDate|date('c') %}
 
 {% block canonical %}<link rel="canonical" href="{{ canonicalUrl }}" />
 {% endblock %}
