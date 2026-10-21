@@ -33,8 +33,6 @@ class GetTagResourceHandler implements RequestHandlerInterface
         if ($tag === null) {
             return $this->blogService->notFound($categories);
         }
-        $meta = $tag;
-
         $queryParams = $request->getQueryParams();
         $params      = Paginator::getParams($queryParams, 'articles.id');
         $data        = Paginator::wrapper(
@@ -48,7 +46,6 @@ class GetTagResourceHandler implements RequestHandlerInterface
                 [
                     'categories' => $categories,
                     'tag'        => $tag,
-                    'meta'       => $meta,
                     'data'       => $data,
                 ]
             );

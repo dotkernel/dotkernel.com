@@ -1,8 +1,6 @@
 {% extends '@layout/default.html.twig' %}
 {% block json_ld %} {{ include('@jsonld/tag-resource.jsonld.twig') }} {% endblock %}
 
-{% block title %}{{ tag.name }}{% endblock %}
-
 {% block page_title %}
     {{ include('@partial/title-section.html.twig', {
         back_href: url('page::blog'),
