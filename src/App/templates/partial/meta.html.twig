@@ -5,6 +5,9 @@
     <meta name="theme-color" content="#ffffff">
     <title>{{ meta.title ?? meta.name ?? app.meta.title }}</title>
     <meta name="description"         content="{{ ogDescription }}"/>
+    {% if articleAuthor is defined %}
+    <meta name="author" content="{{ articleAuthor }}"/>
+    {% endif %}
     <meta property="og:title"        content="{{ meta.title ?? meta.name ?? app.meta.title }}"/>
     <meta property="og:description"  content="{{ ogDescription }}"/>
     <meta property="og:image"        content="{{ ogImageUrl }}"/>
