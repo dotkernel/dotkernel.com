@@ -13,6 +13,9 @@
     <meta property="og:site_name"    content="{{ app.meta.siteName }}"/>
     <meta property="og:url"          content="{{ meta.url ?? (canonicalUrl ?? (routeName is defined and routeName ? url(routeName) : app.url)) }}"/>
     <meta property="og:locale"       content="{{ app.meta.locale }}"/>
+    {% if publishedTime is defined %}
+    <meta property="article:published_time" content="{{ publishedTime }}"/>
+    {% endif %}
     <meta name="twitter:card"        content="{{ app.meta.twitterCard }}"/>
     <meta name="twitter:site"        content="{{ app.meta.twitterSite }}"/>
     <meta name="twitter:title"       content="{{ meta.title ?? meta.name ?? app.meta.title }}"/>
