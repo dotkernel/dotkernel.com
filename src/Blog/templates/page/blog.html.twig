@@ -1,8 +1,6 @@
 {% extends '@layout/default.html.twig' %}
 {% block json_ld %} {{ include('@jsonld/blog.jsonld.twig') }} {% endblock %}
 
-{% block title %}Posts{% endblock %}
-
 {% block page_title %}
     {{ include('@partial/title-section.html.twig', {
         badge: 'Blog',

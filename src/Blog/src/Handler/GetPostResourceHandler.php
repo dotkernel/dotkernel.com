@@ -60,7 +60,6 @@ class GetPostResourceHandler implements RequestHandlerInterface
         if ($article->getStatus() !== PostStatusEnum::Published) {
             return $this->blogService->notFound($categories);
         }
-        $meta     = $article;
         $adjacent = $this->articleRepository->getAdjacentPosts($article);
 
         if ($article->isTwig()) {
@@ -69,7 +68,6 @@ class GetPostResourceHandler implements RequestHandlerInterface
                     "page::blog-resource/{$categorySlug}/{$slug}",
                     [
                         'article'      => $article,
-                        'meta'         => $meta,
                         'categories'   => $categories,
                         'previousPost' => $adjacent['previous'],
                         'nextPost'     => $adjacent['next'],
@@ -95,7 +93,6 @@ class GetPostResourceHandler implements RequestHandlerInterface
                 'page::markdown-article',
                 [
                     'article'      => $article,
-                    'meta'         => $meta,
                     'categories'   => $categories,
                     'previousPost' => $adjacent['previous'],
                     'nextPost'     => $adjacent['next'],
