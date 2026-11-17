@@ -1,14 +1,14 @@
 ---
-title: "How to Fix the Doctrine ORM Second Level Cache Error in Dotkernel"
+title: "Fixing the Doctrine ORM Second Level Cache Error"
 description: "Doctrine ORM 3.8 requires an extra package before the second level cache can be enabled. Why Dotkernel API and Admin fail with a ServiceNotCreatedException after updating, and how to disable the cache or opt back in."
 author: "Florin Bidirean"
 date_published: "2026-11-16"
-canonical_url: "https://www.dotkernel.com/how-to/how-to-fix-the-doctrine-orm-3-8-second-level-cache-error-in-dotkernel/"
+canonical_url: "https://www.dotkernel.com/how-to/fixing-the-doctrine-orm-second-level-cache-error/"
 category: "How to's"
 language: "en"
 ---
 
-# How to Fix the Doctrine ORM 3.8 Second Level Cache Error in Dotkernel
+# Fixing the Doctrine ORM Second Level Cache Error
 
 ## TL;DR
 
