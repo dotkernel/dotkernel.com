@@ -1,5 +1,5 @@
 ---
-title: "How to Fix the Doctrine ORM 3.8 Second Level Cache Error in Dotkernel"
+title: "How to Fix the Doctrine ORM Second Level Cache Error in Dotkernel"
 description: "Doctrine ORM 3.8 requires an extra package before the second level cache can be enabled. Why Dotkernel API and Admin fail with a ServiceNotCreatedException after updating, and how to disable the cache or opt back in."
 author: "Florin Bidirean"
 date_published: "2026-11-16"
@@ -12,7 +12,7 @@ language: "en"
 
 ## TL;DR
 
-Doctrine ORM 3.8.0 refuses to enable the second level cache unless `doctrine/orm-plugin-second-level-cache` is installed.
+In the 3.8.0 release of Doctrine ORM, the second level cache requires the installation of the extra package `doctrine/orm-plugin-second-level-cache`.
 Dotkernel API and Admin enable the second level cache by default, and ORM 3.8 is pulled in automatically as a transitive dependency, so a fresh install or a `composer update` fails as soon as the entity manager is created.
 Neither application actually caches anything through the second level cache, so the fix is to disable it with a new `$enableSecondLevelCache` flag in `config/autoload/local.php`.
 To keep using it, install the plugin and set the flag to `true`.
