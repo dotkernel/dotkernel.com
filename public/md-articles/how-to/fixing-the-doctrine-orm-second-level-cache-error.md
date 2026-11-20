@@ -2,7 +2,7 @@
 title: "Fixing the Doctrine ORM Second Level Cache Error"
 description: "Doctrine ORM 3.8 requires an extra package before the second level cache can be enabled. Why Dotkernel API and Admin fail with a ServiceNotCreatedException after updating, and how to disable the cache or opt back in."
 author: "Florin Bidirean"
-date_published: "2026-11-16"
+date_published: "2026-11-20"
 canonical_url: "https://www.dotkernel.com/how-to/fixing-the-doctrine-orm-second-level-cache-error/"
 category: "How to's"
 language: "en"
@@ -13,7 +13,7 @@ language: "en"
 ## TL;DR
 
 In the 3.8.0 release of Doctrine ORM, the second level cache requires the installation of the extra package `doctrine/orm-plugin-second-level-cache`.
-Dotkernel API and Admin enable the second level cache by default, and ORM 3.8 is pulled in automatically as a transitive dependency, so a fresh install or a `composer update` fails as soon as the entity manager is created.
+Dotkernel API and Admin enable the second level cache by default, so a fresh install or a `composer update` that resolves ORM 3.8 fails as soon as the entity manager is created.
 Neither application actually caches anything through the second level cache, so the fix is to disable it with a new `second_level_cache.enabled` override in `config/autoload/local.php`.
 To keep using it, install the plugin and set `enabled` to `true`.
 
@@ -66,35 +66,6 @@ Dotkernel's Core module overrides that default in `src/Core/src/App/src/ConfigPr
 When `enabled` is `true` and a result cache is configured (Dotkernel uses the `filesystem` cache), the factory calls `setSecondLevelCacheEnabled(true)`.
 On ORM 3.8 without the plugin, that call throws.
 
-### ORM 3.8 Arrives as a Transitive Dependency
-
-Neither application lists `doctrine/orm` in its `composer.json`.
-Running `composer why doctrine/orm` on a fresh Dotkernel API install shows where it comes from:
-
-```text
-doctrine/data-fixtures             2.3.0       conflicts doctrine/orm (<3.7 || >=4)
-doctrine/migrations                3.9.8       conflicts doctrine/orm (<2.12 || >=4)
-dotkernel/dot-data-fixtures        1.5.0       requires  doctrine/orm (^3.0)
-dotkernel/dot-dependency-injection 1.4.1       requires  doctrine/orm (^2.9 || ^3.0)
-phpstan/phpstan-doctrine           2.1.2       conflicts doctrine/orm (<2.5)
-roave/psr-container-doctrine       6.3.0       requires  doctrine/orm (^3.6.2)
-roave/security-advisories          9999999-dev conflicts doctrine/orm (>=1,<1.2.4|>=2,<2.4.8|>=2.5,<2.5.1|>=2.8.3,<2.8.4)
-```
-
-Every constraint accepts any 3.x release from 3.7 upward, so Composer resolves the newest one.
-`composer show doctrine/orm` confirms it:
-
-```text
-name     : doctrine/orm
-versions : * 3.8.0
-released : 2026-11-14, this week
-...
-suggests
-doctrine/orm-plugin-second-level-cache Second level cache functionality needs extra package.
-```
-
-A minor release of a package that is never required directly, combined with a default that enables the now-gated feature, is enough to break the entity manager.
-
 ## Does the Application Need the Second Level Cache?
 
 For the Dotkernel skeletons, no.
@@ -117,12 +88,6 @@ Both skeletons have been updated so the second level cache is controlled from `l
 The change adds a `doctrine.configuration.orm_default.second_level_cache` block to `config/autoload/local.php.dist` that sets `enabled` to `false` and overrides the Core setting:
 
 ```php
-<?php
-
-declare(strict_types=1);
-
-$baseUrl = 'http://localhost:8080';
-
 $databases = [
     // ...
 ];
@@ -159,7 +124,7 @@ Arrays are merged recursively, so `local.php` replaces only `enabled`; the other
 
 ## Step 2: Update Existing Installations
 
-`config/autoload/local.php` is ignored by Version Control - each installation creates it by copying `local.php.dist`.
+`config/autoload/local.php` is ignored by version control - each installation creates it by copying `local.php.dist`.
 Pulling the updated `.dist` file does not fix an existing installation, so add the `doctrine.configuration` block shown above to the existing `local.php` by hand.
 
 If configuration caching is enabled, clear the cached file so the new value is picked up:
@@ -222,7 +187,7 @@ A: No.
 The query cache stores the DQL-to-SQL translation and is independent of the second level cache and of the plugin.
 
 **Q: Why doesn't updating local.php.dist fix an existing project?**
-A: `local.php` is a Git-ignored copy created at install time.
+A: `local.php` is a copy created at install time and ignored by version control.
 The new `second_level_cache` block must be added to the existing `local.php` by hand, and the config cache cleared if it is enabled.
 
 **Q: How do I keep using the second level cache?**
