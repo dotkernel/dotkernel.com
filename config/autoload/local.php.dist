@@ -50,9 +50,22 @@ return [
     'application' => $app,
     'databases'   => $databases,
     'doctrine'    => [
-        'connection' => [
+        'connection'    => [
             'orm_default' => [
                 'params' => $databases['default'],
+            ],
+        ],
+        'configuration' => [
+            'orm_default' => [
+                /**
+                 * Starting with doctrine/orm 3.8, the second-level cache requires
+                 * the doctrine/orm-plugin-second-level-cache package.
+                 * To enable it, run `composer require doctrine/orm-plugin-second-level-cache`
+                 * and set 'enabled' to true.
+                 */
+                'second_level_cache' => [
+                    'enabled' => false,
+                ],
             ],
         ],
     ],

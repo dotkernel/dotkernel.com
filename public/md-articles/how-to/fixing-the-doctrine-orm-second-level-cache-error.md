@@ -14,8 +14,8 @@ language: "en"
 
 In the 3.8.0 release of Doctrine ORM, the second level cache requires the installation of the extra package `doctrine/orm-plugin-second-level-cache`.
 Dotkernel API and Admin enable the second level cache by default, and ORM 3.8 is pulled in automatically as a transitive dependency, so a fresh install or a `composer update` fails as soon as the entity manager is created.
-Neither application actually caches anything through the second level cache, so the fix is to disable it with a new `$enableSecondLevelCache` flag in `config/autoload/local.php`.
-To keep using it, install the plugin and set the flag to `true`.
+Neither application actually caches anything through the second level cache, so the fix is to disable it with a new `second_level_cache.enabled` override in `config/autoload/local.php`.
+To keep using it, install the plugin and set `enabled` to `true`.
 
 ## The Error
 
@@ -48,7 +48,7 @@ Composer does not install it, and nothing fails at install time - the problem su
 
 ## Why Dotkernel Applications Are Affected
 
-### The Second Level Cache Is Enabled by Default
+### The Second Level Cache Was Enabled by Default
 
 Dotkernel builds the entity manager with the [`roave/psr-container-doctrine`](https://github.com/Roave/psr-container-doctrine) factories, which keep the second level cache disabled by default.
 Dotkernel's Core module overrides that default in `src/Core/src/App/src/ConfigProvider.php` ([API](https://github.com/dotkernel/api/blob/7.0/src/Core/src/App/src/ConfigProvider.php#L162), [Admin](https://github.com/dotkernel/admin/blob/7.0/src/Core/src/App/src/ConfigProvider.php#L161)):
@@ -107,14 +107,14 @@ The same applies to the metadata, result, and hydration caches.
 
 Disabling the second level cache therefore has no functional impact on a stock Dotkernel application.
 
-## Step 1: Add the Flag to `local.php`
+## Step 1: Configure the Second Level Cache in `local.php`
 
-Both skeletons are being updated so the second level cache is controlled from `local.php`:
+Both skeletons have been updated so the second level cache is controlled from `local.php`:
 
-- Dotkernel API: [PR #XXX](https://github.com/dotkernel/api/pull/XXX) <!-- TODO: replace with the actual PR link -->
-- Dotkernel Admin: [PR #XXX](https://github.com/dotkernel/admin/pull/XXX) <!-- TODO: replace with the actual PR link -->
+- Dotkernel API: [PR #584](https://github.com/dotkernel/api/pull/584)
+- Dotkernel Admin: [PR #482](https://github.com/dotkernel/admin/pull/482)
 
-The change adds an `$enableSecondLevelCache` variable to `config/autoload/local.php.dist`, next to the existing `$baseUrl` and `$databases`, and uses it to override the Core setting:
+The change adds a `doctrine.configuration.orm_default.second_level_cache` block to `config/autoload/local.php.dist` that sets `enabled` to `false` and overrides the Core setting:
 
 ```php
 <?php
@@ -122,18 +122,6 @@ The change adds an `$enableSecondLevelCache` variable to `config/autoload/local.
 declare(strict_types=1);
 
 $baseUrl = 'http://localhost:8080';
-
-/**
- * Doctrine ORM second level cache.
- *
- * Starting with doctrine/orm 3.8, the second level cache requires an additional package.
- * It is disabled here, overriding the default from Core\App\ConfigProvider.
- *
- * To enable it:
- *   1. composer require doctrine/orm-plugin-second-level-cache:^1.0
- *   2. set $enableSecondLevelCache to true
- */
-$enableSecondLevelCache = false;
 
 $databases = [
     // ...
@@ -149,8 +137,14 @@ return [
         ],
         'configuration' => [
             'orm_default' => [
+                /**
+                 * Starting with doctrine/orm 3.8, the second-level cache requires
+                 * the doctrine/orm-plugin-second-level-cache package.
+                 * To enable it, run `composer require doctrine/orm-plugin-second-level-cache`
+                 * and set 'enabled' to true.
+                 */
                 'second_level_cache' => [
-                    'enabled' => $enableSecondLevelCache,
+                    'enabled' => false,
                 ],
             ],
         ],
@@ -160,13 +154,13 @@ return [
 ```
 
 Overriding a single key is enough because of how `config/config.php` builds the configuration.
-`Laminas\ConfigAggregator` loads the module `ConfigProvider` classes, including `Core\App\ConfigProvider`, first, and the files in `config/autoload/` afterward, in this order: `global.php`, `*.global.php`, `local.php`, `*.local.php`, `local.test.php`.
+`Laminas\ConfigAggregator` loads all module `ConfigProvider` classes, including `Core\App\ConfigProvider`, first, and the files in `config/autoload/`, such as `local.php`, afterward.
 Arrays are merged recursively, so `local.php` replaces only `enabled`; the other second level cache settings from Core stay in place, ready for when the cache is turned back on.
 
 ## Step 2: Update Existing Installations
 
-`config/autoload/local.php` is ignored by Git - each installation creates it by copying `local.php.dist`.
-Pulling the updated `.dist` file does not fix an existing installation, so add the `$enableSecondLevelCache` variable and the `doctrine.configuration` block shown above to the existing `local.php` by hand.
+`config/autoload/local.php` is ignored by Version Control - each installation creates it by copying `local.php.dist`.
+Pulling the updated `.dist` file does not fix an existing installation, so add the `doctrine.configuration` block shown above to the existing `local.php` by hand.
 
 If configuration caching is enabled, clear the cached file so the new value is picked up:
 
@@ -180,20 +174,25 @@ Projects that rely on the second level cache, or plan to, need two changes.
 Install the plugin:
 
 ```bash
-composer require doctrine/orm-plugin-second-level-cache:^1.0
+composer require doctrine/orm-plugin-second-level-cache
 ```
 
 Then enable the cache in `config/autoload/local.php`:
 
 ```php
-$enableSecondLevelCache = true;
+'second_level_cache' => [
+    'enabled' => true,
+],
 ```
 
 Enabling the cache is only the first step.
 To benefit from it, entities, associations, or queries must be marked as cacheable, each with a caching mode (`READ_ONLY`, `NONSTRICT_READ_WRITE`, or `READ_WRITE`), and regions and lifetimes must be tuned to the data.
 The [Doctrine second level cache reference](https://www.doctrine-project.org/projects/doctrine-orm/en/stable/reference/second-level-cache.html) covers the details - keeping in mind that Doctrine still considers the feature experimental.
 
-More details are available in the Dotkernel documentation: [Doctrine second level cache](https://docs.dotkernel.org/XXX). <!-- TODO: replace with the actual documentation link -->
+More details are available in the Dotkernel documentation:
+
+- [Dotkernel API: Doctrine ORM](https://docs.dotkernel.org/api-documentation/v7/installation/doctrine-orm/)
+- [Dotkernel Admin: Doctrine ORM](https://docs.dotkernel.org/admin-documentation/v7/installation/doctrine-orm/)
 
 ## Resources
 
@@ -210,7 +209,7 @@ More details are available in the Dotkernel documentation: [Doctrine second leve
 A: No.
 The code still ships with the ORM; enabling it now requires the `doctrine/orm-plugin-second-level-cache` package, and `Configuration::setSecondLevelCacheEnabled(true)` throws a `LogicException` without it.
 
-**Q: Why does the error appear when `doctrine/orm` is not in `composer.json`?**
+**Q: Why does the error appear when doctrine/orm is not in composer.json?**
 A: The ORM is a transitive dependency of packages such as `roave/psr-container-doctrine` and `dotkernel/dot-data-fixtures`, whose constraints allow any 3.x release, so `composer update` or a fresh install resolves 3.8.0.
 
 **Q: Does disabling the second level cache affect a Dotkernel application?**
@@ -218,13 +217,13 @@ A: Not for the stock API and Admin skeletons.
 No entity or query is marked as cacheable, so the cache had nothing to store.
 The query, metadata, result, and hydration caches keep working.
 
-**Q: Is `useQueryCache(true)` affected by this change?**
+**Q: Is useQueryCache(true) affected by this change?**
 A: No.
 The query cache stores the DQL-to-SQL translation and is independent of the second level cache and of the plugin.
 
-**Q: Why doesn't updating `local.php.dist` fix an existing project?**
+**Q: Why doesn't updating local.php.dist fix an existing project?**
 A: `local.php` is a Git-ignored copy created at install time.
-The new flag must be added to the existing `local.php` by hand, and the config cache cleared if it is enabled.
+The new `second_level_cache` block must be added to the existing `local.php` by hand, and the config cache cleared if it is enabled.
 
 **Q: How do I keep using the second level cache?**
-A: Run `composer require doctrine/orm-plugin-second-level-cache:^1.0` and set `$enableSecondLevelCache = true;` in `config/autoload/local.php`.
+A: Run `composer require doctrine/orm-plugin-second-level-cache` and set `second_level_cache.enabled` to `true` in `config/autoload/local.php`.
